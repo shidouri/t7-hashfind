@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_ammo_cache;
 #using scripts\cp\_collectibles;
@@ -160,10 +160,10 @@ function function_4fef5e4()
 */
 function function_b29072ff()
 {
-	var_76099c5f = spawnstruct();
-	var_76099c5f.radius = 60;
-	var_76099c5f.offset = vectorscale((-1, -1, 0), 5);
-	level.var_3efe1e22["p7_nc_sin_coa_04"] = var_76099c5f;
+	s_collectible = spawnstruct();
+	s_collectible.radius = 60;
+	s_collectible.offset = vectorscale((-1, -1, 0), 5);
+	level.var_3efe1e22["p7_nc_sin_coa_04"] = s_collectible;
 }
 
 /*

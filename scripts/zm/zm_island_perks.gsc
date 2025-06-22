@@ -270,7 +270,7 @@ function function_233e0157(var_b8cb4c1e)
 */
 function function_3c8f18a8(a_ents)
 {
-	var_100583a4 = a_ents["vending_links"];
+	e_links = a_ents["vending_links"];
 	var_c739e142 = [];
 	var_c739e142["vending_doubletap"] = "link_doubletap_jnt";
 	var_c739e142["vending_jugg"] = "link_jugg_jnt";
@@ -280,10 +280,10 @@ function function_3c8f18a8(a_ents)
 	if(isdefined(level.var_58f37cc3))
 	{
 		str_tag = var_c739e142[level.var_58f37cc3.targetname];
-		level.var_58f37cc3.origin = var_100583a4 gettagorigin(str_tag);
-		level.var_58f37cc3.angles = var_100583a4 gettagangles(str_tag);
+		level.var_58f37cc3.origin = e_links gettagorigin(str_tag);
+		level.var_58f37cc3.angles = e_links gettagangles(str_tag);
 		level.var_58f37cc3 show();
-		level.var_58f37cc3 linkto(var_100583a4, str_tag);
+		level.var_58f37cc3 linkto(e_links, str_tag);
 	}
 	var_c3f519a9 = a_ents["airdrop_plane"];
 	v_fx_pos = var_c3f519a9 gettagorigin("tag_engine_inner_left");
@@ -776,9 +776,9 @@ function function_12b8ab88(player, var_41b6c34b = 2)
 	wait(0.01);
 	if(!isdefined(self))
 	{
-		if(isdefined(var_a6a648f0.var_160abeb7))
+		if(isdefined(var_a6a648f0.e_particle))
 		{
-			var_a6a648f0.var_160abeb7 zm_ai_spiders::function_9b41e249(0);
+			var_a6a648f0.e_particle zm_ai_spiders::function_9b41e249(0);
 		}
 		if(isdefined(player.var_652fc581))
 		{
@@ -857,9 +857,9 @@ function function_12b8ab88(player, var_41b6c34b = 2)
 		{
 			self notify(#"webtear_failed");
 		}
-		else if(isdefined(var_a6a648f0.var_160abeb7))
+		else if(isdefined(var_a6a648f0.e_particle))
 		{
-			var_a6a648f0.var_160abeb7 zm_ai_spiders::function_9b41e249(0);
+			var_a6a648f0.e_particle zm_ai_spiders::function_9b41e249(0);
 		}
 	}
 }
@@ -1329,47 +1329,47 @@ function function_53fbb551(v_pos)
 */
 function function_80cf986b()
 {
-	foreach(var_48b5604f in level.var_fed21619)
+	foreach(s_web in level.var_fed21619)
 	{
-		t_perk = arraygetclosest(var_48b5604f.origin, level.var_961b3545);
+		t_perk = arraygetclosest(s_web.origin, level.var_961b3545);
 		switch(t_perk.script_noteworthy)
 		{
 			case "specialty_doubletap2":
 			{
-				var_48b5604f.e_destructible setmodel("p7_zm_isl_web_vending_doubletap2");
+				s_web.e_destructible setmodel("p7_zm_isl_web_vending_doubletap2");
 				break;
 			}
 			case "specialty_quickrevive":
 			{
-				var_48b5604f.e_destructible setmodel("p7_zm_isl_web_vending_revive");
+				s_web.e_destructible setmodel("p7_zm_isl_web_vending_revive");
 				break;
 			}
 			case "specialty_fastreload":
 			{
-				var_48b5604f.e_destructible setmodel("p7_zm_isl_web_vending_sleight");
+				s_web.e_destructible setmodel("p7_zm_isl_web_vending_sleight");
 				break;
 			}
 			case "specialty_staminup":
 			{
-				var_48b5604f.e_destructible setmodel("p7_zm_isl_web_vending_marathon");
+				s_web.e_destructible setmodel("p7_zm_isl_web_vending_marathon");
 				break;
 			}
 			case "specialty_armorvest":
 			{
-				var_48b5604f.e_destructible setmodel("p7_zm_isl_web_vending_jugg");
+				s_web.e_destructible setmodel("p7_zm_isl_web_vending_jugg");
 				break;
 			}
 			case "specialty_additionalprimaryweapon":
 			{
-				var_48b5604f.e_destructible setmodel("p7_zm_isl_web_vending_three_gun");
+				s_web.e_destructible setmodel("p7_zm_isl_web_vending_three_gun");
 			}
 			default:
 			{
 				break;
 			}
 		}
-		var_48b5604f.e_destructible.origin = t_perk.machine.origin;
-		var_48b5604f.e_destructible.angles = t_perk.machine.angles;
+		s_web.e_destructible.origin = t_perk.machine.origin;
+		s_web.e_destructible.angles = t_perk.machine.angles;
 	}
 }
 

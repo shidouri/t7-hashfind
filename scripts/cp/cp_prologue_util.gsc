@@ -1066,7 +1066,7 @@ function function_e0fb6da9(str_struct, close_dist, wait_time, var_d1b83750, max_
 	var_7d22b48e = getent(var_98e9bc46, "targetname");
 	v_forward = anglestoforward(s_struct.angles);
 	s_struct.start_time = undefined;
-	var_cc06a93d = 0;
+	num_charges = 0;
 	while(true)
 	{
 		e_player = getplayers()[0];
@@ -1118,8 +1118,8 @@ function function_e0fb6da9(str_struct, close_dist, wait_time, var_d1b83750, max_
 					a_touching[i].var_db552f4 = 1;
 				}
 				s_struct.start_time = undefined;
-				var_cc06a93d++;
-				if(var_cc06a93d >= var_a70db4af)
+				num_charges++;
+				if(num_charges >= var_a70db4af)
 				{
 					return;
 				}
@@ -1385,12 +1385,12 @@ function function_21f52196(str_door_name, t_enter, var_13aabd08)
 	t_exit thread function_e0f9fe98(str_door_name, 1);
 	if(isdefined(var_13aabd08))
 	{
-		var_dee3d10a = getent(var_13aabd08, "targetname");
+		t_regroup = getent(var_13aabd08, "targetname");
 		/#
-			assert(isdefined(var_dee3d10a), "");
+			assert(isdefined(t_regroup), "");
 		#/
-		var_dee3d10a endon(#"death");
-		var_dee3d10a waittill(#"hash_c0b9931e");
+		t_regroup endon(#"death");
+		t_regroup waittill(#"hash_c0b9931e");
 		foreach(player in level.players)
 		{
 			if(!isdefined(player.a_doors))

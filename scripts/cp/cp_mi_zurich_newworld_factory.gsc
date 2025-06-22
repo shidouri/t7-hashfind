@@ -2581,14 +2581,14 @@ function generator_damage_watch()
 	level flag::init("player_destroyed_foundry");
 	objectives::set("cp_level_newworld_foundry_subobj_destroy_generator", struct::get("foundry_generator_objective_struct", "targetname"));
 	n_damage = 0;
-	var_5c2b0988 = getent("foundry_generator", "targetname");
+	e_generator = getent("foundry_generator", "targetname");
 	var_1066b4e5 = getent("foundry_generator_dmg", "targetname");
-	var_5c2b0988 clientfield::set("weakpoint", 1);
-	var_5c2b0988 globallogic_ui::createweakpointwidget(&"tag_weakpoint", 2600, 5000);
-	var_5c2b0988 setcandamage(1);
+	e_generator clientfield::set("weakpoint", 1);
+	e_generator globallogic_ui::createweakpointwidget(&"tag_weakpoint", 2600, 5000);
+	e_generator setcandamage(1);
 	while(n_damage < 1000)
 	{
-		var_5c2b0988 waittill(#"damage", idamage, sattacker, vdirection, vpoint, stype, smodelname, sattachtag, stagname);
+		e_generator waittill(#"damage", idamage, sattacker, vdirection, vpoint, stype, smodelname, sattachtag, stagname);
 		if(isplayer(sattacker))
 		{
 			if(stype === "MOD_PROJECTILE_SPLASH")
@@ -2598,15 +2598,15 @@ function generator_damage_watch()
 			n_damage = n_damage + idamage;
 		}
 	}
-	var_5c2b0988 clientfield::set("weakpoint", 0);
-	var_5c2b0988 globallogic_ui::destroyweakpointwidget(&"tag_weakpoint");
-	var_5c2b0988 setcandamage(0);
-	radiusdamage(var_5c2b0988.origin, 500, 200, 60, undefined, "MOD_EXPLOSIVE");
-	playrumbleonposition("cp_newworld_rumble_factory_generator_destroyed", var_5c2b0988.origin);
-	var_5c2b0988 playsound("evt_generator_explo");
-	var_5c2b0988 clientfield::set("emp_generator_fx", 1);
+	e_generator clientfield::set("weakpoint", 0);
+	e_generator globallogic_ui::destroyweakpointwidget(&"tag_weakpoint");
+	e_generator setcandamage(0);
+	radiusdamage(e_generator.origin, 500, 200, 60, undefined, "MOD_EXPLOSIVE");
+	playrumbleonposition("cp_newworld_rumble_factory_generator_destroyed", e_generator.origin);
+	e_generator playsound("evt_generator_explo");
+	e_generator clientfield::set("emp_generator_fx", 1);
 	var_1066b4e5 show();
-	var_5c2b0988 ghost();
+	e_generator ghost();
 	scene::add_scene_func("p7_fxanim_cp_newworld_generator_debris_bundle", &function_11114c92, "play");
 	level thread scene::play("p7_fxanim_cp_newworld_generator_debris_bundle");
 	objectives::complete("cp_level_newworld_foundry_subobj_destroy_generator", struct::get("foundry_generator_objective_struct", "targetname"));
@@ -2817,12 +2817,12 @@ function function_1ad208()
 	trigger::wait_till("vat_room_spawn_closet");
 	level thread function_f2c01307();
 	level thread function_d9482ef9();
-	var_9b15e92e = getent("gv_vat_room_back", "targetname");
+	e_retreat = getent("gv_vat_room_back", "targetname");
 	foreach(ai in spawner::get_ai_group_ai("vat_room_enemy"))
 	{
 		if(isalive(ai))
 		{
-			ai setgoal(var_9b15e92e);
+			ai setgoal(e_retreat);
 			wait(randomfloatrange(0.5, 2));
 		}
 	}
@@ -3346,9 +3346,9 @@ function function_1736807e(a_ents)
 	{
 		var_809fd273 scene::stop(1);
 	}
-	foreach(var_f13cf991 in a_s_robots)
+	foreach(s_robot in a_s_robots)
 	{
-		var_f13cf991 scene::stop(1);
+		s_robot scene::stop(1);
 	}
 	a_ai_robots = getentarray("inside_man_robot_ai", "targetname");
 	foreach(ai in a_ai_robots)
@@ -3654,7 +3654,7 @@ function function_aef915b2()
 			e_vat.var_f3e8791a = getent("cauldron_1_hang", "targetname");
 			e_vat.var_8406755b = getent("cauldron_1_fall", "targetname");
 			e_vat.str_exploder = "fx_interior_cauldron_right";
-			e_vat.var_84d67e66 = getent("fire_hazard_right_cauldron", "targetname");
+			e_vat.t_hazard = getent("fire_hazard_right_cauldron", "targetname");
 			break;
 		}
 		case "s1_02":
@@ -3663,7 +3663,7 @@ function function_aef915b2()
 			e_vat.var_f3e8791a = getent("cauldron_2_hang", "targetname");
 			e_vat.var_8406755b = getent("cauldron_2_fall", "targetname");
 			e_vat.str_exploder = "fx_interior_cauldron_left";
-			e_vat.var_84d67e66 = getent("fire_hazard_left_cauldron", "targetname");
+			e_vat.t_hazard = getent("fire_hazard_left_cauldron", "targetname");
 			break;
 		}
 		case "bridge":
@@ -3673,7 +3673,7 @@ function function_aef915b2()
 			e_vat.var_8406755b = getent("cauldron_bridge_fall", "targetname");
 			e_vat.var_3d0b54ab = getent("foundry_catwalk_clip", "targetname");
 			e_vat.var_cb14c98c = getent("foundry_catwalk_ai_clip", "targetname");
-			e_vat.var_84d67e66 = getent("fire_hazard_bridge", "targetname");
+			e_vat.t_hazard = getent("fire_hazard_bridge", "targetname");
 			a_e_clips = getentarray("cauldron_bridge_fxanim_clip", "targetname");
 			foreach(e_clip in a_e_clips)
 			{
@@ -3682,7 +3682,7 @@ function function_aef915b2()
 			break;
 		}
 	}
-	e_vat.var_84d67e66 triggerenable(0);
+	e_vat.t_hazard triggerenable(0);
 	e_vat.target = self.target;
 	e_vat.script_string = self.script_string;
 	e_vat.script_noteworthy = self.script_noteworthy;
@@ -3824,7 +3824,7 @@ function destroyable_vat()
 				}
 				wait(0.5);
 				self thread function_528ae2fd(sattacker);
-				self.var_84d67e66 triggerenable(1);
+				self.t_hazard triggerenable(1);
 				self.var_f3e8791a delete();
 				self.var_8406755b movez(256, 0.05);
 				self.var_8406755b waittill(#"movedone");

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\audio_shared;
 #using scripts\shared\clientfield_shared;
@@ -53,8 +53,8 @@ function __init__()
 */
 function clocktower_flash(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	var_1f1c6e96 = struct::get("ee_clocktower_lightning_rod", "targetname");
-	playfx(localclientnum, level._effect["clocktower_flash"], var_1f1c6e96.origin);
+	s_rod = struct::get("ee_clocktower_lightning_rod", "targetname");
+	playfx(localclientnum, level._effect["clocktower_flash"], s_rod.origin);
 }
 
 /*

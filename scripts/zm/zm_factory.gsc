@@ -2670,11 +2670,11 @@ function function_5d386c43()
 	level clientfield::set("console_start", 1);
 	level flag::wait_till_all(array("console_one_completed", "console_two_completed", "console_three_completed"));
 	exploder::exploder("teleporter_controller_main_light");
-	var_d3486562 = struct::get("snowpile_console");
-	var_d3486562 create_unitrigger();
-	var_d3486562 waittill(#"trigger_activated");
-	playsoundatposition("zmb_snowmelt_button_press", var_d3486562.origin);
-	zm_unitrigger::unregister_unitrigger(var_d3486562.s_unitrigger);
+	s_console = struct::get("snowpile_console");
+	s_console create_unitrigger();
+	s_console waittill(#"trigger_activated");
+	playsoundatposition("zmb_snowmelt_button_press", s_console.origin);
+	zm_unitrigger::unregister_unitrigger(s_console.s_unitrigger);
 	level util::clientnotify("sndSB");
 	level thread function_428d50ed();
 	exploder::exploder("fx_expl_robothead_laser");
@@ -2999,9 +2999,9 @@ function function_8fbb6760(str_perk)
 */
 function flytrap_prize()
 {
-	var_3c100ea1 = struct::get("flytrap_prize", "targetname");
-	mdl_prize = util::spawn_model("wpn_t7_hero_annihilator_world", var_3c100ea1.origin, var_3c100ea1.angles);
-	mdl_prize thread function_45814329(var_3c100ea1);
+	s_prize = struct::get("flytrap_prize", "targetname");
+	mdl_prize = util::spawn_model("wpn_t7_hero_annihilator_world", s_prize.origin, s_prize.angles);
+	mdl_prize thread function_45814329(s_prize);
 	level thread function_86e1c543();
 	level flag::clear("flytrap");
 }
@@ -3015,7 +3015,7 @@ function flytrap_prize()
 	Parameters: 1
 	Flags: Linked
 */
-function function_45814329(var_3c100ea1)
+function function_45814329(s_prize)
 {
 	self endon(#"death");
 	while(true)
@@ -3248,8 +3248,8 @@ function function_dafe334()
 		level flag::set("");
 		level flag::set("");
 		wait(0.2);
-		var_d3486562 = struct::get("");
-		var_d3486562 notify(#"trigger_activated");
+		s_console = struct::get("");
+		s_console notify(#"trigger_activated");
 	#/
 }
 

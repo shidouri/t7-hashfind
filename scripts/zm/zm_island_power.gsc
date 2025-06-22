@@ -290,8 +290,8 @@ function function_e9f46546()
 	{
 		wait(1);
 	}
-	var_e08b3d94 = getent("penstock_web_trigger", "targetname");
-	var_e08b3d94 zm_ai_spiders::function_7428955c();
+	t_web = getent("penstock_web_trigger", "targetname");
+	t_web zm_ai_spiders::function_7428955c();
 	if(!isdefined(level.var_d3b40681))
 	{
 		level.var_d3b40681 = [];
@@ -300,16 +300,16 @@ function function_e9f46546()
 	{
 		level.var_d3b40681 = array(level.var_d3b40681);
 	}
-	level.var_d3b40681[level.var_d3b40681.size] = var_e08b3d94;
-	var_e08b3d94 zm_ai_spiders::function_f375c6d9(1, 1);
-	var_e08b3d94.var_e084d7bd = 1;
-	var_e08b3d94 waittill(#"web_torn");
+	level.var_d3b40681[level.var_d3b40681.size] = t_web;
+	t_web zm_ai_spiders::function_f375c6d9(1, 1);
+	t_web.var_e084d7bd = 1;
+	t_web waittill(#"web_torn");
 	level util::clientnotify("snd_valve");
 	level thread zm_island_vo::function_3bf2d62a("unblock_penstock", 0, 1, 0);
-	var_e08b3d94 zm_ai_spiders::function_f375c6d9(0);
-	arrayremovevalue(level.var_d3b40681, var_e08b3d94);
-	var_e08b3d94.var_1e831600 util::delay(5, undefined, &delete);
-	var_e08b3d94 util::delay(6, undefined, &delete);
+	t_web zm_ai_spiders::function_f375c6d9(0);
+	arrayremovevalue(level.var_d3b40681, t_web);
+	t_web.var_1e831600 util::delay(5, undefined, &delete);
+	t_web util::delay(6, undefined, &delete);
 }
 
 /*
@@ -817,11 +817,11 @@ function function_662fba30()
 	for(i = 1; i < 5; i++)
 	{
 		a_temp = [];
-		foreach(var_991ffe1 in var_c66f413a)
+		foreach(s_bucket in var_c66f413a)
 		{
-			if(var_991ffe1.script_int === i)
+			if(s_bucket.script_int === i)
 			{
-				a_temp[a_temp.size] = var_991ffe1;
+				a_temp[a_temp.size] = s_bucket;
 			}
 		}
 		var_623d6569 = array::random(a_temp);
@@ -1327,13 +1327,13 @@ function function_1b3134ae()
 {
 	/#
 		a_s_buckets = struct::get_array("", "");
-		foreach(var_991ffe1 in a_s_buckets)
+		foreach(s_bucket in a_s_buckets)
 		{
-			if(isdefined(var_991ffe1.trigger))
+			if(isdefined(s_bucket.trigger))
 			{
 				continue;
 			}
-			var_991ffe1 thread function_75656c0a();
+			s_bucket thread function_75656c0a();
 		}
 	#/
 }

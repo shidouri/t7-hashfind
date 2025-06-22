@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_accolades;
 #using scripts\cp\_util;
@@ -811,8 +811,8 @@ function function_ee166ee8()
 */
 function function_80820e19()
 {
-	var_4fa896d4 = getent("newworld_accolade_15", "targetname");
-	var_4fa896d4 thread function_14316bd1();
+	t_accolade = getent("newworld_accolade_15", "targetname");
+	t_accolade thread function_14316bd1();
 }
 
 /*

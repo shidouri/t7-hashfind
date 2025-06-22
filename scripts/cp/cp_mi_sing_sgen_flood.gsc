@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -1280,7 +1280,7 @@ function play_hendricks_defend_scene()
 	nd_goto = getnode("hendricks_flood_combat_wait", "targetname");
 	level.ai_hendricks setgoal(nd_goto.origin);
 	level flag::wait_till("defend_ready");
-	var_421ccb2d = getent("flood_defend_defend_room_zone_trig", "targetname");
+	t_area = getent("flood_defend_defend_room_zone_trig", "targetname");
 	var_a3eb613f = 1;
 	while(var_a3eb613f)
 	{
@@ -1288,7 +1288,7 @@ function play_hendricks_defend_scene()
 		a_ai_enemies = getaiteamarray("axis");
 		foreach(ai_enemy in a_ai_enemies)
 		{
-			if(ai_enemy istouching(var_421ccb2d))
+			if(ai_enemy istouching(t_area))
 			{
 				var_a3eb613f = 1;
 				break;

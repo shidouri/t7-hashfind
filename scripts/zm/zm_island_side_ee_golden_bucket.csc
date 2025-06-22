@@ -37,9 +37,9 @@ function reveal_golden_bucket_planting_location(localclientnum, oldval, newval, 
 	if(newval == 1)
 	{
 		a_e_plant = getentarray(localclientnum, "swamp_planter_skull_reveal", "targetname");
-		foreach(var_31678178 in a_e_plant)
+		foreach(e_plant in a_e_plant)
 		{
-			var_31678178 movez(-45, 2);
+			e_plant movez(-45, 2);
 		}
 	}
 }

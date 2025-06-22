@@ -261,11 +261,11 @@ function function_c3466d96(b_on)
 		for(i = 0; i < 3; i++)
 		{
 			str_targetname = "ee_apothigod_keeper_clip_" + i;
-			var_4fafa709 = struct::get(str_targetname, "targetname");
-			mdl_clip = spawn("script_model", var_4fafa709.origin);
+			s_keeper = struct::get(str_targetname, "targetname");
+			mdl_clip = spawn("script_model", s_keeper.origin);
 			mdl_clip setmodel("collision_clip_zod_keeper_32x32x128");
-			mdl_clip.origin = var_4fafa709.origin + vectorscale((0, 0, 1), 48);
-			mdl_clip.angles = var_4fafa709.angles;
+			mdl_clip.origin = s_keeper.origin + vectorscale((0, 0, 1), 48);
+			mdl_clip.angles = s_keeper.angles;
 			if(!isdefined(level.var_76c101df))
 			{
 				level.var_76c101df = [];
@@ -1057,9 +1057,9 @@ function function_729859d0()
 		{
 			level thread function_c898ab1();
 			a_e_passengers = [[ level.o_zod_train ]]->get_players_on_train();
-			foreach(var_813273c3 in a_e_passengers)
+			foreach(e_passenger in a_e_passengers)
 			{
-				var_813273c3 thread zm_zod_util::set_rumble_to_player(6, 1);
+				e_passenger thread zm_zod_util::set_rumble_to_player(6, 1);
 			}
 		}
 		level.o_zod_train flag::wait_till_clear("moving");
@@ -1625,7 +1625,7 @@ function function_f75d6374()
 */
 function function_6bd33d28(player)
 {
-	var_14123bd0 = self.stub.origin;
+	v_trigger = self.stub.origin;
 	var_a18af120 = 0;
 	var_39ec9ec2 = level clientfield::get("ee_quest_state");
 	if(var_39ec9ec2 == 0)
@@ -1713,10 +1713,10 @@ function function_9190a90e(n_char_index)
 {
 	str_charname = function_d93f551b(n_char_index);
 	str_triggername = "keeper_resurrection_" + str_charname;
-	var_e6e52f57 = getent(str_triggername, "targetname");
+	t_resurrect = getent(str_triggername, "targetname");
 	while(true)
 	{
-		var_e6e52f57 waittill(#"trigger", player);
+		t_resurrect waittill(#"trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;

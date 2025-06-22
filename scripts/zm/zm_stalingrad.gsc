@@ -1402,11 +1402,11 @@ function function_b9d3803a()
 function function_cd541d08()
 {
 	a_t_traps = getentarray("zombie_trap", "targetname");
-	foreach(var_60532813 in a_t_traps)
+	foreach(t_trap in a_t_traps)
 	{
-		if(var_60532813.script_noteworthy === "electric")
+		if(t_trap.script_noteworthy === "electric")
 		{
-			var_60532813 thread function_78c017aa();
+			t_trap thread function_78c017aa();
 		}
 	}
 }
@@ -1687,9 +1687,9 @@ function function_965d1d83(str_scene, str_flag, var_38cd507c = undefined)
 function function_9c2d9678()
 {
 	var_97e8ec5c = getentarray("debris_using_door_trigger", "script_label");
-	foreach(var_81072907 in var_97e8ec5c)
+	foreach(t_debris in var_97e8ec5c)
 	{
-		var_81072907 zm_utility::set_hint_string(var_81072907, "default_buy_debris", var_81072907.zombie_cost);
+		t_debris zm_utility::set_hint_string(t_debris, "default_buy_debris", t_debris.zombie_cost);
 	}
 }
 

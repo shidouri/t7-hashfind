@@ -486,10 +486,10 @@ function function_cbac68fe(e_player)
 	mdl_clone.angles = e_player.angles;
 	mdl_body = e_player getcharacterbodymodel();
 	mdl_clone setmodel(mdl_body);
-	if(isdefined(e_player.var_bc5f242a) && isdefined(e_player.var_bc5f242a.str_model))
+	if(isdefined(e_player.s_wearable) && isdefined(e_player.s_wearable.str_model))
 	{
-		str_model = e_player.var_bc5f242a.str_model;
-		str_tag = e_player.var_bc5f242a.str_tag;
+		str_model = e_player.s_wearable.str_model;
+		str_tag = e_player.s_wearable.str_tag;
 		mdl_clone attach(str_model, str_tag);
 	}
 	bodyrenderoptions = e_player getcharacterbodyrenderoptions();

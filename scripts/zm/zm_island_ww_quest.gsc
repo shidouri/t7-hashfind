@@ -746,8 +746,8 @@ function function_7def4961()
 	level thread scene::add_scene_func("p7_fxanim_zm_island_cage_trap_spid_hatch_open_bundle", &function_385c3ebb, "init");
 	level thread scene::init("p7_fxanim_zm_island_cage_trap_spid_hatch_open_bundle");
 	var_30c2448 = struct::get("vial_pos");
-	var_f78dfee = struct::get("spider_cage_control");
-	var_f78dfee thread function_9faff60c();
+	s_control = struct::get("spider_cage_control");
+	s_control thread function_9faff60c();
 	while(!level.var_1dbad94a)
 	{
 		wait(0.1);
@@ -964,11 +964,11 @@ function private function_a50aa078(player)
 function function_ebbb27ae()
 {
 	level endon(#"hash_d8d0f829");
-	var_60532813 = getent("trigger_trap", "targetname");
+	t_trap = getent("trigger_trap", "targetname");
 	var_799520c1 = struct::get("trap_pos");
 	while(true)
 	{
-		var_60532813 waittill(#"trigger", ai_zombie);
+		t_trap waittill(#"trigger", ai_zombie);
 		if(!ai_zombie.b_is_spider)
 		{
 			continue;
@@ -997,7 +997,7 @@ function function_ebbb27ae()
 		{
 			if(isdefined(ai_zombie.var_f7522faa) && ai_zombie.var_f7522faa)
 			{
-				var_60532813 thread namespace_1aa6bd0c::function_aa515242(ai_zombie);
+				t_trap thread namespace_1aa6bd0c::function_aa515242(ai_zombie);
 			}
 			else
 			{
@@ -1223,8 +1223,8 @@ function function_1228bd27()
 */
 function function_c5cd1083()
 {
-	level.var_9fce15de = getent("trigger_inside_cage", "targetname");
-	level.var_9fce15de setinvisibletoall();
+	level.t_cage = getent("trigger_inside_cage", "targetname");
+	level.t_cage setinvisibletoall();
 	level.var_2ba557f2 = getent("clip_swamp_hatch", "targetname");
 }
 
@@ -1660,10 +1660,10 @@ function function_1d3366a8()
 function function_871dbb3a()
 {
 	level flag::wait_till("power_on");
-	level.var_9fce15de setvisibletoall();
+	level.t_cage setvisibletoall();
 	while(true)
 	{
-		level.var_9fce15de waittill(#"trigger", player);
+		level.t_cage waittill(#"trigger", player);
 		if(level.var_f353ae68.is_moving)
 		{
 			continue;
@@ -1671,7 +1671,7 @@ function function_871dbb3a()
 		if(!level.var_f353ae68.b_occupied)
 		{
 			level.var_f353ae68.b_occupied = 1;
-			level.var_9fce15de setinvisibletoall();
+			level.t_cage setinvisibletoall();
 			if(level flag::get("solo_game"))
 			{
 				function_d452a2ca(player);
@@ -1683,11 +1683,11 @@ function function_871dbb3a()
 				level thread zm_island_vo::function_3bf2d62a("raise_cage", 0, 0, 1);
 				player unlink();
 			}
-			while(player istouching(level.var_9fce15de))
+			while(player istouching(level.t_cage))
 			{
 				wait(0.1);
 			}
-			level.var_9fce15de setvisibletoall();
+			level.t_cage setvisibletoall();
 			level.var_f353ae68.b_occupied = 0;
 		}
 	}
@@ -1788,7 +1788,7 @@ function function_3cd05ecf(str_direction)
 	{
 		for(i = 0; i < level.players.size; i++)
 		{
-			if(level.players[i] istouching(level.var_9fce15de))
+			if(level.players[i] istouching(level.t_cage))
 			{
 				level.players[i].var_90f735f8 = 1;
 				function_d452a2ca(level.players[i]);
@@ -1872,7 +1872,7 @@ function function_46d3d1b0(var_9330a364)
 	{
 		foreach(player in level.players)
 		{
-			if(player istouching(level.var_9fce15de))
+			if(player istouching(level.t_cage))
 			{
 				player.var_b0329be9 = 1;
 			}
@@ -2043,8 +2043,8 @@ function function_b7685b2e()
 */
 function function_e2b90d40()
 {
-	var_2c2cf2e6 = struct::get("wweapon_up_part_wwup1");
-	var_babd6f9c = util::spawn_model("p7_zm_bgb_vial", var_2c2cf2e6.origin, var_2c2cf2e6.angles);
+	s_underground = struct::get("wweapon_up_part_wwup1");
+	var_babd6f9c = util::spawn_model("p7_zm_bgb_vial", s_underground.origin, s_underground.angles);
 	var_babd6f9c.trigger = zm_island_util::spawn_trigger_radius(var_babd6f9c.origin, 100, 1, &function_9bd3096f);
 	var_babd6f9c thread function_2578c564("wwup1_found");
 }

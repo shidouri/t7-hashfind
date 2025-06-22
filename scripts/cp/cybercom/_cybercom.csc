@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\cybercom\_cybercom_gadget_firefly;
 #using scripts\cp\cybercom\_cybercom_gadget_misdirection;
@@ -1370,7 +1370,7 @@ function function_62d5481c(localclientnum, var_5a8c2a63, var_191d8f6d)
 	Parameters: 2
 	Flags: Linked
 */
-function function_371a93b4(localclientnum, var_c5f458e4)
+function function_371a93b4(localclientnum, ability_type)
 {
 	var_e4230c26 = self getcybercomtype();
 	controllermodel = getuimodelforcontroller(localclientnum);

@@ -296,8 +296,8 @@ function function_29c80ce1()
 			playrumbleonposition("zm_castle_quest_rune_prison_clock_wall_rumble", point);
 			level scene::play("p7_fxanim_zm_castle_quest_rune_clock_wall_bundle");
 			level.var_2b11065e = getent("quest_rune_clock_wall_arrow", "targetname");
-			var_a462d6ee = struct::get("quest_start_rune_prison");
-			var_a462d6ee function_f708e6b2();
+			s_arrow = struct::get("quest_start_rune_prison");
+			s_arrow function_f708e6b2();
 			return;
 		}
 	}
@@ -358,8 +358,8 @@ function function_c272bd2a()
 			level.var_714fae39 = 1;
 		}
 		level thread function_ab3e9362();
-		var_a462d6ee = struct::get("");
-		zm_unitrigger::unregister_unitrigger(var_a462d6ee.var_67b5dd94);
+		s_arrow = struct::get("");
+		zm_unitrigger::unregister_unitrigger(s_arrow.var_67b5dd94);
 		level flag::set("");
 	#/
 }
@@ -2003,8 +2003,8 @@ function function_d47f8f22()
 			#/
 			level thread scene::play("p7_fxanim_zm_castle_quest_demon_arrow_broken_bundle");
 			level.var_72a6d56b = getent("quest_demongate_arrow_broken", "targetname");
-			var_a462d6ee = struct::get("quest_start_demon_gate");
-			var_a462d6ee function_f708e6b2();
+			s_arrow = struct::get("quest_start_demon_gate");
+			s_arrow function_f708e6b2();
 			var_e88abb1 zm_castle_vo::function_f0b775a3("release");
 			var_e88abb1 delete();
 			return;
@@ -2089,14 +2089,14 @@ function demon_gate_seal()
 			return;
 		}
 	#/
-	var_a3bb3065 = getent("aq_dg_flagstone_seal_trig", "targetname");
+	t_seal = getent("aq_dg_flagstone_seal_trig", "targetname");
 	exploder::exploder("fxexp_300");
 	zm_spawner::register_zombie_death_event_callback(&function_c58a0fe3);
 	level flag::wait_till("demon_gate_seal");
 	zm_spawner::deregister_zombie_death_event_callback(&function_c58a0fe3);
 	exploder::stop_exploder("fxexp_300");
 	exploder::exploder("fxexp_301");
-	playrumbleonposition("zm_castle_quest_demon_gate_seal_rumble", var_a3bb3065.origin);
+	playrumbleonposition("zm_castle_quest_demon_gate_seal_rumble", t_seal.origin);
 	level scene::init("p7_fxanim_zm_castle_quest_demongate_urn_bundle");
 	level scene::play("p7_fxanim_zm_castle_quest_demongate_flagstones_bundle");
 	level function_bb59b66c();
@@ -2115,8 +2115,8 @@ function function_c58a0fe3(e_attacker)
 {
 	if(self function_ab623d34(level.var_6e68c0d8))
 	{
-		var_a3bb3065 = getent("aq_dg_flagstone_seal_trig", "targetname");
-		if(self istouching(var_a3bb3065) && self.damagemod == "MOD_MELEE")
+		t_seal = getent("aq_dg_flagstone_seal_trig", "targetname");
+		if(self istouching(t_seal) && self.damagemod == "MOD_MELEE")
 		{
 			self zombie_utility::gib_random_parts();
 			gibserverutils::annihilate(self);
@@ -2672,8 +2672,8 @@ function function_8700782f()
 		var_49f8925e[i] thread function_f20a422b(var_25b51f6b, var_5a2492d5);
 		if(isdefined(var_49f8925e[i].n_index))
 		{
-			var_e046f594 = struct::get("aq_dg_rune_sequence_0" + var_49f8925e[i].n_index, "targetname");
-			var_e046f594.var_a991b2d8 = var_25b51f6b;
+			s_sequence = struct::get("aq_dg_rune_sequence_0" + var_49f8925e[i].n_index, "targetname");
+			s_sequence.var_a991b2d8 = var_25b51f6b;
 		}
 		var_579f5f7[i].var_483af51d = "fxexp_" + var_579f5f7[i].script_int;
 		var_ca33ca2e = var_579f5f7[i].script_int + 1;
@@ -3584,8 +3584,8 @@ function wolf_howl_paintings()
 	{
 		zm_unitrigger::unregister_unitrigger(var_48c991cb.var_67b5dd94);
 	}
-	var_a462d6ee = struct::get("quest_start_wolf_howl");
-	var_a462d6ee function_5e09adfd();
+	s_arrow = struct::get("quest_start_wolf_howl");
+	s_arrow function_5e09adfd();
 	/#
 		level.var_e921c50c = 1;
 	#/
@@ -3597,7 +3597,7 @@ function wolf_howl_paintings()
 		e_player.var_b89ed4e5 = undefined;
 	}
 	level.var_eee1576 = getent("quest_wolf_arrow_broken_reveal", "targetname");
-	var_a462d6ee function_f708e6b2();
+	s_arrow function_f708e6b2();
 }
 
 /*
@@ -3841,11 +3841,11 @@ function function_15a6ff6a()
 	level.var_52978d72 endon(#"death");
 	level.var_52978d72 endon(#"quest_swap");
 	level.var_52978d72 thread function_d62aa556();
-	var_f7019ef = getent("aq_wh_skull_shrine_trig", "targetname");
+	t_shrine = getent("aq_wh_skull_shrine_trig", "targetname");
 	while(true)
 	{
 		level.var_52978d72 waittill(#"projectile_impact", weapon, point, radius, attacker, normal);
-		if(function_51a90202(weapon, 1, point, var_f7019ef))
+		if(function_51a90202(weapon, 1, point, t_shrine))
 		{
 			playsoundatposition("zmb_wolf_shrine_location", (5350, -1659, -1135));
 			mdl_skull = getent("wolf_skull_roll_down", "targetname");
@@ -3881,7 +3881,7 @@ function function_d62aa556()
 	level endon(#"hash_80b27882");
 	var_c068b13 = getent("aq_wh_shrine_rumble_volume", "targetname");
 	var_55b8fc1d = getent("aq_wh_skull_shrine_trig", "targetname");
-	var_9fc43621 = var_55b8fc1d.origin;
+	v_shrine = var_55b8fc1d.origin;
 	n_pulse_delay_range = 0.7;
 	while(true)
 	{
@@ -3890,7 +3890,7 @@ function function_d62aa556()
 			n_time_before_next_pulse = 1;
 			v_eye_origin = self getplayercamerapos();
 			v_eye_direction = anglestoforward(self getplayerangles());
-			var_744d3805 = vectornormalize(var_9fc43621 - v_eye_origin);
+			var_744d3805 = vectornormalize(v_shrine - v_eye_origin);
 			n_dot = vectordot(var_744d3805, v_eye_direction);
 			if(n_dot > 0.9)
 			{
@@ -5164,8 +5164,8 @@ function function_cd986666()
 			level waittill(#"hash_4e123b5d");
 			level thread scene::play("p7_fxanim_zm_castle_quest_storm_arrow_broken_bundle");
 			level.var_18c771ad = getent("quest_storm_arrow_broken", "targetname");
-			var_a462d6ee = struct::get("quest_start_elemental_storm");
-			var_a462d6ee function_f708e6b2();
+			s_arrow = struct::get("quest_start_elemental_storm");
+			s_arrow function_f708e6b2();
 			level notify(#"hash_6d0730ef");
 			return;
 		}
@@ -5265,8 +5265,8 @@ function function_2db350be()
 			level thread scene::play("");
 		}
 		level thread function_9ad758f3();
-		var_a462d6ee = struct::get("");
-		zm_unitrigger::unregister_unitrigger(var_a462d6ee.var_67b5dd94);
+		s_arrow = struct::get("");
+		zm_unitrigger::unregister_unitrigger(s_arrow.var_67b5dd94);
 		level flag::set("");
 	#/
 }
@@ -5499,8 +5499,8 @@ function elemental_storm_wallrun()
 	foreach(t_wallrun in var_5c7ef569)
 	{
 		mdl_symbol = getent(t_wallrun.target, "targetname");
-		var_e9dd177b = getent(mdl_symbol.target, "targetname");
-		var_e9dd177b delete();
+		t_outer = getent(mdl_symbol.target, "targetname");
+		t_outer delete();
 	}
 }
 
@@ -5524,16 +5524,16 @@ function function_cce911bb()
 	#/
 	level endon(#"elemental_storm_wallrun");
 	mdl_symbol = getent(self.target, "targetname");
-	var_e9dd177b = getent(mdl_symbol.target, "targetname");
+	t_outer = getent(mdl_symbol.target, "targetname");
 	mdl_symbol clientfield::set("wallrun_fx", 1);
 	while(true)
 	{
-		var_e9dd177b waittill(#"trigger");
+		t_outer waittill(#"trigger");
 		if(!array::contains(level.var_49593fd9, self))
 		{
 			mdl_symbol clientfield::set("wallrun_fx", 2);
 		}
-		while(array::is_touching(level.players, var_e9dd177b))
+		while(array::is_touching(level.players, t_outer))
 		{
 			wait(0.1);
 		}
@@ -5717,20 +5717,20 @@ function function_be03e13e()
 	{
 		var_8f88d1fd.b_activated = 0;
 		var_8f88d1fd.var_bb486f65 = 0;
-		var_d186cfae = struct::get(var_8f88d1fd.target, "targetname");
-		var_d186cfae.var_41f52afd = util::spawn_model("tag_origin", var_d186cfae.origin);
-		var_d186cfae.var_41f52afd clientfield::set("battery_fx", 1);
+		s_battery = struct::get(var_8f88d1fd.target, "targetname");
+		s_battery.var_41f52afd = util::spawn_model("tag_origin", s_battery.origin);
+		s_battery.var_41f52afd clientfield::set("battery_fx", 1);
 	}
 	level thread elemental_storm_batteries(var_9e89bcdc);
 	level thread elemental_storm_beacons_charged();
 	level flag::wait_till_all(array("elemental_storm_batteries", "elemental_storm_beacons_charged"));
 	foreach(var_8f88d1fd in var_9e89bcdc)
 	{
-		var_d186cfae = struct::get(var_8f88d1fd.target, "targetname");
-		if(isdefined(var_d186cfae.var_41f52afd))
+		s_battery = struct::get(var_8f88d1fd.target, "targetname");
+		if(isdefined(s_battery.var_41f52afd))
 		{
-			var_d186cfae.var_41f52afd clientfield::set("battery_fx", 0);
-			var_d186cfae.var_41f52afd delete();
+			s_battery.var_41f52afd clientfield::set("battery_fx", 0);
+			s_battery.var_41f52afd delete();
 		}
 	}
 }
@@ -5772,7 +5772,7 @@ function function_43cb1d81()
 		level endon(#"hash_b1cac6d2");
 		level endon(#"hash_ae42a737");
 	#/
-	var_d186cfae = struct::get(self.target, "targetname");
+	s_battery = struct::get(self.target, "targetname");
 	while(true)
 	{
 		self waittill(#"killed");
@@ -5780,7 +5780,7 @@ function function_43cb1d81()
 		if(self.var_bb486f65 >= 5)
 		{
 			self notify(#"activated");
-			var_d186cfae.var_41f52afd clientfield::set("battery_fx", 2);
+			s_battery.var_41f52afd clientfield::set("battery_fx", 2);
 			self.b_activated = 1;
 			var_a4f8e4d0 = getent(self.targetname + "_charged", "targetname");
 			var_a4f8e4d0.b_activated = 1;
@@ -5821,8 +5821,8 @@ function function_88efea4a()
 		a_e_touching = self array::get_touching(a_e_battery);
 		if(isdefined(a_e_touching) && a_e_touching.size > 0 && (!(isdefined(a_e_touching[0].b_activated) && a_e_touching[0].b_activated)))
 		{
-			var_d186cfae = struct::get(a_e_touching[0].target, "targetname");
-			level function_55c48922(self.origin, var_d186cfae.origin + vectorscale((0, 0, 1), 16), "storm", isdefined(self.missinglegs) && self.missinglegs);
+			s_battery = struct::get(a_e_touching[0].target, "targetname");
+			level function_55c48922(self.origin, s_battery.origin + vectorscale((0, 0, 1), 16), "storm", isdefined(self.missinglegs) && self.missinglegs);
 			a_e_touching[0] util::delay_notify(0.05, "killed");
 		}
 	}
@@ -5909,15 +5909,15 @@ function function_1c758ab0()
 				if(isdefined(projectile.var_8f88d1fd))
 				{
 					projectile.var_8f88d1fd.b_used = 1;
-					var_d186cfae = struct::get(projectile.var_8f88d1fd.target, "targetname");
-					if(isdefined(var_d186cfae.var_41f52afd))
+					s_battery = struct::get(projectile.var_8f88d1fd.target, "targetname");
+					if(isdefined(s_battery.var_41f52afd))
 					{
-						var_d186cfae.var_41f52afd clientfield::set("battery_fx", 0);
+						s_battery.var_41f52afd clientfield::set("battery_fx", 0);
 					}
 					wait(0.05);
-					if(isdefined(var_d186cfae.var_41f52afd))
+					if(isdefined(s_battery.var_41f52afd))
 					{
-						var_d186cfae.var_41f52afd delete();
+						s_battery.var_41f52afd delete();
 					}
 				}
 				self notify(#"beacon_charged");
@@ -5956,12 +5956,12 @@ function function_4688cd22()
 			{
 				self clientfield::set_to_player("arrow_charge_fx", 1);
 				self.var_55301590 = var_b6ccc8ce;
-				var_d186cfae = struct::get(var_b6ccc8ce.target, "targetname");
-				var_d186cfae.var_41f52afd clientfield::set("battery_fx", 1);
+				s_battery = struct::get(var_b6ccc8ce.target, "targetname");
+				s_battery.var_41f52afd clientfield::set("battery_fx", 1);
 				self function_29163209();
-				if(isdefined(var_d186cfae.var_41f52afd))
+				if(isdefined(s_battery.var_41f52afd))
 				{
-					var_d186cfae.var_41f52afd clientfield::set("battery_fx", 2);
+					s_battery.var_41f52afd clientfield::set("battery_fx", 2);
 				}
 				self clientfield::set_to_player("arrow_charge_fx", 0);
 				self.var_55301590 = undefined;
@@ -6095,8 +6095,8 @@ function function_ae42a737()
 			var_a4f8e4d0 = getent(var_8f88d1fd.targetname + "", "");
 			var_a4f8e4d0.b_activated = 1;
 			var_a4f8e4d0.b_used = 0;
-			var_d186cfae = struct::get(var_8f88d1fd.target, "");
-			var_d186cfae.var_41f52afd clientfield::set("", 2);
+			s_battery = struct::get(var_8f88d1fd.target, "");
+			s_battery.var_41f52afd clientfield::set("", 2);
 		}
 		level flag::set("");
 		level flag::set("");
@@ -6122,17 +6122,17 @@ function function_1ad44df5()
 		a_s_batteries = struct::get_array("", "");
 		if(level.var_f3ff8b16)
 		{
-			foreach(var_d186cfae in a_s_batteries)
+			foreach(s_battery in a_s_batteries)
 			{
-				var_d186cfae.var_41f52afd clientfield::set("", 1);
+				s_battery.var_41f52afd clientfield::set("", 1);
 			}
 			level.var_f3ff8b16 = 0;
 		}
 		else
 		{
-			foreach(var_d186cfae in a_s_batteries)
+			foreach(s_battery in a_s_batteries)
 			{
-				var_d186cfae.var_41f52afd clientfield::set("", 2);
+				s_battery.var_41f52afd clientfield::set("", 2);
 			}
 			level.var_f3ff8b16 = 1;
 		}
@@ -6167,12 +6167,12 @@ function function_b1cac6d2()
 			s_beacon.var_41f52afd clientfield::set("", 2);
 		}
 		a_s_batteries = struct::get_array("", "");
-		foreach(var_d186cfae in a_s_batteries)
+		foreach(s_battery in a_s_batteries)
 		{
-			if(isdefined(var_d186cfae.var_41f52afd))
+			if(isdefined(s_battery.var_41f52afd))
 			{
-				var_d186cfae.var_41f52afd clientfield::set("", 0);
-				var_d186cfae.var_41f52afd delete();
+				s_battery.var_41f52afd clientfield::set("", 0);
+				s_battery.var_41f52afd delete();
 			}
 		}
 		zm_spawner::deregister_zombie_death_event_callback(&function_71e6353);
@@ -7474,20 +7474,20 @@ function function_971e3797()
 	Parameters: 2
 	Flags: Linked
 */
-function function_a4861409(e_player, var_285c992d)
+function function_a4861409(e_player, s_bow)
 {
-	str_endon = var_285c992d.script_label + "_returned";
+	str_endon = s_bow.script_label + "_returned";
 	level endon(str_endon);
 	var_bbdf3539 = 0;
 	while(true)
 	{
 		str_notify = e_player util::waittill_any_ex("death", "weapon_change", "bgb_about_to_take_on_bled_out", "bled_out", "player_revived", level, str_endon);
-		var_285c992d.var_67b5dd94 unitrigger_refresh_message();
+		s_bow.var_67b5dd94 unitrigger_refresh_message();
 		if(str_notify == "death")
 		{
-			zm_unitrigger::unregister_unitrigger(var_285c992d.var_67b5dd94);
-			var_285c992d.mdl_bow show();
-			var_285c992d thread function_fb704679();
+			zm_unitrigger::unregister_unitrigger(s_bow.var_67b5dd94);
+			s_bow.mdl_bow show();
+			s_bow thread function_fb704679();
 			return;
 		}
 		if(str_notify == "bgb_about_to_take_on_bled_out")
@@ -7499,7 +7499,7 @@ function function_a4861409(e_player, var_285c992d)
 		}
 		else
 		{
-			var_e1041201 = getweapon(var_285c992d.script_label);
+			var_e1041201 = getweapon(s_bow.script_label);
 			if(isdefined(e_player.var_bec0aa15) && e_player.var_bec0aa15 && (isdefined(e_player.laststand) && e_player.laststand) && str_notify != "bled_out")
 			{
 				continue;
@@ -7515,11 +7515,11 @@ function function_a4861409(e_player, var_285c992d)
 			if(!e_player hasweapon(var_e1041201) && !e_player bgb::is_enabled("zm_bgb_disorderly_combat"))
 			{
 				e_player.var_bec0aa15 = undefined;
-				zm_unitrigger::unregister_unitrigger(var_285c992d.var_67b5dd94);
-				var_285c992d.mdl_bow show();
-				var_285c992d thread function_fb704679();
-				level notify(var_285c992d.script_label + "_stop_tracking");
-				level function_8b295d47(var_285c992d.script_label);
+				zm_unitrigger::unregister_unitrigger(s_bow.var_67b5dd94);
+				s_bow.mdl_bow show();
+				s_bow thread function_fb704679();
+				level notify(s_bow.script_label + "_stop_tracking");
+				level function_8b295d47(s_bow.script_label);
 				return;
 			}
 		}
@@ -7823,7 +7823,7 @@ function function_55c48922(v_origin, v_target, var_25c1c42e, var_7364b0dd)
 	Parameters: 4
 	Flags: Linked
 */
-function function_3313abd5(var_81e39ef9 = undefined, str_hint = undefined, v_origin = undefined, var_9eb6cf96 = undefined)
+function function_3313abd5(var_81e39ef9 = undefined, str_hint = undefined, v_origin = undefined, v_radius = undefined)
 {
 	s_unitrigger = spawnstruct();
 	if(isdefined(v_origin))
@@ -7836,9 +7836,9 @@ function function_3313abd5(var_81e39ef9 = undefined, str_hint = undefined, v_ori
 	}
 	s_unitrigger.angles = self.angles;
 	s_unitrigger.script_unitrigger_type = "unitrigger_radius_use";
-	if(isdefined(var_9eb6cf96))
+	if(isdefined(v_radius))
 	{
-		s_unitrigger.radius = var_9eb6cf96;
+		s_unitrigger.radius = v_radius;
 	}
 	else
 	{

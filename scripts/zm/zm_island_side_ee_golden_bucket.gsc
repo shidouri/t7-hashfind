@@ -304,10 +304,10 @@ function function_4cebde70()
 */
 function function_152720d8(a_s_planters)
 {
-	foreach(var_8c46024b in a_s_planters)
+	foreach(s_planter in a_s_planters)
 	{
-		var_8c46024b.origin = var_8c46024b.model.origin;
-		var_8c46024b zm_island_planting::function_fedc998b(1);
+		s_planter.origin = s_planter.model.origin;
+		s_planter zm_island_planting::function_fedc998b(1);
 	}
 	level.a_s_planting_spots = arraycombine(level.a_s_planting_spots, a_s_planters, 0, 0);
 }
@@ -447,9 +447,9 @@ function function_f0d8de1d()
 function function_72c0a344()
 {
 	a_s_planters = struct::get_array("planting_spot_golden_bucket_challenge", "targetname");
-	foreach(var_8c46024b in a_s_planters)
+	foreach(s_planter in a_s_planters)
 	{
-		var_8c46024b thread function_c1f64636(0);
+		s_planter thread function_c1f64636(0);
 		wait(0.05);
 	}
 }
@@ -488,9 +488,9 @@ function function_9a2f5188(e_volume)
 function function_e630b27f()
 {
 	a_s_planters = struct::get_array("planting_spot_golden_bucket_challenge", "targetname");
-	foreach(var_8c46024b in a_s_planters)
+	foreach(s_planter in a_s_planters)
 	{
-		if(isdefined(var_8c46024b.s_plant) && isdefined(var_8c46024b.s_plant.var_b454101b) && var_8c46024b.s_plant.var_b454101b.health > 0)
+		if(isdefined(s_planter.s_plant) && isdefined(s_planter.s_plant.s_attackable) && s_planter.s_plant.s_attackable.health > 0)
 		{
 			return true;
 		}
@@ -514,9 +514,9 @@ function function_4d1841e4()
 	playsoundatposition("zmb_golden_bucket_success", (0, 0, 0));
 	level thread function_6742be8f();
 	a_s_planters = struct::get_array("planting_spot_golden_bucket_challenge", "targetname");
-	foreach(var_8c46024b in a_s_planters)
+	foreach(s_planter in a_s_planters)
 	{
-		var_8c46024b thread function_c1f64636(1);
+		s_planter thread function_c1f64636(1);
 		wait(0.05);
 	}
 	level flag::wait_till("golden_bucket_planters_empty");
@@ -568,17 +568,17 @@ function function_c1f64636(b_completed)
 	if(b_completed)
 	{
 		zm_unitrigger::unregister_unitrigger(self.s_plant_unitrigger);
-		if(isdefined(self.s_plant.var_b454101b))
+		if(isdefined(self.s_plant.s_attackable))
 		{
-			self.s_plant.var_b454101b zm_attackables::deactivate();
+			self.s_plant.s_attackable zm_attackables::deactivate();
 			self notify(#"hash_4729ad2");
 		}
 		wait(3);
 		while(true)
 		{
-			if(isdefined(self.s_plant) && isdefined(self.s_plant.var_b454101b))
+			if(isdefined(self.s_plant) && isdefined(self.s_plant.s_attackable))
 			{
-				self.s_plant.var_b454101b zm_attackables::do_damage(self.s_plant.var_b454101b.health);
+				self.s_plant.s_attackable zm_attackables::do_damage(self.s_plant.s_attackable.health);
 			}
 			if(self.var_75c7a97e == 0)
 			{
@@ -590,9 +590,9 @@ function function_c1f64636(b_completed)
 		level notify(#"hash_46080242");
 		arrayremovevalue(level.a_s_planting_spots, self);
 	}
-	else if(isdefined(self.s_plant) && isdefined(self.s_plant.var_b454101b))
+	else if(isdefined(self.s_plant) && isdefined(self.s_plant.s_attackable))
 	{
-		self.s_plant.var_b454101b zm_attackables::do_damage(self.s_plant.var_b454101b.health);
+		self.s_plant.s_attackable zm_attackables::do_damage(self.s_plant.s_attackable.health);
 	}
 }
 

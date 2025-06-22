@@ -746,12 +746,12 @@ function function_ef39c304(b_on)
 function function_60619737()
 {
 	level endon(#"tube_puzzle_complete");
-	var_4ae0fc9f = struct::get("ee_tube_use_" + self.script_label, "targetname");
-	var_4ae0fc9f zm_unitrigger::create_unitrigger("");
+	s_terminal = struct::get("ee_tube_use_" + self.script_label, "targetname");
+	s_terminal zm_unitrigger::create_unitrigger("");
 	mdl_lever = getent(self.target, "targetname");
 	while(true)
 	{
-		var_4ae0fc9f waittill(#"trigger_activated", e_who);
+		s_terminal waittill(#"trigger_activated", e_who);
 		if(!level flag::get("generator_on"))
 		{
 			continue;
@@ -853,12 +853,12 @@ function function_6a9560b6()
 {
 	var_a477d63b = level.var_57f8b6c5[5];
 	var_a477d63b scene::play("p7_fxanim_zm_stal_pneumatic_tube_drop_bundle");
-	var_4ae0fc9f = struct::get("ee_tube_use_" + var_a477d63b.script_label, "targetname");
-	var_4ae0fc9f.s_unitrigger.prompt_and_visibility_func = &function_7247a337;
-	var_4ae0fc9f waittill(#"trigger_activated", e_who);
+	s_terminal = struct::get("ee_tube_use_" + var_a477d63b.script_label, "targetname");
+	s_terminal.s_unitrigger.prompt_and_visibility_func = &function_7247a337;
+	s_terminal waittill(#"trigger_activated", e_who);
 	e_who clientfield::increment_to_player("interact_rumble");
 	e_who playsound("zmb_tubesville_pickup_cylinder");
-	zm_unitrigger::unregister_unitrigger(var_4ae0fc9f.s_unitrigger);
+	zm_unitrigger::unregister_unitrigger(s_terminal.s_unitrigger);
 	var_7e5dba8f = getent("pneumatic_tube", "targetname");
 	var_7e5dba8f delete();
 }
@@ -1897,7 +1897,7 @@ function function_b09a54a3()
 	foreach(s_attack_point in var_c746b61a)
 	{
 		str_location = s_attack_point.script_string;
-		level.var_583e4a97.var_4dfc9f38[str_location].var_b454101b = s_attack_point;
+		level.var_583e4a97.var_4dfc9f38[str_location].s_attackable = s_attack_point;
 	}
 	foreach(var_3d8a9064 in level.var_583e4a97.var_4dfc9f38)
 	{
@@ -2699,15 +2699,15 @@ function function_ceeaf112()
 		level endon(#"hash_9546144d");
 	#/
 	level endon(#"ee_kite_failed");
-	var_f80d6608 = getent("ee_raz_capture", "targetname");
+	t_capture = getent("ee_raz_capture", "targetname");
 	while(true)
 	{
-		var_f80d6608 waittill(#"trigger", e_who);
+		t_capture waittill(#"trigger", e_who);
 		if(e_who == self)
 		{
 			self clearforcedgoal();
 			self ai::set_ignoreall(1);
-			var_f80d6608 delete();
+			t_capture delete();
 			s_capture_point = struct::get("ee_capture_point", "targetname");
 			self setgoal(s_capture_point.origin);
 			var_c1fbdc10 = util::spawn_model("tag_origin", s_capture_point.origin);
@@ -4203,20 +4203,20 @@ function function_d47c68fb()
 	var_465422bb thread function_e957e3bc();
 	var_47ee7db6 = getent("ee_veh_sewer_cam", "targetname");
 	nd_path_start = getvehiclenode("ee_sewer_rail_start", "targetname");
-	var_a9352214 = getent("ee_sewer_to_arena_trig", "targetname");
-	var_a9352214.n_used = 0;
-	while(var_a9352214.n_used < level.players.size)
+	t_sewer = getent("ee_sewer_to_arena_trig", "targetname");
+	t_sewer.n_used = 0;
+	while(t_sewer.n_used < level.players.size)
 	{
-		var_a9352214 waittill(#"trigger", e_who);
+		t_sewer waittill(#"trigger", e_who);
 		if(!(isdefined(e_who.var_a0a9409e) && e_who.var_a0a9409e))
 		{
-			var_a9352214.n_used++;
+			t_sewer.n_used++;
 			dragon::dragon_boss_intro_init();
 			e_who.var_a0a9409e = 1;
 			e_who thread zm_stalingrad_util::function_5eeabbe0(var_47ee7db6, nd_path_start, undefined, "player_enter_boss_arena");
 		}
 	}
-	var_a9352214 delete();
+	t_sewer delete();
 	level thread function_deda2d7a();
 	level scene::init("p7_fxanim_zm_stal_computer_sophia_base_bundle");
 	var_5f255c08 solid();
@@ -4239,14 +4239,14 @@ function function_d47c68fb()
 */
 function function_a9e72613()
 {
-	var_af81398 = getent("ee_sewer_hatch_trig", "targetname");
+	t_hatch = getent("ee_sewer_hatch_trig", "targetname");
 	while(true)
 	{
-		if(var_af81398 function_2b042a95())
+		if(t_hatch function_2b042a95())
 		{
 			n_end_time = gettime() + (1 * 1000);
 			wait(0.25);
-			while(var_af81398 function_2b042a95())
+			while(t_hatch function_2b042a95())
 			{
 				if(gettime() >= n_end_time)
 				{
@@ -4261,7 +4261,7 @@ function function_a9e72613()
 					}
 					wait(0.25);
 					self notsolid();
-					var_af81398 delete();
+					t_hatch delete();
 					return;
 				}
 				wait(0.25);
@@ -4305,12 +4305,12 @@ function function_2b042a95()
 	Parameters: 1
 	Flags: Linked
 */
-function function_61f148a5(var_af81398)
+function function_61f148a5(t_hatch)
 {
 	self endon(#"death");
 	self.var_35ea5b31 = 1;
 	self clientfield::set_to_player("ee_hatch_strain_rumble", 1);
-	while(isdefined(var_af81398) && self istouching(var_af81398))
+	while(isdefined(t_hatch) && self istouching(t_hatch))
 	{
 		wait(0.4);
 	}

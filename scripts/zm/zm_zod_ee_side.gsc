@@ -647,9 +647,9 @@ function function_932e3574()
 {
 	level.var_4a9b0bd3 = 0;
 	a_s_recordings = struct::get_array("audio_recording");
-	foreach(var_2f236ce8 in a_s_recordings)
+	foreach(s_recording in a_s_recordings)
 	{
-		var_2f236ce8 thread audio_recording();
+		s_recording thread audio_recording();
 	}
 }
 
@@ -931,10 +931,10 @@ function function_e947749a()
 		}
 	}
 	a_items = struct::get_array("hs_item_stage", "targetname");
-	foreach(var_2e8087fe in a_items)
+	foreach(s_item in a_items)
 	{
-		mdl_item = util::spawn_model(var_2e8087fe.model, var_2e8087fe.origin, var_2e8087fe.angles);
-		if(var_2e8087fe.model == "p7_zm_zod_hidden_songs_mic_stand")
+		mdl_item = util::spawn_model(s_item.model, s_item.origin, s_item.angles);
+		if(s_item.model == "p7_zm_zod_hidden_songs_mic_stand")
 		{
 			mdl_item thread function_b6296b8b();
 		}
@@ -2218,16 +2218,16 @@ function function_b0c6ab(e_grenade)
 	n_dist_sq = distancesquared(level.var_4cde8c2c[0].origin, var_ac44693b);
 	if(n_dist_sq <= 160000)
 	{
-		foreach(n_index, var_df70f8d0 in level.var_4cde8c2c)
+		foreach(n_index, s_mouth in level.var_4cde8c2c)
 		{
-			n_dist_sq = distancesquared(var_df70f8d0.origin, var_ac44693b);
+			n_dist_sq = distancesquared(s_mouth.origin, var_ac44693b);
 			if(n_dist_sq <= 36)
 			{
-				var_be3ff756 = var_df70f8d0;
+				var_be3ff756 = s_mouth;
 				var_d29e4cff = n_index;
 				if(!isdefined(self.var_fc66e122[n_index]))
 				{
-					self.var_fc66e122[n_index] = var_df70f8d0;
+					self.var_fc66e122[n_index] = s_mouth;
 					var_dae4e184 = 1;
 					if(self.var_fc66e122.size == level.var_4cde8c2c.size)
 					{

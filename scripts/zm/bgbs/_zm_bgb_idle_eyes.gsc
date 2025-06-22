@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
@@ -126,10 +126,10 @@ function activation()
 	Parameters: 2
 	Flags: Linked
 */
-function function_1f57344e(var_e04844d6, var_7092e170)
+function function_1f57344e(e_watch, var_7092e170)
 {
-	var_e04844d6 endon(#"hash_16ab3604");
-	var_e04844d6 waittill(#"disconnect");
+	e_watch endon(#"hash_16ab3604");
+	e_watch waittill(#"disconnect");
 	deactivate(var_7092e170);
 }
 

@@ -89,7 +89,7 @@ function function_2436f867()
 	self notify(#"hash_2436f867");
 	self endon(#"hash_2436f867");
 	self util::waittill_any("disconnect", "bled_out", "death");
-	self.var_bc5f242a = undefined;
+	self.s_wearable = undefined;
 	function_b712ee6f(0);
 	function_30fb8e63(0);
 }
@@ -157,7 +157,7 @@ function function_f6b20985(var_8fca9f8c, var_f48b681c, str_tag, var_f3776824)
 */
 function function_24061b58(e_player)
 {
-	if(isdefined(e_player.var_bc5f242a) && e_player.var_bc5f242a.str_model === self.stub.var_f4b4f2f2)
+	if(isdefined(e_player.s_wearable) && e_player.s_wearable.str_model === self.stub.var_f4b4f2f2)
 	{
 		self sethintstring(&"ZM_GENESIS_WEARABLE_EQUIPPED");
 		return false;
@@ -182,9 +182,9 @@ function function_7f0ec71c()
 	{
 		self trigger::wait_till();
 		e_player = self.who;
-		if(!isdefined(e_player.var_bc5f242a))
+		if(!isdefined(e_player.s_wearable))
 		{
-			e_player.var_bc5f242a = spawnstruct();
+			e_player.s_wearable = spawnstruct();
 		}
 		e_player function_e5974b49();
 		str_tag = self.stub.str_tag;
@@ -205,9 +205,9 @@ function function_7f0ec71c()
 function function_a16ce474(str_model, var_475b0a4e, str_tag)
 {
 	self function_e5515520();
-	self.var_bc5f242a.str_model = str_model;
-	self.var_bc5f242a.str_tag = str_tag;
-	self attach(self.var_bc5f242a.str_model, str_tag);
+	self.s_wearable.str_model = str_model;
+	self.s_wearable.str_tag = str_tag;
+	self attach(self.s_wearable.str_model, str_tag);
 	self playsound("zmb_craftable_pickup");
 	self notify(#"changed_wearable", var_475b0a4e);
 	self thread function_2436f867();
@@ -361,9 +361,9 @@ function function_e5974b49()
 	{
 		self unsetperk("specialty_tombstone");
 	}
-	if(isdefined(self.var_bc5f242a.str_model))
+	if(isdefined(self.s_wearable.str_model))
 	{
-		self detach(self.var_bc5f242a.str_model, self.var_bc5f242a.str_tag);
+		self detach(self.s_wearable.str_model, self.s_wearable.str_tag);
 	}
 }
 
@@ -395,10 +395,10 @@ function function_b4575902()
 {
 	a_s_batteries = struct::get_array("ancient_battery", "targetname");
 	a_mdl_batteries = [];
-	foreach(var_d186cfae in a_s_batteries)
+	foreach(s_battery in a_s_batteries)
 	{
-		mdl_battery = util::spawn_model("p7_zm_ctl_battery_ceramic", var_d186cfae.origin, var_d186cfae.angles);
-		mdl_battery.target = var_d186cfae.target;
+		mdl_battery = util::spawn_model("p7_zm_ctl_battery_ceramic", s_battery.origin, s_battery.angles);
+		mdl_battery.target = s_battery.target;
 		if(!isdefined(a_mdl_batteries))
 		{
 			a_mdl_batteries = [];
@@ -740,14 +740,14 @@ function function_796904fd()
 */
 function function_c489ad78(str_flag)
 {
-	var_3f709380 = struct::get("s_dire_wolf_coffin", "targetname");
-	t_damage = spawn("trigger_damage", var_3f709380.origin, 0, 15, 10);
+	s_coffin = struct::get("s_dire_wolf_coffin", "targetname");
+	t_damage = spawn("trigger_damage", s_coffin.origin, 0, 15, 10);
 	while(true)
 	{
 		t_damage waittill(#"damage", amount, attacker, dir, point, mod);
 		if(isdefined(mod) && mod == "MOD_GRENADE_SPLASH")
 		{
-			n_dist = distance(point, var_3f709380.origin);
+			n_dist = distance(point, s_coffin.origin);
 			if(n_dist <= 90)
 			{
 				break;
@@ -771,8 +771,8 @@ function function_c489ad78(str_flag)
 function function_f4caac35(str_flag)
 {
 	level waittill(#"hash_208ce56d");
-	var_3f709380 = struct::get("s_dire_wolf_coffin", "targetname");
-	mdl_skull = util::spawn_model("tag_origin", var_3f709380.origin, (0, 0, 0));
+	s_coffin = struct::get("s_dire_wolf_coffin", "targetname");
+	mdl_skull = util::spawn_model("tag_origin", s_coffin.origin, (0, 0, 0));
 	mdl_skull setmodel("p7_ban_north_tribe_lion_skull");
 	s_path = struct::get("s_dire_wolf_path_start", "targetname");
 	while(true)
@@ -1290,8 +1290,8 @@ function function_9d85b9ce(e_attacker)
 	}
 	if(isplayer(e_attacker) && (isdefined(level.var_26af7b39) && level.var_26af7b39) && (isdefined(level.var_a5d2ba4) && level.var_a5d2ba4))
 	{
-		var_46927a7e = getent("apothicon_belly_center", "targetname");
-		if(e_attacker istouching(var_46927a7e) && self istouching(var_46927a7e))
+		t_belly = getent("apothicon_belly_center", "targetname");
+		if(e_attacker istouching(t_belly) && self istouching(t_belly))
 		{
 			if(isdefined(self.archetype))
 			{

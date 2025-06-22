@@ -303,8 +303,8 @@ function function_83ff2eda()
 */
 function function_91a378e3()
 {
-	var_4fafa709 = struct::get("mpd_pos");
-	mdl_keeper = util::spawn_anim_model("c_zom_dlc1_keeper_archon_small_fb", var_4fafa709.origin, vectorscale((0, 1, 0), 90));
+	s_keeper = struct::get("mpd_pos");
+	mdl_keeper = util::spawn_anim_model("c_zom_dlc1_keeper_archon_small_fb", s_keeper.origin, vectorscale((0, 1, 0), 90));
 	wait(0.05);
 	mdl_keeper ghost();
 	wait(0.05);
@@ -1142,11 +1142,11 @@ function function_1690ddb0()
 {
 	self.var_40b46e43 delete();
 	self.var_e3d9917e delete();
-	foreach(var_b30aea81 in self.var_92904d31)
+	foreach(e_point in self.var_92904d31)
 	{
-		if(isdefined(var_b30aea81))
+		if(isdefined(e_point))
 		{
-			var_b30aea81 delete();
+			e_point delete();
 		}
 	}
 	foreach(var_4a243bdd in self.var_29204bf)
@@ -2294,8 +2294,8 @@ function function_36927923(var_67eb721b, var_ef983cc5, var_ea42537d, var_4a243bd
 	var_ba9ce66e thread function_2cef3631();
 	var_ba9ce66e.e_mover.origin = var_ba9ce66e.e_mover.origin + (0, 0, randomintrange(int(-51.2), int(51.2)));
 	var_ba9ce66e.e_mover.angles = (var_ba9ce66e.e_mover.angles[0] + (randomintrange(-30, 30)), var_ba9ce66e.e_mover.angles[1] + (randomintrange(-45, 45)), var_ba9ce66e.e_mover.angles[2]);
-	var_69a783ad = var_ba9ce66e.e_mover.origin + (anglestoforward(var_ba9ce66e.e_mover.angles) * 128);
-	var_ba9ce66e.e_mover moveto(var_69a783ad, 0.6, 0.36, 0.12);
+	v_goto = var_ba9ce66e.e_mover.origin + (anglestoforward(var_ba9ce66e.e_mover.angles) * 128);
+	var_ba9ce66e.e_mover moveto(v_goto, 0.6, 0.36, 0.12);
 	wait(0.6);
 	var_ba9ce66e function_30e15c1e(var_ef983cc5);
 }

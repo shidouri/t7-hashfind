@@ -110,14 +110,14 @@ function function_835fd6d8()
 			{
 				case "pendulum":
 				{
-					self.var_4b6ad173 = a_e_parts[i];
+					self.e_pendulum = a_e_parts[i];
 					self enablelinkto();
-					self linkto(self.var_4b6ad173);
+					self linkto(self.e_pendulum);
 					break;
 				}
 				case "gears":
 				{
-					self.var_52f6a55f = a_e_parts[i];
+					self.e_gears = a_e_parts[i];
 					break;
 				}
 				case "switch":
@@ -167,14 +167,14 @@ function function_835fd6d8()
 	Parameters: 1
 	Flags: Linked
 */
-function function_38d940ac(var_60532813)
+function function_38d940ac(t_trap)
 {
 	s_unitrigger = self zm_unitrigger::create_unitrigger(&"ZOMBIE_NEED_POWER", 64, &function_dc9dafb8);
 	s_unitrigger.require_look_at = 1;
 	zm_unitrigger::unitrigger_force_per_player_triggers(s_unitrigger, 1);
-	s_unitrigger.var_60532813 = var_60532813;
-	s_unitrigger.script_int = var_60532813.script_int;
-	var_60532813._trap_type = "flogger";
+	s_unitrigger.t_trap = t_trap;
+	s_unitrigger.script_int = t_trap.script_int;
+	t_trap._trap_type = "flogger";
 	while(true)
 	{
 		self waittill(#"trigger_activated", e_player);
@@ -193,8 +193,8 @@ function function_38d940ac(var_60532813)
 		if(e_player zm_score::can_player_purchase(1000))
 		{
 			e_player zm_score::minus_to_player_score(1000);
-			var_60532813 thread function_157a698(self, e_player);
-			var_60532813.activated_by_player = e_player;
+			t_trap thread function_157a698(self, e_player);
+			t_trap.activated_by_player = e_player;
 		}
 		else
 		{
@@ -232,12 +232,12 @@ function function_dc9dafb8(e_player)
 		self sethintstring(&"ZOMBIE_NEED_POWER");
 		return false;
 	}
-	if(self.stub.var_60532813 flag::get("trap_active"))
+	if(self.stub.t_trap flag::get("trap_active"))
 	{
 		self sethintstring(&"ZOMBIE_TRAP_ACTIVE");
 		return false;
 	}
-	if(self.stub.var_60532813 flag::get("trap_cooldown"))
+	if(self.stub.t_trap flag::get("trap_cooldown"))
 	{
 		self sethintstring(&"ZOMBIE_TRAP_COOLDOWN");
 		return false;
@@ -333,14 +333,14 @@ function trap_lights_green()
 	Parameters: 2
 	Flags: Linked
 */
-function function_157a698(var_c4f1ee44, e_player)
+function function_157a698(s_activate, e_player)
 {
 	self triggerenable(1);
 	self flag::set("trap_active");
 	playsoundatposition("zmb_flogger_motor_start_l", self.var_f1693315.origin);
 	playsoundatposition("zmb_flogger_motor_start_r", self.var_736c69e7.origin);
 	wait(0.5);
-	self thread function_bb59d4d9(var_c4f1ee44, e_player);
+	self thread function_bb59d4d9(s_activate, e_player);
 	self waittill(#"trap_done");
 	self flag::clear("trap_active");
 	self flag::set("trap_cooldown");
@@ -358,7 +358,7 @@ function function_157a698(var_c4f1ee44, e_player)
 	Parameters: 2
 	Flags: Linked
 */
-function function_bb59d4d9(var_c4f1ee44, e_player)
+function function_bb59d4d9(s_activate, e_player)
 {
 	var_ffd9e7a0 = util::spawn_model("tag_origin", self.var_f1693315.origin);
 	var_94be4c8f = util::spawn_model("tag_origin", self.var_736c69e7.origin);
@@ -366,9 +366,9 @@ function function_bb59d4d9(var_c4f1ee44, e_player)
 	level notify(#"trap_activate", self);
 	var_ffd9e7a0 playloopsound("zmb_flogger_motor_lp_l");
 	var_94be4c8f playloopsound("zmb_flogger_motor_lp_r");
-	self.var_4b6ad173 notsolid();
-	self thread function_1f2a0da5(var_c4f1ee44, e_player);
-	if(var_c4f1ee44.script_string === "reverse")
+	self.e_pendulum notsolid();
+	self thread function_1f2a0da5(s_activate, e_player);
+	if(s_activate.script_string === "reverse")
 	{
 		n_rotations = -14040;
 	}
@@ -376,12 +376,12 @@ function function_bb59d4d9(var_c4f1ee44, e_player)
 	{
 		n_rotations = 14040;
 	}
-	self.var_52f6a55f rotatepitch(n_rotations, 30, 6, 6);
-	self.var_4b6ad173 rotatepitch(n_rotations, 30, 6, 6);
-	level thread function_ec80dc42(self.var_4b6ad173);
+	self.e_gears rotatepitch(n_rotations, 30, 6, 6);
+	self.e_pendulum rotatepitch(n_rotations, 30, 6, 6);
+	level thread function_ec80dc42(self.e_pendulum);
 	level thread function_e5b7e8b0(var_ffd9e7a0, var_94be4c8f);
-	self.var_4b6ad173 waittill(#"rotatedone");
-	self.var_4b6ad173 solid();
+	self.e_pendulum waittill(#"rotatedone");
+	self.e_pendulum solid();
 	self notify(#"trap_done");
 }
 
@@ -394,28 +394,28 @@ function function_bb59d4d9(var_c4f1ee44, e_player)
 	Parameters: 1
 	Flags: Linked
 */
-function function_ec80dc42(var_4b6ad173)
+function function_ec80dc42(e_pendulum)
 {
-	var_4b6ad173 endon(#"rotatedone");
-	var_feed8b5b = var_4b6ad173.angles[0];
-	var_dea46db3 = var_4b6ad173.angles[0];
+	e_pendulum endon(#"rotatedone");
+	var_feed8b5b = e_pendulum.angles[0];
+	var_dea46db3 = e_pendulum.angles[0];
 	firsttime = 1;
 	while(true)
 	{
 		wait(0.05);
-		var_feed8b5b = var_4b6ad173.angles[0];
+		var_feed8b5b = e_pendulum.angles[0];
 		var_b6c309e9 = var_dea46db3 - var_feed8b5b;
 		if(firsttime)
 		{
 			if(var_b6c309e9 >= 80)
 			{
-				var_4b6ad173 playsound("zmb_flogger_blade_whoosh");
+				e_pendulum playsound("zmb_flogger_blade_whoosh");
 				firsttime = 0;
 				var_dea46db3 = var_dea46db3 - 80;
 			}
 			else if(var_b6c309e9 <= -80)
 			{
-				var_4b6ad173 playsound("zmb_flogger_blade_whoosh");
+				e_pendulum playsound("zmb_flogger_blade_whoosh");
 				firsttime = 0;
 				var_dea46db3 = var_dea46db3 + 80;
 			}
@@ -424,12 +424,12 @@ function function_ec80dc42(var_4b6ad173)
 		{
 			if(var_b6c309e9 >= 180)
 			{
-				var_4b6ad173 playsound("zmb_flogger_blade_whoosh");
+				e_pendulum playsound("zmb_flogger_blade_whoosh");
 				var_dea46db3 = var_dea46db3 - 180;
 			}
 			else if(var_b6c309e9 <= -180)
 			{
-				var_4b6ad173 playsound("zmb_flogger_blade_whoosh");
+				e_pendulum playsound("zmb_flogger_blade_whoosh");
 				var_dea46db3 = var_dea46db3 + 180;
 			}
 		}
@@ -466,7 +466,7 @@ function function_e5b7e8b0(var_ffd9e7a0, var_94be4c8f)
 	Parameters: 2
 	Flags: Linked
 */
-function function_1f2a0da5(var_c4f1ee44, e_player)
+function function_1f2a0da5(s_activate, e_player)
 {
 	self endon(#"trap_done");
 	while(true)
@@ -478,7 +478,7 @@ function function_1f2a0da5(var_c4f1ee44, e_player)
 		}
 		else
 		{
-			e_who thread function_af6b7901(var_c4f1ee44, e_player);
+			e_who thread function_af6b7901(s_activate, e_player);
 		}
 	}
 }
@@ -522,7 +522,7 @@ function do_player_damage()
 	Parameters: 2
 	Flags: Linked
 */
-function function_af6b7901(var_c4f1ee44, e_player)
+function function_af6b7901(s_activate, e_player)
 {
 	self endon(#"death");
 	if(self.archetype === "parasite")
@@ -534,7 +534,7 @@ function function_af6b7901(var_c4f1ee44, e_player)
 		level notify(#"flogger_killed_zombie", self, e_player);
 		if(!isdefined(self.var_b07a0f56))
 		{
-			self thread do_launch(var_c4f1ee44);
+			self thread do_launch(s_activate);
 		}
 	}
 	if(isdefined(self.var_fbaea41d))
@@ -552,11 +552,11 @@ function function_af6b7901(var_c4f1ee44, e_player)
 	Parameters: 1
 	Flags: Linked
 */
-function do_launch(var_c4f1ee44)
+function do_launch(s_activate)
 {
 	self.var_b07a0f56 = 1;
 	self playsound("zmb_death_gibs");
-	if(var_c4f1ee44.script_string === "reverse")
+	if(s_activate.script_string === "reverse")
 	{
 		x = randomintrange(200, 250);
 		y = randomintrange(-35, 35);

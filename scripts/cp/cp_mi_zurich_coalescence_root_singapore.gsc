@@ -242,9 +242,9 @@ function function_95b88092(str_objective, b_starting)
 	{
 		savegame::checkpoint_save();
 	}
-	var_8fb0849a = zurich_util::function_a1851f86(str_objective);
-	var_8fb0849a waittill(#"brn");
-	level thread root_cinematics::play_scene(str_objective, var_8fb0849a.var_90971f20.e_player);
+	t_heart = zurich_util::function_a1851f86(str_objective);
+	t_heart waittill(#"brn");
+	level thread root_cinematics::play_scene(str_objective, t_heart.var_90971f20.e_player);
 	if(isdefined(level.bzm_forceaicleanup))
 	{
 		[[level.bzm_forceaicleanup]]();
@@ -484,21 +484,21 @@ function function_eb271a4b(str_objective)
 	n_crumb = 0;
 	while(true)
 	{
-		var_f6e695c0 = struct::get("breadcrumb_singroot_" + n_crumb, "targetname");
-		var_b1fe230f = getent("t_singroot_" + n_crumb, "script_noteworthy");
-		if(!isdefined(var_f6e695c0) || !isdefined(var_b1fe230f))
+		s_crumb = struct::get("breadcrumb_singroot_" + n_crumb, "targetname");
+		t_crumb = getent("t_singroot_" + n_crumb, "script_noteworthy");
+		if(!isdefined(s_crumb) || !isdefined(t_crumb))
 		{
 			return;
 		}
-		objectives::set("cp_waypoint_breadcrumb", var_f6e695c0);
-		var_b1fe230f waittill(#"trigger");
+		objectives::set("cp_waypoint_breadcrumb", s_crumb);
+		t_crumb waittill(#"trigger");
 		level notify(#"hash_431e9a83");
 		savegame::checkpoint_save();
 		if(n_crumb == 2)
 		{
 			level thread function_26f61e7c();
 		}
-		objectives::complete("cp_waypoint_breadcrumb", var_f6e695c0);
+		objectives::complete("cp_waypoint_breadcrumb", s_crumb);
 		n_crumb++;
 	}
 }
@@ -547,17 +547,17 @@ function function_258afdfc()
 	/#
 		assert(isdefined(a_s_cover), "");
 	#/
-	foreach(var_19966f24 in a_s_cover)
+	foreach(s_cover in a_s_cover)
 	{
 		/#
-			assert(isdefined(var_19966f24.model), "");
+			assert(isdefined(s_cover.model), "");
 		#/
 		/#
-			assert(isdefined(var_19966f24.target), "");
+			assert(isdefined(s_cover.target), "");
 		#/
-		if(isdefined(var_19966f24.script_string))
+		if(isdefined(s_cover.script_string))
 		{
-			a_nd_cover = getnodearray(var_19966f24.script_string, "targetname");
+			a_nd_cover = getnodearray(s_cover.script_string, "targetname");
 			foreach(nd_cover in a_nd_cover)
 			{
 				setenablenode(nd_cover, 0);
@@ -565,9 +565,9 @@ function function_258afdfc()
 		}
 	}
 	self waittill(#"trigger");
-	foreach(var_19966f24 in a_s_cover)
+	foreach(s_cover in a_s_cover)
 	{
-		var_19966f24 thread function_375f158a();
+		s_cover thread function_375f158a();
 	}
 }
 

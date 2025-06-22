@@ -98,8 +98,8 @@ function function_622ad391()
 	{
 		player clientfield::set_player_uimodel("zmInventory.progress_egg", 1);
 	}
-	var_e870a8ec = struct::get("gauntlet_incubation_start", "script_noteworthy");
-	var_e870a8ec zm_unitrigger::create_unitrigger(undefined, 40, &function_cf2a342, &function_16907a63);
+	s_incubator = struct::get("gauntlet_incubation_start", "script_noteworthy");
+	s_incubator zm_unitrigger::create_unitrigger(undefined, 40, &function_cf2a342, &function_16907a63);
 }
 
 /*
@@ -119,9 +119,9 @@ function function_fa149742()
 	var_200dbf9d thread function_a3a149a9();
 	level waittill(#"hash_698d88e1");
 	a_s_eggs = struct::get_array("dragon_egg_pickup", "targetname");
-	foreach(var_21e43ff6 in a_s_eggs)
+	foreach(s_egg in a_s_eggs)
 	{
-		var_21e43ff6 zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_PICKUP", 64, &function_61ab1070, &function_cee6cb2a);
+		s_egg zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_PICKUP", 64, &function_61ab1070, &function_cee6cb2a);
 	}
 }
 
@@ -706,7 +706,7 @@ function function_dcc4fd22()
 	}
 	if(isdefined(level.var_de98e3ce.var_d54b9ade))
 	{
-		var_21e43ff6 = level.var_de98e3ce.var_d54b9ade;
+		s_egg = level.var_de98e3ce.var_d54b9ade;
 	}
 	else
 	{
@@ -739,16 +739,16 @@ function function_dcc4fd22()
 */
 function function_77c54581()
 {
-	var_21e43ff6 = level.var_de98e3ce.var_d54b9ade;
+	s_egg = level.var_de98e3ce.var_d54b9ade;
 	level.var_de98e3ce.var_987fcd7a = 1;
-	var_21e43ff6 zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_RETRIEVE", 40, &function_86e242);
+	s_egg zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_RETRIEVE", 40, &function_86e242);
 	level notify(#"hash_8c192d5a");
 	level.var_de98e3ce.var_d54b9ade.mdl_egg clientfield::set("dragon_egg_heat_fx", 1);
 	level waittill(#"start_of_round");
 	level waittill(#"end_of_round");
 	level.var_de98e3ce.var_d54b9ade.mdl_egg clientfield::set("dragon_egg_heat_fx", 0);
 	level flag::set("egg_cooled_incubator");
-	var_21e43ff6 thread function_d29c33e();
+	s_egg thread function_d29c33e();
 	level thread zm_stalingrad_vo::function_e4acaa37("vox_soph_whelp_quest_incubation_complete_0");
 }
 
@@ -915,8 +915,8 @@ function function_f4ceb3f8()
 */
 function function_86e242(e_player)
 {
-	var_21e43ff6 = level.var_de98e3ce.var_d54b9ade;
-	if(!isdefined(var_21e43ff6))
+	s_egg = level.var_de98e3ce.var_d54b9ade;
+	if(!isdefined(s_egg))
 	{
 		self sethintstring("");
 		return false;

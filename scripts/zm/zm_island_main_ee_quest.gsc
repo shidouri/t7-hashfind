@@ -148,8 +148,8 @@ function register_clientfields()
 function function_85773a07()
 {
 	self endon(#"death");
-	var_af4d7f99 = getent("mdl_main_ee_map", "targetname");
-	self zm_island_util::function_7448e472(var_af4d7f99);
+	e_map = getent("mdl_main_ee_map", "targetname");
+	self zm_island_util::function_7448e472(e_map);
 	level thread function_85b23415();
 }
 
@@ -164,8 +164,8 @@ function function_85773a07()
 */
 function function_85b23415()
 {
-	var_af4d7f99 = getent("mdl_main_ee_map", "targetname");
-	var_af4d7f99 clientfield::set("do_fade_material", 1);
+	e_map = getent("mdl_main_ee_map", "targetname");
+	e_map clientfield::set("do_fade_material", 1);
 	level flag::set("trilogy_released");
 	exploder::exploder("lgt_elevator");
 }
@@ -264,7 +264,7 @@ function function_df4d1d4()
 	self endon(#"death");
 	level endon(#"flag_play_outro_cutscene");
 	level flag::wait_till("trilogy_released");
-	var_af8f5b69 = getent("trigger_gas_hurt", "targetname");
+	t_gas = getent("trigger_gas_hurt", "targetname");
 	while(true)
 	{
 		trigger::wait_till("trigger_gas_hurt", "targetname", self);
@@ -288,14 +288,14 @@ function function_df4d1d4()
 function function_75e5527f()
 {
 	level endon(#"hash_5790f552");
-	var_af8f5b69 = getent("trigger_gas_chamber", "targetname");
+	t_gas = getent("trigger_gas_chamber", "targetname");
 	while(true)
 	{
-		var_af8f5b69 waittill(#"trigger");
+		t_gas waittill(#"trigger");
 		a_talkers = [];
 		foreach(player in level.players)
 		{
-			if(player istouching(var_af8f5b69) && !player.var_df4182b1 && zm_utility::is_player_valid(player))
+			if(player istouching(t_gas) && !player.var_df4182b1 && zm_utility::is_player_valid(player))
 			{
 				array::add(a_talkers, player);
 			}
@@ -579,10 +579,10 @@ function function_426caba9()
 */
 function function_6e38e085()
 {
-	var_d93f9cb8 = getent("boat_death", "targetname");
+	t_death = getent("boat_death", "targetname");
 	while(true)
 	{
-		var_d93f9cb8 waittill(#"trigger", e_who);
+		t_death waittill(#"trigger", e_who);
 		if(isplayer(e_who) && (!(isdefined(e_who.var_a98632dd) && e_who.var_a98632dd)))
 		{
 			e_who.var_a98632dd = 1;
@@ -1137,35 +1137,35 @@ function function_77f4b1ca()
 */
 function function_6cc2e374()
 {
-	var_f022cb65 = getent("trigger_elevator_gears", "targetname");
-	var_f022cb65 setcursorhint("HINT_NOICON");
-	var_f022cb65 sethintstring("");
+	t_repair = getent("trigger_elevator_gears", "targetname");
+	t_repair setcursorhint("HINT_NOICON");
+	t_repair sethintstring("");
 	mdl_gears = getent("elevator_gears", "targetname");
 	mdl_gears thread elevator_gears();
 	while(true)
 	{
-		var_f022cb65 waittill(#"trigger", e_who);
+		t_repair waittill(#"trigger", e_who);
 		if(level flag::get("elevator_part_gear1_found") && !level flag::get("elevator_part_gear1_placed"))
 		{
 			level flag::set("elevator_part_gear1_placed");
-			var_f022cb65 playsound("zmb_item_pickup");
+			t_repair playsound("zmb_item_pickup");
 			mdl_gears.var_df281e84 = util::spawn_model("p7_zm_isl_elevator_gears_wheel", mdl_gears gettagorigin("wheel_01_jnt") + (1, 2, 0), mdl_gears gettagangles("wheel_01_jnt"));
 		}
 		if(level flag::get("elevator_part_gear2_found") && !level flag::get("elevator_part_gear2_placed"))
 		{
 			level flag::set("elevator_part_gear2_placed");
-			var_f022cb65 playsound("zmb_item_pickup");
+			t_repair playsound("zmb_item_pickup");
 			mdl_gears.mdl_dock = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", mdl_gears gettagorigin("wheel_02_jnt") + (0.525, 2, -0.075), mdl_gears gettagangles("wheel_02_jnt"));
 		}
 		if(level flag::get("elevator_part_gear3_found") && !level flag::get("elevator_part_gear3_placed"))
 		{
 			level flag::set("elevator_part_gear3_placed");
-			var_f022cb65 playsound("zmb_item_pickup");
+			t_repair playsound("zmb_item_pickup");
 			mdl_gears.mdl_plane = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", mdl_gears gettagorigin("wheel_03_jnt") + vectorscale((0, 1, 0), 2), mdl_gears gettagangles("wheel_03_jnt"));
 		}
 		if(level flag::get("elevator_part_gear1_found") && level flag::get("elevator_part_gear2_found") && level flag::get("elevator_part_gear3_found"))
 		{
-			var_f022cb65 playsound("zmb_elevator_fix");
+			t_repair playsound("zmb_elevator_fix");
 			level thread zm_island_vo::function_3bf2d62a("elevator", 0, 1, 0);
 			if(zm_utility::is_player_valid(e_who))
 			{

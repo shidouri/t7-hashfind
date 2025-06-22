@@ -687,21 +687,21 @@ function function_a71517e1(n_front)
 	{
 		case 0:
 		{
-			var_bf34b7c4 = getent("lockdown_shutter_1", "targetname");
+			e_shutter = getent("lockdown_shutter_1", "targetname");
 			var_143e45c3 = "p7_fxanim_zm_stal_pavlov_lockdown_wall_01_reset_bundle";
 			str_front = "east";
 			break;
 		}
 		case 1:
 		{
-			var_bf34b7c4 = getent("lockdown_shutter_2", "targetname");
+			e_shutter = getent("lockdown_shutter_2", "targetname");
 			var_143e45c3 = "p7_fxanim_zm_stal_pavlov_lockdown_wall_02_reset_bundle";
 			str_front = "north";
 			break;
 		}
 		case 2:
 		{
-			var_bf34b7c4 = getent("lockdown_shutter_3", "targetname");
+			e_shutter = getent("lockdown_shutter_3", "targetname");
 			var_143e45c3 = "p7_fxanim_zm_stal_pavlov_lockdown_wall_03_reset_bundle";
 			str_front = "west";
 			break;
@@ -710,7 +710,7 @@ function function_a71517e1(n_front)
 	var_3d086912 = getent("lockdown_transitionblocker_" + str_front, "targetname");
 	var_3d086912 connectpaths();
 	var_3d086912 movez(-1000, 0.1);
-	var_bf34b7c4 thread scene::play(var_143e45c3, var_bf34b7c4);
+	e_shutter thread scene::play(var_143e45c3, e_shutter);
 }
 
 /*
@@ -746,21 +746,21 @@ function function_187a933f(n_front)
 	{
 		case 0:
 		{
-			var_bf34b7c4 = getent("lockdown_shutter_1", "targetname");
+			e_shutter = getent("lockdown_shutter_1", "targetname");
 			var_f08953ca = "p7_fxanim_zm_stal_pavlov_lockdown_wall_01_lock_bundle";
 			str_front = "east";
 			break;
 		}
 		case 1:
 		{
-			var_bf34b7c4 = getent("lockdown_shutter_2", "targetname");
+			e_shutter = getent("lockdown_shutter_2", "targetname");
 			var_f08953ca = "p7_fxanim_zm_stal_pavlov_lockdown_wall_02_lock_bundle";
 			str_front = "north";
 			break;
 		}
 		case 2:
 		{
-			var_bf34b7c4 = getent("lockdown_shutter_3", "targetname");
+			e_shutter = getent("lockdown_shutter_3", "targetname");
 			var_f08953ca = "p7_fxanim_zm_stal_pavlov_lockdown_wall_03_lock_bundle";
 			str_front = "west";
 			break;
@@ -769,7 +769,7 @@ function function_187a933f(n_front)
 	var_3d086912 = getent("lockdown_transitionblocker_" + str_front, "targetname");
 	var_3d086912 movez(1000, 0.1);
 	var_3d086912 disconnectpaths();
-	var_bf34b7c4 thread scene::play(var_f08953ca, var_bf34b7c4);
+	e_shutter thread scene::play(var_f08953ca, e_shutter);
 }
 
 /*

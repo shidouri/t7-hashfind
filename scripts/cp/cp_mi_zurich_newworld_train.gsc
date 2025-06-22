@@ -548,8 +548,8 @@ function init_train_flags()
 function function_8b44d21a()
 {
 	var_31f0b803 = getentarray("train_neon_glass_destructible_1", "script_noteworthy");
-	var_6a5caae4 = struct::get("front_of_the_train", "targetname");
-	var_31f0b803 = arraysort(var_31f0b803, var_6a5caae4.origin, 1);
+	s_front = struct::get("front_of_the_train", "targetname");
+	var_31f0b803 = arraysort(var_31f0b803, s_front.origin, 1);
 	for(i = 0; i < var_31f0b803.size; i++)
 	{
 		var_31f0b803[i] thread function_f889869b(i + 1);
@@ -1562,9 +1562,9 @@ function start_sequential_train_door_lockdown()
 	level clientfield::set("train_robot_swing_glass_left", 0);
 	level clientfield::set("train_robot_swing_glass_right", 0);
 	clientfield::set("train_lockdown_shutters_2", 1);
-	var_dee3d10a = getent("train_rooftop_regroup_zone", "targetname");
-	var_dee3d10a.var_3367c99d = 1000;
-	var_dee3d10a waittill(#"trigger");
+	t_regroup = getent("train_rooftop_regroup_zone", "targetname");
+	t_regroup.var_3367c99d = 1000;
+	t_regroup waittill(#"trigger");
 	e_trigger = getent("train_car_lockdown_01", "targetname");
 	e_trigger wait_for_train_car_to_be_empty();
 	trigger::use("enable_car_0_respawns");
@@ -2773,16 +2773,16 @@ function function_de13d6e2(var_be1a191b = 0)
 		a_env = array(level.var_55c8b6a7, level.var_e3c1476c, level.var_9c3c1d5, level.var_1bfadc08, level.var_8e024b43, level.var_67ffd0da, level.var_accc6632, level.var_86c9ebc9, level.var_60c77160, level.var_689205c5, level.var_8e94802e, level.var_b496fa97);
 	}
 	level.var_9cd0665b = a_env;
-	foreach(var_7d2a21b6 in a_env)
+	foreach(e_track in a_env)
 	{
-		if(isdefined(var_7d2a21b6.var_685c7a0b))
+		if(isdefined(e_track.var_685c7a0b))
 		{
-			foreach(var_f4933ec0 in var_7d2a21b6.var_685c7a0b)
+			foreach(var_f4933ec0 in e_track.var_685c7a0b)
 			{
-				var_f4933ec0 linkto(var_7d2a21b6);
+				var_f4933ec0 linkto(e_track);
 			}
 		}
-		function_8b08d700(var_7d2a21b6);
+		function_8b08d700(e_track);
 	}
 }
 
@@ -2813,19 +2813,19 @@ function function_52874109(str_script_noteworthy)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8b08d700(var_7d2a21b6)
+function function_8b08d700(e_track)
 {
 	/#
-		assert(isdefined(var_7d2a21b6), "");
+		assert(isdefined(e_track), "");
 	#/
-	if(isdefined(var_7d2a21b6.var_685c7a0b))
+	if(isdefined(e_track.var_685c7a0b))
 	{
-		foreach(var_f4933ec0 in var_7d2a21b6.var_685c7a0b)
+		foreach(var_f4933ec0 in e_track.var_685c7a0b)
 		{
 			var_f4933ec0 hide();
 		}
 	}
-	var_7d2a21b6 hide();
+	e_track hide();
 }
 
 /*
@@ -2837,19 +2837,19 @@ function function_8b08d700(var_7d2a21b6)
 	Parameters: 1
 	Flags: Linked
 */
-function function_c7d3965b(var_7d2a21b6)
+function function_c7d3965b(e_track)
 {
 	/#
-		assert(isdefined(var_7d2a21b6), "");
+		assert(isdefined(e_track), "");
 	#/
-	if(isdefined(var_7d2a21b6.var_685c7a0b))
+	if(isdefined(e_track.var_685c7a0b))
 	{
-		foreach(var_f4933ec0 in var_7d2a21b6.var_685c7a0b)
+		foreach(var_f4933ec0 in e_track.var_685c7a0b)
 		{
 			var_f4933ec0 ghost();
 		}
 	}
-	var_7d2a21b6 ghost();
+	e_track ghost();
 }
 
 /*
@@ -2861,19 +2861,19 @@ function function_c7d3965b(var_7d2a21b6)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8db22683(var_7d2a21b6)
+function function_8db22683(e_track)
 {
 	/#
-		assert(isdefined(var_7d2a21b6), "");
+		assert(isdefined(e_track), "");
 	#/
-	if(isdefined(var_7d2a21b6.var_685c7a0b))
+	if(isdefined(e_track.var_685c7a0b))
 	{
-		foreach(var_f4933ec0 in var_7d2a21b6.var_685c7a0b)
+		foreach(var_f4933ec0 in e_track.var_685c7a0b)
 		{
 			var_f4933ec0 show();
 		}
 	}
-	var_7d2a21b6 show();
+	e_track show();
 }
 
 /*
@@ -2887,9 +2887,9 @@ function function_8db22683(var_7d2a21b6)
 */
 function function_a86fd374()
 {
-	foreach(var_7d2a21b6 in level.var_9cd0665b)
+	foreach(e_track in level.var_9cd0665b)
 	{
-		function_8b08d700(var_7d2a21b6);
+		function_8b08d700(e_track);
 	}
 }
 
@@ -3239,9 +3239,9 @@ function function_9eb901e()
 */
 function function_f0cad19e()
 {
-	foreach(var_bf3222f4 in level.var_9cd0665b)
+	foreach(e_terrain in level.var_9cd0665b)
 	{
-		var_bf3222f4 delete();
+		e_terrain delete();
 	}
 }
 
@@ -3364,12 +3364,12 @@ function train_robot_fell_off()
 function function_f9012fc()
 {
 	level endon(#"detach_bomb_igc_terminate");
-	var_32400ae0 = getent("train_grenades_make_duds", "targetname");
+	t_grenade = getent("train_grenades_make_duds", "targetname");
 	foreach(player in level.players)
 	{
-		player thread grenade_toss(var_32400ae0);
+		player thread grenade_toss(t_grenade);
 	}
-	callback::on_spawned(&grenade_toss, var_32400ae0);
+	callback::on_spawned(&grenade_toss, t_grenade);
 }
 
 /*
@@ -3381,14 +3381,14 @@ function function_f9012fc()
 	Parameters: 1
 	Flags: Linked
 */
-function grenade_toss(var_32400ae0)
+function grenade_toss(t_grenade)
 {
 	level endon(#"detach_bomb_igc_terminate");
 	self endon(#"death");
 	while(true)
 	{
 		self waittill(#"grenade_fire", e_grenade);
-		e_grenade thread function_337c8c84(var_32400ae0);
+		e_grenade thread function_337c8c84(t_grenade);
 	}
 }
 
@@ -3401,7 +3401,7 @@ function grenade_toss(var_32400ae0)
 	Parameters: 1
 	Flags: Linked
 */
-function function_337c8c84(var_32400ae0)
+function function_337c8c84(t_grenade)
 {
 	self endon(#"death");
 	if(isdefined(10))
@@ -3412,7 +3412,7 @@ function function_337c8c84(var_32400ae0)
 	}
 	while(true)
 	{
-		if(self istouching(var_32400ae0))
+		if(self istouching(t_grenade))
 		{
 			if(isdefined(self))
 			{

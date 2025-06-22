@@ -139,9 +139,9 @@ function function_95b88092(str_objective, b_starting)
 	{
 		savegame::checkpoint_save();
 	}
-	var_8fb0849a = zurich_util::function_a1851f86(str_objective);
-	var_8fb0849a waittill(#"brn");
-	level thread root_cinematics::play_scene(str_objective, var_8fb0849a.var_90971f20.e_player);
+	t_heart = zurich_util::function_a1851f86(str_objective);
+	t_heart waittill(#"brn");
+	level thread root_cinematics::play_scene(str_objective, t_heart.var_90971f20.e_player);
 	if(isdefined(level.bzm_forceaicleanup))
 	{
 		[[level.bzm_forceaicleanup]]();
@@ -321,15 +321,15 @@ function function_aa95075d(str_objective)
 */
 function function_b8580c84(a_ents)
 {
-	var_29613ea0 = a_ents["zurich_mirror_start"];
+	e_mirror = a_ents["zurich_mirror_start"];
 	array::thread_all(level.players, &clientfield::set_to_player, "reflection_extracam", 1);
 	array::thread_all(level.players, &clientfield::set_to_player, "mirror_break", 1);
 	level notify(#"hash_3e3847fd");
 	level waittill(#"hash_80b2a624");
-	var_29613ea0 clientfield::set("mirror_warp", 1);
-	var_29613ea0 playsound("evt_mirror_warp_taylor");
+	e_mirror clientfield::set("mirror_warp", 1);
+	e_mirror playsound("evt_mirror_warp_taylor");
 	level waittill(#"hash_1f51b705");
-	var_29613ea0 clientfield::set("mirror_warp", 0);
+	e_mirror clientfield::set("mirror_warp", 0);
 }
 
 /*
@@ -523,17 +523,17 @@ function function_2d897f84(str_objective)
 	n_crumb = 1;
 	while(true)
 	{
-		var_f6e695c0 = struct::get("breadcrumb_zurichroot_" + n_crumb, "targetname");
-		var_b1fe230f = getent("t_zurichroot_" + n_crumb, "script_noteworthy");
-		if(!isdefined(var_f6e695c0) || !isdefined(var_b1fe230f))
+		s_crumb = struct::get("breadcrumb_zurichroot_" + n_crumb, "targetname");
+		t_crumb = getent("t_zurichroot_" + n_crumb, "script_noteworthy");
+		if(!isdefined(s_crumb) || !isdefined(t_crumb))
 		{
 			return;
 		}
-		objectives::set("cp_waypoint_breadcrumb", var_f6e695c0);
-		var_b1fe230f waittill(#"trigger");
+		objectives::set("cp_waypoint_breadcrumb", s_crumb);
+		t_crumb waittill(#"trigger");
 		level notify(#"hash_431e9a83");
 		savegame::checkpoint_save();
-		objectives::complete("cp_waypoint_breadcrumb", var_f6e695c0);
+		objectives::complete("cp_waypoint_breadcrumb", s_crumb);
 		n_crumb++;
 	}
 }

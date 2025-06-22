@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -216,13 +216,13 @@ function function_6454df1b()
 	Parameters: 1
 	Flags: Linked
 */
-function function_7305cc9b(var_34ef544f)
+function function_7305cc9b(t_streamer)
 {
 	self endon(#"disconnect");
 	var_f657052b = getent("generator_teleporter", "targetname");
 	var_5021a61d = get_teleporter_target_positions(var_f657052b, "generator_teleporter");
 	self zm_utility::create_streamer_hint(var_5021a61d[0].origin, var_5021a61d[0].angles, 1);
-	while(self istouching(var_34ef544f))
+	while(self istouching(t_streamer))
 	{
 		wait(0.05);
 	}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -454,7 +454,7 @@ function function_40fd81b()
 	self.goalradius = 16;
 	wait(randomfloatrange(2, 3.5));
 	var_90911853 = getweapon("launcher_standard_magic_bullet");
-	var_f8e04bb3 = self gettagorigin("tag_flash");
+	v_muzzle = self gettagorigin("tag_flash");
 	while(true)
 	{
 		var_5aebca26 = level.var_27b46342[randomint(level.var_27b46342.size)];
@@ -499,13 +499,13 @@ function function_54454538()
 	var_5aebca26 = getent("rpg_target", "targetname");
 	var_5aebca26.health = 1;
 	var_90911853 = getweapon("launcher_standard_magic_bullet");
-	var_f8e04bb3 = self gettagorigin("tag_flash");
+	v_muzzle = self gettagorigin("tag_flash");
 	wait(1);
-	if(!isdefined(var_f8e04bb3))
+	if(!isdefined(v_muzzle))
 	{
-		var_f8e04bb3 = self.origin;
+		v_muzzle = self.origin;
 	}
-	e_projectile = magicbullet(var_90911853, var_f8e04bb3, var_5aebca26.origin);
+	e_projectile = magicbullet(var_90911853, v_muzzle, var_5aebca26.origin);
 	e_projectile waittill(#"death");
 	e_projectile thread fx::play("rock_explosion", e_projectile.origin);
 	wait(1);
@@ -993,9 +993,9 @@ function function_b0cce50c()
 	wait(2);
 	objectives::set("cp_waypoint_breadcrumb", s_pod);
 	var_f3fb06d8 = getent("trigger_pod_lz", "targetname");
-	var_6848ea7f = getent("trigger_apc_reinforce", "targetname");
+	t_pod = getent("trigger_apc_reinforce", "targetname");
 	var_f3fb06d8 triggerenable(1);
-	var_6848ea7f thread function_a950a3ec();
+	t_pod thread function_a950a3ec();
 	level thread function_a3ac9ae0();
 	level flag::wait_till("pod_arrive");
 	var_f3fb06d8 waittill(#"trigger");
@@ -1600,8 +1600,8 @@ function function_6ba94a8()
 	level flag::wait_till("pod_waypoint");
 	battlechatter::function_d9f49fba(0);
 	level thread function_77fe86ff();
-	var_49b32118 = getent("pa_comm_tower", "targetname");
-	var_49b32118 dialog::say("nrcp_infiltrators_cornere_0", 0.2, 1);
+	e_pa = getent("pa_comm_tower", "targetname");
+	e_pa dialog::say("nrcp_infiltrators_cornere_0", 0.2, 1);
 	battlechatter::function_d9f49fba(1);
 	level flag::wait_till("dropship_return");
 	battlechatter::function_d9f49fba(0);

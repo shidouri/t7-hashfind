@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie;
 #using scripts\shared\ai\zombie_utility;
@@ -798,11 +798,11 @@ function revive_watcher()
 */
 function function_a5d4f26d()
 {
-	var_22082ed0 = getent("specialty_additionalprimaryweapon", "script_noteworthy");
-	if(isdefined(var_22082ed0) && isdefined(var_22082ed0))
+	e_machine = getent("specialty_additionalprimaryweapon", "script_noteworthy");
+	if(isdefined(e_machine) && isdefined(e_machine))
 	{
-		var_22082ed0.clip ghost();
-		var_22082ed0.clip connectpaths();
+		e_machine.clip ghost();
+		e_machine.clip connectpaths();
 	}
 }
 
@@ -2431,12 +2431,12 @@ function function_89182d9b()
 	level.machine_assets["specialty_staminup"].power_off_callback = &zm_tomb_capture_zones::custom_vending_power_off;
 	level flag::wait_till("start_zombie_round_logic");
 	wait(0.5);
-	foreach(var_3b5635b9 in level.powered_items)
+	foreach(s_powered in level.powered_items)
 	{
-		if(var_3b5635b9.target.script_noteworthy != "pack_a_punch")
+		if(s_powered.target.script_noteworthy != "pack_a_punch")
 		{
-			var_3b5635b9.power_on_func = &zm_tomb_capture_zones::custom_vending_power_on;
-			var_3b5635b9.power_off_func = &zm_tomb_capture_zones::custom_vending_power_off;
+			s_powered.power_on_func = &zm_tomb_capture_zones::custom_vending_power_on;
+			s_powered.power_off_func = &zm_tomb_capture_zones::custom_vending_power_off;
 		}
 	}
 }

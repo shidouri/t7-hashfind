@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -410,14 +410,14 @@ function function_3c56dee4()
 	}
 	flag::wait_till_all(a_flags);
 	var_f2fa33f7 = getentarray("so_xiulan_warehouse_loudspeaker", "targetname");
-	foreach(n_index, var_ea519684 in var_f2fa33f7)
+	foreach(n_index, e_loudspeaker in var_f2fa33f7)
 	{
 		if(n_index == (var_f2fa33f7.size - 1))
 		{
-			var_ea519684 dialog::say("xiul_loyal_immortals_thi_0", 0, 1);
+			e_loudspeaker dialog::say("xiul_loyal_immortals_thi_0", 0, 1);
 			continue;
 		}
-		var_ea519684 thread dialog::say("xiul_loyal_immortals_thi_0", 0, 1);
+		e_loudspeaker thread dialog::say("xiul_loyal_immortals_thi_0", 0, 1);
 	}
 	level.ai_hendricks dialog::say("hend_that_bitch_really_is_0");
 	level dialog::player_say("plyr_you_shot_her_brother_0");

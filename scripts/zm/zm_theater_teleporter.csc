@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\scene_shared;
@@ -190,10 +190,10 @@ function function_667aa0b4(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			level.extracamactive[localclientnum] = 0;
 			level.cameraent clearextracam();
-			var_78113405 = struct::get("struct_theater_projector_beam", "targetname");
-			if(isdefined(level.var_3cb13a71[localclientnum]) && isdefined(var_78113405.vid[localclientnum]))
+			s_projector = struct::get("struct_theater_projector_beam", "targetname");
+			if(isdefined(level.var_3cb13a71[localclientnum]) && isdefined(s_projector.vid[localclientnum]))
 			{
-				level.var_3cb13a71[localclientnum] = playfxontag(localclientnum, level._effect[level.var_bcdc3660[localclientnum]], var_78113405.vid[localclientnum], "tag_origin");
+				level.var_3cb13a71[localclientnum] = playfxontag(localclientnum, level._effect[level.var_bcdc3660[localclientnum]], s_projector.vid[localclientnum], "tag_origin");
 			}
 		}
 	}

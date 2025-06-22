@@ -2665,10 +2665,10 @@ function function_2b0fa0c0()
 {
 	while(true)
 	{
-		self waittill(#"player_bought", var_58aaa67b);
-		if(isdefined(var_58aaa67b) && isdefined(var_58aaa67b.name))
+		self waittill(#"player_bought", e_what);
+		if(isdefined(e_what) && isdefined(e_what.name))
 		{
-			if(var_58aaa67b.name == "dragonshield")
+			if(e_what.name == "dragonshield")
 			{
 				self thread function_aa5f0ceb("dragonshield_pickup", 1);
 			}
@@ -3759,11 +3759,11 @@ function function_b780637(n_val)
 {
 	/#
 		var_e8489bcc = 90 * n_val;
-		var_19ccee47 = (0, var_e8489bcc, 0);
+		v_face = (0, var_e8489bcc, 0);
 		player = level.activeplayers[0];
 		var_5d8a4d6d = util::spawn_model("", player.origin, player.angles);
 		player linkto(var_5d8a4d6d);
-		var_5d8a4d6d rotateto(var_19ccee47, 0.25);
+		var_5d8a4d6d rotateto(v_face, 0.25);
 		wait(0.5);
 		player unlink();
 		var_5d8a4d6d delete();

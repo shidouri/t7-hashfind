@@ -590,27 +590,27 @@ function function_f55d851b()
 			str_zone = zm_zonemgr::get_zone_from_position(v_origin, 1);
 			if(isdefined(str_zone) && level.zones[str_zone].is_active)
 			{
-				var_d88e6f5f = spawnactor("spawner_zm_genesis_keeper", v_origin, v_angles, undefined, 1, 1);
-				if(isdefined(var_d88e6f5f))
+				e_keeper = spawnactor("spawner_zm_genesis_keeper", v_origin, v_angles, undefined, 1, 1);
+				if(isdefined(e_keeper))
 				{
 					level.zombie_total--;
 					level.var_c4336559["keeper"]--;
-					var_d88e6f5f endon(#"death");
-					var_d88e6f5f.spawn_time = gettime();
-					var_d88e6f5f.var_b8385ee5 = 1;
-					var_d88e6f5f.health = level.zombie_health;
-					var_d88e6f5f.heroweapon_kill_power = 2;
-					level thread zm_spawner::zombie_death_event(var_d88e6f5f);
-					level thread function_6cc52664(var_d88e6f5f.origin);
-					var_d88e6f5f.voiceprefix = "keeper";
-					var_d88e6f5f.animname = "keeper";
-					var_d88e6f5f thread zm_spawner::play_ambient_zombie_vocals();
-					var_d88e6f5f thread zm_audio::zmbaivox_notifyconvert();
+					e_keeper endon(#"death");
+					e_keeper.spawn_time = gettime();
+					e_keeper.var_b8385ee5 = 1;
+					e_keeper.health = level.zombie_health;
+					e_keeper.heroweapon_kill_power = 2;
+					level thread zm_spawner::zombie_death_event(e_keeper);
+					level thread function_6cc52664(e_keeper.origin);
+					e_keeper.voiceprefix = "keeper";
+					e_keeper.animname = "keeper";
+					e_keeper thread zm_spawner::play_ambient_zombie_vocals();
+					e_keeper thread zm_audio::zmbaivox_notifyconvert();
 					wait(1.3);
-					var_d88e6f5f.zombie_think_done = 1;
-					var_d88e6f5f thread zombie_utility::round_spawn_failsafe();
-					var_d88e6f5f thread function_77d3a18d();
-					return var_d88e6f5f;
+					e_keeper.zombie_think_done = 1;
+					e_keeper thread zombie_utility::round_spawn_failsafe();
+					e_keeper thread function_77d3a18d();
+					return e_keeper;
 				}
 			}
 		}
@@ -660,19 +660,19 @@ function function_21bbe70d()
 			if(isdefined(str_zone) && level.zones[str_zone].is_active)
 			{
 				function_1f0a0b52(v_origin);
-				var_ecb2c615 = zm_genesis_apothicon_fury::function_21bbe70d(v_origin, v_angles, 0);
-				if(isdefined(var_ecb2c615))
+				e_fury = zm_genesis_apothicon_fury::function_21bbe70d(v_origin, v_angles, 0);
+				if(isdefined(e_fury))
 				{
 					level.zombie_total--;
 					level.var_c4336559["apothicon_fury"]--;
-					var_ecb2c615 endon(#"death");
-					var_ecb2c615.health = level.zombie_health;
+					e_fury endon(#"death");
+					e_fury.health = level.zombie_health;
 					wait(1);
-					var_ecb2c615.zombie_think_done = 1;
-					var_ecb2c615.heroweapon_kill_power = 2;
-					var_ecb2c615 ai::set_behavior_attribute("move_speed", "run");
-					var_ecb2c615 thread zombie_utility::round_spawn_failsafe();
-					return var_ecb2c615;
+					e_fury.zombie_think_done = 1;
+					e_fury.heroweapon_kill_power = 2;
+					e_fury ai::set_behavior_attribute("move_speed", "run");
+					e_fury thread zombie_utility::round_spawn_failsafe();
+					return e_fury;
 				}
 			}
 		}
@@ -695,13 +695,13 @@ function function_1f0a0b52(v_spawn_pos)
 	var_2c69e810 = spawn("script_model", v_spawn_pos);
 	var_2c69e810 setmodel("tag_origin");
 	playfxontag(level._effect["fury_ground_tell_fx"], var_2c69e810, "tag_origin");
-	var_3dd66385 = spawn("script_model", v_start_pos);
-	var_3dd66385 setmodel("tag_origin");
+	e_meteor = spawn("script_model", v_start_pos);
+	e_meteor setmodel("tag_origin");
 	util::wait_network_frame();
-	var_3dd66385 clientfield::set("apothicon_fury_spawn_meteor", 1);
-	var_3dd66385 moveto(v_spawn_pos, 1.5);
-	var_3dd66385 waittill(#"movedone");
-	var_3dd66385 delete();
+	e_meteor clientfield::set("apothicon_fury_spawn_meteor", 1);
+	e_meteor moveto(v_spawn_pos, 1.5);
+	e_meteor waittill(#"movedone");
+	e_meteor delete();
 	var_2c69e810 delete();
 }
 

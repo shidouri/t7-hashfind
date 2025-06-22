@@ -108,9 +108,9 @@ function walltrap_draft_rumble(localclientnum, oldval, newval, bnewent, binitial
 		{
 			player.var_d33c558c = [];
 			a_s_draft = struct::get_array("s_walltrap_draft_rumble", "targetname");
-			foreach(var_7f2e4e88 in a_s_draft)
+			foreach(s_draft in a_s_draft)
 			{
-				e_pos = util::spawn_model(localclientnum, "tag_origin", var_7f2e4e88.origin, var_7f2e4e88.angles);
+				e_pos = util::spawn_model(localclientnum, "tag_origin", s_draft.origin, s_draft.angles);
 				array::add(player.var_d33c558c, e_pos);
 			}
 		}

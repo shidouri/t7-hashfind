@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -218,8 +218,8 @@ function function_96157f5d()
 */
 function function_21350de5(a_ents)
 {
-	var_94848710 = a_ents["minister"];
-	var_94848710 waittill(#"death");
+	e_minister = a_ents["minister"];
+	e_minister waittill(#"death");
 	level flag::set("minister_apc_done");
 }
 
@@ -308,11 +308,11 @@ function function_59071a25()
 */
 function function_f7a7c69a()
 {
-	var_ede59fe8 = getent("player_inside_garage", "targetname");
+	t_entrance = getent("player_inside_garage", "targetname");
 	a_ai_allies = cp_prologue_util::get_ai_allies();
 	foreach(ai_ally in a_ai_allies)
 	{
-		while(isalive(ai_ally) && !ai_ally istouching(var_ede59fe8))
+		while(isalive(ai_ally) && !ai_ally istouching(t_entrance))
 		{
 			wait(0.1);
 		}
@@ -733,8 +733,8 @@ function function_f4e0744a()
 function function_38c8ec92()
 {
 	level endon(#"hash_e41afc83");
-	var_49b32118 = getent("pa_nrc_warning", "targetname");
-	var_49b32118 dialog::say("nrcp_warning_nrc_grunt_i_0", 0, 1);
+	e_pa = getent("pa_nrc_warning", "targetname");
+	e_pa dialog::say("nrcp_warning_nrc_grunt_i_0", 0, 1);
 	level flag::wait_till("player_in_alley");
 	function_e3231637(1);
 	level.ai_hyperion dialog::say("mare_you_guys_hear_tha_0", 0.5);
