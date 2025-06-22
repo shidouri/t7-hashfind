@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -213,7 +213,7 @@ function function_35f4f25f()
 	Parameters: 1
 	Flags: Linked
 */
-function function_66d50897(var_ffc8395e)
+function function_66d50897(str_method)
 {
 	if(self.s_unitrigger.b_on)
 	{
@@ -221,13 +221,13 @@ function function_66d50897(var_ffc8395e)
 		self.clip setcandamage(0);
 		self.s_unitrigger.b_on = 0;
 		zm_unitrigger::unregister_unitrigger(self);
-		var_3c13e11b = self.script_noteworthy;
-		if(level.var_22e09be4[var_3c13e11b].size)
+		str_set = self.script_noteworthy;
+		if(level.var_22e09be4[str_set].size)
 		{
-			str_vo = level.var_22e09be4[var_3c13e11b][0];
+			str_vo = level.var_22e09be4[str_set][0];
 			if(isdefined(str_vo))
 			{
-				if(var_ffc8395e == "damage")
+				if(str_method == "damage")
 				{
 					var_c46d7830 = self.clip.origin;
 				}
@@ -236,7 +236,7 @@ function function_66d50897(var_ffc8395e)
 					var_c46d7830 = self.origin;
 				}
 				array::add(level.var_66b7ed7e, self, 0);
-				arrayremoveindex(level.var_22e09be4[var_3c13e11b], 0);
+				arrayremoveindex(level.var_22e09be4[str_set], 0);
 				var_5cd02106 = soundgetplaybacktime(str_vo);
 				if(var_5cd02106 > 0)
 				{

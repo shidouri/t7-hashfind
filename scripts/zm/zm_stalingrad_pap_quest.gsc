@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\ai\zombie_utility;
@@ -262,8 +262,8 @@ function function_f3cc536()
 	self notify(#"hash_4cea57aa");
 	self thread zm_stalingrad_util::function_ab2df0ca();
 	zm_stalingrad_util::function_5eeabbe0(var_47ee7db6, nd_path_start, var_f08b56c6, "player_exited_sewer");
-	var_b8fe8638 = struct::get_array("drop_pod_radio", "targetname");
-	foreach(s_radio in var_b8fe8638)
+	a_s_radio = struct::get_array("drop_pod_radio", "targetname");
+	foreach(s_radio in a_s_radio)
 	{
 		s_radio.b_used = 0;
 	}
@@ -539,22 +539,22 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 				{
 					case 0:
 					{
-						var_a48df19e = "east";
+						str_front = "east";
 						break;
 					}
 					case 1:
 					{
-						var_a48df19e = "north";
+						str_front = "north";
 						break;
 					}
 					case 2:
 					{
-						var_a48df19e = "west";
+						str_front = "west";
 						break;
 					}
 				}
-				var_98782f9e = struct::get("lockdown_shutter_explosion_" + var_a48df19e, "targetname");
-				level thread function_1a7c9b89(var_a48df19e);
+				var_98782f9e = struct::get("lockdown_shutter_explosion_" + str_front, "targetname");
+				level thread function_1a7c9b89(str_front);
 				playrumbleonposition("zm_stalingrad_lockdown_shutter_destroyed", var_98782f9e.origin);
 				util::wait_network_frame();
 			}
@@ -681,33 +681,33 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 	Parameters: 1
 	Flags: Linked
 */
-function function_a71517e1(var_256a0099)
+function function_a71517e1(n_front)
 {
-	switch(var_256a0099)
+	switch(n_front)
 	{
 		case 0:
 		{
 			var_bf34b7c4 = getent("lockdown_shutter_1", "targetname");
 			var_143e45c3 = "p7_fxanim_zm_stal_pavlov_lockdown_wall_01_reset_bundle";
-			var_a48df19e = "east";
+			str_front = "east";
 			break;
 		}
 		case 1:
 		{
 			var_bf34b7c4 = getent("lockdown_shutter_2", "targetname");
 			var_143e45c3 = "p7_fxanim_zm_stal_pavlov_lockdown_wall_02_reset_bundle";
-			var_a48df19e = "north";
+			str_front = "north";
 			break;
 		}
 		case 2:
 		{
 			var_bf34b7c4 = getent("lockdown_shutter_3", "targetname");
 			var_143e45c3 = "p7_fxanim_zm_stal_pavlov_lockdown_wall_03_reset_bundle";
-			var_a48df19e = "west";
+			str_front = "west";
 			break;
 		}
 	}
-	var_3d086912 = getent("lockdown_transitionblocker_" + var_a48df19e, "targetname");
+	var_3d086912 = getent("lockdown_transitionblocker_" + str_front, "targetname");
 	var_3d086912 connectpaths();
 	var_3d086912 movez(-1000, 0.1);
 	var_bf34b7c4 thread scene::play(var_143e45c3, var_bf34b7c4);
@@ -740,33 +740,33 @@ function function_f10ea3a8()
 	Parameters: 1
 	Flags: Linked
 */
-function function_187a933f(var_256a0099)
+function function_187a933f(n_front)
 {
-	switch(var_256a0099)
+	switch(n_front)
 	{
 		case 0:
 		{
 			var_bf34b7c4 = getent("lockdown_shutter_1", "targetname");
 			var_f08953ca = "p7_fxanim_zm_stal_pavlov_lockdown_wall_01_lock_bundle";
-			var_a48df19e = "east";
+			str_front = "east";
 			break;
 		}
 		case 1:
 		{
 			var_bf34b7c4 = getent("lockdown_shutter_2", "targetname");
 			var_f08953ca = "p7_fxanim_zm_stal_pavlov_lockdown_wall_02_lock_bundle";
-			var_a48df19e = "north";
+			str_front = "north";
 			break;
 		}
 		case 2:
 		{
 			var_bf34b7c4 = getent("lockdown_shutter_3", "targetname");
 			var_f08953ca = "p7_fxanim_zm_stal_pavlov_lockdown_wall_03_lock_bundle";
-			var_a48df19e = "west";
+			str_front = "west";
 			break;
 		}
 	}
-	var_3d086912 = getent("lockdown_transitionblocker_" + var_a48df19e, "targetname");
+	var_3d086912 = getent("lockdown_transitionblocker_" + str_front, "targetname");
 	var_3d086912 movez(1000, 0.1);
 	var_3d086912 disconnectpaths();
 	var_bf34b7c4 thread scene::play(var_f08953ca, var_bf34b7c4);
@@ -802,8 +802,8 @@ function function_188bdb42()
 function function_d6ced80(b_locked)
 {
 	var_2bf0ed11 = getentarray("pavlov_gate_collision", "targetname");
-	var_50e0150f = getentarray("pavlov_gate_visual", "targetname");
-	var_b9e116c5 = getentarray("pavlov_hatch", "targetname");
+	a_e_gates = getentarray("pavlov_gate_visual", "targetname");
+	a_e_hatches = getentarray("pavlov_hatch", "targetname");
 	var_870c25a8 = getentarray("pavlov_hatch_collision", "targetname");
 	a_e_collision = arraycombine(var_870c25a8, var_2bf0ed11, 0, 0);
 	var_595e6429 = getnodearray("pavlovs_lockdown_floor_traverse", "targetname");
@@ -817,12 +817,12 @@ function function_d6ced80(b_locked)
 			e_collision disconnectpaths();
 			var_63b437d6 = function_77f195ef(var_63b437d6);
 		}
-		foreach(e_gate in var_50e0150f)
+		foreach(e_gate in a_e_gates)
 		{
 			e_gate movez(600, 0.25);
 			var_63b437d6 = function_77f195ef(var_63b437d6);
 		}
-		foreach(e_hatch in var_b9e116c5)
+		foreach(e_hatch in a_e_hatches)
 		{
 			e_hatch rotateroll(-90, 1);
 			var_63b437d6 = function_77f195ef(var_63b437d6);
@@ -844,12 +844,12 @@ function function_d6ced80(b_locked)
 			e_collision notsolid();
 			var_63b437d6 = function_77f195ef(var_63b437d6);
 		}
-		foreach(e_gate in var_50e0150f)
+		foreach(e_gate in a_e_gates)
 		{
 			e_gate movez(-600, 0.25);
 			var_63b437d6 = function_77f195ef(var_63b437d6);
 		}
-		foreach(e_hatch in var_b9e116c5)
+		foreach(e_hatch in a_e_hatches)
 		{
 			e_hatch rotateroll(90, 1);
 			var_63b437d6 = function_77f195ef(var_63b437d6);
@@ -942,38 +942,38 @@ function function_451531f2()
 	Parameters: 1
 	Flags: Linked
 */
-function function_3d5f2c8e(var_256a0099)
+function function_3d5f2c8e(n_front)
 {
-	switch(var_256a0099)
+	switch(n_front)
 	{
 		case 0:
 		{
-			var_a48df19e = "east";
+			str_front = "east";
 			break;
 		}
 		case 1:
 		{
-			var_a48df19e = "north";
+			str_front = "north";
 			break;
 		}
 		case 2:
 		{
-			var_a48df19e = "west";
+			str_front = "west";
 			break;
 		}
 	}
-	var_98782f9e = struct::get("lockdown_shutter_explosion_" + var_a48df19e, "targetname");
-	level thread function_1a7c9b89(var_a48df19e);
+	var_98782f9e = struct::get("lockdown_shutter_explosion_" + str_front, "targetname");
+	level thread function_1a7c9b89(str_front);
 	wait(3);
 	playrumbleonposition("zm_stalingrad_lockdown_shutter_destroyed", var_98782f9e.origin);
-	function_a71517e1(var_256a0099);
+	function_a71517e1(n_front);
 	if(isdefined(level.var_1dfcc9b2.var_61126827))
 	{
 		exploder::exploder_stop("pavlov_" + level.var_1dfcc9b2.var_61126827);
 	}
 	exploder::exploder_stop("pavlov_" + 4);
-	exploder::exploder("pavlov_" + (var_256a0099 + 1));
-	level.var_1dfcc9b2.var_61126827 = var_256a0099 + 1;
+	exploder::exploder("pavlov_" + (n_front + 1));
+	level.var_1dfcc9b2.var_61126827 = n_front + 1;
 }
 
 /*
@@ -985,12 +985,12 @@ function function_3d5f2c8e(var_256a0099)
 	Parameters: 1
 	Flags: Linked
 */
-function function_1a7c9b89(var_a48df19e)
+function function_1a7c9b89(str_front)
 {
-	var_604d90e0 = getentarray("lockdown_lights_" + var_a48df19e, "targetname");
-	level clientfield::set("lockdown_lights_" + var_a48df19e, 1);
+	var_604d90e0 = getentarray("lockdown_lights_" + str_front, "targetname");
+	level clientfield::set("lockdown_lights_" + str_front, 1);
 	level waittill(#"hash_d2eac5fe");
-	level clientfield::set("lockdown_lights_" + var_a48df19e, 0);
+	level clientfield::set("lockdown_lights_" + str_front, 0);
 }
 
 /*
@@ -1142,22 +1142,22 @@ function function_2c6fd7(var_2b71b5b4, var_15eb9a52, var_f92c3865, var_13d1e831)
 			{
 				case 0:
 				{
-					var_a48df19e = "east";
+					str_front = "east";
 					break;
 				}
 				case 1:
 				{
-					var_a48df19e = "north";
+					str_front = "north";
 					break;
 				}
 				case 2:
 				{
-					var_a48df19e = "west";
+					str_front = "west";
 					break;
 				}
 			}
-			var_98782f9e = struct::get("lockdown_shutter_explosion_" + var_a48df19e, "targetname");
-			level thread function_1a7c9b89(var_a48df19e);
+			var_98782f9e = struct::get("lockdown_shutter_explosion_" + str_front, "targetname");
+			level thread function_1a7c9b89(str_front);
 			playrumbleonposition("zm_stalingrad_lockdown_shutter_destroyed", var_98782f9e.origin);
 			util::wait_network_frame();
 		}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_skipto;
@@ -40,7 +40,7 @@ function __init__()
 {
 	init_clientfields();
 	util::init_breath_fx();
-	level.var_1cf7e9e8 = [];
+	level.n_weather = [];
 	level.var_18402cb = [];
 	init_effects();
 }
@@ -624,11 +624,11 @@ function function_6120ef33(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval >= 1)
 	{
-		if(level.var_1cf7e9e8[localclientnum] === newval)
+		if(level.n_weather[localclientnum] === newval)
 		{
 			return;
 		}
-		level.var_1cf7e9e8[localclientnum] = newval;
+		level.n_weather[localclientnum] = newval;
 		switch(newval)
 		{
 			case 1:
@@ -702,7 +702,7 @@ function function_965fdae0(localclientnum, str_fx, n_delay)
 */
 function function_a0b8d731(localclientnum)
 {
-	level.var_1cf7e9e8[localclientnum] = undefined;
+	level.n_weather[localclientnum] = undefined;
 	if(isdefined(level.var_18402cb[localclientnum]))
 	{
 		deletefx(localclientnum, level.var_18402cb[localclientnum], 1);

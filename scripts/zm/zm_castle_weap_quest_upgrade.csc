@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
@@ -412,25 +412,25 @@ function function_543f9ebd(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	if(newval == 1)
 	{
-		var_f4c7c18 = [];
+		a_e_fossils = [];
 		for(i = 0; i < level.var_f91a2b6a[localclientnum].size; i++)
 		{
 			if(isdefined(level.var_f91a2b6a[localclientnum][i]) && isdefined(level.var_f91a2b6a[localclientnum][i].var_89028fd1))
 			{
-				if(!isdefined(var_f4c7c18))
+				if(!isdefined(a_e_fossils))
 				{
-					var_f4c7c18 = [];
+					a_e_fossils = [];
 				}
-				else if(!isarray(var_f4c7c18))
+				else if(!isarray(a_e_fossils))
 				{
-					var_f4c7c18 = array(var_f4c7c18);
+					a_e_fossils = array(a_e_fossils);
 				}
-				var_f4c7c18[var_f4c7c18.size] = level.var_f91a2b6a[localclientnum][i].var_89028fd1;
+				a_e_fossils[a_e_fossils.size] = level.var_f91a2b6a[localclientnum][i].var_89028fd1;
 			}
 		}
-		if(var_f4c7c18.size > 0)
+		if(a_e_fossils.size > 0)
 		{
-			self thread scene::play("o_zm_dlc1_chomper_demongate_swarm_trophy_room_active", var_f4c7c18);
+			self thread scene::play("o_zm_dlc1_chomper_demongate_swarm_trophy_room_active", a_e_fossils);
 		}
 	}
 	else
@@ -465,25 +465,25 @@ function function_fec30c70(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval == 1)
 	{
 		level notify(#"hash_24d9d4f5");
-		var_f4c7c18 = [];
+		a_e_fossils = [];
 		for(i = 0; i < level.var_f91a2b6a[localclientnum].size; i++)
 		{
 			if(isdefined(level.var_f91a2b6a[localclientnum][i]) && isdefined(level.var_f91a2b6a[localclientnum][i].var_89028fd1))
 			{
-				if(!isdefined(var_f4c7c18))
+				if(!isdefined(a_e_fossils))
 				{
-					var_f4c7c18 = [];
+					a_e_fossils = [];
 				}
-				else if(!isarray(var_f4c7c18))
+				else if(!isarray(a_e_fossils))
 				{
-					var_f4c7c18 = array(var_f4c7c18);
+					a_e_fossils = array(a_e_fossils);
 				}
-				var_f4c7c18[var_f4c7c18.size] = level.var_f91a2b6a[localclientnum][i].var_89028fd1;
+				a_e_fossils[a_e_fossils.size] = level.var_f91a2b6a[localclientnum][i].var_89028fd1;
 			}
 		}
-		if(var_f4c7c18.size > 0)
+		if(a_e_fossils.size > 0)
 		{
-			self thread scene::play("o_zm_dlc1_chomper_demongate_swarm_trophy_room_outtro", var_f4c7c18);
+			self thread scene::play("o_zm_dlc1_chomper_demongate_swarm_trophy_room_outtro", a_e_fossils);
 		}
 	}
 }
@@ -1548,19 +1548,19 @@ function function_60ae2cd0(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 2
 	Flags: Linked
 */
-function function_a783453f(localclientnum, var_3a9e6062)
+function function_a783453f(localclientnum, ai_wolf)
 {
-	var_3a9e6062 endon(#"death");
-	var_3a9e6062 endon(#"entityshutdown");
-	var_3a9e6062 endon(#"hash_5ad4a160");
+	ai_wolf endon(#"death");
+	ai_wolf endon(#"entityshutdown");
+	ai_wolf endon(#"hash_5ad4a160");
 	b_left_side = 1;
-	var_cc9030a = var_3a9e6062.origin;
-	while(isdefined(var_3a9e6062))
+	var_cc9030a = ai_wolf.origin;
+	while(isdefined(ai_wolf))
 	{
 		wait(0.15);
-		if(var_3a9e6062.origin != var_cc9030a)
+		if(ai_wolf.origin != var_cc9030a)
 		{
-			var_cc9030a = var_3a9e6062.origin;
+			var_cc9030a = ai_wolf.origin;
 			if(isdefined(b_left_side) && b_left_side)
 			{
 				str_tag = "l_frontlegend_jnt";
@@ -1573,10 +1573,10 @@ function function_a783453f(localclientnum, var_3a9e6062)
 				var_375e50e1 = "wolf_right_print";
 				b_left_side = 1;
 			}
-			v_pos = var_3a9e6062 gettagorigin(str_tag) + vectorscale((0, 0, 1), 4);
+			v_pos = ai_wolf gettagorigin(str_tag) + vectorscale((0, 0, 1), 4);
 			var_c6f6381a = bullettrace(v_pos, v_pos - vectorscale((0, 0, 1), 12), 0, undefined);
 			v_final_pos = var_c6f6381a["position"] + (0, 0, 1);
-			playfx(localclientnum, level._effect[var_375e50e1], v_final_pos, anglestoforward(var_3a9e6062.angles), (0, 0, 1));
+			playfx(localclientnum, level._effect[var_375e50e1], v_final_pos, anglestoforward(ai_wolf.angles), (0, 0, 1));
 		}
 	}
 }

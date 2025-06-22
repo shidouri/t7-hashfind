@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_ammo_cache;
 #using scripts\cp\_art;
@@ -877,8 +877,8 @@ function onallplayersready()
 	do
 	{
 		wait(0.05);
-		var_f862b7b1 = getnumconnectedplayers(0);
-		var_91f98264 = getnumexpectedplayers();
+		n_connected = getnumconnectedplayers(0);
+		n_expected = getnumexpectedplayers();
 		player_count_actual = 0;
 		for(i = 0; i < level.players.size; i++)
 		{
@@ -891,7 +891,7 @@ function onallplayersready()
 			println((("" + getnumconnectedplayers()) + "") + getnumexpectedplayers());
 		#/
 	}
-	while(var_f862b7b1 < var_91f98264 || player_count_actual < var_91f98264);
+	while(n_connected < n_expected || player_count_actual < n_expected);
 	setinitialplayersconnected();
 	setdvar("all_players_are_connected", "1");
 	/#

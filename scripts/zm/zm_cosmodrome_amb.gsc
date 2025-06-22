@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -337,14 +337,14 @@ function init_redphone_eggs()
 		activation = var_9d999891 function_de8ef595();
 		if(isdefined(activation) && activation)
 		{
-			var_f1b4932d = array::random(var_a008170d);
-			arrayremovevalue(var_a008170d, var_f1b4932d);
+			n_radio = array::random(var_a008170d);
+			arrayremovevalue(var_a008170d, n_radio);
 			if(var_a008170d.size <= 0)
 			{
 				var_a008170d = array(0, 1, 2, 3, 4, 5, 6, 7, 8);
 			}
-			playsoundatposition("vox_egg_redphone_" + var_f1b4932d, var_9d999891.origin);
-			var_693fabd9 = var_f1b4932d;
+			playsoundatposition("vox_egg_redphone_" + n_radio, var_9d999891.origin);
+			var_693fabd9 = n_radio;
 			wait(30);
 		}
 	}
@@ -575,12 +575,12 @@ function function_5b4692c9()
 */
 function function_2e4843da()
 {
-	self.var_ac086ffb = util::spawn_model(self.model, self.origin, self.angles);
+	self.mdl_ballerina = util::spawn_model(self.model, self.origin, self.angles);
 	e_trig = spawn("trigger_radius", self.origin + (vectorscale((0, 0, -1), 120)), 0, 175, 200);
 	e_trig.targetname = "sndzhdeggtrig";
 	e_trig.s_target = self;
 	e_trig waittill(#"hash_de264026");
-	self.var_ac086ffb delete();
+	self.mdl_ballerina delete();
 	e_trig delete();
 }
 
@@ -597,7 +597,7 @@ function function_61c7f9a3(grenade, model, var_7d5605b7)
 {
 	wait(1);
 	time = 3;
-	var_7d5605b7.s_target.var_ac086ffb moveto(grenade.origin + vectorscale((0, 0, 1), 50), time, time - 0.05);
+	var_7d5605b7.s_target.mdl_ballerina moveto(grenade.origin + vectorscale((0, 0, 1), 50), time, time - 0.05);
 	wait(time);
 	playsoundatposition("zmb_gersh_teleporter_out", grenade.origin + vectorscale((0, 0, 1), 50));
 	model delete();

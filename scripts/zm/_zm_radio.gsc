@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
@@ -55,8 +55,8 @@ function __main__()
 	{
 		key = level.kzmb_key;
 	}
-	var_903fae71 = getentarray(str_name, str_key);
-	if(!isdefined(var_903fae71) || !var_903fae71.size)
+	a_radios = getentarray(str_name, str_key);
+	if(!isdefined(a_radios) || !a_radios.size)
 	{
 		/#
 			println("");
@@ -64,9 +64,9 @@ function __main__()
 		return;
 	}
 	/#
-		println("" + var_903fae71.size);
+		println("" + a_radios.size);
 	#/
-	array::thread_all(var_903fae71, &function_8554d5da);
+	array::thread_all(a_radios, &function_8554d5da);
 }
 
 /*

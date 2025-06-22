@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\ai\zombie_utility;
@@ -490,7 +490,7 @@ class class_d7100ae3
 		Parameters: 3
 		Flags: Linked
 	*/
-	function function_ec1f5e9(var_8deda1b1, n_minutes, var_1133e63b = 20)
+	function function_ec1f5e9(n_hours, n_minutes, var_1133e63b = 20)
 	{
 		var_3e7e6c38 = m_b_active;
 		self set_active(0);
@@ -500,7 +500,7 @@ class class_d7100ae3
 		{
 			var_16c3da4f = 60 + var_16c3da4f;
 		}
-		var_2dc617a1 = var_8deda1b1 - var_a117a15d;
+		var_2dc617a1 = n_hours - var_a117a15d;
 		if(var_2dc617a1 < 0)
 		{
 			var_2dc617a1 = 12 + var_2dc617a1;
@@ -511,7 +511,7 @@ class class_d7100ae3
 		var_5c546253 rotatepitch(-6 * var_16c3da4f, (0.05 * var_16c3da4f) * (1 / var_1133e63b));
 		var_1ed02f45 rotatepitch(-30 * var_2dc617a1, (0.05 * var_2dc617a1) * (1 / var_1133e63b));
 		var_246b41b3 = n_minutes;
-		var_a117a15d = var_8deda1b1;
+		var_a117a15d = n_hours;
 		/#
 			iprintln((("" + var_a117a15d) + "") + var_246b41b3);
 		#/
@@ -728,8 +728,8 @@ function function_c691b60()
 {
 	for(i = 0; i < 5; i++)
 	{
-		var_2de8cf5e = struct::get_array("ee_groph_reels_" + i, "targetname");
-		foreach(s_reel in var_2de8cf5e)
+		a_s_reels = struct::get_array("ee_groph_reels_" + i, "targetname");
+		foreach(s_reel in a_s_reels)
 		{
 			var_df5776d8 = util::spawn_model(s_reel.model, s_reel.origin, s_reel.angles);
 			s_reel.var_df5776d8 = var_df5776d8;
@@ -737,10 +737,10 @@ function function_c691b60()
 		}
 		if(i == 0)
 		{
-			level thread function_374ac18c(var_2de8cf5e, i);
+			level thread function_374ac18c(a_s_reels, i);
 			continue;
 		}
-		level thread function_6bf381de(var_2de8cf5e, i);
+		level thread function_6bf381de(a_s_reels, i);
 	}
 }
 
@@ -753,15 +753,15 @@ function function_c691b60()
 	Parameters: 2
 	Flags: Linked
 */
-function function_6bf381de(var_2de8cf5e, var_bee8e45)
+function function_6bf381de(a_s_reels, var_bee8e45)
 {
 	while(true)
 	{
-		var_2de8cf5e[0] zm_castle_util::create_unitrigger();
-		var_2de8cf5e[0] waittill(#"trigger_activated");
-		function_972992c4(var_2de8cf5e, 1);
-		var_2de8cf5e[0].var_df5776d8 function_ffa9011b(var_bee8e45);
-		function_972992c4(var_2de8cf5e, 0);
+		a_s_reels[0] zm_castle_util::create_unitrigger();
+		a_s_reels[0] waittill(#"trigger_activated");
+		function_972992c4(a_s_reels, 1);
+		a_s_reels[0].var_df5776d8 function_ffa9011b(var_bee8e45);
+		function_972992c4(a_s_reels, 0);
 	}
 }
 
@@ -774,20 +774,20 @@ function function_6bf381de(var_2de8cf5e, var_bee8e45)
 	Parameters: 2
 	Flags: Linked
 */
-function function_374ac18c(var_2de8cf5e, var_bee8e45)
+function function_374ac18c(a_s_reels, var_bee8e45)
 {
-	var_2de8cf5e[0].var_df5776d8 setcandamage(1);
+	a_s_reels[0].var_df5776d8 setcandamage(1);
 	while(true)
 	{
-		var_2de8cf5e[0].var_df5776d8.health = 1000000;
-		var_2de8cf5e[0].var_df5776d8 waittill(#"damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
+		a_s_reels[0].var_df5776d8.health = 1000000;
+		a_s_reels[0].var_df5776d8 waittill(#"damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
 		if(!isdefined(attacker) || !isplayer(attacker))
 		{
 			continue;
 		}
-		function_972992c4(var_2de8cf5e, 1);
-		var_2de8cf5e[0].var_df5776d8 function_ffa9011b(var_bee8e45);
-		function_972992c4(var_2de8cf5e, 0);
+		function_972992c4(a_s_reels, 1);
+		a_s_reels[0].var_df5776d8 function_ffa9011b(var_bee8e45);
+		function_972992c4(a_s_reels, 0);
 	}
 }
 
@@ -815,9 +815,9 @@ function function_ffa9011b(var_bee8e45)
 	Parameters: 2
 	Flags: Linked
 */
-function function_972992c4(var_2de8cf5e, b_on)
+function function_972992c4(a_s_reels, b_on)
 {
-	foreach(s_reel in var_2de8cf5e)
+	foreach(s_reel in a_s_reels)
 	{
 		if(isdefined(s_reel.var_df5776d8))
 		{
@@ -1432,8 +1432,8 @@ function function_b8645c20()
 */
 function function_79e1bd74(n_level)
 {
-	var_5824233 = array("p7_zm_ctl_newspaper_01_parade", "p7_zm_ctl_newspaper_01_attacks", "p7_zm_ctl_newspaper_01_outbreak");
-	str_model = var_5824233[n_level];
+	a_str_models = array("p7_zm_ctl_newspaper_01_parade", "p7_zm_ctl_newspaper_01_attacks", "p7_zm_ctl_newspaper_01_outbreak");
+	str_model = a_str_models[n_level];
 	if(!isdefined(level.var_31e6a027))
 	{
 		var_21231084 = struct::get("ee_newspaper");

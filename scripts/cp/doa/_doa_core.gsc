@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_arena;
 #using scripts\cp\doa\_doa_audio;
@@ -89,8 +89,8 @@ function private _load()
 	do
 	{
 		wait(0.05);
-		var_f862b7b1 = getnumconnectedplayers(0);
-		var_91f98264 = getnumexpectedplayers();
+		n_connected = getnumconnectedplayers(0);
+		n_expected = getnumexpectedplayers();
 		player_count_actual = 0;
 		var_a349db66 = 0;
 		for(i = 0; i < level.players.size; i++)
@@ -112,7 +112,7 @@ function private _load()
 			doa_utility::debugmsg(((("" + getnumconnectedplayers()) + "") + getnumexpectedplayers() + "") + var_a349db66);
 		#/
 	}
-	while(var_f862b7b1 < var_91f98264 && (player_count_actual + var_a349db66) < var_91f98264);
+	while(n_connected < n_expected && (player_count_actual + var_a349db66) < n_expected);
 	setinitialplayersconnected();
 	level flag::set("all_players_connected");
 	setdvar("all_players_are_connected", "1");
@@ -968,7 +968,7 @@ function function_64a5cd5e()
 	doa_utility::function_1ced251e(1);
 	foreach(player in getplayers())
 	{
-		player.doa.var_af875fb7 = [];
+		player.doa.guardians = [];
 		player namespace_831a4a7c::function_7f33210a();
 	}
 	level clientfield::set("set_scoreHidden", 1);

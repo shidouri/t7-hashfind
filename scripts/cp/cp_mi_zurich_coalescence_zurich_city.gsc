@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -160,20 +160,20 @@ function function_ab4451a1()
 {
 	level endon(#"hash_e0d14dc8");
 	n_count = 0;
-	var_7be3ca60 = [];
+	a_mdl_doors = [];
 	a_s_doors = struct::get_array("skybar_rollup_door");
 	foreach(i, s_door in a_s_doors)
 	{
 		wait(0.05);
-		var_7be3ca60[i] = util::spawn_model("p7_loading_dock_rollup_door", s_door.origin, s_door.angles);
-		var_7be3ca60[i].script_objective = "garage";
+		a_mdl_doors[i] = util::spawn_model("p7_loading_dock_rollup_door", s_door.origin, s_door.angles);
+		a_mdl_doors[i].script_objective = "garage";
 	}
-	array::thread_all(var_7be3ca60, &function_52073baf);
+	array::thread_all(a_mdl_doors, &function_52073baf);
 	while(true)
 	{
 		level waittill(#"hash_443f3c33");
-		var_7be3ca60 = array::randomize(var_7be3ca60);
-		foreach(mdl in var_7be3ca60)
+		a_mdl_doors = array::randomize(a_mdl_doors);
+		foreach(mdl in a_mdl_doors)
 		{
 			wait(0.15);
 			mdl movez(85, randomfloatrange(0.9, 1.2));
@@ -190,8 +190,8 @@ function function_ab4451a1()
 			n_count--;
 		}
 		wait(randomfloatrange(3, 3.6));
-		var_7be3ca60 = array::randomize(var_7be3ca60);
-		foreach(mdl in var_7be3ca60)
+		a_mdl_doors = array::randomize(a_mdl_doors);
+		foreach(mdl in a_mdl_doors)
 		{
 			wait(0.15);
 			mdl movez(85 * -1, randomfloatrange(0.9, 1.2));
@@ -393,7 +393,7 @@ function function_51e389ee()
 */
 function function_e3750802()
 {
-	var_295a1e1f = zurich_util::function_f9afa212("zurich_intro_camera");
+	a_e_cameras = zurich_util::function_f9afa212("zurich_intro_camera");
 }
 
 /*
@@ -407,8 +407,8 @@ function function_e3750802()
 */
 function function_9b46fb9()
 {
-	var_295a1e1f = getentarray("zurich_intro_camera_ai", "targetname");
-	array::delete_all(var_295a1e1f);
+	a_e_cameras = getentarray("zurich_intro_camera_ai", "targetname");
+	array::delete_all(a_e_cameras);
 }
 
 /*
@@ -593,11 +593,11 @@ function function_d8d72142()
 	self endon(#"death");
 	level endon(#"hash_1b75d876");
 	n_offset = 32;
-	var_3f44bbce = struct::get_array("intro_magic_bullet_scene_spot");
+	a_s_weapons = struct::get_array("intro_magic_bullet_scene_spot");
 	w_weapon = self.weapon;
 	for(i = 0; i < 36; i++)
 	{
-		s_weapon = array::random(var_3f44bbce);
+		s_weapon = array::random(a_s_weapons);
 		a_s_targets = struct::get_array(s_weapon.target);
 		s_target = array::random(a_s_targets);
 		var_8d661004 = (randomintrange(n_offset * -1, n_offset), randomintrange(n_offset * -1, n_offset), randomintrange(n_offset * -1, n_offset));
@@ -607,7 +607,7 @@ function function_d8d72142()
 	wait(1.2);
 	for(i = 0; i < 19; i++)
 	{
-		s_weapon = array::random(var_3f44bbce);
+		s_weapon = array::random(a_s_weapons);
 		a_s_targets = struct::get_array(s_weapon.target);
 		s_target = array::random(a_s_targets);
 		var_8d661004 = (randomintrange(n_offset * -1, n_offset), randomintrange(n_offset * -1, n_offset), randomintrange(n_offset * -1, n_offset));
@@ -789,11 +789,11 @@ function function_4ef4b654(a_ents)
 	var_4fc7570c = spawner::simple_spawn_single("zurich_intro_redshirts_right_1");
 	var_c1cec647 = spawner::simple_spawn_single("zurich_intro_redshirts_right_2");
 	var_61a68fbf = spawner::simple_spawn_single("zurich_intro_support");
-	var_b982e5d0 = spawner::get_ai_group_ai("intro_squad_right");
+	a_ai_right = spawner::get_ai_group_ai("intro_squad_right");
 	nd_intro = getnode("zurich_intro_redshirt_run_by_node", "targetname");
 	var_ae4ab21f = getnode("zurich_intro_sitrep_node", "targetname");
 	var_35a3121c = [];
-	var_35a3121c = arraycombine(var_b982e5d0, var_35a3121c, 0, 0);
+	var_35a3121c = arraycombine(a_ai_right, var_35a3121c, 0, 0);
 	if(!isdefined(var_35a3121c))
 	{
 		var_35a3121c = [];
@@ -819,7 +819,7 @@ function function_4ef4b654(a_ents)
 	level thread function_e7f6d0c8();
 	var_61a68fbf forceteleport(nd_intro.origin, nd_intro.angles);
 	a_ents["zurich_intro_sitrep_guy"] forceteleport(var_ae4ab21f.origin, var_ae4ab21f.angles);
-	foreach(ai in var_b982e5d0)
+	foreach(ai in a_ai_right)
 	{
 		nd_goal = getnode(ai.script_noteworthy, "targetname");
 		ai forceteleport(nd_goal.origin, nd_goal.angles);

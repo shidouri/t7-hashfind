@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\animation_state_machine_mocomp;
 #using scripts\shared\ai\systems\animation_state_machine_notetracks;
@@ -675,17 +675,17 @@ function function_c7a940c4(n_players)
 */
 function function_3de9d297()
 {
-	var_eb1ae81f = 0;
-	var_1916d2ed = getentarray("zombie_sentinel", "targetname");
-	foreach(var_663b2442 in var_1916d2ed)
+	n_sentinels = 0;
+	a_ai_sentinels = getentarray("zombie_sentinel", "targetname");
+	foreach(ai_sentinel in a_ai_sentinels)
 	{
-		str_zone = zm_zonemgr::get_zone_from_position(var_663b2442.origin + vectorscale((0, 0, 1), 32), 0);
+		str_zone = zm_zonemgr::get_zone_from_position(ai_sentinel.origin + vectorscale((0, 0, 1), 32), 0);
 		if(str_zone === "pavlovs_A_zone" || str_zone === "pavlovs_B_zone" || str_zone === "pavlovs_C_zone")
 		{
-			var_eb1ae81f++;
+			n_sentinels++;
 		}
 	}
-	return var_eb1ae81f;
+	return n_sentinels;
 }
 
 /*
@@ -746,8 +746,8 @@ function function_9b4d9341()
 */
 function function_8b981aa0()
 {
-	var_eb1ae81f = function_3de9d297();
-	if(var_eb1ae81f == 0)
+	n_sentinels = function_3de9d297();
+	if(n_sentinels == 0)
 	{
 		a_s_spawn_locs = struct::get_array("pavlovs_A_spawn", "targetname");
 		return array::random(a_s_spawn_locs);
@@ -770,37 +770,37 @@ function function_a442e988(e_player)
 	{
 		return;
 	}
-	var_1916d2ed = getentarray("zombie_sentinel", "targetname");
-	foreach(var_663b2442 in var_1916d2ed)
+	a_ai_sentinels = getentarray("zombie_sentinel", "targetname");
+	foreach(ai_sentinel in a_ai_sentinels)
 	{
-		while(isdefined(var_663b2442) && !var_663b2442 flag::exists("completed_spawning"))
+		while(isdefined(ai_sentinel) && !ai_sentinel flag::exists("completed_spawning"))
 		{
 			wait(0.05);
 		}
-		if(!isdefined(var_663b2442))
+		if(!isdefined(ai_sentinel))
 		{
 			continue;
 		}
-		var_663b2442 flag::wait_till("completed_spawning");
-		str_zone = zm_zonemgr::get_zone_from_position(var_663b2442.origin + vectorscale((0, 0, 1), 32), 0);
+		ai_sentinel flag::wait_till("completed_spawning");
+		str_zone = zm_zonemgr::get_zone_from_position(ai_sentinel.origin + vectorscale((0, 0, 1), 32), 0);
 		if(str_zone === "pavlovs_A_zone" || str_zone === "pavlovs_B_zone" || str_zone === "pavlovs_C_zone")
 		{
 			return;
 		}
-		if(distance2dsquared(var_663b2442.origin, e_player.origin) < 6250000 && distance2dsquared(var_663b2442.origin, level.var_ca793258.origin) > 250000)
+		if(distance2dsquared(ai_sentinel.origin, e_player.origin) < 6250000 && distance2dsquared(ai_sentinel.origin, level.var_ca793258.origin) > 250000)
 		{
-			if(var_663b2442.var_c94972aa === 1)
+			if(ai_sentinel.var_c94972aa === 1)
 			{
-				if(var_663b2442.var_7e04bb3 === 1)
+				if(ai_sentinel.var_7e04bb3 === 1)
 				{
 					continue;
 				}
 				else
 				{
-					var_663b2442 notify(#"hash_d600cb9a");
+					ai_sentinel notify(#"hash_d600cb9a");
 				}
 			}
-			var_d7b33d0c = var_663b2442;
+			var_d7b33d0c = ai_sentinel;
 			break;
 		}
 	}
@@ -809,7 +809,7 @@ function function_a442e988(e_player)
 		level.var_dc87592f = 1;
 		var_d7b33d0c thread function_f05eb36e();
 		var_d7b33d0c endon(#"death");
-		var_663b2442 flag::wait_till("completed_spawning");
+		ai_sentinel flag::wait_till("completed_spawning");
 		var_d7b33d0c sentinel_drone::sentinel_forcegoandstayinposition(1, level.var_44d3a45c.origin);
 		var_d7b33d0c waittill(#"goal");
 		var_d7b33d0c.origin = level.var_ca793258.origin;

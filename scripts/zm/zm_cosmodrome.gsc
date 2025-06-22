@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\abilities\_ability_player;
 #using scripts\shared\ai\zombie;
@@ -212,11 +212,11 @@ function main()
 function cin_zmhd_sizzle_cosmodrome_cam(a_ents)
 {
 	level thread scene::play("cin_zmhd_sizzle_cosmodrome_cam2");
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(issubstr(var_6cae1ad0.model, "zombie") || issubstr(var_6cae1ad0.model, "cosmon"))
+		if(issubstr(mdl_ent.model, "zombie") || issubstr(mdl_ent.model, "cosmon"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 }
@@ -232,11 +232,11 @@ function cin_zmhd_sizzle_cosmodrome_cam(a_ents)
 */
 function cin_zmhd_sizzle_cosmodrome_cam2(a_ents)
 {
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(issubstr(var_6cae1ad0.model, "zombie") || issubstr(var_6cae1ad0.model, "cosmon"))
+		if(issubstr(mdl_ent.model, "zombie") || issubstr(mdl_ent.model, "cosmon"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 }

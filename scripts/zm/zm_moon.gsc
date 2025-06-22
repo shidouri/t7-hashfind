@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie;
 #using scripts\shared\ai\zombie_utility;
@@ -314,20 +314,20 @@ function function_ff7d3b7()
 function cin_zmhd_sizzle_moon_cam(a_ents)
 {
 	level.disable_print3d_ent = 1;
-	var_3aa9d35a = getentarray("airlock_bridge_zone", "script_parameters");
-	foreach(var_1cec30db in var_3aa9d35a)
+	a_t_airlocks = getentarray("airlock_bridge_zone", "script_parameters");
+	foreach(var_1cec30db in a_t_airlocks)
 	{
-		var_7be3ca60 = getentarray(var_1cec30db.target, "targetname");
-		foreach(mdl_door in var_7be3ca60)
+		a_mdl_doors = getentarray(var_1cec30db.target, "targetname");
+		foreach(mdl_door in a_mdl_doors)
 		{
 			mdl_door hide();
 		}
 	}
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(issubstr(var_6cae1ad0.model, "body"))
+		if(issubstr(mdl_ent.model, "body"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 }

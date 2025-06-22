@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -1094,13 +1094,13 @@ function handle_pallas_pillar_weakspot()
 		trigger triggerenable(0);
 	}
 	level flag::wait_till("pallas_intro_completed");
-	var_61b0688 = getentarray("diaz_tower_1", "targetname");
+	a_mdl_pillars = getentarray("diaz_tower_1", "targetname");
 	while(true)
 	{
 		level thread function_6030416();
-		n_random_int = randomint(var_61b0688.size);
-		e_pallas_pillar = var_61b0688[n_random_int];
-		var_61b0688 = array::remove_index(var_61b0688, n_random_int);
+		n_random_int = randomint(a_mdl_pillars.size);
+		e_pallas_pillar = a_mdl_pillars[n_random_int];
+		a_mdl_pillars = array::remove_index(a_mdl_pillars, n_random_int);
 		e_pallas_pillar movez(114, 4);
 		playfx(level._effect["coolant_tower_unleash"], e_pallas_pillar.origin + (vectorscale((0, 0, -1), 250)));
 		e_pallas_pillar playsound("evt_pillar_move");

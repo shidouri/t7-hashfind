@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -447,7 +447,7 @@ function function_156f973e()
 			self playsound("zmb_temp_power_alert");
 			level clientfield::set(("power_switch_" + self.script_int) + "_fx", 1);
 			var_b46e7d63.var_5260546a clientfield::set("power_plant_glow", 0);
-			var_b46e7d63 thread scene::play("p7_fxanim_zm_island_power_plant_off_bundle", var_b46e7d63.var_969af1da);
+			var_b46e7d63 thread scene::play("p7_fxanim_zm_island_power_plant_off_bundle", var_b46e7d63.e_dials);
 			if(self.script_int == 1)
 			{
 				exploder::exploder_stop("ex_power_bdoor_left");
@@ -490,7 +490,7 @@ function function_156f973e()
 */
 function function_f0a1682d(a_ents)
 {
-	self.var_969af1da = a_ents["power_plant_dials"];
+	self.e_dials = a_ents["power_plant_dials"];
 	self.var_5260546a = a_ents["power_plant"];
 	self.var_8c4b44d4 = a_ents;
 }
@@ -1326,8 +1326,8 @@ function function_d8d81d72(cmd)
 function function_1b3134ae()
 {
 	/#
-		var_5646068 = struct::get_array("", "");
-		foreach(var_991ffe1 in var_5646068)
+		a_s_buckets = struct::get_array("", "");
+		foreach(var_991ffe1 in a_s_buckets)
 		{
 			if(isdefined(var_991ffe1.trigger))
 			{

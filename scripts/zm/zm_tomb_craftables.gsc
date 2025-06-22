@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -1996,18 +1996,18 @@ function function_fcebb932(str_equipname)
 	Parameters: 1
 	Flags: Linked
 */
-function is_unclaimed_staff_weapon(var_382bb75)
+function is_unclaimed_staff_weapon(f_interfacer)
 {
-	if(!zm_equipment::is_limited(var_382bb75))
+	if(!zm_equipment::is_limited(f_interfacer))
 	{
 		return true;
 	}
-	s_elemental_staff = get_staff_info_from_weapon_name(var_382bb75, 0);
+	s_elemental_staff = get_staff_info_from_weapon_name(f_interfacer, 0);
 	str_weapon_check = s_elemental_staff.weapname;
 	players = getplayers();
 	foreach(player in players)
 	{
-		if(isdefined(player) && player.sessionstate == "playing" && player zm_weapons::has_weapon_or_upgrade(var_382bb75))
+		if(isdefined(player) && player.sessionstate == "playing" && player zm_weapons::has_weapon_or_upgrade(f_interfacer))
 		{
 			return false;
 		}
@@ -2249,9 +2249,9 @@ function clear_player_staff_by_player_number(var_d95a0cf3)
 	Parameters: 2
 	Flags: Linked
 */
-function clear_player_staff(var_382bb75, e_owner)
+function clear_player_staff(f_interfacer, e_owner)
 {
-	s_staff = get_staff_info_from_weapon_name(var_382bb75);
+	s_staff = get_staff_info_from_weapon_name(f_interfacer);
 	if(isdefined(e_owner) && isdefined(s_staff.e_owner) && e_owner != s_staff.e_owner)
 	{
 		return;

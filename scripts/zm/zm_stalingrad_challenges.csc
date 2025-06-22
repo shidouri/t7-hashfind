@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\audio_shared;
 #using scripts\shared\callbacks_shared;
@@ -68,12 +68,12 @@ function function_5d17d17c()
 	var_77797571 = struct::get_array("pr_b_spawn", "targetname");
 	foreach(var_4af818ae in var_77797571)
 	{
-		var_4af818ae.var_46f4840b = [];
+		var_4af818ae.a_mdl_bouquets = [];
 	}
 	var_977659a7 = struct::get_array("pr_c_spawn", "targetname");
 	foreach(var_238c2594 in var_977659a7)
 	{
-		var_238c2594.var_453e8445 = [];
+		var_238c2594.a_mdl_candles = [];
 		var_238c2594.var_90369c89 = [];
 	}
 }
@@ -143,9 +143,9 @@ function function_93efc4ef(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		foreach(var_4af818ae in var_77797571)
 		{
-			if(isdefined(var_4af818ae.var_46f4840b[localclientnum]))
+			if(isdefined(var_4af818ae.a_mdl_bouquets[localclientnum]))
 			{
-				var_4af818ae.var_46f4840b[localclientnum] delete();
+				var_4af818ae.a_mdl_bouquets[localclientnum] delete();
 			}
 		}
 	}
@@ -155,15 +155,15 @@ function function_93efc4ef(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			if(var_4af818ae.script_int == self getentitynumber())
 			{
-				if(!isdefined(var_4af818ae.var_46f4840b[localclientnum]))
+				if(!isdefined(var_4af818ae.a_mdl_bouquets[localclientnum]))
 				{
-					var_4af818ae.var_46f4840b[localclientnum] = util::spawn_model(localclientnum, "p7_foliage_flower_bouquet_glass", var_4af818ae.origin, var_4af818ae.angles);
+					var_4af818ae.a_mdl_bouquets[localclientnum] = util::spawn_model(localclientnum, "p7_foliage_flower_bouquet_glass", var_4af818ae.origin, var_4af818ae.angles);
 				}
 				continue;
 			}
-			if(isdefined(var_4af818ae.var_46f4840b[localclientnum]))
+			if(isdefined(var_4af818ae.a_mdl_bouquets[localclientnum]))
 			{
-				var_4af818ae.var_46f4840b[localclientnum] delete();
+				var_4af818ae.a_mdl_bouquets[localclientnum] delete();
 			}
 		}
 	}
@@ -185,9 +185,9 @@ function function_553225f(localclientnum, oldval, newval, bnewent, binitialsnap,
 	{
 		foreach(var_238c2594 in var_977659a7)
 		{
-			if(isdefined(var_238c2594.var_453e8445[localclientnum]))
+			if(isdefined(var_238c2594.a_mdl_candles[localclientnum]))
 			{
-				var_238c2594.var_453e8445[localclientnum] delete();
+				var_238c2594.a_mdl_candles[localclientnum] delete();
 			}
 			if(isdefined(var_238c2594.var_90369c89[localclientnum]))
 			{
@@ -201,7 +201,7 @@ function function_553225f(localclientnum, oldval, newval, bnewent, binitialsnap,
 		{
 			if(var_238c2594.script_int == self getentitynumber())
 			{
-				if(!isdefined(var_238c2594.var_453e8445[localclientnum]))
+				if(!isdefined(var_238c2594.a_mdl_candles[localclientnum]))
 				{
 					if(isdefined(self.var_d3aeebe1) && self.var_d3aeebe1)
 					{
@@ -212,13 +212,13 @@ function function_553225f(localclientnum, oldval, newval, bnewent, binitialsnap,
 					{
 						str_model = "p7_candle_tall";
 					}
-					var_238c2594.var_453e8445[localclientnum] = util::spawn_model(localclientnum, str_model, var_238c2594.origin, var_238c2594.angles);
+					var_238c2594.a_mdl_candles[localclientnum] = util::spawn_model(localclientnum, str_model, var_238c2594.origin, var_238c2594.angles);
 				}
 				continue;
 			}
-			if(isdefined(var_238c2594.var_453e8445[localclientnum]))
+			if(isdefined(var_238c2594.a_mdl_candles[localclientnum]))
 			{
-				var_238c2594.var_453e8445[localclientnum] delete();
+				var_238c2594.a_mdl_candles[localclientnum] delete();
 			}
 			if(isdefined(var_238c2594.var_90369c89[localclientnum]))
 			{
@@ -246,11 +246,11 @@ function function_20880e24(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			if(var_238c2594.script_int == self getentitynumber())
 			{
-				if(isdefined(var_238c2594.var_453e8445[localclientnum]) && (!(isdefined(self.var_d3aeebe1) && self.var_d3aeebe1)))
+				if(isdefined(var_238c2594.a_mdl_candles[localclientnum]) && (!(isdefined(self.var_d3aeebe1) && self.var_d3aeebe1)))
 				{
 					self.var_d3aeebe1 = 1;
-					var_238c2594.var_453e8445[localclientnum] setmodel("p7_candle_tall_on");
-					var_238c2594.var_453e8445[localclientnum] playloopsound("zmb_candle_pickup_lp");
+					var_238c2594.a_mdl_candles[localclientnum] setmodel("p7_candle_tall_on");
+					var_238c2594.a_mdl_candles[localclientnum] playloopsound("zmb_candle_pickup_lp");
 					var_238c2594.var_90369c89[localclientnum] = playfx(localclientnum, level._effect["pr_c_fx"], var_238c2594.origin + (-1.25, 0, 5));
 				}
 			}

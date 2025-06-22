@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -467,15 +467,15 @@ function function_c7d73bac(str_name)
 	Parameters: 1
 	Flags: Linked
 */
-function has_weapon(var_382bb75)
+function has_weapon(f_interfacer)
 {
 	a_weapons = self getweaponslistprimaries();
-	w_base = zm_weapons::get_base_weapon(var_382bb75);
+	w_base = zm_weapons::get_base_weapon(f_interfacer);
 	if(self hasweapon(w_base, 1))
 	{
 		return true;
 	}
-	var_7321b53b = zm_weapons::get_upgrade_weapon(var_382bb75);
+	var_7321b53b = zm_weapons::get_upgrade_weapon(f_interfacer);
 	if(self hasweapon(var_7321b53b, 1))
 	{
 		return true;

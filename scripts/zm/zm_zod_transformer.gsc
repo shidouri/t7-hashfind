@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
@@ -64,8 +64,8 @@ function init_transformers()
 	var_38d937f = getentarray("use_elec_switch", "targetname");
 	foreach(var_b46b59df in var_38d937f)
 	{
-		var_677edb82 = getent(var_b46b59df.target, "targetname");
-		var_677edb82 thread transformer_think(var_b46b59df);
+		mdl_transformer = getent(var_b46b59df.target, "targetname");
+		mdl_transformer thread transformer_think(var_b46b59df);
 		wait(0.05);
 	}
 }

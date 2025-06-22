@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_elevator;
@@ -1330,14 +1330,14 @@ function function_2c257bff()
 	Parameters: 3
 	Flags: Linked
 */
-function function_f423b892(str_position, var_7fadc70c, var_e7daaecc)
+function function_f423b892(str_position, str_pusher, var_e7daaecc)
 {
 	var_a6ebc7b = getent(var_e7daaecc, "targetname");
 	var_f43c5188 = getent(var_e7daaecc + "_col", "targetname");
 	var_f43c5188 linkto(var_a6ebc7b);
 	struct_pos = struct::get(str_position, "targetname");
-	var_b429251f = spawner::simple_spawn_single(var_7fadc70c);
-	struct_pos scene::init("cin_gen_aie_push_cover_sideways_no_dynpath", array(var_b429251f, var_a6ebc7b));
+	ai_pusher = spawner::simple_spawn_single(str_pusher);
+	struct_pos scene::init("cin_gen_aie_push_cover_sideways_no_dynpath", array(ai_pusher, var_a6ebc7b));
 	struct_pos scene::play("cin_gen_aie_push_cover_sideways_no_dynpath");
 	var_f43c5188 unlink();
 	var_f43c5188 disconnectpaths(0, 0);

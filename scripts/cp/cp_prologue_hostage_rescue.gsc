@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -378,8 +378,8 @@ function function_672c874()
 	s_struct = struct::get("s_truck_explosion_origin", "targetname");
 	physicsexplosionsphere(s_struct.origin, 255, 254, 0.3, 25, 400);
 	wait(0.1);
-	var_ff31c6f9 = getentarray("truck_red_barrel", "script_noteworthy");
-	foreach(piece in var_ff31c6f9)
+	a_e_barrel = getentarray("truck_red_barrel", "script_noteworthy");
+	foreach(piece in a_e_barrel)
 	{
 		if(isdefined(piece) && piece.targetname == "destructible")
 		{
@@ -1675,12 +1675,12 @@ function function_ad03757a()
 	a_ai = spawner::get_ai_group_ai("security_balcony");
 	if(a_ai.size > 0)
 	{
-		var_b5dd40c7 = array::random(a_ai);
-		var_b5dd40c7 scene::play("cin_pro_07_01_securitydesk_vign_dropdown", var_b5dd40c7);
-		if(isalive(var_b5dd40c7))
+		ai_jumper = array::random(a_ai);
+		ai_jumper scene::play("cin_pro_07_01_securitydesk_vign_dropdown", ai_jumper);
+		if(isalive(ai_jumper))
 		{
-			var_b5dd40c7 setgoal(var_b5dd40c7.origin);
-			var_b5dd40c7.goalradius = 512;
+			ai_jumper setgoal(ai_jumper.origin);
+			ai_jumper.goalradius = 512;
 		}
 	}
 }
@@ -2366,8 +2366,8 @@ function lift_escape_cleanup()
 function cleanup(spawn_mgr_name, ai_groups_name)
 {
 	spawn_manager::kill(spawn_mgr_name);
-	var_db932442 = spawner::get_ai_group_ai(ai_groups_name);
-	foreach(ai_dude in var_db932442)
+	a_group = spawner::get_ai_group_ai(ai_groups_name);
+	foreach(ai_dude in a_group)
 	{
 		if(isalive(ai_dude))
 		{

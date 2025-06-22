@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\cp_doa_bo3_enemy;
 #using scripts\cp\doa\_doa_arena;
@@ -295,7 +295,7 @@ function function_7a8a936b()
 	}
 	if(level.doa.round_number >= level.doa.var_d402a78b.round)
 	{
-		level thread function_1cb931df(level.doa.var_afdb45da);
+		level thread function_1cb931df(level.doa.spider_minions);
 	}
 }
 
@@ -326,9 +326,9 @@ function function_1cb931df(def, var_3d19d2b1 = getdvarint("scr_doa_eggcount", 6)
 {
 	if(isdefined(level.doa.var_d0cde02c))
 	{
-		if(isdefined(level.doa.var_d0cde02c.var_75f2c952))
+		if(isdefined(level.doa.var_d0cde02c.spider_count))
 		{
-			var_3d19d2b1 = level.doa.var_d0cde02c.var_75f2c952;
+			var_3d19d2b1 = level.doa.var_d0cde02c.spider_count;
 		}
 		else
 		{
@@ -337,7 +337,7 @@ function function_1cb931df(def, var_3d19d2b1 = getdvarint("scr_doa_eggcount", 6)
 	}
 	else if(def.round == level.doa.round_number)
 	{
-		var_3d19d2b1 = def.var_75f2c952;
+		var_3d19d2b1 = def.spider_count;
 	}
 	spot = doa_utility::function_ada6d90();
 	while(isdefined(spot) && var_3d19d2b1)

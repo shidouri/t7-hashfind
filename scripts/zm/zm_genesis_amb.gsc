@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -53,13 +53,13 @@ function function_25b0085d()
 		{
 			var_34b4e10b = undefined;
 			var_717fac8 = array::random(level.activeplayers);
-			if(!isdefined(var_717fac8.var_a3d40b8))
+			if(!isdefined(var_717fac8.island_name))
 			{
 				wait(0.5);
 			}
 			else
 			{
-				str_zone = var_717fac8.var_a3d40b8;
+				str_zone = var_717fac8.island_name;
 				var_32db8f92 = strtok(str_zone, "_");
 				var_34b4e10b = var_32db8f92[0];
 				if(var_34b4e10b === "apothicon")
@@ -78,8 +78,8 @@ function function_25b0085d()
 		{
 			var_34b4e10b = "sheffield";
 		}
-		var_9949c988 = randomintrange(1, 4);
-		var_3f75b0e3 = (("lgtexp_solarflare_" + var_34b4e10b) + "_0") + var_9949c988;
+		n_flare = randomintrange(1, 4);
+		var_3f75b0e3 = (("lgtexp_solarflare_" + var_34b4e10b) + "_0") + n_flare;
 		exploder::exploder_duration(var_3f75b0e3, 4);
 	}
 }

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_debug;
 #using scripts\cp\_load;
@@ -232,11 +232,11 @@ function function_a72c2dda(a_ents, str_targetname)
 */
 function function_a0a9f927()
 {
-	var_3ecc15f7 = getentarray("recovery_fan", "targetname");
-	foreach(var_76185ee4 in var_3ecc15f7)
+	a_mdl_fans = getentarray("recovery_fan", "targetname");
+	foreach(mdl_fan in a_mdl_fans)
 	{
-		var_76185ee4 thread rotate_fan(2);
-		var_76185ee4 thread function_f81a38c8();
+		mdl_fan thread rotate_fan(2);
+		mdl_fan thread function_f81a38c8();
 		wait(randomfloatrange(0.5, 1.5));
 	}
 }
@@ -1697,10 +1697,10 @@ function turret_pickup_think(s_obj)
 		{
 			if(e_player turret_pickup_button_pressed() && !e_player has_weapon(w_hero))
 			{
-				var_73a38d53 = self getseatoccupant(0);
-				if(isdefined(var_73a38d53))
+				e_driver = self getseatoccupant(0);
+				if(isdefined(e_driver))
 				{
-					if(var_73a38d53 == e_player)
+					if(e_driver == e_player)
 					{
 						self usevehicle(e_player, 0);
 					}
@@ -1744,8 +1744,8 @@ function turret_pickup_hint(t_pickup, w_hero)
 		{
 			return;
 		}
-		var_73a38d53 = self getseatoccupant(0);
-		if(isdefined(var_73a38d53) && var_73a38d53 != e_player)
+		e_driver = self getseatoccupant(0);
+		if(isdefined(e_driver) && e_driver != e_player)
 		{
 			continue;
 		}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -470,8 +470,8 @@ function function_9831305d()
 */
 function function_3292451c()
 {
-	var_6fbeca4a = 1;
-	var_6fe9b606 = getent("popup_pole_" + var_6fbeca4a, "script_noteworthy");
+	n_pole = 1;
+	var_6fe9b606 = getent("popup_pole_" + n_pole, "script_noteworthy");
 	while(isdefined(var_6fe9b606))
 	{
 		var_6fe9b606 moveto(var_6fe9b606.end_pos, 0.5);
@@ -481,9 +481,9 @@ function function_3292451c()
 		var_f33892ac clientfield::increment("zurich_snow_rise");
 		playsoundatposition("evt_roots_grow", var_f33892ac.origin);
 		var_f33892ac thread function_df835392();
-		exploder::exploder("lgt_zurichpole_exp_" + var_6fbeca4a);
-		var_6fbeca4a++;
-		var_6fe9b606 = getent("popup_pole_" + var_6fbeca4a, "script_noteworthy");
+		exploder::exploder("lgt_zurichpole_exp_" + n_pole);
+		n_pole++;
+		var_6fe9b606 = getent("popup_pole_" + n_pole, "script_noteworthy");
 	}
 }
 
@@ -520,11 +520,11 @@ function function_2d897f84(str_objective)
 {
 	level endon(str_objective + "_done");
 	level endon(#"hash_c955b42d");
-	var_b1cdbf1d = 1;
+	n_crumb = 1;
 	while(true)
 	{
-		var_f6e695c0 = struct::get("breadcrumb_zurichroot_" + var_b1cdbf1d, "targetname");
-		var_b1fe230f = getent("t_zurichroot_" + var_b1cdbf1d, "script_noteworthy");
+		var_f6e695c0 = struct::get("breadcrumb_zurichroot_" + n_crumb, "targetname");
+		var_b1fe230f = getent("t_zurichroot_" + n_crumb, "script_noteworthy");
 		if(!isdefined(var_f6e695c0) || !isdefined(var_b1fe230f))
 		{
 			return;
@@ -534,7 +534,7 @@ function function_2d897f84(str_objective)
 		level notify(#"hash_431e9a83");
 		savegame::checkpoint_save();
 		objectives::complete("cp_waypoint_breadcrumb", var_f6e695c0);
-		var_b1cdbf1d++;
+		n_crumb++;
 	}
 }
 

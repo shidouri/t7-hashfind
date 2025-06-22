@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_arena;
 #using scripts\cp\doa\_doa_chicken_pickup;
@@ -2778,7 +2778,7 @@ function function_295872fa(pickup)
 */
 function function_411355c0(type, player, origin)
 {
-	foreach(guardian in level.doa.var_af875fb7)
+	foreach(guardian in level.doa.guardians)
 	{
 		if(guardian.type == type)
 		{

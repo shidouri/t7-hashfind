@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -496,7 +496,7 @@ function stargate_teleport_player(str_teleport_to, player, n_teleport_time_sec =
 	player disableweapons();
 	player freezecontrols(1);
 	util::wait_network_frame();
-	var_64103691 = struct::get_array(str_teleport_to, "targetname");
+	a_s_destination = struct::get_array(str_teleport_to, "targetname");
 	n_total_time = n_teleport_time_sec + 4;
 	player zm_utility::create_streamer_hint(struct::get_array(str_teleport_to, "targetname")[0].origin, struct::get_array(str_teleport_to, "targetname")[0].angles, 1, n_total_time);
 	if(player getstance() == "prone")

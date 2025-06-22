@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -219,18 +219,18 @@ function function_9118f74a(localclientnum, n_current_ritual, var_85dc52da)
 {
 	if(var_85dc52da)
 	{
-		var_3c32cd48 = getentarray(localclientnum, "quest_ritual_magic_circle_on", "targetname");
+		a_mdl_circles = getentarray(localclientnum, "quest_ritual_magic_circle_on", "targetname");
 	}
 	else
 	{
-		var_3c32cd48 = getentarray(localclientnum, "quest_ritual_magic_circle_off", "targetname");
+		a_mdl_circles = getentarray(localclientnum, "quest_ritual_magic_circle_off", "targetname");
 	}
 	str_name = get_name_from_ritual_clientfield_value(n_current_ritual);
-	foreach(var_fb62adc1 in var_3c32cd48)
+	foreach(mdl_circle in a_mdl_circles)
 	{
-		if(var_fb62adc1.script_string === ("ritual_" + str_name))
+		if(mdl_circle.script_string === ("ritual_" + str_name))
 		{
-			return var_fb62adc1;
+			return mdl_circle;
 		}
 	}
 }

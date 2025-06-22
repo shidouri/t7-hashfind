@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -120,9 +120,9 @@ function function_53848c29()
 	}
 	else
 	{
-		var_40c45d15 = getentarray(self.target, "targetname");
-		var_c9234aca = struct::get_array(self.target, "targetname");
-		foreach(var_6d602035 in var_40c45d15)
+		a_t_spore = getentarray(self.target, "targetname");
+		a_s_spore = struct::get_array(self.target, "targetname");
+		foreach(var_6d602035 in a_t_spore)
 		{
 			switch(var_6d602035.script_noteworthy)
 			{
@@ -138,23 +138,23 @@ function function_53848c29()
 				}
 			}
 		}
-		foreach(var_dc604ef4 in var_c9234aca)
+		foreach(a_spore in a_s_spore)
 		{
-			switch(var_dc604ef4.script_noteworthy)
+			switch(a_spore.script_noteworthy)
 			{
 				case "spore_cloud_org_stage_01":
 				{
-					self.var_a5969fbf = var_dc604ef4;
+					self.var_a5969fbf = a_spore;
 					break;
 				}
 				case "spore_cloud_org_stage_02":
 				{
-					self.var_338f3084 = var_dc604ef4;
+					self.var_338f3084 = a_spore;
 					break;
 				}
 				case "spore_cloud_org_stage_03":
 				{
-					self.var_5991aaed = var_dc604ef4;
+					self.var_5991aaed = a_spore;
 					break;
 				}
 			}
@@ -438,7 +438,7 @@ function function_ba7a3b74(is_enemy, b_hero_weapon, e_attacker)
 					self clientfield::set("spore_trail_enemy_fx", 2);
 					if(randomint(100) < 15 && zm_ai_thrasher::function_6d24956b(self.origin) && zm_ai_thrasher::function_cb4aac76(self) && (!(isdefined(self.var_cbbe29a9) && self.var_cbbe29a9)) && level.var_b5799c7c)
 					{
-						var_e3372b59 = zm_ai_thrasher::function_8b323113(self);
+						ai_thrasher = zm_ai_thrasher::function_8b323113(self);
 					}
 					else
 					{
@@ -777,7 +777,7 @@ function function_909c515f()
 	{
 		self zm_utility::decrement_is_drinking();
 	}
-	var_d82ff565 = self getweaponslistprimaries();
+	a_primaries = self getweaponslistprimaries();
 	self takeweapon(var_cb4caef3);
 	if(self.is_drinking > 0)
 	{
@@ -789,9 +789,9 @@ function function_909c515f()
 	}
 	else
 	{
-		if(isdefined(var_d82ff565) && var_d82ff565.size > 0)
+		if(isdefined(a_primaries) && a_primaries.size > 0)
 		{
-			self switchtoweapon(var_d82ff565[0]);
+			self switchtoweapon(a_primaries[0]);
 		}
 		else
 		{

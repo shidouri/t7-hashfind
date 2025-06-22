@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\beam_shared;
 #using scripts\shared\callbacks_shared;
@@ -273,15 +273,15 @@ function function_30910faa(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 3
 	Flags: Linked
 */
-function function_b1ffcb5c(localclientnum, var_46ab6018, newval)
+function function_b1ffcb5c(localclientnum, n_light, newval)
 {
 	if(!isdefined(self.var_b3ab5e19))
 	{
 		self.var_b3ab5e19 = [];
 	}
-	if(isdefined(self.var_b3ab5e19[var_46ab6018]))
+	if(isdefined(self.var_b3ab5e19[n_light]))
 	{
-		stopfx(localclientnum, self.var_b3ab5e19[var_46ab6018]);
+		stopfx(localclientnum, self.var_b3ab5e19[n_light]);
 	}
 	if(newval == 0)
 	{
@@ -295,10 +295,10 @@ function function_b1ffcb5c(localclientnum, var_46ab6018, newval)
 	{
 		str_fx = "dlc3/stalingrad/fx_glow_green_dragonstrike";
 	}
-	n_tag_index = var_46ab6018 + 1;
+	n_tag_index = n_light + 1;
 	str_tag = "tag_dragon_network_console_terminal_light_green_0" + n_tag_index;
 	v_position = self gettagorigin(str_tag) + (1.25, -1.25, -0.25);
-	self.var_b3ab5e19[var_46ab6018] = playfx(localclientnum, str_fx, v_position);
+	self.var_b3ab5e19[n_light] = playfx(localclientnum, str_fx, v_position);
 }
 
 /*

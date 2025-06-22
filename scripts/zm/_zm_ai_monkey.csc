@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\ai_shared;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
@@ -67,7 +67,7 @@ function function_2e74dabc(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			return;
 		}
-		var_f9e79b00 = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 1, 3, 0);
+		n_test = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 1, 3, 0);
 		self._eyearray[localclientnum] = playfxontag(localclientnum, level._effect["monkey_eye_glow"], self, "j_eyeball_le");
 	}
 	else
@@ -77,7 +77,7 @@ function function_2e74dabc(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			return;
 		}
-		var_f9e79b00 = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 0, 3, 0);
+		n_test = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 0, 3, 0);
 		if(isdefined(self._eyearray))
 		{
 			if(isdefined(self._eyearray[localclientnum]))

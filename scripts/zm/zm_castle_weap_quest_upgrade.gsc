@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_shared;
@@ -170,10 +170,10 @@ function private function_8c52805(str_widget_clientuimodel)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_f5e9876(var_1493eda1, n_quest_state)
+function private function_f5e9876(str_quest, n_quest_state)
 {
-	var_78cede1 = "quest_state_" + var_1493eda1;
-	str_widget_clientuimodel = "zmInventory.widget_weap_quest_" + var_1493eda1;
+	var_78cede1 = "quest_state_" + str_quest;
+	str_widget_clientuimodel = "zmInventory.widget_weap_quest_" + str_quest;
 	level clientfield::set(var_78cede1, n_quest_state);
 	level notify(#"widget_ui_override");
 	array::thread_all(level.players, &function_8c52805, str_widget_clientuimodel);
@@ -791,15 +791,15 @@ function function_dc6aa565()
 	var_effd0eae = getentarray("aq_rp_runic_circle_volume", "script_noteworthy");
 	if(self function_ab623d34(level.var_c62829c7))
 	{
-		var_f667032 = level.var_c62829c7 array::get_touching(var_effd0eae);
-		if(isdefined(var_f667032) && var_f667032.size > 0)
+		a_e_touching = level.var_c62829c7 array::get_touching(var_effd0eae);
+		if(isdefined(a_e_touching) && a_e_touching.size > 0)
 		{
-			if(var_f667032[0] flag::get("runic_circle_activated") && !var_f667032[0] flag::get("runic_circle_charged"))
+			if(a_e_touching[0] flag::get("runic_circle_activated") && !a_e_touching[0] flag::get("runic_circle_charged"))
 			{
-				var_fb62adc1 = getent(var_f667032[0].target, "targetname");
-				var_f667032[0] function_55c48922(self.origin, var_fb62adc1.origin, "rune", isdefined(self.missinglegs) && self.missinglegs);
-				var_f667032[0] util::delay_notify(0.05, "killed");
-				var_fb62adc1 clientfield::increment("runic_circle_death_fx");
+				mdl_circle = getent(a_e_touching[0].target, "targetname");
+				a_e_touching[0] function_55c48922(self.origin, mdl_circle.origin, "rune", isdefined(self.missinglegs) && self.missinglegs);
+				a_e_touching[0] util::delay_notify(0.05, "killed");
+				mdl_circle clientfield::increment("runic_circle_death_fx");
 			}
 		}
 	}
@@ -840,13 +840,13 @@ function function_8e83c9ed()
 	var_8ed504dc = 0;
 	while(true)
 	{
-		var_f667032 = self array::get_touching(var_effd0eae);
-		if(!var_8ed504dc && isdefined(var_f667032[0]) && var_f667032[0] flag::get("runic_circle_activated") && !var_f667032[0] flag::get("runic_circle_charged"))
+		a_e_touching = self array::get_touching(var_effd0eae);
+		if(!var_8ed504dc && isdefined(a_e_touching[0]) && a_e_touching[0] flag::get("runic_circle_activated") && !a_e_touching[0] flag::get("runic_circle_charged"))
 		{
 			self clientfield::set_to_player("anchor_point_postfx", 1);
 			var_8ed504dc = 1;
 		}
-		else if(var_8ed504dc && !isdefined(var_f667032[0]))
+		else if(var_8ed504dc && !isdefined(a_e_touching[0]))
 		{
 			self clientfield::set_to_player("anchor_point_postfx", 0);
 			var_8ed504dc = 0;
@@ -1022,8 +1022,8 @@ function function_88082ccd()
 	/#
 		level flag::set("");
 	#/
-	var_2716c17 = struct::get_array("aq_rp_fireplace_struct", "targetname");
-	var_7f680434 = array::random(var_2716c17);
+	a_s_fireplaces = struct::get_array("aq_rp_fireplace_struct", "targetname");
+	var_7f680434 = array::random(a_s_fireplaces);
 	level function_16248b25(var_7f680434.script_int);
 	var_235830d3 = var_7f680434.script_noteworthy;
 	var_42d1b62e = getentarray("aq_rp_runic_circle", "script_noteworthy");
@@ -1409,11 +1409,11 @@ function function_e198b188(var_931bac44)
 {
 	if(!var_931bac44)
 	{
-		var_197f1988 = util::spawn_model("tag_origin", self.origin + (36, 88, 12));
-		var_197f1988 thread scene::play("p7_fxanim_zm_castle_quest_rune_fireplace_arrow_bundle");
+		mdl_align = util::spawn_model("tag_origin", self.origin + (36, 88, 12));
+		mdl_align thread scene::play("p7_fxanim_zm_castle_quest_rune_fireplace_arrow_bundle");
 		wait(3);
-		var_197f1988 scene::stop("p7_fxanim_zm_castle_quest_rune_fireplace_arrow_bundle");
-		var_197f1988 delete();
+		mdl_align scene::stop("p7_fxanim_zm_castle_quest_rune_fireplace_arrow_bundle");
+		mdl_align delete();
 	}
 	switch(self.script_noteworthy)
 	{
@@ -1474,12 +1474,12 @@ function function_e198b188(var_931bac44)
 function function_455e5c02()
 {
 	/#
-		var_2716c17 = struct::get_array("", "");
+		a_s_fireplaces = struct::get_array("", "");
 		if(isdefined(level.var_ca9bb3ac) && level.var_ca9bb3ac)
 		{
-			foreach(s_fireplace in var_2716c17)
+			foreach(s_fireplace in a_s_fireplaces)
 			{
-				s_fireplace.var_197f1988 scene::stop("");
+				s_fireplace.mdl_align scene::stop("");
 			}
 			exploder::stop_exploder("");
 			exploder::stop_exploder("");
@@ -1492,13 +1492,13 @@ function function_455e5c02()
 		}
 		else
 		{
-			foreach(s_fireplace in var_2716c17)
+			foreach(s_fireplace in a_s_fireplaces)
 			{
-				if(!isdefined(s_fireplace.var_197f1988))
+				if(!isdefined(s_fireplace.mdl_align))
 				{
-					s_fireplace.var_197f1988 = util::spawn_model("", s_fireplace.origin + (36, 88, 12));
+					s_fireplace.mdl_align = util::spawn_model("", s_fireplace.origin + (36, 88, 12));
 				}
-				s_fireplace.var_197f1988 thread scene::play("");
+				s_fireplace.mdl_align thread scene::play("");
 			}
 			exploder::exploder("");
 			exploder::exploder("");
@@ -1841,9 +1841,9 @@ function function_293189ba()
 		if(var_74b0d14a.var_ce58f456 >= 20)
 		{
 			level flag::set("rune_prison_upgraded");
-			var_f3636838 = getent("pedestal_rune_bow_place", "targetname");
-			var_f3636838 playsound("evt_arrow_souls_ready");
-			var_f3636838 thread function_bf26d3fb("arrow_charge_wolf_fx");
+			mdl_arrow = getent("pedestal_rune_bow_place", "targetname");
+			mdl_arrow playsound("evt_arrow_souls_ready");
+			mdl_arrow thread function_bf26d3fb("arrow_charge_wolf_fx");
 		}
 	}
 }
@@ -1892,7 +1892,7 @@ function function_44605b46()
 			callback::on_connect(&function_7c48f9d8);
 		}
 		level flag::set("");
-		var_28eeb81a.var_d4a62e6b = getent("", "");
+		var_28eeb81a.mdl_bow = getent("", "");
 		var_28eeb81a thread function_fb704679();
 		level function_2c1c1d3e("");
 	#/
@@ -1967,10 +1967,10 @@ function function_89870276()
 	level flag::init("demon_gate_upgraded");
 	level flag::init("demon_gate_spawned");
 	wait(0.05);
-	var_14733f98 = getentarray("aq_dg_fossil", "script_noteworthy");
-	foreach(var_8ab1dc51 in var_14733f98)
+	a_mdl_fossils = getentarray("aq_dg_fossil", "script_noteworthy");
+	foreach(mdl_fossil in a_mdl_fossils)
 	{
-		var_8ab1dc51 clientfield::set("fossil_reveal", 2);
+		mdl_fossil clientfield::set("fossil_reveal", 2);
 	}
 }
 
@@ -2370,18 +2370,18 @@ function demon_gate_crawlers()
 		}
 	#/
 	level thread function_10033c3();
-	level.var_f4c7c18 = getentarray("aq_dg_fossil_align", "script_noteworthy");
+	level.a_e_fossils = getentarray("aq_dg_fossil_align", "script_noteworthy");
 	var_90cbeda9 = getent("aq_dg_demonic_circle", "targetname");
 	var_90cbeda9 clientfield::set("demonic_circle_reveal", 1);
 	var_83e3ae42 = getent("aq_dg_demonic_circle_volume", "targetname");
 	var_83e3ae42.var_e1f456ae = 0;
-	array::thread_all(level.var_f4c7c18, &function_f836dce1);
+	array::thread_all(level.a_e_fossils, &function_f836dce1);
 	/#
 		level.var_2114a01 = 1;
 	#/
 	zm_spawner::register_zombie_death_event_callback(&function_561017d8);
 	level flag::wait_till("demon_gate_crawlers");
-	level.var_f4c7c18 = [];
+	level.a_e_fossils = [];
 }
 
 /*
@@ -2439,20 +2439,20 @@ function function_f836dce1()
 	{
 		a_ai_enemies = getaiteamarray(level.zombie_team);
 		var_f8df884a = var_83e3ae42 array::get_touching(a_ai_enemies);
-		var_aba3cf25 = array::filter(var_f8df884a, 0, &function_4cefb6e2);
+		a_ai_crawlers = array::filter(var_f8df884a, 0, &function_4cefb6e2);
 		var_5a05fe58 = randomfloat(2.5);
 		wait(var_5a05fe58);
-		foreach(var_f273b80a in var_aba3cf25)
+		foreach(ai_crawler in a_ai_crawlers)
 		{
-			if(isalive(var_f273b80a) && (!(isdefined(var_f273b80a.var_cb2fc89f) && var_f273b80a.var_cb2fc89f)))
+			if(isalive(ai_crawler) && (!(isdefined(ai_crawler.var_cb2fc89f) && ai_crawler.var_cb2fc89f)))
 			{
-				var_f273b80a.var_cb2fc89f = 1;
+				ai_crawler.var_cb2fc89f = 1;
 				self clientfield::set("fossil_reveal", 0);
-				var_8ab1dc51 = util::spawn_model("c_zom_chomper_demongate");
-				var_8ab1dc51 clientfield::set("fossil_reveal", 1);
-				var_f273b80a scene::play("ai_zm_dlc1_zombie_demongate_fossil_attack_crawler", array(var_f273b80a, var_8ab1dc51));
-				level thread function_b4c4b5dd(var_f273b80a.origin);
-				var_f273b80a dodamage(var_f273b80a.health, var_f273b80a.origin);
+				mdl_fossil = util::spawn_model("c_zom_chomper_demongate");
+				mdl_fossil clientfield::set("fossil_reveal", 1);
+				ai_crawler scene::play("ai_zm_dlc1_zombie_demongate_fossil_attack_crawler", array(ai_crawler, mdl_fossil));
+				level thread function_b4c4b5dd(ai_crawler.origin);
+				ai_crawler dodamage(ai_crawler.health, ai_crawler.origin);
 				return;
 			}
 		}
@@ -2578,7 +2578,7 @@ function demon_gate_runes()
 	}
 	level.var_234807d9 = array("demonic_rune_lor", "demonic_rune_ulla", "demonic_rune_oth", "demonic_rune_zor", "demonic_rune_mar", "demonic_rune_uja");
 	level.var_234807d9 = array::randomize(level.var_234807d9);
-	level.var_289ae31d = [];
+	level.a_str_crests = [];
 	level function_8700782f();
 	level thread function_dc9521bc();
 	level thread function_686645ab();
@@ -2655,15 +2655,15 @@ function function_8700782f()
 	for(i = 1; i < 4; i++)
 	{
 		var_49f8925e[i].n_index = i;
-		if(!isdefined(level.var_289ae31d))
+		if(!isdefined(level.a_str_crests))
 		{
-			level.var_289ae31d = [];
+			level.a_str_crests = [];
 		}
-		else if(!isarray(level.var_289ae31d))
+		else if(!isarray(level.a_str_crests))
 		{
-			level.var_289ae31d = array(level.var_289ae31d);
+			level.a_str_crests = array(level.a_str_crests);
 		}
-		level.var_289ae31d[level.var_289ae31d.size] = var_49f8925e[i].script_noteworthy;
+		level.a_str_crests[level.a_str_crests.size] = var_49f8925e[i].script_noteworthy;
 	}
 	for(i = 0; i < 6; i++)
 	{
@@ -2697,9 +2697,9 @@ function function_3520622d(b_wait = 1)
 		self endon(#"hash_3c5d2ca5");
 	#/
 	var_cd45655b = getent("aq_dg_urn_position", "targetname");
-	foreach(var_300b5632 in level.var_289ae31d)
+	foreach(str_crest in level.a_str_crests)
 	{
-		b_played = var_cd45655b zm_castle_vo::function_7c63dd65(var_300b5632, b_wait);
+		b_played = var_cd45655b zm_castle_vo::function_7c63dd65(str_crest, b_wait);
 		if(!b_wait && !b_played)
 		{
 			return;
@@ -2927,8 +2927,8 @@ function function_b08d39a1()
 			exploder::stop_exploder(self.var_483af51d);
 			wait(0.05);
 			exploder::exploder(self.var_6a1fa689);
-			var_1430507e = "aq_dg_rune_sequence_0" + level.var_ca3b8551;
-			var_8ab343c9 = struct::get(var_1430507e, "targetname");
+			str_sequence = "aq_dg_rune_sequence_0" + level.var_ca3b8551;
+			var_8ab343c9 = struct::get(str_sequence, "targetname");
 			self thread function_ee73a771();
 			var_8ab343c9 function_c85b7e17(self.script_noteworthy, self.script_label);
 		}
@@ -2993,7 +2993,7 @@ function function_c85b7e17(var_25b51f6b, var_5a2492d5)
 		{
 			if(isdefined(level.var_4e2e87e9) && level.var_4e2e87e9.size > 0)
 			{
-				foreach(var_cf6c6acd in level.var_4e2e87e9)
+				foreach(str_syllable in level.var_4e2e87e9)
 				{
 					var_cd45655b zm_castle_vo::function_ebc3d584(var_5a2492d5, 1);
 				}
@@ -3039,9 +3039,9 @@ function function_9fc90424()
 	}
 	if(isdefined(level.var_4e2e87e9) && level.var_4e2e87e9.size > 0)
 	{
-		foreach(var_cf6c6acd in level.var_4e2e87e9)
+		foreach(str_syllable in level.var_4e2e87e9)
 		{
-			var_cd45655b zm_castle_vo::function_ebc3d584(var_cf6c6acd, 1);
+			var_cd45655b zm_castle_vo::function_ebc3d584(str_syllable, 1);
 		}
 		level.var_4e2e87e9 = undefined;
 		level.var_f00f53e6 = undefined;
@@ -3214,8 +3214,8 @@ function function_695d82fd()
 	#/
 	var_7d849b98 = getent("aq_dg_outro_align", "targetname");
 	var_7d849b98 clientfield::set("demongate_fossil_outro", 1);
-	var_e1f8771e = getent("quest_demongate_urn", "targetname");
-	var_e1f8771e scene::play("p7_fxanim_zm_castle_quest_demongate_urn_destroy_bundle");
+	mdl_urn = getent("quest_demongate_urn", "targetname");
+	mdl_urn scene::play("p7_fxanim_zm_castle_quest_demongate_urn_destroy_bundle");
 	var_605e43a9 = struct::get("quest_reforge_demon_gate", "targetname");
 	var_884470ed = var_605e43a9.angles + vectorscale((0, 1, 0), 90);
 	var_884470ed = var_884470ed * (0, 1, 0);
@@ -3364,8 +3364,8 @@ function function_dc66bbef()
 		{
 			var_7d849b98 = getent("", "");
 			var_7d849b98 clientfield::set("", 1);
-			var_e1f8771e = getent("", "");
-			var_e1f8771e scene::skipto_end("");
+			mdl_urn = getent("", "");
+			mdl_urn scene::skipto_end("");
 		}
 		if(isdefined(level.var_a81ca85))
 		{
@@ -3430,9 +3430,9 @@ function function_894eef8b()
 		if(var_30554f8f.var_ce58f456 >= 20)
 		{
 			level flag::set("demon_gate_upgraded");
-			var_f3636838 = getent("pedestal_demon_bow_place", "targetname");
-			var_f3636838 playsound("evt_arrow_souls_ready");
-			var_f3636838 thread function_bf26d3fb("arrow_charge_wolf_fx");
+			mdl_arrow = getent("pedestal_demon_bow_place", "targetname");
+			mdl_arrow playsound("evt_arrow_souls_ready");
+			mdl_arrow thread function_bf26d3fb("arrow_charge_wolf_fx");
 		}
 	}
 }
@@ -3481,7 +3481,7 @@ function function_8c23a1c7()
 			callback::on_connect(&function_7c48f9d8);
 		}
 		level flag::set("");
-		var_dfd1c443.var_d4a62e6b = getent("", "");
+		var_dfd1c443.mdl_bow = getent("", "");
 		var_dfd1c443 thread function_fb704679();
 		level clientfield::set("", 1);
 		level function_2c1c1d3e("");
@@ -3577,7 +3577,7 @@ function wolf_howl_paintings()
 	{
 		var_18f50dca[i] function_3313abd5(&function_47b1e30a);
 		var_18f50dca[i] thread function_2601ae75(i, var_18f50dca);
-		var_18f50dca[i].var_b5b31795 = util::spawn_model(var_da042480[i], var_18f50dca[i].origin, var_18f50dca[i].angles);
+		var_18f50dca[i].mdl_painting = util::spawn_model(var_da042480[i], var_18f50dca[i].origin, var_18f50dca[i].angles);
 	}
 	level flag::wait_till("wolf_howl_paintings");
 	foreach(var_48c991cb in var_18f50dca)
@@ -3624,7 +3624,7 @@ function function_2601ae75(var_c37a8358, var_18f50dca)
 			if(level.var_f1193c94 == var_c37a8358)
 			{
 				e_who playrumbleonentity("zm_castle_quest_interact_rumble");
-				self.var_b5b31795 clientfield::set("painting_symbol_reveal", 1);
+				self.mdl_painting clientfield::set("painting_symbol_reveal", 1);
 				playsoundatposition("zmb_painting_correct", self.origin);
 				e_who thread zm_castle_vo::function_5fa306b6(var_c37a8358 + 1);
 				if(var_c37a8358 == 3)
@@ -3638,9 +3638,9 @@ function function_2601ae75(var_c37a8358, var_18f50dca)
 				e_who playrumbleonentity("zm_castle_quest_interact_rumble");
 				for(i = 0; i < level.var_f1193c94; i++)
 				{
-					var_18f50dca[i].var_b5b31795 clientfield::set("painting_symbol_reveal", 0);
+					var_18f50dca[i].mdl_painting clientfield::set("painting_symbol_reveal", 0);
 				}
-				self.var_b5b31795 clientfield::increment("painting_symbol_blink");
+				self.mdl_painting clientfield::increment("painting_symbol_blink");
 				playsoundatposition("zmb_painting_wrong", self.origin);
 				level.var_f1193c94 = 0;
 			}
@@ -3707,7 +3707,7 @@ function function_2bac97b4()
 		var_18f50dca = struct::get_array("", "");
 		foreach(var_48c991cb in var_18f50dca)
 		{
-			var_48c991cb.var_b5b31795 clientfield::set("", 1);
+			var_48c991cb.mdl_painting clientfield::set("", 1);
 		}
 		level flag::set("");
 	#/
@@ -3848,8 +3848,8 @@ function function_15a6ff6a()
 		if(function_51a90202(weapon, 1, point, var_f7019ef))
 		{
 			playsoundatposition("zmb_wolf_shrine_location", (5350, -1659, -1135));
-			var_affd5bec = getent("wolf_skull_roll_down", "targetname");
-			var_affd5bec thread function_262d06db();
+			mdl_skull = getent("wolf_skull_roll_down", "targetname");
+			mdl_skull thread function_262d06db();
 			level function_f5e9876("wolf", 2);
 			return;
 		}
@@ -4028,8 +4028,8 @@ function wolf_howl_escort()
 	level.var_de642fb0 = array("aq_wh_dig_struct_courtyard", "aq_wh_dig_struct_road", "aq_wh_dig_struct_undercroft");
 	level function_b9485994();
 	level function_f5e9876("wolf", 3);
-	var_affd5bec = getent("aq_wh_skadi_skull", "targetname");
-	var_affd5bec show();
+	mdl_skull = getent("aq_wh_skadi_skull", "targetname");
+	mdl_skull show();
 	level function_4e530cb();
 	wait(2);
 	level.var_52978d72 zm_audio::create_and_play_dialog("quest", "skadi_encounter");
@@ -4049,16 +4049,16 @@ function wolf_howl_escort()
 */
 function function_b9485994()
 {
-	var_affd5bec = getent("aq_wh_skadi_skull", "targetname");
-	var_affd5bec function_3313abd5();
+	mdl_skull = getent("aq_wh_skadi_skull", "targetname");
+	mdl_skull function_3313abd5();
 	while(true)
 	{
-		var_affd5bec.var_67b5dd94 waittill(#"trigger", e_who);
+		mdl_skull.var_67b5dd94 waittill(#"trigger", e_who);
 		if(e_who === level.var_52978d72)
 		{
-			var_affd5bec playsound("zmb_skull_restore");
+			mdl_skull playsound("zmb_skull_restore");
 			e_who playrumbleonentity("zm_castle_quest_interact_rumble");
-			zm_unitrigger::unregister_unitrigger(var_affd5bec.var_67b5dd94);
+			zm_unitrigger::unregister_unitrigger(mdl_skull.var_67b5dd94);
 			return;
 		}
 	}
@@ -4174,8 +4174,8 @@ function function_4e1572f1(var_fb110e7d)
 		level notify(#"skadi_reached_dig_spot");
 		level thread function_560d53c2();
 		self scene::play("ai_zm_dlc1_wolf_howl_paw_ground", array(level.var_e6d07014));
-		var_f7d860a2 = getent("aq_wh_bones_" + var_fb110e7d.script_label, "targetname");
-		var_f7d860a2 clientfield::set("wolf_howl_bone_fx", 1);
+		mdl_bones = getent("aq_wh_bones_" + var_fb110e7d.script_label, "targetname");
+		mdl_bones clientfield::set("wolf_howl_bone_fx", 1);
 		exploder::exploder("lgt_wolf_quest_" + var_fb110e7d.script_label);
 		level.var_e6d07014 clientfield::set("wolf_footprint_fx", 1);
 		wait(0.05);
@@ -4438,8 +4438,8 @@ function function_986cf5cf()
 	}
 	if(self function_ab623d34(level.var_52978d72, e_volume))
 	{
-		var_f7d860a2 = getent(e_volume.target, "targetname");
-		level function_55c48922(self.origin, var_f7d860a2.origin, "wolf", isdefined(self.missinglegs) && self.missinglegs);
+		mdl_bones = getent(e_volume.target, "targetname");
+		level function_55c48922(self.origin, mdl_bones.origin, "wolf", isdefined(self.missinglegs) && self.missinglegs);
 		e_volume.var_252d000d++;
 		if(e_volume.var_252d000d >= 10)
 		{
@@ -4467,19 +4467,19 @@ function function_af36e4b0()
 	wait(0.05);
 	var_5bd66bb5 = struct::get(self.targetname + "_aggro", "targetname");
 	level.var_e6d07014 setgoal(var_5bd66bb5.origin, 0, 4);
-	var_f7d860a2 = getent("aq_wh_bones_" + self.script_label, "targetname");
-	var_f7d860a2 function_3313abd5(undefined, undefined, var_f7d860a2.origin + vectorscale((0, 0, 1), 30));
+	mdl_bones = getent("aq_wh_bones_" + self.script_label, "targetname");
+	mdl_bones function_3313abd5(undefined, undefined, mdl_bones.origin + vectorscale((0, 0, 1), 30));
 	while(true)
 	{
-		var_f7d860a2.var_67b5dd94 waittill(#"trigger", e_who);
+		mdl_bones.var_67b5dd94 waittill(#"trigger", e_who);
 		if(e_who === level.var_52978d72)
 		{
-			zm_unitrigger::unregister_unitrigger(var_f7d860a2.var_67b5dd94);
-			playsoundatposition("zmb_bones_pickup", var_f7d860a2.origin);
+			zm_unitrigger::unregister_unitrigger(mdl_bones.var_67b5dd94);
+			playsoundatposition("zmb_bones_pickup", mdl_bones.origin);
 			e_who playrumbleonentity("zm_castle_quest_interact_rumble");
-			var_f7d860a2 clientfield::set("wolf_howl_bone_fx", 0);
+			mdl_bones clientfield::set("wolf_howl_bone_fx", 0);
 			wait(0.05);
-			var_f7d860a2 delete();
+			mdl_bones delete();
 			exploder::stop_exploder("lgt_wolf_quest_" + self.script_label);
 			if(!(isdefined(level.var_52978d72.var_372a0bf1) && level.var_52978d72.var_372a0bf1))
 			{
@@ -4537,8 +4537,8 @@ function function_3429d04c()
 			level function_5643d04b();
 		}
 		level flag::set("");
-		var_affd5bec = getent("", "");
-		var_affd5bec show();
+		mdl_skull = getent("", "");
+		mdl_skull show();
 		zm_spawner::deregister_zombie_death_event_callback(&function_d0d62870);
 		level thread function_328260ea();
 	#/
@@ -4998,9 +4998,9 @@ function function_803f9685()
 		if(var_dcb62646.var_ce58f456 >= 20)
 		{
 			level flag::set("wolf_howl_upgraded");
-			var_f3636838 = getent("pedestal_wolf_bow_place", "targetname");
-			var_f3636838 playsound("evt_arrow_souls_ready");
-			var_f3636838 thread function_bf26d3fb("arrow_charge_wolf_fx");
+			mdl_arrow = getent("pedestal_wolf_bow_place", "targetname");
+			mdl_arrow playsound("evt_arrow_souls_ready");
+			mdl_arrow thread function_bf26d3fb("arrow_charge_wolf_fx");
 		}
 	}
 }
@@ -5049,7 +5049,7 @@ function function_4bf5f2()
 			callback::on_connect(&function_7c48f9d8);
 		}
 		level flag::set("");
-		var_afd26121.var_d4a62e6b = getent("", "");
+		var_afd26121.mdl_bow = getent("", "");
 		var_afd26121 thread function_fb704679();
 		level function_2c1c1d3e("");
 	#/
@@ -5416,10 +5416,10 @@ function function_c57b4999()
 		{
 			level.var_a6503511 = level flag::get("");
 		}
-		var_79b6dcfe = struct::get_array("", "");
+		a_s_beacons = struct::get_array("", "");
 		if(level.var_a6503511)
 		{
-			foreach(s_beacon in var_79b6dcfe)
+			foreach(s_beacon in a_s_beacons)
 			{
 				if(isdefined(s_beacon.var_41f52afd))
 				{
@@ -5430,7 +5430,7 @@ function function_c57b4999()
 		}
 		else
 		{
-			foreach(s_beacon in var_79b6dcfe)
+			foreach(s_beacon in a_s_beacons)
 			{
 				if(!isdefined(s_beacon.var_41f52afd))
 				{
@@ -5464,8 +5464,8 @@ function function_cdf5ca22()
 			level function_2db350be();
 		}
 		level.var_c5c6a918 = undefined;
-		var_79b6dcfe = struct::get_array("", "");
-		foreach(s_beacon in var_79b6dcfe)
+		a_s_beacons = struct::get_array("", "");
+		foreach(s_beacon in a_s_beacons)
 		{
 			if(!isdefined(s_beacon.var_41f52afd))
 			{
@@ -5498,8 +5498,8 @@ function elemental_storm_wallrun()
 	level flag::wait_till("elemental_storm_wallrun");
 	foreach(t_wallrun in var_5c7ef569)
 	{
-		var_93e50579 = getent(t_wallrun.target, "targetname");
-		var_e9dd177b = getent(var_93e50579.target, "targetname");
+		mdl_symbol = getent(t_wallrun.target, "targetname");
+		var_e9dd177b = getent(mdl_symbol.target, "targetname");
 		var_e9dd177b delete();
 	}
 }
@@ -5523,15 +5523,15 @@ function function_cce911bb()
 		}
 	#/
 	level endon(#"elemental_storm_wallrun");
-	var_93e50579 = getent(self.target, "targetname");
-	var_e9dd177b = getent(var_93e50579.target, "targetname");
-	var_93e50579 clientfield::set("wallrun_fx", 1);
+	mdl_symbol = getent(self.target, "targetname");
+	var_e9dd177b = getent(mdl_symbol.target, "targetname");
+	mdl_symbol clientfield::set("wallrun_fx", 1);
 	while(true)
 	{
 		var_e9dd177b waittill(#"trigger");
 		if(!array::contains(level.var_49593fd9, self))
 		{
-			var_93e50579 clientfield::set("wallrun_fx", 2);
+			mdl_symbol clientfield::set("wallrun_fx", 2);
 		}
 		while(array::is_touching(level.players, var_e9dd177b))
 		{
@@ -5539,7 +5539,7 @@ function function_cce911bb()
 		}
 		if(!array::contains(level.var_49593fd9, self))
 		{
-			var_93e50579 clientfield::set("wallrun_fx", 1);
+			mdl_symbol clientfield::set("wallrun_fx", 1);
 		}
 	}
 }
@@ -5574,8 +5574,8 @@ function function_56130b0d()
 			}
 			if(!array::contains(level.var_49593fd9, self))
 			{
-				var_93e50579 = getent(self.target, "targetname");
-				var_93e50579 clientfield::set("wallrun_fx", 2);
+				mdl_symbol = getent(self.target, "targetname");
+				mdl_symbol clientfield::set("wallrun_fx", 2);
 				exploder::exploder("lgt_rune_wind_" + self.script_int);
 				self playsound("zmb_wall_run_rune_cross");
 				e_who playrumbleonentity("zm_castle_quest_elemental_storm_wallrun_rumble");
@@ -5650,8 +5650,8 @@ function function_ba8e8ad8(e_who)
 	e_who playsound("zmb_wall_run_rune_cross_fail");
 	foreach(t_wallrun in level.var_49593fd9)
 	{
-		var_93e50579 = getent(t_wallrun.target, "targetname");
-		var_93e50579 clientfield::set("wallrun_fx", 1);
+		mdl_symbol = getent(t_wallrun.target, "targetname");
+		mdl_symbol clientfield::set("wallrun_fx", 1);
 		exploder::stop_exploder("lgt_rune_wind_" + t_wallrun.script_int);
 	}
 	level.var_49593fd9 = [];
@@ -5681,8 +5681,8 @@ function function_5508467e()
 		var_5c7ef569 = getentarray("", "");
 		foreach(t_wallrun in var_5c7ef569)
 		{
-			var_93e50579 = getent(t_wallrun.target, "");
-			var_93e50579 clientfield::set("", 2);
+			mdl_symbol = getent(t_wallrun.target, "");
+			mdl_symbol clientfield::set("", 2);
 			exploder::exploder("" + t_wallrun.script_int);
 		}
 		level flag::set("");
@@ -5815,15 +5815,15 @@ function function_71e6353(e_attacker)
 */
 function function_88efea4a()
 {
-	var_54697048 = getentarray("aq_es_battery_volume", "script_noteworthy");
+	a_e_battery = getentarray("aq_es_battery_volume", "script_noteworthy");
 	if(self function_ab623d34(level.var_f8d1dc16))
 	{
-		var_f667032 = self array::get_touching(var_54697048);
-		if(isdefined(var_f667032) && var_f667032.size > 0 && (!(isdefined(var_f667032[0].b_activated) && var_f667032[0].b_activated)))
+		a_e_touching = self array::get_touching(a_e_battery);
+		if(isdefined(a_e_touching) && a_e_touching.size > 0 && (!(isdefined(a_e_touching[0].b_activated) && a_e_touching[0].b_activated)))
 		{
-			var_d186cfae = struct::get(var_f667032[0].target, "targetname");
+			var_d186cfae = struct::get(a_e_touching[0].target, "targetname");
 			level function_55c48922(self.origin, var_d186cfae.origin + vectorscale((0, 0, 1), 16), "storm", isdefined(self.missinglegs) && self.missinglegs);
-			var_f667032[0] util::delay_notify(0.05, "killed");
+			a_e_touching[0] util::delay_notify(0.05, "killed");
 		}
 	}
 }
@@ -5944,13 +5944,13 @@ function function_4688cd22()
 	#/
 	self endon(#"death");
 	self endon(#"quest_swap");
-	var_54697048 = getentarray("aq_es_battery_volume_charged", "script_noteworthy");
+	a_e_battery = getentarray("aq_es_battery_volume_charged", "script_noteworthy");
 	var_e1041201 = getweapon("elemental_bow");
 	while(!level flag::get("elemental_storm_beacons_charged"))
 	{
 		if(self ischargeshotpending() && self.chargeshotlevel === 4)
 		{
-			var_b6ccc8ce = function_7e113f9d(var_54697048);
+			var_b6ccc8ce = function_7e113f9d(a_e_battery);
 			e_projectile = undefined;
 			if(isdefined(var_b6ccc8ce))
 			{
@@ -5980,9 +5980,9 @@ function function_4688cd22()
 	Parameters: 1
 	Flags: Linked
 */
-function function_7e113f9d(var_54697048)
+function function_7e113f9d(a_e_battery)
 {
-	a_result = self array::get_touching(var_54697048);
+	a_result = self array::get_touching(a_e_battery);
 	if(a_result.size > 0 && (isdefined(a_result[0].b_activated) && a_result[0].b_activated) && (!(isdefined(a_result[0].b_used) && a_result[0].b_used)))
 	{
 		return a_result[0];
@@ -6046,10 +6046,10 @@ function function_6a8283d3()
 		{
 			level.var_174d6fda = 0;
 		}
-		var_79b6dcfe = struct::get_array("", "");
+		a_s_beacons = struct::get_array("", "");
 		if(level.var_174d6fda)
 		{
-			foreach(s_beacon in var_79b6dcfe)
+			foreach(s_beacon in a_s_beacons)
 			{
 				if(isdefined(s_beacon.var_41f52afd))
 				{
@@ -6060,7 +6060,7 @@ function function_6a8283d3()
 		}
 		else
 		{
-			foreach(s_beacon in var_79b6dcfe)
+			foreach(s_beacon in a_s_beacons)
 			{
 				if(!isdefined(s_beacon.var_41f52afd))
 				{
@@ -6119,10 +6119,10 @@ function function_1ad44df5()
 		{
 			level.var_f3ff8b16 = 0;
 		}
-		var_66b0cbbe = struct::get_array("", "");
+		a_s_batteries = struct::get_array("", "");
 		if(level.var_f3ff8b16)
 		{
-			foreach(var_d186cfae in var_66b0cbbe)
+			foreach(var_d186cfae in a_s_batteries)
 			{
 				var_d186cfae.var_41f52afd clientfield::set("", 1);
 			}
@@ -6130,7 +6130,7 @@ function function_1ad44df5()
 		}
 		else
 		{
-			foreach(var_d186cfae in var_66b0cbbe)
+			foreach(var_d186cfae in a_s_batteries)
 			{
 				var_d186cfae.var_41f52afd clientfield::set("", 2);
 			}
@@ -6161,13 +6161,13 @@ function function_b1cac6d2()
 		}
 		level flag::set("");
 		level.var_c5c6a918 = undefined;
-		var_79b6dcfe = struct::get_array("", "");
-		foreach(s_beacon in var_79b6dcfe)
+		a_s_beacons = struct::get_array("", "");
+		foreach(s_beacon in a_s_beacons)
 		{
 			s_beacon.var_41f52afd clientfield::set("", 2);
 		}
-		var_66b0cbbe = struct::get_array("", "");
-		foreach(var_d186cfae in var_66b0cbbe)
+		a_s_batteries = struct::get_array("", "");
+		foreach(var_d186cfae in a_s_batteries)
 		{
 			if(isdefined(var_d186cfae.var_41f52afd))
 			{
@@ -6353,18 +6353,18 @@ function function_1b2a8d00()
 */
 function function_71419e41()
 {
-	var_22e3a725 = getentarray("aq_es_beacon_trig", "script_noteworthy");
-	array::run_all(var_22e3a725, &delete);
-	var_79b6dcfe = struct::get_array("aq_es_beacon_struct", "script_noteworthy");
-	foreach(s_beacon in var_79b6dcfe)
+	a_t_beacons = getentarray("aq_es_beacon_trig", "script_noteworthy");
+	array::run_all(a_t_beacons, &delete);
+	a_s_beacons = struct::get_array("aq_es_beacon_struct", "script_noteworthy");
+	foreach(s_beacon in a_s_beacons)
 	{
 		s_beacon.var_41f52afd thread function_44dae424();
 	}
 	var_5c7ef569 = getentarray("aq_es_wallrun_trigger", "targetname");
 	foreach(t_wallrun in var_5c7ef569)
 	{
-		var_93e50579 = getent(t_wallrun.target, "targetname");
-		var_93e50579 thread function_91d15bdf();
+		mdl_symbol = getent(t_wallrun.target, "targetname");
+		mdl_symbol thread function_91d15bdf();
 		exploder::stop_exploder("lgt_rune_wind_" + t_wallrun.script_int);
 	}
 	array::run_all(var_5c7ef569, &delete);
@@ -6463,9 +6463,9 @@ function function_392a1ae1()
 		if(var_eb2f4ed5.var_ce58f456 >= 20)
 		{
 			level flag::set("elemental_storm_upgraded");
-			var_f3636838 = getent("pedestal_storm_bow_place", "targetname");
-			var_f3636838 playsound("evt_arrow_souls_ready");
-			var_f3636838 thread function_bf26d3fb("arrow_charge_wolf_fx");
+			mdl_arrow = getent("pedestal_storm_bow_place", "targetname");
+			mdl_arrow playsound("evt_arrow_souls_ready");
+			mdl_arrow thread function_bf26d3fb("arrow_charge_wolf_fx");
 		}
 	}
 }
@@ -6514,7 +6514,7 @@ function function_b88a3579()
 			callback::on_connect(&function_7c48f9d8);
 		}
 		level flag::set("");
-		var_fe3506f1.var_d4a62e6b = getent("", "");
+		var_fe3506f1.mdl_bow = getent("", "");
 		var_fe3506f1 thread function_fb704679();
 		level function_2c1c1d3e("");
 	#/
@@ -6536,40 +6536,40 @@ function function_f708e6b2()
 	{
 		case "elemental_bow_rune_prison":
 		{
-			var_1493eda1 = "rune_prison";
-			var_f3636838 = level.var_2b11065e;
+			str_quest = "rune_prison";
+			mdl_arrow = level.var_2b11065e;
 			break;
 		}
 		case "elemental_bow_demongate":
 		{
-			var_1493eda1 = "demon_gate";
-			var_f3636838 = level.var_72a6d56b;
+			str_quest = "demon_gate";
+			mdl_arrow = level.var_72a6d56b;
 			break;
 		}
 		case "elemental_bow_wolf_howl":
 		{
-			var_1493eda1 = "wolf_howl";
-			var_f3636838 = level.var_eee1576;
+			str_quest = "wolf_howl";
+			mdl_arrow = level.var_eee1576;
 			break;
 		}
 		case "elemental_bow_storm":
 		{
-			var_1493eda1 = "elemental_storm";
-			var_f3636838 = level.var_18c771ad;
+			str_quest = "elemental_storm";
+			mdl_arrow = level.var_18c771ad;
 			break;
 		}
 	}
-	if(isdefined(var_f3636838))
+	if(isdefined(mdl_arrow))
 	{
-		var_f3636838 show();
+		mdl_arrow show();
 	}
-	var_f3636838 playloopsound("zmb_ee_arrow_lp", 1);
+	mdl_arrow playloopsound("zmb_ee_arrow_lp", 1);
 	e_player = self function_655cb8e();
 	e_player playrumbleonentity("zm_castle_quest_interact_rumble");
-	if(isdefined(var_f3636838))
+	if(isdefined(mdl_arrow))
 	{
-		var_f3636838 hide();
-		var_f3636838 stoploopsound(1);
+		mdl_arrow hide();
+		mdl_arrow stoploopsound(1);
 	}
 }
 
@@ -6720,13 +6720,13 @@ function function_e0db1fe7(e_who)
 	Parameters: 2
 	Flags: Linked
 */
-function function_16bdda6f(e_player, var_1493eda1)
+function function_16bdda6f(e_player, str_quest)
 {
 	arrayremovevalue(level.var_427e7668, e_player);
-	var_5be2705e = struct::get("upgraded_bow_struct_" + var_1493eda1, "targetname");
+	var_5be2705e = struct::get("upgraded_bow_struct_" + str_quest, "targetname");
 	var_5be2705e.var_67b5dd94.prompt_and_visibility_func = &function_4b76cf52;
 	var_5be2705e.var_67b5dd94 unitrigger_refresh_message();
-	level notify(var_1493eda1 + "_complete");
+	level notify(str_quest + "_complete");
 }
 
 /*
@@ -6744,41 +6744,41 @@ function function_42084ad5(var_e459d8fb)
 	{
 		case "elemental_bow_rune_prison":
 		{
-			var_1493eda1 = "rune_prison";
+			str_quest = "rune_prison";
 			var_78cede1 = "quest_owner_rune";
 			break;
 		}
 		case "elemental_bow_demongate":
 		{
-			var_1493eda1 = "demon_gate";
+			str_quest = "demon_gate";
 			var_78cede1 = "quest_owner_demon";
 			break;
 		}
 		case "elemental_bow_wolf_howl":
 		{
-			var_1493eda1 = "wolf_howl";
+			str_quest = "wolf_howl";
 			var_78cede1 = "quest_owner_wolf";
 			break;
 		}
 		case "elemental_bow_storm":
 		{
-			var_1493eda1 = "elemental_storm";
+			str_quest = "elemental_storm";
 			var_78cede1 = "quest_owner_storm";
 			break;
 		}
 	}
-	level endon(var_1493eda1 + "_complete");
-	level endon(var_1493eda1 + "_arrow_reforged");
+	level endon(str_quest + "_complete");
+	level endon(str_quest + "_arrow_reforged");
 	/#
-		level endon(("" + var_1493eda1) + "");
+		level endon(("" + str_quest) + "");
 	#/
-	str_notify = var_e459d8fb util::waittill_any_ex("death", "quest_swap", level, var_1493eda1 + "_complete", var_1493eda1 + "_arrow_reforged");
+	str_notify = var_e459d8fb util::waittill_any_ex("death", "quest_swap", level, str_quest + "_complete", str_quest + "_arrow_reforged");
 	level clientfield::set(var_78cede1, 0);
 	if(str_notify == "death")
 	{
 		arrayremovevalue(level.var_427e7668, var_e459d8fb);
 	}
-	level function_abeafdcb(var_1493eda1);
+	level function_abeafdcb(str_quest);
 }
 
 /*
@@ -6790,14 +6790,14 @@ function function_42084ad5(var_e459d8fb)
 	Parameters: 1
 	Flags: Linked
 */
-function function_abeafdcb(var_1493eda1)
+function function_abeafdcb(str_quest)
 {
-	var_d1a0ccb = var_1493eda1 + "_placed";
-	var_7ceb9ac6 = var_1493eda1 + "_upgraded";
-	var_491b9e06 = var_1493eda1 + "_spawned";
+	var_d1a0ccb = str_quest + "_placed";
+	var_7ceb9ac6 = str_quest + "_upgraded";
+	var_491b9e06 = str_quest + "_spawned";
 	if(level flag::get(var_491b9e06))
 	{
-		str_struct = "upgraded_bow_struct_" + var_1493eda1;
+		str_struct = "upgraded_bow_struct_" + str_quest;
 		var_5be2705e = struct::get(str_struct, "targetname");
 		var_5be2705e.var_67b5dd94.prompt_and_visibility_func = &function_4b76cf52;
 		var_5be2705e.var_67b5dd94 unitrigger_refresh_message();
@@ -6806,7 +6806,7 @@ function function_abeafdcb(var_1493eda1)
 	{
 		if(level flag::get(var_7ceb9ac6))
 		{
-			str_struct = "upgraded_bow_struct_" + var_1493eda1;
+			str_struct = "upgraded_bow_struct_" + str_quest;
 			var_5be2705e = struct::get(str_struct, "targetname");
 			var_5be2705e.var_67b5dd94.prompt_and_visibility_func = &function_47b1e30a;
 			var_5be2705e.var_67b5dd94 unitrigger_refresh_message();
@@ -6815,7 +6815,7 @@ function function_abeafdcb(var_1493eda1)
 		{
 			if(level flag::get(var_d1a0ccb))
 			{
-				str_struct = "upgraded_bow_struct_" + var_1493eda1;
+				str_struct = "upgraded_bow_struct_" + str_quest;
 				var_5be2705e = struct::get(str_struct, "targetname");
 				var_5be2705e function_3313abd5(&function_4a58bb9);
 				var_5be2705e function_655cb8e();
@@ -6823,21 +6823,21 @@ function function_abeafdcb(var_1493eda1)
 			}
 			else
 			{
-				var_683c1652 = var_1493eda1 + "_repaired";
+				var_683c1652 = str_quest + "_repaired";
 				if(level flag::get(var_683c1652))
 				{
-					str_struct = "quest_reforge_" + var_1493eda1;
+					str_struct = "quest_reforge_" + str_quest;
 				}
 				else
 				{
-					str_struct = "quest_start_" + var_1493eda1;
+					str_struct = "quest_start_" + str_quest;
 				}
 				var_abce3f8a = struct::get(str_struct, "targetname");
 				var_abce3f8a function_f708e6b2();
 			}
 		}
 	}
-	switch(var_1493eda1)
+	switch(str_quest)
 	{
 		case "rune_prison":
 		{
@@ -6916,7 +6916,7 @@ function function_7bbe3a25()
 		var_7774be93 = 1;
 		if(level.players[0] === level.var_6e68c0d8)
 		{
-			var_1493eda1 = "";
+			str_quest = "";
 			var_78cede1 = "";
 			level.var_6e68c0d8 = undefined;
 		}
@@ -6924,7 +6924,7 @@ function function_7bbe3a25()
 		{
 			if(level.players[0] === level.var_c62829c7)
 			{
-				var_1493eda1 = "";
+				str_quest = "";
 				var_78cede1 = "";
 				level.var_c62829c7 = undefined;
 			}
@@ -6932,7 +6932,7 @@ function function_7bbe3a25()
 			{
 				if(level.players[0] === level.var_f8d1dc16)
 				{
-					var_1493eda1 = "";
+					str_quest = "";
 					var_78cede1 = "";
 					level.var_f8d1dc16 = undefined;
 				}
@@ -6940,7 +6940,7 @@ function function_7bbe3a25()
 				{
 					if(level.players[0] === level.var_52978d72)
 					{
-						var_1493eda1 = "";
+						str_quest = "";
 						var_78cede1 = "";
 						level.var_52978d72 = undefined;
 					}
@@ -6952,10 +6952,10 @@ function function_7bbe3a25()
 			}
 		}
 		level clientfield::set(var_78cede1, 0);
-		level notify(("" + var_1493eda1) + "");
+		level notify(("" + str_quest) + "");
 		level.players[0] notify(#"hash_3c5d2ca5");
 		arrayremovevalue(level.var_427e7668, level.players[0]);
-		level function_abeafdcb(var_1493eda1);
+		level function_abeafdcb(str_quest);
 	#/
 }
 
@@ -6981,7 +6981,7 @@ function function_14dd5ea5()
 			if(level flag::get(""))
 			{
 			}
-			var_1493eda1 = "rune_prison";
+			str_quest = "rune_prison";
 			var_febc5f71 = &function_d04d2c23;
 			str_exploder = "lgt_rune_bow_plinth";
 			var_5cdbaec4 = "rune";
@@ -6997,7 +6997,7 @@ function function_14dd5ea5()
 			if(level flag::get(""))
 			{
 			}
-			var_1493eda1 = "demon_gate";
+			str_quest = "demon_gate";
 			var_febc5f71 = &function_983083c;
 			str_exploder = "lgt_demon_bow_plinth";
 			var_5cdbaec4 = "demon";
@@ -7013,7 +7013,7 @@ function function_14dd5ea5()
 			if(level flag::get(""))
 			{
 			}
-			var_1493eda1 = "wolf_howl";
+			str_quest = "wolf_howl";
 			var_febc5f71 = &function_e3ef7bf6;
 			str_exploder = "lgt_wolf_bow_plinth";
 			var_5cdbaec4 = "wolf";
@@ -7029,7 +7029,7 @@ function function_14dd5ea5()
 			if(level flag::get(""))
 			{
 			}
-			var_1493eda1 = "elemental_storm";
+			str_quest = "elemental_storm";
 			var_febc5f71 = &function_c5b609e2;
 			str_exploder = "lgt_elemental_bow_plinth";
 			var_5cdbaec4 = "storm";
@@ -7048,7 +7048,7 @@ function function_14dd5ea5()
 			e_who playsound("zmb_give_arrow_piece");
 			e_who playrumbleonentity("zm_castle_quest_interact_rumble");
 			zm_unitrigger::unregister_unitrigger(self.var_67b5dd94);
-			var_d1a0ccb = var_1493eda1 + "_placed";
+			var_d1a0ccb = str_quest + "_placed";
 			level flag::set(var_d1a0ccb);
 			if(isdefined(var_90de5a6f))
 			{
@@ -7059,7 +7059,7 @@ function function_14dd5ea5()
 		}
 	}
 	exploder::exploder(str_exploder);
-	level scene::play("p7_fxanim_zm_castle_quest_pedestal_bundle_" + var_1493eda1);
+	level scene::play("p7_fxanim_zm_castle_quest_pedestal_bundle_" + str_quest);
 	/#
 		switch(self.script_label)
 		{
@@ -7085,7 +7085,7 @@ function function_14dd5ea5()
 			}
 		}
 	#/
-	var_7ceb9ac6 = var_1493eda1 + "_upgraded";
+	var_7ceb9ac6 = str_quest + "_upgraded";
 	self.var_ce58f456 = 0;
 	zm_spawner::register_zombie_death_event_callback(var_febc5f71);
 	level flag::wait_till(var_7ceb9ac6);
@@ -7098,8 +7098,8 @@ function function_14dd5ea5()
 		{
 			continue;
 		}
-		var_d82ff565 = e_who getweaponslistprimaries();
-		if(var_d82ff565.size == 1 && issubstr(var_d82ff565[0].name, "elemental_bow"))
+		a_primaries = e_who getweaponslistprimaries();
+		if(a_primaries.size == 1 && issubstr(a_primaries[0].name, "elemental_bow"))
 		{
 			continue;
 		}
@@ -7131,7 +7131,7 @@ function function_14dd5ea5()
 	}
 	level thread function_f78eeee0(self.origin);
 	e_who playrumbleonentity("zm_castle_quest_interact_rumble");
-	level scene::play("p7_fxanim_zm_castle_quest_upgrade_bundle_" + var_1493eda1);
+	level scene::play("p7_fxanim_zm_castle_quest_upgrade_bundle_" + str_quest);
 	exploder::stop_exploder(str_exploder);
 	if(!isdefined(level.var_e8a6b6f7))
 	{
@@ -7139,16 +7139,16 @@ function function_14dd5ea5()
 		array::thread_all(level.players, &function_b584c1e);
 		callback::on_connect(&function_7c48f9d8);
 	}
-	self.var_d4a62e6b = getent(self.script_noteworthy, "targetname");
+	self.mdl_bow = getent(self.script_noteworthy, "targetname");
 	e_target_player = level function_7b6fdb3e(self.script_label);
 	if(!isdefined(e_target_player))
 	{
 		level function_8b295d47(self.script_label);
 	}
 	self thread function_fb704679(e_target_player);
-	var_491b9e06 = var_1493eda1 + "_spawned";
+	var_491b9e06 = str_quest + "_spawned";
 	level flag::set(var_491b9e06);
-	level thread function_2c1c1d3e(var_1493eda1);
+	level thread function_2c1c1d3e(str_quest);
 	level function_f5e9876(var_5cdbaec4, 6);
 }
 
@@ -7194,10 +7194,10 @@ function function_bf26d3fb(var_e93a0115)
 	Parameters: 1
 	Flags: Linked
 */
-function function_2c1c1d3e(var_1493eda1)
+function function_2c1c1d3e(str_quest)
 {
 	wait(5);
-	switch(var_1493eda1)
+	switch(str_quest)
 	{
 		case "rune_prison":
 		{
@@ -7249,8 +7249,8 @@ function function_2c1c1d3e(var_1493eda1)
 			break;
 		}
 	}
-	level thread struct::delete_script_bundle("scene", "p7_fxanim_zm_castle_quest_upgrade_bundle_" + var_1493eda1);
-	level thread struct::delete_script_bundle("scene", "p7_fxanim_zm_castle_quest_pedestal_bundle_" + var_1493eda1);
+	level thread struct::delete_script_bundle("scene", "p7_fxanim_zm_castle_quest_upgrade_bundle_" + str_quest);
+	level thread struct::delete_script_bundle("scene", "p7_fxanim_zm_castle_quest_pedestal_bundle_" + str_quest);
 }
 
 /*
@@ -7401,7 +7401,7 @@ function function_fb704679(e_target_player = undefined)
 			}
 			e_who switchtoweapon(var_b4810425);
 			e_who playsound("zmb_bow_pickup");
-			self.var_d4a62e6b hide();
+			self.mdl_bow hide();
 			arrayremovevalue(level.var_e8a6b6f7, self.var_67b5dd94);
 			zm_unitrigger::unregister_unitrigger(self.var_67b5dd94);
 			if(e_who hasperk("specialty_additionalprimaryweapon"))
@@ -7458,7 +7458,7 @@ function function_971e3797()
 		str_notify = self.script_label + "_returned";
 		level notify(str_notify);
 		e_who notify(#"show_base_bow");
-		self.var_d4a62e6b show();
+		self.mdl_bow show();
 		self thread function_fb704679();
 		level function_8b295d47(self.script_label);
 		return;
@@ -7486,7 +7486,7 @@ function function_a4861409(e_player, var_285c992d)
 		if(str_notify == "death")
 		{
 			zm_unitrigger::unregister_unitrigger(var_285c992d.var_67b5dd94);
-			var_285c992d.var_d4a62e6b show();
+			var_285c992d.mdl_bow show();
 			var_285c992d thread function_fb704679();
 			return;
 		}
@@ -7516,7 +7516,7 @@ function function_a4861409(e_player, var_285c992d)
 			{
 				e_player.var_bec0aa15 = undefined;
 				zm_unitrigger::unregister_unitrigger(var_285c992d.var_67b5dd94);
-				var_285c992d.var_d4a62e6b show();
+				var_285c992d.mdl_bow show();
 				var_285c992d thread function_fb704679();
 				level notify(var_285c992d.script_label + "_stop_tracking");
 				level function_8b295d47(var_285c992d.script_label);
@@ -7650,9 +7650,9 @@ function function_5facaaf9(e_target_player, str_weapon_name)
 	Parameters: 1
 	Flags: Linked
 */
-function function_7b6fdb3e(var_1493eda1)
+function function_7b6fdb3e(str_quest)
 {
-	switch(var_1493eda1)
+	switch(str_quest)
 	{
 		case "elemental_bow_rune_prison":
 		{
@@ -8138,8 +8138,8 @@ function function_6041c7d9(e_player)
 		self sethintstring(&"");
 		return false;
 	}
-	var_d82ff565 = e_player getweaponslistprimaries();
-	if(var_d82ff565.size == 1 && issubstr(var_d82ff565[0].name, "elemental_bow"))
+	a_primaries = e_player getweaponslistprimaries();
+	if(a_primaries.size == 1 && issubstr(a_primaries[0].name, "elemental_bow"))
 	{
 		self sethintstring(&"");
 		return false;

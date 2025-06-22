@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\_burnplayer;
 #using scripts\shared\ai\mechz;
@@ -304,21 +304,21 @@ function function_83ff2eda()
 function function_91a378e3()
 {
 	var_4fafa709 = struct::get("mpd_pos");
-	var_da3dbbdf = util::spawn_anim_model("c_zom_dlc1_keeper_archon_small_fb", var_4fafa709.origin, vectorscale((0, 1, 0), 90));
+	mdl_keeper = util::spawn_anim_model("c_zom_dlc1_keeper_archon_small_fb", var_4fafa709.origin, vectorscale((0, 1, 0), 90));
 	wait(0.05);
-	var_da3dbbdf ghost();
+	mdl_keeper ghost();
 	wait(0.05);
-	var_da3dbbdf clientfield::set("boss_mpd_fx", 1);
-	var_da3dbbdf show();
-	var_da3dbbdf function_a1658f19("ai_zm_dlc1_corrupted_keeper_float_emerge", "ai_zm_dlc1_corrupted_keeper_float_idle");
+	mdl_keeper clientfield::set("boss_mpd_fx", 1);
+	mdl_keeper show();
+	mdl_keeper function_a1658f19("ai_zm_dlc1_corrupted_keeper_float_emerge", "ai_zm_dlc1_corrupted_keeper_float_idle");
 	wait(0.05);
-	var_da3dbbdf function_a1658f19("ai_zm_dlc1_corrupted_keeper_roar", "ai_zm_dlc1_corrupted_keeper_float_idle");
-	var_da3dbbdf playloopsound("zmb_ee_resurrect_keeper_notghost_lp", 2);
+	mdl_keeper function_a1658f19("ai_zm_dlc1_corrupted_keeper_roar", "ai_zm_dlc1_corrupted_keeper_float_idle");
+	mdl_keeper playloopsound("zmb_ee_resurrect_keeper_notghost_lp", 2);
 	zm_castle_vo::function_cbf21c9d();
 	level flag::wait_till("boss_fight_begin");
 	callback::remove_on_connect(&zm_castle_util::function_fa7da172);
 	level.var_8ef26cd9 = undefined;
-	var_da3dbbdf delete();
+	mdl_keeper delete();
 	var_82a4f07b = struct::get("keeper_end_loc");
 	var_82a4f07b notify(#"delete_fx");
 	var_293d02aa = getent("undercroft_pyramid", "targetname");
@@ -780,8 +780,8 @@ function function_71130ea()
 	}
 	self.var_828cb4c9 = struct::get_array("boss_zombie_spawn_point", "targetname");
 	self.var_f7afb996 = struct::get_array("boss_zombie_spawn_point_central", "targetname");
-	var_911ceae0 = struct::get_array("boss_zombie_spawn_point_crawl", "targetname");
-	foreach(s_struct in var_911ceae0)
+	a_s_crawlers = struct::get_array("boss_zombie_spawn_point_crawl", "targetname");
+	foreach(s_struct in a_s_crawlers)
 	{
 		if(!isdefined(self.var_828cb4c9))
 		{
@@ -1167,7 +1167,7 @@ function function_1690ddb0()
 	Parameters: 2
 	Flags: Linked
 */
-function function_a1658f19(str_anim, var_be98b74b = "ai_zm_dlc1_archon_float_idle")
+function function_a1658f19(str_anim, str_loop = "ai_zm_dlc1_archon_float_idle")
 {
 	self notify(#"hash_26fd8ff7");
 	if(isdefined(str_anim))
@@ -1176,7 +1176,7 @@ function function_a1658f19(str_anim, var_be98b74b = "ai_zm_dlc1_archon_float_idl
 	}
 	if(isdefined(self))
 	{
-		self thread animation::play(var_be98b74b);
+		self thread animation::play(str_loop);
 	}
 }
 
@@ -1430,7 +1430,7 @@ function function_28bb5727(var_4a14cd40)
 	{
 		case 1:
 		{
-			var_e516b508 = 3;
+			n_casts = 3;
 			if(level.var_1a4b8a19)
 			{
 				self.var_41c1a53f[0] = &function_e3ea9055;
@@ -1446,7 +1446,7 @@ function function_28bb5727(var_4a14cd40)
 		case 3:
 		{
 			self thread function_e2f41bf2();
-			var_e516b508 = 4;
+			n_casts = 4;
 			if(level.var_1a4b8a19)
 			{
 				self.var_41c1a53f[2] = &function_e3ea9055;
@@ -1477,7 +1477,7 @@ function function_28bb5727(var_4a14cd40)
 		}
 		case 5:
 		{
-			var_e516b508 = 5;
+			n_casts = 5;
 			self thread function_e2f41bf2();
 			self.n_health = self.n_health + self.var_4bd4bce6;
 			/#
@@ -1512,7 +1512,7 @@ function function_28bb5727(var_4a14cd40)
 	var_48d25fcc = 0;
 	while(!var_48d25fcc)
 	{
-		for(i = 0; i < var_e516b508; i++)
+		for(i = 0; i < n_casts; i++)
 		{
 			if(i == 3 && self.var_7e383b58 == 5 && !level.var_1a4b8a19 && level.var_2b421938 > 1)
 			{

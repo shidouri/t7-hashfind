@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
@@ -107,8 +107,8 @@ function walltrap_draft_rumble(localclientnum, oldval, newval, bnewent, binitial
 		if(!isdefined(player.var_d33c558c))
 		{
 			player.var_d33c558c = [];
-			var_52928b68 = struct::get_array("s_walltrap_draft_rumble", "targetname");
-			foreach(var_7f2e4e88 in var_52928b68)
+			a_s_draft = struct::get_array("s_walltrap_draft_rumble", "targetname");
+			foreach(var_7f2e4e88 in a_s_draft)
 			{
 				e_pos = util::spawn_model(localclientnum, "tag_origin", var_7f2e4e88.origin, var_7f2e4e88.angles);
 				array::add(player.var_d33c558c, e_pos);

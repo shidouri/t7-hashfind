@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\abilities\_ability_player;
 #using scripts\shared\ai\systems\gib;
@@ -575,13 +575,13 @@ function function_862aadab(random_gibs)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private blood_death_fx(var_d98455ab, var_26ba0d4c)
+function private blood_death_fx(var_d98455ab, n_upgraded)
 {
 	if(self.archetype == "zombie")
 	{
 		if(var_d98455ab)
 		{
-			if(isdefined(var_26ba0d4c) && var_26ba0d4c)
+			if(isdefined(n_upgraded) && n_upgraded)
 			{
 				self clientfield::increment("zombie_slice_l", 2);
 			}
@@ -592,7 +592,7 @@ function private blood_death_fx(var_d98455ab, var_26ba0d4c)
 		}
 		else
 		{
-			if(isdefined(var_26ba0d4c) && var_26ba0d4c)
+			if(isdefined(n_upgraded) && n_upgraded)
 			{
 				self clientfield::increment("zombie_slice_r", 2);
 			}

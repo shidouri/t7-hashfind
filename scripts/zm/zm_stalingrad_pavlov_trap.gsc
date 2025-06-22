@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -31,8 +31,8 @@
 */
 function main()
 {
-	var_565a8d95 = struct::get_array("flinger_trigger", "targetname");
-	foreach(var_a3ed6ea in var_565a8d95)
+	a_t_flinger = struct::get_array("flinger_trigger", "targetname");
+	foreach(var_a3ed6ea in a_t_flinger)
 	{
 		var_66e182a0 = getentarray(var_a3ed6ea.target, "targetname");
 		var_a3ed6ea.var_66e182a0 = var_66e182a0;

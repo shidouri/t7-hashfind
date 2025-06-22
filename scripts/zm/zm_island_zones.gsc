@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\ai_shared;
@@ -140,8 +140,8 @@ function function_45a8888c()
 			t_door thread function_feb4ddde();
 		}
 	}
-	var_7be3ca60 = getentarray("delete_door_model_when_finished", "script_noteworthy");
-	array::thread_all(var_7be3ca60, &function_afc937e7);
+	a_mdl_doors = getentarray("delete_door_model_when_finished", "script_noteworthy");
+	array::thread_all(a_mdl_doors, &function_afc937e7);
 	/#
 		level thread function_8b7501aa();
 	#/
@@ -212,7 +212,7 @@ function function_8b7501aa()
 */
 function function_6ed87461(a_ents)
 {
-	self.var_4165e349 = a_ents["fxanim_vine_gate"];
+	self.mdl_vine = a_ents["fxanim_vine_gate"];
 }
 
 /*
@@ -228,14 +228,14 @@ function function_feb4ddde()
 {
 	self endon(#"death");
 	level flag::wait_till(self.script_flag);
-	var_4c616d31 = self.target + "_vine";
-	var_593fa92c = struct::get_array(var_4c616d31 + "_fx", "targetname");
-	var_9649126c = struct::get_array(var_4c616d31, "targetname");
+	str_vine = self.target + "_vine";
+	var_593fa92c = struct::get_array(str_vine + "_fx", "targetname");
+	var_9649126c = struct::get_array(str_vine, "targetname");
 	foreach(s_scene in var_9649126c)
 	{
-		if(isdefined(s_scene) && isdefined(s_scene.var_4165e349))
+		if(isdefined(s_scene) && isdefined(s_scene.mdl_vine))
 		{
-			s_scene.var_4165e349 clientfield::set("vine_door_play_fx", 1);
+			s_scene.mdl_vine clientfield::set("vine_door_play_fx", 1);
 			wait(0.25);
 			s_scene thread scene::play();
 		}

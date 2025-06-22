@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_hacking;
@@ -1050,13 +1050,13 @@ function function_3679c70a()
 {
 	level flag::wait_till("hendricks_near_turrets");
 	battlechatter::function_d9f49fba(0);
-	var_9d979b27 = getaiarray("hallway_turret", "script_noteworthy");
-	if(var_9d979b27.size > 0)
+	a_ai_turrets = getaiarray("hallway_turret", "script_noteworthy");
+	if(a_ai_turrets.size > 0)
 	{
 		level.ai_hendricks dialog::say("hend_focus_on_the_turrets_0");
 	}
-	var_9d979b27 = getaiarray("hallway_turret", "script_noteworthy");
-	if(var_9d979b27.size > 0)
+	a_ai_turrets = getaiarray("hallway_turret", "script_noteworthy");
+	if(a_ai_turrets.size > 0)
 	{
 		var_653d9a07 = 0;
 		var_85ee3d97 = 0;
@@ -1169,7 +1169,7 @@ function function_2c72fa5a()
 	Parameters: 1
 	Flags: Linked
 */
-function function_d8eaa27f(var_9d979b27)
+function function_d8eaa27f(a_ai_turrets)
 {
 	level endon(#"turret_hall_clear");
 	function_c80e1213("turret_left");
@@ -1214,13 +1214,13 @@ function function_ee13f890()
 	level flag::wait_till("a_player_sees_hallway_turrets");
 	objectives::complete("cp_level_biodomes_servers");
 	objectives::set("cp_level_biodomes_destroy_hallway_turrets");
-	var_9d979b27 = getaiarray("hallway_turret", "script_noteworthy");
-	foreach(var_c316ad54 in var_9d979b27)
+	a_ai_turrets = getaiarray("hallway_turret", "script_noteworthy");
+	foreach(ai_turret in a_ai_turrets)
 	{
-		var_c316ad54 thread function_2c72fa5a();
+		ai_turret thread function_2c72fa5a();
 	}
 	level flag::wait_till("turret_hallway_phalanx_dead");
-	function_d8eaa27f(var_9d979b27);
+	function_d8eaa27f(a_ai_turrets);
 }
 
 /*

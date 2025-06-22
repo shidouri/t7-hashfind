@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -482,23 +482,23 @@ function function_e905a9df(var_a89f74ed, var_173065cc)
 */
 function function_cbac68fe(e_player)
 {
-	var_629f4b8 = spawn("script_model", e_player.origin);
-	var_629f4b8.angles = e_player.angles;
+	mdl_clone = spawn("script_model", e_player.origin);
+	mdl_clone.angles = e_player.angles;
 	mdl_body = e_player getcharacterbodymodel();
-	var_629f4b8 setmodel(mdl_body);
+	mdl_clone setmodel(mdl_body);
 	if(isdefined(e_player.var_bc5f242a) && isdefined(e_player.var_bc5f242a.str_model))
 	{
 		str_model = e_player.var_bc5f242a.str_model;
 		str_tag = e_player.var_bc5f242a.str_tag;
-		var_629f4b8 attach(str_model, str_tag);
+		mdl_clone attach(str_model, str_tag);
 	}
 	bodyrenderoptions = e_player getcharacterbodyrenderoptions();
-	var_629f4b8 setbodyrenderoptions(bodyrenderoptions, bodyrenderoptions, bodyrenderoptions);
-	var_629f4b8.health = 100;
-	var_629f4b8 setowner(e_player);
-	var_629f4b8.team = e_player.team;
-	var_629f4b8 solid();
-	return var_629f4b8;
+	mdl_clone setbodyrenderoptions(bodyrenderoptions, bodyrenderoptions, bodyrenderoptions);
+	mdl_clone.health = 100;
+	mdl_clone setowner(e_player);
+	mdl_clone.team = e_player.team;
+	mdl_clone solid();
+	return mdl_clone;
 }
 
 /*
@@ -702,8 +702,8 @@ function function_1a4837ab(nd_target, e_target, var_a89f74ed, v_fling)
 function function_29c06608()
 {
 	a_ai = getaiteamarray(level.zombie_team);
-	var_5e3331b2 = arraysortclosest(a_ai, self.origin, a_ai.size, 0, 128);
-	foreach(ai_zombie in var_5e3331b2)
+	a_ai_kill = arraysortclosest(a_ai, self.origin, a_ai.size, 0, 128);
+	foreach(ai_zombie in a_ai_kill)
 	{
 		if(ai_zombie.archetype === "zombie")
 		{
@@ -717,8 +717,8 @@ function function_29c06608()
 		}
 	}
 	util::wait_network_frame();
-	var_1317e1d1 = arraysortclosest(a_ai, self.origin, a_ai.size, 0, 200);
-	foreach(ai_zombie in var_1317e1d1)
+	a_ai_slam = arraysortclosest(a_ai, self.origin, a_ai.size, 0, 200);
+	foreach(ai_zombie in a_ai_slam)
 	{
 		if(isalive(ai_zombie) && ai_zombie.archetype === "zombie")
 		{

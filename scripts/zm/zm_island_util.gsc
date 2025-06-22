@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -293,22 +293,22 @@ function function_4aedb20b()
 	Parameters: 4
 	Flags: Linked
 */
-function function_925aa63a(var_fedda046, n_delay = 0.1, n_value, b_delete = 1)
+function function_925aa63a(a_e_elements, n_delay = 0.1, n_value, b_delete = 1)
 {
-	foreach(var_1c7231df in var_fedda046)
+	foreach(e_element in a_e_elements)
 	{
-		if(isdefined(var_1c7231df))
+		if(isdefined(e_element))
 		{
-			var_1c7231df clientfield::set("do_fade_material", n_value);
+			e_element clientfield::set("do_fade_material", n_value);
 			wait(n_delay);
 		}
 	}
 	wait(1);
 	if(isdefined(b_delete) && b_delete)
 	{
-		foreach(var_1c7231df in var_fedda046)
+		foreach(e_element in a_e_elements)
 		{
-			var_1c7231df delete();
+			e_element delete();
 		}
 	}
 }
@@ -548,16 +548,16 @@ function function_3420bc2f(wpn_new)
 	Parameters: 4
 	Flags: Linked
 */
-function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
+function function_8faf1d24(v_color, str_print, n_scale, str_endon)
 {
 	/#
 		if(!isdefined(v_color))
 		{
 			v_color = vectorscale((0, 0, 1), 255);
 		}
-		if(!isdefined(var_8882142e))
+		if(!isdefined(str_print))
 		{
-			var_8882142e = "";
+			str_print = "";
 		}
 		if(!isdefined(n_scale))
 		{
@@ -578,7 +578,7 @@ function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
 		origin = self.origin;
 		while(true)
 		{
-			print3d(origin, var_8882142e, v_color, n_scale);
+			print3d(origin, str_print, v_color, n_scale);
 			wait(0.1);
 		}
 	#/

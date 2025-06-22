@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\abilities\_ability_player;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_death;
@@ -840,16 +840,16 @@ function function_f5802b55()
 	self.var_cc844f4c = 1;
 	spawn_pos = self gettagorigin("tag_dragon_world");
 	spawn_angles = self gettagangles("tag_dragon_world");
-	var_42c06d64 = spawnvehicle(self.var_d15b9a33, spawn_pos, spawn_angles);
-	if(isdefined(var_42c06d64))
+	ai_whelp = spawnvehicle(self.var_d15b9a33, spawn_pos, spawn_angles);
+	if(isdefined(ai_whelp))
 	{
-		self.var_4bd1ce6b = var_42c06d64;
-		var_42c06d64 ai::set_ignoreme(1);
-		var_42c06d64 setignorepauseworld(1);
-		var_42c06d64.owner = self;
+		self.var_4bd1ce6b = ai_whelp;
+		ai_whelp ai::set_ignoreme(1);
+		ai_whelp setignorepauseworld(1);
+		ai_whelp.owner = self;
 		self thread zm_audio::create_and_play_dialog("whelp", "command");
-		var_42c06d64 thread function_44ecb9cb();
-		var_42c06d64 thread function_b80d5548();
+		ai_whelp thread function_44ecb9cb();
+		ai_whelp thread function_b80d5548();
 		self thread function_1692b405();
 	}
 	self.var_d4b932e6 = gettime() + 1000;
@@ -904,11 +904,11 @@ function function_22d7caeb()
 	self.var_cc844f4c = 0;
 	if(isdefined(self.var_4bd1ce6b))
 	{
-		var_42c06d64 = self.var_4bd1ce6b;
-		var_42c06d64 notify(#"hash_22d7caeb");
-		var_42c06d64.dragon_recall_death = 1;
-		var_42c06d64.var_a0e2dfff = 1;
-		var_42c06d64 kill();
+		ai_whelp = self.var_4bd1ce6b;
+		ai_whelp notify(#"hash_22d7caeb");
+		ai_whelp.dragon_recall_death = 1;
+		ai_whelp.var_a0e2dfff = 1;
+		ai_whelp kill();
 	}
 }
 

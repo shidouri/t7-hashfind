@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -893,11 +893,11 @@ function function_e00bc70a()
 	Parameters: 1
 	Flags: Linked
 */
-function function_4aedb20b(var_4ed57dca)
+function function_4aedb20b(n_drain)
 {
-	if(self.var_118ab24e >= var_4ed57dca)
+	if(self.var_118ab24e >= n_drain)
 	{
-		self gadgetpowerset(0, self.var_118ab24e - var_4ed57dca);
+		self gadgetpowerset(0, self.var_118ab24e - n_drain);
 	}
 	else
 	{

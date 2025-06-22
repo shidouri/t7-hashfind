@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -313,8 +313,8 @@ function function_a16ce474(str_model, var_475b0a4e, str_tag)
 */
 function function_e5515520()
 {
-	var_77268fe9 = self getcharacterbodymodel();
-	switch(var_77268fe9)
+	str_body = self getcharacterbodymodel();
+	switch(str_body)
 	{
 		case "c_zom_dlc3_nikolai_mpc_fb":
 		{
@@ -393,31 +393,31 @@ function function_aa6437f1()
 */
 function function_b4575902()
 {
-	var_66b0cbbe = struct::get_array("ancient_battery", "targetname");
-	var_5a533244 = [];
-	foreach(var_d186cfae in var_66b0cbbe)
+	a_s_batteries = struct::get_array("ancient_battery", "targetname");
+	a_mdl_batteries = [];
+	foreach(var_d186cfae in a_s_batteries)
 	{
-		var_8d2dd868 = util::spawn_model("p7_zm_ctl_battery_ceramic", var_d186cfae.origin, var_d186cfae.angles);
-		var_8d2dd868.target = var_d186cfae.target;
-		if(!isdefined(var_5a533244))
+		mdl_battery = util::spawn_model("p7_zm_ctl_battery_ceramic", var_d186cfae.origin, var_d186cfae.angles);
+		mdl_battery.target = var_d186cfae.target;
+		if(!isdefined(a_mdl_batteries))
 		{
-			var_5a533244 = [];
+			a_mdl_batteries = [];
 		}
-		else if(!isarray(var_5a533244))
+		else if(!isarray(a_mdl_batteries))
 		{
-			var_5a533244 = array(var_5a533244);
+			a_mdl_batteries = array(a_mdl_batteries);
 		}
-		var_5a533244[var_5a533244.size] = var_8d2dd868;
+		a_mdl_batteries[a_mdl_batteries.size] = mdl_battery;
 	}
 	function_9157236c();
-	foreach(var_8d2dd868 in var_5a533244)
+	foreach(mdl_battery in a_mdl_batteries)
 	{
-		var_8d2dd868 clientfield::set("battery_fx", 1);
+		mdl_battery clientfield::set("battery_fx", 1);
 	}
-	function_b8449f8c(var_5a533244);
-	foreach(var_8d2dd868 in var_5a533244)
+	function_b8449f8c(a_mdl_batteries);
+	foreach(mdl_battery in a_mdl_batteries)
 	{
-		var_8d2dd868 clientfield::set("battery_fx", 0);
+		mdl_battery clientfield::set("battery_fx", 0);
 	}
 	playsoundatposition("zmb_wearable_siegfried_horn_1", (0, 0, 0));
 	/#
@@ -437,23 +437,23 @@ function function_b4575902()
 */
 function function_9157236c()
 {
-	var_7bd91d87 = struct::get_array("s_ee_clock", "targetname");
-	var_687cab15 = getent("ee_grand_tour_undercroft", "targetname");
-	var_687cab15 setcandamage(1);
+	a_s_numbers = struct::get_array("s_ee_clock", "targetname");
+	e_clock = getent("ee_grand_tour_undercroft", "targetname");
+	e_clock setcandamage(1);
 	n_stage = 9;
 	var_c52419ba = 1;
 	while(var_c52419ba)
 	{
-		var_687cab15 waittill(#"damage", damage, attacker, direction_vec, v_point, type, modelname, tagname, partname, weapon, idflags);
+		e_clock waittill(#"damage", damage, attacker, direction_vec, v_point, type, modelname, tagname, partname, weapon, idflags);
 		n_closest = 9999999;
-		s_closest = var_7bd91d87[0];
-		for(i = 0; i < var_7bd91d87.size; i++)
+		s_closest = a_s_numbers[0];
+		for(i = 0; i < a_s_numbers.size; i++)
 		{
-			n_dist = distance(var_7bd91d87[i].origin, v_point);
+			n_dist = distance(a_s_numbers[i].origin, v_point);
 			if(n_dist < n_closest)
 			{
 				n_closest = n_dist;
-				s_closest = var_7bd91d87[i];
+				s_closest = a_s_numbers[i];
 			}
 		}
 		switch(n_stage)
@@ -492,7 +492,7 @@ function function_9157236c()
 			}
 		}
 	}
-	var_687cab15 playsound("zmb_wearable_siegfried_bell");
+	e_clock playsound("zmb_wearable_siegfried_bell");
 }
 
 /*
@@ -504,29 +504,29 @@ function function_9157236c()
 	Parameters: 1
 	Flags: Linked
 */
-function function_b8449f8c(var_5a533244)
+function function_b8449f8c(a_mdl_batteries)
 {
 	level.var_5317b760 = 1;
-	for(i = 0; i < var_5a533244.size; i++)
+	for(i = 0; i < a_mdl_batteries.size; i++)
 	{
-		var_5a533244[i].var_b4a21360 = 5;
+		a_mdl_batteries[i].var_b4a21360 = 5;
 	}
-	while(var_5a533244.size > 0)
+	while(a_mdl_batteries.size > 0)
 	{
-		level waittill(#"hash_e8c3642d");
+		level waittill("a_kill");
 		v_kill_pos = level.var_98fdd784;
 		var_e84c42f6 = 0;
 		var_688f490b = undefined;
 		n_closest_dist = 9999999;
-		for(i = 0; i < var_5a533244.size; i++)
+		for(i = 0; i < a_mdl_batteries.size; i++)
 		{
-			var_8d2dd868 = var_5a533244[i];
-			s_center = struct::get(var_8d2dd868.target, "targetname");
+			mdl_battery = a_mdl_batteries[i];
+			s_center = struct::get(mdl_battery.target, "targetname");
 			n_dist = distance(s_center.origin, v_kill_pos);
 			if(n_dist < n_closest_dist)
 			{
 				n_closest_dist = n_dist;
-				var_688f490b = var_8d2dd868;
+				var_688f490b = mdl_battery;
 				if(isdefined(s_center.script_num))
 				{
 					var_e84c42f6 = 1;
@@ -550,7 +550,7 @@ function function_b8449f8c(var_5a533244)
 			if(var_688f490b.var_b4a21360 <= 0)
 			{
 				var_688f490b clientfield::set("battery_fx", 2);
-				arrayremovevalue(var_5a533244, var_688f490b);
+				arrayremovevalue(a_mdl_batteries, var_688f490b);
 				var_688f490b playsound("zmb_wearable_siegfried_battery_charged");
 				/#
 					iprintlnbold("");
@@ -570,7 +570,7 @@ function function_b8449f8c(var_5a533244)
 	Parameters: 3
 	Flags: Linked
 */
-function function_edd475ab(var_dd087d43, var_33c3e058, var_e7d196cc)
+function function_edd475ab(var_dd087d43, var_33c3e058, str_wearable)
 {
 	self endon(#"disconnect");
 	self endon(#"hash_baf651e0");
@@ -596,7 +596,7 @@ function function_edd475ab(var_dd087d43, var_33c3e058, var_e7d196cc)
 			var_fce7f186++;
 			if(var_fce7f186 >= var_dd087d43)
 			{
-				switch(var_e7d196cc)
+				switch(str_wearable)
 				{
 					case "c_zom_dlc4_player_siegfried_helmet":
 					{
@@ -772,17 +772,17 @@ function function_f4caac35(str_flag)
 {
 	level waittill(#"hash_208ce56d");
 	var_3f709380 = struct::get("s_dire_wolf_coffin", "targetname");
-	var_affd5bec = util::spawn_model("tag_origin", var_3f709380.origin, (0, 0, 0));
-	var_affd5bec setmodel("p7_ban_north_tribe_lion_skull");
+	mdl_skull = util::spawn_model("tag_origin", var_3f709380.origin, (0, 0, 0));
+	mdl_skull setmodel("p7_ban_north_tribe_lion_skull");
 	s_path = struct::get("s_dire_wolf_path_start", "targetname");
 	while(true)
 	{
 		n_time = 0.4;
-		var_affd5bec moveto(s_path.origin, n_time);
+		mdl_skull moveto(s_path.origin, n_time);
 		if(!isdefined(s_path.target))
 		{
-			var_affd5bec waittill(#"movedone");
-			var_affd5bec playsound("zmb_wearable_wolf_skull_land");
+			mdl_skull waittill(#"movedone");
+			mdl_skull playsound("zmb_wearable_wolf_skull_land");
 			break;
 		}
 		else
@@ -791,16 +791,16 @@ function function_f4caac35(str_flag)
 		}
 		s_path = struct::get(s_path.target, "targetname");
 	}
-	var_affd5bec thread function_579caadc();
+	mdl_skull thread function_579caadc();
 	level.var_a92f045 = 1;
-	level.var_ab7d79d8 = var_affd5bec;
+	level.var_ab7d79d8 = mdl_skull;
 	for(var_fce7f186 = 0; var_fce7f186 < 15; var_fce7f186++)
 	{
 		level waittill(#"hash_3171c43f");
 	}
 	level.var_a92f045 = 0;
 	wait(0.2);
-	var_affd5bec delete();
+	mdl_skull delete();
 	level flag::set(str_flag);
 }
 
@@ -1281,7 +1281,7 @@ function function_9d85b9ce(e_attacker)
 		if(zm_utility::is_headshot(self.damageweapon, self.damagelocation, self.damagemod))
 		{
 			level.var_98fdd784 = self.origin;
-			level notify(#"hash_e8c3642d");
+			level notify("a_kill");
 		}
 	}
 	if(isplayer(e_attacker) && (isdefined(e_attacker.var_adaec269) && e_attacker.var_adaec269))

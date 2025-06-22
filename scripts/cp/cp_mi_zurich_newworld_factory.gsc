@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -1457,12 +1457,12 @@ function function_14da3d31()
 	level endon(#"foundry_start");
 	while(true)
 	{
-		var_da5600e3 = getentarray("warehouse_ammo", "targetname");
-		foreach(var_4abed703 in var_da5600e3)
+		a_e_ammo = getentarray("warehouse_ammo", "targetname");
+		foreach(e_ammo in a_e_ammo)
 		{
 			foreach(e_player in level.activeplayers)
 			{
-				if(distance2d(e_player.origin, var_4abed703.origin) < 100)
+				if(distance2d(e_player.origin, e_ammo.origin) < 100)
 				{
 					level.ai_diaz dialog::say("diaz_check_your_ammo_gra_0");
 					return;
@@ -1617,13 +1617,13 @@ function function_7ed63742()
 {
 	a_ai = spawner::get_ai_group_ai("warehouse_enemy");
 	e_goalvolume = getent("warehouse_end_goalvolume", "targetname");
-	var_c873bdb2 = 0;
+	n_retreated = 0;
 	foreach(ai in a_ai)
 	{
 		if(isalive(ai) && !ai istouching(e_goalvolume))
 		{
-			var_c873bdb2++;
-			if(var_c873bdb2 <= 8)
+			n_retreated++;
+			if(n_retreated <= 8)
 			{
 				ai setgoal(e_goalvolume);
 			}
@@ -2785,13 +2785,13 @@ function function_fc0bd7c9()
 function function_b83baf6f(str_trigger, str_turret)
 {
 	trigger::wait_till(str_trigger);
-	var_c316ad54 = getent(str_turret, "script_noteworthy", 1);
-	if(isalive(var_c316ad54))
+	ai_turret = getent(str_turret, "script_noteworthy", 1);
+	if(isalive(ai_turret))
 	{
-		level.ai_diaz ai::shoot_at_target("normal", var_c316ad54, "tag_barrel_animate", 3);
-		if(isalive(var_c316ad54))
+		level.ai_diaz ai::shoot_at_target("normal", ai_turret, "tag_barrel_animate", 3);
+		if(isalive(ai_turret))
 		{
-			var_c316ad54 kill();
+			ai_turret kill();
 		}
 	}
 }
@@ -3271,8 +3271,8 @@ function function_1f576299(a_ents)
 function function_d9753c8f(a_ents)
 {
 	level waittill(#"hash_7c7cfa5");
-	var_7e421bd8 = struct::get_array("inside_man_robot", "script_noteworthy");
-	foreach(s_scene in var_7e421bd8)
+	a_s_robots = struct::get_array("inside_man_robot", "script_noteworthy");
+	foreach(s_scene in a_s_robots)
 	{
 		if(s_scene.script_int === 1)
 		{
@@ -3293,8 +3293,8 @@ function function_d9753c8f(a_ents)
 function function_676dcd54()
 {
 	level waittill(#"hash_e6b5302a");
-	var_7e421bd8 = struct::get_array("inside_man_robot", "script_noteworthy");
-	foreach(s_scene in var_7e421bd8)
+	a_s_robots = struct::get_array("inside_man_robot", "script_noteworthy");
+	foreach(s_scene in a_s_robots)
 	{
 		if(s_scene.script_int === 2)
 		{
@@ -3315,8 +3315,8 @@ function function_676dcd54()
 function function_8d7047bd()
 {
 	level waittill(#"hash_cb7aa93");
-	var_7e421bd8 = struct::get_array("inside_man_robot", "script_noteworthy");
-	foreach(s_scene in var_7e421bd8)
+	a_s_robots = struct::get_array("inside_man_robot", "script_noteworthy");
+	foreach(s_scene in a_s_robots)
 	{
 		if(s_scene.script_int === 3)
 		{
@@ -3340,13 +3340,13 @@ function function_1736807e(a_ents)
 	level waittill(#"hash_761cb65f");
 	showmiscmodels("charging_station_glass_doors");
 	showmiscmodels("charging_station_robot");
-	var_7e421bd8 = struct::get_array("inside_man_robot", "script_noteworthy");
+	a_s_robots = struct::get_array("inside_man_robot", "script_noteworthy");
 	var_7da8df42 = struct::get_array("inside_man_charging_station", "script_noteworthy");
 	foreach(var_809fd273 in var_7da8df42)
 	{
 		var_809fd273 scene::stop(1);
 	}
-	foreach(var_f13cf991 in var_7e421bd8)
+	foreach(var_f13cf991 in a_s_robots)
 	{
 		var_f13cf991 scene::stop(1);
 	}
@@ -3475,8 +3475,8 @@ function function_d9482ef9()
 		s_scene scene::init();
 		util::wait_network_frame();
 	}
-	var_7e421bd8 = struct::get_array("inside_man_robot", "script_noteworthy");
-	foreach(s_scene in var_7e421bd8)
+	a_s_robots = struct::get_array("inside_man_robot", "script_noteworthy");
+	foreach(s_scene in a_s_robots)
 	{
 		ai_robot = spawner::simple_spawn_single("inside_man_robot");
 		ai_robot ai::set_ignoreme(1);
@@ -3674,8 +3674,8 @@ function function_aef915b2()
 			e_vat.var_3d0b54ab = getent("foundry_catwalk_clip", "targetname");
 			e_vat.var_cb14c98c = getent("foundry_catwalk_ai_clip", "targetname");
 			e_vat.var_84d67e66 = getent("fire_hazard_bridge", "targetname");
-			var_77f0f8f6 = getentarray("cauldron_bridge_fxanim_clip", "targetname");
-			foreach(e_clip in var_77f0f8f6)
+			a_e_clips = getentarray("cauldron_bridge_fxanim_clip", "targetname");
+			foreach(e_clip in a_e_clips)
 			{
 				e_clip notsolid();
 			}
@@ -4005,8 +4005,8 @@ function function_5ccfae48(str_location)
 function function_2aec5af4(a_ents)
 {
 	a_ents["newworld_cauldron_bridge"] waittill(#"hash_bc75666f");
-	var_77f0f8f6 = getentarray("cauldron_bridge_fxanim_clip", "targetname");
-	foreach(e_clip in var_77f0f8f6)
+	a_e_clips = getentarray("cauldron_bridge_fxanim_clip", "targetname");
+	foreach(e_clip in a_e_clips)
 	{
 		e_clip solid();
 	}

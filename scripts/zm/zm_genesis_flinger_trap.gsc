@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -28,8 +28,8 @@
 */
 function main()
 {
-	var_565a8d95 = getentarray("flinger_trap_trigger", "targetname");
-	array::thread_all(var_565a8d95, &init_flinger);
+	a_t_flinger = getentarray("flinger_trap_trigger", "targetname");
+	array::thread_all(a_t_flinger, &init_flinger);
 }
 
 /*
@@ -47,7 +47,7 @@ function init_flinger()
 	self flag::init("trap_cooldown");
 	self.zombie_cost = 1000;
 	level.var_6075220 = 0;
-	self.var_ad39b789 = [];
+	self.a_e_switches = [];
 	self.a_s_triggers = [];
 	self.var_3ad9e05d = [];
 	a_e_parts = getentarray(self.target, "targetname");
@@ -59,37 +59,37 @@ function init_flinger()
 			{
 				case "switch":
 				{
-					self.var_ad39b789[self.var_ad39b789.size] = a_e_parts[i];
+					self.a_e_switches[self.a_e_switches.size] = a_e_parts[i];
 					break;
 				}
 			}
 		}
 	}
-	var_da104453 = struct::get_array(self.target, "targetname");
-	for(i = 0; i < var_da104453.size; i++)
+	a_s_parts = struct::get_array(self.target, "targetname");
+	for(i = 0; i < a_s_parts.size; i++)
 	{
-		if(isdefined(var_da104453[i].script_noteworthy))
+		if(isdefined(a_s_parts[i].script_noteworthy))
 		{
-			switch(var_da104453[i].script_noteworthy)
+			switch(a_s_parts[i].script_noteworthy)
 			{
 				case "buy_trigger":
 				{
-					self.a_s_triggers[self.a_s_triggers.size] = var_da104453[i];
+					self.a_s_triggers[self.a_s_triggers.size] = a_s_parts[i];
 					break;
 				}
 				case "fling_direction":
 				{
-					self.var_b4f536a1 = var_da104453[i];
+					self.var_b4f536a1 = a_s_parts[i];
 					break;
 				}
 				case "flinger_fxanim":
 				{
-					self.var_3d0a6850 = var_da104453[i];
+					self.var_3d0a6850 = a_s_parts[i];
 					break;
 				}
 				case "player_fling_pos":
 				{
-					self.var_3ad9e05d[self.var_3ad9e05d.size] = var_da104453[i];
+					self.var_3ad9e05d[self.var_3ad9e05d.size] = a_s_parts[i];
 					break;
 				}
 			}
@@ -199,11 +199,11 @@ function function_dc9dafb8(e_player)
 */
 function trap_move_switches()
 {
-	for(i = 0; i < self.var_ad39b789.size; i++)
+	for(i = 0; i < self.a_e_switches.size; i++)
 	{
-		self.var_ad39b789[i] rotatepitch(160, 0.5);
+		self.a_e_switches[i] rotatepitch(160, 0.5);
 	}
-	self.var_ad39b789[0] waittill(#"rotatedone");
+	self.a_e_switches[0] waittill(#"rotatedone");
 	if(isdefined(self.script_int) && !level flag::get("power_on" + self.script_int))
 	{
 		level flag::wait_till("power_on" + self.script_int);
@@ -213,18 +213,18 @@ function trap_move_switches()
 	{
 		self flag::wait_till("trap_active");
 		self trap_lights_red();
-		for(i = 0; i < self.var_ad39b789.size; i++)
+		for(i = 0; i < self.a_e_switches.size; i++)
 		{
-			self.var_ad39b789[i] rotatepitch(-160, 0.5);
-			self.var_ad39b789[i] playsound("evt_switch_flip_trap");
+			self.a_e_switches[i] rotatepitch(-160, 0.5);
+			self.a_e_switches[i] playsound("evt_switch_flip_trap");
 		}
-		self.var_ad39b789[0] waittill(#"rotatedone");
+		self.a_e_switches[0] waittill(#"rotatedone");
 		self flag::wait_till("trap_cooldown");
-		for(i = 0; i < self.var_ad39b789.size; i++)
+		for(i = 0; i < self.a_e_switches.size; i++)
 		{
-			self.var_ad39b789[i] rotatepitch(160, 0.5);
+			self.a_e_switches[i] rotatepitch(160, 0.5);
 		}
-		self.var_ad39b789[0] waittill(#"rotatedone");
+		self.a_e_switches[0] waittill(#"rotatedone");
 		self flag::wait_till_clear("trap_cooldown");
 		self trap_lights_green();
 	}

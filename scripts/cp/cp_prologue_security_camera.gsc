@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -203,14 +203,14 @@ function function_9f9f8c2a()
 			{
 				level.var_690ce961 = level.security_cams["hallway"].n_index;
 				level.security_cams["hallway"].var_b5991f0e = 0;
-				level.security_cams["hallway"].var_a1a1b35e = 3;
+				level.security_cams["hallway"].n_actors = 3;
 				break;
 			}
 			case "hallway":
 			{
 				level.var_690ce961 = level.security_cams["interrogation"].n_index;
 				level.security_cams["interrogation"].var_b5991f0e = 0;
-				level.security_cams["interrogation"].var_a1a1b35e = 3;
+				level.security_cams["interrogation"].n_actors = 3;
 				break;
 			}
 			case "interrogation":
@@ -423,14 +423,14 @@ function function_d8d1298e(str_name, str_scene, var_b5991f0e = 0)
 	var_1ca98eed.var_b5991f0e = var_b5991f0e;
 	var_1ca98eed.str_scene = str_scene;
 	var_1ca98eed.var_2cc1a0a1 = 1;
-	var_1ca98eed.var_a1a1b35e = scene::get_actor_count(str_scene);
+	var_1ca98eed.n_actors = scene::get_actor_count(str_scene);
 	level scene::add_scene_func(str_scene, &function_c41806ee, "init", var_1ca98eed.n_index);
 	level scene::add_scene_func(str_scene, &function_48f438fd, "init");
 	level scene::init(str_scene);
 	if(var_b5991f0e)
 	{
 		var_1ca98eed.var_2cc1a0a1 = 0;
-		var_1ca98eed.var_a1a1b35e = 0;
+		var_1ca98eed.n_actors = 0;
 	}
 	level.security_cams[str_name] = var_1ca98eed;
 }
@@ -681,7 +681,7 @@ function start_face_scanner(extra_cam_index)
 	self endon(#"disconnect");
 	level flag::clear("face_scanning_complete");
 	var_1ca98eed = function_6840a15e(extra_cam_index);
-	if(var_1ca98eed.var_a1a1b35e == 0)
+	if(var_1ca98eed.n_actors == 0)
 	{
 		wait(2);
 		return false;

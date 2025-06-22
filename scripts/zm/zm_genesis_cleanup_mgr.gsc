@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -134,11 +134,11 @@ function private cleanup_main()
 */
 function private function_37a5b776()
 {
-	var_a8951c29 = [];
-	var_9e84b959 = array("start_island", "apothicon_island", "temple_island", "prototype_island", "asylum_island", "prison_island", "arena_island");
-	for(i = 0; i < var_9e84b959.size; i++)
+	a_e_occupied = [];
+	a_str_islands = array("start_island", "apothicon_island", "temple_island", "prototype_island", "asylum_island", "prison_island", "arena_island");
+	for(i = 0; i < a_str_islands.size; i++)
 	{
-		e_island = getent(var_9e84b959[i], "targetname");
+		e_island = getent(a_str_islands[i], "targetname");
 		for(j = 0; j < level.activeplayers.size; j++)
 		{
 			if(!isalive(level.activeplayers[j]))
@@ -151,17 +151,17 @@ function private function_37a5b776()
 			}
 			if(level.activeplayers[j] istouching(e_island))
 			{
-				array::add(var_a8951c29, e_island, 0);
+				array::add(a_e_occupied, e_island, 0);
 			}
 		}
 	}
-	if(!var_a8951c29.size)
+	if(!a_e_occupied.size)
 	{
 		return true;
 	}
-	for(k = 0; k < var_a8951c29.size; k++)
+	for(k = 0; k < a_e_occupied.size; k++)
 	{
-		if(self istouching(var_a8951c29[k]))
+		if(self istouching(a_e_occupied[k]))
 		{
 			return true;
 		}

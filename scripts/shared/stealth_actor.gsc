@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\ai\systems\blackboard;
 #using scripts\shared\ai_shared;
 #using scripts\shared\flag_shared;
@@ -209,7 +209,7 @@ function function_39fb9593()
 	self notify(#"hash_39fb9593");
 	self endon(#"hash_39fb9593");
 	self endon(#"death");
-	self.var_75a707ea = 1;
+	self.reinforcer = 1;
 	if(!(isdefined(self.script_stealth_dontseek) && self.script_stealth_dontseek))
 	{
 		self function_77ae41ed(1);
@@ -338,7 +338,7 @@ function function_1064f733()
 	self notify(#"hash_1064f733");
 	self endon(#"hash_1064f733");
 	self endon(#"death");
-	if(isdefined(self.var_75a707ea) && self.var_75a707ea)
+	if(isdefined(self.reinforcer) && self.reinforcer)
 	{
 		return;
 	}

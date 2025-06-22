@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\mp\_challenges;
 #using scripts\mp\_util;
 #using scripts\mp\gametypes\_battlechatter;
@@ -1263,7 +1263,7 @@ function setupnearbyspawns()
 	}
 	first = [];
 	second = [];
-	var_d9ac65f8 = [];
+	third = [];
 	outer = [];
 	thirdsize = spawns.size / 3;
 	for(i = 0; i <= thirdsize; i++)
@@ -1279,13 +1279,13 @@ function setupnearbyspawns()
 		}
 		else
 		{
-			var_d9ac65f8[var_d9ac65f8.size] = spawns[i];
+			third[third.size] = spawns[i];
 		}
 		i++;
 	}
 	self.gameobject.nearspawns = first;
 	self.gameobject.midspawns = second;
-	self.gameobject.farspawns = var_d9ac65f8;
+	self.gameobject.farspawns = third;
 	self.gameobject.outerspawns = outer;
 }
 

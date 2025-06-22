@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\archetype_thrasher;
@@ -446,7 +446,7 @@ function function_68ee76ee(var_d1cba433, var_48cf4a3d = 1)
 		{
 			if(function_6d24956b())
 			{
-				var_e3372b59 = function_8b323113(var_a4ef4373);
+				ai_thrasher = function_8b323113(var_a4ef4373);
 				arrayremovevalue(var_d1cba433, var_a4ef4373);
 			}
 		}
@@ -514,17 +514,17 @@ function function_8b323113(var_a4ef4373, var_42fbb5b1 = 1, var_ab0dd5e8 = 1, var
 		{
 			return;
 		}
-		var_e3372b59 = zombie_utility::spawn_zombie(level.var_feebf312[0], "thrasher");
-		if(!isdefined(var_e3372b59))
+		ai_thrasher = zombie_utility::spawn_zombie(level.var_feebf312[0], "thrasher");
+		if(!isdefined(ai_thrasher))
 		{
 			return;
 		}
 		v_origin = var_a4ef4373.origin;
 		v_angles = var_a4ef4373.angles;
-		var_e3372b59 forceteleport(v_origin, v_angles, 1, 1);
+		ai_thrasher forceteleport(v_origin, v_angles, 1, 1);
 		if(var_be10dc4f)
 		{
-			var_e3372b59 ai::set_behavior_attribute("move_mode", "friendly");
+			ai_thrasher ai::set_behavior_attribute("move_mode", "friendly");
 		}
 		a_ai_zombies = getaiarchetypearray("zombie", "axis");
 		foreach(ai_zombie in a_ai_zombies)
@@ -532,17 +532,17 @@ function function_8b323113(var_a4ef4373, var_42fbb5b1 = 1, var_ab0dd5e8 = 1, var
 			if(isalive(ai_zombie) && (!(isdefined(ai_zombie.var_3f6ea790) && ai_zombie.var_3f6ea790)) && ai_zombie != var_a4ef4373)
 			{
 				var_ee9aed61 = 60 * 60;
-				if(distancesquared(ai_zombie.origin, var_e3372b59.origin) <= var_ee9aed61)
+				if(distancesquared(ai_zombie.origin, ai_thrasher.origin) <= var_ee9aed61)
 				{
-					thrasherserverutils::thrasherknockdownzombie(var_e3372b59, ai_zombie);
+					thrasherserverutils::thrasherknockdownzombie(ai_thrasher, ai_zombie);
 				}
 			}
 		}
-		var_ab201dd8 = util::spawn_model("tag_origin", var_e3372b59.origin, var_e3372b59.angles);
-		var_ab201dd8 thread scene::play("scene_zm_dlc2_thrasher_transform_thrasher", var_e3372b59);
+		var_ab201dd8 = util::spawn_model("tag_origin", ai_thrasher.origin, ai_thrasher.angles);
+		var_ab201dd8 thread scene::play("scene_zm_dlc2_thrasher_transform_thrasher", ai_thrasher);
 		level.var_1f0937ce = level.round_number;
 		level thread function_e2049637();
-		return var_e3372b59;
+		return ai_thrasher;
 	}
 }
 
@@ -628,20 +628,20 @@ function spawn_thrasher(var_42fbb5b1 = 1)
 		return;
 	}
 	s_loc = function_22338aad();
-	var_e3372b59 = zombie_utility::spawn_zombie(level.var_feebf312[0], "thrasher", s_loc);
-	if(isdefined(var_e3372b59) && isdefined(s_loc))
+	ai_thrasher = zombie_utility::spawn_zombie(level.var_feebf312[0], "thrasher", s_loc);
+	if(isdefined(ai_thrasher) && isdefined(s_loc))
 	{
-		var_e3372b59 forceteleport(s_loc.origin, s_loc.angles);
-		playsoundatposition("zmb_vocals_thrash_spawn", var_e3372b59.origin);
-		if(!var_e3372b59 zm_utility::in_playable_area())
+		ai_thrasher forceteleport(s_loc.origin, s_loc.angles);
+		playsoundatposition("zmb_vocals_thrash_spawn", ai_thrasher.origin);
+		if(!ai_thrasher zm_utility::in_playable_area())
 		{
 			player = array::random(level.players);
 			if(zm_utility::is_player_valid(player, 0, 1))
 			{
-				var_e3372b59 thread function_89976d94(player.origin);
+				ai_thrasher thread function_89976d94(player.origin);
 			}
 		}
-		return var_e3372b59;
+		return ai_thrasher;
 	}
 }
 

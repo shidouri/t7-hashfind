@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -89,14 +89,14 @@ function start()
 	{
 		return;
 	}
-	var_d028d3a8 = array("ZOD", "FACTORY", "CASTLE", "ISLAND", "STALINGRAD");
+	a_str_quests = array("ZOD", "FACTORY", "CASTLE", "ISLAND", "STALINGRAD");
 	var_61d59a5a = [];
 	foreach(player in level.players)
 	{
-		foreach(var_1493eda1 in var_d028d3a8)
+		foreach(str_quest in a_str_quests)
 		{
-			var_dc163518 = (player zm_stats::get_global_stat(("DARKOPS_" + var_1493eda1) + "_SUPER_EE")) > 0;
-			var_9d5e869 = isinarray(var_61d59a5a, var_1493eda1);
+			var_dc163518 = (player zm_stats::get_global_stat(("DARKOPS_" + str_quest) + "_SUPER_EE")) > 0;
+			var_9d5e869 = isinarray(var_61d59a5a, str_quest);
 			if(var_dc163518 && !var_9d5e869)
 			{
 				if(!isdefined(var_61d59a5a))
@@ -107,14 +107,14 @@ function start()
 				{
 					var_61d59a5a = array(var_61d59a5a);
 				}
-				var_61d59a5a[var_61d59a5a.size] = var_1493eda1;
+				var_61d59a5a[var_61d59a5a.size] = str_quest;
 			}
 		}
 	}
 	/#
 		iprintlnbold(("" + var_61d59a5a.size) + "");
 	#/
-	if(var_61d59a5a.size == var_d028d3a8.size)
+	if(var_61d59a5a.size == a_str_quests.size)
 	{
 		level clientfield::set("hope_state", 1);
 		level thread function_bb1fbc7f();
@@ -313,17 +313,17 @@ function function_6143b210(e_triggerer)
 	e_triggerer clientfield::set_to_player("hope_spark", 0);
 	e_triggerer clientfield::set_player_uimodel("zmInventory.super_ee", 0);
 	s_start = struct::get("hope_origin");
-	var_8ccfc8c3 = util::spawn_model("tag_origin", s_start.origin, s_start.angles);
+	mdl_hope = util::spawn_model("tag_origin", s_start.origin, s_start.angles);
 	util::wait_network_frame();
-	var_8ccfc8c3 playsound("zmb_overachiever_spark_spawn");
-	var_8ccfc8c3 clientfield::set("hope_spark", 1);
+	mdl_hope playsound("zmb_overachiever_spark_spawn");
+	mdl_hope clientfield::set("hope_spark", 1);
 	wait(2);
 	s_target = struct::get(s_start.target);
-	var_8ccfc8c3 moveto(s_target.origin, 2);
+	mdl_hope moveto(s_target.origin, 2);
 	wait(3);
 	s_target = struct::get(s_target.target);
-	var_8ccfc8c3 moveto(s_target.origin, 2);
-	var_8ccfc8c3 waittill(#"movedone");
+	mdl_hope moveto(s_target.origin, 2);
+	mdl_hope waittill(#"movedone");
 	level clientfield::set("hope_state", 3);
 	level flag::set("hope_done");
 	playsoundatposition("zmb_overachiever_spark_success", (0, 0, 0));

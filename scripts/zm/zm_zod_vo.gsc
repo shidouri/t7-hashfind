@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -1438,9 +1438,9 @@ function vo_placeworm_hint()
 	Parameters: 1
 	Flags: None
 */
-function function_4de46cf5(var_559a3756)
+function function_4de46cf5(str_context)
 {
-	switch(var_559a3756)
+	switch(str_context)
 	{
 		case "pickup":
 		{
@@ -1568,14 +1568,14 @@ function function_f9003879(var_d3be01d9)
 */
 function function_c41d3e2e(var_1e0c5b50)
 {
-	var_93173b64 = [];
-	var_93173b64["memento_boxer"] = "gym";
-	var_93173b64["memento_detective"] = "ruby";
-	var_93173b64["memento_femme"] = "burlesque";
-	var_93173b64["memento_magician"] = "workshop";
+	a_str_location = [];
+	a_str_location["memento_boxer"] = "gym";
+	a_str_location["memento_detective"] = "ruby";
+	a_str_location["memento_femme"] = "burlesque";
+	a_str_location["memento_magician"] = "workshop";
 	if(randomint(100) < 60)
 	{
-		var_5eb0b65c = ((("vox_plr_" + self.characterindex) + "_place_item_") + var_93173b64[var_1e0c5b50]) + "_0";
+		var_5eb0b65c = ((("vox_plr_" + self.characterindex) + "_place_item_") + a_str_location[var_1e0c5b50]) + "_0";
 		self function_7b697614(var_5eb0b65c, 0, 0);
 	}
 }
@@ -1768,13 +1768,13 @@ function function_7a64d508()
 	}
 	if(isdefined(var_3352e74) && var_3352e74)
 	{
-		var_90461c29 = [];
-		var_90461c29[0] = "floyd";
-		var_90461c29[1] = "jack";
-		var_90461c29[2] = "rose";
-		var_90461c29[3] = "nero";
+		a_str_confessor = [];
+		a_str_confessor[0] = "floyd";
+		a_str_confessor[1] = "jack";
+		a_str_confessor[2] = "rose";
+		a_str_confessor[3] = "nero";
 		var_f42a2187 = randomint(3) + 1;
-		var_5a4782f7 = ((((("vox_plr_" + var_76541c53) + "_confession_") + var_90461c29[var_76541c53]) + "_") + var_f42a2187) + "_0";
+		var_5a4782f7 = ((((("vox_plr_" + var_76541c53) + "_confession_") + a_str_confessor[var_76541c53]) + "_") + var_f42a2187) + "_0";
 		var_90788992 = array(var_5a4782f7);
 		var_678774f0 = array(0);
 		if(var_f3aa6934.size > 1)
@@ -1784,7 +1784,7 @@ function function_7a64d508()
 				var_2789c6f = array::random(var_f3aa6934);
 			}
 			while(var_2789c6f == var_76541c53);
-			var_e84013bc = ((((("vox_plr_" + var_2789c6f) + "_confession_") + var_90461c29[var_76541c53]) + "_response_") + var_f42a2187) + "_0";
+			var_e84013bc = ((((("vox_plr_" + var_2789c6f) + "_confession_") + a_str_confessor[var_76541c53]) + "_response_") + var_f42a2187) + "_0";
 			array::add(var_90788992, var_e84013bc);
 			array::add(var_678774f0, 0.5);
 		}
@@ -1925,22 +1925,22 @@ function function_2cc571f6()
 function function_f8939df5()
 {
 	self endon(#"_zombie_game_over");
-	var_25322547 = randomfloatrange(15, 20);
+	f_wait = randomfloatrange(15, 20);
 	while(true)
 	{
 		level waittill(#"hash_aaa21b88");
 		while(level.var_6e63e659 > 0)
 		{
-			wait(var_25322547);
+			wait(f_wait);
 			e_player = function_43b03c7f(5000);
 			if(zm_utility::is_player_valid(e_player))
 			{
 				e_player zm_audio::create_and_play_dialog("margwa", "fight");
-				var_25322547 = randomfloatrange(15, 20);
+				f_wait = randomfloatrange(15, 20);
 			}
 			else
 			{
-				var_25322547 = 1;
+				f_wait = 1;
 			}
 		}
 	}

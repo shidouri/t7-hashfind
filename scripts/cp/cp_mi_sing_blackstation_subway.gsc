@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_objectives;
@@ -90,8 +90,8 @@ function function_eb060258()
 */
 function function_27e6ca54()
 {
-	var_ec39b8a8 = getentarray("subway_corpse_floating", "targetname");
-	foreach(e_corpse in var_ec39b8a8)
+	e_corpses = getentarray("subway_corpse_floating", "targetname");
+	foreach(e_corpse in e_corpses)
 	{
 		e_corpse thread function_62437267();
 	}

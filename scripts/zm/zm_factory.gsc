@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\abilities\_ability_player;
 #using scripts\shared\ai\behavior_zombie_dog;
@@ -209,7 +209,7 @@ function main()
 	array::thread_all(trigs, &extra_events);
 	level.use_powerup_volumes = 1;
 	level.var_9aaae7ae = &function_869d6f66;
-	level thread function_6d012317();
+	level thread ciphers();
 	level thread flytrap();
 	level thread function_5d386c43();
 	/#
@@ -2557,7 +2557,7 @@ function fx_overrides()
 }
 
 /*
-	Name: function_6d012317
+	Name: ciphers
 	Namespace: zm_factory
 	Checksum: 0x1DF7305A
 	Offset: 0x8890
@@ -2565,10 +2565,10 @@ function fx_overrides()
 	Parameters: 0
 	Flags: Linked
 */
-function function_6d012317()
+function ciphers()
 {
-	var_3d01fc2c = getent("cipher_brick_main", "script_noteworthy");
-	var_3d01fc2c thread brick_cipher();
+	mdl_brick = getent("cipher_brick_main", "script_noteworthy");
+	mdl_brick thread brick_cipher();
 }
 
 /*
@@ -2584,16 +2584,16 @@ function brick_cipher()
 {
 	self create_unitrigger();
 	self waittill(#"trigger_activated");
-	var_74772b0f = getentarray("cipher_bricks", "targetname");
-	foreach(var_3d01fc2c in var_74772b0f)
+	a_mdl_bricks = getentarray("cipher_bricks", "targetname");
+	foreach(mdl_brick in a_mdl_bricks)
 	{
-		var_3d01fc2c movez(375, 2);
+		mdl_brick movez(375, 2);
 	}
 	zm_unitrigger::unregister_unitrigger(self.s_unitrigger);
 	wait(2);
-	foreach(var_3d01fc2c in var_74772b0f)
+	foreach(mdl_brick in a_mdl_bricks)
 	{
-		var_3d01fc2c delete();
+		mdl_brick delete();
 	}
 }
 
@@ -3000,8 +3000,8 @@ function function_8fbb6760(str_perk)
 function flytrap_prize()
 {
 	var_3c100ea1 = struct::get("flytrap_prize", "targetname");
-	var_6e1b8eeb = util::spawn_model("wpn_t7_hero_annihilator_world", var_3c100ea1.origin, var_3c100ea1.angles);
-	var_6e1b8eeb thread function_45814329(var_3c100ea1);
+	mdl_prize = util::spawn_model("wpn_t7_hero_annihilator_world", var_3c100ea1.origin, var_3c100ea1.angles);
+	mdl_prize thread function_45814329(var_3c100ea1);
 	level thread function_86e1c543();
 	level flag::clear("flytrap");
 }

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -351,9 +351,9 @@ function function_3e8c94e3()
 	Parameters: 1
 	Flags: Linked
 */
-function function_9e0c324b(var_382bb75)
+function function_9e0c324b(f_interfacer)
 {
-	if(var_382bb75 == getweapon("launcher_dragon_strike") || var_382bb75 == getweapon("launcher_dragon_strike_upgraded"))
+	if(f_interfacer == getweapon("launcher_dragon_strike") || f_interfacer == getweapon("launcher_dragon_strike_upgraded"))
 	{
 		return true;
 	}
@@ -500,28 +500,28 @@ function function_a3b69ec0(var_5d020ece)
 */
 function function_9af893e8(e_player, var_5d020ece, b_upgraded, var_35ab0c48, var_6646a04b)
 {
-	var_2fcea154 = util::spawn_anim_model("c_zom_dlc3_dragon_body_airstrike", var_5d020ece.var_53d81d57, var_5d020ece.angles + vectorscale((1, 0, 0), 25));
-	var_2fcea154 function_42ab5fbb(var_5d020ece);
+	mdl_dragon = util::spawn_anim_model("c_zom_dlc3_dragon_body_airstrike", var_5d020ece.var_53d81d57, var_5d020ece.angles + vectorscale((1, 0, 0), 25));
+	mdl_dragon function_42ab5fbb(var_5d020ece);
 	if(isdefined(e_player))
 	{
-		var_2fcea154.player = e_player;
+		mdl_dragon.player = e_player;
 		e_player.var_8e17738c = 0;
 	}
 	for(i = 0; i < 4; i++)
 	{
-		var_2fcea154 waittill(#"fireball");
-		var_2fcea154.var_201fdf35 = var_2fcea154 gettagorigin("tag_throat_fx");
-		var_c606eb7 = 6;
+		mdl_dragon waittill(#"fireball");
+		mdl_dragon.var_201fdf35 = mdl_dragon gettagorigin("tag_throat_fx");
+		n_checks = 6;
 		do
 		{
 			var_2410d5ad = var_5d020ece.v_loc + function_adac83c4();
-			var_c606eb7--;
+			n_checks--;
 		}
-		while(bullettracepassed(var_2fcea154.var_201fdf35, var_2410d5ad, 0, var_2fcea154) && var_c606eb7 > 0);
-		var_aa911866 = magicbullet(var_6646a04b, var_2fcea154.var_201fdf35, var_2410d5ad, var_2fcea154);
+		while(bullettracepassed(mdl_dragon.var_201fdf35, var_2410d5ad, 0, mdl_dragon) && n_checks > 0);
+		var_aa911866 = magicbullet(var_6646a04b, mdl_dragon.var_201fdf35, var_2410d5ad, mdl_dragon);
 		level thread function_a6d19957(b_upgraded, var_aa911866, var_5d020ece.v_loc, var_35ab0c48);
 	}
-	var_2fcea154 thread function_604af93b();
+	mdl_dragon thread function_604af93b();
 	while(isdefined(var_aa911866))
 	{
 		wait(0.05);
@@ -593,8 +593,8 @@ function function_6efadb82(var_825b87b9, var_5a0c399b)
 {
 	self clientfield::set("dragon_strike_flare_fx", 1);
 	var_dc5fde65 = getclosestpointonnavmesh(self.origin, 128);
-	var_1e43571f = util::spawn_model("tag_origin", var_dc5fde65);
-	var_1e43571f zm_utility::create_zombie_point_of_interest(var_825b87b9, 64, 10000);
+	mdl_attractor = util::spawn_model("tag_origin", var_dc5fde65);
+	mdl_attractor zm_utility::create_zombie_point_of_interest(var_825b87b9, 64, 10000);
 	level waittill(#"hash_d67e330d");
 	if(isdefined(self))
 	{
@@ -608,7 +608,7 @@ function function_6efadb82(var_825b87b9, var_5a0c399b)
 			self clientfield::increment("dragon_strike_marker_fx_fadeout");
 		}
 	}
-	var_1e43571f delete();
+	mdl_attractor delete();
 	wait(3.5);
 	if(isdefined(self))
 	{
@@ -681,12 +681,12 @@ function function_7fcb14a8()
 	var_5a0c399b = self zm_utility::get_player_placeable_mine();
 	if(var_5a0c399b == getweapon("launcher_dragon_strike_upgraded"))
 	{
-		var_78f8828b = "dragon_strike_marker_upgraded_fx";
+		str_marker = "dragon_strike_marker_upgraded_fx";
 		var_854898eb = "dragon_strike_marker_upgraded_invalid_fx";
 	}
 	else
 	{
-		var_78f8828b = "dragon_strike_marker_fx";
+		str_marker = "dragon_strike_marker_fx";
 		var_854898eb = "dragon_strike_marker_invalid_fx";
 	}
 	while(self flag::get("show_dragon_strike_reticule"))
@@ -694,7 +694,7 @@ function function_7fcb14a8()
 		v_start = self geteye();
 		v_forward = self getweaponforwarddir();
 		v_end = v_start + (v_forward * 2500);
-		a_trace = bullettrace(v_start, v_end, 0, self.mdl_target, 1, 0, self.var_1e43571f);
+		a_trace = bullettrace(v_start, v_end, 0, self.mdl_target, 1, 0, self.mdl_attractor);
 		self.var_be00572f = a_trace["position"];
 		if(isdefined(self.var_5d020ece))
 		{
@@ -707,7 +707,7 @@ function function_7fcb14a8()
 			wait(0.1);
 			continue;
 		}
-		self.mdl_target clientfield::increment(var_78f8828b);
+		self.mdl_target clientfield::increment(str_marker);
 		self.mdl_target moveto(self.var_be00572f + var_b912cdaf, 0.05);
 		wait(0.1);
 	}

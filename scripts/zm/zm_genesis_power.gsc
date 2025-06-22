@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\ai\zombie_utility;
@@ -120,12 +120,12 @@ function function_62072a94()
 */
 function function_f29a5d3a()
 {
-	var_e6706bab = getentarray("power_volume", "targetname");
+	a_pads = getentarray("power_volume", "targetname");
 	level.var_eada0345 = 0;
 	level thread function_79774b04();
-	for(i = 0; i < var_e6706bab.size; i++)
+	for(i = 0; i < a_pads.size; i++)
 	{
-		var_e6706bab[i] thread function_fec7f142();
+		a_pads[i] thread function_fec7f142();
 	}
 }
 
@@ -141,8 +141,8 @@ function function_f29a5d3a()
 function function_bcac2659()
 {
 	level waittill(#"start_zombie_round_logic");
-	var_5d7a99d0 = getentarray("power_grid_display", "targetname");
-	array::thread_all(var_5d7a99d0, &function_11da2524);
+	a_e_displays = getentarray("power_grid_display", "targetname");
+	array::thread_all(a_e_displays, &function_11da2524);
 	level thread function_28753fd1();
 }
 
@@ -218,29 +218,29 @@ function function_11da2524()
 function function_28753fd1()
 {
 	var_329d83b2 = getent("tesla_trap_console", "targetname");
-	var_33accfa3 = getentarray("power_cable_proto", "targetname");
-	for(i = 0; i < var_33accfa3.size; i++)
+	a_mdl_cables = getentarray("power_cable_proto", "targetname");
+	for(i = 0; i < a_mdl_cables.size; i++)
 	{
-		switch(var_33accfa3[i].script_noteworthy)
+		switch(a_mdl_cables[i].script_noteworthy)
 		{
 			case "prison":
 			{
-				var_7781bac2 = var_33accfa3[i];
+				var_7781bac2 = a_mdl_cables[i];
 				break;
 			}
 			case "sheffield":
 			{
-				var_18c59005 = var_33accfa3[i];
+				var_18c59005 = a_mdl_cables[i];
 				break;
 			}
 			case "temple":
 			{
-				var_c3cc1994 = var_33accfa3[i];
+				var_c3cc1994 = a_mdl_cables[i];
 				break;
 			}
 			case "asylum":
 			{
-				var_66f151c2 = var_33accfa3[i];
+				var_66f151c2 = a_mdl_cables[i];
 				break;
 			}
 		}
@@ -298,9 +298,9 @@ function function_28753fd1()
 				var_329d83b2 showpart("j_green_03");
 				var_329d83b2 hidepart("j_red_04");
 				var_329d83b2 showpart("j_green_04");
-				foreach(var_37176f28 in var_33accfa3)
+				foreach(mdl_cable in a_mdl_cables)
 				{
-					var_37176f28 clientfield::set("power_cables_shader", 1);
+					mdl_cable clientfield::set("power_cables_shader", 1);
 				}
 				break;
 			}
@@ -322,8 +322,8 @@ function function_79774b04()
 	level endon(#"hash_fb60eed2");
 	while(true)
 	{
-		var_e6706bab = getentarray("power_volume", "targetname");
-		if(var_e6706bab.size == 0)
+		a_pads = getentarray("power_volume", "targetname");
+		if(a_pads.size == 0)
 		{
 			break;
 		}
@@ -332,9 +332,9 @@ function function_79774b04()
 		{
 			e_player = a_players[i];
 			var_cebeadd5 = 0;
-			for(j = 0; j < var_e6706bab.size; j++)
+			for(j = 0; j < a_pads.size; j++)
 			{
-				var_f5f4e9cc = var_e6706bab[j];
+				var_f5f4e9cc = a_pads[j];
 				if(!(isdefined(var_f5f4e9cc.var_56e27fd0) && var_f5f4e9cc.var_56e27fd0))
 				{
 					var_cebeadd5 = var_f5f4e9cc function_8961cbdb(e_player);
@@ -845,8 +845,8 @@ function function_1d9b9b7b()
 	self endon(self.var_3c42ad63);
 	ai_index = 0;
 	var_c00049d4 = "power_spawn" + self.script_int;
-	var_8ef573c1 = struct::get_array(var_c00049d4, "targetname");
-	var_8ef573c1 = array::randomize(var_8ef573c1);
+	a_s_locations = struct::get_array(var_c00049d4, "targetname");
+	a_s_locations = array::randomize(a_s_locations);
 	self.var_b7d540e6 = gettime();
 	self.var_9437e3b6 = 0;
 	var_f2882ed8 = 0;
@@ -873,9 +873,9 @@ function function_1d9b9b7b()
 		}
 		else if(gettime() >= var_13b0b925)
 		{
-			s_spawn_pos = var_8ef573c1[var_f2882ed8];
+			s_spawn_pos = a_s_locations[var_f2882ed8];
 			var_f2882ed8++;
-			if(var_f2882ed8 >= var_8ef573c1.size)
+			if(var_f2882ed8 >= a_s_locations.size)
 			{
 				var_f2882ed8 = 0;
 			}

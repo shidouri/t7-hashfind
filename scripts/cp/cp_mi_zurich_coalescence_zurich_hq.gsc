@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -315,8 +315,8 @@ function function_6c64938e()
 	trigger::wait_till("trig_hq_robots_start");
 	for(i = 1; i < 3; i++)
 	{
-		var_6a2c8ee9 = getentarray("security_checkpoint_door_0" + i, "targetname");
-		foreach(var_530f952d in var_6a2c8ee9)
+		a_mdl_door = getentarray("security_checkpoint_door_0" + i, "targetname");
+		foreach(var_530f952d in a_mdl_door)
 		{
 			if(isdefined(var_530f952d.target))
 			{
@@ -831,12 +831,12 @@ function turret_think()
 	n_max = 1.3;
 	var_39178da3 = randomfloatrange(n_min, n_max);
 	n_move_time = 2;
-	self.var_61ba68c8 = util::spawn_model("tag_origin", self.origin, self.angles);
-	self.var_61ba68c8.script_objective = self.script_objective;
+	self.mdl_mover = util::spawn_model("tag_origin", self.origin, self.angles);
+	self.mdl_mover.script_objective = self.script_objective;
 	s_moveto = struct::get(self.target);
-	self linkto(self.var_61ba68c8, "tag_origin");
-	self.var_61ba68c8 moveto(s_moveto.origin, n_move_time);
-	self.var_61ba68c8 waittill(#"movedone");
+	self linkto(self.mdl_mover, "tag_origin");
+	self.mdl_mover moveto(s_moveto.origin, n_move_time);
+	self.mdl_mover waittill(#"movedone");
 	wait(var_39178da3);
 	self turret_activate();
 }
@@ -992,10 +992,10 @@ function function_f8e4b283()
 	Parameters: 3
 	Flags: Linked
 */
-function function_762c95f0(var_af782668, var_4d9cdec3, var_9895c1a4)
+function function_762c95f0(str_ravens, var_4d9cdec3, var_9895c1a4)
 {
-	zurich_util::function_1b3dfa61(var_af782668 + "_struct_trig", undefined, var_4d9cdec3, var_9895c1a4);
-	a_scenes = struct::get_array(var_af782668);
+	zurich_util::function_1b3dfa61(str_ravens + "_struct_trig", undefined, var_4d9cdec3, var_9895c1a4);
+	a_scenes = struct::get_array(str_ravens);
 	foreach(s_scene in a_scenes)
 	{
 		s_scene util::delay(randomfloat(0.15), undefined, &scene::play);

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\ai_shared;
@@ -356,10 +356,10 @@ function function_d6bb2a6c()
 */
 function function_2fae2796()
 {
-	var_664f35bb = struct::get_array("ee_gear_teleport_spot", "targetname");
+	a_s_spot = struct::get_array("ee_gear_teleport_spot", "targetname");
 	while(true)
 	{
-		foreach(s_spot in var_664f35bb)
+		foreach(s_spot in a_s_spot)
 		{
 			if(!positionwouldtelefrag(s_spot.origin))
 			{
@@ -873,8 +873,8 @@ function function_248f6385()
 {
 	level notify(#"hash_248f6385");
 	level flag::clear("aa_gun_ammo_loaded");
-	var_8cad0c4d = getent("aa_gun", "targetname");
-	var_8cad0c4d thread scene::play("p7_fxanim_zm_island_flak_88_bundle", var_8cad0c4d);
+	mdl_gun = getent("aa_gun", "targetname");
+	mdl_gun thread scene::play("p7_fxanim_zm_island_flak_88_bundle", mdl_gun);
 	exploder::exploder("fxexp_810");
 	var_16bdbe0a = struct::get("aa_gun_trigger", "targetname");
 	playrumbleonposition("zm_island_aa_gun_fired", var_16bdbe0a.origin);
@@ -923,8 +923,8 @@ function function_45e9f465()
 	wait(0.3);
 	self clientfield::set("plane_hit_by_aa_gun", 1);
 	self playsound("evt_b17_explode");
-	var_f7fded02 = struct::get_array("aa_gun_elevator_part_landing", "targetname");
-	s_end = array::random(var_f7fded02);
+	a_s_end = struct::get_array("aa_gun_elevator_part_landing", "targetname");
+	s_end = array::random(a_s_end);
 	s_explosion = spawnstruct();
 	s_explosion.origin = self.origin;
 	s_explosion.angles = self.angles;
@@ -1044,10 +1044,10 @@ function private function_9bd3096f(player)
 */
 function function_5d0980ef()
 {
-	var_66bf6df = getent("elevator_gears", "targetname");
-	var_66bf6df hidepart("wheel_01_jnt");
-	var_66bf6df hidepart("wheel_02_jnt");
-	var_66bf6df hidepart("wheel_03_jnt");
+	mdl_gears = getent("elevator_gears", "targetname");
+	mdl_gears hidepart("wheel_01_jnt");
+	mdl_gears hidepart("wheel_02_jnt");
+	mdl_gears hidepart("wheel_03_jnt");
 	level thread function_a06630fc();
 }
 
@@ -1111,8 +1111,8 @@ function function_77f4b1ca()
 {
 	self endon(#"disconnect");
 	self endon(#"hash_87b9e813");
-	var_66bf6df = getent("elevator_gears", "targetname");
-	self util::waittill_player_looking_at(var_66bf6df.origin);
+	mdl_gears = getent("elevator_gears", "targetname");
+	self util::waittill_player_looking_at(mdl_gears.origin);
 	foreach(player in level.players)
 	{
 		if(player != self)
@@ -1140,8 +1140,8 @@ function function_6cc2e374()
 	var_f022cb65 = getent("trigger_elevator_gears", "targetname");
 	var_f022cb65 setcursorhint("HINT_NOICON");
 	var_f022cb65 sethintstring("");
-	var_66bf6df = getent("elevator_gears", "targetname");
-	var_66bf6df thread elevator_gears();
+	mdl_gears = getent("elevator_gears", "targetname");
+	mdl_gears thread elevator_gears();
 	while(true)
 	{
 		var_f022cb65 waittill(#"trigger", e_who);
@@ -1149,19 +1149,19 @@ function function_6cc2e374()
 		{
 			level flag::set("elevator_part_gear1_placed");
 			var_f022cb65 playsound("zmb_item_pickup");
-			var_66bf6df.var_df281e84 = util::spawn_model("p7_zm_isl_elevator_gears_wheel", var_66bf6df gettagorigin("wheel_01_jnt") + (1, 2, 0), var_66bf6df gettagangles("wheel_01_jnt"));
+			mdl_gears.var_df281e84 = util::spawn_model("p7_zm_isl_elevator_gears_wheel", mdl_gears gettagorigin("wheel_01_jnt") + (1, 2, 0), mdl_gears gettagangles("wheel_01_jnt"));
 		}
 		if(level flag::get("elevator_part_gear2_found") && !level flag::get("elevator_part_gear2_placed"))
 		{
 			level flag::set("elevator_part_gear2_placed");
 			var_f022cb65 playsound("zmb_item_pickup");
-			var_66bf6df.var_e882d83c = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", var_66bf6df gettagorigin("wheel_02_jnt") + (0.525, 2, -0.075), var_66bf6df gettagangles("wheel_02_jnt"));
+			mdl_gears.mdl_dock = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", mdl_gears gettagorigin("wheel_02_jnt") + (0.525, 2, -0.075), mdl_gears gettagangles("wheel_02_jnt"));
 		}
 		if(level flag::get("elevator_part_gear3_found") && !level flag::get("elevator_part_gear3_placed"))
 		{
 			level flag::set("elevator_part_gear3_placed");
 			var_f022cb65 playsound("zmb_item_pickup");
-			var_66bf6df.var_aab7a6d1 = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", var_66bf6df gettagorigin("wheel_03_jnt") + vectorscale((0, 1, 0), 2), var_66bf6df gettagangles("wheel_03_jnt"));
+			mdl_gears.mdl_plane = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", mdl_gears gettagorigin("wheel_03_jnt") + vectorscale((0, 1, 0), 2), mdl_gears gettagangles("wheel_03_jnt"));
 		}
 		if(level flag::get("elevator_part_gear1_found") && level flag::get("elevator_part_gear2_found") && level flag::get("elevator_part_gear3_found"))
 		{
@@ -1188,16 +1188,16 @@ function function_6cc2e374()
 */
 function elevator_gears()
 {
-	var_17b2dca3 = getentarray("easter_egg_elevator_cage", "targetname");
+	a_e_elevator = getentarray("easter_egg_elevator_cage", "targetname");
 	while(true)
 	{
 		level flag::wait_till("elevator_in_use");
 		wait(0.1);
-		while(!isdefined(var_17b2dca3[0].is_moving))
+		while(!isdefined(a_e_elevator[0].is_moving))
 		{
 			wait(0.05);
 		}
-		while(var_17b2dca3[0].is_moving)
+		while(a_e_elevator[0].is_moving)
 		{
 			if(level flag::get("elevator_at_bottom"))
 			{
@@ -1208,13 +1208,13 @@ function elevator_gears()
 				n_rot = 90;
 			}
 			self.var_df281e84 rotateroll(n_rot, 1);
-			self.var_e882d83c rotateroll(n_rot, 1);
-			self.var_aab7a6d1 rotateroll(n_rot * -1, 1);
+			self.mdl_dock rotateroll(n_rot, 1);
+			self.mdl_plane rotateroll(n_rot * -1, 1);
 			wait(0.9);
 		}
 		self.var_df281e84 rotateroll(n_rot * 0.01, 0.1);
-		self.var_e882d83c rotateroll(n_rot * 0.01, 0.1);
-		self.var_aab7a6d1 rotateroll((n_rot * -1) * 0.01, 0.1);
+		self.mdl_dock rotateroll(n_rot * 0.01, 0.1);
+		self.mdl_plane rotateroll((n_rot * -1) * 0.01, 0.1);
 	}
 }
 
@@ -1527,38 +1527,38 @@ function elevator_door(b_open = 1)
 */
 function elevator_move()
 {
-	var_17b2dca3 = getentarray("easter_egg_elevator_cage", "targetname");
+	a_e_elevator = getentarray("easter_egg_elevator_cage", "targetname");
 	var_1fac16fe = getent("easter_egg_elevator_door_inner_top_left", "targetname");
-	var_1fac16fe linkto(var_17b2dca3[0]);
+	var_1fac16fe linkto(a_e_elevator[0]);
 	var_adbea363 = getent("easter_egg_elevator_door_inner_top_right", "targetname");
-	var_adbea363 linkto(var_17b2dca3[0]);
+	var_adbea363 linkto(a_e_elevator[0]);
 	var_46ebdf14 = getent("easter_egg_elevator_door_inner_bottom_left", "targetname");
-	var_46ebdf14 linkto(var_17b2dca3[0]);
+	var_46ebdf14 linkto(a_e_elevator[0]);
 	var_ddc6ba27 = getent("easter_egg_elevator_door_inner_bottom_right", "targetname");
-	var_ddc6ba27 linkto(var_17b2dca3[0]);
+	var_ddc6ba27 linkto(a_e_elevator[0]);
 	if(level flag::get("elevator_at_bottom"))
 	{
-		foreach(e_elevator in var_17b2dca3)
+		foreach(e_elevator in a_e_elevator)
 		{
 			e_elevator movez(1280, 20);
 		}
 	}
 	else
 	{
-		foreach(e_elevator in var_17b2dca3)
+		foreach(e_elevator in a_e_elevator)
 		{
 			e_elevator movez(-1280, 20);
 		}
 	}
-	var_17b2dca3[0].is_moving = 1;
-	var_17b2dca3[0] playsound("zmb_elevator_start");
-	var_17b2dca3[0] playloopsound("zmb_elevator_loop");
-	var_17b2dca3[0] thread function_7b8e6e93();
-	var_17b2dca3[0] waittill(#"movedone");
-	var_17b2dca3[0] thread function_e35db912();
-	var_17b2dca3[0].is_moving = 0;
-	var_17b2dca3[0] playsound("zmb_elevator_stop");
-	var_17b2dca3[0] stoploopsound(0.5);
+	a_e_elevator[0].is_moving = 1;
+	a_e_elevator[0] playsound("zmb_elevator_start");
+	a_e_elevator[0] playloopsound("zmb_elevator_loop");
+	a_e_elevator[0] thread function_7b8e6e93();
+	a_e_elevator[0] waittill(#"movedone");
+	a_e_elevator[0] thread function_e35db912();
+	a_e_elevator[0].is_moving = 0;
+	a_e_elevator[0] playsound("zmb_elevator_stop");
+	a_e_elevator[0] stoploopsound(0.5);
 	var_1fac16fe = getent("easter_egg_elevator_door_inner_top_left", "targetname");
 	var_1fac16fe unlink();
 	var_adbea363 = getent("easter_egg_elevator_door_inner_top_right", "targetname");

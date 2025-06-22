@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
@@ -2914,10 +2914,10 @@ function function_f0b775a3(str_label, var_ed01584 = 1, b_wait = 1)
 	Parameters: 2
 	Flags: Linked
 */
-function function_7c63dd65(var_300b5632, b_wait = 1)
+function function_7c63dd65(str_crest, b_wait = 1)
 {
-	str_vo_alias = ("vox_arro_demongate_" + var_300b5632) + "_0";
-	self thread function_c123b81c(var_300b5632, str_vo_alias);
+	str_vo_alias = ("vox_arro_demongate_" + str_crest) + "_0";
+	self thread function_c123b81c(str_crest, str_vo_alias);
 	return self function_7b697614(str_vo_alias, 0, b_wait, 0, 1);
 }
 
@@ -2930,9 +2930,9 @@ function function_7c63dd65(var_300b5632, b_wait = 1)
 	Parameters: 2
 	Flags: Linked
 */
-function function_ebc3d584(var_cf6c6acd, var_b5991f0e = 0)
+function function_ebc3d584(str_syllable, var_b5991f0e = 0)
 {
-	switch(var_cf6c6acd)
+	switch(str_syllable)
 	{
 		case "lor":
 		{
@@ -3042,9 +3042,9 @@ function function_21c9c75b()
 	Parameters: 1
 	Flags: Linked
 */
-function function_5fa306b6(var_62f94d00)
+function function_5fa306b6(n_painting)
 {
-	str_alias = ((("vox_plr_" + self.characterindex) + "_quest_wolf_") + var_62f94d00) + "_0";
+	str_alias = ((("vox_plr_" + self.characterindex) + "_quest_wolf_") + n_painting) + "_0";
 	if(!isdefined(self.var_b89ed4e5))
 	{
 		self.var_b89ed4e5 = [];

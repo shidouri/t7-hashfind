@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -313,10 +313,10 @@ function function_d88b52e6()
 			if(getdvarstring("") == "" || getdvarstring("") == "" || getdvarstring("") == "" || getdvarstring("") == "" || getdvarstring("") == "" || getdvarstring("") == "")
 			{
 				level flag::set("");
-				var_5e72b36d = getent("", "");
-				if(isdefined(var_5e72b36d))
+				mdl_floor = getent("", "");
+				if(isdefined(mdl_floor))
 				{
-					var_5e72b36d delete();
+					mdl_floor delete();
 				}
 				t_hole = getent("", "");
 				if(isdefined(t_hole))

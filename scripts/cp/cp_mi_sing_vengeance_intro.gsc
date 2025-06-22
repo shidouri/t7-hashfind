@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_debug;
 #using scripts\cp\_dialog;
@@ -316,15 +316,15 @@ function function_3b2e29a()
 */
 function give_riders()
 {
-	var_ae407c5 = [];
+	ai_riders = [];
 	var_5ee71f72 = array("driver", "gunner1");
 	for(i = 0; i < var_5ee71f72.size; i++)
 	{
-		var_ae407c5[i] = spawner::simple_spawn_single("intro_street_technical_enemy1");
-		if(isdefined(var_ae407c5[i]))
+		ai_riders[i] = spawner::simple_spawn_single("intro_street_technical_enemy1");
+		if(isdefined(ai_riders[i]))
 		{
-			var_ae407c5[i] ai::set_ignoreall(1);
-			var_ae407c5[i] vehicle::get_in(self, var_5ee71f72[i], 1);
+			ai_riders[i] ai::set_ignoreall(1);
+			ai_riders[i] vehicle::get_in(self, var_5ee71f72[i], 1);
 		}
 	}
 }
@@ -1768,16 +1768,16 @@ function function_296cfddf()
 {
 	self endon(#"death");
 	self thread takedown_cleanup();
-	var_ae407c5 = [];
+	ai_riders = [];
 	var_5ee71f72 = array("driver", "passenger1", "gunner1");
 	for(i = 0; i < var_5ee71f72.size; i++)
 	{
-		var_ae407c5[i] = spawner::simple_spawn_single("takedown_backup_truck_ai");
-		var_ae407c5[i] thread function_4d5e399c();
-		if(isdefined(var_ae407c5[i]))
+		ai_riders[i] = spawner::simple_spawn_single("takedown_backup_truck_ai");
+		ai_riders[i] thread function_4d5e399c();
+		if(isdefined(ai_riders[i]))
 		{
-			var_ae407c5[i].script_noteworthy = var_5ee71f72[i];
-			var_ae407c5[i] vehicle::get_in(self, var_5ee71f72[i], 1);
+			ai_riders[i].script_noteworthy = var_5ee71f72[i];
+			ai_riders[i] vehicle::get_in(self, var_5ee71f72[i], 1);
 		}
 	}
 	self thread function_8fb2d768();

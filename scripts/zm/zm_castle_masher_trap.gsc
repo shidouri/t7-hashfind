@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -119,31 +119,31 @@ function function_a5062ebd()
 	thread zm_unitrigger::register_static_unitrigger(s_unitrigger_stub, &function_b776b443);
 	s_unitrigger_stub._trap_lights = [];
 	s_unitrigger_stub._trap_switches = [];
-	var_a22f946c = getentarray(self.target, "targetname");
-	for(i = 0; i < var_a22f946c.size; i++)
+	a_mdl_trap = getentarray(self.target, "targetname");
+	for(i = 0; i < a_mdl_trap.size; i++)
 	{
-		if(isdefined(var_a22f946c[i].script_noteworthy))
+		if(isdefined(a_mdl_trap[i].script_noteworthy))
 		{
-			switch(var_a22f946c[i].script_noteworthy)
+			switch(a_mdl_trap[i].script_noteworthy)
 			{
 				case "switch":
 				{
-					s_unitrigger_stub._trap_switches[s_unitrigger_stub._trap_switches.size] = var_a22f946c[i];
+					s_unitrigger_stub._trap_switches[s_unitrigger_stub._trap_switches.size] = a_mdl_trap[i];
 					s_unitrigger_stub thread function_aaf7f74d();
 					break;
 				}
 				case "light":
 				{
-					s_unitrigger_stub._trap_lights[s_unitrigger_stub._trap_lights.size] = var_a22f946c[i];
+					s_unitrigger_stub._trap_lights[s_unitrigger_stub._trap_lights.size] = a_mdl_trap[i];
 					s_unitrigger_stub function_81b05f08();
 					break;
 				}
 			}
 		}
 	}
-	var_8fcfe322 = getentarray("zombie_trap", "targetname");
-	array::thread_all(var_8fcfe322, &function_5054a970);
-	foreach(var_60532813 in var_8fcfe322)
+	a_t_traps = getentarray("zombie_trap", "targetname");
+	array::thread_all(a_t_traps, &function_5054a970);
+	foreach(var_60532813 in a_t_traps)
 	{
 		if(var_60532813.target === "trap_b")
 		{
@@ -415,8 +415,8 @@ function function_13fd863b(str_model)
 {
 	for(i = 0; i < self._trap_lights.size; i++)
 	{
-		var_b079127 = self._trap_lights[i];
-		var_b079127 setmodel(str_model);
+		mdl_light = self._trap_lights[i];
+		mdl_light setmodel(str_model);
 	}
 }
 

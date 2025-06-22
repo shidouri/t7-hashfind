@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_skipto;
@@ -54,8 +54,8 @@ function main()
 function on_player_spawned(localclientnum)
 {
 	player = getlocalplayer(localclientnum);
-	var_8a357b77 = getentarray(localclientnum, "ventilation_fan", "targetname");
-	array::thread_all(var_8a357b77, &lotus_util::spinning_fan);
+	a_e_fans = getentarray(localclientnum, "ventilation_fan", "targetname");
+	array::thread_all(a_e_fans, &lotus_util::spinning_fan);
 	player thread lotus_util::falling_debris(localclientnum);
 	player thread function_f61f00f(localclientnum);
 }

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -275,13 +275,13 @@ function function_d7eb8f21()
 		level waittill(#"shield_built", e_who);
 		if(e_who.characterindex == 0)
 		{
-			var_4c5a66ad = 4;
+			n_lines = 4;
 		}
 		else
 		{
-			var_4c5a66ad = 5;
+			n_lines = 5;
 		}
-		str_vo_line = (("vox_plr_" + e_who.characterindex) + "_dragon_shield_acquire_") + randomint(var_4c5a66ad);
+		str_vo_line = (("vox_plr_" + e_who.characterindex) + "_dragon_shield_acquire_") + randomint(n_lines);
 		e_who zm_stalingrad_vo::function_897246e4(str_vo_line);
 	}
 }

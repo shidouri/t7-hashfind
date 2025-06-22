@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -701,18 +701,18 @@ function function_a48022e(localclientnum, b_on = 1, n_character_index)
 {
 	if(n_character_index == 1 || n_character_index == 4)
 	{
-		var_53106e7c = level._effect["zombie/fx_ee_keeper_beam_shield1_fail_zod_zmb"];
+		str_beam = level._effect["zombie/fx_ee_keeper_beam_shield1_fail_zod_zmb"];
 	}
 	else
 	{
-		var_53106e7c = level._effect["zombie/fx_ee_keeper_beam_shield2_fail_zod_zmb"];
+		str_beam = level._effect["zombie/fx_ee_keeper_beam_shield2_fail_zod_zmb"];
 	}
 	if(b_on)
 	{
 		s_loc = struct::get("keeper_vs_shadowman_beam_" + n_character_index);
 		v_fwd = anglestoforward(s_loc.angles);
 		v_origin = s_loc.origin;
-		self.var_f5366edb = playfx(localclientnum, var_53106e7c, v_origin, v_fwd);
+		self.var_f5366edb = playfx(localclientnum, str_beam, v_origin, v_fwd);
 	}
 	else
 	{
@@ -863,21 +863,21 @@ function function_27e2b2cc(localclientnum)
 	{
 		level.var_a9f994a9 = spawnstruct();
 	}
-	if(!isdefined(level.var_a9f994a9.var_8cf34592))
+	if(!isdefined(level.var_a9f994a9.mdl_reveal))
 	{
 		s_loc = struct::get("ee_apothigod_gateworm_reveal", "targetname");
-		level.var_a9f994a9.var_8cf34592 = spawn(localclientnum, s_loc.origin, "script_model");
-		level.var_a9f994a9.var_8cf34592.angles = s_loc.angles;
-		level.var_a9f994a9.var_8cf34592 setmodel("p7_zm_zod_gateworm_large");
-		level.var_a9f994a9.var_8cf34592 useanimtree($generic);
+		level.var_a9f994a9.mdl_reveal = spawn(localclientnum, s_loc.origin, "script_model");
+		level.var_a9f994a9.mdl_reveal.angles = s_loc.angles;
+		level.var_a9f994a9.mdl_reveal setmodel("p7_zm_zod_gateworm_large");
+		level.var_a9f994a9.mdl_reveal useanimtree($generic);
 	}
-	if(!isdefined(level.var_a9f994a9.var_dbb35f4d))
+	if(!isdefined(level.var_a9f994a9.mdl_junction))
 	{
 		s_loc = struct::get("ee_apothigod_gateworm_junction", "targetname");
-		level.var_a9f994a9.var_dbb35f4d = spawn(localclientnum, s_loc.origin, "script_model");
-		level.var_a9f994a9.var_dbb35f4d.angles = s_loc.angles;
-		level.var_a9f994a9.var_dbb35f4d setmodel("p7_zm_zod_gateworm_large");
-		level.var_a9f994a9.var_8cf34592 useanimtree($generic);
+		level.var_a9f994a9.mdl_junction = spawn(localclientnum, s_loc.origin, "script_model");
+		level.var_a9f994a9.mdl_junction.angles = s_loc.angles;
+		level.var_a9f994a9.mdl_junction setmodel("p7_zm_zod_gateworm_large");
+		level.var_a9f994a9.mdl_reveal useanimtree($generic);
 	}
 }
 
@@ -897,61 +897,61 @@ function ee_superworm_state(localclientnum, oldval, newval, bnewent, binitialsna
 		return;
 	}
 	function_27e2b2cc(localclientnum);
-	level.var_a9f994a9.var_8cf34592 util::waittill_dobj(localclientnum);
-	if(!level.var_a9f994a9.var_8cf34592 hasanimtree())
+	level.var_a9f994a9.mdl_reveal util::waittill_dobj(localclientnum);
+	if(!level.var_a9f994a9.mdl_reveal hasanimtree())
 	{
-		level.var_a9f994a9.var_8cf34592 useanimtree($generic);
+		level.var_a9f994a9.mdl_reveal useanimtree($generic);
 	}
-	level.var_a9f994a9.var_dbb35f4d util::waittill_dobj(localclientnum);
-	if(!level.var_a9f994a9.var_dbb35f4d hasanimtree())
+	level.var_a9f994a9.mdl_junction util::waittill_dobj(localclientnum);
+	if(!level.var_a9f994a9.mdl_junction hasanimtree())
 	{
-		level.var_a9f994a9.var_dbb35f4d useanimtree($generic);
+		level.var_a9f994a9.mdl_junction useanimtree($generic);
 	}
 	switch(newval)
 	{
 		case 0:
 		{
-			level.var_a9f994a9.var_8cf34592 hide();
-			level.var_a9f994a9.var_dbb35f4d hide();
+			level.var_a9f994a9.mdl_reveal hide();
+			level.var_a9f994a9.mdl_junction hide();
 			break;
 		}
 		case 1:
 		{
-			level.var_a9f994a9.var_8cf34592 show();
-			level.var_a9f994a9.var_dbb35f4d hide();
-			level.var_a9f994a9.var_8cf34592 function_bdd91321(localclientnum, 0, 0);
-			level.var_a9f994a9.var_8cf34592 thread animation::play("ai_zombie_zod_gateworm_large_idle_loop_active", undefined, undefined, 1);
+			level.var_a9f994a9.mdl_reveal show();
+			level.var_a9f994a9.mdl_junction hide();
+			level.var_a9f994a9.mdl_reveal function_bdd91321(localclientnum, 0, 0);
+			level.var_a9f994a9.mdl_reveal thread animation::play("ai_zombie_zod_gateworm_large_idle_loop_active", undefined, undefined, 1);
 			wait(5);
-			level.var_a9f994a9.var_8cf34592 hide();
-			level.var_a9f994a9.var_8cf34592 function_bdd91321(localclientnum, 0, 0);
-			level.var_a9f994a9.var_dbb35f4d show();
-			level.var_a9f994a9.var_dbb35f4d function_bdd91321(localclientnum, 1, 0);
+			level.var_a9f994a9.mdl_reveal hide();
+			level.var_a9f994a9.mdl_reveal function_bdd91321(localclientnum, 0, 0);
+			level.var_a9f994a9.mdl_junction show();
+			level.var_a9f994a9.mdl_junction function_bdd91321(localclientnum, 1, 0);
 			break;
 		}
 		case 2:
 		{
-			level.var_a9f994a9.var_8cf34592 hide();
-			level.var_a9f994a9.var_dbb35f4d show();
-			level.var_a9f994a9.var_dbb35f4d function_bdd91321(localclientnum, 1, 1);
-			level.var_a9f994a9.var_dbb35f4d hide();
+			level.var_a9f994a9.mdl_reveal hide();
+			level.var_a9f994a9.mdl_junction show();
+			level.var_a9f994a9.mdl_junction function_bdd91321(localclientnum, 1, 1);
+			level.var_a9f994a9.mdl_junction hide();
 			break;
 		}
 		case 3:
 		{
-			level.var_a9f994a9.var_8cf34592 hide();
-			level.var_a9f994a9.var_dbb35f4d show();
-			level.var_a9f994a9.var_dbb35f4d function_bdd91321(localclientnum, 0, 0);
-			level.var_a9f994a9.var_dbb35f4d clearanim("ai_zombie_zod_gateworm_large_idle_loop_active", 0);
-			level.var_a9f994a9.var_dbb35f4d thread animation::play("ai_zombie_zod_gateworm_large_idle_loop", undefined, undefined, 1);
+			level.var_a9f994a9.mdl_reveal hide();
+			level.var_a9f994a9.mdl_junction show();
+			level.var_a9f994a9.mdl_junction function_bdd91321(localclientnum, 0, 0);
+			level.var_a9f994a9.mdl_junction clearanim("ai_zombie_zod_gateworm_large_idle_loop_active", 0);
+			level.var_a9f994a9.mdl_junction thread animation::play("ai_zombie_zod_gateworm_large_idle_loop", undefined, undefined, 1);
 			break;
 		}
 		case 4:
 		{
-			level.var_a9f994a9.var_8cf34592 hide();
-			level.var_a9f994a9.var_dbb35f4d show();
-			level.var_a9f994a9.var_dbb35f4d function_bdd91321(localclientnum, 0, 0);
-			level.var_a9f994a9.var_dbb35f4d clearanim("ai_zombie_zod_gateworm_large_idle_loop", 0);
-			level.var_a9f994a9.var_dbb35f4d thread animation::play("ai_zombie_zod_gateworm_large_idle_loop_active", undefined, undefined, 1);
+			level.var_a9f994a9.mdl_reveal hide();
+			level.var_a9f994a9.mdl_junction show();
+			level.var_a9f994a9.mdl_junction function_bdd91321(localclientnum, 0, 0);
+			level.var_a9f994a9.mdl_junction clearanim("ai_zombie_zod_gateworm_large_idle_loop", 0);
+			level.var_a9f994a9.mdl_junction thread animation::play("ai_zombie_zod_gateworm_large_idle_loop_active", undefined, undefined, 1);
 			break;
 		}
 	}

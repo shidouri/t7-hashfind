@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\raz;
 #using scripts\shared\ai\systems\blackboard;
@@ -1401,8 +1401,8 @@ function function_b9d3803a()
 */
 function function_cd541d08()
 {
-	var_8fcfe322 = getentarray("zombie_trap", "targetname");
-	foreach(var_60532813 in var_8fcfe322)
+	a_t_traps = getentarray("zombie_trap", "targetname");
+	foreach(var_60532813 in a_t_traps)
 	{
 		if(var_60532813.script_noteworthy === "electric")
 		{

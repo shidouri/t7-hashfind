@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\mechz;
 #using scripts\shared\ai\systems\animation_state_machine_mocomp;
@@ -93,8 +93,8 @@ function private function_24ed806f()
 function private function_76e7495b()
 {
 	wait(0.5);
-	var_85129cef = getentarray("zombie_trap", "targetname");
-	foreach(e_trap in var_85129cef)
+	a_e_traps = getentarray("zombie_trap", "targetname");
+	foreach(e_trap in a_e_traps)
 	{
 		if(e_trap.script_noteworthy == "electric")
 		{
@@ -265,10 +265,10 @@ function private function_2ffb7337(entity)
 */
 function private function_d8f5da34(var_2dba2212)
 {
-	var_3a067a8d = struct::get_array(var_2dba2212, "script_noteworthy");
+	a_s_traps = struct::get_array(var_2dba2212, "script_noteworthy");
 	self.s_trap = undefined;
 	n_closest_dist_sq = 57600;
-	foreach(s_trap in var_3a067a8d)
+	foreach(s_trap in a_s_traps)
 	{
 		n_dist_sq = distancesquared(s_trap.origin, self.origin);
 		if(n_dist_sq < n_closest_dist_sq)
@@ -568,7 +568,7 @@ function function_d8d01032()
 	self.var_c732138b = &function_1df1ec14;
 	self.traversalspeedboost = &function_40ef38f8;
 	self thread function_a2a11991();
-	self thread function_b2a1b297();
+	self thread mechz_corpse();
 	self thread function_2a26e636();
 	self thread zm::update_zone_name();
 	self waittill(#"death");
@@ -591,7 +591,7 @@ function function_d8d01032()
 */
 function spawn_effect()
 {
-	self function_1faf1646();
+	self mechz_freeze();
 	util::wait_network_frame();
 	self clientfield::increment("mechz_fx_spawn");
 	wait(1);
@@ -614,7 +614,7 @@ function function_b7e11612()
 }
 
 /*
-	Name: function_b2a1b297
+	Name: mechz_corpse
 	Namespace: zm_genesis_mechz
 	Checksum: 0xF4DCA2D
 	Offset: 0x1BC8
@@ -622,7 +622,7 @@ function function_b7e11612()
 	Parameters: 0
 	Flags: Linked
 */
-function function_b2a1b297()
+function mechz_corpse()
 {
 	self waittill(#"actor_corpse", mechz);
 	wait(60);
@@ -964,7 +964,7 @@ function mechz_damage_override(attacker, damage)
 }
 
 /*
-	Name: function_1faf1646
+	Name: mechz_freeze
 	Namespace: zm_genesis_mechz
 	Checksum: 0xEBF31B1C
 	Offset: 0x27B0
@@ -972,7 +972,7 @@ function mechz_damage_override(attacker, damage)
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_1faf1646()
+function private mechz_freeze()
 {
 	self.candamage = 0;
 	self.isfrozen = 1;

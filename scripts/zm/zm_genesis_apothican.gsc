@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -456,8 +456,8 @@ function function_bb3f566()
 	var_ed731554 = [];
 	for(i = 0; i < 3; i++)
 	{
-		var_c79d3f71 = zm_ai_spiders::function_f4bd92a2(1);
-		if(isai(var_c79d3f71))
+		ai_spider = zm_ai_spiders::function_f4bd92a2(1);
+		if(isai(ai_spider))
 		{
 			if(!isdefined(var_ed731554))
 			{
@@ -467,7 +467,7 @@ function function_bb3f566()
 			{
 				var_ed731554 = array(var_ed731554);
 			}
-			var_ed731554[var_ed731554.size] = var_c79d3f71;
+			var_ed731554[var_ed731554.size] = ai_spider;
 		}
 	}
 	while(var_ed731554.size)
@@ -501,7 +501,7 @@ function function_6e5d600d()
 		{
 			if(zm_utility::is_player_valid(e_player))
 			{
-				if(e_player.var_a3d40b8 === "apothicon_island" && (!(isdefined(e_player.var_13102f86) && e_player.var_13102f86)))
+				if(e_player.island_name === "apothicon_island" && (!(isdefined(e_player.var_13102f86) && e_player.var_13102f86)))
 				{
 					e_player.var_13102f86 = 1;
 					e_player clientfield::set("apothicon_player_keyline", 1);
@@ -509,13 +509,13 @@ function function_6e5d600d()
 					e_player notify(#"hash_a8c34632");
 					continue;
 				}
-				if(e_player.var_a3d40b8 === "arena_island" && (!(isdefined(e_player.var_13102f86) && e_player.var_13102f86)))
+				if(e_player.island_name === "arena_island" && (!(isdefined(e_player.var_13102f86) && e_player.var_13102f86)))
 				{
 					e_player.var_13102f86 = 1;
 					e_player clientfield::set("apothicon_player_keyline", 1);
 					continue;
 				}
-				if(isdefined(e_player.var_13102f86) && e_player.var_13102f86 && e_player.var_a3d40b8 !== "apothicon_island" && e_player.var_a3d40b8 !== "arena_island")
+				if(isdefined(e_player.var_13102f86) && e_player.var_13102f86 && e_player.island_name !== "apothicon_island" && e_player.island_name !== "arena_island")
 				{
 					self.var_e033e4dc = undefined;
 					e_player.var_13102f86 = undefined;
@@ -680,37 +680,37 @@ function function_21a5cf5e()
 */
 function function_1affd18d()
 {
-	var_bd061860 = 0;
+	n_wasps = 0;
 	switch(level.var_b8b48a73.size)
 	{
 		case 1:
 		{
-			var_bd061860 = 1;
+			n_wasps = 1;
 			break;
 		}
 		case 2:
 		{
-			var_bd061860 = 2;
+			n_wasps = 2;
 			break;
 		}
 		case 3:
 		{
-			var_bd061860 = 3;
+			n_wasps = 3;
 			break;
 		}
 		case 4:
 		{
-			var_bd061860 = 4;
+			n_wasps = 4;
 			break;
 		}
 		case 0:
 		default:
 		{
-			var_bd061860 = 0;
+			n_wasps = 0;
 			break;
 		}
 	}
-	return var_bd061860;
+	return n_wasps;
 }
 
 /*
@@ -1276,10 +1276,10 @@ function function_411feb6a()
 function function_2af9e8f2()
 {
 	level flag::wait_till("book_placed");
-	var_9c840b49 = struct::get_array("gateworm_egg", "targetname");
-	var_9c840b49 = array::randomize(var_9c840b49);
+	a_s_eggs = struct::get_array("gateworm_egg", "targetname");
+	a_s_eggs = array::randomize(a_s_eggs);
 	level.var_393eea44 = [];
-	foreach(var_21e43ff6 in var_9c840b49)
+	foreach(var_21e43ff6 in a_s_eggs)
 	{
 		if(!isdefined(level.var_393eea44[var_21e43ff6.script_int]))
 		{
@@ -1395,39 +1395,39 @@ function function_9071b894()
 */
 function function_ff65120e()
 {
-	var_3e51eb2c = getent(self.script_string, "targetname");
-	self.var_3e51eb2c = var_3e51eb2c;
-	var_3e51eb2c thread scene::init("p7_fxanim_zm_gen_gateworm_ovary_egg_deposit_bundle", var_3e51eb2c);
+	mdl_ovary = getent(self.script_string, "targetname");
+	self.mdl_ovary = mdl_ovary;
+	mdl_ovary thread scene::init("p7_fxanim_zm_gen_gateworm_ovary_egg_deposit_bundle", mdl_ovary);
 	var_5e99fdc8 = "lgt_apoth_int_" + self.script_string;
 	var_87302b25 = strtok(self.script_string, "_");
 	var_b2f4a489 = "lgt_apoth_int_eggworm_" + var_87302b25[1];
 	s_unitrigger = self zm_unitrigger::create_unitrigger(&"ZM_GENESIS_PICKUP_EGG", 64, &function_5bd5869a);
 	self waittill(#"trigger_activated", e_player);
 	level thread function_88893a6c(var_b2f4a489);
-	v_pos = self.var_3e51eb2c gettagorigin("tag_origin");
-	var_165d49f6 = util::spawn_model("p7_fxanim_zm_gen_gateworm_egg_mod", v_pos, var_3e51eb2c.angles);
-	self.var_165d49f6 = var_165d49f6;
+	v_pos = self.mdl_ovary gettagorigin("tag_origin");
+	mdl_pod = util::spawn_model("p7_fxanim_zm_gen_gateworm_egg_mod", v_pos, mdl_ovary.angles);
+	self.mdl_pod = mdl_pod;
 	self.var_22ee51d7 = e_player;
 	e_player function_eb908d5e();
 	zm_unitrigger::unregister_unitrigger(s_unitrigger);
-	var_3e51eb2c thread scene::play("p7_fxanim_zm_gen_gateworm_ovary_egg_deposit_bundle", var_3e51eb2c);
-	var_165d49f6 scene::play("p7_fxanim_zm_gen_gateworm_egg_deposit_bundle", var_165d49f6);
+	mdl_ovary thread scene::play("p7_fxanim_zm_gen_gateworm_ovary_egg_deposit_bundle", mdl_ovary);
+	mdl_pod scene::play("p7_fxanim_zm_gen_gateworm_egg_deposit_bundle", mdl_pod);
 	exploder::exploder(var_5e99fdc8);
-	var_165d49f6.var_b99b1b98 = 10;
-	var_165d49f6 waittill(#"hash_71f0e810");
-	var_165d49f6 playsound("zmb_main_omelettes_ovary_worm_hatch");
-	var_165d49f6 scene::stop("p7_fxanim_zm_gen_gateworm_egg_deposit_bundle");
-	var_165d49f6 delete();
-	v_pos = var_3e51eb2c gettagorigin("ovary_gateworm_tag");
-	mdl_gateworm = util::spawn_model("p7_zm_dlc4_gateworm", v_pos, var_3e51eb2c.angles);
+	mdl_pod.var_b99b1b98 = 10;
+	mdl_pod waittill(#"hash_71f0e810");
+	mdl_pod playsound("zmb_main_omelettes_ovary_worm_hatch");
+	mdl_pod scene::stop("p7_fxanim_zm_gen_gateworm_egg_deposit_bundle");
+	mdl_pod delete();
+	v_pos = mdl_ovary gettagorigin("ovary_gateworm_tag");
+	mdl_gateworm = util::spawn_model("p7_zm_dlc4_gateworm", v_pos, mdl_ovary.angles);
 	level thread function_88893a6c(var_b2f4a489);
 	level thread function_5c65688b(mdl_gateworm);
 	mdl_gateworm clientfield::set("gateworm_mtl", 1);
 	mdl_gateworm thread scene::play("zm_dlc4_gateworm_idle_basin", mdl_gateworm);
-	mdl_gateworm linkto(var_3e51eb2c, "ovary_gateworm_tag");
+	mdl_gateworm linkto(mdl_ovary, "ovary_gateworm_tag");
 	self thread util::delay(6, undefined, &function_7fd5874f, mdl_gateworm);
-	var_3e51eb2c scene::play("p7_fxanim_zm_gen_gateworm_ovary_worm_birth_bundle", var_3e51eb2c);
-	var_3e51eb2c thread scene::play("p7_fxanim_zm_gen_gateworm_ovary_worm_birth_idle_bundle", var_3e51eb2c);
+	mdl_ovary scene::play("p7_fxanim_zm_gen_gateworm_ovary_worm_birth_bundle", mdl_ovary);
+	mdl_ovary thread scene::play("p7_fxanim_zm_gen_gateworm_ovary_worm_birth_idle_bundle", mdl_ovary);
 }
 
 /*
@@ -1661,16 +1661,16 @@ function function_31a6b711(e_attacker)
 	for(i = 0; i < level.var_2a7689da.size; i++)
 	{
 		var_a799f50 = level.var_2a7689da[i];
-		var_165d49f6 = var_a799f50.var_165d49f6;
-		if(isdefined(var_165d49f6) && isdefined(var_165d49f6.var_b99b1b98))
+		mdl_pod = var_a799f50.mdl_pod;
+		if(isdefined(mdl_pod) && isdefined(mdl_pod.var_b99b1b98))
 		{
 			if(!isdefined(var_a799f50.var_22ee51d7) || var_a799f50.var_22ee51d7 == e_attacker)
 			{
-				n_dist_sq = distancesquared(self.origin, var_165d49f6.origin);
+				n_dist_sq = distancesquared(self.origin, mdl_pod.origin);
 				if(n_dist_sq < n_closest_dist)
 				{
 					n_closest_dist = n_dist_sq;
-					var_e6ca3c26 = var_165d49f6;
+					var_e6ca3c26 = mdl_pod;
 				}
 			}
 		}

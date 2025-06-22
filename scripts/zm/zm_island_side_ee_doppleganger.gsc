@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\archetype_clone;
 #using scripts\shared\ai\systems\gib;
@@ -340,19 +340,19 @@ function function_c948de86()
 	util::magic_bullet_shield(self.ai_doppleganger);
 	var_4010e215 = 10000;
 	var_66d72d36 = 360000;
-	var_87c6d702 = "";
+	str_do = "";
 	do
 	{
 		n_dist_sq = distancesquared(self.origin, self.ai_doppleganger.origin);
 		if(n_dist_sq <= var_4010e215 && self zm_island_util::is_facing(self.ai_doppleganger, 0.7))
 		{
-			var_87c6d702 = "scare";
+			str_do = "scare";
 		}
 		else
 		{
 			if(n_dist_sq > var_66d72d36 && !self zm_island_util::is_facing(self.ai_doppleganger, 0.5))
 			{
-				var_87c6d702 = "delete";
+				str_do = "delete";
 			}
 			else
 			{
@@ -360,8 +360,8 @@ function function_c948de86()
 			}
 		}
 	}
-	while(zm_utility::is_player_valid(self) && isdefined(self.ai_doppleganger) && var_87c6d702 == "");
-	switch(var_87c6d702)
+	while(zm_utility::is_player_valid(self) && isdefined(self.ai_doppleganger) && str_do == "");
+	switch(str_do)
 	{
 		case "scare":
 		{

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\cp_doa_bo3_enemy;
@@ -72,11 +72,11 @@ function init()
 */
 function function_d8e6314c()
 {
-	foreach(var_2e488485 in level.doa.var_155f5b81)
+	foreach(gorilla in level.doa.var_155f5b81)
 	{
-		if(isdefined(var_2e488485))
+		if(isdefined(gorilla))
 		{
-			var_2e488485 delete();
+			gorilla delete();
 		}
 	}
 	if(isdefined(level.doa.var_6fb37836))
@@ -330,11 +330,11 @@ function private function_72e0a286()
 	{
 		wait(1);
 		valid = [];
-		foreach(var_2e488485 in level.doa.var_155f5b81)
+		foreach(gorilla in level.doa.var_155f5b81)
 		{
-			if(isdefined(var_2e488485) && var_2e488485.health > 0)
+			if(isdefined(gorilla) && gorilla.health > 0)
 			{
-				valid[valid.size] = var_2e488485;
+				valid[valid.size] = gorilla;
 			}
 		}
 		level.doa.var_155f5b81 = valid;
@@ -394,13 +394,13 @@ function function_28eb6914(ent)
 		while(level.doa.var_155f5b81.size)
 		{
 			var_9386082f = 0;
-			foreach(var_2e488485 in level.doa.var_155f5b81)
+			foreach(gorilla in level.doa.var_155f5b81)
 			{
-				if(!isdefined(var_2e488485))
+				if(!isdefined(gorilla))
 				{
 					continue;
 				}
-				var_9386082f = var_9386082f + var_2e488485.health;
+				var_9386082f = var_9386082f + gorilla.health;
 			}
 			data = doa_utility::clamp(var_9386082f / level.doa.var_7b9808fc, 0, 1);
 			level clientfield::set("pumpBannerBar", data);
@@ -1066,10 +1066,10 @@ function function_615e73a(var_b84274b8, numattacks = 1)
 		self playsound("zmb_simianaut_roar");
 		self animscripted("pissedoff", self.origin, self.angles, "ai_zombie_doa_simianaut_attack_v1");
 		self waittillmatch(#"pissedoff");
-		if(isdefined(self.var_a09d9abe))
+		if(isdefined(self.ai_cargo))
 		{
-			self.var_a09d9abe unlink();
-			self.var_a09d9abe = undefined;
+			self.ai_cargo unlink();
+			self.ai_cargo = undefined;
 		}
 		var_b84274b8 notify(#"hash_7018a851", "fire", "end");
 		if(getdvarint("scr_boss_debug_launch", 0))
@@ -1334,7 +1334,7 @@ function private function_5659ec29(var_c840292d)
 	{
 		ai linkto(self, "tag_weapon_right");
 		ai.health = 1000;
-		self.var_a09d9abe = ai;
+		self.ai_cargo = ai;
 	}
 }
 

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -464,12 +464,12 @@ function function_c5b12ba9(a_ents)
 */
 function function_73238a8(a_ents)
 {
-	var_7be3ca60 = getentarray("root_cairo_arena_doors", "targetname");
+	a_mdl_doors = getentarray("root_cairo_arena_doors", "targetname");
 	foreach(e_ent in a_ents)
 	{
 		e_ent show();
 	}
-	foreach(mdl_door in var_7be3ca60)
+	foreach(mdl_door in a_mdl_doors)
 	{
 		mdl_door delete();
 	}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -36,8 +36,8 @@ function reveal_golden_bucket_planting_location(localclientnum, oldval, newval, 
 {
 	if(newval == 1)
 	{
-		var_6f80c1d8 = getentarray(localclientnum, "swamp_planter_skull_reveal", "targetname");
-		foreach(var_31678178 in var_6f80c1d8)
+		a_e_plant = getentarray(localclientnum, "swamp_planter_skull_reveal", "targetname");
+		foreach(var_31678178 in a_e_plant)
 		{
 			var_31678178 movez(-45, 2);
 		}

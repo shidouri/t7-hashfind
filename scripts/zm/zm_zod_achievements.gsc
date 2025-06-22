@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -239,27 +239,27 @@ function achievement_civil_protector()
 	while(var_edf7e9c1 < 4)
 	{
 		self waittill(#"hash_b7f8e77c");
-		var_9b0b20f3 = level.zones[self.zone_name].district;
-		if(!var_5c366274 && var_9b0b20f3 == "junction")
+		str_district = level.zones[self.zone_name].district;
+		if(!var_5c366274 && str_district == "junction")
 		{
 			var_5c366274 = 1;
 			var_edf7e9c1++;
 		}
 		else
 		{
-			if(!var_6ca52f65 && var_9b0b20f3 == "canal")
+			if(!var_6ca52f65 && str_district == "canal")
 			{
 				var_6ca52f65 = 1;
 				var_edf7e9c1++;
 			}
 			else
 			{
-				if(!var_aa482c3 && var_9b0b20f3 == "theater")
+				if(!var_aa482c3 && str_district == "theater")
 				{
 					var_aa482c3 = 1;
 					var_edf7e9c1++;
 				}
-				else if(!var_2c8c3602 && var_9b0b20f3 == "slums")
+				else if(!var_2c8c3602 && str_district == "slums")
 				{
 					var_2c8c3602 = 1;
 					var_edf7e9c1++;

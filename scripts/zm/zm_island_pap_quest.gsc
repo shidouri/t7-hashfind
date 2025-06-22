@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\ai_shared;
@@ -474,8 +474,8 @@ function function_d0901c34()
 {
 	level.var_e1bb72d5 = 0;
 	level.var_69ca3c45 = 0;
-	var_1daee2f1 = getentarray("cocoon_bunker", "targetname");
-	foreach(mdl_cocoon in var_1daee2f1)
+	a_mdl_cocoons = getentarray("cocoon_bunker", "targetname");
+	foreach(mdl_cocoon in a_mdl_cocoons)
 	{
 		mdl_cocoon.is_open = 0;
 		mdl_cocoon.clip = getent(mdl_cocoon.target, "targetname");
@@ -530,9 +530,9 @@ function function_c762197b()
 */
 function function_bd8082d1()
 {
-	var_1daee2f1 = getentarray("cocoon_bunker", "targetname");
+	a_mdl_cocoons = getentarray("cocoon_bunker", "targetname");
 	var_d43245b8 = [];
-	foreach(mdl_cocoon in var_1daee2f1)
+	foreach(mdl_cocoon in a_mdl_cocoons)
 	{
 		if(!mdl_cocoon.is_open)
 		{
@@ -668,7 +668,7 @@ function defend_start()
 	{
 		wait(1);
 	}
-	var_44f2dff7 = struct::get_array("defend_valve_spawnpt");
+	a_s_spawns = struct::get_array("defend_valve_spawnpt");
 	level.var_74049442 = 0;
 	switch(level.players.size)
 	{
@@ -707,8 +707,8 @@ function defend_start()
 	exploder::exploder("lgt_penstock_event");
 	while(level.var_74049442 < 13)
 	{
-		var_44f2dff7 = array::randomize(var_44f2dff7);
-		for(i = 0; i < var_44f2dff7.size; i++)
+		a_s_spawns = array::randomize(a_s_spawns);
+		for(i = 0; i < a_s_spawns.size; i++)
 		{
 			while(getfreeactorcount() < 1)
 			{
@@ -718,10 +718,10 @@ function defend_start()
 			{
 				wait(0.05);
 			}
-			ai_zombie = zombie_utility::spawn_zombie(level.zombie_spawners[0], "defend_zombie", var_44f2dff7[i]);
+			ai_zombie = zombie_utility::spawn_zombie(level.zombie_spawners[0], "defend_zombie", a_s_spawns[i]);
 			if(isdefined(ai_zombie))
 			{
-				if(isdefined(var_44f2dff7[i].script_int))
+				if(isdefined(a_s_spawns[i].script_int))
 				{
 					ai_zombie.var_57b55f08 = 1;
 				}
@@ -958,8 +958,8 @@ function function_83af0b87(t_water)
 function function_4fdc8e70()
 {
 	level flag::wait_till("connect_bunker_exterior_to_bunker_interior");
-	var_f89319f8 = struct::get_array("valvetwo_part_lever");
-	mdl_part = util::spawn_model("p7_zm_isl_pap_elements_wheel", array::random(var_f89319f8).origin);
+	a_s_part = struct::get_array("valvetwo_part_lever");
+	mdl_part = util::spawn_model("p7_zm_isl_pap_elements_wheel", array::random(a_s_part).origin);
 	mdl_part clientfield::set("show_part", 1);
 	mdl_part setscale(1.5);
 	mdl_part.trigger = zm_island_util::spawn_trigger_radius(mdl_part.origin, 50, 1, &function_9bd3096f);

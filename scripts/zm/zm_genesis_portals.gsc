@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\ai\zombie_utility;
@@ -764,9 +764,9 @@ function function_cfc89ca()
 	self.var_fe12a779["prototype"] = 0;
 	while(true)
 	{
-		if(isdefined(self.var_a3d40b8) && (!(isdefined(self.is_flung) && self.is_flung)))
+		if(isdefined(self.island_name) && (!(isdefined(self.is_flung) && self.is_flung)))
 		{
-			switch(self.var_a3d40b8)
+			switch(self.island_name)
 			{
 				case "start_island":
 				{

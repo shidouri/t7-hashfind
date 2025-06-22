@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -778,8 +778,8 @@ function sd_init()
 	level flag::init("sd_active");
 	level flag::wait_till("start_zombie_round_logic");
 	level.var_c920d4c5 = struct::get("sd_bowl", "targetname");
-	var_5e8fec3f = struct::get_array("sd_start", "script_noteworthy");
-	foreach(s_start in var_5e8fec3f)
+	a_start = struct::get_array("sd_start", "script_noteworthy");
+	foreach(s_start in a_start)
 	{
 		var_12a1091 = util::spawn_model(s_start.model, s_start.origin, s_start.angles);
 		var_12a1091.targetname = s_start.targetname;
@@ -828,9 +828,9 @@ function function_7e76fe45(var_2ad32714)
 */
 function function_4ee03f50()
 {
-	var_5e8fec3f = struct::get_array("sd_start", "script_noteworthy");
+	a_start = struct::get_array("sd_start", "script_noteworthy");
 	a_flags = [];
-	foreach(s_start in var_5e8fec3f)
+	foreach(s_start in a_start)
 	{
 		if(!isdefined(a_flags))
 		{
@@ -888,13 +888,13 @@ function function_948d4e7d()
 	var_51aa97ed = util::spawn_model(var_9f30ae72.model, var_9f30ae72.origin, var_9f30ae72.angles);
 	var_51aa97ed setscale(var_9f30ae72.script_float);
 	var_c1b1cd1c = 2.3 / 30;
-	var_fa77a9e7 = 0;
+	n_fill = 0;
 	while(true)
 	{
 		level waittill(#"hash_9b391ed5");
-		if(var_fa77a9e7 < 30)
+		if(n_fill < 30)
 		{
-			var_fa77a9e7++;
+			n_fill++;
 			var_51aa97ed.origin = var_51aa97ed.origin + (0, 0, var_c1b1cd1c);
 		}
 		else
@@ -925,13 +925,13 @@ function function_66951281()
 	var_51aa97ed = util::spawn_model(var_e7c6777b.model, var_e7c6777b.origin, var_e7c6777b.angles);
 	var_51aa97ed setscale(var_e7c6777b.script_float);
 	var_c1b1cd1c = 2 / 15;
-	var_fa77a9e7 = 0;
+	n_fill = 0;
 	while(true)
 	{
 		level waittill(#"hash_d7362b52");
-		if(var_fa77a9e7 < 15)
+		if(n_fill < 15)
 		{
-			var_fa77a9e7++;
+			n_fill++;
 			var_51aa97ed.origin = var_51aa97ed.origin + (0, 0, var_c1b1cd1c);
 		}
 		else

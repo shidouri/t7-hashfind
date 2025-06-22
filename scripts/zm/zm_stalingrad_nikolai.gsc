@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -415,7 +415,7 @@ function function_d9ffbd23()
 		}
 		for(i = 0; i < var_15518756; i++)
 		{
-			self function_39d2d4b6();
+			self nikolai_walk();
 			if(i < (var_15518756 - 1))
 			{
 				self flag::set("halt_thread_gun");
@@ -424,14 +424,14 @@ function function_d9ffbd23()
 			}
 		}
 		self flag::set("halt_thread_gun");
-		self function_3c68f919();
+		self nikolai_jump();
 		self function_f56920ff(self.var_8d725883);
 		if(isdefined(self.var_a0c38d8) && self.var_a0c38d8)
 		{
-			self function_3c68f919(1);
+			self nikolai_jump(1);
 			self function_f56920ff(self.var_8d725883);
 		}
-		self function_3c68f919();
+		self nikolai_jump();
 		self flag::clear("halt_thread_gun");
 	}
 	wait(n_wait);
@@ -737,7 +737,7 @@ function function_8b21fdfe()
 }
 
 /*
-	Name: function_39d2d4b6
+	Name: nikolai_walk
 	Namespace: zm_stalingrad_nikolai
 	Checksum: 0x42B7437F
 	Offset: 0x2F90
@@ -745,7 +745,7 @@ function function_8b21fdfe()
 	Parameters: 0
 	Flags: Linked
 */
-function function_39d2d4b6()
+function nikolai_walk()
 {
 	self notify(#"reselect_goal");
 	self endon(#"death");
@@ -824,7 +824,7 @@ function function_f75d4706(s_pos, str_pos)
 }
 
 /*
-	Name: function_3c68f919
+	Name: nikolai_jump
 	Namespace: zm_stalingrad_nikolai
 	Checksum: 0x4AA06D27
 	Offset: 0x3240
@@ -832,7 +832,7 @@ function function_f75d4706(s_pos, str_pos)
 	Parameters: 1
 	Flags: Linked
 */
-function function_3c68f919(var_74557a8b)
+function nikolai_jump(var_74557a8b)
 {
 	self notify(#"reselect_goal");
 	level endon(#"nikolai_complete");
@@ -929,7 +929,7 @@ function function_3c68f919(var_74557a8b)
 	}
 	if(!isdefined(s_point))
 	{
-		self function_39d2d4b6();
+		self nikolai_walk();
 		return;
 	}
 	var_b06830e5 = self siegebot_nikolai::jump_to(s_point.origin);
@@ -940,7 +940,7 @@ function function_3c68f919(var_74557a8b)
 	}
 	else
 	{
-		self function_39d2d4b6();
+		self nikolai_walk();
 	}
 }
 
@@ -1027,8 +1027,8 @@ function function_1679e5f0()
 	var_c444a38d = self.var_ea7d582d[level.players.size];
 	var_67441125 = 3;
 	var_b4fcee85 = int((var_cbcef56 / var_2b71b5b4) / 2);
-	var_ad0ee644 = struct::get_array("boss_arena_spawn", "targetname");
-	var_ad0ee644 = array::filter(var_ad0ee644, 0, &zm_stalingrad_util::function_c66f2957);
+	a_s_spawn = struct::get_array("boss_arena_spawn", "targetname");
+	a_s_spawn = array::filter(a_s_spawn, 0, &zm_stalingrad_util::function_c66f2957);
 	level.var_c3c3ffc5 = [];
 	if(!isdefined(level.var_c3c3ffc5))
 	{
@@ -1052,7 +1052,7 @@ function function_1679e5f0()
 			}
 		#/
 		level thread zm_stalingrad_util::function_b55ebb81(undefined, var_2b71b5b4, var_c444a38d, var_67441125, var_b4fcee85, "nikolai_final_weakpoint_revealed", 1);
-		level zm_stalingrad_util::function_f70dde0b(level.zombie_spawners[0], var_ad0ee644, "boss_arena_spawn", var_84a0beb8, 0.5, var_cbcef56, "nikolai_final_weakpoint_revealed", 0);
+		level zm_stalingrad_util::function_f70dde0b(level.zombie_spawners[0], a_s_spawn, "boss_arena_spawn", var_84a0beb8, 0.5, var_cbcef56, "nikolai_final_weakpoint_revealed", 0);
 		level flag::wait_till_timeout(15, "wave_event_raz_spawning_active");
 		wait(5);
 		var_cbcef56 = var_cbcef56 + 2;
@@ -1060,7 +1060,7 @@ function function_1679e5f0()
 	}
 	var_c444a38d = var_c444a38d + level.players.size;
 	level thread zm_stalingrad_util::function_b55ebb81(undefined, undefined, var_c444a38d, var_67441125, undefined, "nikolai_complete", 1);
-	level thread zm_stalingrad_util::function_f70dde0b(level.zombie_spawners[0], var_ad0ee644, "boss_arena_spawn", var_84a0beb8, 0.5, undefined, "nikolai_complete", 0);
+	level thread zm_stalingrad_util::function_f70dde0b(level.zombie_spawners[0], a_s_spawn, "boss_arena_spawn", var_84a0beb8, 0.5, undefined, "nikolai_complete", 0);
 }
 
 /*
@@ -1171,14 +1171,14 @@ function function_cb725ad1()
 		if(!(isdefined(self.var_88e5f77d) && self.var_88e5f77d))
 		{
 			level zm_stalingrad_util::function_9b76f612("sentinel");
-			var_663b2442 = zm_stalingrad_util::function_70e59bda(undefined, self);
-			if(isalive(var_663b2442))
+			ai_sentinel = zm_stalingrad_util::function_70e59bda(undefined, self);
+			if(isalive(ai_sentinel))
 			{
-				var_663b2442 sentinel_drone::sentinel_forcegoandstayinposition(1, self.origin);
-				var_663b2442.no_powerups = 1;
-				var_663b2442.no_damage_points = 1;
-				var_663b2442.deathpoints_already_given = 1;
-				var_663b2442.settings.engagementheightmax = 300;
+				ai_sentinel sentinel_drone::sentinel_forcegoandstayinposition(1, self.origin);
+				ai_sentinel.no_powerups = 1;
+				ai_sentinel.no_damage_points = 1;
+				ai_sentinel.deathpoints_already_given = 1;
+				ai_sentinel.settings.engagementheightmax = 300;
 				level.var_b9c4d468++;
 				if(!isdefined(level.var_c3c3ffc5))
 				{
@@ -1188,10 +1188,10 @@ function function_cb725ad1()
 				{
 					level.var_c3c3ffc5 = array(level.var_c3c3ffc5);
 				}
-				level.var_c3c3ffc5[level.var_c3c3ffc5.size] = var_663b2442;
-				var_663b2442 thread function_4fd3f4f9(self.script_string);
-				var_663b2442 zm_stalingrad_util::function_d48ad6b4();
-				self function_ec910337(var_663b2442);
+				level.var_c3c3ffc5[level.var_c3c3ffc5.size] = ai_sentinel;
+				ai_sentinel thread function_4fd3f4f9(self.script_string);
+				ai_sentinel zm_stalingrad_util::function_d48ad6b4();
+				self function_ec910337(ai_sentinel);
 			}
 		}
 		wait(0.05);
@@ -1207,11 +1207,11 @@ function function_cb725ad1()
 	Parameters: 1
 	Flags: Linked
 */
-function function_ec910337(var_663b2442)
+function function_ec910337(ai_sentinel)
 {
 	level endon(#"nikolai_complete");
 	self.var_88e5f77d = 1;
-	var_663b2442 waittill(#"death");
+	ai_sentinel waittill(#"death");
 	level.var_b9c4d468--;
 	wait(10);
 	self.var_88e5f77d = 0;

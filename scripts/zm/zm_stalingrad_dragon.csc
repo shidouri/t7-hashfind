@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -221,12 +221,12 @@ function function_2ce58010(n_local_client)
 	level endon(#"hash_a35dee4e");
 	while(true)
 	{
-		self waittill(#"damage", e_attacker, v_impact_pos, var_778fe70f, var_77cbbb1b);
+		self waittill(#"damage", e_attacker, v_impact_pos, var_778fe70f, str_bone);
 		if(level.var_ef6a691 > 0)
 		{
 			foreach(var_61c194b7 in level.var_61699bd7[level.var_ef6a691])
 			{
-				if(var_61c194b7 == var_77cbbb1b)
+				if(var_61c194b7 == str_bone)
 				{
 					switch(level.var_ef6a691)
 					{
@@ -303,32 +303,32 @@ function function_bb6d58d0(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 3
 	Flags: Linked
 */
-function function_bd038ea4(n_local_client, var_2c17cb9d, var_116b515b)
+function function_bd038ea4(n_local_client, n_wound, var_116b515b)
 {
 	self notify(#"hash_bd038ea4");
 	self endon(#"hash_bd038ea4");
 	self endon(#"entityshutdown");
-	var_4361a688 = undefined;
-	switch(var_2c17cb9d)
+	str_vector = undefined;
+	switch(n_wound)
 	{
 		case 1:
 		{
-			var_4361a688 = "scriptVector5";
+			str_vector = "scriptVector5";
 			break;
 		}
 		case 2:
 		{
-			var_4361a688 = "scriptVector4";
+			str_vector = "scriptVector4";
 			break;
 		}
 		case 3:
 		{
-			var_4361a688 = "scriptVector3";
+			str_vector = "scriptVector3";
 			break;
 		}
 		default:
 		{
-			var_4361a688 = undefined;
+			str_vector = undefined;
 			break;
 		}
 	}
@@ -336,27 +336,27 @@ function function_bd038ea4(n_local_client, var_2c17cb9d, var_116b515b)
 	{
 		while(true)
 		{
-			i = self.var_6f4c2683[var_2c17cb9d];
+			i = self.var_6f4c2683[n_wound];
 			while(i < 1)
 			{
 				if(!isdefined(self))
 				{
 					return;
 				}
-				self mapshaderconstant(n_local_client, 0, var_4361a688, 0, i, 0, 0);
-				self.var_6f4c2683[var_2c17cb9d] = i;
+				self mapshaderconstant(n_local_client, 0, str_vector, 0, i, 0, 0);
+				self.var_6f4c2683[n_wound] = i;
 				wait(0.01);
 				i = i + 0.05;
 			}
-			i = self.var_6f4c2683[var_2c17cb9d];
+			i = self.var_6f4c2683[n_wound];
 			while(i > 0.1)
 			{
 				if(!isdefined(self))
 				{
 					return;
 				}
-				self mapshaderconstant(n_local_client, 0, var_4361a688, 0, i, 0, 0);
-				self.var_6f4c2683[var_2c17cb9d] = i;
+				self mapshaderconstant(n_local_client, 0, str_vector, 0, i, 0, 0);
+				self.var_6f4c2683[n_wound] = i;
 				wait(0.01);
 				i = i - 0.05;
 			}
@@ -364,15 +364,15 @@ function function_bd038ea4(n_local_client, var_2c17cb9d, var_116b515b)
 	}
 	else
 	{
-		i = self.var_6f4c2683[var_2c17cb9d];
+		i = self.var_6f4c2683[n_wound];
 		while(i > 0.1)
 		{
 			if(!isdefined(self))
 			{
 				return;
 			}
-			self mapshaderconstant(n_local_client, 0, var_4361a688, 0, i, 0, 0);
-			self.var_6f4c2683[var_2c17cb9d] = i;
+			self mapshaderconstant(n_local_client, 0, str_vector, 0, i, 0, 0);
+			self.var_6f4c2683[n_wound] = i;
 			wait(0.01);
 			i = i - 0.01;
 		}
@@ -383,12 +383,12 @@ function function_bd038ea4(n_local_client, var_2c17cb9d, var_116b515b)
 			{
 				return;
 			}
-			self mapshaderconstant(n_local_client, 0, var_4361a688, 0, i, 1, 0);
-			self.var_6f4c2683[var_2c17cb9d] = i;
+			self mapshaderconstant(n_local_client, 0, str_vector, 0, i, 1, 0);
+			self.var_6f4c2683[n_wound] = i;
 			wait(0.01);
 			i = i - 0.01;
 		}
-		self mapshaderconstant(n_local_client, 0, var_4361a688, 0, 0.1, 1, 0);
+		self mapshaderconstant(n_local_client, 0, str_vector, 0, 0.1, 1, 0);
 	}
 }
 
@@ -593,10 +593,10 @@ function function_6865d0d5(localclientnum, oldval, newval, bnewent, binitialsnap
 			level.var_a4d6e1f1 = undefined;
 			level scene::add_scene_func("p7_fxanim_zm_stal_dragon_hazard_library_banner_01_bundle", &function_ae0e995e, "play");
 		}
-		var_f8efe776 = getentarray(localclientnum, "library_banner_01", "targetname");
-		foreach(var_f558224f in var_f8efe776)
+		a_mdl_banners = getentarray(localclientnum, "library_banner_01", "targetname");
+		foreach(mdl_banner in a_mdl_banners)
 		{
-			var_f558224f thread scene::play("p7_fxanim_zm_stal_dragon_hazard_library_banner_01_bundle", var_f558224f);
+			mdl_banner thread scene::play("p7_fxanim_zm_stal_dragon_hazard_library_banner_01_bundle", mdl_banner);
 		}
 	}
 }

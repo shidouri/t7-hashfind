@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\archetype_thrasher;
@@ -166,7 +166,7 @@ function function_fedc998b(var_e7abf7d0 = 0)
 	self.var_e7abf7d0 = var_e7abf7d0;
 	self.s_plant = spawnstruct();
 	self.s_plant.model = util::spawn_model("tag_origin", self.origin, self.angles);
-	self.s_plant.var_75bf845a = [];
+	self.s_plant.a_water = [];
 	self.s_plant.var_49d71b32 = 0;
 	self.s_plant.var_198c12a1 = 0;
 	self.s_plant.var_8d8becb0 = 0;
@@ -432,7 +432,7 @@ function function_447658c7(var_9636d237, var_f40460f5)
 	/#
 		println("");
 	#/
-	self function_26651461(self.s_plant.var_75bf845a, self.s_plant.var_49d71b32, var_9636d237, var_f40460f5);
+	self function_26651461(self.s_plant.a_water, self.s_plant.var_49d71b32, var_9636d237, var_f40460f5);
 	self.s_plant.model clientfield::set("cache_plant_interact_fx", 0);
 	if(!isdefined(var_9636d237))
 	{
@@ -443,7 +443,7 @@ function function_447658c7(var_9636d237, var_f40460f5)
 	self.s_plant.model connectpaths();
 	self notify(#"hash_98cf252f");
 	self.var_594609f9 = 0;
-	self.s_plant.var_75bf845a = [];
+	self.s_plant.a_water = [];
 }
 
 /*
@@ -534,7 +534,7 @@ function function_ffa65395(var_f40460f5)
 	{
 		return;
 	}
-	self.s_plant.var_75bf845a = [];
+	self.s_plant.a_water = [];
 	self.s_plant.var_2a1e031c = [];
 	wait(1);
 	for(n_round = 0; n_round < 3; n_round++)
@@ -563,7 +563,7 @@ function function_ffa65395(var_f40460f5)
 				user notify(#"player_watered_plant");
 			}
 		}
-		self.s_plant.var_75bf845a[self.s_plant.var_75bf845a.size] = user.var_c6cad973;
+		self.s_plant.a_water[self.s_plant.a_water.size] = user.var_c6cad973;
 		user thread zm_island_power::function_a84a1aec();
 		array::add(self.s_plant.var_2a1e031c, user, 1);
 		if(n_round == 2)
@@ -619,20 +619,20 @@ function function_5026698c(var_f40460f5)
 	Parameters: 4
 	Flags: Linked
 */
-function function_26651461(var_75bf845a, var_49d71b32, var_9636d237, var_f40460f5)
+function function_26651461(a_water, var_49d71b32, var_9636d237, var_f40460f5)
 {
-	var_b47da5df = [];
-	var_b47da5df[0] = 0;
-	var_b47da5df[1] = 0;
-	var_b47da5df[2] = 0;
-	var_b47da5df[3] = 0;
-	var_b47da5df[4] = 0;
-	var_b47da5df[5] = 0;
-	var_b47da5df[6] = 0;
-	var_b47da5df[7] = 0;
-	var_b47da5df[8] = 0;
-	var_b47da5df[9] = 0;
-	var_b47da5df[10] = 0;
+	a_plants = [];
+	a_plants[0] = 0;
+	a_plants[1] = 0;
+	a_plants[2] = 0;
+	a_plants[3] = 0;
+	a_plants[4] = 0;
+	a_plants[5] = 0;
+	a_plants[6] = 0;
+	a_plants[7] = 0;
+	a_plants[8] = 0;
+	a_plants[9] = 0;
+	a_plants[10] = 0;
 	var_1e67e37 = 0;
 	var_34c1ce60 = 0;
 	var_eaa9733b = 0;
@@ -645,36 +645,36 @@ function function_26651461(var_75bf845a, var_49d71b32, var_9636d237, var_f40460f
 	{
 		b_ee_planting_spot = 0;
 	}
-	for(i = 0; i < var_75bf845a.size; i++)
+	for(i = 0; i < a_water.size; i++)
 	{
-		if(var_75bf845a[i] == 4)
+		if(a_water[i] == 4)
 		{
 			if(b_ee_planting_spot && !level flag::get("ww_upgrade_spawned_from_plant"))
 			{
 				continue;
 				continue;
 			}
-			var_75bf845a[i] = randomintrange(1, 4);
+			a_water[i] = randomintrange(1, 4);
 		}
 	}
-	foreach(var_1153caa9 in var_75bf845a)
+	foreach(n_water in a_water)
 	{
-		if(var_1153caa9 == 1)
+		if(n_water == 1)
 		{
 			var_1e67e37++;
 			continue;
 		}
-		if(var_1153caa9 == 2)
+		if(n_water == 2)
 		{
 			var_34c1ce60++;
 			continue;
 		}
-		if(var_1153caa9 == 3)
+		if(n_water == 3)
 		{
 			var_eaa9733b++;
 			continue;
 		}
-		if(var_1153caa9 == 4)
+		if(n_water == 4)
 		{
 			var_98b687fa++;
 		}
@@ -689,73 +689,73 @@ function function_26651461(var_75bf845a, var_49d71b32, var_9636d237, var_f40460f
 	{
 		if(var_49d71b32 == 3)
 		{
-			var_b47da5df[10] = 20;
+			a_plants[10] = 20;
 		}
 		else
 		{
-			var_b47da5df[10] = 5 * var_49d71b32;
+			a_plants[10] = 5 * var_49d71b32;
 		}
 	}
-	var_a476b929 = 100 - var_b47da5df[10];
-	n_total = n_total + var_b47da5df[10];
+	n_remainder = 100 - a_plants[10];
+	n_total = n_total + a_plants[10];
 	if(var_1e67e37 == 1 && var_34c1ce60 == 1 && var_eaa9733b == 1)
 	{
-		var_b47da5df[8] = var_a476b929 / 2;
-		var_b47da5df[2] = (var_a476b929 / 2) / 3;
-		var_b47da5df[4] = (var_a476b929 / 2) / 3;
-		var_b47da5df[6] = (var_a476b929 / 2) / 3;
-		var_b47da5df[0] = 0;
-		var_b47da5df[1] = 0;
+		a_plants[8] = n_remainder / 2;
+		a_plants[2] = (n_remainder / 2) / 3;
+		a_plants[4] = (n_remainder / 2) / 3;
+		a_plants[6] = (n_remainder / 2) / 3;
+		a_plants[0] = 0;
+		a_plants[1] = 0;
 	}
 	else
 	{
-		var_b47da5df[2] = var_a476b929 * (var_1e67e37 / 3);
-		var_b47da5df[4] = var_a476b929 * (var_eaa9733b / 3);
-		var_b47da5df[6] = var_a476b929 * (var_34c1ce60 / 3);
-		n_total = n_total + ((var_b47da5df[2] + var_b47da5df[4]) + var_b47da5df[6]);
-		if(var_75bf845a.size === 0 && var_49d71b32 === 0)
+		a_plants[2] = n_remainder * (var_1e67e37 / 3);
+		a_plants[4] = n_remainder * (var_eaa9733b / 3);
+		a_plants[6] = n_remainder * (var_34c1ce60 / 3);
+		n_total = n_total + ((a_plants[2] + a_plants[4]) + a_plants[6]);
+		if(a_water.size === 0 && var_49d71b32 === 0)
 		{
-			var_b47da5df[0] = 100 - n_total;
-			var_b47da5df[1] = 0;
+			a_plants[0] = 100 - n_total;
+			a_plants[1] = 0;
 		}
 		else
 		{
-			var_b47da5df[0] = 0;
-			var_b47da5df[1] = 100 - n_total;
+			a_plants[0] = 0;
+			a_plants[1] = 100 - n_total;
 		}
 	}
-	var_b47da5df[3] = var_b47da5df[2] * (var_49d71b32 / 3);
-	var_b47da5df[2] = abs(var_b47da5df[2] - var_b47da5df[3]);
-	var_b47da5df[5] = var_b47da5df[4] * (var_49d71b32 / 3);
-	var_b47da5df[4] = abs(var_b47da5df[4] - var_b47da5df[5]);
-	var_b47da5df[7] = var_b47da5df[6] * (var_49d71b32 / 3);
-	var_b47da5df[6] = abs(var_b47da5df[6] - var_b47da5df[7]);
-	var_b47da5df[9] = var_b47da5df[8] * (var_49d71b32 / 3);
-	var_b47da5df[8] = abs(var_b47da5df[8] - var_b47da5df[9]);
+	a_plants[3] = a_plants[2] * (var_49d71b32 / 3);
+	a_plants[2] = abs(a_plants[2] - a_plants[3]);
+	a_plants[5] = a_plants[4] * (var_49d71b32 / 3);
+	a_plants[4] = abs(a_plants[4] - a_plants[5]);
+	a_plants[7] = a_plants[6] * (var_49d71b32 / 3);
+	a_plants[6] = abs(a_plants[6] - a_plants[7]);
+	a_plants[9] = a_plants[8] * (var_49d71b32 / 3);
+	a_plants[8] = abs(a_plants[8] - a_plants[9]);
 	if(isdefined(var_f40460f5) && var_f40460f5)
 	{
-		var_b47da5df = [];
+		a_plants = [];
 		if(var_49d71b32 > 0)
 		{
-			var_b47da5df[5] = 100;
+			a_plants[5] = 100;
 		}
 		else
 		{
-			var_b47da5df[4] = 100;
+			a_plants[4] = 100;
 		}
 	}
-	var_f48f47cc = [];
-	var_29cc53bd = 0;
-	foreach(plant, n_score in var_b47da5df)
+	a_possible = [];
+	n_cumulative = 0;
+	foreach(plant, n_score in a_plants)
 	{
 		if(n_score > 0)
 		{
-			var_f48f47cc[plant] = var_29cc53bd + n_score;
-			var_29cc53bd = var_29cc53bd + n_score;
+			a_possible[plant] = n_cumulative + n_score;
+			n_cumulative = n_cumulative + n_score;
 		}
 	}
 	n_random = randomfloatrange(0, 100);
-	foreach(n_score in var_f48f47cc)
+	foreach(n_score in a_possible)
 	{
 		if(n_random <= n_score)
 		{
@@ -845,20 +845,20 @@ function function_54af12e9()
 	level.var_f3798849 = getweapon("sniper_fastbolt");
 	level.var_c29d7558 = getweapon("launcher_standard");
 	level.var_b00f35c1 = getweapon("ar_marksman");
-	var_b0612bf3 = [];
-	var_b0612bf3["points"] = 10;
-	var_b0612bf3["pistol"] = 10;
-	var_b0612bf3["sniper"] = 10;
-	var_b0612bf3["launcher"] = 10;
-	var_b0612bf3["ar"] = 10;
-	var_b0612bf3["zombie"] = 25;
-	var_b0612bf3["grenade"] = 25;
-	var_29cc53bd = 0;
+	a_rewards = [];
+	a_rewards["points"] = 10;
+	a_rewards["pistol"] = 10;
+	a_rewards["sniper"] = 10;
+	a_rewards["launcher"] = 10;
+	a_rewards["ar"] = 10;
+	a_rewards["zombie"] = 25;
+	a_rewards["grenade"] = 25;
+	n_cumulative = 0;
 	level.var_349b9c58 = [];
-	foreach(str_reward, n_chance in var_b0612bf3)
+	foreach(str_reward, n_chance in a_rewards)
 	{
-		level.var_349b9c58[str_reward] = n_chance + var_29cc53bd;
-		var_29cc53bd = var_29cc53bd + n_chance;
+		level.var_349b9c58[str_reward] = n_chance + n_cumulative;
+		n_cumulative = n_cumulative + n_chance;
 	}
 	var_ec35bcf6 = [];
 	var_ec35bcf6["points"] = 35;
@@ -866,12 +866,12 @@ function function_54af12e9()
 	var_ec35bcf6["sniper"] = 10;
 	var_ec35bcf6["launcher"] = 10;
 	var_ec35bcf6["ar"] = 10;
-	var_29cc53bd = 0;
+	n_cumulative = 0;
 	level.var_9d5349d = [];
 	foreach(str_reward, n_chance in var_ec35bcf6)
 	{
-		level.var_9d5349d[str_reward] = n_chance + var_29cc53bd;
-		var_29cc53bd = var_29cc53bd + n_chance;
+		level.var_9d5349d[str_reward] = n_chance + n_cumulative;
+		n_cumulative = n_cumulative + n_chance;
 	}
 }
 
@@ -1138,32 +1138,32 @@ function function_72298dfd()
 	var_b4550164 = getweapon("cymbal_monkey");
 	level.var_8aee1d4 = array(var_56b02536, var_722e06cb, var_d6376f9e, var_4fa7d135, var_c71381ba, var_b4550164);
 	level.var_1a1ac6dd = array("full_ammo", "nuke", "insta_kill", "double_points", "fire_sale", "minigun");
-	var_b0612bf3 = [];
+	a_rewards = [];
 	var_c6f9cb70 = 100;
-	var_b0612bf3["points"] = var_c6f9cb70 / 3;
-	var_b0612bf3["weapon"] = var_c6f9cb70 / 3;
-	var_b0612bf3["powerup"] = var_c6f9cb70 / 3;
-	var_29cc53bd = 0;
+	a_rewards["points"] = var_c6f9cb70 / 3;
+	a_rewards["weapon"] = var_c6f9cb70 / 3;
+	a_rewards["powerup"] = var_c6f9cb70 / 3;
+	n_cumulative = 0;
 	level.var_170b1e5c = [];
-	foreach(str_reward, n_chance in var_b0612bf3)
+	foreach(str_reward, n_chance in a_rewards)
 	{
-		level.var_170b1e5c[str_reward] = n_chance + var_29cc53bd;
-		var_29cc53bd = var_29cc53bd + n_chance;
+		level.var_170b1e5c[str_reward] = n_chance + n_cumulative;
+		n_cumulative = n_cumulative + n_chance;
 	}
-	level.var_e6d4b4ec = var_29cc53bd;
+	level.var_e6d4b4ec = n_cumulative;
 	var_ec35bcf6 = [];
 	var_ec35bcf6["points"] = 30;
 	var_ec35bcf6["weapon"] = 25;
 	var_ec35bcf6["powerup"] = 25;
 	var_ec35bcf6["perk_bottle"] = 20;
-	var_29cc53bd = 0;
+	n_cumulative = 0;
 	level.var_ff3b49 = [];
 	foreach(str_reward, n_chance in var_ec35bcf6)
 	{
-		level.var_ff3b49[str_reward] = n_chance + var_29cc53bd;
-		var_29cc53bd = var_29cc53bd + n_chance;
+		level.var_ff3b49[str_reward] = n_chance + n_cumulative;
+		n_cumulative = n_cumulative + n_chance;
 	}
-	level.var_2afecb6f = var_29cc53bd;
+	level.var_2afecb6f = n_cumulative;
 }
 
 /*
@@ -3289,7 +3289,7 @@ function function_37e9f650(b_success)
 	{
 		self zm_utility::decrement_is_drinking();
 	}
-	var_d82ff565 = self getweaponslistprimaries();
+	a_primaries = self getweaponslistprimaries();
 	self takeweapon(var_c9d7dbd3);
 	if(self.is_drinking > 0)
 	{
@@ -3301,9 +3301,9 @@ function function_37e9f650(b_success)
 	}
 	else
 	{
-		if(isdefined(var_d82ff565) && var_d82ff565.size > 0)
+		if(isdefined(a_primaries) && a_primaries.size > 0)
 		{
-			self switchtoweapon(var_d82ff565[0]);
+			self switchtoweapon(a_primaries[0]);
 		}
 		else
 		{

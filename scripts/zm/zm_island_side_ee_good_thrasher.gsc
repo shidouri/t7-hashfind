@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_shared;
@@ -61,7 +61,7 @@ function __init__()
 {
 	level.var_564761a3 = spawnstruct();
 	level.var_564761a3.var_69299ec6 = getent("mdl_side_ee_gt_vine", "targetname");
-	level.var_564761a3.var_978adea0 = getentarray("mdl_good_thrasher_vines", "targetname");
+	level.var_564761a3.a_mdl_vines = getentarray("mdl_good_thrasher_vines", "targetname");
 	level.var_564761a3.var_11c98268 = struct::get("s_side_ee_gt_spore_pos", "targetname");
 	level.var_564761a3.var_ff07b157 = getent("mdl_side_ee_gt_sporeplant", "targetname");
 	level.var_564761a3.var_ff07b157.var_7117876c = level.var_564761a3.var_ff07b157.origin;
@@ -219,11 +219,11 @@ function function_302fe6aa()
 	self hide();
 	self setcandamage(0);
 	self notsolid();
-	foreach(var_4165e349 in level.var_564761a3.var_978adea0)
+	foreach(mdl_vine in level.var_564761a3.a_mdl_vines)
 	{
-		if(isdefined(var_4165e349))
+		if(isdefined(mdl_vine))
 		{
-			var_4165e349 delete();
+			mdl_vine delete();
 		}
 	}
 	wait(1);
@@ -961,7 +961,7 @@ function function_909c515f()
 		return;
 	}
 	self zm_utility::decrement_is_drinking();
-	var_d82ff565 = self getweaponslistprimaries();
+	a_primaries = self getweaponslistprimaries();
 	self takeweapon(weapon);
 	if(self.is_drinking > 0)
 	{
@@ -973,9 +973,9 @@ function function_909c515f()
 	}
 	else
 	{
-		if(isdefined(var_d82ff565) && var_d82ff565.size > 0)
+		if(isdefined(a_primaries) && a_primaries.size > 0)
 		{
-			self switchtoweapon(var_d82ff565[0]);
+			self switchtoweapon(a_primaries[0]);
 		}
 		else
 		{

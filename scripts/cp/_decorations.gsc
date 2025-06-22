@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\_accolades;
 #using scripts\cp\_skipto;
 #using scripts\cp\gametypes\_save;
@@ -38,10 +38,10 @@ function function_25328f50(var_aeda862b)
 */
 function function_59f1fa79(map_name = getrootmapname())
 {
-	var_ebb087c2 = self savegame::get_player_data("accolades");
-	if(isdefined(var_ebb087c2))
+	a_accolades = self savegame::get_player_data("accolades");
+	if(isdefined(a_accolades))
 	{
-		foreach(accolade in var_ebb087c2)
+		foreach(accolade in a_accolades)
 		{
 			if(!(isdefined(accolade.is_completed) && accolade.is_completed))
 			{

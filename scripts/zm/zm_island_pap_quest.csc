@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -92,8 +92,8 @@ function lower_pap_water(localclientnum, oldval, newval, bnewent, binitialsnap, 
 function function_cc69986f(n_curr, var_e1344a83, n_time)
 {
 	n_end = n_curr - var_e1344a83;
-	var_c1c93aba = 187.5;
-	n_delta = var_e1344a83 / var_c1c93aba;
+	n_increments = 187.5;
+	n_delta = var_e1344a83 / n_increments;
 	var_c0b3756a = n_curr;
 	while(var_c0b3756a >= n_end)
 	{

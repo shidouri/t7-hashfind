@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -1305,8 +1305,8 @@ function theater_moon_jump_go()
 function function_7e0ed731(var_f7b84b84, v_offset)
 {
 	self endon(#"disconnect");
-	var_51bf1eed = var_f7b84b84 + 1;
-	var_2d8dac7a = "teleport_room_fx_" + var_51bf1eed;
+	n_room = var_f7b84b84 + 1;
+	var_2d8dac7a = "teleport_room_fx_" + n_room;
 	var_b4c5584f = struct::get(var_2d8dac7a, "targetname");
 	s_wormhole = struct::spawn(var_b4c5584f.origin - v_offset, var_b4c5584f.angles);
 	if(isdefined(s_wormhole))

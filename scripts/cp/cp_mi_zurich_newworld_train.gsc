@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_debug;
 #using scripts\cp\_dialog;
@@ -1518,8 +1518,8 @@ function start_sequential_train_door_lockdown()
 	clientfield::set("train_lockdown_shutters_5", 1);
 	e_trigger = getent("train_car_lockdown_04", "targetname");
 	e_trigger wait_for_train_car_to_be_empty();
-	var_5bcb8a4d = struct::get_array("train_civilians_car_1", "script_noteworthy");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("train_civilians_car_1", "script_noteworthy");
+	foreach(s_scene in a_s_scene)
 	{
 		if(s_scene scene::is_playing())
 		{
@@ -1530,8 +1530,8 @@ function start_sequential_train_door_lockdown()
 	clientfield::set("train_lockdown_shutters_4", 1);
 	e_trigger = getent("train_car_lockdown_03", "targetname");
 	e_trigger wait_for_train_car_to_be_empty();
-	var_5bcb8a4d = struct::get_array("train_civilians_car_2", "script_noteworthy");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("train_civilians_car_2", "script_noteworthy");
+	foreach(s_scene in a_s_scene)
 	{
 		if(s_scene scene::is_playing())
 		{
@@ -1543,16 +1543,16 @@ function start_sequential_train_door_lockdown()
 	clientfield::set("train_lockdown_shutters_3", 1);
 	e_trigger = getent("train_car_lockdown_02", "targetname");
 	e_trigger wait_for_train_car_to_be_empty();
-	var_5bcb8a4d = struct::get_array("train_civilians_car_3", "script_noteworthy");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("train_civilians_car_3", "script_noteworthy");
+	foreach(s_scene in a_s_scene)
 	{
 		if(s_scene scene::is_playing())
 		{
 			s_scene scene::stop(1);
 		}
 	}
-	var_5bcb8a4d = struct::get_array("train_car_3_charging_stations", "targetname");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("train_car_3_charging_stations", "targetname");
+	foreach(s_scene in a_s_scene)
 	{
 		if(s_scene scene::is_playing())
 		{
@@ -1568,24 +1568,24 @@ function start_sequential_train_door_lockdown()
 	e_trigger = getent("train_car_lockdown_01", "targetname");
 	e_trigger wait_for_train_car_to_be_empty();
 	trigger::use("enable_car_0_respawns");
-	var_5bcb8a4d = struct::get_array("train_civilians_car_4", "script_noteworthy");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("train_civilians_car_4", "script_noteworthy");
+	foreach(s_scene in a_s_scene)
 	{
 		if(s_scene scene::is_playing())
 		{
 			s_scene scene::stop(1);
 		}
 	}
-	var_5bcb8a4d = struct::get_array("train_car_4_charging_stations", "targetname");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("train_car_4_charging_stations", "targetname");
+	foreach(s_scene in a_s_scene)
 	{
 		if(s_scene scene::is_playing())
 		{
 			s_scene scene::stop(1);
 		}
 	}
-	var_5bcb8a4d = struct::get_array("train_car_4_rear_charging_stations", "targetname");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("train_car_4_rear_charging_stations", "targetname");
+	foreach(s_scene in a_s_scene)
 	{
 		if(s_scene scene::is_playing())
 		{
@@ -1776,15 +1776,15 @@ function function_1b953f61()
 			break;
 		}
 	}
-	var_2d8e6fdb = [];
+	a_ai_climbers = [];
 	for(i = 1; i < (n_count + 1); i++)
 	{
 		ai_robot = spawner::simple_spawn_single("train_climb_robot");
-		var_2d8e6fdb[var_2d8e6fdb.size] = ai_robot;
+		a_ai_climbers[a_ai_climbers.size] = ai_robot;
 		s_scene = struct::get("train_roof2_climb1_0" + i, "targetname");
 		s_scene thread scene::init(ai_robot);
 	}
-	level thread function_fa538321(var_2d8e6fdb);
+	level thread function_fa538321(a_ai_climbers);
 	level thread function_33267d4e();
 	level flag::wait_till("train_climb_robot_scene");
 	for(i = 1; i < (n_count + 1); i++)
@@ -1804,10 +1804,10 @@ function function_1b953f61()
 	Parameters: 1
 	Flags: Linked
 */
-function function_fa538321(var_2d8e6fdb)
+function function_fa538321(a_ai_climbers)
 {
 	level endon(#"hash_5e95ab82");
-	ai::waittill_dead(var_2d8e6fdb);
+	ai::waittill_dead(a_ai_climbers);
 	level flag::set("spawn_wave2_climbers");
 }
 
@@ -2672,7 +2672,7 @@ function function_7db3194d(a_ents)
 {
 	level thread function_778d22d7(a_ents);
 	a_ents["player 1"] waittill(#"hash_7db3194d");
-	level notify(#"hash_c053b2ca");
+	level notify("troff");
 	hidemiscmodels("train_bomb_models_hide");
 	level thread scene::play("p7_fxanim_cp_newworld_train_end_bundle");
 	if(!scene::is_skipping_in_progress())
@@ -3534,12 +3534,12 @@ function function_8c0c3c47()
 	Parameters: 2
 	Flags: Linked
 */
-function function_11711684(var_81a32895, var_2380d5c)
+function function_11711684(str_ability, var_2380d5c)
 {
 	level flag::wait_till("train_intro_vo_complete");
-	weapon = newworld_util::function_71840183(var_81a32895, var_2380d5c);
+	weapon = newworld_util::function_71840183(str_ability, var_2380d5c);
 	var_12b288c7 = weapon.name + "_fired";
-	var_a2cc98e = var_81a32895 + "_use_ability_tutorial";
+	var_a2cc98e = str_ability + "_use_ability_tutorial";
 	foreach(player in level.activeplayers)
 	{
 		if(player newworld_util::function_c633d8fe())
@@ -3801,15 +3801,15 @@ function function_123070a9()
 	Parameters: 2
 	Flags: Linked
 */
-function function_9f8dbaa2(var_81a32895, var_2380d5c)
+function function_9f8dbaa2(str_ability, var_2380d5c)
 {
 	self endon(#"hash_848a4771");
 	level.var_fc1953ce dialog::say("tayr_use_concussive_wave_0", undefined, 1, self);
 	self flag::set("concussive_wave_tutorial_vo_complete");
-	weapon = newworld_util::function_71840183(var_81a32895, var_2380d5c);
+	weapon = newworld_util::function_71840183(str_ability, var_2380d5c);
 	var_12b288c7 = weapon.name + "_fired";
-	var_a2cc98e = var_81a32895 + "_use_ability_tutorial";
-	var_b41e8e5c = var_81a32895 + "_WW_tutorial";
+	var_a2cc98e = str_ability + "_use_ability_tutorial";
+	var_b41e8e5c = str_ability + "_WW_tutorial";
 	self thread function_32b93f59(var_b41e8e5c, var_a2cc98e);
 	self thread function_3fbeb972(var_12b288c7);
 }

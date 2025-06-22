@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\exploder_shared;
@@ -445,8 +445,8 @@ function function_a7e8b47b()
 		var_1a0a3da9 = getentarray("", "");
 		var_ff1b68c0 = getent("", "");
 		a_e_collision = getentarray("", "");
-		var_50e0150f = getentarray("", "");
-		var_b9e116c5 = getentarray("", "");
+		a_e_gates = getentarray("", "");
+		a_e_hatches = getentarray("", "");
 		var_6f3f4356 = getnodearray("", "");
 		if(level.var_de98e3ce.gates_open)
 		{
@@ -456,7 +456,7 @@ function function_a7e8b47b()
 				e_collision movez(600, 0.1);
 				e_collision disconnectpaths();
 			}
-			foreach(e_gate in var_50e0150f)
+			foreach(e_gate in a_e_gates)
 			{
 				e_gate movez(600, 0.25);
 			}
@@ -465,7 +465,7 @@ function function_a7e8b47b()
 				e_door movex(114, 1);
 				e_door disconnectpaths();
 			}
-			foreach(e_hatch in var_b9e116c5)
+			foreach(e_hatch in a_e_hatches)
 			{
 				e_hatch rotateroll(-90, 1);
 			}
@@ -484,7 +484,7 @@ function function_a7e8b47b()
 				e_collision connectpaths();
 				e_collision movez(-600, 0.1);
 			}
-			foreach(e_gate in var_50e0150f)
+			foreach(e_gate in a_e_gates)
 			{
 				e_gate movez(-600, 0.25);
 			}
@@ -493,7 +493,7 @@ function function_a7e8b47b()
 				e_door movex(-114, 1);
 				e_door connectpaths();
 			}
-			foreach(e_hatch in var_b9e116c5)
+			foreach(e_hatch in a_e_hatches)
 			{
 				e_hatch rotateroll(90, 1);
 			}
@@ -518,12 +518,12 @@ function function_a7e8b47b()
 	Parameters: 1
 	Flags: Linked
 */
-function function_31f1d173(var_41ef115f)
+function function_31f1d173(n_direction)
 {
 	/#
 		level notify(#"hash_31f1d173");
 		wait(1);
-		switch(var_41ef115f)
+		switch(n_direction)
 		{
 			case 0:
 			{

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\margwa;
 #using scripts\shared\ai\zombie_death;
@@ -235,8 +235,8 @@ function function_189ed812()
 */
 function function_1b6ee215()
 {
-	var_501cba6a = getent("ee_book", "targetname");
-	var_501cba6a ghost();
+	e_book = getent("ee_book", "targetname");
+	e_book ghost();
 	function_c3466d96(0);
 	level.var_b94f6d7a = struct::get_array("ee_totem_leyline", "targetname");
 }
@@ -330,17 +330,17 @@ function function_8a05e65()
 */
 function ee_begin()
 {
-	var_501cba6a = getent("ee_book", "targetname");
-	e_deletable_spawn_point = spawn("script_model", var_501cba6a.origin);
+	e_book = getent("ee_book", "targetname");
+	e_deletable_spawn_point = spawn("script_model", e_book.origin);
 	e_deletable_spawn_point setmodel("tag_origin");
-	e_deletable_spawn_point.origin = var_501cba6a.origin;
-	e_deletable_spawn_point.angles = var_501cba6a.angles;
+	e_deletable_spawn_point.origin = e_book.origin;
+	e_deletable_spawn_point.angles = e_book.angles;
 	var_61835890 = playfxontag(level._effect["ee_quest_book_mist"], e_deletable_spawn_point, "tag_origin");
 	wait(1.5);
-	var_501cba6a show();
+	e_book show();
 	wait(1.5);
 	e_deletable_spawn_point delete();
-	level thread function_e6341733(var_501cba6a);
+	level thread function_e6341733(e_book);
 	level flag::wait_till("ee_book");
 }
 
@@ -413,12 +413,12 @@ function function_db49b939()
 	level thread function_7f4562e9();
 	level flag::set("ee_boss_started");
 	zm_zod_quest::set_ritual_barrier("pap", 1);
-	var_a21704fb = [];
-	var_a21704fb[0] = spawnstruct();
-	var_a21704fb[0].func = &zm_zod_shadowman::function_b4b792ef;
-	var_a21704fb[0].probability = 1;
-	var_a21704fb[0].n_move_duration = randomfloatrange(6, 12);
-	level.var_dbc3a0ef = level thread zm_zod_shadowman::function_f3805c8a("ee_shadowman_8", undefined, var_a21704fb, 6, 12);
+	a_s_moves = [];
+	a_s_moves[0] = spawnstruct();
+	a_s_moves[0].func = &zm_zod_shadowman::function_b4b792ef;
+	a_s_moves[0].probability = 1;
+	a_s_moves[0].n_move_duration = randomfloatrange(6, 12);
+	level.var_dbc3a0ef = level thread zm_zod_shadowman::function_f3805c8a("ee_shadowman_8", undefined, a_s_moves, 6, 12);
 	level.var_dbc3a0ef.var_93dad597 clientfield::set("boss_shield_fx", 1);
 	level.var_dbc3a0ef.var_93dad597 playsound("zmb_zod_shadfight_shield_up_short");
 	level thread function_4bcb6826();
@@ -1056,8 +1056,8 @@ function function_729859d0()
 		if(level flag::get("ee_final_boss_beam_active") === 0)
 		{
 			level thread function_c898ab1();
-			var_7f207012 = [[ level.o_zod_train ]]->get_players_on_train();
-			foreach(var_813273c3 in var_7f207012)
+			a_e_passengers = [[ level.o_zod_train ]]->get_players_on_train();
+			foreach(var_813273c3 in a_e_passengers)
 			{
 				var_813273c3 thread zm_zod_util::set_rumble_to_player(6, 1);
 			}
@@ -1097,22 +1097,22 @@ function function_f30f87e4(n_index)
 	level notify("ee_final_boss_keeper_electricity_watcher_" + n_index);
 	level endon("ee_final_boss_keeper_electricity_watcher_" + n_index);
 	level endon(#"ee_final_boss_defeated");
-	var_da3dbbdf = level.var_76c101df[n_index];
-	var_da3dbbdf endon(#"delete");
-	var_da3dbbdf solid();
-	var_da3dbbdf setcandamage(1);
-	var_da3dbbdf.health = 1000000;
+	mdl_keeper = level.var_76c101df[n_index];
+	mdl_keeper endon(#"delete");
+	mdl_keeper solid();
+	mdl_keeper setcandamage(1);
+	mdl_keeper.health = 1000000;
 	while(true)
 	{
-		var_da3dbbdf waittill(#"damage", amount, attacker, direction, point, mod, tagname, modelname, partname, weapon);
-		var_da3dbbdf.health = 1000000;
+		mdl_keeper waittill(#"damage", amount, attacker, direction, point, mod, tagname, modelname, partname, weapon);
+		mdl_keeper.health = 1000000;
 		if(zm_altbody_beast::is_lightning_weapon(weapon) && isdefined(attacker) && amount > 0)
 		{
 			if(isdefined(attacker))
 			{
 				attacker notify(#"shockable_shocked");
 			}
-			level thread function_6774c6fd(var_da3dbbdf);
+			level thread function_6774c6fd(mdl_keeper);
 			level flag::set("ee_final_boss_keeper_electricity_" + n_index);
 			wait(5);
 			level flag::clear("ee_final_boss_keeper_electricity_" + n_index);
@@ -1129,11 +1129,11 @@ function function_f30f87e4(n_index)
 	Parameters: 1
 	Flags: Linked
 */
-function function_6774c6fd(var_da3dbbdf)
+function function_6774c6fd(mdl_keeper)
 {
-	fx_ent = spawn("script_model", var_da3dbbdf.origin);
+	fx_ent = spawn("script_model", mdl_keeper.origin);
 	fx_ent setmodel("tag_origin");
-	fx_ent.angles = var_da3dbbdf.angles;
+	fx_ent.angles = mdl_keeper.angles;
 	playfxontag(level._effect["ee_quest_keeper_shocked"], fx_ent, "tag_origin");
 	fx_ent playsound("zmb_zod_keeper_charge_up");
 	fx_ent playloopsound("zmb_zod_keeper_charge_lp", 1);
@@ -1561,12 +1561,12 @@ function function_bddd53dc(trig_stub, player)
 	/#
 		iprintlnbold("");
 	#/
-	var_501cba6a = getent("ee_book", "targetname");
-	var_501cba6a moveto(var_501cba6a.origin + vectorscale((0, 0, 1), 48), 3, 1, 1);
+	e_book = getent("ee_book", "targetname");
+	e_book moveto(e_book.origin + vectorscale((0, 0, 1), 48), 3, 1, 1);
 	wait(3);
-	playfxontag(level._effect["ee_quest_book_mist"], var_501cba6a, "tag_origin");
-	var_501cba6a playsound("zmb_ee_main_book_aflame");
-	var_501cba6a playloopsound("zmb_ee_main_book_aflame_lp", 1);
+	playfxontag(level._effect["ee_quest_book_mist"], e_book, "tag_origin");
+	e_book playsound("zmb_ee_main_book_aflame");
+	e_book playloopsound("zmb_ee_main_book_aflame_lp", 1);
 	level flag::set("ee_book");
 	level clientfield::set("ee_keeper_boxer_state", 1);
 	level clientfield::set("ee_keeper_detective_state", 1);
@@ -2623,14 +2623,14 @@ function function_f016ad0d(trig_stub, player)
 	trig_stub.var_4cf62d2c showpart("j_totem");
 	trig_stub.var_4cf62d2c setcandamage(1);
 	trig_stub.var_4cf62d2c clientfield::set("totem_state_fx", 3);
-	var_a21704fb = [];
-	var_a21704fb[0] = spawnstruct();
-	var_a21704fb[0].func = &zm_zod_shadowman::function_4a41b207;
-	var_a21704fb[0].probability = 0.5;
-	var_a21704fb[0].n_move_duration = 3;
+	a_s_moves = [];
+	a_s_moves[0] = spawnstruct();
+	a_s_moves[0].func = &zm_zod_shadowman::function_4a41b207;
+	a_s_moves[0].probability = 0.5;
+	a_s_moves[0].n_move_duration = 3;
 	str_targetname = "ee_shadowman_totem";
 	str_script_noteworthy = trig_stub.script_noteworthy;
-	level thread zm_zod_shadowman::function_f3805c8a(str_targetname, str_script_noteworthy, var_a21704fb, 2, 4);
+	level thread zm_zod_shadowman::function_f3805c8a(str_targetname, str_script_noteworthy, a_s_moves, 2, 4);
 	trig_stub.var_4cf62d2c thread function_353871a(undefined, player);
 	trig_stub.var_4cf62d2c thread function_ac3c8848();
 	function_7a40f43c();

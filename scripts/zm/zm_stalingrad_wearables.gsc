@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -135,7 +135,7 @@ function function_2436f867()
 	self endon(#"hash_2436f867");
 	self util::waittill_any("disconnect", "bled_out", "death");
 	self.var_bc5f242a = undefined;
-	self.var_e7d196cc = undefined;
+	self.str_wearable = undefined;
 	level clientfield::set(("player" + self.entity_num) + "wearableItem", 0);
 }
 
@@ -164,11 +164,11 @@ function function_793f10ed(var_908867a0)
 */
 function function_8cde51de()
 {
-	var_7f5d5c6 = [];
-	array::add(var_7f5d5c6, "dragon_shield_used");
-	array::add(var_7f5d5c6, "dragon_gauntlet_acquired");
-	array::add(var_7f5d5c6, "dragon_strike_acquired");
-	flag::wait_till_all(var_7f5d5c6);
+	a_str_flags = [];
+	array::add(a_str_flags, "dragon_shield_used");
+	array::add(a_str_flags, "dragon_gauntlet_acquired");
+	array::add(a_str_flags, "dragon_strike_acquired");
+	flag::wait_till_all(a_str_flags);
 	level flag::set("dragon_wings_items_aquired");
 	if(!level flag::get("dragon_platforms_all_used"))
 	{
@@ -259,7 +259,7 @@ function function_1a6de86e()
 */
 function function_2c1e6f00(e_player)
 {
-	if(e_player.var_e7d196cc === "dragon_wings")
+	if(e_player.str_wearable === "dragon_wings")
 	{
 		self sethintstring(&"ZM_STALINGRAD_WEARABLE_EQUIPPED");
 		return false;
@@ -301,7 +301,7 @@ function function_18dda0a0()
 		player.var_bc5f242a.model = "c_zom_dlc3_player_wings";
 		player.var_bc5f242a.tag = "j_spine4";
 		player function_20f2df00();
-		player.var_e7d196cc = "dragon_wings";
+		player.str_wearable = "dragon_wings";
 		player playsound("zmb_wearable_wing_wear");
 		zm::register_player_damage_callback(&function_9c197fbf);
 		player function_793f10ed(3);
@@ -325,8 +325,8 @@ function function_484ecd5()
 	level.var_37e960a1 = [];
 	foreach(var_c4917757 in var_e48fcb77)
 	{
-		var_cb03b137 = util::spawn_model(var_c4917757.model, var_c4917757.origin, var_c4917757.angles);
-		var_cb03b137 setscale(0.3);
+		mdl_wings = util::spawn_model(var_c4917757.model, var_c4917757.origin, var_c4917757.angles);
+		mdl_wings setscale(0.3);
 		if(!isdefined(level.var_37e960a1))
 		{
 			level.var_37e960a1 = [];
@@ -335,8 +335,8 @@ function function_484ecd5()
 		{
 			level.var_37e960a1 = array(level.var_37e960a1);
 		}
-		level.var_37e960a1[level.var_37e960a1.size] = var_cb03b137;
-		var_cb03b137 hide();
+		level.var_37e960a1[level.var_37e960a1.size] = mdl_wings;
+		mdl_wings hide();
 		var_c4917757 thread function_7e873fe6();
 		util::wait_network_frame();
 	}
@@ -358,7 +358,7 @@ function function_7e873fe6()
 	while(true)
 	{
 		self waittill(#"trigger_activated", e_player);
-		if(e_player.var_e7d196cc === "dragon_wings")
+		if(e_player.str_wearable === "dragon_wings")
 		{
 			e_player playsound("zmb_wearable_wing_teleport");
 			e_player function_cc32e7df();
@@ -377,7 +377,7 @@ function function_7e873fe6()
 */
 function function_9a167439(e_player)
 {
-	if(e_player.var_e7d196cc === "dragon_wings")
+	if(e_player.str_wearable === "dragon_wings")
 	{
 		self sethintstring(&"ZM_STALINGRAD_WINGS_TRANSPORT");
 		return true;
@@ -422,7 +422,7 @@ function function_cc32e7df()
 */
 function function_588ad36a()
 {
-	if(self.var_e7d196cc === "dragon_wings")
+	if(self.str_wearable === "dragon_wings")
 	{
 		array::run_all(level.var_37e960a1, &setinvisibletoplayer, self);
 	}
@@ -515,7 +515,7 @@ function function_69f1fce3()
 */
 function function_449ba539(e_player)
 {
-	if(e_player.var_e7d196cc === "raz_hat")
+	if(e_player.str_wearable === "raz_hat")
 	{
 		self sethintstring(&"ZM_STALINGRAD_WEARABLE_EQUIPPED");
 		return false;
@@ -558,7 +558,7 @@ function function_ad641a9f()
 		player.var_bc5f242a.model = "c_zom_dlc3_player_raz_facemask";
 		player.var_bc5f242a.tag = "j_head";
 		player function_20f2df00();
-		player.var_e7d196cc = "raz_hat";
+		player.str_wearable = "raz_hat";
 		player playsound("zmb_wearable_raz_wear");
 		zm::register_player_damage_callback(&function_9c197fbf);
 		player function_793f10ed(1);
@@ -653,7 +653,7 @@ function function_14b98ab6()
 */
 function function_a6595bd6(e_player)
 {
-	if(e_player.var_e7d196cc === "sentinel_hat")
+	if(e_player.str_wearable === "sentinel_hat")
 	{
 		self sethintstring(&"ZM_STALINGRAD_WEARABLE_EQUIPPED");
 		return false;
@@ -697,7 +697,7 @@ function function_f3b06f8e()
 		player.var_bc5f242a.tag = "j_head";
 		player function_20f2df00();
 		player playsound("zmb_wearable_sent_wear");
-		player.var_e7d196cc = "sentinel_hat";
+		player.str_wearable = "sentinel_hat";
 		zm::register_player_damage_callback(&function_9c197fbf);
 		player function_793f10ed(2);
 		player thread function_2436f867();
@@ -743,9 +743,9 @@ function function_20f2df00()
 */
 function function_9c197fbf(e_inflictor, e_attacker, var_b2d13ae2, idflags, str_meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
 {
-	if(isdefined(self.var_e7d196cc))
+	if(isdefined(self.str_wearable))
 	{
-		switch(self.var_e7d196cc)
+		switch(self.str_wearable)
 		{
 			case "sentinel_hat":
 			{

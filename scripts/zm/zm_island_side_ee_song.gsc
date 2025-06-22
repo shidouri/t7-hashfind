@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_shared;
@@ -428,9 +428,9 @@ function function_88572b8()
 	var_5c996589 = array(0, 1, 2, 3, 4, 3, 4);
 	var_f59c3cb2 = getentarray("plantMusicPods", "targetname");
 	var_f59c3cb2 = array::sort_by_script_int(var_f59c3cb2, 1);
-	var_60000174 = 3;
+	n_repetitions = 3;
 	n_waittime = 0.55;
-	while(var_60000174 > 0)
+	while(n_repetitions > 0)
 	{
 		for(i = 0; i < var_1d1c464d.size; i++)
 		{
@@ -438,7 +438,7 @@ function function_88572b8()
 			wait(n_waittime);
 			n_waittime = n_waittime - 0.01;
 		}
-		var_60000174--;
+		n_repetitions--;
 	}
 	for(i = 0; i < var_5c996589.size; i++)
 	{

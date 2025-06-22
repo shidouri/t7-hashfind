@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_shared;
@@ -350,17 +350,17 @@ function function_4c6daca1(cmd)
 	Parameters: 1
 	Flags: Linked
 */
-function function_ef6cd11(var_7156fcfa)
+function function_ef6cd11(n_exposures)
 {
 	/#
 		foreach(player in level.activeplayers)
 		{
-			player.var_5f5af9f0 = var_7156fcfa;
-			if(var_7156fcfa > 5)
+			player.var_5f5af9f0 = n_exposures;
+			if(n_exposures > 5)
 			{
 				player thread function_51d3efd();
 			}
-			if(var_7156fcfa > 15)
+			if(n_exposures > 15)
 			{
 				player thread function_5d6bcf98();
 			}

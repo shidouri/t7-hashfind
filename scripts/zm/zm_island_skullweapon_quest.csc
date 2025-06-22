@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -205,7 +205,7 @@ function skullquest_ritual_4_fx(localclientnum, oldval, newval, bnewent, binitia
 	Parameters: 3
 	Flags: Linked
 */
-function function_4dcbb3a6(localclientnum, var_f2e38849, n_fx_type = 1)
+function function_4dcbb3a6(localclientnum, n_ritual, n_fx_type = 1)
 {
 	var_f4fc4e39[0] = "";
 	var_f4fc4e39[1] = level._effect["ritual_progress_skull"];
@@ -215,7 +215,7 @@ function function_4dcbb3a6(localclientnum, var_f2e38849, n_fx_type = 1)
 	var_d9cf2ecd = struct::get_array("s_skulltar_skull_pos", "targetname");
 	foreach(var_89669ffb in var_d9cf2ecd)
 	{
-		if(var_89669ffb.script_special == var_f2e38849)
+		if(var_89669ffb.script_special == n_ritual)
 		{
 			var_b9533b1f = var_89669ffb;
 			break;
@@ -224,12 +224,12 @@ function function_4dcbb3a6(localclientnum, var_f2e38849, n_fx_type = 1)
 	var_14c8adef = struct::get_array("s_skulltar_base_pos", "targetname");
 	foreach(var_9915798f in var_14c8adef)
 	{
-		if(var_9915798f.script_special == var_f2e38849)
+		if(var_9915798f.script_special == n_ritual)
 		{
 			var_4b429234 = var_9915798f;
 		}
 	}
-	var_4a347901 = ("skulltar_" + var_f2e38849) + "_spawnpts";
+	var_4a347901 = ("skulltar_" + n_ritual) + "_spawnpts";
 	if(isdefined(n_fx_type) && n_fx_type >= 0 && n_fx_type < 5)
 	{
 		var_b9533b1f function_267f859f(localclientnum, var_f4fc4e39[n_fx_type], n_fx_type);

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -546,7 +546,7 @@ function function_1e4094ac(v_position, var_d24bfa82)
 		var_31678178 clientfield::set("plant_killer", var_a00b8053);
 		var_31678178 thread function_3604c7ec(self);
 		self thread function_d3b8fbb0(v_pos, var_31678178);
-		var_31678178 waittill(#"hash_2b1c6c7");
+		var_31678178 waittill("withered");
 		var_31678178 clientfield::set("plant_killer", 0);
 		wait(0.1);
 		var_31678178 delete();
@@ -576,7 +576,7 @@ function function_3604c7ec(player)
 		n_timeout = player.chargeshotlevel * 3;
 	}
 	wait(n_timeout);
-	self notify(#"hash_2b1c6c7");
+	self notify("withered");
 }
 
 /*
@@ -591,7 +591,7 @@ function function_3604c7ec(player)
 function function_d3b8fbb0(v_pos, var_31678178)
 {
 	self endon(#"disconnect");
-	var_31678178 endon(#"hash_2b1c6c7");
+	var_31678178 endon("withered");
 	n_kills = 0;
 	n_range_sq = self function_a1fce678(1);
 	w_current_weapon = self getcurrentweapon();
@@ -616,7 +616,7 @@ function function_d3b8fbb0(v_pos, var_31678178)
 					n_kills++;
 					if(n_kills >= var_31678178.n_kills)
 					{
-						var_31678178 notify(#"hash_2b1c6c7");
+						var_31678178 notify("withered");
 					}
 					if(!(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0) && (!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)))
 					{
@@ -668,15 +668,15 @@ function function_4a06c777(v_position, player)
 		return;
 	}
 	n_range_sq = player function_a1fce678();
-	foreach(var_f58ff028 in level.var_1abc7758)
+	foreach(mdl_spore in level.var_1abc7758)
 	{
-		if(!isdefined(var_f58ff028.t_spore_damage))
+		if(!isdefined(mdl_spore.t_spore_damage))
 		{
 			continue;
 		}
-		if(function_8734b840(var_f58ff028.origin, v_position, n_range_sq))
+		if(function_8734b840(mdl_spore.origin, v_position, n_range_sq))
 		{
-			var_f58ff028.t_spore_damage dodamage(1, v_position, player, player);
+			mdl_spore.t_spore_damage dodamage(1, v_position, player, player);
 		}
 	}
 }

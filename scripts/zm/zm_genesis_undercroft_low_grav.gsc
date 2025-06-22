@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -227,8 +227,8 @@ function function_5f1fa8cd(n_duration = 50)
 		level endon(#"hash_9c3be857");
 	#/
 	var_e31d98a1 = getentarray("lowgrav_glow", "targetname");
-	var_8ff7104f = getentarray("pyramid", "targetname");
-	var_e31d98a1 = arraycombine(var_8ff7104f, var_e31d98a1, 0, 0);
+	a_e_pyramid = getentarray("pyramid", "targetname");
+	var_e31d98a1 = arraycombine(a_e_pyramid, var_e31d98a1, 0, 0);
 	level thread function_ba48ca38();
 	while(true)
 	{

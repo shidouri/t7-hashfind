@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_accolades;
 #using scripts\cp\_achievements;
@@ -2315,13 +2315,13 @@ function private function_87fe8621()
 	Parameters: 1
 	Flags: Linked
 */
-function function_659bb22b(var_3a36166b)
+function function_659bb22b(str_num)
 {
 	a_ret = [];
 	var_717810f = spawnlogic::get_all_spawn_points(1);
 	foreach(loc in var_717810f)
 	{
-		if(loc.var_22c28736 === var_3a36166b)
+		if(loc.var_22c28736 === str_num)
 		{
 			if(!isdefined(a_ret))
 			{

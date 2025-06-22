@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\archetype_thrasher;
 #using scripts\shared\ai\systems\gib;
@@ -121,7 +121,7 @@ function function_a85ea965()
 		}
 	}
 	level.mdl_alttakeo = getent("mdl_alttakeo", "targetname");
-	level.mdl_alttakeo thread function_75174ee();
+	level.mdl_alttakeo thread takeo_sway();
 	level.mdl_alttakeo playloopsound("zmb_takeo_heartbeat_far");
 	level thread function_a49f3a92();
 	level thread function_ed01b73c("pre_wave");
@@ -229,17 +229,17 @@ function function_bf38b3c9(var_6c555b6c = 1, b_force = 0)
 {
 	if(b_force == 1 || (self.var_6c555b6c !== var_6c555b6c && (!(isdefined(self.b_dead) && self.b_dead))))
 	{
-		var_3a0318fc = self.script_int;
+		n_vine = self.script_int;
 		if(var_6c555b6c == 1)
 		{
-			var_7814e8cc = function_b64005e8(var_3a0318fc, "open");
+			str_transition = function_b64005e8(n_vine, "open");
 			level.mdl_alttakeo playsoundontag("zmb_takeo_vox_eye_open", "tag_eye");
 		}
 		else
 		{
-			var_7814e8cc = function_b64005e8(var_3a0318fc, "close");
+			str_transition = function_b64005e8(n_vine, "close");
 		}
-		self thread scene::play(var_7814e8cc);
+		self thread scene::play(str_transition);
 		self.var_6c555b6c = var_6c555b6c;
 		foreach(var_fb97f73d in self.var_7168c71c)
 		{
@@ -400,38 +400,38 @@ function function_6bc98691()
 	Parameters: 2
 	Flags: Linked
 */
-function function_b64005e8(var_3a0318fc, str_state)
+function function_b64005e8(n_vine, str_state)
 {
 	switch(str_state)
 	{
 		case "close":
 		{
-			str_anim = ("p7_fxanim_zm_island_takeo_arm" + var_3a0318fc) + "_close_bundle";
+			str_anim = ("p7_fxanim_zm_island_takeo_arm" + n_vine) + "_close_bundle";
 			break;
 		}
 		case "open":
 		{
-			str_anim = ("p7_fxanim_zm_island_takeo_arm" + var_3a0318fc) + "_open_bundle";
+			str_anim = ("p7_fxanim_zm_island_takeo_arm" + n_vine) + "_open_bundle";
 			break;
 		}
 		case "idle_close":
 		{
-			str_anim = ("p7_fxanim_zm_island_takeo_arm" + var_3a0318fc) + "_idle_close_bundle";
+			str_anim = ("p7_fxanim_zm_island_takeo_arm" + n_vine) + "_idle_close_bundle";
 			break;
 		}
 		case "idle_open":
 		{
-			str_anim = ("p7_fxanim_zm_island_takeo_arm" + var_3a0318fc) + "_idle_open_bundle";
+			str_anim = ("p7_fxanim_zm_island_takeo_arm" + n_vine) + "_idle_open_bundle";
 			break;
 		}
 		case "slam":
 		{
-			str_anim = ("p7_fxanim_zm_island_takeo_arm" + var_3a0318fc) + "_close_slam_bundle";
+			str_anim = ("p7_fxanim_zm_island_takeo_arm" + n_vine) + "_close_slam_bundle";
 			break;
 		}
 		case "retract":
 		{
-			str_anim = ("p7_fxanim_zm_island_takeo_arm" + var_3a0318fc) + "_retract_bundle";
+			str_anim = ("p7_fxanim_zm_island_takeo_arm" + n_vine) + "_retract_bundle";
 			break;
 		}
 	}
@@ -439,7 +439,7 @@ function function_b64005e8(var_3a0318fc, str_state)
 }
 
 /*
-	Name: function_75174ee
+	Name: takeo_sway
 	Namespace: zm_island_takeo_fight
 	Checksum: 0xA8C2955E
 	Offset: 0x2430
@@ -447,7 +447,7 @@ function function_b64005e8(var_3a0318fc, str_state)
 	Parameters: 0
 	Flags: Linked
 */
-function function_75174ee()
+function takeo_sway()
 {
 	level endon(#"flag_play_outro_cutscene");
 	var_a175a10b = util::spawn_model("tag_origin", self.origin, self.angles);
@@ -791,9 +791,9 @@ function function_9f1fd468()
 function function_87949ac6()
 {
 	level endon(#"hash_ec7f92f6");
-	foreach(var_9c458cf5 in level.var_bbdc1f95.var_69943735)
+	foreach(vine in level.var_bbdc1f95.var_69943735)
 	{
-		var_9c458cf5 thread function_bf38b3c9(0);
+		vine thread function_bf38b3c9(0);
 	}
 	if(self.var_fbe5299e <= 1)
 	{
@@ -918,9 +918,9 @@ function function_b96762d3()
 function function_628b98fd(var_db18d39e = 1)
 {
 	level endon(#"hash_ec7f92f6");
-	foreach(var_9c458cf5 in level.var_bbdc1f95.var_69943735)
+	foreach(vine in level.var_bbdc1f95.var_69943735)
 	{
-		var_9c458cf5 thread function_bf38b3c9(0);
+		vine thread function_bf38b3c9(0);
 	}
 	wait(1.5);
 	level thread function_279705f();
@@ -1603,12 +1603,12 @@ function function_39a206a1()
 	Parameters: 1
 	Flags: Linked
 */
-function function_eff03897(var_3a0318fc)
+function function_eff03897(n_vine)
 {
 	/#
 		if(level flag::get(""))
 		{
-			level.var_bbdc1f95.var_62473c4b = level.var_bbdc1f95.var_69943735[var_3a0318fc];
+			level.var_bbdc1f95.var_62473c4b = level.var_bbdc1f95.var_69943735[n_vine];
 			if(isdefined(level.var_bbdc1f95.var_62473c4b) && (!(isdefined(level.var_bbdc1f95.var_62473c4b.b_dead) && level.var_bbdc1f95.var_62473c4b.b_dead)))
 			{
 				level.var_bbdc1f95 thread function_c3386633(1);
@@ -1634,10 +1634,10 @@ function function_c8af550a()
 			level flag::set("");
 			wait(1);
 		}
-		foreach(var_9c458cf5 in level.var_bbdc1f95.var_69943735)
+		foreach(vine in level.var_bbdc1f95.var_69943735)
 		{
-			var_9c458cf5 function_54d91dfb();
-			var_9c458cf5 hide();
+			vine function_54d91dfb();
+			vine hide();
 		}
 		level.var_bbdc1f95.var_e7eb4096 function_54d91dfb();
 		level.var_bbdc1f95.var_e7eb4096 hide();
@@ -1665,25 +1665,25 @@ function function_5ff8dc0c()
 			level.var_bbdc1f95.var_9326c958 = !level.var_bbdc1f95.var_9326c958;
 			if(isdefined(level.var_bbdc1f95.var_9326c958) && level.var_bbdc1f95.var_9326c958)
 			{
-				foreach(var_9c458cf5 in level.var_bbdc1f95.var_69943735)
+				foreach(vine in level.var_bbdc1f95.var_69943735)
 				{
-					foreach(var_fb97f73d in var_9c458cf5.var_7168c71c)
+					foreach(var_fb97f73d in vine.var_7168c71c)
 					{
 						var_fb97f73d show();
 					}
-					var_9c458cf5 show();
+					vine show();
 				}
 				getent("", "") show();
 			}
 			else
 			{
-				foreach(var_9c458cf5 in level.var_bbdc1f95.var_69943735)
+				foreach(vine in level.var_bbdc1f95.var_69943735)
 				{
-					foreach(var_fb97f73d in var_9c458cf5.var_7168c71c)
+					foreach(var_fb97f73d in vine.var_7168c71c)
 					{
 						var_fb97f73d hide();
 					}
-					var_9c458cf5 hide();
+					vine hide();
 				}
 				getent("", "") hide();
 			}

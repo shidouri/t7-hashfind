@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\beam_shared;
@@ -199,8 +199,8 @@ function function_c86c0cdd(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	e_pod = level.var_f6abb894[localclientnum];
 	mdl_target = util::spawn_model(localclientnum, "tag_origin", e_pod gettagorigin("tag_fx"));
-	var_e43465f2 = util::spawn_model(localclientnum, "tag_origin", self gettagorigin("j_spine4"), self gettagangles("j_spine4"));
-	var_e43465f2 thread function_1d3ab9dd(mdl_target);
+	mdl_source = util::spawn_model(localclientnum, "tag_origin", self gettagorigin("j_spine4"), self gettagangles("j_spine4"));
+	mdl_source thread function_1d3ab9dd(mdl_target);
 }
 
 /*
@@ -234,30 +234,30 @@ function function_1d3ab9dd(mdl_target)
 */
 function function_5e369bd2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	var_165d49f6 = level.var_f6abb894[localclientnum];
+	mdl_pod = level.var_f6abb894[localclientnum];
 	switch(newval)
 	{
 		case 1:
 		{
-			var_165d49f6.var_888bfca3 = playfxontag(localclientnum, level._effect["drop_pod_hp_light_green"], var_165d49f6, "tag_health_green");
+			mdl_pod.var_888bfca3 = playfxontag(localclientnum, level._effect["drop_pod_hp_light_green"], mdl_pod, "tag_health_green");
 			break;
 		}
 		case 2:
 		{
-			if(isdefined(var_165d49f6.var_888bfca3))
+			if(isdefined(mdl_pod.var_888bfca3))
 			{
-				stopfx(localclientnum, var_165d49f6.var_888bfca3);
+				stopfx(localclientnum, mdl_pod.var_888bfca3);
 			}
-			var_165d49f6.var_888bfca3 = playfxontag(localclientnum, level._effect["drop_pod_hp_light_yellow"], var_165d49f6, "tag_health_yellow");
+			mdl_pod.var_888bfca3 = playfxontag(localclientnum, level._effect["drop_pod_hp_light_yellow"], mdl_pod, "tag_health_yellow");
 			break;
 		}
 		case 3:
 		{
-			if(isdefined(var_165d49f6.var_888bfca3))
+			if(isdefined(mdl_pod.var_888bfca3))
 			{
-				stopfx(localclientnum, var_165d49f6.var_888bfca3);
+				stopfx(localclientnum, mdl_pod.var_888bfca3);
 			}
-			var_165d49f6.var_888bfca3 = playfxontag(localclientnum, level._effect["drop_pod_hp_light_red"], var_165d49f6, "tag_health_red");
+			mdl_pod.var_888bfca3 = playfxontag(localclientnum, level._effect["drop_pod_hp_light_red"], mdl_pod, "tag_health_red");
 			break;
 		}
 		default:

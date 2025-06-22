@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -144,9 +144,9 @@ function open_right_curtain()
 */
 function lower_movie_screen()
 {
-	var_d647fedd = getentarray("movie_screen", "targetname");
-	var_d647fedd[0] playsound("evt_screen_lower");
-	array::run_all(var_d647fedd, &movez, -466, 6);
+	a_mdl_screen = getentarray("movie_screen", "targetname");
+	a_mdl_screen[0] playsound("evt_screen_lower");
+	array::run_all(a_mdl_screen, &movez, -466, 6);
 	wait(8);
 	level clientfield::set("zm_theater_screen_in_place", 1);
 	util::clientnotify("sip");

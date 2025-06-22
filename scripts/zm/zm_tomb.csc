@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\mechz;
 #using scripts\shared\array_shared;
@@ -728,7 +728,7 @@ function function_657fb719(localclientnum, light_on)
 	}
 	var_477f7b08 = self function_d56fa005();
 	v_color = level.var_1aa82a7e[var_477f7b08];
-	var_70f85c31 = 0.1;
+	n_brightness = 0.1;
 	if(isdefined(level.var_fdb98849) && light_on)
 	{
 		var_904d8a16 = level clientfield::get("light_show");
@@ -755,22 +755,22 @@ function function_657fb719(localclientnum, light_on)
 				break;
 			}
 		}
-		var_70f85c31 = var_70f85c31 * 10;
+		n_brightness = n_brightness * 10;
 	}
 	else
 	{
 		if(isdefined(level.var_656c2f5) && !light_on)
 		{
 			var_477f7b08 = 0;
-			var_70f85c31 = 0;
+			n_brightness = 0;
 		}
 		else if(light_on)
 		{
-			var_70f85c31 = var_70f85c31 * 10;
+			n_brightness = n_brightness * 10;
 		}
 	}
 	playsound(0, "zmb_crypt_disc_light", self.origin);
-	var_f9e79b00 = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, var_70f85c31, level.var_1aa82a7e[var_477f7b08], 0);
+	n_test = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, n_brightness, level.var_1aa82a7e[var_477f7b08], 0);
 }
 
 /*
@@ -1224,21 +1224,21 @@ function function_d20e4b5a(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_24a5862d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	var_aa8e992 = array("phys_lantern01", "phys_lantern02", "phys_lantern03", "phys_lantern04", "phys_lantern05", "phys_lantern06", "phys_lantern07", "phys_lantern08", "phys_lantern09", "phys_lantern10", "phys_lantern11", "phys_lantern12", "phys_lantern13", "phys_lantern14", "phys_lantern15", "phys_lantern16", "phys_lantern17", "phys_lantern18", "phys_lantern19");
-	var_e531bd52 = [];
+	a_lanterns = [];
 	foreach(str_name in var_aa8e992)
 	{
-		var_e531bd52 = arraycombine(var_e531bd52, getdynentarray(str_name), 0, 0);
+		a_lanterns = arraycombine(a_lanterns, getdynentarray(str_name), 0, 0);
 	}
 	if(newval)
 	{
-		foreach(lantern in var_e531bd52)
+		foreach(lantern in a_lanterns)
 		{
 			lantern function_ea74b5ce(localclientnum);
 		}
 	}
 	else
 	{
-		foreach(lantern in var_e531bd52)
+		foreach(lantern in a_lanterns)
 		{
 			lantern function_b44167d(localclientnum);
 		}
@@ -1448,12 +1448,12 @@ function function_2feb8fa1(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 2
 	Flags: Linked
 */
-function function_b5ac96ec(var_d8a51337, localclientnum)
+function function_b5ac96ec(str_weather, localclientnum)
 {
 	exploder::stop_exploder("fxexp_111", localclientnum);
 	exploder::stop_exploder("fxexp_112", localclientnum);
 	exploder::stop_exploder("fxexp_113", localclientnum);
-	switch(var_d8a51337)
+	switch(str_weather)
 	{
 		case "clear":
 		{

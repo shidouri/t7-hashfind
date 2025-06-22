@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\ai_shared;
@@ -176,18 +176,18 @@ function function_241013f7()
 {
 	self endon(#"death");
 	self flag::wait_till("spider_from_mars_identified");
-	self.var_75bf845a = [];
+	self.a_water = [];
 	while(true)
 	{
 		foreach(t_water in level.var_4a0060c0)
 		{
-			if(!isinarray(self.var_75bf845a, t_water.script_int) && self istouching(t_water))
+			if(!isinarray(self.a_water, t_water.script_int) && self istouching(t_water))
 			{
-				self.var_75bf845a[self.var_75bf845a.size] = t_water.script_int;
+				self.a_water[self.a_water.size] = t_water.script_int;
 				self thread function_60b06e98(t_water.script_int);
 			}
 		}
-		if(self.var_75bf845a.size == 3)
+		if(self.a_water.size == 3)
 		{
 			self thread function_c8ca27d0();
 			break;
@@ -244,11 +244,11 @@ function function_c8ca27d0()
 	Parameters: 1
 	Flags: Linked
 */
-function function_aa515242(var_c79d3f71)
+function function_aa515242(ai_spider)
 {
-	var_c79d3f71 thread function_6dff284c();
+	ai_spider thread function_6dff284c();
 	level.var_18ddef1f = 1;
-	level.var_335f95e4 = var_c79d3f71;
+	level.var_335f95e4 = ai_spider;
 }
 
 /*
@@ -326,7 +326,7 @@ function function_89826011()
 	Parameters: 1
 	Flags: Linked
 */
-function function_69f5a9c5(var_1cdfa0f4)
+function function_69f5a9c5(str_control)
 {
 	level notify(#"hash_59a385d1");
 	if(isdefined(level.var_18ddef1f) && level.var_18ddef1f)
@@ -489,17 +489,17 @@ function function_2176e192()
 	level flag::set("spider_ee_quest_complete");
 	level flag::clear("spiders_from_mars_round");
 	callback::remove_on_ai_spawned(&function_49fac1ac);
-	var_30ff0d6c = util::spawn_model("p7_zm_isl_cocoon_standing", level.var_1a139831.origin - vectorscale((0, 0, 1), 110), level.var_1a139831.angles);
-	var_30ff0d6c linkto(level.var_1a139831);
+	mdl_reward = util::spawn_model("p7_zm_isl_cocoon_standing", level.var_1a139831.origin - vectorscale((0, 0, 1), 110), level.var_1a139831.angles);
+	mdl_reward linkto(level.var_1a139831);
 	level.var_f5ad590f = undefined;
 	level waittill(#"hash_35cee1df");
-	var_db6efb17 = getent("venom_extractor", "targetname");
-	var_db6efb17 thread scene::play("p7_fxanim_zm_island_venom_extractor_red_bundle", var_db6efb17);
-	level waittill(#"hash_e48828c5");
+	mdl_extractor = getent("venom_extractor", "targetname");
+	mdl_extractor thread scene::play("p7_fxanim_zm_island_venom_extractor_red_bundle", mdl_extractor);
+	level waittill("spider_die");
 	var_1f71eb1 = struct::get("spider_ee_quest_reward", "targetname");
 	var_1f71eb1.origin = var_1f71eb1.origin;
 	var_1f71eb1.angles = var_1f71eb1.angles;
-	var_1f71eb1.e_parent = var_30ff0d6c;
+	var_1f71eb1.e_parent = mdl_reward;
 	var_1f71eb1.script_unitrigger_type = "unitrigger_box_use";
 	var_1f71eb1.cursor_hint = "HINT_NOICON";
 	var_1f71eb1.require_look_at = 1;
@@ -603,28 +603,28 @@ function function_acbe4aed(cmd)
 		{
 			case "":
 			{
-				var_c79d3f71 = undefined;
+				ai_spider = undefined;
 				a_ai = getaiteamarray("");
 				foreach(ai in a_ai)
 				{
 					if(isdefined(ai.b_is_spider) && ai.b_is_spider && (isdefined(ai.var_b4e06d32) && ai.var_b4e06d32))
 					{
-						var_c79d3f71 = ai;
+						ai_spider = ai;
 						break;
 					}
 				}
-				if(!isdefined(var_c79d3f71))
+				if(!isdefined(ai_spider))
 				{
 					var_19764360 = zm_ai_spiders::get_favorite_enemy();
 					s_spawn_point = zm_ai_spiders::function_570247b9(var_19764360);
-					var_c79d3f71 = zombie_utility::spawn_zombie(level.var_c38a4fee[0]);
-					if(isdefined(var_c79d3f71))
+					ai_spider = zombie_utility::spawn_zombie(level.var_c38a4fee[0]);
+					if(isdefined(ai_spider))
 					{
-						s_spawn_point thread zm_ai_spiders::function_49e57a3b(var_c79d3f71, s_spawn_point);
+						s_spawn_point thread zm_ai_spiders::function_49e57a3b(ai_spider, s_spawn_point);
 					}
 				}
-				var_c79d3f71 clientfield::set("", 1);
-				var_c79d3f71.var_f7522faa = 1;
+				ai_spider clientfield::set("", 1);
+				ai_spider.var_f7522faa = 1;
 				return true;
 			}
 			case "":
@@ -634,25 +634,25 @@ function function_acbe4aed(cmd)
 			}
 			case "":
 			{
-				if(!isdefined(var_c79d3f71))
+				if(!isdefined(ai_spider))
 				{
 					var_19764360 = zm_ai_spiders::get_favorite_enemy();
 					s_spawn_point = zm_ai_spiders::function_570247b9(var_19764360);
-					var_c79d3f71 = zombie_utility::spawn_zombie(level.var_c38a4fee[0]);
-					if(isdefined(var_c79d3f71))
+					ai_spider = zombie_utility::spawn_zombie(level.var_c38a4fee[0]);
+					if(isdefined(ai_spider))
 					{
-						s_spawn_point thread zm_ai_spiders::function_49e57a3b(var_c79d3f71, s_spawn_point);
+						s_spawn_point thread zm_ai_spiders::function_49e57a3b(ai_spider, s_spawn_point);
 					}
 				}
-				var_c79d3f71 clientfield::set("", 1);
-				var_c79d3f71.var_b4e06d32 = 1;
-				var_c79d3f71.b_ignore_cleanup = 1;
-				var_c79d3f71 flag::init("");
-				var_c79d3f71 flag::set("");
+				ai_spider clientfield::set("", 1);
+				ai_spider.var_b4e06d32 = 1;
+				ai_spider.b_ignore_cleanup = 1;
+				ai_spider flag::init("");
+				ai_spider flag::set("");
 				level.var_1821d194 = 1;
 				level thread function_f163b5b5();
-				var_c79d3f71 thread function_ed878303();
-				var_c79d3f71 thread function_241013f7();
+				ai_spider thread function_ed878303();
+				ai_spider thread function_241013f7();
 				return true;
 			}
 		}

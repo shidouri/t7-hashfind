@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -170,10 +170,10 @@ function function_9d4a523c(var_24ee4867)
 	Parameters: 2
 	Flags: Linked
 */
-function function_4173be8d(var_d484b386, var_15872fa7)
+function function_4173be8d(var_d484b386, str_docked)
 {
 	exploder::stop_exploder(("lgt_" + var_d484b386) + "_down");
-	while(level flag::get("tram_moving") || level flag::get(var_15872fa7))
+	while(level flag::get("tram_moving") || level flag::get(str_docked))
 	{
 		exploder::exploder(("lgt_" + var_d484b386) + "_up");
 		wait(0.6);
@@ -548,7 +548,7 @@ function function_1d6e73d0(e_player, s_spawn_pos, var_f2c2f39)
 function function_bb44b161(str_powerup, var_a11baa62)
 {
 	self endon(#"powerup_grabbed");
-	var_ee91d5b = self.model;
+	mdl_final = self.model;
 	for(i = 0; i < 3; i++)
 	{
 		for(j = 0; j < var_a11baa62.size; j++)
@@ -558,7 +558,7 @@ function function_bb44b161(str_powerup, var_a11baa62)
 			wait(0.12);
 		}
 	}
-	self setmodel(var_ee91d5b);
+	self setmodel(mdl_final);
 }
 
 /*

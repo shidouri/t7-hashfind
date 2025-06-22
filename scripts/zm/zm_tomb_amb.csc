@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\audio_shared;
@@ -418,23 +418,23 @@ function function_ec990408(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_3599b48b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	var_92c47b0e = struct::get_array("s_zhdegg_elements", "targetname");
+	a_s_array = struct::get_array("s_zhdegg_elements", "targetname");
 	if(!isdefined(level.var_8f027e99))
 	{
 		level.var_8f027e99 = array();
 	}
 	if(newval)
 	{
-		foreach(s_struct in var_92c47b0e)
+		foreach(s_struct in a_s_array)
 		{
-			var_61bcec7 = s_struct.script_string;
+			str_element = s_struct.script_string;
 			if(s_struct.script_string == "lightning")
 			{
-				var_61bcec7 = "elec";
+				str_element = "elec";
 			}
 			if(s_struct.script_string == "water")
 			{
-				var_61bcec7 = "ice";
+				str_element = "ice";
 			}
 			if(isdefined(level.var_c27b47a[s_struct.script_string]) && level.var_c27b47a[s_struct.script_string])
 			{
@@ -442,7 +442,7 @@ function function_3599b48b(localclientnum, oldval, newval, bnewent, binitialsnap
 				{
 					stopfx(localclientnum, level.var_8f027e99[s_struct.script_string]);
 				}
-				level.var_8f027e99[s_struct.script_string] = playfx(localclientnum, level._effect[var_61bcec7 + "_glow"], s_struct.origin);
+				level.var_8f027e99[s_struct.script_string] = playfx(localclientnum, level._effect[str_element + "_glow"], s_struct.origin);
 			}
 		}
 	}

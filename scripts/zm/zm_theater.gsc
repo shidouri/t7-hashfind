@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -182,11 +182,11 @@ function cin_zmhd_sizzle_theater_cam(a_ents)
 	exploder::kill_exploder("teleporter_light_red");
 	exploder::exploder("fxexp_200");
 	exploder::exploder("teleporter_light_green");
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(issubstr(var_6cae1ad0.model, "body"))
+		if(issubstr(mdl_ent.model, "body"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 	level waittill(#"hash_1a22222d");
@@ -496,9 +496,9 @@ function offhand_weapon_overrride()
 function function_ce6ee03b()
 {
 	scene::add_scene_func("p7_fxanim_zm_kino_curtains_stage_main_bundle", &function_9a38ad2c, "play");
-	var_5be55f14 = getent("theater_curtains", "targetname");
-	var_5be55f14 thread scene::play("p7_fxanim_zm_kino_curtains_stage_main_bundle", var_5be55f14);
-	playsoundatposition("evt_curtain_open", var_5be55f14.origin);
+	mdl_curtains = getent("theater_curtains", "targetname");
+	mdl_curtains thread scene::play("p7_fxanim_zm_kino_curtains_stage_main_bundle", mdl_curtains);
+	playsoundatposition("evt_curtain_open", mdl_curtains.origin);
 }
 
 /*
@@ -512,8 +512,8 @@ function function_ce6ee03b()
 */
 function function_9a38ad2c(a_ents)
 {
-	var_115bc805 = a_ents["main_stage_curtains"];
-	var_115bc805 connectpaths();
+	e_curtain = a_ents["main_stage_curtains"];
+	e_curtain connectpaths();
 }
 
 /*

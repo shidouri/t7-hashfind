@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -215,14 +215,14 @@ function function_1abfde35(e_attacker)
 		{
 			return;
 		}
-		var_52df56de = getent("area_courtyard", "targetname");
-		if(!(isdefined(self istouching(var_52df56de)) && self istouching(var_52df56de)))
+		e_courtyard = getent("area_courtyard", "targetname");
+		if(!(isdefined(self istouching(e_courtyard)) && self istouching(e_courtyard)))
 		{
 			return;
 		}
 		str_zone = e_attacker zm_zonemgr::get_player_zone();
-		var_1486ce13 = strtok(str_zone, "_");
-		if(var_1486ce13[1] != "upstairs")
+		a_str_zone = strtok(str_zone, "_");
+		if(a_str_zone[1] != "upstairs")
 		{
 			return;
 		}

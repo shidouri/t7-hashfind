@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -84,7 +84,7 @@ function nrc_knocking_main()
 	foreach(ai_ally in level.var_681ad194)
 	{
 		ai_ally.goalradius = 16;
-		ai_ally setgoal(getnode(("ally0" + ai_ally.var_a89679b6) + "_start_node", "targetname"));
+		ai_ally setgoal(getnode(("ally0" + ai_ally.n_ally) + "_start_node", "targetname"));
 	}
 	battlechatter::function_d9f49fba(0);
 	cp_prologue_util::function_47a62798(1);
@@ -408,12 +408,12 @@ function function_f9be6553(var_97fbbd0a, a_vo_lines, var_61ae76d5, var_9e3b0b67)
 	level endon(#"objective_take_out_guards_done");
 	for(i = 0; i < a_vo_lines.size; i++)
 	{
-		var_79cf4848 = getentarray(var_61ae76d5[i], "targetname");
-		if(isdefined(var_79cf4848) && var_79cf4848.size > 0)
+		a_ai_speakers = getentarray(var_61ae76d5[i], "targetname");
+		if(isdefined(a_ai_speakers) && a_ai_speakers.size > 0)
 		{
-			var_58c5eb41 = arraygetclosest(var_97fbbd0a, var_79cf4848);
+			ai_speaker = arraygetclosest(var_97fbbd0a, a_ai_speakers);
 			wait(var_9e3b0b67[i]);
-			var_58c5eb41 notify(#"scriptedbc", a_vo_lines[i]);
+			ai_speaker notify(#"scriptedbc", a_vo_lines[i]);
 		}
 	}
 }
@@ -581,14 +581,14 @@ function function_c9e3016d(a_ents)
 */
 function function_9b773ab2(a_ents)
 {
-	var_5d7f4f0f = a_ents["tarmac_soldier_seek_help_m"];
-	var_5d7f4f0f dialog::say("nrcg_hurry_come_quickly_0", 2);
-	var_5d7f4f0f ai::set_ignoreall(1);
-	var_5d7f4f0f ai::set_ignoreme(1);
-	var_5d7f4f0f setgoal(getnode("tarmac_help_goal", "targetname"), 1);
-	var_5d7f4f0f thread function_e5670bf5();
-	var_5d7f4f0f waittill(#"goal");
-	var_5d7f4f0f delete();
+	ai_help = a_ents["tarmac_soldier_seek_help_m"];
+	ai_help dialog::say("nrcg_hurry_come_quickly_0", 2);
+	ai_help ai::set_ignoreall(1);
+	ai_help ai::set_ignoreme(1);
+	ai_help setgoal(getnode("tarmac_help_goal", "targetname"), 1);
+	ai_help thread function_e5670bf5();
+	ai_help waittill(#"goal");
+	ai_help delete();
 }
 
 /*
@@ -699,7 +699,7 @@ function function_be42a33f()
 	trigger::wait_till("tarmac_move_friendies");
 	foreach(ai_ally in level.var_681ad194)
 	{
-		ai_ally thread setgoal_then_delete(("ally0" + ai_ally.var_a89679b6) + "_tunnel_goal", "security_cam_active");
+		ai_ally thread setgoal_then_delete(("ally0" + ai_ally.n_ally) + "_tunnel_goal", "security_cam_active");
 	}
 }
 
@@ -733,11 +733,11 @@ function function_ae8c8b7b()
 	Parameters: 2
 	Flags: Linked
 */
-function setgoal_then_delete(node, var_143df2c2 = "none")
+function setgoal_then_delete(node, str_timeout = "none")
 {
 	target_node = getnode(node, "targetname");
 	self setgoal(target_node, 1);
-	self util::waittill_either("goal", var_143df2c2);
+	self util::waittill_either("goal", str_timeout);
 	self delete();
 }
 
@@ -824,12 +824,12 @@ function function_28d9b6cd(a_ents)
 	Parameters: 2
 	Flags: Linked
 */
-function function_c4ada726(var_417ec882, var_a972c5dd)
+function function_c4ada726(str_say, var_a972c5dd)
 {
 	self endon(#"death");
 	level endon(#"objective_blend_in_done");
 	self function_92e75cce(var_a972c5dd);
-	self notify(#"scriptedbc", var_417ec882);
+	self notify(#"scriptedbc", str_say);
 }
 
 /*

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\clientfield_shared;
@@ -59,9 +59,9 @@ function event()
 {
 	self endon(#"disconnect");
 	self endon(#"bgb_update");
-	self waittill(#"zm_bgb_unbearable", var_c3763c58);
+	self waittill(#"zm_bgb_unbearable", e_chest);
 	self bgb::do_one_shot_use(1);
-	var_c3763c58 thread function_7a5dc39b(self);
+	e_chest thread function_7a5dc39b(self);
 }
 
 /*

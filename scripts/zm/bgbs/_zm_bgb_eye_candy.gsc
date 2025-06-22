@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -135,31 +135,31 @@ function activation()
 	self playsoundtoplayer("zmb_bgb_eyecandy_" + self.var_e20073c4, self);
 	visionset_mgr::activate("visionset", self.var_29cebda6[self.var_e20073c4], self);
 	visionset_mgr::activate("overlay", self.var_29cebda6[self.var_e20073c4], self);
-	var_78f89ecc = 0;
+	n_render = 0;
 	switch(self.var_29cebda6[self.var_e20073c4])
 	{
 		case "zm_bgb_eye_candy_vs_1":
 		{
-			var_78f89ecc = 1;
+			n_render = 1;
 			break;
 		}
 		case "zm_bgb_eye_candy_vs_2":
 		{
-			var_78f89ecc = 2;
+			n_render = 2;
 			break;
 		}
 		case "zm_bgb_eye_candy_vs_3":
 		{
-			var_78f89ecc = 3;
+			n_render = 3;
 			break;
 		}
 		case "zm_bgb_eye_candy_vs_4":
 		{
-			var_78f89ecc = 4;
+			n_render = 4;
 			break;
 		}
 	}
-	self thread clientfield::set_to_player("eye_candy_render", var_78f89ecc);
+	self thread clientfield::set_to_player("eye_candy_render", n_render);
 	self thread function_48adddeb(self.var_29cebda6[self.var_e20073c4]);
 }
 

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -334,33 +334,33 @@ function function_adf4d1d0(a_ai_zombies)
 	}
 	if(var_63baafec)
 	{
-		var_89de5b91 = getaiarchetypearray("raz");
-		foreach(var_1c963231 in var_89de5b91)
+		a_ai_raz = getaiarchetypearray("raz");
+		foreach(ai_raz in a_ai_raz)
 		{
-			if(isdefined(var_1c963231.var_81e263d5) && var_1c963231.var_81e263d5)
+			if(isdefined(ai_raz.var_81e263d5) && ai_raz.var_81e263d5)
 			{
 				continue;
 			}
-			if(!(isdefined(var_1c963231.exclude_cleanup_adding_to_total) && var_1c963231.exclude_cleanup_adding_to_total) && !level flag::get("special_round"))
+			if(!(isdefined(ai_raz.exclude_cleanup_adding_to_total) && ai_raz.exclude_cleanup_adding_to_total) && !level flag::get("special_round"))
 			{
 				level.zombie_total++;
 			}
-			var_1c963231.no_powerups = 1;
-			var_1c963231 kill();
+			ai_raz.no_powerups = 1;
+			ai_raz kill();
 		}
-		var_1916d2ed = getaiarchetypearray("sentinel_drone");
-		foreach(var_663b2442 in var_1916d2ed)
+		a_ai_sentinels = getaiarchetypearray("sentinel_drone");
+		foreach(ai_sentinel in a_ai_sentinels)
 		{
-			if(isdefined(var_663b2442.var_81e263d5) && var_663b2442.var_81e263d5)
+			if(isdefined(ai_sentinel.var_81e263d5) && ai_sentinel.var_81e263d5)
 			{
 				continue;
 			}
-			if(!(isdefined(var_663b2442.exclude_cleanup_adding_to_total) && var_663b2442.exclude_cleanup_adding_to_total) && !level flag::get("special_round"))
+			if(!(isdefined(ai_sentinel.exclude_cleanup_adding_to_total) && ai_sentinel.exclude_cleanup_adding_to_total) && !level flag::get("special_round"))
 			{
 				level.zombie_total++;
 			}
-			var_663b2442.no_powerups = 1;
-			var_663b2442 kill();
+			ai_sentinel.no_powerups = 1;
+			ai_sentinel kill();
 		}
 	}
 }
@@ -759,12 +759,12 @@ function function_b55ebb81(a_spawnpoints, var_2b71b5b4, var_15eb9a52, var_f92c38
 		{
 			var_4751753a = array::remove_dead(var_4751753a, 0);
 			level function_9b76f612("raz");
-			var_1c963231 = function_432cdad9(a_spawnpoints);
-			if(isalive(var_1c963231))
+			ai_raz = function_432cdad9(a_spawnpoints);
+			if(isalive(ai_raz))
 			{
-				var_1c963231.no_powerups = 1;
-				var_1c963231.no_damage_points = 1;
-				var_1c963231.deathpoints_already_given = 1;
+				ai_raz.no_powerups = 1;
+				ai_raz.no_damage_points = 1;
+				ai_raz.deathpoints_already_given = 1;
 				if(!isdefined(var_4751753a))
 				{
 					var_4751753a = [];
@@ -773,7 +773,7 @@ function function_b55ebb81(a_spawnpoints, var_2b71b5b4, var_15eb9a52, var_f92c38
 				{
 					var_4751753a = array(var_4751753a);
 				}
-				var_4751753a[var_4751753a.size] = var_1c963231;
+				var_4751753a[var_4751753a.size] = ai_raz;
 				if(!isdefined(level.var_c3c3ffc5))
 				{
 					level.var_c3c3ffc5 = [];
@@ -782,8 +782,8 @@ function function_b55ebb81(a_spawnpoints, var_2b71b5b4, var_15eb9a52, var_f92c38
 				{
 					level.var_c3c3ffc5 = array(level.var_c3c3ffc5);
 				}
-				level.var_c3c3ffc5[level.var_c3c3ffc5.size] = var_1c963231;
-				var_1c963231 function_d48ad6b4();
+				level.var_c3c3ffc5[level.var_c3c3ffc5.size] = ai_raz;
+				ai_raz function_d48ad6b4();
 				var_766273f0++;
 				if(isdefined(var_ee8c6a82) && var_ee8c6a82)
 				{
@@ -800,7 +800,7 @@ function function_b55ebb81(a_spawnpoints, var_2b71b5b4, var_15eb9a52, var_f92c38
 				}
 				if(isdefined(level.var_141e2500) && level.var_141e2500)
 				{
-					var_1c963231.invoke_sprint_time = gettime();
+					ai_raz.invoke_sprint_time = gettime();
 				}
 			}
 			level function_a03df69f(var_f92c3865, var_b4fcee85, str_notify_end);
@@ -1019,12 +1019,12 @@ function function_923f7f72(var_af22dd13, var_ed448d3b, var_e25e1ccc, var_b4fcee8
 		{
 			var_5e8e8152 = array::remove_dead(var_5e8e8152, 0);
 			level function_9b76f612("sentinel");
-			var_663b2442 = function_70e59bda();
-			if(isalive(var_663b2442))
+			ai_sentinel = function_70e59bda();
+			if(isalive(ai_sentinel))
 			{
-				var_663b2442.no_powerups = 1;
-				var_663b2442.no_damage_points = 1;
-				var_663b2442.deathpoints_already_given = 1;
+				ai_sentinel.no_powerups = 1;
+				ai_sentinel.no_damage_points = 1;
+				ai_sentinel.deathpoints_already_given = 1;
 				if(!isdefined(var_5e8e8152))
 				{
 					var_5e8e8152 = [];
@@ -1033,7 +1033,7 @@ function function_923f7f72(var_af22dd13, var_ed448d3b, var_e25e1ccc, var_b4fcee8
 				{
 					var_5e8e8152 = array(var_5e8e8152);
 				}
-				var_5e8e8152[var_5e8e8152.size] = var_663b2442;
+				var_5e8e8152[var_5e8e8152.size] = ai_sentinel;
 				if(!isdefined(level.var_c3c3ffc5))
 				{
 					level.var_c3c3ffc5 = [];
@@ -1042,8 +1042,8 @@ function function_923f7f72(var_af22dd13, var_ed448d3b, var_e25e1ccc, var_b4fcee8
 				{
 					level.var_c3c3ffc5 = array(level.var_c3c3ffc5);
 				}
-				level.var_c3c3ffc5[level.var_c3c3ffc5.size] = var_663b2442;
-				var_663b2442 function_d48ad6b4();
+				level.var_c3c3ffc5[level.var_c3c3ffc5.size] = ai_sentinel;
+				ai_sentinel function_d48ad6b4();
 				var_469adf27++;
 			}
 			wait(var_e25e1ccc);
@@ -1440,11 +1440,11 @@ function function_903f6b36(b_turn_on, str_identifier = undefined)
 	if(!isdefined(str_identifier))
 	{
 		str_identifier = self.script_noteworthy;
-		var_144a9df9 = getentarray(str_identifier, "targetname");
+		a_e_switch = getentarray(str_identifier, "targetname");
 	}
 	else
 	{
-		var_144a9df9 = getentarray(str_identifier + "_switch", "targetname");
+		a_e_switch = getentarray(str_identifier + "_switch", "targetname");
 	}
 	if(b_turn_on)
 	{
@@ -1456,7 +1456,7 @@ function function_903f6b36(b_turn_on, str_identifier = undefined)
 	{
 		str_scene = "p7_fxanim_zm_stal_power_switch_reset_bundle";
 	}
-	foreach(e_switch in var_144a9df9)
+	foreach(e_switch in a_e_switch)
 	{
 		e_switch thread scene::play(str_scene, e_switch);
 	}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\mechz;
 #using scripts\shared\array_shared;
@@ -43,12 +43,12 @@ function function_8c8b6484(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval)
 	{
 		waittillframeend();
-		var_f9e79b00 = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 1, 3, 0);
+		n_test = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 1, 3, 0);
 	}
 	else
 	{
 		waittillframeend();
-		var_f9e79b00 = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 0, 3, 0);
+		n_test = self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 0, 3, 0);
 	}
 }
 

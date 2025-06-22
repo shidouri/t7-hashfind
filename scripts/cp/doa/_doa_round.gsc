@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_arena;
 #using scripts\cp\doa\_doa_dev;
@@ -433,7 +433,7 @@ function function_fe0946ac(spawn_origin, var_97887a95 = 1)
 	}
 	var_60de7d19 = namespace_3ca3c537::function_61d60e0b();
 	self thread namespace_831a4a7c::function_7d7a7fde();
-	foreach(guardian in self.doa.var_af875fb7)
+	foreach(guardian in self.doa.guardians)
 	{
 		if(isdefined(guardian))
 		{

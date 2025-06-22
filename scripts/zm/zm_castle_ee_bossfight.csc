@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\audio_shared;
@@ -201,7 +201,7 @@ function boss_weak_point_shader(localclientnum, oldval, newval, bnewent, binitia
 {
 	if(newval == 1)
 	{
-		var_79974a0f = 0;
+		n_shader = 0;
 		if(isdefined(self.sndid))
 		{
 			self stoploopsound(self.sndid, 1);
@@ -210,13 +210,13 @@ function boss_weak_point_shader(localclientnum, oldval, newval, bnewent, binitia
 	}
 	else
 	{
-		var_79974a0f = 1;
+		n_shader = 1;
 		if(!isdefined(self.sndid))
 		{
 			self.sndid = self playloopsound("zmb_keeper_downed_lp", 1);
 		}
 	}
-	self mapshaderconstant(localclientnum, 0, "scriptVector3", 0, var_79974a0f, 0, 0);
+	self mapshaderconstant(localclientnum, 0, "scriptVector3", 0, n_shader, 0, 0);
 }
 
 /*

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -616,7 +616,7 @@ function function_343a73a4()
 	Parameters: 2
 	Flags: Linked
 */
-function function_ff1f70cd(e_grenade, var_412615f9)
+function function_ff1f70cd(e_grenade, mdl_grenade)
 {
 	e_grenade endon(#"death");
 	e_grenade endon(#"explode");

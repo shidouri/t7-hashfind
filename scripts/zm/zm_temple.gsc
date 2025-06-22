@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\behavior_zombie_dog;
 #using scripts\shared\ai\zombie;
@@ -223,11 +223,11 @@ function main()
 function cin_zmhd_sizzle_temple_cam(a_ents)
 {
 	level.disable_print3d_ent = 1;
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(issubstr(var_6cae1ad0.model, "body"))
+		if(issubstr(mdl_ent.model, "body"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 }

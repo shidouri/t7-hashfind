@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\doa\_doa_arena;
@@ -158,7 +158,7 @@ function function_bbb1254c(var_44eb97b0 = 0)
 		self.doa.var_9742391e = 1;
 		self.doa.var_c5fe2763 = undefined;
 		self.doa.var_80ffe475 = undefined;
-		self.doa.var_af875fb7 = [];
+		self.doa.guardians = [];
 		self notify(#"hash_44eb97b0");
 		wait(0.05);
 		if(isdefined(self.doa.var_3cdd8203))
@@ -1128,7 +1128,7 @@ function function_a36ffe73()
 {
 	self notify(#"hash_a36ffe73");
 	self endon(#"hash_a36ffe73");
-	self waittill(#"hash_89b28ec", attacker);
+	self waittill("snared", attacker);
 	self thread function_6e1ed82();
 	self thread function_3840375a(0);
 	self thread function_a36ffe73();
@@ -2297,7 +2297,7 @@ function function_bfbc53f4(einflictor, eattacker, idamage, idflags, smeansofdeat
 			}
 			if(isdefined(eattacker.var_f4795bf) && eattacker.var_f4795bf && smeansofdeath == "MOD_PROJECTILE")
 			{
-				self notify(#"hash_89b28ec", eattacker);
+				self notify("snared", eattacker);
 				idamage = 0;
 			}
 			else if(!(isdefined(eattacker.boss) && eattacker.boss) && (smeansofdeath == "MOD_PROJECTILE" || smeansofdeath == "MOD_RIFLE_BULLET" || smeansofdeath == "MOD_PROJECTILE_SPLASH" || smeansofdeath == "MOD_GRENADE" || smeansofdeath == "MOD_GRENADE_SPLASH" || smeansofdeath == "MOD_BURNED" || smeansofdeath == "MOD_EXPLOSIVE"))

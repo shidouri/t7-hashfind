@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\array_shared;
@@ -450,17 +450,17 @@ function function_90c151e6(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 4
 	Flags: Linked
 */
-function function_4bdc99a(m_body, var_e88629ec, localclientnum, direction)
+function function_4bdc99a(m_body, m_dragon, localclientnum, direction)
 {
 	/#
 		iprintlnbold("" + direction);
 	#/
 	var_3b282900 = level.var_c7a1f434[direction];
-	if(var_e88629ec flag::get("dragon_far_left") && direction == "right")
+	if(m_dragon flag::get("dragon_far_left") && direction == "right")
 	{
 		var_3b282900 = level.var_c7a1f434["left_2_right"];
 	}
-	else if(var_e88629ec flag::get("dragon_far_right") && direction == "left")
+	else if(m_dragon flag::get("dragon_far_right") && direction == "left")
 	{
 		var_3b282900 = level.var_c7a1f434["right_2_left"];
 	}
@@ -468,8 +468,8 @@ function function_4bdc99a(m_body, var_e88629ec, localclientnum, direction)
 	var_3c6f5c75 = s_scenedef.objects[0].mainanim;
 	m_body unlink();
 	m_body show();
-	m_body thread function_939ae9de(var_e88629ec, localclientnum, direction, var_3c6f5c75);
-	var_e88629ec scene::play(var_3b282900, var_e88629ec);
+	m_body thread function_939ae9de(m_dragon, localclientnum, direction, var_3c6f5c75);
+	m_dragon scene::play(var_3b282900, m_dragon);
 }
 
 /*
@@ -537,7 +537,7 @@ function function_def5820e(a_ents)
 	Parameters: 4
 	Flags: Linked
 */
-function function_939ae9de(var_e88629ec, localclientnum, direction, var_3c6f5c75)
+function function_939ae9de(m_dragon, localclientnum, direction, var_3c6f5c75)
 {
 	if(!isdefined(self.var_bbb1ef87))
 	{
@@ -546,7 +546,7 @@ function function_939ae9de(var_e88629ec, localclientnum, direction, var_3c6f5c75
 	}
 	self clearanim(%zm_castle::root, 0.2);
 	self setanimrestart("ai_zm_dlc1_dragonhead_zombie_rise");
-	var_1d199979 = var_e88629ec.origin - self.origin;
+	var_1d199979 = m_dragon.origin - self.origin;
 	var_6ea7737a = vectorscale(var_1d199979, 0.2);
 	self.var_bbb1ef87.angles = vectortoangles(var_1d199979);
 	self.var_bbb1ef87 linkto(self);
@@ -556,16 +556,16 @@ function function_939ae9de(var_e88629ec, localclientnum, direction, var_3c6f5c75
 		return;
 	}
 	animlength = getanimlength(var_3c6f5c75);
-	animlength = animlength - (animlength * var_e88629ec getanimtime(var_3c6f5c75));
+	animlength = animlength - (animlength * m_dragon getanimtime(var_3c6f5c75));
 	animlength = max(animlength, 0.05);
 	self moveto(self.origin + var_6ea7737a, animlength * 0.75, animlength * 0.75, 0);
-	var_31e7de73 = var_e88629ec gettagangles("tag_attach");
+	var_31e7de73 = m_dragon gettagangles("tag_attach");
 	self rotateto(var_31e7de73, animlength * 0.75);
 	self waittill(#"movedone");
 	animlength = getanimlength(var_3c6f5c75);
-	animlength = animlength - (animlength * var_e88629ec getanimtime(var_3c6f5c75));
+	animlength = animlength - (animlength * m_dragon getanimtime(var_3c6f5c75));
 	animlength = max(animlength, 0.05);
-	var_6b61dff7 = var_e88629ec gettagorigin("tag_attach");
+	var_6b61dff7 = m_dragon gettagorigin("tag_attach");
 	self moveto(var_6b61dff7, animlength, animlength, 0);
 	self waittill(#"movedone");
 	if(!isdefined(self))
@@ -598,24 +598,24 @@ function function_4ae89880(body, localclientnum, direction)
 	s_closest = array::get_all_closest(self.origin, level.var_f302359b);
 	fieldname = s_closest[0].script_parameters;
 	m_body = level.var_3cc6503b[localclientnum][fieldname];
-	var_e88629ec = level.var_792780c0[localclientnum][fieldname];
-	level function_4bdc99a(m_body, var_e88629ec, localclientnum, direction);
-	if(!isdefined(var_e88629ec) || !isdefined(m_body))
+	m_dragon = level.var_792780c0[localclientnum][fieldname];
+	level function_4bdc99a(m_body, m_dragon, localclientnum, direction);
+	if(!isdefined(m_dragon) || !isdefined(m_body))
 	{
 		return;
 	}
 	m_body.animname = "zombie";
-	var_e88629ec.animname = "dragon";
+	m_dragon.animname = "dragon";
 	self thread function_badc23de(localclientnum);
-	self scene::play(level.var_977975d2[direction], array(m_body, var_e88629ec));
-	if(!isdefined(var_e88629ec) || !isdefined(m_body))
+	self scene::play(level.var_977975d2[direction], array(m_body, m_dragon));
+	if(!isdefined(m_dragon) || !isdefined(m_body))
 	{
 		return;
 	}
 	m_body.animname = "";
-	var_e88629ec.animname = "";
-	playsound(0, "zmb_weap_wall", var_e88629ec.origin);
-	var_e88629ec thread function_979d2797(localclientnum);
+	m_dragon.animname = "";
+	playsound(0, "zmb_weap_wall", m_dragon.origin);
+	m_dragon thread function_979d2797(localclientnum);
 }
 
 /*

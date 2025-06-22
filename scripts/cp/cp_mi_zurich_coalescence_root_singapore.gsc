@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -481,11 +481,11 @@ function function_eb271a4b(str_objective)
 {
 	level endon(str_objective + "_done");
 	level endon(#"hash_73b00182");
-	var_b1cdbf1d = 0;
+	n_crumb = 0;
 	while(true)
 	{
-		var_f6e695c0 = struct::get("breadcrumb_singroot_" + var_b1cdbf1d, "targetname");
-		var_b1fe230f = getent("t_singroot_" + var_b1cdbf1d, "script_noteworthy");
+		var_f6e695c0 = struct::get("breadcrumb_singroot_" + n_crumb, "targetname");
+		var_b1fe230f = getent("t_singroot_" + n_crumb, "script_noteworthy");
 		if(!isdefined(var_f6e695c0) || !isdefined(var_b1fe230f))
 		{
 			return;
@@ -494,12 +494,12 @@ function function_eb271a4b(str_objective)
 		var_b1fe230f waittill(#"trigger");
 		level notify(#"hash_431e9a83");
 		savegame::checkpoint_save();
-		if(var_b1cdbf1d == 2)
+		if(n_crumb == 2)
 		{
 			level thread function_26f61e7c();
 		}
 		objectives::complete("cp_waypoint_breadcrumb", var_f6e695c0);
-		var_b1cdbf1d++;
+		n_crumb++;
 	}
 }
 
@@ -528,8 +528,8 @@ function function_26f61e7c()
 */
 function function_8842e57d()
 {
-	var_d5aeed2b = getentarray("root_sing_cover", "targetname");
-	var_d5aeed2b = array::thread_all(var_d5aeed2b, &function_258afdfc);
+	a_t_cover = getentarray("root_sing_cover", "targetname");
+	a_t_cover = array::thread_all(a_t_cover, &function_258afdfc);
 }
 
 /*
@@ -543,11 +543,11 @@ function function_8842e57d()
 */
 function function_258afdfc()
 {
-	var_482d5204 = struct::get_array(self.target, "targetname");
+	a_s_cover = struct::get_array(self.target, "targetname");
 	/#
-		assert(isdefined(var_482d5204), "");
+		assert(isdefined(a_s_cover), "");
 	#/
-	foreach(var_19966f24 in var_482d5204)
+	foreach(var_19966f24 in a_s_cover)
 	{
 		/#
 			assert(isdefined(var_19966f24.model), "");
@@ -565,7 +565,7 @@ function function_258afdfc()
 		}
 	}
 	self waittill(#"trigger");
-	foreach(var_19966f24 in var_482d5204)
+	foreach(var_19966f24 in a_s_cover)
 	{
 		var_19966f24 thread function_375f158a();
 	}
@@ -583,20 +583,20 @@ function function_258afdfc()
 function function_375f158a()
 {
 	wait(randomfloat(2));
-	var_4b1dfeae = util::spawn_model(self.model, self.origin, self.angles);
-	var_4b1dfeae.var_1069f2d4 = struct::get(self.target, "targetname");
-	var_4b1dfeae.targetname = "singapore_cover";
+	mdl_cover = util::spawn_model(self.model, self.origin, self.angles);
+	mdl_cover.var_1069f2d4 = struct::get(self.target, "targetname");
+	mdl_cover.targetname = "singapore_cover";
 	if(isdefined(self.script_fxid))
 	{
-		var_4b1dfeae.script_fxid = self.script_fxid;
+		mdl_cover.script_fxid = self.script_fxid;
 	}
 	if(isdefined(self.script_string))
 	{
-		var_4b1dfeae.script_string = self.script_string;
-		var_4b1dfeae thread function_e8047245();
+		mdl_cover.script_string = self.script_string;
+		mdl_cover thread function_e8047245();
 	}
-	var_4b1dfeae thread function_14bb726e();
-	var_4b1dfeae thread function_1bf4af4f();
+	mdl_cover thread function_14bb726e();
+	mdl_cover thread function_1bf4af4f();
 }
 
 /*

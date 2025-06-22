@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_oed;
@@ -494,9 +494,9 @@ function function_c9395227(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 4
 	Flags: Linked
 */
-function function_b0867fa6(localclientnum, var_fd7c1054, var_81a24d4e = 14.64, var_6516b558 = 0)
+function function_b0867fa6(localclientnum, str_camera, var_81a24d4e = 14.64, var_6516b558 = 0)
 {
-	e_camera = getent(localclientnum, var_fd7c1054, "targetname");
+	e_camera = getent(localclientnum, str_camera, "targetname");
 	e_camera.var_81a24d4e = var_81a24d4e;
 	e_camera.var_6516b558 = var_6516b558;
 	return e_camera;

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\_util;
 #using scripts\cp\gametypes\_globallogic_score;
 #using scripts\shared\abilities\_ability_util;
@@ -821,36 +821,36 @@ function function_3f6bd04c(enemy)
 	{
 		var_612fc483 = var_612fc483 + 360;
 	}
-	var_be26784d = "enemy_behind";
+	str_purpose = "enemy_behind";
 	if(var_a113a204 > 45)
 	{
-		var_be26784d = "enemy_below";
+		str_purpose = "enemy_below";
 	}
 	else
 	{
 		if(var_a113a204 < -45)
 		{
-			var_be26784d = "enemy_above";
+			str_purpose = "enemy_above";
 		}
 		else
 		{
 			if(var_612fc483 >= 315 || var_612fc483 <= 45)
 			{
-				var_be26784d = "enemy_ahead";
+				str_purpose = "enemy_ahead";
 			}
 			else
 			{
 				if(var_612fc483 >= 45 && var_612fc483 <= 135)
 				{
-					var_be26784d = "enemy_right";
+					str_purpose = "enemy_right";
 				}
 				else if(var_612fc483 >= 225 && var_612fc483 <= 315)
 				{
-					var_be26784d = "enemy_left";
+					str_purpose = "enemy_left";
 				}
 			}
 		}
 	}
-	self stealth_vo::function_866c6270(var_be26784d, 1);
+	self stealth_vo::function_866c6270(str_purpose, 1);
 }
 

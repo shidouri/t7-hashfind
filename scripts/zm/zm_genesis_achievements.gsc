@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -198,19 +198,19 @@ function function_7d947aff()
 {
 	level endon(#"end_game");
 	self endon(#"disconnect");
-	self.var_88f45a31 = [];
-	self.var_88f45a31[self.var_88f45a31.size] = "start_island";
-	self.var_88f45a31[self.var_88f45a31.size] = "prison_island";
-	self.var_88f45a31[self.var_88f45a31.size] = "asylum_island";
-	self.var_88f45a31[self.var_88f45a31.size] = "temple_island";
-	self.var_88f45a31[self.var_88f45a31.size] = "prototype_island";
+	self.a_e_islands = [];
+	self.a_e_islands[self.a_e_islands.size] = "start_island";
+	self.a_e_islands[self.a_e_islands.size] = "prison_island";
+	self.a_e_islands[self.a_e_islands.size] = "asylum_island";
+	self.a_e_islands[self.a_e_islands.size] = "temple_island";
+	self.a_e_islands[self.a_e_islands.size] = "prototype_island";
 	self thread function_935679b0();
-	while(self.var_88f45a31.size > 0)
+	while(self.a_e_islands.size > 0)
 	{
 		self waittill(#"hash_421672a9");
 	}
 	self giveachievement("ZM_GENESIS_GRAND_TOUR");
-	self.var_88f45a31 = undefined;
+	self.a_e_islands = undefined;
 	self notify(#"hash_2bec714");
 }
 
@@ -228,18 +228,18 @@ function function_935679b0()
 	level endon(#"end_game");
 	self endon(#"disconnect");
 	self endon(#"hash_2bec714");
-	while(!isdefined(self.var_a3d40b8))
+	while(!isdefined(self.island_name))
 	{
 		util::wait_network_frame();
 	}
-	var_e274e0c3 = self.var_a3d40b8;
+	var_e274e0c3 = self.island_name;
 	self thread function_f17c9ba1();
 	while(true)
 	{
-		if(isdefined(self.var_a3d40b8) && var_e274e0c3 != self.var_a3d40b8)
+		if(isdefined(self.island_name) && var_e274e0c3 != self.island_name)
 		{
 			self thread function_f17c9ba1();
-			var_e274e0c3 = self.var_a3d40b8;
+			var_e274e0c3 = self.island_name;
 			self notify(#"hash_421672a9");
 		}
 		wait(randomfloatrange(0.5, 1));
@@ -260,10 +260,10 @@ function function_f17c9ba1()
 	level endon(#"end_game");
 	self endon(#"disconnect");
 	self endon(#"hash_2bec714");
-	var_a43542cc = self.var_a3d40b8;
-	if(isdefined(var_a43542cc) && isinarray(self.var_88f45a31, var_a43542cc))
+	var_a43542cc = self.island_name;
+	if(isdefined(var_a43542cc) && isinarray(self.a_e_islands, var_a43542cc))
 	{
-		arrayremovevalue(self.var_88f45a31, var_a43542cc);
+		arrayremovevalue(self.a_e_islands, var_a43542cc);
 	}
 	else
 	{
@@ -271,9 +271,9 @@ function function_f17c9ba1()
 	}
 	self waittill(#"hash_421672a9");
 	wait(120);
-	if(isdefined(self.var_88f45a31))
+	if(isdefined(self.a_e_islands))
 	{
-		array::add(self.var_88f45a31, var_a43542cc, 0);
+		array::add(self.a_e_islands, var_a43542cc, 0);
 	}
 }
 
@@ -290,12 +290,12 @@ function achievement_wardrobe_change()
 {
 	level endon(#"end_game");
 	self endon(#"disconnect");
-	var_fc2fd82c = [];
+	a_str_wearable = [];
 	while(true)
 	{
 		self waittill(#"changed_wearable", var_475b0a4e);
-		array::add(var_fc2fd82c, var_475b0a4e, 0);
-		if(var_fc2fd82c.size >= 3)
+		array::add(a_str_wearable, var_475b0a4e, 0);
+		if(a_str_wearable.size >= 3)
 		{
 			self giveachievement("ZM_GENESIS_WARDROBE_CHANGE");
 			return;

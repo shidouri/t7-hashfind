@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\mechz;
 #using scripts\shared\ai\systems\animation_state_machine_mocomp;
@@ -452,7 +452,7 @@ function function_6592b947()
 	wait(5);
 	while(var_b29defde > 0)
 	{
-		while(!function_b1a145c4())
+		while(!ready_to_spawn_mechz())
 		{
 			wait(1);
 		}
@@ -473,7 +473,7 @@ function function_6592b947()
 }
 
 /*
-	Name: function_b1a145c4
+	Name: ready_to_spawn_mechz
 	Namespace: zm_castle_mechz
 	Checksum: 0x283E7125
 	Offset: 0x14A8
@@ -481,7 +481,7 @@ function function_6592b947()
 	Parameters: 0
 	Flags: Linked
 */
-function function_b1a145c4()
+function ready_to_spawn_mechz()
 {
 	var_f52ee0b1 = zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit;
 	if(var_f52ee0b1 || !level flag::get("spawn_zombies") || !level flag::get("can_spawn_mechz"))
@@ -536,7 +536,7 @@ function function_d8d01032()
 	level.var_2f0a5661++;
 	level.zombie_ai_limit--;
 	level thread achievement_watcher(self);
-	self thread function_b2a1b297();
+	self thread mechz_corpse();
 	self waittill(#"death");
 	self thread function_2a2bfc25();
 	if(isdefined(self.attacker) && isplayer(self.attacker) && self.attacker hasweapon(getweapon("knife_plunger")))
@@ -549,7 +549,7 @@ function function_d8d01032()
 }
 
 /*
-	Name: function_b2a1b297
+	Name: mechz_corpse
 	Namespace: zm_castle_mechz
 	Checksum: 0x11D6F9FE
 	Offset: 0x16F0
@@ -557,7 +557,7 @@ function function_d8d01032()
 	Parameters: 0
 	Flags: Linked
 */
-function function_b2a1b297()
+function mechz_corpse()
 {
 	self waittill(#"actor_corpse", mechz);
 	wait(60);

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\animation_shared;
@@ -1067,11 +1067,11 @@ function function_342295d8(str_zone, b_enable = 1)
 */
 function function_37a5b776()
 {
-	var_a8951c29 = [];
-	var_9e84b959 = array("start_island", "apothicon_island", "temple_island", "prototype_island", "asylum_island", "prison_island", "arena_island");
-	for(i = 0; i < var_9e84b959.size; i++)
+	a_e_occupied = [];
+	a_str_islands = array("start_island", "apothicon_island", "temple_island", "prototype_island", "asylum_island", "prison_island", "arena_island");
+	for(i = 0; i < a_str_islands.size; i++)
 	{
-		e_island = getent(var_9e84b959[i], "targetname");
+		e_island = getent(a_str_islands[i], "targetname");
 		for(j = 0; j < level.activeplayers.size; j++)
 		{
 			if(isdefined(level.activeplayers[j].is_flung) && level.activeplayers[j].is_flung)
@@ -1080,17 +1080,17 @@ function function_37a5b776()
 			}
 			if(level.activeplayers[j] istouching(e_island))
 			{
-				array::add(var_a8951c29, e_island, 0);
+				array::add(a_e_occupied, e_island, 0);
 			}
 		}
 	}
-	if(!var_a8951c29.size)
+	if(!a_e_occupied.size)
 	{
 		return true;
 	}
-	for(k = 0; k < var_a8951c29.size; k++)
+	for(k = 0; k < a_e_occupied.size; k++)
 	{
-		if(self istouching(var_a8951c29[k]))
+		if(self istouching(a_e_occupied[k]))
 		{
 			return true;
 		}
@@ -2151,7 +2151,7 @@ function function_ae4d938c(v_target_pos, var_e57941b7, var_ca841609, str_endon_n
 	n_scaled_pulse_delay = undefined;
 	n_time_before_next_pulse = undefined;
 	n_scale = undefined;
-	var_887c2fcb = undefined;
+	n_rumble = undefined;
 	var_55ae5d19 = 1000;
 	while(true)
 	{
@@ -2164,7 +2164,7 @@ function function_ae4d938c(v_target_pos, var_e57941b7, var_ca841609, str_endon_n
 			n_scale = n_dist / var_2b515bba;
 			n_scaled_pulse_delay = n_scale * n_pulse_delay_range;
 			n_time_before_next_pulse = 0.2 + n_scaled_pulse_delay;
-			var_887c2fcb = (n_dist < (var_2b515bba * 0.25) ? 2 : 1);
+			n_rumble = (n_dist < (var_2b515bba * 0.25) ? 2 : 1);
 		}
 		else
 		{
@@ -2173,7 +2173,7 @@ function function_ae4d938c(v_target_pos, var_e57941b7, var_ca841609, str_endon_n
 		if(isdefined(n_time_before_next_pulse) && var_55ae5d19 > n_time_before_next_pulse)
 		{
 			var_55ae5d19 = 0;
-			self thread function_8d431c98(var_887c2fcb);
+			self thread function_8d431c98(n_rumble);
 		}
 		wait(0.05);
 		var_55ae5d19 = var_55ae5d19 + 0.05;
@@ -2189,10 +2189,10 @@ function function_ae4d938c(v_target_pos, var_e57941b7, var_ca841609, str_endon_n
 	Parameters: 1
 	Flags: Linked
 */
-function function_8d431c98(var_887c2fcb)
+function function_8d431c98(n_rumble)
 {
 	self playsoundtoplayer("zmb_main_searchparty_ping", self);
-	self set_rumble_to_player(var_887c2fcb);
+	self set_rumble_to_player(n_rumble);
 	util::wait_network_frame();
 	self set_rumble_to_player(0);
 }
@@ -2271,8 +2271,8 @@ function watch_for_open_sesame()
 {
 	/#
 		level waittill(#"open_sesame");
-		var_2bbbcbec = getentarray("", "");
-		foreach(var_a816c58c in var_2bbbcbec)
+		a_e_power = getentarray("", "");
+		foreach(var_a816c58c in a_e_power)
 		{
 			var_a816c58c.var_98e1d15 = 1;
 			var_7e0a45c8 = var_a816c58c.script_int;
@@ -2291,16 +2291,16 @@ function watch_for_open_sesame()
 	Parameters: 4
 	Flags: None
 */
-function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
+function function_8faf1d24(v_color, str_print, n_scale, str_endon)
 {
 	/#
 		if(!isdefined(v_color))
 		{
 			v_color = vectorscale((0, 0, 1), 255);
 		}
-		if(!isdefined(var_8882142e))
+		if(!isdefined(str_print))
 		{
-			var_8882142e = "";
+			str_print = "";
 		}
 		if(!isdefined(n_scale))
 		{
@@ -2321,7 +2321,7 @@ function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
 		origin = self.origin;
 		while(true)
 		{
-			print3d(origin, var_8882142e, v_color, n_scale);
+			print3d(origin, str_print, v_color, n_scale);
 			wait(0.1);
 		}
 	#/
@@ -2566,12 +2566,12 @@ function function_c0411192()
 	/#
 		level notify(#"hash_7fb84095");
 		var_3e38f0ae = struct::get_array("");
-		var_da104453 = struct::get_array("");
-		var_3e38f0ae = arraycombine(var_3e38f0ae, var_da104453, 0, 0);
-		var_da104453 = struct::get_array("");
-		var_3e38f0ae = arraycombine(var_3e38f0ae, var_da104453, 0, 0);
-		var_da104453 = struct::get_array("");
-		var_3e38f0ae = arraycombine(var_3e38f0ae, var_da104453, 0, 0);
+		a_s_parts = struct::get_array("");
+		var_3e38f0ae = arraycombine(var_3e38f0ae, a_s_parts, 0, 0);
+		a_s_parts = struct::get_array("");
+		var_3e38f0ae = arraycombine(var_3e38f0ae, a_s_parts, 0, 0);
+		a_s_parts = struct::get_array("");
+		var_3e38f0ae = arraycombine(var_3e38f0ae, a_s_parts, 0, 0);
 		array::thread_all(var_3e38f0ae, &function_b411d2a8);
 	#/
 }
@@ -2590,12 +2590,12 @@ function function_6c518807()
 	/#
 		level notify(#"hash_6fd18b70");
 		var_3e38f0ae = struct::get_array("");
-		var_da104453 = struct::get_array("");
-		var_3e38f0ae = arraycombine(var_3e38f0ae, var_da104453, 0, 0);
-		var_da104453 = struct::get_array("");
-		var_3e38f0ae = arraycombine(var_3e38f0ae, var_da104453, 0, 0);
-		var_da104453 = struct::get_array("");
-		var_3e38f0ae = arraycombine(var_3e38f0ae, var_da104453, 0, 0);
+		a_s_parts = struct::get_array("");
+		var_3e38f0ae = arraycombine(var_3e38f0ae, a_s_parts, 0, 0);
+		a_s_parts = struct::get_array("");
+		var_3e38f0ae = arraycombine(var_3e38f0ae, a_s_parts, 0, 0);
+		a_s_parts = struct::get_array("");
+		var_3e38f0ae = arraycombine(var_3e38f0ae, a_s_parts, 0, 0);
 		array::thread_all(var_3e38f0ae, &function_ba547024);
 	#/
 }
@@ -3036,8 +3036,8 @@ function function_90c620d8()
 {
 	/#
 		level notify(#"hash_6aa36145");
-		var_9f26317f = getentarray("", "");
-		array::thread_all(var_9f26317f, &function_7b7eeb90);
+		a_t_blockers = getentarray("", "");
+		array::thread_all(a_t_blockers, &function_7b7eeb90);
 	#/
 }
 
@@ -3249,9 +3249,9 @@ function function_dbc092aa(cmd)
 		{
 			case "":
 			{
-				var_9f26317f = getentarray("", "");
-				var_9f26317f thread function_5e8cafb9();
-				foreach(t_door in var_9f26317f)
+				a_t_blockers = getentarray("", "");
+				a_t_blockers thread function_5e8cafb9();
+				foreach(t_door in a_t_blockers)
 				{
 					var_3ccf13b = t_door function_78e15936();
 					array::thread_all(var_3ccf13b, &function_bc81bb3b);
@@ -3452,8 +3452,8 @@ function function_d5c8a6c2()
 function function_712a86f4(var_7e0a45c8)
 {
 	/#
-		var_2bbbcbec = getentarray("", "");
-		foreach(var_a816c58c in var_2bbbcbec)
+		a_e_power = getentarray("", "");
+		foreach(var_a816c58c in a_e_power)
 		{
 			if(var_a816c58c.script_int == var_7e0a45c8)
 			{

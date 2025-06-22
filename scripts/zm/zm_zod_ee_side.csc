@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\scene_shared;
@@ -113,14 +113,14 @@ function function_a5b33f7(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_75ad5595(var_ff840495)
+function private function_75ad5595(a_mdl_props)
 {
-	var_ff840495["arnie_tie_mdl"] setscale(0.13);
-	var_ff840495["arnie_hat_mdl"] setscale(0.18);
-	var_ff840495["arnie_cane_mdl"] setscale(0.08);
-	foreach(var_fba08aba in var_ff840495)
+	a_mdl_props["arnie_tie_mdl"] setscale(0.13);
+	a_mdl_props["arnie_hat_mdl"] setscale(0.18);
+	a_mdl_props["arnie_cane_mdl"] setscale(0.08);
+	foreach(mdl_prop in a_mdl_props)
 	{
-		playfx(0, level._effect["portal_3p"], var_fba08aba.origin);
+		playfx(0, level._effect["portal_3p"], mdl_prop.origin);
 	}
 }
 

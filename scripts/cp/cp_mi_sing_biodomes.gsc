@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_ammo_cache;
 #using scripts\cp\_collectibles;
@@ -103,7 +103,7 @@ function main()
 		level scene::init("server_room_access_start", "targetname");
 	}
 	load::main();
-	namespace_e82fdc69::function_7403e82b();
+	cp_mi_sing_biodomes_patch::function_7403e82b();
 	skipto::set_skip_safehouse();
 }
 

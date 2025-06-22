@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\mp\_teamops;
 #using scripts\mp\_util;
 #using scripts\mp\bots\_bot;
@@ -3090,14 +3090,14 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, sweapon, v
 	if(killedbyenemy)
 	{
 		scoreevents::processscoreevent("prop_finalblow", attacker, victim);
-		foreach(var_ee0888a5 in victim.attackers)
+		foreach(assailant in victim.attackers)
 		{
-			if(var_ee0888a5 == attacker)
+			if(assailant == attacker)
 			{
-				var_ee0888a5 playhitmarker("mpl_hit_alert");
+				assailant playhitmarker("mpl_hit_alert");
 				continue;
 			}
-			var_ee0888a5 playhitmarker("mpl_hit_alert_escort");
+			assailant playhitmarker("mpl_hit_alert_escort");
 		}
 	}
 	foreach(player in level.players)

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\animation_shared;
@@ -296,11 +296,11 @@ function prevent_theater_mode_spoilers()
 */
 function function_ffcfbd77()
 {
-	var_8b8460d5 = array("fuse_01", "fuse_02", "fuse_03");
-	foreach(var_64f2aa7a in var_8b8460d5)
+	a_str_fuses = array("fuse_01", "fuse_02", "fuse_03");
+	foreach(str_fuse in a_str_fuses)
 	{
-		var_f2ae2c72 = level zm_craftables::get_craftable_piece_model("police_box", var_64f2aa7a);
-		var_f2ae2c72 clientfield::set("item_glow_fx", 4);
+		mdl_fuse = level zm_craftables::get_craftable_piece_model("police_box", str_fuse);
+		mdl_fuse clientfield::set("item_glow_fx", 4);
 	}
 }
 
@@ -685,17 +685,17 @@ function function_58fe842c()
 	Parameters: 1
 	Flags: Linked
 */
-function function_7965975d(var_553a9d46)
+function function_7965975d(a_e_keepers)
 {
 	self endon(#"_zombie_game_over");
 	level endon(#"hash_2403fc5b");
-	while(var_553a9d46.size > 0)
+	while(a_e_keepers.size > 0)
 	{
-		for(i = 0; i < var_553a9d46.size; i++)
+		for(i = 0; i < a_e_keepers.size; i++)
 		{
-			if(!isalive(var_553a9d46[i]))
+			if(!isalive(a_e_keepers[i]))
 			{
-				arrayremovevalue(var_553a9d46, var_553a9d46[i]);
+				arrayremovevalue(a_e_keepers, a_e_keepers[i]);
 			}
 		}
 		wait(0.05);
@@ -2090,13 +2090,13 @@ function set_frieze_power(var_e7fbc48, b_on)
 	Parameters: 2
 	Flags: Linked
 */
-function function_7107ea51(var_b12a7acb, var_4539ae4a)
+function function_7107ea51(mdl_animating, var_4539ae4a)
 {
 	level notify(#"hash_7107ea51");
 	level endon(#"hash_7107ea51");
 	while(true)
 	{
-		var_b12a7acb util::waittill_any("impact_rumble", "rumble_stop");
+		mdl_animating util::waittill_any("impact_rumble", "rumble_stop");
 		earthquake(0.5, 0.2, var_4539ae4a.origin, 512);
 		foreach(player in level.activeplayers)
 		{
@@ -2530,8 +2530,8 @@ function function_6c6a5914(n_val)
 	level thread zm_zod_pods::function_2947f395();
 	hidemiscmodels("robot_model");
 	level flag::set("police_box_hide");
-	var_dfda7cba = getentarray("robot_readout_model", "targetname");
-	foreach(mdl_readout in var_dfda7cba)
+	a_mdl_readouts = getentarray("robot_readout_model", "targetname");
+	foreach(mdl_readout in a_mdl_readouts)
 	{
 		mdl_readout hide();
 	}
@@ -2998,14 +2998,14 @@ function function_b62ad2c()
 	var_578145e1 = level.a_o_defend_areas["boxer"];
 	var_e6fe55fe = level.a_o_defend_areas["detective"];
 	var_bab3e119 = level.a_o_defend_areas["femme"];
-	var_18ffa2b3 = [];
-	array::add(var_18ffa2b3, var_b63ffd42);
-	array::add(var_18ffa2b3, var_578145e1);
-	array::add(var_18ffa2b3, var_e6fe55fe);
-	array::add(var_18ffa2b3, var_bab3e119);
-	for(i = 0; i < var_18ffa2b3.size; i++)
+	a_rituals = [];
+	array::add(a_rituals, var_b63ffd42);
+	array::add(a_rituals, var_578145e1);
+	array::add(a_rituals, var_e6fe55fe);
+	array::add(a_rituals, var_bab3e119);
+	for(i = 0; i < a_rituals.size; i++)
 	{
-		var_4126c532 = var_18ffa2b3[i];
+		var_4126c532 = a_rituals[i];
 		if(var_4126c532.m_b_started)
 		{
 			if(self istouching(var_4126c532.m_e_defend_volume))

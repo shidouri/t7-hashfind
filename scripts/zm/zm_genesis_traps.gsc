@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -63,8 +63,8 @@ function __main__()
 {
 	level flag::wait_till("start_zombie_round_logic");
 	precache_scripted_fx();
-	var_8fcfe322 = getentarray("t_flogger_trap", "targetname");
-	array::thread_all(var_8fcfe322, &function_835fd6d8);
+	a_t_traps = getentarray("t_flogger_trap", "targetname");
+	array::thread_all(a_t_traps, &function_835fd6d8);
 }
 
 /*
@@ -99,7 +99,7 @@ function function_835fd6d8()
 	self flag::init("trap_cooldown");
 	self.zombie_cost = 1000;
 	level.var_1183e023 = 0;
-	self.var_ad39b789 = [];
+	self.a_e_switches = [];
 	self.a_s_triggers = [];
 	a_e_parts = getentarray(self.target, "targetname");
 	for(i = 0; i < a_e_parts.size; i++)
@@ -122,32 +122,32 @@ function function_835fd6d8()
 				}
 				case "switch":
 				{
-					self.var_ad39b789[self.var_ad39b789.size] = a_e_parts[i];
+					self.a_e_switches[self.a_e_switches.size] = a_e_parts[i];
 					break;
 				}
 			}
 		}
 	}
-	var_da104453 = struct::get_array(self.target, "targetname");
-	for(i = 0; i < var_da104453.size; i++)
+	a_s_parts = struct::get_array(self.target, "targetname");
+	for(i = 0; i < a_s_parts.size; i++)
 	{
-		if(isdefined(var_da104453[i].script_noteworthy))
+		if(isdefined(a_s_parts[i].script_noteworthy))
 		{
-			switch(var_da104453[i].script_noteworthy)
+			switch(a_s_parts[i].script_noteworthy)
 			{
 				case "buy_trigger":
 				{
-					self.a_s_triggers[self.a_s_triggers.size] = var_da104453[i];
+					self.a_s_triggers[self.a_s_triggers.size] = a_s_parts[i];
 					break;
 				}
 				case "motor_sound_left":
 				{
-					self.var_f1693315 = var_da104453[i];
+					self.var_f1693315 = a_s_parts[i];
 					break;
 				}
 				case "motor_sound_right":
 				{
-					self.var_736c69e7 = var_da104453[i];
+					self.var_736c69e7 = a_s_parts[i];
 					break;
 				}
 			}
@@ -257,11 +257,11 @@ function function_dc9dafb8(e_player)
 */
 function trap_move_switches()
 {
-	for(i = 0; i < self.var_ad39b789.size; i++)
+	for(i = 0; i < self.a_e_switches.size; i++)
 	{
-		self.var_ad39b789[i] rotatepitch(-170, 0.5);
+		self.a_e_switches[i] rotatepitch(-170, 0.5);
 	}
-	self.var_ad39b789[0] waittill(#"rotatedone");
+	self.a_e_switches[0] waittill(#"rotatedone");
 	if(isdefined(self.script_int) && !level flag::get("power_on" + self.script_int))
 	{
 		level flag::wait_till("power_on" + self.script_int);
@@ -271,18 +271,18 @@ function trap_move_switches()
 	{
 		self flag::wait_till("trap_active");
 		self trap_lights_red();
-		for(i = 0; i < self.var_ad39b789.size; i++)
+		for(i = 0; i < self.a_e_switches.size; i++)
 		{
-			self.var_ad39b789[i] rotatepitch(170, 0.5);
-			self.var_ad39b789[i] playsound("evt_switch_flip_trap");
+			self.a_e_switches[i] rotatepitch(170, 0.5);
+			self.a_e_switches[i] playsound("evt_switch_flip_trap");
 		}
-		self.var_ad39b789[0] waittill(#"rotatedone");
+		self.a_e_switches[0] waittill(#"rotatedone");
 		self flag::wait_till("trap_cooldown");
-		for(i = 0; i < self.var_ad39b789.size; i++)
+		for(i = 0; i < self.a_e_switches.size; i++)
 		{
-			self.var_ad39b789[i] rotatepitch(-170, 0.5);
+			self.a_e_switches[i] rotatepitch(-170, 0.5);
 		}
-		self.var_ad39b789[0] waittill(#"rotatedone");
+		self.a_e_switches[0] waittill(#"rotatedone");
 		self flag::wait_till_clear("trap_cooldown");
 		self trap_lights_green();
 	}

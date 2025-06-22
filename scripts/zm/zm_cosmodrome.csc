@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\audio_shared;
@@ -128,8 +128,8 @@ function function_85c8e13c(localclientnum)
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_f4570d42 = randomint(5);
-		switch(var_f4570d42)
+		n_scenario = randomint(5);
+		switch(n_scenario)
 		{
 			case 0:
 			{

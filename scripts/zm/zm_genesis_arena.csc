@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -722,10 +722,10 @@ function function_244d3483(localclientnum)
 */
 function function_a8a110ed(localclientnum, s_location, v_angle_offset = (0, 0, 0))
 {
-	var_244bacb5 = spawn(localclientnum, s_location.origin, "script_model");
-	var_244bacb5.angles = s_location.angles + v_angle_offset;
-	var_244bacb5 setmodel(s_location.model);
-	return var_244bacb5;
+	mdl_spawned = spawn(localclientnum, s_location.origin, "script_model");
+	mdl_spawned.angles = s_location.angles + v_angle_offset;
+	mdl_spawned setmodel(s_location.model);
+	return mdl_spawned;
 }
 
 /*
@@ -765,11 +765,11 @@ function function_17ef53cd()
 	n_duration = randomfloatrange(4.75, 5);
 	while(true)
 	{
-		self.var_b079127 moveto(v_origin + vectorscale((0, 0, 1), 4), n_duration);
-		self.var_4100f709 moveto(v_origin + vectorscale((0, 0, 1), 4), n_duration);
+		self.mdl_light moveto(v_origin + vectorscale((0, 0, 1), 4), n_duration);
+		self.mdl_dark moveto(v_origin + vectorscale((0, 0, 1), 4), n_duration);
 		wait(n_duration);
-		self.var_b079127 moveto(v_origin, n_duration);
-		self.var_4100f709 moveto(v_origin, n_duration);
+		self.mdl_light moveto(v_origin, n_duration);
+		self.mdl_dark moveto(v_origin, n_duration);
 		wait(n_duration);
 	}
 }
@@ -808,22 +808,22 @@ function function_fad1f25a(n_height)
 		case 0:
 		{
 			n_duration = randomfloatrange(1.75, 2);
-			self.var_b079127 moveto(self.v_origin + (vectorscale((0, 0, -1), 128)), n_duration);
-			self.var_4100f709 moveto(self.v_origin + (vectorscale((0, 0, -1), 128)), n_duration);
+			self.mdl_light moveto(self.v_origin + (vectorscale((0, 0, -1), 128)), n_duration);
+			self.mdl_dark moveto(self.v_origin + (vectorscale((0, 0, -1), 128)), n_duration);
 			break;
 		}
 		case 1:
 		{
 			n_duration = randomfloatrange(1.75, 2);
-			self.var_b079127 moveto(self.v_origin, n_duration);
-			self.var_4100f709 moveto(self.v_origin, n_duration);
+			self.mdl_light moveto(self.v_origin, n_duration);
+			self.mdl_dark moveto(self.v_origin, n_duration);
 			break;
 		}
 		case 2:
 		{
 			n_duration = randomfloatrange(1.75, 2);
-			self.var_b079127 moveto(self.v_origin + vectorscale((0, 0, 1), 128), n_duration);
-			self.var_4100f709 moveto(self.v_origin + vectorscale((0, 0, 1), 128), n_duration);
+			self.mdl_light moveto(self.v_origin + vectorscale((0, 0, 1), 128), n_duration);
+			self.mdl_dark moveto(self.v_origin + vectorscale((0, 0, 1), 128), n_duration);
 			break;
 		}
 	}
@@ -859,13 +859,13 @@ function function_7277f824(n_index, b_on)
 {
 	if(b_on)
 	{
-		level.var_8962a8a0[n_index].var_b079127 show();
-		level.var_8962a8a0[n_index].var_4100f709 hide();
+		level.var_8962a8a0[n_index].mdl_light show();
+		level.var_8962a8a0[n_index].mdl_dark hide();
 	}
 	else
 	{
-		level.var_8962a8a0[n_index].var_b079127 hide();
-		level.var_8962a8a0[n_index].var_4100f709 show();
+		level.var_8962a8a0[n_index].mdl_light hide();
+		level.var_8962a8a0[n_index].mdl_dark show();
 	}
 }
 

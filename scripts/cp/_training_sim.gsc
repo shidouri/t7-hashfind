@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_achievements;
 #using scripts\cp\_challenges;
@@ -247,17 +247,17 @@ function on_player_spawned()
 */
 function function_b9b9b898()
 {
-	if(!isdefined(level.var_6de9c3a5))
+	if(!isdefined(level.ratings))
 	{
-		level.var_6de9c3a5 = [];
-		var_6de9c3a5 = struct::get_script_bundle_list("trainingsimrating", "rating_list");
-		foreach(index, rating in var_6de9c3a5)
+		level.ratings = [];
+		ratings = struct::get_script_bundle_list("trainingsimrating", "rating_list");
+		foreach(index, rating in ratings)
 		{
 			var_1a07fad9 = struct::get_script_bundle("trainingsimrating", rating);
-			level.var_6de9c3a5[index] = spawnstruct();
-			level.var_6de9c3a5[index].var_92142c80 = var_1a07fad9.var_92142c80;
-			level.var_6de9c3a5[index].tokensawarded = var_1a07fad9.tokensawarded;
-			level.var_6de9c3a5[index].var_9f813737 = var_1a07fad9.var_9f813737;
+			level.ratings[index] = spawnstruct();
+			level.ratings[index].var_92142c80 = var_1a07fad9.var_92142c80;
+			level.ratings[index].tokensawarded = var_1a07fad9.tokensawarded;
+			level.ratings[index].var_9f813737 = var_1a07fad9.var_9f813737;
 		}
 	}
 }
@@ -445,19 +445,19 @@ function teleport_player(var_cc1de81f)
 */
 function function_17f2cd2f()
 {
-	if(self.var_d6d35c88 == level.var_6de9c3a5.size)
+	if(self.var_d6d35c88 == level.ratings.size)
 	{
 		return;
 	}
-	if(level.var_6de9c3a5[self.var_d6d35c88].var_92142c80 <= self.var_d1b47d51)
+	if(level.ratings[self.var_d6d35c88].var_92142c80 <= self.var_d1b47d51)
 	{
 		if(!(isdefined(self getdstat("trainingSimStats", "ranksAchieved", self.var_d6d35c88)) && self getdstat("trainingSimStats", "ranksAchieved", self.var_d6d35c88)))
 		{
 			self setdstat("trainingSimStats", "ranksAchieved", self.var_d6d35c88, 1);
 			self setdstat("PlayerStatsByMap", "cp_sh_cairo", "completedDifficulties", self.var_d6d35c88, 1);
-			self giveunlocktoken(level.var_6de9c3a5[self.var_d6d35c88].tokensawarded);
-			self addplayerstat("career_tokens", level.var_6de9c3a5[self.var_d6d35c88].tokensawarded);
-			self addrankxpvalue("completed_training_sim_rating", level.var_6de9c3a5[self.var_d6d35c88].var_9f813737);
+			self giveunlocktoken(level.ratings[self.var_d6d35c88].tokensawarded);
+			self addplayerstat("career_tokens", level.ratings[self.var_d6d35c88].tokensawarded);
+			self addrankxpvalue("completed_training_sim_rating", level.ratings[self.var_d6d35c88].var_9f813737);
 			self addplayerstat("CAREER_TRAINING_SIM", 1);
 		}
 		self.var_d6d35c88++;
@@ -619,8 +619,8 @@ function function_76550e47()
 {
 	level.var_a6bed3c2 = [];
 	var_d10f0e22 = table::load("gamedata/tables/cp/cp_training_sim.csv", "round", 1);
-	var_f8cc3a0e = getarraykeys(var_d10f0e22);
-	foreach(n_round in var_f8cc3a0e)
+	a_rounds = getarraykeys(var_d10f0e22);
+	foreach(n_round in a_rounds)
 	{
 		a_types = getarraykeys(var_d10f0e22[n_round]);
 		foreach(str_type in a_types)
@@ -907,8 +907,8 @@ function function_7407182f(var_19f0c7ba)
 */
 function function_a92a30c4(var_6ec35b3f, var_fcbbec04)
 {
-	var_59fb42bf = acos(vectordot(var_6ec35b3f, var_fcbbec04) / (length(var_6ec35b3f) * length(var_fcbbec04)));
-	return var_59fb42bf;
+	f_degrees = acos(vectordot(var_6ec35b3f, var_fcbbec04) / (length(var_6ec35b3f) * length(var_fcbbec04)));
+	return f_degrees;
 }
 
 /*
@@ -1860,7 +1860,7 @@ function function_3206b93a()
 	}
 	if(isdefined(self.var_d6d35c88))
 	{
-		if(self.var_d6d35c88 == level.var_6de9c3a5.size)
+		if(self.var_d6d35c88 == level.ratings.size)
 		{
 			self achievements::give_achievement("CP_TRAINING_GOLD");
 		}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\cp_doa_bo3_enemy;
@@ -242,20 +242,20 @@ function function_5ee7262b(def)
 */
 function function_d1c7245c()
 {
-	level.doa.var_af875fb7 = [];
+	level.doa.guardians = [];
 	level.doa.var_1332e37a = [];
 	guardian = spawnstruct();
 	guardian.type = 30;
 	guardian.spawner = getent("spawner_zombietron_skeleton", "targetname");
 	guardian.spawnfunction = &namespace_51bd792::function_862e15fa;
 	guardian.initfunction = &function_89a2ffc4;
-	level.doa.var_af875fb7[level.doa.var_af875fb7.size] = guardian;
+	level.doa.guardians[level.doa.guardians.size] = guardian;
 	guardian = spawnstruct();
 	guardian.type = 31;
 	guardian.spawner = getent("zombietron_guardian_robot", "targetname");
 	guardian.spawnfunction = &namespace_51bd792::function_575e3933;
 	guardian.initfunction = &function_75772673;
-	level.doa.var_af875fb7[level.doa.var_af875fb7.size] = guardian;
+	level.doa.guardians[level.doa.guardians.size] = guardian;
 }
 
 /*
@@ -284,8 +284,8 @@ function function_75772673(player)
 	{
 		self kill();
 	}
-	player.doa.var_af875fb7 = array::remove_undefined(player.doa.var_af875fb7);
-	player.doa.var_af875fb7[player.doa.var_af875fb7.size] = self;
+	player.doa.guardians = array::remove_undefined(player.doa.guardians);
+	player.doa.guardians[player.doa.guardians.size] = self;
 	blackboard::setblackboardattribute(self, "_desired_stance", "crouch");
 	self thread function_cd6da677(player);
 	self thread function_cef7f9fd();
@@ -388,15 +388,15 @@ function function_89a2ffc4(player)
 		return;
 	}
 	self namespace_1a381543::function_90118d8c("evt_skel_rise");
-	if(!isdefined(player.doa.var_af875fb7))
+	if(!isdefined(player.doa.guardians))
 	{
-		player.doa.var_af875fb7 = [];
+		player.doa.guardians = [];
 	}
-	if(player.doa.var_af875fb7.size)
+	if(player.doa.guardians.size)
 	{
-		player.doa.var_af875fb7 = array::remove_undefined(player.doa.var_af875fb7);
+		player.doa.guardians = array::remove_undefined(player.doa.guardians);
 	}
-	player.doa.var_af875fb7[player.doa.var_af875fb7.size] = self;
+	player.doa.guardians[player.doa.guardians.size] = self;
 	self thread function_cd6da677(player);
 	self thread function_5633d485();
 }
@@ -441,11 +441,11 @@ function function_cd6da677(owner)
 	{
 		if(isdefined(self))
 		{
-			arrayremovevalue(owner.doa.var_af875fb7, self, 0);
+			arrayremovevalue(owner.doa.guardians, self, 0);
 		}
 		else
 		{
-			array::remove_undefined(owner.doa.var_af875fb7, 0);
+			array::remove_undefined(owner.doa.guardians, 0);
 		}
 	}
 }
@@ -880,10 +880,10 @@ function function_957373c6(def)
 			def.cooldown = 0;
 			def.var_759562f7 = 5000;
 			def.var_474e643b = 20;
-			def.var_75f2c952 = 24;
+			def.spider_count = 24;
 			def.var_9cf005d1 = 0;
 			def.var_bb9ff15b = 2;
-			level.doa.var_afdb45da = def;
+			level.doa.spider_minions = def;
 			break;
 		}
 		default:
@@ -909,10 +909,10 @@ function function_7ea6d638(def)
 {
 	def.round = def.round + 64;
 	def.var_474e643b = def.var_474e643b + 4;
-	def.var_75f2c952 = def.var_75f2c952 + 12;
-	if(def.var_75f2c952 > 64)
+	def.spider_count = def.spider_count + 12;
+	if(def.spider_count > 64)
 	{
-		def.var_75f2c952 = 64;
+		def.spider_count = 64;
 	}
 	def.var_9cf005d1++;
 	def.title = def.var_7f46fadf[def.var_9cf005d1 % def.var_7f46fadf.size];

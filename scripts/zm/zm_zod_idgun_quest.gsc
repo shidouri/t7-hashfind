@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -585,7 +585,7 @@ function get_idgun_from_owner(player)
 function setup_idgun_upgrade_quest()
 {
 	level flag::wait_till("second_idgun_time");
-	var_ffcd34fb = struct::get_array("idgun_cocoon_point", "targetname");
+	a_s_cocoons = struct::get_array("idgun_cocoon_point", "targetname");
 	if(!isdefined(level.var_a26610f1))
 	{
 		level.var_a26610f1 = [];
@@ -613,7 +613,7 @@ function setup_idgun_upgrade_quest()
 				break;
 			}
 		}
-		var_c6a8002 = array::filter(var_ffcd34fb, 0, &filter_areaname, str_areaname);
+		var_c6a8002 = array::filter(a_s_cocoons, 0, &filter_areaname, str_areaname);
 		level.var_a26610f1[i] = array::random(var_c6a8002);
 		mdl_cocoon = spawn("script_model", level.var_a26610f1[i].origin);
 		mdl_cocoon setmodel("p7_zm_zod_cocoon");
@@ -702,7 +702,7 @@ function idgun_proximity_sensor(var_3fbc06aa)
 	n_scaled_pulse_delay = undefined;
 	n_time_before_next_pulse = undefined;
 	n_scale = undefined;
-	var_887c2fcb = undefined;
+	n_rumble = undefined;
 	while(true)
 	{
 		var_5cc8da3f = self getcurrentweapon();
@@ -725,7 +725,7 @@ function idgun_proximity_sensor(var_3fbc06aa)
 			{
 				n_time_before_next_pulse = 0.3;
 				n_scale = 1;
-				var_887c2fcb = 2;
+				n_rumble = 2;
 			}
 			else
 			{
@@ -735,14 +735,14 @@ function idgun_proximity_sensor(var_3fbc06aa)
 					n_scale = n_dot / 0.9;
 					n_scaled_pulse_delay = n_scale * n_pulse_delay_range;
 					n_time_before_next_pulse = 0.3 + n_scaled_pulse_delay;
-					var_887c2fcb = 1;
+					n_rumble = 1;
 				}
 				else
 				{
 					n_scale = n_dot / 0.9;
 					n_scaled_pulse_delay = n_scale * n_pulse_delay_range;
 					n_time_before_next_pulse = 0.3 + n_scaled_pulse_delay;
-					var_887c2fcb = 1;
+					n_rumble = 1;
 				}
 			}
 		}

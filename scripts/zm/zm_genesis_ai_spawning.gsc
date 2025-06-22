@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\margwa;
 #using scripts\shared\ai\systems\behavior_tree_utility;
@@ -424,24 +424,24 @@ function function_aa92a46b()
 */
 function function_3cf05b99()
 {
-	var_f09dee4f = [];
+	a_str_ai = [];
 	foreach(str_index, var_2bbee316 in level.var_c4336559)
 	{
 		if(var_2bbee316 > 0)
 		{
-			var_f09dee4f[var_f09dee4f.size] = str_index;
+			a_str_ai[a_str_ai.size] = str_index;
 		}
 	}
-	if(var_f09dee4f.size)
+	if(a_str_ai.size)
 	{
-		var_f09dee4f = array::randomize(var_f09dee4f);
-		var_64b0a5ef = var_f09dee4f[0];
+		a_str_ai = array::randomize(a_str_ai);
+		str_ai = a_str_ai[0];
 	}
 	else
 	{
-		var_64b0a5ef = "parasite";
+		str_ai = "parasite";
 	}
-	switch(var_64b0a5ef)
+	switch(str_ai)
 	{
 		case "apothicon_fury":
 		{

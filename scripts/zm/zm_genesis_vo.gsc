@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\margwa;
 #using scripts\shared\array_shared;
@@ -254,9 +254,9 @@ function __init__()
 	Parameters: 4
 	Flags: Linked
 */
-function function_1399b96f(str_key, var_8d8f9222, n_number, b_randomize)
+function function_1399b96f(str_key, str_base, n_number, b_randomize)
 {
-	var_d44b84c3 = function_ac5a16bb(var_8d8f9222, n_number);
+	var_d44b84c3 = function_ac5a16bb(str_base, n_number);
 	function_1f9abb06(str_key, var_d44b84c3, b_randomize);
 }
 
@@ -301,12 +301,12 @@ function function_1f9abb06(str_key, var_d44b84c3, b_randomize)
 	Parameters: 2
 	Flags: Linked
 */
-function function_ac5a16bb(var_8d8f9222, n_number)
+function function_ac5a16bb(str_base, n_number)
 {
 	a_str = [];
 	for(i = 0; i <= n_number; i++)
 	{
-		a_str[i] = var_8d8f9222 + i;
+		a_str[i] = str_base + i;
 	}
 	return a_str;
 }
@@ -1413,8 +1413,8 @@ function function_6b96bf38()
 		}
 		else
 		{
-			var_8d8f9222 = "_round1_start_solo_0";
-			var_b48c1dda = ("vox_plr_" + level.activeplayers[0].characterindex) + var_8d8f9222;
+			str_base = "_round1_start_solo_0";
+			var_b48c1dda = ("vox_plr_" + level.activeplayers[0].characterindex) + str_base;
 			level.activeplayers[0] function_7b697614(var_b48c1dda, 0, 1);
 		}
 	}
@@ -2289,27 +2289,27 @@ function function_f7879c72(e_attacker)
 */
 function function_5ebe7974()
 {
-	var_9fce6d52["zm_asylum_downstairs_zone"] = "visit_asylum";
-	var_9fce6d52["zm_asylum_upstairs_zone"] = "visit_asylum";
-	var_9fce6d52["zm_castle_undercroft_airlock_zone"] = "visit_castle";
-	var_9fce6d52["zm_castle_undercroft_hallway_zone"] = "visit_castle";
-	var_9fce6d52["zm_castle_undercroft_hallway2_zone"] = "visit_castle";
-	var_9fce6d52["zm_castle_undercroft_zone"] = "visit_castle";
-	var_9fce6d52["zm_prison_inner_zone"] = "visit_prison";
-	var_9fce6d52["zm_prototype_apothicon_zone"] = "visit_prototype";
-	var_9fce6d52["zm_prototype_balcony_zone"] = "visit_prototype";
-	var_9fce6d52["zm_prototype_box_zone"] = "visit_prototype";
-	var_9fce6d52["zm_prototype_outside_zone"] = "visit_prototype";
-	var_9fce6d52["zm_prototype_start_zone"] = "visit_prototype";
-	var_9fce6d52["zm_prototype_upstairs_zone"] = "visit_prototype";
-	var_9fce6d52["zm_temple_stairs_zone"] = "visit_temple";
-	var_9fce6d52["zm_temple_zone"] = "visit_temple";
-	var_9fce6d52["zm_temple2_zone"] = "visit_temple";
-	var_9fce6d52["zm_theater_foyer_zone"] = "visit_theater";
-	var_9fce6d52["zm_theater_zone"] = "visit_theater";
-	var_9fce6d52["zm_tomb_trench_center_zone"] = "visit_tomb";
-	var_9fce6d52["zm_tomb_generator_zone"] = "visit_tomb";
-	var_9fce6d52["zm_tomb_ruins2_zone"] = "visit_tomb";
+	a_str_visit["zm_asylum_downstairs_zone"] = "visit_asylum";
+	a_str_visit["zm_asylum_upstairs_zone"] = "visit_asylum";
+	a_str_visit["zm_castle_undercroft_airlock_zone"] = "visit_castle";
+	a_str_visit["zm_castle_undercroft_hallway_zone"] = "visit_castle";
+	a_str_visit["zm_castle_undercroft_hallway2_zone"] = "visit_castle";
+	a_str_visit["zm_castle_undercroft_zone"] = "visit_castle";
+	a_str_visit["zm_prison_inner_zone"] = "visit_prison";
+	a_str_visit["zm_prototype_apothicon_zone"] = "visit_prototype";
+	a_str_visit["zm_prototype_balcony_zone"] = "visit_prototype";
+	a_str_visit["zm_prototype_box_zone"] = "visit_prototype";
+	a_str_visit["zm_prototype_outside_zone"] = "visit_prototype";
+	a_str_visit["zm_prototype_start_zone"] = "visit_prototype";
+	a_str_visit["zm_prototype_upstairs_zone"] = "visit_prototype";
+	a_str_visit["zm_temple_stairs_zone"] = "visit_temple";
+	a_str_visit["zm_temple_zone"] = "visit_temple";
+	a_str_visit["zm_temple2_zone"] = "visit_temple";
+	a_str_visit["zm_theater_foyer_zone"] = "visit_theater";
+	a_str_visit["zm_theater_zone"] = "visit_theater";
+	a_str_visit["zm_tomb_trench_center_zone"] = "visit_tomb";
+	a_str_visit["zm_tomb_generator_zone"] = "visit_tomb";
+	a_str_visit["zm_tomb_ruins2_zone"] = "visit_tomb";
 	level thread function_a800aae9();
 	level waittill(#"start_zombie_round_logic");
 	while(true)
@@ -2323,16 +2323,16 @@ function function_5ebe7974()
 					str_player_zone = player zm_zonemgr::get_player_zone();
 					if(isdefined(str_player_zone))
 					{
-						var_d016ff72 = var_9fce6d52[str_player_zone];
-						if(!isdefined(var_d016ff72))
+						str_visit = a_str_visit[str_player_zone];
+						if(!isdefined(str_visit))
 						{
 							continue;
 						}
-						if(isdefined(player.var_59daaa5e[var_d016ff72]) && player.var_59daaa5e[var_d016ff72])
+						if(isdefined(player.var_59daaa5e[str_visit]) && player.var_59daaa5e[str_visit])
 						{
 							continue;
 						}
-						if(isdefined(level.var_9aa82ff8[var_d016ff72]) && level.var_9aa82ff8[var_d016ff72])
+						if(isdefined(level.var_9aa82ff8[str_visit]) && level.var_9aa82ff8[str_visit])
 						{
 							continue;
 						}
@@ -2340,20 +2340,20 @@ function function_5ebe7974()
 						{
 							continue;
 						}
-						if(var_d016ff72 === player.var_73aab1d6)
+						if(str_visit === player.var_73aab1d6)
 						{
 							continue;
 						}
-						if(isdefined(level.var_8c92b387[var_d016ff72]) && isdefined(level.var_8c92b387[var_d016ff72][player.characterindex]) && isdefined(level.var_8c92b387[var_d016ff72][player.characterindex][0]))
+						if(isdefined(level.var_8c92b387[str_visit]) && isdefined(level.var_8c92b387[str_visit][player.characterindex]) && isdefined(level.var_8c92b387[str_visit][player.characterindex][0]))
 						{
-							str_vo = level.var_8c92b387[var_d016ff72][player.characterindex][0];
+							str_vo = level.var_8c92b387[str_visit][player.characterindex][0];
 							b_success = player function_7b697614(str_vo, 1);
 							if(isdefined(b_success) && b_success)
 							{
-								player.var_59daaa5e[var_d016ff72] = 1;
-								arrayremovevalue(level.var_8c92b387[var_d016ff72][player.characterindex], str_vo);
+								player.var_59daaa5e[str_visit] = 1;
+								arrayremovevalue(level.var_8c92b387[str_visit][player.characterindex], str_vo);
 								player thread function_5a86ac8d();
-								level thread function_9926a1d1(var_d016ff72);
+								level thread function_9926a1d1(str_visit);
 								player.var_73aab1d6 = undefined;
 							}
 						}
@@ -2402,11 +2402,11 @@ function function_5a86ac8d()
 	Parameters: 1
 	Flags: Linked
 */
-function function_9926a1d1(var_d016ff72)
+function function_9926a1d1(str_visit)
 {
-	level.var_9aa82ff8[var_d016ff72] = 1;
+	level.var_9aa82ff8[str_visit] = 1;
 	wait(30);
-	level.var_9aa82ff8[var_d016ff72] = 0;
+	level.var_9aa82ff8[str_visit] = 0;
 }
 
 /*
@@ -2627,13 +2627,13 @@ function function_e658d896()
 		{
 			if(level.round_number > 10 && (!(isdefined(self.var_1cd72357) && self.var_1cd72357)))
 			{
-				var_b907c047 = array("shadowman_taunt_downed_demp", "shadowman_taunt_downed_niko", "shadowman_taunt_downed_rich", "shadowman_taunt_downed_take");
-				var_79d0b667 = var_b907c047[self.characterindex];
+				a_str_cat = array("shadowman_taunt_downed_demp", "shadowman_taunt_downed_niko", "shadowman_taunt_downed_rich", "shadowman_taunt_downed_take");
+				str_cat = a_str_cat[self.characterindex];
 				self function_502f946b();
-				while(isdefined(level.var_8c92b387[var_79d0b667][0]))
+				while(isdefined(level.var_8c92b387[str_cat][0]))
 				{
-					str_vo = level.var_8c92b387[var_79d0b667][0];
-					arrayremovevalue(level.var_8c92b387[var_79d0b667], str_vo);
+					str_vo = level.var_8c92b387[str_cat][0];
+					arrayremovevalue(level.var_8c92b387[str_cat], str_vo);
 					self function_7b697614(str_vo, 0.75, 1, 1000, 1, 1);
 				}
 				self.var_1cd72357 = 1;
@@ -2717,15 +2717,15 @@ function function_4821b1a3(str_who)
 {
 	if(str_who === "wisp_abcd" || str_who === "wisp_shad")
 	{
-		var_3c13e11b = str_who;
+		str_set = str_who;
 	}
 	else
 	{
-		var_3c13e11b = "wisp_" + str_who;
+		str_set = "wisp_" + str_who;
 	}
-	if(isdefined(level.var_8c92b387[var_3c13e11b]) && isdefined(level.var_8c92b387[var_3c13e11b][0]))
+	if(isdefined(level.var_8c92b387[str_set]) && isdefined(level.var_8c92b387[str_set][0]))
 	{
-		arrayremoveindex(level.var_8c92b387[var_3c13e11b], 0);
+		arrayremoveindex(level.var_8c92b387[str_set], 0);
 	}
 }
 
@@ -2738,18 +2738,18 @@ function function_4821b1a3(str_who)
 	Parameters: 1
 	Flags: Linked
 */
-function function_10b9b50e(var_3c13e11b = "wisp_abcd")
+function function_10b9b50e(str_set = "wisp_abcd")
 {
 	var_5a26c45b = [];
 	var_5a26c45b["wisp_abcd"] = &function_c62826c9;
 	var_5a26c45b["wisp_shad"] = &function_9db3bdd7;
-	str_flag = var_3c13e11b + "_speaking";
-	if(isdefined(level.var_8c92b387[var_3c13e11b][0]) && level.var_8c92b387[var_3c13e11b][0].size > 0)
+	str_flag = str_set + "_speaking";
+	if(isdefined(level.var_8c92b387[str_set][0]) && level.var_8c92b387[str_set][0].size > 0)
 	{
-		var_40f41259 = level.var_8c92b387[var_3c13e11b][0];
+		var_40f41259 = level.var_8c92b387[str_set][0];
 		var_d44b84c3 = var_40f41259[0];
 		level flag::set(str_flag);
-		[[var_5a26c45b[var_3c13e11b]]](var_d44b84c3, 0);
+		[[var_5a26c45b[str_set]]](var_d44b84c3, 0);
 		arrayremoveindex(var_40f41259, 0);
 		level flag::clear(str_flag);
 	}
@@ -2926,7 +2926,7 @@ function function_a2bd8b29()
 {
 	level endon(#"final_boss_defeated");
 	level waittill(#"chaos_round_complete");
-	var_db6be061 = 100;
+	n_probability = 100;
 	while(level.var_8c92b387["misc_abcd_encouragement"].size)
 	{
 		str_notify = util::waittill_any_ex("apotho_pack_freed", "time_attack_weapon_awarded", level, "final_boss_defeated");
@@ -2934,7 +2934,7 @@ function function_a2bd8b29()
 		{
 			case "used_apothicon_cannon":
 			{
-				var_db6be061 = 33;
+				n_probability = 33;
 				break;
 			}
 			case "apotho_pack_freed":
@@ -2948,19 +2948,19 @@ function function_a2bd8b29()
 			}
 			case "time_attack_weapon_awarded":
 			{
-				var_db6be061 = 33;
+				n_probability = 33;
 				break;
 			}
 			default:
 			{
-				var_db6be061 = 0;
+				n_probability = 0;
 				break;
 			}
 		}
-		if(var_db6be061)
+		if(n_probability)
 		{
 			n_roll = randomint(100);
-			if(n_roll < var_db6be061)
+			if(n_roll < n_probability)
 			{
 				function_a8d63dab();
 			}

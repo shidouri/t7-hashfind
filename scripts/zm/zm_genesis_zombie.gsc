@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\animation_state_machine_mocomp;
 #using scripts\shared\ai\systems\animation_state_machine_notetracks;
@@ -223,7 +223,7 @@ function function_dc84c8cc()
 	var_ed78383b = 7;
 	while(isdefined(self))
 	{
-		self.var_a3d40b8 = undefined;
+		self.island_name = undefined;
 		foreach(volume in level.var_15ba7eb8)
 		{
 			if(self istouching(volume))
@@ -253,8 +253,8 @@ function function_dc84c8cc()
 					var_c17e74e6 = gettime();
 					var_eaacaebf = level.round_number;
 				}
-				self.var_a3d40b8 = volume.targetname;
-				var_e274e0c3 = self.var_a3d40b8;
+				self.island_name = volume.targetname;
+				var_e274e0c3 = self.island_name;
 				break;
 			}
 		}
@@ -277,12 +277,12 @@ function function_2fa8f151()
 	self endon(#"disconnnect");
 	while(isdefined(self))
 	{
-		self.var_a3d40b8 = undefined;
+		self.island_name = undefined;
 		foreach(volume in level.var_15ba7eb8)
 		{
 			if(self istouching(volume))
 			{
-				self.var_a3d40b8 = volume.targetname;
+				self.island_name = volume.targetname;
 				break;
 			}
 		}
@@ -637,7 +637,7 @@ function genesis_custom_spawn_location_selection(a_spots)
 			return s_spot;
 		}
 		var_e8c67fc0 = array::get_all_closest(e_player.origin, a_spots, undefined, 5);
-		var_b008ef9a = [];
+		a_s_forward = [];
 		v_player_dir = anglestoforward(e_player.angles);
 		for(i = 0; i < var_e8c67fc0.size; i++)
 		{
@@ -645,12 +645,12 @@ function genesis_custom_spawn_location_selection(a_spots)
 			n_dp = vectordot(v_player_dir, v_dir);
 			if(n_dp >= 0)
 			{
-				var_b008ef9a[var_b008ef9a.size] = var_e8c67fc0[i];
+				a_s_forward[a_s_forward.size] = var_e8c67fc0[i];
 			}
 		}
-		if(var_b008ef9a.size)
+		if(a_s_forward.size)
 		{
-			s_spot = array::random(var_b008ef9a);
+			s_spot = array::random(a_s_forward);
 		}
 		else
 		{
@@ -686,12 +686,12 @@ function genesis_should_zigzag()
 	{
 		return false;
 	}
-	if(isdefined(self.var_a3d40b8))
+	if(isdefined(self.island_name))
 	{
 		player = self.favoriteenemy;
-		if(isdefined(player) && isdefined(player.var_a3d40b8))
+		if(isdefined(player) && isdefined(player.island_name))
 		{
-			if(self.var_a3d40b8 != player.var_a3d40b8)
+			if(self.island_name != player.island_name)
 			{
 				return false;
 			}

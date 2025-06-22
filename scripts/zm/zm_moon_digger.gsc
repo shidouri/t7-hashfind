@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -154,7 +154,7 @@ function function_c497263d()
 		{
 			if(mdl_target.model == "p7_zm_moo_crane_mining_arm")
 			{
-				var_beb7660e.var_26dbb029 = mdl_target;
+				var_beb7660e.mdl_arm = mdl_target;
 				var_a68e698 = mdl_target;
 				break;
 			}

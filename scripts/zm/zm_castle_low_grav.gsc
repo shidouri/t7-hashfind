@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -454,8 +454,8 @@ function function_767bba0()
 	#/
 	var_470f053a = struct::get_array("wall_buy_trigger", "targetname");
 	var_6ad23999 = getentarray("lowgrav_glow", "targetname");
-	var_8ff7104f = getentarray("pyramid", "targetname");
-	var_6ad23999 = arraycombine(var_8ff7104f, var_6ad23999, 0, 0);
+	a_e_pyramid = getentarray("pyramid", "targetname");
+	var_6ad23999 = arraycombine(a_e_pyramid, var_6ad23999, 0, 0);
 	while(true)
 	{
 		level flag::wait_till("low_grav_on");

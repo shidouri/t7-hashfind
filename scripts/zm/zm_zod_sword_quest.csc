@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\callbacks_shared;
@@ -632,8 +632,8 @@ function get_name_from_ritual_clientfield_value(n_current_ritual)
 */
 function function_85b951d8(var_181b74a5)
 {
-	var_79d1dcf6 = struct::get_array("sword_quest_magic_circle_place", "targetname");
-	foreach(var_87367d4f in var_79d1dcf6)
+	a_s_circles = struct::get_array("sword_quest_magic_circle_place", "targetname");
+	foreach(var_87367d4f in a_s_circles)
 	{
 		if(var_87367d4f.script_int === var_181b74a5)
 		{
@@ -653,8 +653,8 @@ function function_85b951d8(var_181b74a5)
 */
 function function_96ae1a10(var_181b74a5, n_character_index)
 {
-	var_79d1dcf6 = struct::get_array("sword_quest_magic_circle_player_" + n_character_index, "targetname");
-	foreach(var_87367d4f in var_79d1dcf6)
+	a_s_circles = struct::get_array("sword_quest_magic_circle_player_" + n_character_index, "targetname");
+	foreach(var_87367d4f in a_s_circles)
 	{
 		if(var_87367d4f.script_int === var_181b74a5)
 		{

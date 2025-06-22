@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -51,8 +51,8 @@ function init()
 	level._crystal_bounce_paths[4] = array(1, 3, 2, 6, 5, "R");
 	level._crystal_bounce_paths[5] = array(6, 5, 6, 1, 3, 5, "R");
 	level._crystal_bounce_paths[6] = array(5, 6, 1, 4, 2, 1, 3, "M");
-	var_81c48749 = getentarray("sq_gong", "targetname");
-	foreach(var_3e9e1b32 in var_81c48749)
+	a_gongs = getentarray("sq_gong", "targetname");
+	foreach(var_3e9e1b32 in a_gongs)
 	{
 		var_3e9e1b32.script_vector = vectorscale((0, 0, 1), 40);
 	}
@@ -705,8 +705,8 @@ function init_sidequest()
 	{
 		level._raised_crystals[i] = 0;
 	}
-	var_ed98f9ec = getentarray("sq_spiketrap", "targetname");
-	foreach(e_trap in var_ed98f9ec)
+	a_e_trap = getentarray("sq_spiketrap", "targetname");
+	foreach(e_trap in a_e_trap)
 	{
 		e_trap show();
 	}
@@ -1167,8 +1167,8 @@ function spawn_skel()
 {
 	if(!isdefined(level._sq_skel))
 	{
-		var_cd998d3c = getentarray("sq_spiketrap", "targetname");
-		ent = var_cd998d3c[0];
+		a_e_spikes = getentarray("sq_spiketrap", "targetname");
+		ent = a_e_spikes[0];
 		if(isdefined(ent))
 		{
 			sb = util::spawn_model("p7_zm_sha_skeleton", ent.origin, ent.angles);

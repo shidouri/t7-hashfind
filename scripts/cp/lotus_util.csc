@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\shared\ai\systems\fx_character;
@@ -124,13 +124,13 @@ function function_50d69c96(var_7f004376 = 12)
 */
 function function_5ffdcb9d(var_7f004376)
 {
-	var_707bc057 = struct::get_array("siege_anim");
-	var_62b3e03f = function_eb04522d(self.origin[2], var_707bc057, var_7f004376);
+	a_crowds = struct::get_array("siege_anim");
+	var_62b3e03f = function_eb04522d(self.origin[2], a_crowds, var_7f004376);
 	var_d47b3178 = arraycopy(var_62b3e03f);
-	if(isdefined(level.var_707bc057))
+	if(isdefined(level.a_crowds))
 	{
-		var_41cebe05 = arrayintersect(var_62b3e03f, level.var_707bc057);
-		var_3b2cf31a = arraycopy(level.var_707bc057);
+		var_41cebe05 = arrayintersect(var_62b3e03f, level.a_crowds);
+		var_3b2cf31a = arraycopy(level.a_crowds);
 		foreach(s_crowd in var_41cebe05)
 		{
 			arrayremovevalue(var_3b2cf31a, s_crowd);
@@ -151,7 +151,7 @@ function function_5ffdcb9d(var_7f004376)
 		s_crowd thread scene::play("cin_lot_03_01_hakim_crowd_new");
 		s_crowd.b_play = 1;
 	}
-	level.var_707bc057 = var_62b3e03f;
+	level.a_crowds = var_62b3e03f;
 }
 
 /*
@@ -169,8 +169,8 @@ function function_eb04522d(n_z, a_items, n_max = a_items.size)
 	{
 		n_max = a_items.size;
 	}
-	var_932b706d = [];
-	var_b9b72b4f = [];
+	a_length = [];
+	a_index = [];
 	for(i = 0; i < a_items.size; i++)
 	{
 		if(!isdefined(a_items[i]))
@@ -182,41 +182,41 @@ function function_eb04522d(n_z, a_items, n_max = a_items.size)
 			continue;
 		}
 		n_length = abs(n_z - a_items[i].origin[2]);
-		if(!isdefined(var_932b706d))
+		if(!isdefined(a_length))
 		{
-			var_932b706d = [];
+			a_length = [];
 		}
-		else if(!isarray(var_932b706d))
+		else if(!isarray(a_length))
 		{
-			var_932b706d = array(var_932b706d);
+			a_length = array(a_length);
 		}
-		var_932b706d[var_932b706d.size] = n_length;
-		if(!isdefined(var_b9b72b4f))
+		a_length[a_length.size] = n_length;
+		if(!isdefined(a_index))
 		{
-			var_b9b72b4f = [];
+			a_index = [];
 		}
-		else if(!isarray(var_b9b72b4f))
+		else if(!isarray(a_index))
 		{
-			var_b9b72b4f = array(var_b9b72b4f);
+			a_index = array(a_index);
 		}
-		var_b9b72b4f[var_b9b72b4f.size] = i;
+		a_index[a_index.size] = i;
 	}
 	while(true)
 	{
 		b_change = 0;
-		for(i = 0; i < (var_932b706d.size - 1); i++)
+		for(i = 0; i < (a_length.size - 1); i++)
 		{
-			if(var_932b706d[i] <= (var_932b706d[i + 1]))
+			if(a_length[i] <= (a_length[i + 1]))
 			{
 				continue;
 			}
 			b_change = 1;
-			n_length = var_932b706d[i];
-			var_932b706d[i] = var_932b706d[i + 1];
-			var_932b706d[i + 1] = n_length;
-			n_index = var_b9b72b4f[i];
-			var_b9b72b4f[i] = var_b9b72b4f[i + 1];
-			var_b9b72b4f[i + 1] = n_index;
+			n_length = a_length[i];
+			a_length[i] = a_length[i + 1];
+			a_length[i + 1] = n_length;
+			n_index = a_index[i];
+			a_index[i] = a_index[i + 1];
+			a_index[i + 1] = n_index;
 		}
 		if(!b_change)
 		{
@@ -224,11 +224,11 @@ function function_eb04522d(n_z, a_items, n_max = a_items.size)
 		}
 	}
 	a_new = [];
-	if(var_b9b72b4f.size > 0)
+	if(a_index.size > 0)
 	{
 		for(i = 0; i < n_max; i++)
 		{
-			a_new[i] = a_items[var_b9b72b4f[i]];
+			a_new[i] = a_items[a_index[i]];
 		}
 	}
 	return a_new;
@@ -245,17 +245,17 @@ function function_eb04522d(n_z, a_items, n_max = a_items.size)
 */
 function function_3e466373(n_local_client, n_val_new, str_name, str_key = "script_label")
 {
-	var_707bc057 = struct::get_array(str_name, str_key);
+	a_crowds = struct::get_array(str_name, str_key);
 	if(n_val_new)
 	{
-		foreach(s_crowd in var_707bc057)
+		foreach(s_crowd in a_crowds)
 		{
 			s_crowd.b_ignore = 1;
 		}
 	}
 	else
 	{
-		foreach(s_crowd in var_707bc057)
+		foreach(s_crowd in a_crowds)
 		{
 			s_crowd.b_ignore = undefined;
 		}
@@ -353,10 +353,10 @@ function falling_debris(localclientnum)
 			n_radius = var_520ab411.radius;
 			n_x = var_520ab411.origin[0] + (cos(randomintrange(0, 360)) * n_radius);
 			n_y = var_520ab411.origin[1] + (sin(randomintrange(0, 360)) * n_radius);
-			var_4a6273cc = util::spawn_model(localclientnum, array::random(a_models), (n_x, n_y, var_520ab411.origin[2]), (randomint(360), randomint(360), randomint(360)));
-			if(isdefined(var_4a6273cc))
+			mdl_debris = util::spawn_model(localclientnum, array::random(a_models), (n_x, n_y, var_520ab411.origin[2]), (randomint(360), randomint(360), randomint(360)));
+			if(isdefined(mdl_debris))
 			{
-				var_4a6273cc thread function_9259cfc(n_index + 1);
+				mdl_debris thread function_9259cfc(n_index + 1);
 			}
 			wait(0.05);
 		}

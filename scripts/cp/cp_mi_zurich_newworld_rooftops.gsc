@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -800,8 +800,8 @@ function function_2a977ed8()
 */
 function function_18a473c0()
 {
-	var_e8942d17 = spawner::simple_spawn_single("chase_bartender_civilian");
-	var_e8942d17.var_a0f70d54 = level.ai_bomber;
+	ai_bartender = spawner::simple_spawn_single("chase_bartender_civilian");
+	ai_bartender.var_a0f70d54 = level.ai_bomber;
 	var_a61dbbf1 = spawner::simple_spawn_single("chase_bar_civ_1");
 	var_a61dbbf1.var_a0f70d54 = level.ai_bomber;
 	var_cc20365a = spawner::simple_spawn_single("chase_bar_civ_2");
@@ -810,7 +810,7 @@ function function_18a473c0()
 	var_f222b0c3.var_a0f70d54 = level.ai_bomber;
 	a_ai = array(var_a61dbbf1, var_cc20365a, var_f222b0c3);
 	scene::add_scene_func("cin_new_06_01_chase_vign_bar_civs", &function_e2b3f312, "done");
-	level thread scene::init("cin_new_06_01_chase_vign_cower", array(var_e8942d17));
+	level thread scene::init("cin_new_06_01_chase_vign_cower", array(ai_bartender));
 	level thread scene::init("cin_new_06_01_chase_vign_bar_civs", a_ai);
 	level thread function_5f1afc64();
 }
@@ -1966,8 +1966,8 @@ function function_a22441fa()
 {
 	scene::add_scene_func("cin_new_06_01_chase_vign_ticket_civ_female", &function_bff4697e, "done");
 	scene::add_scene_func("cin_new_06_01_chase_vign_ticket_civ_male", &function_bff4697e, "done");
-	var_5bcb8a4d = struct::get_array("ticket_civ_male", "targetname");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("ticket_civ_male", "targetname");
+	foreach(s_scene in a_s_scene)
 	{
 		ai = spawner::simple_spawn_single("ticket_civ_male");
 		ai.var_a0f70d54 = level.ai_bomber;
@@ -1983,8 +1983,8 @@ function function_a22441fa()
 		}
 	}
 	util::wait_network_frame();
-	var_5bcb8a4d = struct::get_array("ticket_civ_female", "targetname");
-	foreach(s_scene in var_5bcb8a4d)
+	a_s_scene = struct::get_array("ticket_civ_female", "targetname");
+	foreach(s_scene in a_s_scene)
 	{
 		ai = spawner::simple_spawn_single("ticket_civ_female");
 		ai.var_a0f70d54 = level.ai_bomber;
@@ -3261,13 +3261,13 @@ function function_be23c07c()
 	Parameters: 2
 	Flags: Linked
 */
-function function_a69280be(var_81a32895, var_2380d5c)
+function function_a69280be(str_ability, var_2380d5c)
 {
 	self endon(#"death");
 	level.ai_hall dialog::say("hall_alright_activating_0", undefined, 0, self);
-	weapon = newworld_util::function_71840183(var_81a32895, var_2380d5c);
+	weapon = newworld_util::function_71840183(str_ability, var_2380d5c);
 	var_12b288c7 = weapon.name + "_fired";
-	var_a2cc98e = var_81a32895 + "_use_ability_tutorial";
+	var_a2cc98e = str_ability + "_use_ability_tutorial";
 	self thread function_47c78606(var_a2cc98e);
 	self thread function_57ffa633(var_12b288c7);
 }
@@ -4323,11 +4323,11 @@ function function_6a406930(a_ents)
 	Parameters: 1
 	Flags: Linked
 */
-function function_e1109a4f(var_9e31a3a2)
+function function_e1109a4f(a_ai_robot)
 {
 	level.ai_hall endon(#"death");
-	level.ai_hall cybercom::function_d240e350("cybercom_systemoverload", var_9e31a3a2, 0);
-	foreach(ai_robot in var_9e31a3a2)
+	level.ai_hall cybercom::function_d240e350("cybercom_systemoverload", a_ai_robot, 0);
+	foreach(ai_robot in a_ai_robot)
 	{
 		wait(0.25);
 		if(isalive(ai_robot))
@@ -4479,23 +4479,23 @@ function function_8c82b44d(n_id)
 	{
 		case 1:
 		{
-			var_bd061860 = 3;
+			n_wasps = 3;
 			break;
 		}
 		case 2:
 		case 3:
 		{
-			var_bd061860 = 6;
+			n_wasps = 6;
 			break;
 		}
 		case 4:
 		{
-			var_bd061860 = 8;
+			n_wasps = 8;
 			break;
 		}
 		default:
 		{
-			var_bd061860 = undefined;
+			n_wasps = undefined;
 		}
 	}
 	var_7f20007c = struct::get_array(("chase_wasp_tower_" + n_id) + "_arms");
@@ -4518,15 +4518,15 @@ function function_8c82b44d(n_id)
 				ai_wasp.cybercomtargetstatusoverride = 0;
 				ai_wasp.nocybercom = 1;
 				a_wasps[a_wasps.size] = ai_wasp;
-				var_bd061860--;
+				n_wasps--;
 				continue;
 			}
-			if(var_bd061860 > 0)
+			if(n_wasps > 0)
 			{
 				ai_wasp = spawner::simple_spawn_single("chase_wasp_mg");
 				ai_wasp.targetname = "chase_wasp_tower_" + n_id;
 				a_wasps[a_wasps.size] = ai_wasp;
-				var_bd061860--;
+				n_wasps--;
 			}
 			else
 			{
@@ -4888,7 +4888,7 @@ function function_4cd03714(str_trigger_name, var_37713607, var_4b204b1c, str_fla
 	}
 	level flag::set("chase_train_move");
 	level thread function_c9af9d76(var_10057083);
-	var_7af45315 = [];
+	a_train = [];
 	var_95af8b3e = [];
 	var_37048efd = struct::get(var_37713607, "targetname");
 	var_5ae02fb7 = spawn("script_model", var_37048efd.origin);
@@ -4901,7 +4901,7 @@ function function_4cd03714(str_trigger_name, var_37713607, var_4b204b1c, str_fla
 	{
 		var_5ae02fb7 thread function_db738b68();
 	}
-	var_7af45315[0] = var_5ae02fb7;
+	a_train[0] = var_5ae02fb7;
 	var_934a157 = struct::get(var_4b204b1c, "targetname");
 	var_e5a4a905 = getent(var_37048efd.target, "targetname");
 	if(var_37713607 == "train_station_train_org")
@@ -4912,7 +4912,7 @@ function function_4cd03714(str_trigger_name, var_37713607, var_4b204b1c, str_fla
 	{
 		level thread function_a8f0457b(str_flag_name);
 	}
-	while(var_7af45315.size > 0)
+	while(a_train.size > 0)
 	{
 		if(!level flag::get(str_flag_name))
 		{
@@ -4921,7 +4921,7 @@ function function_4cd03714(str_trigger_name, var_37713607, var_4b204b1c, str_fla
 			var_3ebf068e.script_objective = "chase_glass_ceiling_igc";
 			var_3ebf068e.script_noteworthy = "chase_train";
 			var_3ebf068e playloopsound("amb_train_car");
-			var_7af45315[var_7af45315.size] = var_3ebf068e;
+			a_train[a_train.size] = var_3ebf068e;
 			if(var_76f5cbe9)
 			{
 				var_3ebf068e thread function_db738b68();
@@ -4938,7 +4938,7 @@ function function_4cd03714(str_trigger_name, var_37713607, var_4b204b1c, str_fla
 			var_3ebf068e.script_objective = "chase_glass_ceiling_igc";
 			var_3ebf068e.script_noteworthy = "chase_train";
 			var_3ebf068e playloopsound("amb_train_engine");
-			var_7af45315[var_7af45315.size] = var_3ebf068e;
+			a_train[a_train.size] = var_3ebf068e;
 			playsoundatposition("amb_train_fades_away", (-12413, -25844, 9837));
 			if(var_76f5cbe9)
 			{
@@ -4947,19 +4947,19 @@ function function_4cd03714(str_trigger_name, var_37713607, var_4b204b1c, str_fla
 		}
 		if(b_reverse)
 		{
-			array::run_all(var_7af45315, &movex, 640, 0.274);
+			array::run_all(a_train, &movex, 640, 0.274);
 		}
 		else
 		{
-			array::run_all(var_7af45315, &movex, -640, 0.274);
+			array::run_all(a_train, &movex, -640, 0.274);
 		}
 		wait(0.274);
 		if(var_37713607 == "train_station_train_org")
 		{
-			level function_4332c4dc(var_7af45315);
+			level function_4332c4dc(a_train);
 		}
 		var_8edb1dfd = [];
-		foreach(e_train in var_7af45315)
+		foreach(e_train in a_train)
 		{
 			if(e_train istouching(var_e5a4a905))
 			{
@@ -4968,7 +4968,7 @@ function function_4cd03714(str_trigger_name, var_37713607, var_4b204b1c, str_fla
 		}
 		foreach(e_train in var_8edb1dfd)
 		{
-			arrayremovevalue(var_7af45315, e_train);
+			arrayremovevalue(a_train, e_train);
 			e_train delete();
 		}
 	}
@@ -5037,14 +5037,14 @@ function function_69747207()
 	Parameters: 1
 	Flags: Linked
 */
-function function_4332c4dc(var_7af45315)
+function function_4332c4dc(a_train)
 {
 	if(!level flag::get("train_station_start_gate_closed"))
 	{
 		var_668efd10 = getent("train_station_gate_old_side", "targetname");
 		t_start = getent("train_station_spawn_closet", "targetname");
 		var_6d7bb3d1 = 1;
-		foreach(e_train in var_7af45315)
+		foreach(e_train in a_train)
 		{
 			if(e_train istouching(t_start))
 			{
@@ -5063,7 +5063,7 @@ function function_4332c4dc(var_7af45315)
 		var_d8966c4b = getent("train_station_gate_modern_side", "targetname");
 		var_e5a4a905 = getent("train_station_end_closet", "targetname");
 		var_fe4ad5ca = 1;
-		foreach(e_train in var_7af45315)
+		foreach(e_train in a_train)
 		{
 			if(e_train istouching(var_e5a4a905))
 			{

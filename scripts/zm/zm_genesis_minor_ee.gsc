@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -309,12 +309,12 @@ function function_5af98f35()
 function function_e1963311()
 {
 	/#
-		var_5dfe3e = getent("", "");
-		if(!isdefined(var_5dfe3e))
+		mdl_chalk = getent("", "");
+		if(!isdefined(mdl_chalk))
 		{
 			return;
 		}
-		var_5dfe3e delete();
+		mdl_chalk delete();
 		iprintln("");
 		e_who = getplayers()[0];
 		e_who.var_fb4f9b70 = 1;
@@ -339,8 +339,8 @@ function chalk_pickup()
 	var_6fdae6db zm_unitrigger::create_unitrigger(undefined, 128);
 	var_6fdae6db waittill(#"trigger_activated", e_who);
 	e_who playsound("zmb_minor_writing_chalk_pickup");
-	var_5dfe3e = getent("chalk_model", "targetname");
-	var_5dfe3e ghost();
+	mdl_chalk = getent("chalk_model", "targetname");
+	mdl_chalk ghost();
 	/#
 		iprintln("");
 	#/
@@ -366,8 +366,8 @@ function function_7367d2c6()
 {
 	level endon(#"writing_on_the_wall_complete");
 	self waittill(#"disconnect");
-	var_5dfe3e = getent("chalk_model", "targetname");
-	var_5dfe3e show();
+	mdl_chalk = getent("chalk_model", "targetname");
+	mdl_chalk show();
 	level thread chalk_pickup();
 }
 
@@ -382,12 +382,12 @@ function function_7367d2c6()
 */
 function function_ff9395ca()
 {
-	level.var_61d84403 = [];
+	level.a_mdl_writing = [];
 	var_eb751e53 = struct::get_array("writing_trigger", "targetname");
 	foreach(var_2ac294d8 in var_eb751e53)
 	{
-		var_3cbdaba3 = getent(var_2ac294d8.target, "targetname");
-		array::add(level.var_61d84403, var_3cbdaba3);
+		mdl_writing = getent(var_2ac294d8.target, "targetname");
+		array::add(level.a_mdl_writing, mdl_writing);
 		var_2ac294d8 thread function_a8fc7a77();
 	}
 }
@@ -405,7 +405,7 @@ function function_a8fc7a77()
 {
 	level endon(#"writing_on_the_wall_complete");
 	self zm_unitrigger::create_unitrigger(undefined, 128);
-	var_3cbdaba3 = getent(self.target, "targetname");
+	mdl_writing = getent(self.target, "targetname");
 	while(true)
 	{
 		self waittill(#"trigger_activated", e_player);
@@ -420,8 +420,8 @@ function function_a8fc7a77()
 			{
 				e_player playsound("zmb_minor_writing_write");
 			}
-			level.var_6d7c54f9 = var_3cbdaba3.model;
-			var_3cbdaba3 setmodel(var_5d3ba118);
+			level.var_6d7c54f9 = mdl_writing.model;
+			mdl_writing setmodel(var_5d3ba118);
 			level thread function_d0f8a867();
 		}
 	}
@@ -439,13 +439,13 @@ function function_a8fc7a77()
 function function_d0f8a867()
 {
 	b_complete = 1;
-	foreach(var_3cbdaba3 in level.var_61d84403)
+	foreach(mdl_writing in level.a_mdl_writing)
 	{
-		switch(var_3cbdaba3.targetname)
+		switch(mdl_writing.targetname)
 		{
 			case "verruckt_writing":
 			{
-				if(var_3cbdaba3.model != "p7_zm_gen_writing_ver_wishing")
+				if(mdl_writing.model != "p7_zm_gen_writing_ver_wishing")
 				{
 					b_complete = 0;
 				}
@@ -453,7 +453,7 @@ function function_d0f8a867()
 			}
 			case "ndu_writing_1":
 			{
-				if(var_3cbdaba3.model != "p7_zm_gen_writing_nac_salvation")
+				if(mdl_writing.model != "p7_zm_gen_writing_nac_salvation")
 				{
 					b_complete = 0;
 				}
@@ -461,7 +461,7 @@ function function_d0f8a867()
 			}
 			case "ndu_writing_2":
 			{
-				if(var_3cbdaba3.model != "p7_zm_gen_writing_nac_ascend")
+				if(mdl_writing.model != "p7_zm_gen_writing_nac_ascend")
 				{
 					b_complete = 0;
 				}
@@ -469,7 +469,7 @@ function function_d0f8a867()
 			}
 			case "undercroft_writing":
 			{
-				if(var_3cbdaba3.model != "tag_origin")
+				if(mdl_writing.model != "tag_origin")
 				{
 					b_complete = 0;
 				}
@@ -477,7 +477,7 @@ function function_d0f8a867()
 			}
 			case "prison_writing":
 			{
-				if(var_3cbdaba3.model != "p7_zm_gen_writing_mob_soul_alone")
+				if(mdl_writing.model != "p7_zm_gen_writing_mob_soul_alone")
 				{
 					b_complete = 0;
 				}
@@ -485,7 +485,7 @@ function function_d0f8a867()
 			}
 			case "theatre_writing":
 			{
-				if(var_3cbdaba3.model != "p7_zm_gen_writing_kin_scrawl_know")
+				if(mdl_writing.model != "p7_zm_gen_writing_kin_scrawl_know")
 				{
 					b_complete = 0;
 				}
@@ -649,9 +649,9 @@ function function_be8c2f38()
 	level.var_557b53fd[3] = 12;
 	level.var_557b53fd[4] = 2;
 	level.var_8091d507 = 0;
-	var_9bafc533 = struct::get_array("old_school_switch");
-	array::thread_all(var_9bafc533, &function_6e14903b);
-	while(level.var_8091d507 < var_9bafc533.size)
+	a_s_switches = struct::get_array("old_school_switch");
+	array::thread_all(a_s_switches, &function_6e14903b);
+	while(level.var_8091d507 < a_s_switches.size)
 	{
 		wait(0.05);
 	}
@@ -800,12 +800,12 @@ function function_f227a0ab()
 */
 function function_c1ccaae0()
 {
-	var_11f2bc16 = getent("gateworm_asteroid", "targetname");
-	var_62ceb838 = util::spawn_model("gateworm", var_11f2bc16.origin);
-	var_11f2bc16 delete();
+	mdl_asteroid = getent("gateworm_asteroid", "targetname");
+	mdl_egg = util::spawn_model("gateworm", mdl_asteroid.origin);
+	mdl_asteroid delete();
 	var_2b641c49 = struct::get("egg_destination", "targetname");
-	var_62ceb838 moveto(var_2b641c49.origin, 3);
-	var_62ceb838 waittill(#"movedone");
+	mdl_egg moveto(var_2b641c49.origin, 3);
+	mdl_egg waittill(#"movedone");
 	var_6d268157 = var_2b641c49 zm_unitrigger::create_unitrigger(undefined, 64);
 	while(true)
 	{
@@ -817,7 +817,7 @@ function function_c1ccaae0()
 	}
 	e_who.var_7f70ccd5 = 1;
 	zm_unitrigger::unregister_unitrigger(var_6d268157);
-	var_62ceb838 delete();
+	mdl_egg delete();
 	level thread function_ee1274a2();
 }
 
@@ -843,7 +843,7 @@ function function_ee1274a2()
 		}
 	}
 	var_ed0817e0 = struct::get("egg_pot_location", "targetname");
-	var_62ceb838 = util::spawn_model("gateworm", var_ed0817e0.origin);
+	mdl_egg = util::spawn_model("gateworm", var_ed0817e0.origin);
 	level waittill(#"start_of_round");
 	level waittill(#"start_of_round");
 	level waittill(#"start_of_round");

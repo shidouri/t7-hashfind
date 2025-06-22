@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\ai_shared;
@@ -274,11 +274,11 @@ function function_2983de0c()
 	Parameters: 1
 	Flags: Linked
 */
-function function_e8547a5b(var_cc0f18cc)
+function function_e8547a5b(str_challenge)
 {
-	if(self.challenge_text !== var_cc0f18cc)
+	if(self.challenge_text !== str_challenge)
 	{
-		self.challenge_text = var_cc0f18cc;
+		self.challenge_text = str_challenge;
 		self luinotifyevent(&"trial_set_description", 1, self.challenge_text);
 	}
 }
@@ -372,7 +372,7 @@ function init_challenge_boards()
 	for(x = 0; x < 4; x++)
 	{
 		str_name = "challenge_board_" + x;
-		var_df95c68b = getent(str_name, "targetname");
+		mdl_board = getent(str_name, "targetname");
 		if(!isdefined(level.a_e_challenge_boards))
 		{
 			level.a_e_challenge_boards = [];
@@ -381,12 +381,12 @@ function init_challenge_boards()
 		{
 			level.a_e_challenge_boards = array(level.a_e_challenge_boards);
 		}
-		level.a_e_challenge_boards[level.a_e_challenge_boards.size] = var_df95c68b;
-		v_origin = var_df95c68b gettagorigin("tag_fx_skull_top");
-		v_angles = var_df95c68b gettagangles("tag_fx_skull_top");
-		var_df95c68b thread scene::play("p7_fxanim_zm_gen_challenge_prizestone_close_bundle", var_df95c68b);
+		level.a_e_challenge_boards[level.a_e_challenge_boards.size] = mdl_board;
+		v_origin = mdl_board gettagorigin("tag_fx_skull_top");
+		v_angles = mdl_board gettagangles("tag_fx_skull_top");
+		mdl_board thread scene::play("p7_fxanim_zm_gen_challenge_prizestone_close_bundle", mdl_board);
 		wait(0.2);
-		var_df95c68b clientfield::set("challenge_board_base", 1);
+		mdl_board clientfield::set("challenge_board_base", 1);
 	}
 	level flag::set("challenge_boards_ready");
 	for(i = 1; i <= 3; i++)
@@ -484,7 +484,7 @@ function function_424b6fe8()
 		{
 			if(e_who flag::get("flag_player_initialized_reward"))
 			{
-				if(self.var_30ff0d6c.n_challenge == 2)
+				if(self.mdl_reward.n_challenge == 2)
 				{
 					w_current = e_who getcurrentweapon();
 					if(zm_utility::is_placeable_mine(w_current) || zm_equipment::is_equipment(w_current) || w_current == level.weaponnone || (isdefined(w_current.isheroweapon) && w_current.isheroweapon) || (isdefined(w_current.isgadget) && w_current.isgadget))
@@ -496,7 +496,7 @@ function function_424b6fe8()
 						continue;
 					}
 				}
-				else if(self.var_30ff0d6c.n_challenge == 3)
+				else if(self.mdl_reward.n_challenge == 3)
 				{
 					a_perks = e_who getperks();
 					if(a_perks.size == level._custom_perks.size)
@@ -506,10 +506,10 @@ function function_424b6fe8()
 				}
 				e_who playrumbleonentity("zm_stalingrad_interact_rumble");
 				self.s_unitrigger.playertrigger[e_who.entity_num] sethintstringforplayer(e_who, "");
-				e_who player_give_reward(self.var_30ff0d6c, n_entity);
-				if(isdefined(self.var_30ff0d6c))
+				e_who player_give_reward(self.mdl_reward, n_entity);
+				if(isdefined(self.mdl_reward))
 				{
-					self.var_30ff0d6c delete();
+					self.mdl_reward delete();
 				}
 			}
 			else
@@ -549,9 +549,9 @@ function function_1d22626(e_player, n_challenge)
 {
 	e_player endon(#"disconnect");
 	var_7bb343ef = (0, 90, 0);
-	var_93571595 = struct::get_array("s_challenge_reward", "targetname");
+	a_s_rewards = struct::get_array("s_challenge_reward", "targetname");
 	n_entity = e_player getentitynumber();
-	foreach(s_reward in var_93571595)
+	foreach(s_reward in a_s_rewards)
 	{
 		if(s_reward.script_int == n_entity)
 		{
@@ -569,35 +569,35 @@ function function_1d22626(e_player, n_challenge)
 		}
 		case 2:
 		{
-			var_3728fce1 = [];
-			if(!isdefined(var_3728fce1))
+			a_str_weapon = [];
+			if(!isdefined(a_str_weapon))
 			{
-				var_3728fce1 = [];
+				a_str_weapon = [];
 			}
-			else if(!isarray(var_3728fce1))
+			else if(!isarray(a_str_weapon))
 			{
-				var_3728fce1 = array(var_3728fce1);
+				a_str_weapon = array(a_str_weapon);
 			}
-			var_3728fce1[var_3728fce1.size] = "lmg_cqb_upgraded";
-			if(!isdefined(var_3728fce1))
+			a_str_weapon[a_str_weapon.size] = "lmg_cqb_upgraded";
+			if(!isdefined(a_str_weapon))
 			{
-				var_3728fce1 = [];
+				a_str_weapon = [];
 			}
-			else if(!isarray(var_3728fce1))
+			else if(!isarray(a_str_weapon))
 			{
-				var_3728fce1 = array(var_3728fce1);
+				a_str_weapon = array(a_str_weapon);
 			}
-			var_3728fce1[var_3728fce1.size] = "ar_damage_upgraded";
-			if(!isdefined(var_3728fce1))
+			a_str_weapon[a_str_weapon.size] = "ar_damage_upgraded";
+			if(!isdefined(a_str_weapon))
 			{
-				var_3728fce1 = [];
+				a_str_weapon = [];
 			}
-			else if(!isarray(var_3728fce1))
+			else if(!isarray(a_str_weapon))
 			{
-				var_3728fce1 = array(var_3728fce1);
+				a_str_weapon = array(a_str_weapon);
 			}
-			var_3728fce1[var_3728fce1.size] = "smg_versatile_upgraded";
-			var_17b3dc96 = array::random(var_3728fce1);
+			a_str_weapon[a_str_weapon.size] = "smg_versatile_upgraded";
+			var_17b3dc96 = array::random(a_str_weapon);
 			var_6b215f76 = (anglestoright(s_reward.angles) * 5) + (anglestoforward(s_reward.angles) * -2);
 			s_reward.var_e1513629 = var_6b215f76 + (0, 0, 1);
 			s_reward.var_b90d551 = var_7bb343ef;
@@ -613,12 +613,12 @@ function function_1d22626(e_player, n_challenge)
 		}
 	}
 	e_player.var_c981566c = 1;
-	var_df95c68b = level.a_e_challenge_boards[n_entity];
-	var_df95c68b scene::play("p7_fxanim_zm_gen_challenge_prizestone_open_bundle", var_df95c68b);
-	var_df95c68b clientfield::set("challenge_board_reward", 1);
+	mdl_board = level.a_e_challenge_boards[n_entity];
+	mdl_board scene::play("p7_fxanim_zm_gen_challenge_prizestone_open_bundle", mdl_board);
+	mdl_board clientfield::set("challenge_board_reward", 1);
 	self function_b1f54cb4(e_player, s_reward, var_17b3dc96, 30);
-	self.var_30ff0d6c clientfield::set("powerup_fx", 1);
-	self.var_30ff0d6c.n_challenge = n_challenge;
+	self.mdl_reward clientfield::set("powerup_fx", 1);
+	self.mdl_reward.n_challenge = n_challenge;
 	e_player flag::set("flag_player_initialized_reward");
 	self thread function_1ad9d1a0(e_player, 30 * -1, n_entity);
 }
@@ -635,16 +635,16 @@ function function_1d22626(e_player, n_challenge)
 function function_1ad9d1a0(e_player, n_dist, n_entity)
 {
 	self endon(#"hash_422dba45");
-	self.var_30ff0d6c movez(n_dist, 12, 6);
-	self.var_30ff0d6c waittill(#"movedone");
+	self.mdl_reward movez(n_dist, 12, 6);
+	self.mdl_reward waittill(#"movedone");
 	if(isdefined(e_player))
 	{
 		e_player flag::clear("flag_player_initialized_reward");
 		e_player.var_c981566c = undefined;
 	}
-	if(isdefined(self.var_30ff0d6c))
+	if(isdefined(self.mdl_reward))
 	{
-		self.var_30ff0d6c delete();
+		self.mdl_reward delete();
 	}
 	function_d57066e8(n_entity);
 }
@@ -660,7 +660,7 @@ function function_1ad9d1a0(e_player, n_dist, n_entity)
 */
 function function_b1f54cb4(e_player, s_reward, var_17b3dc96, var_21d0cf95)
 {
-	if(isdefined(self.var_30ff0d6c))
+	if(isdefined(self.mdl_reward))
 	{
 		self notify(#"hash_422dba45");
 	}
@@ -672,19 +672,19 @@ function function_b1f54cb4(e_player, s_reward, var_17b3dc96, var_21d0cf95)
 		case "lmg_cqb_upgraded":
 		case "smg_versatile_upgraded":
 		{
-			self.var_30ff0d6c = zm_utility::spawn_buildkit_weapon_model(e_player, getweapon(var_17b3dc96), undefined, var_51a2f105, var_9ef5a0dc);
-			self.var_30ff0d6c.str_weapon_name = var_17b3dc96;
+			self.mdl_reward = zm_utility::spawn_buildkit_weapon_model(e_player, getweapon(var_17b3dc96), undefined, var_51a2f105, var_9ef5a0dc);
+			self.mdl_reward.str_weapon_name = var_17b3dc96;
 			break;
 		}
 		default:
 		{
-			self.var_30ff0d6c = util::spawn_model(var_17b3dc96, var_51a2f105, var_9ef5a0dc);
+			self.mdl_reward = util::spawn_model(var_17b3dc96, var_51a2f105, var_9ef5a0dc);
 			break;
 		}
 	}
-	self.var_30ff0d6c movez(var_21d0cf95, 1);
+	self.mdl_reward movez(var_21d0cf95, 1);
 	playsoundatposition("evt_prize_rise", self.origin);
-	self.var_30ff0d6c waittill(#"movedone");
+	self.mdl_reward waittill(#"movedone");
 }
 
 /*
@@ -698,9 +698,9 @@ function function_b1f54cb4(e_player, s_reward, var_17b3dc96, var_21d0cf95)
 */
 function function_d57066e8(n_entity)
 {
-	var_df95c68b = level.a_e_challenge_boards[n_entity];
-	var_df95c68b scene::play("p7_fxanim_zm_gen_challenge_prizestone_close_bundle", var_df95c68b);
-	var_df95c68b clientfield::set("challenge_board_reward", 0);
+	mdl_board = level.a_e_challenge_boards[n_entity];
+	mdl_board scene::play("p7_fxanim_zm_gen_challenge_prizestone_close_bundle", mdl_board);
+	mdl_board clientfield::set("challenge_board_reward", 0);
 }
 
 /*
@@ -720,8 +720,8 @@ function function_a2d25f82(n_challenge, var_a879fa43)
 	#/
 	self flag::wait_till("flag_player_completed_challenge_" + n_challenge);
 	str_model = "p7_zm_gen_challenge_medal_0" + n_challenge;
-	var_df95c68b = level.a_e_challenge_boards[var_a879fa43];
-	var_df95c68b attach(str_model, function_94a89297(n_challenge));
+	mdl_board = level.a_e_challenge_boards[var_a879fa43];
+	mdl_board attach(str_model, function_94a89297(n_challenge));
 }
 
 /*
@@ -804,7 +804,7 @@ function function_3ae0d6d5(e_player)
 		if(e_player flag::get("flag_player_initialized_reward"))
 		{
 			self sethintstringforplayer(e_player, &"ZM_GENESIS_CHALLENGE_REWARD_TAKE");
-			if(self.stub.related_parent.var_30ff0d6c.n_challenge == 3)
+			if(self.stub.related_parent.mdl_reward.n_challenge == 3)
 			{
 				a_perks = e_player getperks();
 				if(a_perks.size == level._custom_perks.size)
@@ -884,9 +884,9 @@ function function_3f67a723(origin, var_a0fa82de = 90, do_trace, e_ignore)
 	Parameters: 2
 	Flags: Linked
 */
-function player_give_reward(var_30ff0d6c, n_entity)
+function player_give_reward(mdl_reward, n_entity)
 {
-	switch(var_30ff0d6c.n_challenge)
+	switch(mdl_reward.n_challenge)
 	{
 		case 1:
 		{
@@ -896,9 +896,9 @@ function player_give_reward(var_30ff0d6c, n_entity)
 		}
 		case 2:
 		{
-			if(isdefined(var_30ff0d6c.str_weapon_name))
+			if(isdefined(mdl_reward.str_weapon_name))
 			{
-				var_e564b69e = getweapon(var_30ff0d6c.str_weapon_name);
+				var_e564b69e = getweapon(mdl_reward.str_weapon_name);
 			}
 			self thread swap_weapon(var_e564b69e);
 			playsoundatposition("evt_grab_weapon", self.origin);
@@ -911,9 +911,9 @@ function player_give_reward(var_30ff0d6c, n_entity)
 			break;
 		}
 	}
-	self flag::set("flag_player_collected_reward_" + var_30ff0d6c.n_challenge);
+	self flag::set("flag_player_collected_reward_" + mdl_reward.n_challenge);
 	self flag::clear("flag_player_initialized_reward");
-	self function_33e91747(var_30ff0d6c.n_challenge, 2);
+	self function_33e91747(mdl_reward.n_challenge, 2);
 	level thread function_d57066e8(n_entity);
 	self.var_c981566c = undefined;
 }
@@ -1882,9 +1882,9 @@ function function_905d9544(e_attacker)
 		{
 			self thread function_4d042c7d(e_attacker);
 		}
-		if(isdefined(e_attacker.var_a3d40b8) && isdefined(self.var_a3d40b8))
+		if(isdefined(e_attacker.island_name) && isdefined(self.island_name))
 		{
-			if(e_attacker.var_a3d40b8 !== self.var_a3d40b8)
+			if(e_attacker.island_name !== self.island_name)
 			{
 				level notify(#"hash_f312481d", e_attacker);
 			}
@@ -1931,10 +1931,10 @@ function function_905d9544(e_attacker)
 */
 function function_4d042c7d(player)
 {
-	if(isdefined(self.var_a3d40b8))
+	if(isdefined(self.island_name))
 	{
 		var_bc09c7dd = 1;
-		switch(self.var_a3d40b8)
+		switch(self.island_name)
 		{
 			case "asylum_island":
 			case "prison_island":
@@ -1942,7 +1942,7 @@ function function_4d042c7d(player)
 			case "start_island":
 			case "temple_island":
 			{
-				player.var_b5c08e44[self.var_a3d40b8]++;
+				player.var_b5c08e44[self.island_name]++;
 				a_str_keys = getarraykeys(player.var_b5c08e44);
 				foreach(str_key in a_str_keys)
 				{

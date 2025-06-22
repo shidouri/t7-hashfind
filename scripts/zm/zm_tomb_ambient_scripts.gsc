@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -210,12 +210,12 @@ function function_511ab91d()
 	var_7170dfe = getent("ambiance_dogfights_2", "targetname");
 	while(true)
 	{
-		var_f4570d42 = randomint(3);
+		n_scenario = randomint(3);
 		if(level.var_1766c187)
 		{
-			var_f4570d42 = 0;
+			n_scenario = 0;
 		}
-		switch(var_f4570d42)
+		switch(n_scenario)
 		{
 			case 0:
 			{

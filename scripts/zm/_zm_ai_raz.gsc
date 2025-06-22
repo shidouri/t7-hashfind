@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -536,11 +536,11 @@ function function_692370a0()
 */
 function function_a1d75eeb()
 {
-	var_89de5b91 = getentarray("zombie_raz", "targetname");
-	var_c55cf881 = var_89de5b91.size;
-	foreach(var_1c963231 in var_89de5b91)
+	a_ai_raz = getentarray("zombie_raz", "targetname");
+	var_c55cf881 = a_ai_raz.size;
+	foreach(ai_raz in a_ai_raz)
 	{
-		if(!isalive(var_1c963231))
+		if(!isalive(ai_raz))
 		{
 			var_c55cf881--;
 		}
@@ -812,7 +812,7 @@ function function_4749ab89()
 	{
 		self.health = self.maxhealth;
 	}
-	self thread function_f8080b7();
+	self thread raz_death();
 	level thread zm_spawner::zombie_death_event(self);
 	self thread zm_spawner::enemy_death_detection();
 	self zm_spawner::zombie_history(("zombie_raz_spawn_init -> Spawned = ") + self.origin);
@@ -823,7 +823,7 @@ function function_4749ab89()
 }
 
 /*
-	Name: function_f8080b7
+	Name: raz_death
 	Namespace: zm_ai_raz
 	Checksum: 0x39F6A300
 	Offset: 0x1ED0
@@ -831,7 +831,7 @@ function function_4749ab89()
 	Parameters: 0
 	Flags: Linked
 */
-function function_f8080b7()
+function raz_death()
 {
 	self waittill(#"death", attacker);
 	self thread zombie_utility::zombie_eye_glow_stop();
@@ -1185,7 +1185,7 @@ function function_9a80ee5f()
 	Parameters: 1
 	Flags: Linked
 */
-function function_e115a394(var_eee0e63b)
+function function_e115a394(n_raz)
 {
 	/#
 		if(!isdefined(level.var_2e815d61) || !level.var_2e815d61)
@@ -1200,7 +1200,7 @@ function function_e115a394(var_eee0e63b)
 		{
 			return;
 		}
-		function_d8afb0d4(var_eee0e63b);
+		function_d8afb0d4(n_raz);
 		level.var_51a5abd0 = level.round_number + 1;
 	#/
 }
@@ -1214,12 +1214,12 @@ function function_e115a394(var_eee0e63b)
 	Parameters: 1
 	Flags: Linked
 */
-function function_70864ef2(var_eee0e63b)
+function function_70864ef2(n_raz)
 {
 	/#
 		if(isdefined(level.var_51a5abd0))
 		{
-			function_d8afb0d4(var_eee0e63b);
+			function_d8afb0d4(n_raz);
 			zm_devgui::zombie_devgui_goto_round(level.var_51a5abd0);
 		}
 	#/
@@ -1234,12 +1234,12 @@ function function_70864ef2(var_eee0e63b)
 	Parameters: 1
 	Flags: Linked
 */
-function function_d8afb0d4(var_eee0e63b)
+function function_d8afb0d4(n_raz)
 {
 	/#
-		if(isdefined(var_eee0e63b) && var_eee0e63b > 0)
+		if(isdefined(n_raz) && n_raz > 0)
 		{
-			setdvar("", var_eee0e63b);
+			setdvar("", n_raz);
 		}
 		else
 		{

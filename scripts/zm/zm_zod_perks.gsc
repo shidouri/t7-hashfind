@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -194,10 +194,10 @@ function function_55b919e6()
 	Parameters: 1
 	Flags: Linked
 */
-function function_e840e164(var_d80a2da2)
+function function_e840e164(n_district)
 {
 	level waittill(#"sleight_on");
-	level clientfield::set("perk_light_speed_cola", var_d80a2da2);
+	level clientfield::set("perk_light_speed_cola", n_district);
 }
 
 /*
@@ -209,10 +209,10 @@ function function_e840e164(var_d80a2da2)
 	Parameters: 1
 	Flags: Linked
 */
-function function_588068b3(var_d80a2da2)
+function function_588068b3(n_district)
 {
 	level waittill(#"juggernog_on");
-	level clientfield::set("perk_light_juggernog", var_d80a2da2);
+	level clientfield::set("perk_light_juggernog", n_district);
 }
 
 /*
@@ -224,9 +224,9 @@ function function_588068b3(var_d80a2da2)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8b929f79(var_d80a2da2)
+function function_8b929f79(n_district)
 {
 	level waittill(#"doubletap_on");
-	level clientfield::set("perk_light_doubletap", var_d80a2da2);
+	level clientfield::set("perk_light_doubletap", n_district);
 }
 
