@@ -69,7 +69,7 @@ function init()
 */
 function end_health_regen()
 {
-	self notify(#"end_healthregen");
+	self notify("end_healthregen");
 }
 
 /*
@@ -83,7 +83,7 @@ function end_health_regen()
 */
 function player_health_regen()
 {
-	self endon(#"end_healthregen");
+	self endon("end_healthregen");
 	if(self.health <= 0)
 	{
 		/#
@@ -121,7 +121,7 @@ function player_health_regen()
 			veryhurt = 0;
 			if(isdefined(self.atbrinkofdeath) && self.atbrinkofdeath == 1)
 			{
-				self notify(#"challenge_survived_from_death");
+				self notify("challenge_survived_from_death");
 			}
 			self.atbrinkofdeath = 0;
 			continue;
@@ -168,7 +168,7 @@ function player_health_regen()
 			if((gettime() - lastsoundtime_recover) > regentime)
 			{
 				lastsoundtime_recover = gettime();
-				self notify(#"snd_breathing_better");
+				self notify("snd_breathing_better");
 			}
 			if(veryhurt)
 			{
@@ -259,7 +259,7 @@ function decay_player_damages(decay)
 */
 function player_breathing_sound(healthcap)
 {
-	self endon(#"end_healthregen");
+	self endon("end_healthregen");
 	wait(2);
 	player = self;
 	for(;;)
@@ -281,7 +281,7 @@ function player_breathing_sound(healthcap)
 		{
 			continue;
 		}
-		player notify(#"snd_breathing_hurt");
+		player notify("snd_breathing_hurt");
 		wait(0.784);
 		wait(0.1 + randomfloat(0.8));
 	}
@@ -298,7 +298,7 @@ function player_breathing_sound(healthcap)
 */
 function player_heartbeat_sound(healthcap)
 {
-	self endon(#"end_healthregen");
+	self endon("end_healthregen");
 	self.hearbeatwait = 0.2;
 	wait(2);
 	player = self;

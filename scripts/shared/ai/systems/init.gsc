@@ -144,7 +144,7 @@ function main()
 */
 function setnameandrank()
 {
-	self endon(#"death");
+	self endon("death");
 	self name::get();
 }
 
@@ -187,7 +187,7 @@ function set_anim_playback_rate()
 */
 function trackvelocity()
 {
-	self endon(#"death");
+	self endon("death");
 	for(;;)
 	{
 		self.oldorigin = self.origin;
@@ -426,12 +426,12 @@ function globalgrenadetracking()
 	{
 		level.missileentities = [];
 	}
-	self endon(#"death");
+	self endon("death");
 	self thread globalgrenadelaunchertracking();
 	self thread globalmissiletracking();
 	for(;;)
 	{
-		self waittill(#"grenade_fire", grenade, weapon);
+		self waittill("grenade_fire", grenade, weapon);
 		grenade.owner = self;
 		grenade.weapon = weapon;
 		level thread addtomissiles(grenade);
@@ -449,10 +449,10 @@ function globalgrenadetracking()
 */
 function globalgrenadelaunchertracking()
 {
-	self endon(#"death");
+	self endon("death");
 	for(;;)
 	{
-		self waittill(#"grenade_launcher_fire", grenade, weapon);
+		self waittill("grenade_launcher_fire", grenade, weapon);
 		grenade.owner = self;
 		grenade.weapon = weapon;
 		level thread addtomissiles(grenade);
@@ -470,10 +470,10 @@ function globalgrenadelaunchertracking()
 */
 function globalmissiletracking()
 {
-	self endon(#"death");
+	self endon("death");
 	for(;;)
 	{
-		self waittill(#"missile_fire", grenade, weapon);
+		self waittill("missile_fire", grenade, weapon);
 		grenade.owner = self;
 		grenade.weapon = weapon;
 		level thread addtomissiles(grenade);
@@ -491,10 +491,10 @@ function globalmissiletracking()
 */
 function begingrenadetracking()
 {
-	self endon(#"death");
+	self endon("death");
 	for(;;)
 	{
-		self waittill(#"grenade_fire", grenade, weapon);
+		self waittill("grenade_fire", grenade, weapon);
 		grenade thread grenade_earthquake();
 	}
 }
@@ -510,9 +510,9 @@ function begingrenadetracking()
 */
 function endondeath()
 {
-	self waittill(#"death");
+	self waittill("death");
 	waittillframeend();
-	self notify(#"end_explode");
+	self notify("end_explode");
 }
 
 /*
@@ -527,8 +527,8 @@ function endondeath()
 function grenade_earthquake()
 {
 	self thread endondeath();
-	self endon(#"end_explode");
-	self waittill(#"explode", position);
+	self endon("end_explode");
+	self waittill("explode", position);
 	playrumbleonposition("grenade_rumble", position);
 	earthquake(0.3, 0.5, position, 400);
 }

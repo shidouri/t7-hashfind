@@ -120,7 +120,7 @@ function stopempeffects(localplayer, oldval, bwastimejump = 0)
 */
 function on_player_spawned(localclientnum)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	localplayer = getlocalplayer(localclientnum);
 	if(localplayer != self)
 	{
@@ -136,7 +136,7 @@ function on_player_spawned(localclientnum)
 	else
 	{
 		stopempeffects(localplayer, 0, 1);
-		localplayer notify(#"end_emp_monitor_distance");
+		localplayer notify("end_emp_monitor_distance");
 	}
 }
 
@@ -160,7 +160,7 @@ function onempmonitordistancechanged(localclientnum, oldval, newval, bnewent, bi
 	else
 	{
 		stopempeffects(localplayer, oldval, bwastimejump);
-		localplayer notify(#"end_emp_monitor_distance");
+		localplayer notify("end_emp_monitor_distance");
 	}
 }
 
@@ -176,9 +176,9 @@ function onempmonitordistancechanged(localclientnum, oldval, newval, bnewent, bi
 function monitordistance(localclientnum)
 {
 	localplayer = self;
-	localplayer endon(#"entityshutdown");
-	localplayer endon(#"end_emp_monitor_distance");
-	localplayer endon(#"team_changed");
+	localplayer endon("entityshutdown");
+	localplayer endon("end_emp_monitor_distance");
+	localplayer endon("team_changed");
 	if(localplayer isempjammed() == 0)
 	{
 		return;

@@ -77,7 +77,7 @@ function spawned(localclientnum)
 */
 function statechange(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	self restartfx(localclientnum, newval);
 }
@@ -93,7 +93,7 @@ function statechange(localclientnum, oldval, newval, bnewent, binitialsnap, fiel
 */
 function restartfx(localclientnum, blinkstage)
 {
-	self notify(#"restart_fx");
+	self notify("restart_fx");
 	/#
 		println("" + blinkstage);
 	#/
@@ -118,8 +118,8 @@ function restartfx(localclientnum, blinkstage)
 		}
 		case 3:
 		{
-			self notify(#"stopfx");
-			self notify(#"fx_death");
+			self notify("stopfx");
+			self notify("fx_death");
 			return;
 		}
 	}
@@ -137,7 +137,7 @@ function restartfx(localclientnum, blinkstage)
 */
 function watchrestartfx(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	level util::waittill_any("demo_jump", "player_switch", "killcam_begin", "killcam_end");
 	self restartfx(localclientnum, clientfield::get("qrdrone_state"));
 }
@@ -196,9 +196,9 @@ function spawn_blinking_fx(localclientnum)
 */
 function blink_fx_and_sound(localclientnum, soundalias)
 {
-	self endon(#"entityshutdown");
-	self endon(#"restart_fx");
-	self endon(#"fx_death");
+	self endon("entityshutdown");
+	self endon("restart_fx");
+	self endon("fx_death");
 	if(!isdefined(self.interval))
 	{
 		self.interval = 1;
@@ -208,7 +208,7 @@ function blink_fx_and_sound(localclientnum, soundalias)
 		self playsound(localclientnum, soundalias);
 		self spawn_solid_fx(localclientnum);
 		util::server_wait(localclientnum, self.interval / 2);
-		self notify(#"stopfx");
+		self notify("stopfx");
 		util::server_wait(localclientnum, self.interval / 2);
 		self.interval = self.interval / 1.17;
 		if(self.interval < 0.1)
@@ -248,7 +248,7 @@ function start_blink(localclientnum, oldval, newval, bnewent, binitialsnap, fiel
 	{
 		return;
 	}
-	self notify(#"blink");
+	self notify("blink");
 }
 
 /*
@@ -298,10 +298,10 @@ function out_of_range_update(localclientnum, oldval, newval, bnewent, binitialsn
 */
 function loop_local_sound(localclientnum, alias, interval, fx)
 {
-	self endon(#"entityshutdown");
-	self endon(#"stopfx");
-	level endon(#"demo_jump");
-	level endon(#"player_switch");
+	self endon("entityshutdown");
+	self endon("stopfx");
+	level endon("demo_jump");
+	level endon("player_switch");
 	if(!isdefined(self.interval))
 	{
 		self.interval = interval;
@@ -311,7 +311,7 @@ function loop_local_sound(localclientnum, alias, interval, fx)
 		self playsound(localclientnum, alias);
 		self spawn_solid_fx(localclientnum);
 		util::server_wait(localclientnum, self.interval / 2);
-		self notify(#"stopfx");
+		self notify("stopfx");
 		util::server_wait(localclientnum, self.interval / 2);
 		self.interval = self.interval / 1.17;
 		if(self.interval < 0.1)
@@ -332,9 +332,9 @@ function loop_local_sound(localclientnum, alias, interval, fx)
 */
 function check_for_player_switch_or_time_jump(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	level util::waittill_any("demo_jump", "player_switch", "killcam_begin");
-	self notify(#"stopfx");
+	self notify("stopfx");
 	waittillframeend();
 	self thread blink_light(localclientnum);
 	if(isdefined(self.blinkstarttime) && self.blinkstarttime <= level.servertime)
@@ -360,11 +360,11 @@ function check_for_player_switch_or_time_jump(localclientnum)
 */
 function blink_light(localclientnum)
 {
-	self endon(#"entityshutdown");
-	level endon(#"demo_jump");
-	level endon(#"player_switch");
-	level endon(#"killcam_begin");
-	self waittill(#"blink");
+	self endon("entityshutdown");
+	level endon("demo_jump");
+	level endon("player_switch");
+	level endon("killcam_begin");
+	self waittill("blink");
 	if(!isdefined(self.blinkstarttime))
 	{
 		self.blinkstarttime = level.servertime;
@@ -397,10 +397,10 @@ function blink_light(localclientnum)
 */
 function collisionhandler(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(true)
 	{
-		self waittill(#"veh_collision", hip, hitn, hit_intensity);
+		self waittill("veh_collision", hip, hitn, hit_intensity);
 		driver_local_client = self getlocalclientdriver();
 		if(isdefined(driver_local_client))
 		{
@@ -431,10 +431,10 @@ function collisionhandler(localclientnum)
 */
 function enginestutterhandler(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(true)
 	{
-		self waittill(#"veh_engine_stutter");
+		self waittill("veh_engine_stutter");
 		if(self islocalclientdriver(localclientnum))
 		{
 			player = getlocalplayer(localclientnum);
@@ -496,7 +496,7 @@ function getminimumflyheight()
 */
 function qrdrone_watch_distance()
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	qrdrone_height = struct::get("qrdrone_height", "targetname");
 	if(isdefined(qrdrone_height))
 	{
@@ -573,7 +573,7 @@ function qrdrone_in_range()
 */
 function qrdrone_staticfade(staticalpha, sndent, sid)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(self qrdrone_in_range())
 	{
 		staticalpha = staticalpha - 0.05;
@@ -601,7 +601,7 @@ function qrdrone_staticfade(staticalpha, sndent, sid)
 */
 function qrdrone_staticstopondeath(sndent)
 {
-	self waittill(#"entityshutdown");
+	self waittill("entityshutdown");
 	sndent stopallloopsounds(0.1);
 	sndent delete();
 }

@@ -199,8 +199,8 @@ function turned_zombie_validation()
 */
 function zombie_death_time_limit(e_attacker)
 {
-	self endon(#"death");
-	self endon(#"entityshutdown");
+	self endon("death");
+	self endon("entityshutdown");
 	wait(20);
 	self clientfield::set("zm_aat_turned", 0);
 	self.allowdeath = 1;
@@ -218,8 +218,8 @@ function zombie_death_time_limit(e_attacker)
 */
 function zombie_kill_tracker(e_attacker)
 {
-	self endon(#"death");
-	self endon(#"entityshutdown");
+	self endon("death");
+	self endon("entityshutdown");
 	while(self.n_aat_turned_zombie_kills < 12)
 	{
 		wait(0.05);

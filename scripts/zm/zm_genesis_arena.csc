@@ -146,7 +146,7 @@ function elec_wall_tell(localclientnum, oldval, newval, bnewent, binitialsnap, f
 		if(isdefined(self))
 		{
 			fx = playfx(localclientnum, level._effect["elec_wall_arc"], v_origin, anglestoforward(self.angles));
-			self waittill(#"entityshutdown");
+			self waittill("entityshutdown");
 			stopfx(localclientnum, fx);
 		}
 	}
@@ -199,7 +199,7 @@ function runeprison_rock_fx(localclientnum, oldval, newval, bnewent, binitialsna
 */
 function function_79854312(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	n_start_time = gettime();
 	n_end_time = n_start_time + 1633;
 	b_is_updating = 1;
@@ -504,8 +504,8 @@ function summoning_circle_fx(localclientnum, oldval, newval, bnewent, binitialsn
 */
 function summoning_key_pickup(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	level notify(#"summoning_key_pickup");
-	level endon(#"summoning_key_pickup");
+	level notify("summoning_key_pickup");
+	level endon("summoning_key_pickup");
 	function_244d3483(localclientnum);
 	level.var_530ae70[localclientnum] util::waittill_dobj(localclientnum);
 	var_1f5092c = struct::get("arena_reward_pickup", "targetname");
@@ -570,8 +570,8 @@ function summoning_key_pickup(localclientnum, oldval, newval, bnewent, binitials
 */
 function arena_state(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	level notify(#"arena_state");
-	level endon(#"arena_state");
+	level notify("arena_state");
+	level endon("arena_state");
 	if(!isdefined(level.var_b175da10))
 	{
 		function_8fbd23f4(localclientnum);
@@ -612,8 +612,8 @@ function arena_state(localclientnum, oldval, newval, bnewent, binitialsnap, fiel
 */
 function circle_state(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	level notify(#"circle_state");
-	level endon(#"circle_state");
+	level notify("circle_state");
+	level endon("circle_state");
 	n_challenge_index = clientfield::get("circle_challenge_identity");
 	switch(newval)
 	{

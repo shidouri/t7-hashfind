@@ -78,7 +78,7 @@ function function_6a2c832a(localclientnum, oldval, newval, bnewent, binitialsnap
 		ent = spawn(0, self.origin, "script_origin");
 		ent linkto(self);
 		self thread function_80209369(localclientnum, ent);
-		level notify(#"lightning_ball_created");
+		level notify("lightning_ball_created");
 	}
 }
 
@@ -93,7 +93,7 @@ function function_6a2c832a(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_80209369(localclientnum, ent)
 {
-	self waittill(#"entityshutdown");
+	self waittill("entityshutdown");
 	ent delete();
 	level.var_1d5f245c[localclientnum] = undefined;
 }
@@ -109,14 +109,14 @@ function function_80209369(localclientnum, ent)
 */
 function function_749acb79(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self endon(#"hash_7a8f9f49");
 	if(!isdefined(level.var_1d5f245c[localclientnum]))
 	{
-		level waittill(#"lightning_ball_created");
+		level waittill("lightning_ball_created");
 	}
 	e_ball = level.var_1d5f245c[localclientnum];
-	e_ball endon(#"entityshutdown");
+	e_ball endon("entityshutdown");
 	util::server_wait(localclientnum, randomfloatrange(0.1, 0.5));
 	self.e_fx = spawn(localclientnum, e_ball.origin, "script_model");
 	self.e_fx setmodel("tag_origin");

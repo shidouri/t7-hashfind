@@ -81,7 +81,7 @@ function airlock_fx_init()
 */
 function airlock_fx(localclientnum)
 {
-	level waittill(#"power_on");
+	level waittill("power_on");
 	var_2043fd45 = struct::get_array("s_airlock_jambs_fx", "targetname");
 	for(i = 0; i < var_2043fd45.size; i++)
 	{
@@ -200,7 +200,7 @@ function precache_createfx_fx()
 */
 function power_on_spinning_lights()
 {
-	level waittill(#"power_on");
+	level waittill("power_on");
 }
 
 /*
@@ -241,7 +241,7 @@ function breach_receiving_fx()
 	{
 		level util::waittill_any("power_on", "pwr", "ZPO");
 	}
-	level notify(#"sl0");
+	level notify("sl0");
 }
 
 /*
@@ -260,8 +260,8 @@ function breach_labs_lower_fx()
 	{
 		level util::waittill_any("power_on", "pwr", "ZPO");
 	}
-	level notify(#"sl5");
-	level notify(#"sl6");
+	level notify("sl5");
+	level notify("sl6");
 }
 
 /*
@@ -280,7 +280,7 @@ function breach_labs_upper_fx()
 	{
 		level util::waittill_any("power_on", "pwr", "ZPO");
 	}
-	level notify(#"sl4");
+	level notify("sl4");
 }
 
 /*
@@ -375,7 +375,7 @@ function fog_trigger(change_func)
 {
 	while(true)
 	{
-		self waittill(#"trigger", who);
+		self waittill("trigger", who);
 		if(who islocalplayer())
 		{
 			self thread util::trigger_thread(who, change_func);
@@ -398,7 +398,7 @@ function moon_exterior_fog_change(ent_player)
 	{
 		return;
 	}
-	ent_player endon(#"entityshutdown");
+	ent_player endon("entityshutdown");
 	start_dist = 2098.71;
 	half_dist = 1740.12;
 	half_height = 1332.23;
@@ -435,7 +435,7 @@ function moon_interior_fog_change(ent_player)
 	{
 		return;
 	}
-	ent_player endon(#"entityshutdown");
+	ent_player endon("entityshutdown");
 	start_dist = 2098.71;
 	half_dist = 1740.12;
 	half_height = 1332.23;
@@ -472,7 +472,7 @@ function moon_biodome_fog_change(ent_player)
 	{
 		return;
 	}
-	ent_player endon(#"entityshutdown");
+	ent_player endon("entityshutdown");
 	start_dist = 65.3744;
 	half_dist = 860.241;
 	half_height = 35.1158;
@@ -509,7 +509,7 @@ function moon_tunnels_fog_change(ent_player)
 	{
 		return;
 	}
-	ent_player endon(#"entityshutdown");
+	ent_player endon("entityshutdown");
 	start_dist = 1413.46;
 	half_dist = 4300.81;
 	half_height = 32.2476;
@@ -546,7 +546,7 @@ function moon_nml_fog_change(ent_player)
 	{
 		return;
 	}
-	ent_player endon(#"entityshutdown");
+	ent_player endon("entityshutdown");
 	start_dist = 1662.13;
 	half_dist = 18604.1;
 	half_height = 2618.86;

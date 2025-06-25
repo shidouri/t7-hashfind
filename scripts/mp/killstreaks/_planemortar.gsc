@@ -69,9 +69,9 @@ function usekillstreakplanemortar(hardpointtype)
 */
 function waittill_confirm_location()
 {
-	self endon(#"emp_jammed");
-	self endon(#"emp_grenaded");
-	self waittill(#"confirm_location", location);
+	self endon("emp_jammed");
+	self endon("emp_grenaded");
+	self waittill("confirm_location", location);
 	return location;
 }
 
@@ -106,7 +106,7 @@ function selectplanemortarlocation(hardpointtype)
 		if(!isdefined(location))
 		{
 			self.pers["mortarRadarUsed"] = 1;
-			self notify(#"cancel_selection");
+			self notify("cancel_selection");
 			return 0;
 		}
 		locations[i] = location;
@@ -114,7 +114,7 @@ function selectplanemortarlocation(hardpointtype)
 	if(self killstreakrules::iskillstreakallowed(hardpointtype, self.team) == 0)
 	{
 		self.pers["mortarRadarUsed"] = 1;
-		self notify(#"cancel_selection");
+		self notify("cancel_selection");
 		return 0;
 	}
 	self.pers["mortarRadarUsed"] = 0;
@@ -132,8 +132,8 @@ function selectplanemortarlocation(hardpointtype)
 */
 function waitplaybacktime(soundalias)
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	playbacktime = soundgetplaybacktime(soundalias);
 	if(playbacktime >= 0)
 	{
@@ -158,8 +158,8 @@ function waitplaybacktime(soundalias)
 */
 function singleradarsweep()
 {
-	self endon(#"disconnect");
-	self endon(#"cancel_selection");
+	self endon("disconnect");
+	self endon("cancel_selection");
 	wait(0.5);
 	self playlocalsound("mpl_killstreak_satellite");
 	if(level.teambased)
@@ -229,8 +229,8 @@ function useplanemortar(positions)
 */
 function doplanemortar(positions, team, killstreak_id)
 {
-	self endon(#"emp_jammed");
-	self endon(#"disconnect");
+	self endon("emp_jammed");
+	self endon("disconnect");
 	yaw = randomintrange(0, 360);
 	odd = 0;
 	wait(1.25);
@@ -249,7 +249,7 @@ function doplanemortar(positions, team, killstreak_id)
 		odd = (odd + 1) % 2;
 		wait(0.8);
 	}
-	self notify(#"planemortarcomplete");
+	self notify("planemortarcomplete");
 	wait(1);
 	self thread plane_mortar_bda_dialog();
 }
@@ -347,7 +347,7 @@ function planemortar_killstreakstop(team, killstreak_id)
 */
 function dobombrun(position, yaw, team)
 {
-	self endon(#"emp_jammed");
+	self endon("emp_jammed");
 	player = self;
 	angles = (0, yaw, 0);
 	direction = anglestoforward(angles);
@@ -363,8 +363,8 @@ function dobombrun(position, yaw, team)
 	plane.team = team;
 	plane.targetname = "plane_mortar";
 	plane.owner = self;
-	plane endon(#"delete");
-	plane endon(#"death");
+	plane endon("delete");
+	plane endon("death");
 	plane thread planewatchforemp(self);
 	plane.angles = angles;
 	plane setmodel("veh_t7_mil_vtol_fighter_mp");
@@ -402,7 +402,7 @@ function dobombrun(position, yaw, team)
 */
 function followbomb(plane, position, direction, impact, player)
 {
-	player endon(#"emp_jammed");
+	player endon("emp_jammed");
 	wait((2 * 5) / 12);
 	plane.killcament unlink();
 	plane.killcament moveto((impact["position"] + vectorscale((0, 0, 1), 1000)) + (vectorscale(direction, -600)), 0.8, 0, 0.2);
@@ -438,9 +438,9 @@ function lookatexplosion(bomb)
 */
 function planewatchforemp(owner)
 {
-	self endon(#"delete");
-	self endon(#"death");
-	self waittill(#"emp_deployed", attacker);
+	self endon("delete");
+	self endon("death");
+	self waittill("emp_deployed", attacker);
 	thread planeawardscoreevent(attacker, self);
 	self plane_cleanupondeath();
 }
@@ -456,9 +456,9 @@ function planewatchforemp(owner)
 */
 function planeawardscoreevent(attacker, plane)
 {
-	attacker endon(#"disconnect");
-	attacker notify(#"planeawardscoreevent_singleton");
-	attacker endon(#"planeawardscoreevent_singleton");
+	attacker endon("disconnect");
+	attacker notify("planeawardscoreevent_singleton");
+	attacker endon("planeawardscoreevent_singleton");
 	waittillframeend();
 	if(isdefined(attacker) && (!isdefined(plane.owner) || plane.owner util::isenemyplayer(attacker)))
 	{

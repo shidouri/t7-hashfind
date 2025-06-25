@@ -84,9 +84,9 @@ function __init__()
 */
 function private function_44774881()
 {
-	self endon(#"disconnect");
-	self endon(#"bled_out");
-	self endon(#"death");
+	self endon("disconnect");
+	self endon("bled_out");
+	self endon("death");
 	self endon(#"hash_b24d78f");
 	self function_36f6c07f(0);
 	self.weapon_dragon_gauntlet = level.weapon_dragon_gauntlet;
@@ -104,7 +104,7 @@ function private function_44774881()
 	}
 	do
 	{
-		self waittill(#"new_hero_weapon", weapon);
+		self waittill("new_hero_weapon", weapon);
 	}
 	while(weapon != self.weapon_dragon_gauntlet);
 	if(isdefined(self.var_85466cc5) && isdefined(self.var_85466cc5["dragon_gauntlet_flamethrower"]))
@@ -139,8 +139,8 @@ function private function_44774881()
 */
 function reset_after_bleeding_out()
 {
-	self endon(#"disconnect");
-	self waittill(#"spawned_player");
+	self endon("disconnect");
+	self waittill("spawned_player");
 	self function_421902c5();
 	self thread function_44774881();
 }
@@ -230,7 +230,7 @@ function function_712b36f9(var_40c4a571)
 		self gadgetpowerset(0, self.var_8afc8427);
 	}
 	self.hero_power = self gadgetpowerget(0);
-	self notify(#"stop_draining_hero_weapon");
+	self notify("stop_draining_hero_weapon");
 	if(!isdefined(self.var_956fba75) || self.var_956fba75 < 3)
 	{
 		self thread zm_equipment::show_hint_text(&"DLC3_WEAP_DRAGON_GAUNTLET_FLAMETHROWER_HINT", 3);
@@ -258,7 +258,7 @@ function function_b90c6ba(var_40c4a571)
 	self.hero_power = self gadgetpowerget(0);
 	self zm_hero_weapon::default_unwield(var_40c4a571);
 	self function_36f6c07f(1);
-	self notify(#"stop_draining_hero_weapon");
+	self notify("stop_draining_hero_weapon");
 	self enableoffhandweapons();
 	if(zm_weapons::has_weapon_or_attachments(var_40c4a571))
 	{
@@ -293,7 +293,7 @@ function function_f79afde0(var_dabe8ae8)
 		self.var_5307dedb = self.var_5307dedb + 1;
 	}
 	self.hero_power = self gadgetpowerget(0);
-	self notify(#"stop_draining_hero_weapon");
+	self notify("stop_draining_hero_weapon");
 	self thread zm_hero_weapon::continue_draining_hero_weapon(self.var_ae0fff53);
 	self thread function_d7a4275d();
 	self thread function_62d6a233();
@@ -322,7 +322,7 @@ function function_d638417f(var_dabe8ae8)
 	{
 		self setweaponammoclip(var_dabe8ae8, 0);
 	}
-	self notify(#"stop_draining_hero_weapon");
+	self notify("stop_draining_hero_weapon");
 	if(self zm_weapons::has_weapon_or_attachments(var_dabe8ae8))
 	{
 		self setweaponammoclip(var_dabe8ae8, 0);
@@ -345,11 +345,11 @@ function function_d638417f(var_dabe8ae8)
 */
 function weapon_change_watcher()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self.var_f2a52896 = undefined;
 	while(true)
 	{
-		self waittill(#"weapon_change", w_current, w_previous);
+		self waittill("weapon_change", w_current, w_previous);
 		if(w_current === level.weapon_dragon_gauntlet)
 		{
 			if(self.var_f2a52896 === "wpn_t7_zmb_dlc3_gauntlet_dragon_elbow_upg_world")
@@ -394,11 +394,11 @@ function weapon_change_watcher()
 */
 function function_22a08c51(weapon)
 {
-	self endon(#"death");
-	self endon(#"bled_out");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("bled_out");
+	self endon("disconnect");
 	self endon(#"hash_b24d78f");
-	self endon(#"stop_draining_hero_weapon");
+	self endon("stop_draining_hero_weapon");
 	self endon(#"hash_9b74f71e");
 	self notify(#"hash_22a08c51");
 	self endon(#"hash_22a08c51");
@@ -430,7 +430,7 @@ function function_22a08c51(weapon)
 */
 function function_c0093887()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self endon(#"hash_b24d78f");
 	self endon(#"hash_89dc36f4");
 	self notify(#"hash_309d2dbf");
@@ -505,9 +505,9 @@ function is_in_array(item, array)
 */
 function function_d7a4275d()
 {
-	self endon(#"disconnect");
-	self endon(#"death");
-	self endon(#"bled_out");
+	self endon("disconnect");
+	self endon("death");
+	self endon("bled_out");
 	self endon(#"hash_b24d78f");
 	self endon(#"hash_3307435");
 	while(self adsbuttonpressed())
@@ -564,9 +564,9 @@ function function_d7a4275d()
 */
 function function_62d6a233()
 {
-	self endon(#"disconnect");
-	self endon(#"death");
-	self endon(#"bled_out");
+	self endon("disconnect");
+	self endon("death");
+	self endon("bled_out");
 	self endon(#"hash_b24d78f");
 	self endon(#"hash_e48b9ad6");
 	self endon(#"hash_20599947");
@@ -594,9 +594,9 @@ function function_62d6a233()
 */
 function function_8e2014a0()
 {
-	self endon(#"disconnect");
-	self endon(#"death");
-	self endon(#"bled_out");
+	self endon("disconnect");
+	self endon("death");
+	self endon("bled_out");
 	self endon(#"hash_b24d78f");
 	self endon(#"hash_e48b9ad6");
 	self endon(#"hash_20599947");
@@ -605,7 +605,7 @@ function function_8e2014a0()
 	self endon(#"hash_e3575e9f");
 	for(;;)
 	{
-		self waittill(#"weapon_melee_juke", weapon);
+		self waittill("weapon_melee_juke", weapon);
 		if(weapon === self.var_ae0fff53)
 		{
 			self playsound("zmb_rocketshield_start");
@@ -627,16 +627,16 @@ function function_8e2014a0()
 */
 function function_e7fe168a(weapon)
 {
-	self endon(#"disconnect");
-	self endon(#"death");
-	self endon(#"bled_out");
+	self endon("disconnect");
+	self endon("death");
+	self endon("bled_out");
 	self endon(#"hash_b24d78f");
 	self endon(#"hash_e48b9ad6");
 	self endon(#"hash_20599947");
 	self endon(#"hash_3307435");
-	self endon(#"weapon_melee");
-	self endon(#"weapon_melee_power");
-	self endon(#"weapon_melee_charge");
+	self endon("weapon_melee");
+	self endon("weapon_melee_power");
+	self endon("weapon_melee_charge");
 	self notify(#"hash_c0a47e94");
 	self endon(#"hash_c0a47e94");
 	start_time = gettime();
@@ -774,7 +774,7 @@ function function_fa885ef2(e_player, ai_enemy)
 function function_2f36d185(weapon)
 {
 	self zm_hero_weapon::default_power_empty(weapon);
-	self notify(#"stop_draining_hero_weapon");
+	self notify("stop_draining_hero_weapon");
 	self notify(#"hash_b24d78f");
 	self.var_8afc8427 = 0;
 	self.hero_power = 0;
@@ -866,7 +866,7 @@ function function_f5802b55()
 */
 function function_44ecb9cb()
 {
-	self endon(#"death");
+	self endon("death");
 	self ghost();
 	wait(0.15);
 	self show();
@@ -885,7 +885,7 @@ function function_1692b405()
 {
 	self notify(#"hash_22d7caeb");
 	self endon(#"hash_22d7caeb");
-	self waittill(#"entering_last_stand");
+	self waittill("entering_last_stand");
 	self thread function_22d7caeb();
 }
 
@@ -1029,7 +1029,7 @@ function function_a23fb854()
 {
 	/#
 		wait(0.05);
-		level waittill(#"start_zombie_round_logic");
+		level waittill("start_zombie_round_logic");
 		wait(0.05);
 		var_40c4a571 = self.weapon_dragon_gauntlet;
 		equipment_id = var_40c4a571.name;
@@ -1134,9 +1134,9 @@ function function_a23fb854()
 function function_82f11e44()
 {
 	/#
-		self endon(#"disconnect");
-		self endon(#"death");
-		self endon(#"bled_out");
+		self endon("disconnect");
+		self endon("death");
+		self endon("bled_out");
 		self endon(#"hash_bd42c97e");
 		while(true)
 		{

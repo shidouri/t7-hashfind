@@ -115,7 +115,7 @@ function function_c50a03db(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function elem_storm_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(newval)
 	{
 		self.var_53f7dac0 = playfxontag(localclientnum, level._effect["elem_storm_whirlwind_loop"], self, "tag_origin");
@@ -164,9 +164,9 @@ function elem_storm_whirlwind_rumble(localclientnum, oldval, newval, bnewent, bi
 */
 function function_4d18057(localclientnum)
 {
-	level endon(#"demo_jump");
+	level endon("demo_jump");
 	self endon(#"hash_171d986a");
-	self endon(#"death");
+	self endon("death");
 	while(isdefined(self))
 	{
 		self playrumbleonentity(localclientnum, "zod_idgun_vortex_interior");

@@ -84,7 +84,7 @@ function autoexec init()
 */
 function bzm_sceneseqended(scenename)
 {
-	level notify(#"bzm_sceneseqended");
+	level notify("bzm_sceneseqended");
 	if(isdefined(level.var_5de673a6.var_478c7e3e))
 	{
 		level.var_5de673a6 stopsound(level.var_5de673a6.var_478c7e3e);
@@ -254,7 +254,7 @@ function function_45809471(alias, blocking = 1)
 */
 function function_f46e57be()
 {
-	self endon(#"death");
+	self endon("death");
 	self.zmb_vocals_attack = "zmb_vocals_zombie_attack";
 	self thread function_f93398c4();
 	self thread function_b7efd00a();
@@ -272,10 +272,10 @@ function function_f46e57be()
 */
 function function_b7efd00a()
 {
-	self endon(#"death");
+	self endon("death");
 	while(true)
 	{
-		self waittill(#"bhtn_action_notify", notify_string);
+		self waittill("bhtn_action_notify", notify_string);
 		if(isdefined(level.bzm_worldpaused) && level.bzm_worldpaused)
 		{
 			continue;
@@ -330,7 +330,7 @@ function function_b7efd00a()
 */
 function function_dc28c71b(zombie, type, override)
 {
-	zombie endon(#"death");
+	zombie endon("death");
 	if(!isdefined(zombie))
 	{
 		return;
@@ -357,7 +357,7 @@ function function_dc28c71b(zombie, type, override)
 		{
 			zombie.talking = 1;
 			zombie playsoundwithnotify(alias, "sounddone", "j_neck");
-			zombie waittill(#"sounddone");
+			zombie waittill("sounddone");
 			zombie.talking = 0;
 		}
 	}
@@ -374,7 +374,7 @@ function function_dc28c71b(zombie, type, override)
 */
 function function_f93398c4()
 {
-	self endon(#"death");
+	self endon("death");
 	wait(randomfloatrange(1, 3));
 	while(true)
 	{
@@ -406,7 +406,7 @@ function function_f93398c4()
 		{
 			type = "crawler";
 		}
-		self notify(#"bhtn_action_notify", type);
+		self notify("bhtn_action_notify", type);
 		wait(randomfloatrange(1, 4));
 	}
 }
@@ -422,8 +422,8 @@ function function_f93398c4()
 */
 function function_acd6c6f8()
 {
-	self endon(#"disconnect");
-	self waittill(#"death", attacker, meansofdeath);
+	self endon("disconnect");
+	self waittill("death", attacker, meansofdeath);
 	if(isdefined(self))
 	{
 		level thread function_dc28c71b(self, "death", 1);
@@ -482,8 +482,8 @@ function sndisnetworksafe()
 */
 function function_b80a73a4()
 {
-	level endon(#"unloaded");
-	self endon(#"death_or_disconnect");
+	level endon("unloaded");
+	self endon("death_or_disconnect");
 	if(!isdefined(level._zbv_vox_last_update_time))
 	{
 		level._zbv_vox_last_update_time = 0;
@@ -521,7 +521,7 @@ function function_b80a73a4()
 				z_diff = self.origin[2] - zombs[i].origin[2];
 				if(yaw < -95 || yaw > 95 && abs(z_diff) < 50)
 				{
-					zombs[i] notify(#"bhtn_action_notify", "behind");
+					zombs[i] notify("bhtn_action_notify", "behind");
 					played_sound = 1;
 					break;
 				}

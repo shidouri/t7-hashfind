@@ -209,7 +209,7 @@ function hunter_spawndrones()
 */
 function hunter_initialize()
 {
-	self endon(#"death");
+	self endon("death");
 	self useanimtree($generic);
 	target_set(self, vectorscale((0, 0, 1), 90));
 	ai::createinterfaceforentity(self);
@@ -298,8 +298,8 @@ function defaultrole()
 */
 function shut_off_fx()
 {
-	self endon(#"death");
-	self notify(#"death_shut_off");
+	self endon("death");
+	self notify("death_shut_off");
 	if(isdefined(self.frontscanner))
 	{
 		self.frontscanner.sndscanningent delete();
@@ -318,7 +318,7 @@ function shut_off_fx()
 */
 function kill_drones()
 {
-	self endon(#"death");
+	self endon("death");
 	foreach(drone in self.dronesowned)
 	{
 		if(isalive(drone) && distance2dsquared(self.origin, drone.origin) < (80 * 80))
@@ -340,7 +340,7 @@ function kill_drones()
 */
 function state_death_enter(params)
 {
-	self endon(#"death");
+	self endon("death");
 	if(isdefined(self.faketargetent))
 	{
 		self.faketargetent delete();
@@ -361,7 +361,7 @@ function state_death_enter(params)
 */
 function state_death_update(params)
 {
-	self endon(#"death");
+	self endon("death");
 	death_type = vehicle_ai::get_death_type(params);
 	if(!isdefined(death_type))
 	{
@@ -405,8 +405,8 @@ function state_unaware_enter(params)
 */
 function state_unaware_update(params)
 {
-	self endon(#"change_state");
-	self endon(#"death");
+	self endon("change_state");
+	self endon("death");
 	if(isdefined(self.enemy))
 	{
 		self vehicle_ai::set_state("combat");
@@ -416,7 +416,7 @@ function state_unaware_update(params)
 	self thread movement_thread_wander();
 	while(true)
 	{
-		self waittill(#"enemy");
+		self waittill("enemy");
 		self vehicle_ai::set_state("combat");
 	}
 }
@@ -432,7 +432,7 @@ function state_unaware_update(params)
 */
 function state_unaware_exit(params)
 {
-	self notify(#"end_movement_thread");
+	self notify("end_movement_thread");
 }
 
 /*
@@ -446,9 +446,9 @@ function state_unaware_exit(params)
 */
 function movement_thread_wander()
 {
-	self endon(#"death");
-	self notify(#"end_movement_thread");
-	self endon(#"end_movement_thread");
+	self endon("death");
+	self notify("end_movement_thread");
+	self endon("end_movement_thread");
 	constminsearchradius = 120;
 	constmaxsearchradius = 800;
 	minsearchradius = math::clamp(constminsearchradius, 0, self.goalradius);
@@ -562,8 +562,8 @@ function state_combat_enter(params)
 */
 function state_combat_update(params)
 {
-	self endon(#"change_state");
-	self endon(#"death");
+	self endon("change_state");
+	self endon("death");
 	if(!isdefined(self.enemy))
 	{
 		self vehicle_ai::set_state("unaware");
@@ -573,7 +573,7 @@ function state_combat_update(params)
 	self thread attack_thread_rocket();
 	while(true)
 	{
-		self waittill(#"no_enemy");
+		self waittill("no_enemy");
 		self vehicle_ai::set_state("unaware");
 	}
 }
@@ -589,8 +589,8 @@ function state_combat_update(params)
 */
 function state_combat_exit(params)
 {
-	self notify(#"end_attack_thread");
-	self notify(#"end_movement_thread");
+	self notify("end_attack_thread");
+	self notify("end_movement_thread");
 	self clearturrettarget();
 }
 
@@ -627,8 +627,8 @@ function state_strafe_enter(params)
 */
 function state_strafe_update(params)
 {
-	self endon(#"change_state");
-	self endon(#"death");
+	self endon("change_state");
+	self endon("death");
 	self clearvehgoalpos();
 	distancetotarget = 0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax);
 	target = self.origin + (anglestoforward(self.angles) * distancetotarget);
@@ -858,9 +858,9 @@ function getnextmoveposition_tactical(enemy)
 */
 function movement_thread_stayindistance()
 {
-	self endon(#"death");
-	self notify(#"end_movement_thread");
-	self endon(#"end_movement_thread");
+	self endon("death");
+	self notify("end_movement_thread");
+	self endon("end_movement_thread");
 	maxgoaltimeout = 10;
 	stuckcount = 0;
 	while(true)
@@ -1021,11 +1021,11 @@ function movement_thread_stayindistance()
 */
 function delay_target_toenemy_thread(point, enemy, timetohit)
 {
-	self endon(#"death");
-	self endon(#"change_state");
-	self endon(#"end_attack_thread");
-	self endon(#"faketarget_stop_moving");
-	enemy endon(#"death");
+	self endon("death");
+	self endon("change_state");
+	self endon("end_attack_thread");
+	self endon("faketarget_stop_moving");
+	enemy endon("death");
 	if(!isdefined(self.faketargetent))
 	{
 		self.faketargetent = spawn("script_origin", point);
@@ -1033,7 +1033,7 @@ function delay_target_toenemy_thread(point, enemy, timetohit)
 	self.faketargetent unlink();
 	self.faketargetent.origin = point;
 	self setturrettargetent(self.faketargetent);
-	self waittill(#"turret_on_target");
+	self waittill("turret_on_target");
 	timestart = gettime();
 	offset = (0, 0, 0);
 	if(issentient(enemy))
@@ -1061,9 +1061,9 @@ function delay_target_toenemy_thread(point, enemy, timetohit)
 */
 function attack_thread_mainturret()
 {
-	self endon(#"death");
-	self endon(#"change_state");
-	self endon(#"end_attack_thread");
+	self endon("death");
+	self endon("change_state");
+	self endon("end_attack_thread");
 	while(true)
 	{
 		enemy = self.enemy;
@@ -1074,7 +1074,7 @@ function attack_thread_mainturret()
 			{
 				vectorfromenemy = vectornormalize((self.origin - enemy.origin[0], self.origin - enemy.origin[1], 0));
 				self thread delay_target_toenemy_thread(enemy.origin + (vectorfromenemy * 300), enemy, 1.5);
-				self waittill(#"turret_on_target");
+				self waittill("turret_on_target");
 				self vehicle_ai::fire_for_time(2 + randomfloat(0.8));
 				self clearturrettarget();
 				self setturrettargetrelativeangles(vectorscale((1, 0, 0), 15), 0);
@@ -1112,9 +1112,9 @@ function attack_thread_mainturret()
 */
 function attack_thread_rocket()
 {
-	self endon(#"death");
-	self endon(#"change_state");
-	self endon(#"end_attack_thread");
+	self endon("death");
+	self endon("change_state");
+	self endon("end_attack_thread");
 	while(true)
 	{
 		enemy = self.enemy;
@@ -1126,7 +1126,7 @@ function attack_thread_rocket()
 		if(isdefined(enemy) && self vehcansee(enemy) && vehicle_ai::iscooldownready("rocket_launcher"))
 		{
 			vehicle_ai::cooldown("rocket_launcher", 8);
-			self notify(#"end_movement_thread");
+			self notify("end_movement_thread");
 			self clearvehgoalpos();
 			self setvehgoalpos(self.origin, 1, 0);
 			target = enemy.origin;
@@ -1228,7 +1228,7 @@ function side_turret_get_best_target(a_potential_targets, n_index)
 */
 function hunter_fire_one_missile(launcher_index, target, offset, blinklights, waittimeafterblinklights)
 {
-	self endon(#"death");
+	self endon("death");
 	if(isdefined(blinklights) && blinklights)
 	{
 		self vehicle_ai::blink_lights_for_time(1);
@@ -1278,7 +1278,7 @@ function hunter_fire_one_missile(launcher_index, target, offset, blinklights, wa
 */
 function remote_missile_life()
 {
-	self endon(#"death");
+	self endon("death");
 	hostmigration::waitlongdurationwithhostmigrationpause(10);
 	playfx(level.remote_mortar_fx["missileExplode"], self.origin);
 	self playlocalsound("mpl_ks_reaper_explosion");
@@ -1505,9 +1505,9 @@ function hunter_scanner_settargetposition(targetpos)
 */
 function hunter_frontscanning()
 {
-	self endon(#"death_shut_off");
-	self endon(#"crash_done");
-	self endon(#"death");
+	self endon("death_shut_off");
+	self endon("crash_done");
+	self endon("death");
 	hunter_scanner_init();
 	offsetfactorpitch = 0;
 	offsetfactoryaw = 0;
@@ -1551,11 +1551,11 @@ function hunter_frontscanning()
 			{
 				if(self is_point_in_view(self.enemy.origin, 1))
 				{
-					self notify(#"hunter_lockontargetinsight");
+					self notify("hunter_lockontargetinsight");
 				}
 				else
 				{
-					self notify(#"hunter_lockontargetoutsight");
+					self notify("hunter_lockontargetoutsight");
 				}
 				scannerdirection = vectornormalize(self.enemy.origin - scannerorigin);
 				if(0)
@@ -1584,7 +1584,7 @@ function hunter_frontscanning()
 */
 function hunter_exit_vehicle()
 {
-	self waittill(#"exit_vehicle", player);
+	self waittill("exit_vehicle", player);
 	player.ignoreme = 0;
 	player disableinvulnerability();
 	self setheliheightlock(0);
@@ -1645,8 +1645,8 @@ function hunter_scripted(params)
 */
 function player_fire_update_side_turret_1()
 {
-	self endon(#"death");
-	self endon(#"exit_vehicle");
+	self endon("death");
+	self endon("exit_vehicle");
 	weapon = self seatgetweapon(1);
 	firetime = weapon.firetime;
 	while(true)
@@ -1671,8 +1671,8 @@ function player_fire_update_side_turret_1()
 */
 function player_fire_update_side_turret_2()
 {
-	self endon(#"death");
-	self endon(#"exit_vehicle");
+	self endon("death");
+	self endon("exit_vehicle");
 	weapon = self seatgetweapon(2);
 	firetime = weapon.firetime;
 	while(true)
@@ -1697,8 +1697,8 @@ function player_fire_update_side_turret_2()
 */
 function player_fire_update_rocket()
 {
-	self endon(#"death");
-	self endon(#"exit_vehicle");
+	self endon("death");
+	self endon("exit_vehicle");
 	weapon = getweapon("hunter_rocket_turret_player");
 	firetime = weapon.firetime;
 	driver = self getseatoccupant(0);
@@ -1730,12 +1730,12 @@ function player_fire_update_rocket()
 */
 function hunter_collision_player()
 {
-	self endon(#"change_state");
-	self endon(#"crash_done");
-	self endon(#"death");
+	self endon("change_state");
+	self endon("crash_done");
+	self endon("death");
 	while(true)
 	{
-		self waittill(#"veh_collision", velocity, normal);
+		self waittill("veh_collision", velocity, normal);
 		driver = self getseatoccupant(0);
 		if(isdefined(driver) && lengthsquared(velocity) > 4900)
 		{
@@ -1756,8 +1756,8 @@ function hunter_collision_player()
 */
 function hunter_update_rumble()
 {
-	self endon(#"death");
-	self endon(#"exit_vehicle");
+	self endon("death");
+	self endon("exit_vehicle");
 	while(true)
 	{
 		vr = abs(self getspeed() / self getmaxspeed());
@@ -1787,8 +1787,8 @@ function hunter_update_rumble()
 */
 function hunter_self_destruct()
 {
-	self endon(#"death");
-	self endon(#"exit_vehicle");
+	self endon("death");
+	self endon("exit_vehicle");
 	self_destruct = 0;
 	self_destruct_time = 0;
 	while(true)
@@ -1835,9 +1835,9 @@ function hunter_self_destruct()
 */
 function hunter_level_out_for_landing()
 {
-	self endon(#"death");
-	self endon(#"emped");
-	self endon(#"landed");
+	self endon("death");
+	self endon("emped");
+	self endon("landed");
 	while(isdefined(self.emped))
 	{
 		velocity = self.velocity;
@@ -1860,8 +1860,8 @@ function hunter_level_out_for_landing()
 */
 function hunter_emped(params)
 {
-	self endon(#"death");
-	self endon(#"emped");
+	self endon("death");
+	self endon("emped");
 	self.emped = 1;
 	wait(randomfloatrange(4, 7));
 	self vehicle_ai::evaluate_connections();
@@ -1878,7 +1878,7 @@ function hunter_emped(params)
 */
 function hunter_pain_for_time(time, velocitystablizeparam, rotationstablizeparam, restorelookpoint)
 {
-	self endon(#"death");
+	self endon("death");
 	self.painstarttime = gettime();
 	if(!(isdefined(self.inpain) && self.inpain))
 	{

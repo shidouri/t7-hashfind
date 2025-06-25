@@ -745,7 +745,7 @@ function onusewithneutralizingflag(player)
 	string = &"";
 	if(oldteam == "neutral")
 	{
-		level notify(#"flag_captured");
+		level notify("flag_captured");
 		string = getdomflagusestring(label, 0);
 		level.bestspawnflag[oldteam] = self.levelflag;
 		self gameobjects::set_owner_team(team);
@@ -756,7 +756,7 @@ function onusewithneutralizingflag(player)
 	}
 	else
 	{
-		level notify(#"flag_neutralized");
+		level notify("flag_neutralized");
 		string = getdomflagusestring(label, 1);
 		self gameobjects::set_owner_team("neutral");
 		self.visuals[0] setmodel(level.flagmodel["neutral"]);
@@ -804,7 +804,7 @@ function onusewithneutralizingflag(player)
 */
 function onusewithoutneutralizingflag(player)
 {
-	level notify(#"flag_captured");
+	level notify("flag_captured");
 	team = player.pers["team"];
 	oldteam = self gameobjects::get_owner_team();
 	label = self gameobjects::get_label();
@@ -883,8 +883,8 @@ function onuse(player)
 */
 function totaldomination(team)
 {
-	level endon(#"flag_captured");
-	level endon(#"game_ended");
+	level endon("flag_captured");
+	level endon("game_ended");
 	wait(180);
 	challenges::totaldomination(team);
 }
@@ -900,12 +900,12 @@ function totaldomination(team)
 */
 function watchforbflagcap()
 {
-	level endon(#"game_ended");
-	level endon(#"endwatchforbflagcapaftertime");
+	level endon("game_ended");
+	level endon("endwatchforbflagcapaftertime");
 	level thread endwatchforbflagcapaftertime(60);
 	for(;;)
 	{
-		level waittill(#"b_flag_captured", player);
+		level waittill("b_flag_captured", player);
 		player challenges::capturedbfirstminute();
 	}
 }
@@ -921,9 +921,9 @@ function watchforbflagcap()
 */
 function endwatchforbflagcapaftertime(time)
 {
-	level endon(#"game_ended");
+	level endon("game_ended");
 	wait(60);
-	level notify(#"endwatchforbflagcapaftertime");
+	level notify("endwatchforbflagcapaftertime");
 }
 
 /*
@@ -975,7 +975,7 @@ function give_capture_credit(touchlist, string, lastownerteam, isbflag, neutrali
 			player_from_touchlist recordgameevent("capture");
 			if(isbflag)
 			{
-				level notify(#"b_flag_captured", player_from_touchlist);
+				level notify("b_flag_captured", player_from_touchlist);
 			}
 			if(isdefined(player_from_touchlist.pers["captures"]))
 			{
@@ -1193,7 +1193,7 @@ function onscoreclosemusic()
 	}
 	if(axisscore >= halfwayscore || alliedscore >= halfwayscore && !level.sndhalfway)
 	{
-		level notify(#"sndmusichalfway", scoredif <= scorethreshold && scorethresholdstart <= currentscore && level.playingactionmusic != 1);
+		level notify("sndmusichalfway", scoredif <= scorethreshold && scorethresholdstart <= currentscore && level.playingactionmusic != 1);
 		level.sndhalfway = 1;
 	}
 }
@@ -1363,9 +1363,9 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 */
 function killwhilecontesting(flag)
 {
-	self notify(#"killwhilecontesting");
-	self endon(#"killwhilecontesting");
-	self endon(#"disconnect");
+	self notify("killwhilecontesting");
+	self endon("killwhilecontesting");
+	self endon("disconnect");
 	killtime = gettime();
 	playerteam = self.pers["team"];
 	if(!isdefined(self.clearenemycount))
@@ -1373,7 +1373,7 @@ function killwhilecontesting(flag)
 		self.clearenemycount = 0;
 	}
 	self.clearenemycount++;
-	flag waittill(#"contest_over");
+	flag waittill("contest_over");
 	if(playerteam != self.pers["team"] || (isdefined(self.spawntime) && killtime < self.spawntime))
 	{
 		self.clearenemycount = 0;
@@ -1402,10 +1402,10 @@ function killwhilecontesting(flag)
 */
 function updateattackermultikills()
 {
-	self endon(#"disconnect");
-	level endon(#"game_ended");
-	self notify(#"updatedomrecentkills");
-	self endon(#"updatedomrecentkills");
+	self endon("disconnect");
+	level endon("game_ended");
+	self notify("updatedomrecentkills");
+	self endon("updatedomrecentkills");
 	if(!isdefined(self.recentdomattackerkillcount))
 	{
 		self.recentdomattackerkillcount = 0;
@@ -2007,7 +2007,7 @@ function onupdateuserate()
 	{
 		if(previousstate == 1)
 		{
-			self notify(#"contest_over");
+			self notify("contest_over");
 		}
 		self.contested = 0;
 	}

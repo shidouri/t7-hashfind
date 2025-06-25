@@ -236,14 +236,14 @@ function ontimelimit()
 */
 function onovertime()
 {
-	level endon(#"game_ended");
+	level endon("game_ended");
 	level.timelimitoverride = 1;
 	level.inovertime = 1;
 	globallogic_audio::leader_dialog("sudden_death");
 	globallogic_audio::leader_dialog("sudden_death_boost");
 	for(index = 0; index < level.players.size; index++)
 	{
-		level.players[index] notify(#"force_spawn");
+		level.players[index] notify("force_spawn");
 		level.players[index] thread hud_message::oldnotifymessage(&"MP_SUDDEN_DEATH", &"MP_NO_RESPAWN", undefined, (1, 0, 0), "mp_last_stand");
 		level.players[index] setclientuivisibilityflag("g_compassShowEnemies", 1);
 	}
@@ -497,7 +497,7 @@ function onenduse(team, player, result)
 	}
 	player.isplanting = 0;
 	player.isdefusing = 0;
-	player notify(#"event_ended");
+	player notify("event_ended");
 }
 
 /*
@@ -511,7 +511,7 @@ function onenduse(team, player, result)
 */
 function onpickup(player)
 {
-	level notify(#"bomb_picked_up");
+	level notify("bomb_picked_up");
 	player recordgameevent("pickup");
 	self.autoresettime = 60;
 	level.usestartspawns = 0;
@@ -596,7 +596,7 @@ function ondrop(player)
 			}
 		#/
 		globallogic_audio::leader_dialog("bomb_lost", self gameobjects::get_owner_team());
-		player notify(#"event_ended");
+		player notify("event_ended");
 		level.bombzones["axis"].trigger setinvisibletoall();
 		level.bombzones["allies"].trigger setinvisibletoall();
 		thread abandonmentthink(0);
@@ -614,7 +614,7 @@ function ondrop(player)
 */
 function abandonmentthink(delay)
 {
-	level endon(#"bomb_picked_up");
+	level endon("bomb_picked_up");
 	wait(delay);
 	if(isdefined(self.carrier))
 	{
@@ -654,7 +654,7 @@ function onuse(player)
 	otherteam = util::getotherteam(team);
 	if(!self gameobjects::is_friendly_team(player.pers["team"]))
 	{
-		player notify(#"bomb_planted");
+		player notify("bomb_planted");
 		/#
 			print("");
 		#/
@@ -683,7 +683,7 @@ function onuse(player)
 	}
 	else
 	{
-		player notify(#"bomb_defused");
+		player notify("bomb_defused");
 		/#
 			print("");
 		#/
@@ -796,7 +796,7 @@ function bombplanted(destroyedobj, team)
 */
 function bombtimerwait()
 {
-	level endon(#"bomb_defused");
+	level endon("bomb_defused");
 	hostmigration::waitlongdurationwithgameendtimeupdate(level.bombtimer);
 }
 
@@ -867,7 +867,7 @@ function bombdefused(object)
 	{
 		level.timelimitoverride = 0;
 	}
-	level notify(#"bomb_defused");
+	level notify("bomb_defused");
 }
 
 /*

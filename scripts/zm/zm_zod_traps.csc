@@ -113,8 +113,8 @@ function filter_areaname(e_entity, str_areaname)
 */
 function update_active_chain_anims(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self notify(#"update_active_chain_anims");
-	self endon(#"update_active_chain_anims");
+	self notify("update_active_chain_anims");
+	self endon("update_active_chain_anims");
 	mdl_chains_active = self;
 	mdl_chains_active util::waittill_dobj(localclientnum);
 	switch(newval)
@@ -160,8 +160,8 @@ function update_active_chain_anims(localclientnum, oldval, newval, bnewent, bini
 */
 function scene_play(scene, mdl_pod)
 {
-	self notify(#"scene_play");
-	self endon(#"scene_play");
+	self notify("scene_play");
+	self endon("scene_play");
 	self scene::stop();
 	self function_6221b6b9(scene, mdl_pod);
 	self scene::stop();
@@ -178,7 +178,7 @@ function scene_play(scene, mdl_pod)
 */
 function function_6221b6b9(scene, mdl_pod)
 {
-	level endon(#"demo_jump");
+	level endon("demo_jump");
 	self scene::play(scene, mdl_pod);
 }
 

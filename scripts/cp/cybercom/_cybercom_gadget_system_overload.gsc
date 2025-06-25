@@ -402,7 +402,7 @@ function ai_activatesystemoverload(target, var_9bc2efcb = 1, disabletimemsec)
 */
 function system_overload(attacker, disabletimemsec, weapon = getweapon("gadget_system_overload"), checkvalid = 1)
 {
-	self endon(#"death");
+	self endon("death");
 	self notify(#"hash_f8c5dd60", weapon, attacker);
 	if(isvehicle(self))
 	{
@@ -503,7 +503,7 @@ function system_overload(attacker, disabletimemsec, weapon = getweapon("gadget_s
 */
 function function_53cfe88a()
 {
-	self endon(#"death");
+	self endon("death");
 	wait(getdvarfloat("scr_system_overload_loop_time", 5.9));
 	self notify(#"hash_355afb47");
 }

@@ -345,10 +345,10 @@ function player_give_quantum_bomb()
 */
 function player_handle_quantum_bomb()
 {
-	self notify(#"starting_quantum_bomb");
-	self endon(#"disconnect");
-	self endon(#"starting_quantum_bomb");
-	level endon(#"end_game");
+	self notify("starting_quantum_bomb");
+	self endon("disconnect");
+	self endon("starting_quantum_bomb");
+	level endon("end_game");
 	while(true)
 	{
 		grenade = self get_thrown_quantum_bomb();
@@ -359,7 +359,7 @@ function player_handle_quantum_bomb()
 				grenade delete();
 				continue;
 			}
-			grenade waittill(#"explode", position);
+			grenade waittill("explode", position);
 			playsoundatposition("wpn_quantum_exp", position);
 			result = self quantum_bomb_select_result(position);
 			self thread [[result.result_func]](position);
@@ -394,11 +394,11 @@ function quantum_bomb_exists()
 */
 function get_thrown_quantum_bomb()
 {
-	self endon(#"disconnect");
-	self endon(#"starting_quantum_bomb");
+	self endon("disconnect");
+	self endon("starting_quantum_bomb");
 	while(true)
 	{
-		self waittill(#"grenade_fire", grenade, weapname);
+		self waittill("grenade_fire", grenade, weapname);
 		if(weapname == level.w_quantum_bomb)
 		{
 			return grenade;
@@ -556,7 +556,7 @@ function quantum_bomb_random_weapon_starburst_result(position)
 	start_yaw = (0, start_yaw[1], 0);
 	weapon_model = zm_utility::spawn_weapon_model(weapon, undefined, position, start_yaw);
 	weapon_model moveto(base_pos, 1, 0.25, 0.25);
-	weapon_model waittill(#"movedone");
+	weapon_model waittill("movedone");
 	for(i = 0; i < 36; i++)
 	{
 		yaw = start_yaw + (randomintrange(-3, 3), i * 10, 0);
@@ -814,7 +814,7 @@ function quantum_bomb_teleport_player(player)
 */
 function quantum_bomb_teleport(struct_dest)
 {
-	self endon(#"death");
+	self endon("death");
 	if(!isdefined(struct_dest))
 	{
 		return;

@@ -76,7 +76,7 @@ function __main__()
 */
 function player_rumble_and_shake(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	switch(newval)
 	{
 		case 5:
@@ -86,7 +86,7 @@ function player_rumble_and_shake(localclientnum, oldval, newval, bnewent, biniti
 		}
 		case 6:
 		{
-			self notify(#"stop_rumble_and_shake");
+			self notify("stop_rumble_and_shake");
 			self earthquake(0.6, 1.5, self.origin, 100);
 			self playrumbleonentity(localclientnum, "artillery_rumble");
 			break;
@@ -121,12 +121,12 @@ function player_rumble_and_shake(localclientnum, oldval, newval, bnewent, biniti
 		}
 		case 0:
 		{
-			self notify(#"stop_rumble_and_shake");
+			self notify("stop_rumble_and_shake");
 			break;
 		}
 		default:
 		{
-			self notify(#"stop_rumble_and_shake");
+			self notify("stop_rumble_and_shake");
 			break;
 		}
 	}
@@ -143,9 +143,9 @@ function player_rumble_and_shake(localclientnum, oldval, newval, bnewent, biniti
 */
 function player_continuous_rumble(localclientnum, n_rumble_level, var_10ba4a4c = 1)
 {
-	self notify(#"stop_rumble_and_shake");
-	self endon(#"disconnect");
-	self endon(#"stop_rumble_and_shake");
+	self notify("stop_rumble_and_shake");
+	self endon("disconnect");
+	self endon("stop_rumble_and_shake");
 	start_time = gettime();
 	while((gettime() - start_time) < 120000)
 	{
@@ -266,7 +266,7 @@ function function_ed6c6bcf(localclientnum, str_fx_name, var_bec640ba)
 */
 function fire_trap(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	switch(newval)
 	{
 		case 0:
@@ -305,7 +305,7 @@ function fire_trap(localclientnum, oldval, newval, bnewent, binitialsnap, fieldn
 */
 function function_379d49e8(localclientnum, n_delay = 0)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	wait(n_delay);
 	if(isdefined(self.var_39d354b5))
 	{
@@ -408,7 +408,7 @@ function rq_gateworm_magic(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function rq_gateworm_dissolve(localclientnum, var_9304bb31)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	n_start_time = gettime();
 	n_end_time = n_start_time + (2 * 1000);
 	b_is_updating = 1;

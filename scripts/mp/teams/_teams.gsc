@@ -159,7 +159,7 @@ function on_joined_spectators()
 */
 function track_played_time()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	if(!isdefined(self.pers["totalTimePlayed"]))
 	{
 		self.pers["totalTimePlayed"] = 0;
@@ -371,7 +371,7 @@ function change(team)
 	self spectating::set_permissions();
 	self setclientscriptmainmenu(game["menu_start_menu"]);
 	self openmenu(game["menu_start_menu"]);
-	self notify(#"end_respawn");
+	self notify("end_respawn");
 }
 
 /*
@@ -417,7 +417,7 @@ function count_players()
 */
 function track_free_played_time()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	foreach(team in level.teams)
 	{
 		self.timeplayed[team] = 0;

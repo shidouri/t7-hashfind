@@ -191,8 +191,8 @@ function private bgb_machine_selection(localclientnum, oldval, newval, bnewent, 
 */
 function private bgb_machine_play_random_sparks(localclientnum, fx, piece)
 {
-	piece endon(#"opened");
-	piece endon(#"closed");
+	piece endon("opened");
+	piece endon("closed");
 	self.bgb_machine_fx_bulb_tags = array::randomize(self.bgb_machine_fx_bulb_tags);
 	for(i = 0; i < self.bgb_machine_fx_bulb_tags.size; i++)
 	{
@@ -300,7 +300,7 @@ function private bgb_machine_flying_gumballs_think(localclientnum)
 */
 function function_5885778a(piece)
 {
-	level endon(#"demo_jump");
+	level endon("demo_jump");
 	piece util::waittill_any("opening", "closing");
 }
 
@@ -357,8 +357,8 @@ function private bgb_machine_give_gumball_think(localclientnum)
 */
 function function_36a807de(piece)
 {
-	level endon(#"demo_jump");
-	piece waittill(#"opening");
+	level endon("demo_jump");
+	piece waittill("opening");
 }
 
 /*
@@ -375,7 +375,7 @@ function private bgb_machine_interior_light_shake_piece_think(localclientnum)
 	piece = self zbarriergetpiece(1);
 	for(;;)
 	{
-		piece waittill(#"opening");
+		piece waittill("opening");
 		bgb_machine_play_fx(localclientnum, piece, "tag_fx_glass_cntr_jnt", level._effect["zm_bgb_machine_light_interior"]);
 		wait(0.01);
 	}
@@ -589,8 +589,8 @@ function private function_d5f882d0(localclientnum)
 */
 function private function_eb5b80c5(localclientnum)
 {
-	self notify(#"bgb_machine_bulb_fx_start");
-	self endon(#"bgb_machine_bulb_fx_start");
+	self notify("bgb_machine_bulb_fx_start");
+	self endon("bgb_machine_bulb_fx_start");
 	self bgb_machine_play_all_bulb_fx(localclientnum, self zbarriergetpiece(5), undefined);
 	self bgb_machine_play_fx(localclientnum, self zbarriergetpiece(5), "tag_origin", level._effect["zm_bgb_machine_available"]);
 }
@@ -606,8 +606,8 @@ function private function_eb5b80c5(localclientnum)
 */
 function private bgb_machine_bulb_flash(localclientnum, piece, fx, flash_time, alias)
 {
-	self notify(#"bgb_machine_bulb_fx_start");
-	self endon(#"bgb_machine_bulb_fx_start");
+	self notify("bgb_machine_bulb_fx_start");
+	self endon("bgb_machine_bulb_fx_start");
 	function_d5f882d0(localclientnum);
 	for(;;)
 	{
@@ -675,7 +675,7 @@ function private bgb_machine_bulb_flash_away(localclientnum)
 */
 function private bgb_machine_bulb_solid_away(localclientnum)
 {
-	self notify(#"bgb_machine_bulb_fx_start");
+	self notify("bgb_machine_bulb_fx_start");
 	function_d5f882d0(localclientnum);
 	bgb_machine_play_all_bulb_fx(localclientnum, self zbarriergetpiece(5), level._effect["zm_bgb_machine_bulb_away"]);
 }
@@ -839,7 +839,7 @@ function private function_763ef0fd(localclientnum)
 {
 	self notify(#"hash_763ef0fd");
 	self endon(#"hash_763ef0fd");
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(true)
 	{
 		rounds = getroundsplayed(localclientnum);
@@ -865,10 +865,10 @@ function private function_5d9d13da(localclientnum)
 {
 	self notify(#"hash_5d9d13da");
 	self endon(#"hash_5d9d13da");
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(true)
 	{
-		self waittill(#"powerup", powerup, state);
+		self waittill("powerup", powerup, state);
 		if(powerup == "powerup_fire_sale")
 		{
 			level.var_f26edb66[localclientnum] = state;
@@ -888,7 +888,7 @@ function private function_5d9d13da(localclientnum)
 */
 function private function_fda54943(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	var_89caac36 = 160000;
 	while(true)
 	{

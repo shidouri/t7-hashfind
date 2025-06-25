@@ -141,8 +141,8 @@ function update_fungus_pod_level(localclientnum, oldval, newval, bnewent, biniti
 */
 function scene_play(scene, mdl_pod)
 {
-	self notify(#"scene_play");
-	self endon(#"scene_play");
+	self notify("scene_play");
+	self endon("scene_play");
 	self scene::stop();
 	self function_6221b6b9(scene, mdl_pod);
 	self scene::stop();
@@ -159,7 +159,7 @@ function scene_play(scene, mdl_pod)
 */
 function function_6221b6b9(scene, mdl_pod)
 {
-	level endon(#"demo_jump");
+	level endon("demo_jump");
 	self scene::play(scene, mdl_pod);
 }
 

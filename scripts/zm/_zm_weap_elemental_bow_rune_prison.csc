@@ -145,8 +145,8 @@ function runeprison_rock_fx(localclientnum, oldval, newval, bnewent, binitialsna
 */
 function scene_play(scene, var_7b98b639)
 {
-	self notify(#"scene_play");
-	self endon(#"scene_play");
+	self notify("scene_play");
+	self endon("scene_play");
 	self scene::stop();
 	self function_6221b6b9(scene, var_7b98b639);
 	if(isdefined(self))
@@ -166,7 +166,7 @@ function scene_play(scene, var_7b98b639)
 */
 function function_6221b6b9(scene, var_7b98b639)
 {
-	level endon(#"demo_jump");
+	level endon("demo_jump");
 	self scene::play(scene, var_7b98b639);
 }
 
@@ -181,7 +181,7 @@ function function_6221b6b9(scene, var_7b98b639)
 */
 function function_79854312(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	n_start_time = gettime();
 	n_end_time = n_start_time + 1633;
 	b_is_updating = 1;
@@ -269,7 +269,7 @@ function runeprison_lava_geyser_dot_fx(localclientnum, oldval, newval, bnewent, 
 */
 function runeprison_zombie_charring(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(newval)
 	{
 		n_cur_time = gettime();

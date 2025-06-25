@@ -73,7 +73,7 @@ function getotherteam(team)
 */
 function fireflies_attacking(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -81,7 +81,7 @@ function fireflies_attacking(localclientnum, oldval, newval, bnewent, binitialsn
 	}
 	if(newval)
 	{
-		self notify(#"stop_player_fx");
+		self notify("stop_player_fx");
 		if(self islocalplayer() && !self getinkillcam(localclientnum))
 		{
 			fx = playfxoncamera(localclientnum, "weapon/fx_ability_firefly_attack_1p", (0, 0, 0), (1, 0, 0), (0, 0, 1));
@@ -90,7 +90,7 @@ function fireflies_attacking(localclientnum, oldval, newval, bnewent, binitialsn
 	}
 	else
 	{
-		self notify(#"stop_player_fx");
+		self notify("stop_player_fx");
 	}
 }
 
@@ -105,7 +105,7 @@ function fireflies_attacking(localclientnum, oldval, newval, bnewent, binitialsn
 */
 function fireflies_chasing(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -113,7 +113,7 @@ function fireflies_chasing(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	if(newval)
 	{
-		self notify(#"stop_player_fx");
+		self notify("stop_player_fx");
 		if(self islocalplayer() && !self getinkillcam(localclientnum))
 		{
 			fx = playfxoncamera(localclientnum, "weapon/fx_ability_firefly_chase_1p", (0, 0, 0), (1, 0, 0), (0, 0, 1));
@@ -124,7 +124,7 @@ function fireflies_chasing(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	else
 	{
-		self notify(#"stop_player_fx");
+		self notify("stop_player_fx");
 	}
 }
 
@@ -165,7 +165,7 @@ function watch_player_fx_finished(localclientnum, fx, sound)
 */
 function firefly_state_change(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -297,7 +297,7 @@ function firefly_watch_fx_finished(localclientnum, fx)
 */
 function firefly_attacking(localclientnum)
 {
-	self notify(#"stop_effects");
+	self notify("stop_effects");
 	self.no_death_fx = 1;
 }
 
@@ -314,7 +314,7 @@ function firefly_link_attacking(localclientnum)
 {
 	fx = playfx(localclientnum, "weapon/fx_hero_firefly_start_entity", self.origin, anglestoup(self.angles));
 	setfxteam(localclientnum, fx, self.team);
-	self notify(#"stop_effects");
+	self notify("stop_effects");
 	self.no_death_fx = 1;
 }
 
@@ -348,7 +348,7 @@ function gib_fx(localclientnum, fxfilename, gibflag)
 */
 function gib_corpse(localclientnum, value)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self thread watch_for_gib_notetracks(localclientnum);
 }
 
@@ -363,7 +363,7 @@ function gib_corpse(localclientnum, value)
 */
 function watch_for_gib_notetracks(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!util::is_mature() || util::is_gib_restricted_build())
 	{
 		return;

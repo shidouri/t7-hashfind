@@ -314,7 +314,7 @@ function private _activate_forced_malfunction(slot, weapon)
 */
 function private function_586fec95(attacker, disablefor, weapon)
 {
-	self endon(#"death");
+	self endon("death");
 	self clientfield::set("forced_malfunction", 1);
 	self.is_disabled = 1;
 	self dodamage(5, self.origin, (isdefined(attacker) ? attacker : undefined), undefined, "none", "MOD_UNKNOWN", 0, weapon, -1, 1);
@@ -334,7 +334,7 @@ function private function_586fec95(attacker, disablefor, weapon)
 */
 function private function_609fcb0a(attacker, disablefor, weapon)
 {
-	self endon(#"death");
+	self endon("death");
 	if(!cybercom::function_76e3026d(self))
 	{
 		self kill(self.origin, (isdefined(attacker) ? attacker : undefined));
@@ -372,7 +372,7 @@ function private function_609fcb0a(attacker, disablefor, weapon)
 */
 function private _force_malfunction(attacker, disabletimemsec)
 {
-	self endon(#"death");
+	self endon("death");
 	weapon = getweapon("gadget_forced_malfunction");
 	self notify(#"hash_f8c5dd60", weapon, attacker);
 	if(isdefined(disabletimemsec))

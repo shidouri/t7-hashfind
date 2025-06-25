@@ -446,7 +446,7 @@ function _immolategrenadedetonationwatch(tag, count, attacker, weapon)
 */
 function _immolatehuman(attacker, upgraded, immediate = 0)
 {
-	self endon(#"death");
+	self endon("death");
 	weapon = getweapon("gadget_immolation");
 	self clientfield::set("cybercom_immolate", 1);
 	if(immediate)
@@ -470,7 +470,7 @@ function _immolatehuman(attacker, upgraded, immediate = 0)
 	numgrenades = undefined;
 	if(self.archetype != "human_riotshield" && self cybercom::function_78525729() == "stand" && randomint(100) < getdvarint("scr_immolation_specialanimchance", 15))
 	{
-		self notify(#"bhtn_action_notify", "reactImmolationLong");
+		self notify("bhtn_action_notify", "reactImmolationLong");
 		self thread _immolategrenadedetonationwatch("tag_inhand", 1, attacker, weapon);
 		self animscripted("immo_anim", self.origin, self.angles, "ai_base_rifle_stn_exposed_immolate_explode_midthrow");
 		self thread cybercom::stopanimscriptedonnotify("damage_pain", "immo_anim", 1, attacker, weapon);
@@ -482,11 +482,11 @@ function _immolatehuman(attacker, upgraded, immediate = 0)
 		playfxontag("light/fx_ability_light_chest_immolation", self.grenade_prop, "tag_origin");
 		self waittillmatch(#"immo_anim");
 		self stopsound("gdt_immolation_human_countdown");
-		self notify(#"explode", "explode", "grenade_right");
+		self notify("explode", "explode", "grenade_right");
 	}
 	else
 	{
-		self notify(#"bhtn_action_notify", "reactImmolation");
+		self notify("bhtn_action_notify", "reactImmolation");
 		self dodamage(5, self.origin, (isdefined(attacker) ? attacker : undefined), undefined, "none", "MOD_UNKNOWN", 0, weapon, -1, 1);
 		playfxontag("light/fx_ability_light_chest_immolation", self, "tag_weapon_chest");
 		self thread function_f8956516();
@@ -505,10 +505,10 @@ function _immolatehuman(attacker, upgraded, immediate = 0)
 */
 function function_f8956516()
 {
-	self endon(#"death");
+	self endon("death");
 	self waittillmatch(#"bhtn_action_terminate");
 	self stopsound("gdt_immolation_human_countdown");
-	self notify(#"explode", "specialpain");
+	self notify("explode", "specialpain");
 }
 
 /*
@@ -522,7 +522,7 @@ function function_f8956516()
 */
 function _immolaterobot(attacker, upgraded, immediate = 0)
 {
-	self endon(#"death");
+	self endon("death");
 	if(!immediate)
 	{
 		wait(randomfloatrange(0.1, 0.75));
@@ -584,7 +584,7 @@ function _immolaterobot(attacker, upgraded, immediate = 0)
 function private _corpsewatcher()
 {
 	archetype = self.archetype;
-	self waittill(#"actor_corpse", corpse);
+	self waittill("actor_corpse", corpse);
 	corpse clientfield::set("arch_actor_fire_fx", 2);
 }
 
@@ -599,7 +599,7 @@ function private _corpsewatcher()
 */
 function private _detonate_grenades(guy, chance = getdvarint("scr_immolation_gchance", 100), numextradetonations = randomint(getdvarint("scr_immolation_gcount", 3)) + 1)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	loc = guy _get_grenade_spawn_loc();
 	grenade = self magicgrenadetype(getweapon("frag_grenade_notrail"), loc, (0, 0, 0), 0);
 	while(numextradetonations && isdefined(self) && isdefined(guy))
@@ -810,7 +810,7 @@ function ai_activateimmolate(target, var_9bc2efcb = 1, upgraded)
 */
 function function_4f174738()
 {
-	self endon(#"death");
+	self endon("death");
 	self.var_a691a602 = 0;
 	wait(2);
 	self.var_a691a602 = undefined;

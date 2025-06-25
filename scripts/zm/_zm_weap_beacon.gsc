@@ -68,9 +68,9 @@ function player_give_beacon()
 */
 function player_handle_beacon()
 {
-	self notify(#"starting_beacon_watch");
-	self endon(#"disconnect");
-	self endon(#"starting_beacon_watch");
+	self notify("starting_beacon_watch");
+	self endon("disconnect");
+	self endon("starting_beacon_watch");
 	attract_dist_diff = level.beacon_attract_dist_diff;
 	if(!isdefined(attract_dist_diff))
 	{
@@ -105,8 +105,8 @@ function player_handle_beacon()
 */
 function watch_for_dud(model, actor)
 {
-	self endon(#"death");
-	self waittill(#"grenade_dud");
+	self endon("death");
+	self waittill("grenade_dud");
 	model.dud = 1;
 	self.monk_scream_vox = 1;
 	wait(3);
@@ -139,14 +139,14 @@ function watch_for_dud(model, actor)
 */
 function watch_for_emp(model, actor)
 {
-	self endon(#"death");
+	self endon("death");
 	if(!zm_utility::should_watch_for_emp())
 	{
 		return;
 	}
 	while(true)
 	{
-		level waittill(#"emp_detonate", origin, radius);
+		level waittill("emp_detonate", origin, radius);
 		if(distancesquared(origin, self.origin) < (radius * radius))
 		{
 			break;
@@ -192,8 +192,8 @@ function watch_for_emp(model, actor)
 */
 function clone_player_angles(owner)
 {
-	self endon(#"death");
-	owner endon(#"bled_out");
+	self endon("death");
+	owner endon("bled_out");
 	while(isdefined(self))
 	{
 		self.angles = owner.angles;
@@ -212,7 +212,7 @@ function clone_player_angles(owner)
 */
 function show_briefly(showtime)
 {
-	self endon(#"show_owner");
+	self endon("show_owner");
 	if(isdefined(self.show_for_time))
 	{
 		self.show_for_time = showtime;
@@ -240,15 +240,15 @@ function show_briefly(showtime)
 */
 function show_owner_on_attack(owner)
 {
-	owner endon(#"hide_owner");
-	owner endon(#"show_owner");
-	self endon(#"explode");
-	self endon(#"death");
-	self endon(#"grenade_dud");
+	owner endon("hide_owner");
+	owner endon("show_owner");
+	self endon("explode");
+	self endon("death");
+	self endon("grenade_dud");
 	owner.show_for_time = undefined;
 	for(;;)
 	{
-		owner waittill(#"weapon_fired");
+		owner waittill("weapon_fired");
 		owner thread show_briefly(0.5);
 	}
 }
@@ -264,12 +264,12 @@ function show_owner_on_attack(owner)
 */
 function hide_owner(owner)
 {
-	self notify(#"hide_owner");
-	owner notify(#"hide_owner");
-	owner endon(#"hide_owner");
+	self notify("hide_owner");
+	owner notify("hide_owner");
+	owner endon("hide_owner");
 	owner setperk("specialty_immunemms");
 	owner.no_burning_sfx = 1;
-	owner notify(#"stop_flame_sounds");
+	owner notify("stop_flame_sounds");
 	owner setvisibletoallexceptteam(level.zombie_team);
 	owner.hide_owner = 1;
 	if(isdefined(level._effect["human_disappears"]))
@@ -281,7 +281,7 @@ function hide_owner(owner)
 	/#
 		println("" + evt);
 	#/
-	owner notify(#"show_owner");
+	owner notify("show_owner");
 	owner unsetperk("specialty_immunemms");
 	if(isdefined(level._effect["human_disappears"]))
 	{
@@ -318,7 +318,7 @@ function proximity_detonate(owner)
 	self.damagearea = damagearea;
 	while(isdefined(self))
 	{
-		damagearea waittill(#"trigger", ent);
+		damagearea waittill("trigger", ent);
 		if(isdefined(owner) && ent == owner)
 		{
 			continue;
@@ -357,11 +357,11 @@ function proximity_detonate(owner)
 */
 function player_throw_beacon(grenade, num_attractors, max_attract_dist, attract_dist_diff)
 {
-	self endon(#"disconnect");
-	self endon(#"starting_beacon_watch");
+	self endon("disconnect");
+	self endon("starting_beacon_watch");
 	if(isdefined(grenade))
 	{
-		grenade endon(#"death");
+		grenade endon("death");
 		if(self laststand::player_is_in_laststand())
 		{
 			if(isdefined(grenade.damagearea))
@@ -374,7 +374,7 @@ function player_throw_beacon(grenade, num_attractors, max_attract_dist, attract_
 		var_65f5946c = vectorscale((0, 0, 1), 8);
 		grenade ghost();
 		model = spawn("script_model", grenade.origin + var_65f5946c);
-		model endon(#"weapon_beacon_timeout");
+		model endon("weapon_beacon_timeout");
 		model setmodel("wpn_t7_zmb_hd_g_strike_world");
 		model useanimtree($zombie_beacon);
 		model linkto(grenade, "", var_65f5946c);
@@ -395,7 +395,7 @@ function player_throw_beacon(grenade, num_attractors, max_attract_dist, attract_
 		grenade thread watch_for_dud(model, clone);
 		info = spawnstruct();
 		info.sound_attractors = [];
-		grenade waittill(#"stationary");
+		grenade waittill("stationary");
 		if(isdefined(level.grenade_planted))
 		{
 			self thread [[level.grenade_planted]](grenade, model);
@@ -521,7 +521,7 @@ function grenade_stolen_by_sam(ent_grenade, ent_model, ent_actor)
 	playfxontag(level._effect["grenade_samantha_steal"], ent_model, "tag_origin");
 	ent_model movez(60, 1, 0.25, 0.25);
 	ent_model vibrate(direction, 1.5, 2.5, 1);
-	ent_model waittill(#"movedone");
+	ent_model waittill("movedone");
 	if(isdefined(self.damagearea))
 	{
 		self.damagearea delete();
@@ -552,7 +552,7 @@ function grenade_stolen_by_sam(ent_grenade, ent_model, ent_actor)
 */
 function wait_for_attractor_positions_complete()
 {
-	self waittill(#"attractor_positions_generated");
+	self waittill("attractor_positions_generated");
 	self.attract_to_origin = 0;
 }
 
@@ -620,8 +620,8 @@ function do_beacon_sound(model, info)
 	{
 		self thread play_delayed_explode_vox();
 	}
-	self waittill(#"robot_artillery_barrage", position);
-	level notify(#"grenade_exploded", position, 100, 5000, 450);
+	self waittill("robot_artillery_barrage", position);
+	level notify("grenade_exploded", position, 100, 5000, 450);
 	beacon_index = -1;
 	for(i = 0; i < level.beacons.size; i++)
 	{
@@ -639,7 +639,7 @@ function do_beacon_sound(model, info)
 	{
 		if(isdefined(info.sound_attractors[i]))
 		{
-			info.sound_attractors[i] notify(#"beacon_blown_up");
+			info.sound_attractors[i] notify("beacon_blown_up");
 		}
 	}
 	self delete();
@@ -670,11 +670,11 @@ function play_delayed_explode_vox()
 */
 function get_thrown_beacon()
 {
-	self endon(#"disconnect");
-	self endon(#"starting_beacon_watch");
+	self endon("disconnect");
+	self endon("starting_beacon_watch");
 	while(true)
 	{
-		self waittill(#"grenade_fire", grenade, weapon);
+		self waittill("grenade_fire", grenade, weapon);
 		if(weapon == level.w_beacon)
 		{
 			grenade.use_grenade_special_long_bookmark = 1;
@@ -696,12 +696,12 @@ function get_thrown_beacon()
 */
 function wait_and_explode(grenade)
 {
-	self endon(#"beacon_missile_launch");
-	grenade waittill(#"explode", position);
-	self notify(#"weapon_beacon_timeout");
+	self endon("beacon_missile_launch");
+	grenade waittill("explode", position);
+	self notify("weapon_beacon_timeout");
 	if(isdefined(grenade))
 	{
-		grenade notify(#"robot_artillery_barrage", self.origin);
+		grenade notify("robot_artillery_barrage", self.origin);
 	}
 }
 
@@ -716,7 +716,7 @@ function wait_and_explode(grenade)
 */
 function start_artillery_launch_normal(grenade)
 {
-	self endon(#"weapon_beacon_timeout");
+	self endon("weapon_beacon_timeout");
 	sp_giant_robot = undefined;
 	while(!isdefined(sp_giant_robot))
 	{
@@ -728,7 +728,7 @@ function start_artillery_launch_normal(grenade)
 				{
 					sp_giant_robot = level.a_giant_robots[i];
 					self thread artillery_fx_logic(sp_giant_robot, grenade);
-					self notify(#"beacon_missile_launch");
+					self notify("beacon_missile_launch");
 					level.weapon_beacon_busy = 1;
 					grenade.fuse_reset = 1;
 					grenade.fuse_time = 100;
@@ -752,7 +752,7 @@ function start_artillery_launch_normal(grenade)
 */
 function start_artillery_launch_ee(grenade)
 {
-	self endon(#"weapon_beacon_timeout");
+	self endon("weapon_beacon_timeout");
 	sp_giant_robot = undefined;
 	n_index = 0;
 	a_robot_index = [];
@@ -768,7 +768,7 @@ function start_artillery_launch_ee(grenade)
 			{
 				sp_giant_robot = level.a_giant_robots[n_robot_num];
 				self thread artillery_fx_logic_ee(sp_giant_robot, grenade);
-				self notify(#"beacon_missile_launch");
+				self notify("beacon_missile_launch");
 				level.weapon_beacon_busy = 1;
 				grenade.fuse_reset = 1;
 				grenade.fuse_time = 100;
@@ -921,7 +921,7 @@ function artillery_barrage_logic(grenade, b_ee = 0)
 	}
 	level thread allow_beacons_to_be_targeted_by_giant_robot();
 	wait(6);
-	grenade notify(#"robot_artillery_barrage", self.origin);
+	grenade notify("robot_artillery_barrage", self.origin);
 }
 
 /*
@@ -1206,8 +1206,8 @@ function weap_beacon_rumble()
 */
 function execute_weap_beacon_rumble()
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	self clientfield::set_to_player("player_rumble_and_shake", 3);
 	util::wait_network_frame();
 	self clientfield::set_to_player("player_rumble_and_shake", 0);
@@ -1224,7 +1224,7 @@ function execute_weap_beacon_rumble()
 */
 function set_beacon_damage()
 {
-	self endon(#"death");
+	self endon("death");
 	self.set_beacon_damage = 1;
 	wait(0.05);
 	self.set_beacon_damage = 0;

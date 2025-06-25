@@ -50,7 +50,7 @@ function __init__()
 */
 function monitor_emp_killstreaks()
 {
-	level endon(#"disconnect");
+	level endon("disconnect");
 	if(!isdefined(level.emp_killstreaks))
 	{
 		level.emp_killstreaks = [];
@@ -140,7 +140,7 @@ function update_distance_to_closest_emp(localclientnum, new_value)
 */
 function emp_turret_init(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!newval)
 	{
 		return;
@@ -161,8 +161,8 @@ function emp_turret_init(localclientnum, oldval, newval, bnewent, binitialsnap, 
 */
 function cleanup_fx_on_shutdown(localclientnum, handle)
 {
-	self endon(#"kill_fx_cleanup");
-	self waittill(#"entityshutdown");
+	self endon("kill_fx_cleanup");
+	self waittill("entityshutdown");
 	stopfx(localclientnum, handle);
 }
 
@@ -177,7 +177,7 @@ function cleanup_fx_on_shutdown(localclientnum, handle)
 */
 function emp_turret_deploy_start(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -189,7 +189,7 @@ function emp_turret_deploy_start(localclientnum, oldval, newval, bnewent, biniti
 	}
 	else
 	{
-		self notify(#"kill_fx_cleanup");
+		self notify("kill_fx_cleanup");
 		if(isdefined(self.fxhandle))
 		{
 			stopfx(localclientnum, self.fxhandle);
@@ -209,7 +209,7 @@ function emp_turret_deploy_start(localclientnum, oldval, newval, bnewent, biniti
 */
 function emp_turret_deploy(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self useanimtree($mp_emp_power_core);
 	self setanimrestart(%mp_emp_power_core::o_turret_emp_core_deploy, 1, 0, 1);
 	length = getanimlength(%mp_emp_power_core::o_turret_emp_core_deploy);

@@ -372,7 +372,7 @@ function onspawnplayer(predictedspawn)
 */
 function dem_playerspawnedcb()
 {
-	level notify(#"spawned_player");
+	level notify("spawned_player");
 }
 
 /*
@@ -486,7 +486,7 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 */
 function checkallowspectating()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	wait(0.05);
 	update = 0;
 	livesleft = !(level.numlives && !self.pers["lives"]);
@@ -682,8 +682,8 @@ function warnlastplayer(team)
 */
 function givelastattackerwarning()
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	fullhealthtime = 0;
 	interval = 0.05;
 	while(true)
@@ -915,11 +915,11 @@ function bombs()
 */
 function setbomboverheatingafterweaponchange(useobject, overheated, heat)
 {
-	self endon(#"death");
-	self endon(#"disconnect");
-	self endon(#"joined_team");
-	self endon(#"joined_spectators");
-	self waittill(#"weapon_change", weapon);
+	self endon("death");
+	self endon("disconnect");
+	self endon("joined_team");
+	self endon("joined_spectators");
+	self waittill("weapon_change", weapon);
 	if(weapon == useobject.useweapon)
 	{
 		self setweaponoverheating(overheated, heat, weapon);
@@ -1006,7 +1006,7 @@ function onenduse(team, player, result)
 	}
 	player.isdefusing = 0;
 	player.isplanting = 0;
-	player notify(#"event_ended");
+	player notify("event_ended");
 	if(self gameobjects::is_friendly_team(player.pers["team"]))
 	{
 		if(isdefined(player.defusing) && !result)
@@ -1053,7 +1053,7 @@ function onuseobject(player)
 			print("" + self.label);
 		#/
 		bbprint("mpobjective", "gametime %d objtype %s label %s team %s playerx %d playery %d playerz %d", gettime(), "dem_bombplant", self.label, team, player.origin);
-		player notify(#"bomb_planted");
+		player notify("bomb_planted");
 		thread globallogic_audio::set_music_on_team("DEM_WE_PLANT", team, 5);
 		thread globallogic_audio::set_music_on_team("DEM_THEY_PLANT", enemyteam, 5);
 		if(isdefined(player.pers["plants"]))
@@ -1080,7 +1080,7 @@ function onuseobject(player)
 	else
 	{
 		self gameobjects::set_flags(0);
-		player notify(#"bomb_defused");
+		player notify("bomb_defused");
 		/#
 			print("" + self.label);
 		#/
@@ -1137,7 +1137,7 @@ function ondrop(player)
 			}
 		#/
 	}
-	player notify(#"event_ended");
+	player notify("event_ended");
 	self gameobjects::set_3d_icon("friendly", "waypoint_bomb");
 	sound::play_on_players(game["bomb_dropped_sound"], game["attackers"]);
 }
@@ -1248,8 +1248,8 @@ function dropbombmodel(player, site)
 */
 function bombplanted(destroyedobj, player)
 {
-	level endon(#"game_ended");
-	destroyedobj endon(#"bomb_defused");
+	level endon("game_ended");
+	destroyedobj endon("bomb_defused");
 	team = player.team;
 	game["challenge"][team]["plantedBomb"] = 1;
 	globallogic_utils::pausetimer();
@@ -1510,7 +1510,7 @@ function bombdefused(player)
 	self gameobjects::allow_use("none");
 	self gameobjects::set_visible_team("none");
 	self.bombdefused = 1;
-	self notify(#"bomb_defused");
+	self notify("bomb_defused");
 	self.bombplanted = 0;
 	self bombreset(self.label, "bomb_defused");
 	player setweaponoverheating(1, 100, self.useweapon);

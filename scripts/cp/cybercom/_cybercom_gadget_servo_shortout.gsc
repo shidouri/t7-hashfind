@@ -343,7 +343,7 @@ function private _update_gib_position()
 */
 function servo_shortoutvehicle(attacker, upgraded, weapon)
 {
-	self endon(#"death");
+	self endon("death");
 	self clientfield::set("cybercom_shortout", (upgraded ? 2 : 1));
 	util::wait_network_frame();
 	wait(0.5);
@@ -406,7 +406,7 @@ function function_a61788ff()
 */
 function servo_shortout(attacker, weapon = getweapon("gadget_servo_shortout"), upgraded, var_66a2f0cf, damage = 2)
 {
-	self endon(#"death");
+	self endon("death");
 	self notify(#"hash_f8c5dd60", weapon, attacker);
 	if(isvehicle(self))
 	{

@@ -196,7 +196,7 @@ function private _burnstage(localclientnum, tagarray, shouldwait)
 	{
 		return;
 	}
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	tags = array::randomize(tagarray);
 	for(i = 1; i < tags.size; i++)
 	{
@@ -216,7 +216,7 @@ function private _burnstage(localclientnum, tagarray, shouldwait)
 	}
 	if(isdefined(self))
 	{
-		self notify(#"burn_stage_finished");
+		self notify("burn_stage_finished");
 	}
 }
 
@@ -231,7 +231,7 @@ function private _burnstage(localclientnum, tagarray, shouldwait)
 */
 function private _burnbody(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self.burn_loop_sound_handle = self playloopsound("chr_burn_npc_loop1", 0.2);
 	timer = 10;
 	bonemodifier = "";
@@ -264,16 +264,16 @@ function private _burnbody(localclientnum)
 	self.activefx = [];
 	self.activefx[self.activefx.size] = self thread _burnstage(localclientnum, stage1burntags, 1);
 	self mapshaderconstant(localclientnum, 0, "scriptVector0", maturemask * 0.2);
-	self waittill(#"burn_stage_finished");
+	self waittill("burn_stage_finished");
 	self.activefx[self.activefx.size] = self thread _burnstage(localclientnum, stage2burntags, 1);
 	self mapshaderconstant(localclientnum, 0, "scriptVector0", maturemask * 0.4);
-	self waittill(#"burn_stage_finished");
+	self waittill("burn_stage_finished");
 	self.activefx[self.activefx.size] = self thread _burnstage(localclientnum, stage3burntags, 1);
 	self mapshaderconstant(localclientnum, 0, "scriptVector0", maturemask * 0.6);
-	self waittill(#"burn_stage_finished");
+	self waittill("burn_stage_finished");
 	self.activefx[self.activefx.size] = self thread _burnstage(localclientnum, stage4burntags, 1);
 	self mapshaderconstant(localclientnum, 0, "scriptVector0", maturemask * 0.8);
-	self waittill(#"burn_stage_finished");
+	self waittill("burn_stage_finished");
 	self.activefx[self.activefx.size] = self thread _burnstage(localclientnum, stage5burntags, 1);
 	self mapshaderconstant(localclientnum, 0, "scriptVector0", maturemask * 1);
 }
@@ -310,7 +310,7 @@ function sndstopburnloop(timer)
 */
 function private _burncorpse(localclientnum, burningduration)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	timer = 10;
 	bonemodifier = "";
 	if(self.archetype == "robot")
@@ -343,7 +343,7 @@ function private _burncorpse(localclientnum, burningduration)
 		foreach(fx in self.activefx)
 		{
 			stopfx(localclientnum, fx);
-			self notify(#"stopburningsounds");
+			self notify("stopburningsounds");
 		}
 		if(isdefined(self))
 		{
@@ -363,7 +363,7 @@ function private _burncorpse(localclientnum, burningduration)
 */
 function private _smoldercorpse(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	bonemodifier = "";
 	if(self.archetype == "robot")
 	{
@@ -500,7 +500,7 @@ function actor_char(localclientnum, oldval, newval, bnewent, binitialsnap, field
 */
 function actorcharrampto(localclientnum, chardesired)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!isdefined(self.curcharlevel))
 	{
 		self.curcharlevel = 0;

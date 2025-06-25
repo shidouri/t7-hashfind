@@ -156,9 +156,9 @@ function on_player_connected(n_local_client)
 */
 function sun_flame(n_local_client)
 {
-	self endon(#"disconnect");
-	self endon(#"death");
-	self endon(#"entityshutdown");
+	self endon("disconnect");
+	self endon("death");
+	self endon("entityshutdown");
 	mdl_flame = getent(n_local_client, "sun_flame", "targetname");
 	mdl_flame setscale(6);
 	player = getlocalplayer(n_local_client);

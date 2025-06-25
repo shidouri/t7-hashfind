@@ -117,7 +117,7 @@ function water_dart_cleanup()
 */
 function onplayerspawned()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self thread watch_staff_water_fired();
 	self thread watch_staff_water_impact();
 	self thread zm_tomb_utility::watch_staff_usage();
@@ -134,10 +134,10 @@ function onplayerspawned()
 */
 function watch_staff_water_fired()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(true)
 	{
-		self waittill(#"missile_fire", e_projectile, str_weapon);
+		self waittill("missile_fire", e_projectile, str_weapon);
 		if(str_weapon.name == "staff_water" || str_weapon.name == "staff_water_upgraded")
 		{
 			util::wait_network_frame();
@@ -161,10 +161,10 @@ function watch_staff_water_fired()
 */
 function watch_staff_water_impact()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(true)
 	{
-		self waittill(#"projectile_impact", str_weapon, v_explode_point, n_radius, str_name, n_impact);
+		self waittill("projectile_impact", str_weapon, v_explode_point, n_radius, str_name, n_impact);
 		if(str_weapon.name == "staff_water_upgraded2" || str_weapon.name == "staff_water_upgraded3")
 		{
 			n_lifetime = 6;
@@ -311,10 +311,10 @@ function frozen_zombie_gib(gib_type)
 */
 function staff_water_position_source(v_detonate, n_lifetime_sec, str_weapon)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	if(isdefined(v_detonate))
 	{
-		level notify(#"blizzard_shot");
+		level notify("blizzard_shot");
 		e_fx = spawn("script_model", v_detonate + vectorscale((0, 0, 1), 33));
 		e_fx setmodel("tag_origin");
 		e_fx clientfield::set("staff_blizzard_fx", 1);
@@ -325,9 +325,9 @@ function staff_water_position_source(v_detonate, n_lifetime_sec, str_weapon)
 		e_fx thread zm_tomb_utility::whirlwind_rumble_nearby_players("blizzard_active");
 		e_fx thread ice_staff_blizzard_timeout(n_lifetime_sec);
 		e_fx thread ice_staff_blizzard_off();
-		e_fx waittill(#"blizzard_off");
+		e_fx waittill("blizzard_off");
 		level flag::clear("blizzard_active");
-		e_fx notify(#"stop_debug_position");
+		e_fx notify("stop_debug_position");
 		wait(0.1);
 		e_fx clientfield::set("staff_blizzard_fx", 0);
 		wait(0.1);
@@ -346,8 +346,8 @@ function staff_water_position_source(v_detonate, n_lifetime_sec, str_weapon)
 */
 function ice_staff_blizzard_do_kills(player, str_weapon)
 {
-	player endon(#"disconnect");
-	self endon(#"blizzard_off");
+	player endon("disconnect");
+	self endon("blizzard_off");
 	while(true)
 	{
 		a_zombies = getaiarray();
@@ -384,10 +384,10 @@ function ice_staff_blizzard_do_kills(player, str_weapon)
 */
 function ice_staff_blizzard_timeout(n_time)
 {
-	self endon(#"death");
-	self endon(#"blizzard_off");
+	self endon("death");
+	self endon("blizzard_off");
 	wait(n_time);
-	self notify(#"blizzard_off");
+	self notify("blizzard_off");
 }
 
 /*
@@ -401,10 +401,10 @@ function ice_staff_blizzard_timeout(n_time)
 */
 function ice_staff_blizzard_off()
 {
-	self endon(#"death");
-	self endon(#"blizzard_off");
-	level waittill(#"blizzard_shot");
-	self notify(#"blizzard_off");
+	self endon("death");
+	self endon("blizzard_off");
+	level waittill("blizzard_shot");
+	self notify("blizzard_off");
 }
 
 /*
@@ -533,7 +533,7 @@ function ice_affect_mechz(e_player, is_upgraded)
 */
 function ice_affect_zombie(str_weapon = "staff_water", e_player, always_kill = 0, n_mod = 1)
 {
-	self endon(#"death");
+	self endon("death");
 	instakill_on = e_player zm_powerups::is_insta_kill_active();
 	if(str_weapon.name == "staff_water")
 	{
@@ -610,7 +610,7 @@ function set_anim_rate(n_speed)
 	if(!(isdefined(self.is_traversing) && self.is_traversing))
 	{
 		self.needs_run_update = 1;
-		self notify(#"needs_run_update");
+		self notify("needs_run_update");
 	}
 	util::wait_network_frame();
 	if(n_speed == 1)

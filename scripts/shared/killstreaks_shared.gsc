@@ -185,7 +185,7 @@ function isheldinventorykillstreakweapon(killstreakweapon)
 */
 function waitfortimecheck(duration, callback, endcondition1, endcondition2, endcondition3)
 {
-	self endon(#"hacked");
+	self endon("hacked");
 	if(isdefined(endcondition1))
 	{
 		self endon(endcondition1);
@@ -199,7 +199,7 @@ function waitfortimecheck(duration, callback, endcondition1, endcondition2, endc
 		self endon(endcondition3);
 	}
 	hostmigration::migrationawarewait(duration);
-	self notify(#"time_check");
+	self notify("time_check");
 	self [[callback]]();
 }
 
@@ -232,9 +232,9 @@ function emp_isempd()
 */
 function waittillemp(onempdcallback, arg)
 {
-	self endon(#"death");
-	self endon(#"delete");
-	self waittill(#"emp_deployed", attacker);
+	self endon("death");
+	self endon("delete");
+	self waittill("emp_deployed", attacker);
 	if(isdefined(onempdcallback))
 	{
 		[[onempdcallback]](attacker, arg);
@@ -475,7 +475,7 @@ function destroyactivevehicles(attacker, team, weapon)
 		{
 			continue;
 		}
-		planemortar notify(#"emp_deployed", attacker);
+		planemortar notify("emp_deployed", attacker);
 	}
 	dronestrikes = getentarray("drone_strike", "targetname");
 	foreach(dronestrike in dronestrikes)
@@ -491,7 +491,7 @@ function destroyactivevehicles(attacker, team, weapon)
 		{
 			continue;
 		}
-		dronestrike notify(#"emp_deployed", attacker);
+		dronestrike notify("emp_deployed", attacker);
 	}
 	counteruavs = getentarray("counteruav", "targetname");
 	foreach(counteruav in counteruavs)
@@ -507,7 +507,7 @@ function destroyactivevehicles(attacker, team, weapon)
 		{
 			continue;
 		}
-		counteruav notify(#"emp_deployed", attacker);
+		counteruav notify("emp_deployed", attacker);
 	}
 	satellites = getentarray("satellite", "targetname");
 	foreach(satellite in satellites)
@@ -523,7 +523,7 @@ function destroyactivevehicles(attacker, team, weapon)
 		{
 			continue;
 		}
-		satellite notify(#"emp_deployed", attacker);
+		satellite notify("emp_deployed", attacker);
 	}
 	robots = getaiarchetypearray("robot");
 	foreach(robot in robots)
@@ -542,7 +542,7 @@ function destroyactivevehicles(attacker, team, weapon)
 	{
 		if(level.missile_swarm_owner util::isenemyplayer(attacker))
 		{
-			level.missile_swarm_owner notify(#"emp_destroyed_missile_swarm", attacker);
+			level.missile_swarm_owner notify("emp_destroyed_missile_swarm", attacker);
 		}
 	}
 }
@@ -578,7 +578,7 @@ function destroyentities(entities, attacker, team, weapon)
 		{
 			continue;
 		}
-		entity notify(#"damage", damage, attacker, direction_vec, point, meansofdeath, tagname, modelname, partname, weapon);
+		entity notify("damage", damage, attacker, direction_vec, point, meansofdeath, tagname, modelname, partname, weapon);
 	}
 }
 

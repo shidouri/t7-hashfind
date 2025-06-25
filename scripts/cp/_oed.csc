@@ -286,7 +286,7 @@ function player_toggle_ev(lcn, newval)
 */
 function ent_thermal_callback(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	level flagsys::wait_till("duplicaterender_registry_ready");
 	/#
 		assert(isdefined(self), "");
@@ -395,7 +395,7 @@ function deactivate_thermal_ents(localclientnum)
 */
 function structural_weakness_callback(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	level flagsys::wait_till("duplicaterender_registry_ready");
 	/#
 		assert(isdefined(self), "");
@@ -551,7 +551,7 @@ function tmode_player_toggle(localclientnum, oldval, newval, bnewent, binitialsn
 	{
 		return;
 	}
-	self notify(#"tmode_cancel");
+	self notify("tmode_cancel");
 	self.var_8b70667f = newval;
 	b_playsound = 0;
 	if(newval & 2)
@@ -620,7 +620,7 @@ function player_toggle_sitrep(lcn, newval)
 */
 function ent_material_callback(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	/#
 		assert(isdefined(self), "");
 	#/
@@ -659,12 +659,12 @@ function ent_material_callback(localclientnum, oldval, newval, bnewent, binitial
 */
 function function_537efcea(localclientnum)
 {
-	self endon(#"death");
-	self endon(#"entityshutdown");
+	self endon("death");
+	self endon("entityshutdown");
 	self endon(#"hash_1b32b83b");
 	player = getlocalplayer(localclientnum);
-	player endon(#"disconnect");
-	player endon(#"entityshutdown");
+	player endon("disconnect");
+	player endon("entityshutdown");
 	var_56f99f06 = 0;
 	var_56f99f06 = getdvarfloat("interactivePromptNearToDist", 8.4);
 	var_56f99f06 = var_56f99f06 * 39.37;

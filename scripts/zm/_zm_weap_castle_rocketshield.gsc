@@ -118,10 +118,10 @@ function on_player_connect()
 */
 function function_e8141489()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(isdefined(self))
 	{
-		self waittill(#"weapon_change", w_weapon);
+		self waittill("weapon_change", w_weapon);
 		if(w_weapon.isriotshield)
 		{
 			break;
@@ -142,10 +142,10 @@ function function_e8141489()
 */
 function function_bbf98b84()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(isdefined(self))
 	{
-		level waittill(#"shield_built", e_who);
+		level waittill("shield_built", e_who);
 		if(e_who === self)
 		{
 			self playrumbleonentity("zm_castle_interact_rumble");
@@ -180,11 +180,11 @@ function on_player_spawned()
 */
 function player_watch_ammo_change()
 {
-	self notify(#"player_watch_ammo_change");
-	self endon(#"player_watch_ammo_change");
+	self notify("player_watch_ammo_change");
+	self endon("player_watch_ammo_change");
 	for(;;)
 	{
-		self waittill(#"equipment_ammo_changed", equipment);
+		self waittill("equipment_ammo_changed", equipment);
 		if(isstring(equipment))
 		{
 			equipment = getweapon(equipment);
@@ -207,11 +207,11 @@ function player_watch_ammo_change()
 */
 function player_watch_max_ammo()
 {
-	self notify(#"player_watch_max_ammo");
-	self endon(#"player_watch_max_ammo");
+	self notify("player_watch_max_ammo");
+	self endon("player_watch_max_ammo");
 	for(;;)
 	{
-		self waittill(#"zmb_max_ammo");
+		self waittill("zmb_max_ammo");
 		wait(0.05);
 		if(isdefined(self.hasriotshield) && self.hasriotshield)
 		{
@@ -250,11 +250,11 @@ function check_weapon_ammo(weapon)
 */
 function player_watch_shield_juke()
 {
-	self notify(#"player_watch_shield_juke");
-	self endon(#"player_watch_shield_juke");
+	self notify("player_watch_shield_juke");
+	self endon("player_watch_shield_juke");
 	for(;;)
 	{
-		self waittill(#"weapon_melee_juke", weapon);
+		self waittill("weapon_melee_juke", weapon);
 		if(weapon.isriotshield)
 		{
 			self disableoffhandweapons();
@@ -263,7 +263,7 @@ function player_watch_shield_juke()
 			self playsound("zmb_rocketshield_end");
 			self enableoffhandweapons();
 			self thread check_weapon_ammo(weapon);
-			self notify(#"shield_juke_done");
+			self notify("shield_juke_done");
 		}
 	}
 }
@@ -279,9 +279,9 @@ function player_watch_shield_juke()
 */
 function riotshield_melee_juke(weapon)
 {
-	self endon(#"weapon_melee");
-	self endon(#"weapon_melee_power");
-	self endon(#"weapon_melee_charge");
+	self endon("weapon_melee");
+	self endon("weapon_melee_power");
+	self endon("weapon_melee_charge");
 	var_27e95375 = 0;
 	start_time = gettime();
 	if(!isdefined(level.riotshield_knockdown_enemies))
@@ -345,13 +345,13 @@ function riotshield_melee_juke(weapon)
 function function_92debe0a()
 {
 	/#
-		level waittill(#"start_of_round");
+		level waittill("start_of_round");
 		foreach(player in getplayers())
 		{
 		}
 		while(true)
 		{
-			level waittill(#"start_of_round");
+			level waittill("start_of_round");
 			foreach(player in getplayers())
 			{
 				if(isdefined(player.hasriotshield) && player.hasriotshield)
@@ -456,7 +456,7 @@ function spawn_recharge_tanks()
 		}
 		break;
 	}
-	level waittill(#"start_of_round");
+	level waittill("start_of_round");
 	level thread spawn_recharge_tanks();
 }
 
@@ -576,7 +576,7 @@ function shield_recharge_trigger_think()
 {
 	while(true)
 	{
-		self waittill(#"trigger", player);
+		self waittill("trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;
@@ -605,7 +605,7 @@ function shield_recharge_trigger_think()
 */
 function bottle_trigger_activate(trig_stub, player)
 {
-	trig_stub notify(#"bottle_collected");
+	trig_stub notify("bottle_collected");
 	if(isdefined(player.hasriotshield) && player.hasriotshield)
 	{
 		player zm_equipment::change_ammo(player.weaponriotshield, 1);

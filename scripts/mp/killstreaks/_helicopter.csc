@@ -86,7 +86,7 @@ function __init__()
 function on_player_spawned(localclientnum)
 {
 	player = self;
-	player waittill(#"entityshutdown");
+	player waittill("entityshutdown");
 	player.markerfx = undefined;
 	if(isdefined(player.markerobj))
 	{
@@ -142,7 +142,7 @@ function active_camo_changed(localclientnum, oldval, newval, bnewent, binitialsn
 	{
 		self duplicate_render::update_dr_filters(localclientnum);
 	}
-	self notify(#"endtest");
+	self notify("endtest");
 	self thread doreveal(localclientnum, newval != 0);
 }
 
@@ -157,9 +157,9 @@ function active_camo_changed(localclientnum, oldval, newval, bnewent, binitialsn
 */
 function doreveal(local_client_num, direction)
 {
-	self notify(#"endtest");
-	self endon(#"endtest");
-	self endon(#"entityshutdown");
+	self notify("endtest");
+	self endon("endtest");
+	self endon("entityshutdown");
 	if(direction)
 	{
 		self duplicate_render::update_dr_flag(local_client_num, "hide_model", 0);
@@ -217,8 +217,8 @@ function doreveal(local_client_num, direction)
 */
 function heli_comlink_bootup_anim(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
-	self endon(#"death");
+	self endon("entityshutdown");
+	self endon("death");
 	self setupanimtree();
 	self setanim(%mp_vehicles::veh_anim_future_heli_gearup_bay_open, 1, 0, 1);
 }
@@ -234,8 +234,8 @@ function heli_comlink_bootup_anim(localclientnum, oldval, newval, bnewent, binit
 */
 function supplydrop_care_package_state(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
-	self endon(#"death");
+	self endon("entityshutdown");
+	self endon("death");
 	self setupanimtree();
 	if(newval == 1)
 	{
@@ -258,8 +258,8 @@ function supplydrop_care_package_state(localclientnum, oldval, newval, bnewent, 
 */
 function supplydrop_ai_tank_state(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
-	self endon(#"death");
+	self endon("entityshutdown");
+	self endon("death");
 	self setupanimtree();
 	if(newval == 1)
 	{
@@ -379,7 +379,7 @@ function heli_deletefx(localclientnum)
 */
 function startfx(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(isdefined(self.vehicletype))
 	{
 		if(self.vehicletype == "remote_mortar_vehicle_mp")
@@ -468,7 +468,7 @@ function startfx(localclientnum)
 */
 function startfx_loop(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self thread helicopter_sounds::aircraft_dustkick(localclientnum);
 	startfx(localclientnum);
 	servertime = getservertime(0);
@@ -497,7 +497,7 @@ function startfx_loop(localclientnum)
 */
 function damage_fx_stages(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	last_damage_state = self gethelidamagestate();
 	fx = undefined;
 	for(;;)
@@ -563,8 +563,8 @@ function trail_fx(localclientnum, trail_fx, trail_tag)
 */
 function heli_comlink_lights_on_after_wait(localclientnum, wait_time)
 {
-	self endon(#"entityshutdown");
-	self endon(#"heli_comlink_lights_off");
+	self endon("entityshutdown");
+	self endon("heli_comlink_lights_off");
 	wait(wait_time);
 	self heli_comlink_lights_on(localclientnum);
 }
@@ -608,7 +608,7 @@ function heli_comlink_lights_on(localclientnum)
 */
 function heli_comlink_lights_off(localclientnum)
 {
-	self notify(#"heli_comlink_lights_off");
+	self notify("heli_comlink_lights_off");
 	if(isdefined(self.light_fx_handles_heli_comlink))
 	{
 		for(i = 0; i < self.light_fx_handles_heli_comlink.size; i++)
@@ -633,7 +633,7 @@ function heli_comlink_lights_off(localclientnum)
 */
 function updatemarkerthread(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	player = self;
 	killstreakcorebundle = struct::get_script_bundle("killstreak", "killstreak_core");
 	while(isdefined(player.markerobj))
@@ -692,9 +692,9 @@ function stopcrateeffects(localclientnum)
 function cleanupthrustersthread(localclientnum)
 {
 	crate = self;
-	crate notify(#"cleanupthrustersthread_singleton");
-	crate endon(#"cleanupthrustersthread_singleton");
-	crate waittill(#"entityshutdown");
+	crate notify("cleanupthrustersthread_singleton");
+	crate endon("cleanupthrustersthread_singleton");
+	crate waittill("entityshutdown");
 	crate stopcrateeffects(localclientnum);
 }
 
@@ -784,7 +784,7 @@ function setaitankhrustersstate(localclientnum, oldval, newval, bnewent, binitia
 */
 function marker_state_changed(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	player = self;
 	killstreakcorebundle = struct::get_script_bundle("killstreak", "killstreak_core");
 	if(newval == 1)

@@ -174,7 +174,7 @@ function function_dc2735aa()
 */
 function function_b18f59bf()
 {
-	level endon(#"boss_fight_begin");
+	level endon("boss_fight_begin");
 	var_82a4f07b = struct::get("keeper_end_loc");
 	var_82a4f07b fx::play("mpd_fx", var_82a4f07b.origin, var_82a4f07b.angles, "delete_fx", 0, undefined, 1);
 	level.var_8ef26cd9 = 1;
@@ -193,7 +193,7 @@ function function_b18f59bf()
 	var_293d02aa.targetname = "undercroft_pyramid";
 	var_293d02aa playsound("zmb_ee_mpd_spawn_pyramid");
 	var_293d02aa disconnectpaths();
-	var_82a4f07b notify(#"delete_fx");
+	var_82a4f07b notify("delete_fx");
 	callback::remove_on_connect(&zm_castle_util::function_fa7da172);
 	level.var_8ef26cd9 = undefined;
 	level thread function_1fd76e61(var_293d02aa);
@@ -280,11 +280,11 @@ function function_83ff2eda()
 	mdl_origin = util::spawn_model("tag_origin", s_canister.origin, s_canister.angles);
 	mdl_origin playloopsound("zmb_ee_mpd_broken_canister_lp", 1);
 	s_canister zm_castle_util::create_unitrigger(undefined, 128);
-	s_canister waittill(#"trigger_activated");
+	s_canister waittill("trigger_activated");
 	zm_unitrigger::unregister_unitrigger(s_canister.s_unitrigger);
 	mdl_origin playsound("zmb_ee_mpd_broken_canister_replace");
 	mdl_origin stoploopsound(1);
-	self notify(#"delete_fx");
+	self notify("delete_fx");
 	self hidepart("tag_broken_can");
 	self showpart("tag_prestine_can");
 	exploder::exploder("lgt_MPD_broken_exp");
@@ -320,7 +320,7 @@ function function_91a378e3()
 	level.var_8ef26cd9 = undefined;
 	mdl_keeper delete();
 	var_82a4f07b = struct::get("keeper_end_loc");
-	var_82a4f07b notify(#"delete_fx");
+	var_82a4f07b notify("delete_fx");
 	var_293d02aa = getent("undercroft_pyramid", "targetname");
 	var_293d02aa delete();
 }
@@ -336,7 +336,7 @@ function function_91a378e3()
 */
 function function_735d5e85()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	var_1dc9cc26 = getweapon("hero_gravityspikes_melee");
 	wait(3);
 	while(!self.b_gravity_trap_spikes_in_ground)
@@ -404,7 +404,7 @@ function function_434db4ff()
 function function_2777756a()
 {
 	ai_zombie = self;
-	ai_zombie waittill(#"death", e_attacker);
+	ai_zombie waittill("death", e_attacker);
 	if(isplayer(e_attacker))
 	{
 		[[level.hero_power_update]](e_attacker, ai_zombie);
@@ -422,7 +422,7 @@ function function_2777756a()
 */
 function function_77025eb5(spot)
 {
-	self endon(#"death");
+	self endon("death");
 	self.in_the_ground = 1;
 	if(isdefined(self.anchor))
 	{
@@ -440,13 +440,13 @@ function function_77025eb5(spot)
 	anim_org = anim_org + (0, 0, 0);
 	self ghost();
 	self.anchor moveto(anim_org, 0.05);
-	self.anchor waittill(#"movedone");
+	self.anchor waittill("movedone");
 	target_org = zombie_utility::get_desired_origin();
 	if(isdefined(target_org))
 	{
 		anim_ang = vectortoangles(target_org - self.origin);
 		self.anchor rotateto((0, anim_ang[1], 0), 0.05);
-		self.anchor waittill(#"rotatedone");
+		self.anchor waittill("rotatedone");
 	}
 	self unlink();
 	if(isdefined(self.anchor))
@@ -482,10 +482,10 @@ function function_77025eb5(spot)
 		self animscripted("rise_anim", self.origin, spot.angles, "ai_zombie_traverse_ground_climbout_fast");
 	}
 	self zombie_shared::donotetracks("rise_anim", &zombie_utility::handle_rise_notetracks, spot);
-	self notify(#"rise_anim_finished");
-	spot notify(#"stop_zombie_rise_fx");
+	self notify("rise_anim_finished");
+	spot notify("stop_zombie_rise_fx");
 	self.in_the_ground = 0;
-	self notify(#"risen", spot.script_string);
+	self notify("risen", spot.script_string);
 }
 
 /*
@@ -604,7 +604,7 @@ function get_unused_spawn_point(var_4a032429 = 0, var_f759b439 = 0, var_610499ec
 */
 function boss_fight_ready()
 {
-	level endon(#"boss_fight_begin");
+	level endon("boss_fight_begin");
 	level.var_b366f2dc = 0;
 	var_23a96e18 = getentarray("boss_gravity_spike_start_area", "targetname");
 	foreach(var_ad2fc56d in var_23a96e18)
@@ -635,7 +635,7 @@ function boss_fight_ready()
 */
 function function_1c249965()
 {
-	level endon(#"boss_fight_begin");
+	level endon("boss_fight_begin");
 	while(true)
 	{
 		foreach(player in level.players)
@@ -667,17 +667,17 @@ function function_1c249965()
 function function_73c15b91(player)
 {
 	player endon("boss_fight_ready_gravity_trap_tracker_end" + self.script_int);
-	level endon(#"boss_fight_begin");
+	level endon("boss_fight_begin");
 	while(true)
 	{
-		player waittill(#"gravity_trap_planted");
+		player waittill("gravity_trap_planted");
 		/#
 		#/
 		if(!self.b_claimed)
 		{
 			self.b_claimed = 1;
 			level.var_b366f2dc++;
-			player waittill(#"gravityspikes_timer_end");
+			player waittill("gravityspikes_timer_end");
 			self.b_claimed = 0;
 			level.var_b366f2dc--;
 		}
@@ -1005,10 +1005,10 @@ function function_1466b3f1()
 */
 function function_4bea595()
 {
-	level endon(#"boss_fight_completed");
-	level endon(#"_zombie_game_over");
-	self endon(#"bleed_out");
-	self endon(#"disconnect");
+	level endon("boss_fight_completed");
+	level endon("_zombie_game_over");
+	self endon("bleed_out");
+	self endon("disconnect");
 	var_67f6c267 = getent("boss_dot_area", "targetname");
 	while(!level flag::get("boss_fight_completed"))
 	{
@@ -1031,7 +1031,7 @@ function function_4bea595()
 */
 function function_4f5e3970()
 {
-	level endon(#"boss_fight_completed");
+	level endon("boss_fight_completed");
 	level thread function_5db6ba34();
 	var_7533f11 = struct::get_array("boss_start_tele_point", "targetname");
 	var_7fcbf214 = array::sort_by_script_int(var_7533f11, 1);
@@ -1276,7 +1276,7 @@ function function_5db6ba34(var_dcc4bd3d)
 */
 function function_1261fd50()
 {
-	level endon(#"_zombie_game_over");
+	level endon("_zombie_game_over");
 	level endon(#"hash_e32fa83");
 	var_1e84d44a = struct::get("boss_start_point", "targetname");
 	self function_1b20ff86(var_1e84d44a.origin);
@@ -1421,7 +1421,7 @@ function function_e3ea9055(var_70f504b7 = 0)
 */
 function function_28bb5727(var_4a14cd40)
 {
-	level endon(#"_zombie_game_over");
+	level endon("_zombie_game_over");
 	if(!isdefined(self.var_41c1a53f))
 	{
 		self.var_41c1a53f = [];
@@ -1636,7 +1636,7 @@ function function_28bb5727(var_4a14cd40)
 function function_96db213f()
 {
 	self endon(#"hash_ed87af95");
-	self.var_40b46e43 endon(#"death");
+	self.var_40b46e43 endon("death");
 	wait(randomintrange(7, 20));
 	while(true)
 	{
@@ -1656,8 +1656,8 @@ function function_96db213f()
 */
 function function_e2f41bf2()
 {
-	level endon(#"_zombie_game_over");
-	level endon(#"boss_fight_completed");
+	level endon("_zombie_game_over");
+	level endon("boss_fight_completed");
 	level endon(#"hash_cd6f3cf8");
 	switch(self.var_7e383b58)
 	{
@@ -1770,8 +1770,8 @@ function function_be0acb1a(n_index)
 */
 function function_1dddcbf0()
 {
-	level endon(#"_zombie_game_over");
-	level endon(#"boss_fight_completed");
+	level endon("_zombie_game_over");
+	level endon("boss_fight_completed");
 	/#
 		if(level flag::get(""))
 		{
@@ -1856,7 +1856,7 @@ function function_1dddcbf0()
 function function_10739686(var_466a9f43)
 {
 	level endon(#"hash_c1965039");
-	level endon(#"_zombie_game_over");
+	level endon("_zombie_game_over");
 	if(!isdefined(self.var_c660deed))
 	{
 		self.var_c660deed = [];
@@ -1957,14 +1957,14 @@ function function_abdb4498()
 function function_e20da5e0(player, var_a7ddd99)
 {
 	level endon(#"hash_adcabea1");
-	player waittill(#"gravity_trap_planted");
+	player waittill("gravity_trap_planted");
 	if(player istouching(var_a7ddd99))
 	{
 		/#
 		#/
 		self.var_cc5c4782++;
 		player.var_7b3316ec = 1;
-		player waittill(#"destroy_ground_spikes");
+		player waittill("destroy_ground_spikes");
 		self.var_cc5c4782--;
 		player.var_7b3316ec = 0;
 	}
@@ -2045,7 +2045,7 @@ function function_eda57e8b()
 {
 	while(level flag::get("boss_stunned"))
 	{
-		self.var_e3d9917e waittill(#"damage", n_damage, e_attacker);
+		self.var_e3d9917e waittill("damage", n_damage, e_attacker);
 		self.var_42433bc = self.var_42433bc + n_damage;
 		self.var_ee000bfc = self.var_ee000bfc + n_damage;
 	}
@@ -2062,7 +2062,7 @@ function function_eda57e8b()
 */
 function function_39a8c4bd()
 {
-	level endon(#"boss_fight_completed");
+	level endon("boss_fight_completed");
 	/#
 	#/
 	self.var_40b46e43 thread function_a1658f19("ai_zm_dlc1_archon_float_spell_elemental_charge_outro");
@@ -2470,12 +2470,12 @@ function function_9a0bf5f4()
 */
 function function_2cef3631()
 {
-	level endon(#"_zombie_game_over");
+	level endon("_zombie_game_over");
 	self endon(#"hash_38c87755");
 	var_b5f846f3 = 0;
 	while(var_b5f846f3 < level.var_de21b83b)
 	{
-		self waittill(#"damage", n_damage, e_attacker);
+		self waittill("damage", n_damage, e_attacker);
 		var_b5f846f3 = var_b5f846f3 + n_damage;
 	}
 	self boss_demongate_chomper_despawn();
@@ -2762,7 +2762,7 @@ function function_ad721cc0()
 */
 function function_3995b832(player)
 {
-	level endon(#"_zombie_game_over");
+	level endon("_zombie_game_over");
 	self clientfield::set("boss_rune_prison_explode_fx", 1);
 	player thread burnplayer::setplayerburning(0.5, 0.25, 12.5, player, undefined);
 	if(level.var_1a4b8a19)
@@ -2792,13 +2792,13 @@ function function_3995b832(player)
 */
 function function_49bf49de()
 {
-	level endon(#"_zombie_game_over");
+	level endon("_zombie_game_over");
 	self endon(#"hash_a2b2e823");
 	self.is_destroyed = 0;
 	var_b5f846f3 = 0;
 	while(var_b5f846f3 < level.var_de21b83b)
 	{
-		self waittill(#"damage", n_damage, e_attacker);
+		self waittill("damage", n_damage, e_attacker);
 		var_b5f846f3 = var_b5f846f3 + n_damage;
 	}
 	self.is_destroyed = 1;
@@ -2834,7 +2834,7 @@ function function_c20e4083()
 */
 function function_db1c6f68(var_70f504b7 = 0)
 {
-	level endon(#"boss_fight_completed");
+	level endon("boss_fight_completed");
 	/#
 	#/
 	if(!var_70f504b7)
@@ -3107,8 +3107,8 @@ function spawn_mech()
 */
 function function_512742d3()
 {
-	self endon(#"death");
-	level endon(#"_zombie_game_over");
+	self endon("death");
+	level endon("_zombie_game_over");
 	while(true)
 	{
 		wait(7.5);
@@ -3131,7 +3131,7 @@ function function_512742d3()
 function function_fb4ac7ae()
 {
 	/#
-		level waittill(#"start_zombie_round_logic");
+		level waittill("start_zombie_round_logic");
 		wait(1);
 		zm_devgui::add_custom_devgui_callback(&function_b68d06ec);
 		adddebugcommand("");

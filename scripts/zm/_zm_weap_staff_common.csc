@@ -62,10 +62,10 @@ function function_d10163c2(localclientnum)
 {
 	self notify(#"hash_d10163c2");
 	self endon(#"hash_d10163c2");
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(isdefined(self))
 	{
-		self waittill(#"weapon_change", w_weapon);
+		self waittill("weapon_change", w_weapon);
 		self notify(#"hash_d4c51f0");
 		self function_d4c51f0(localclientnum);
 		if(isdefined(level.var_27b5be99[w_weapon]))

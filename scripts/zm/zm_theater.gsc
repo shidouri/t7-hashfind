@@ -287,7 +287,7 @@ function function_6452fa9d()
 	var_174ba740 = getent("use_elec_switch", "targetname");
 	var_cf413835 = struct::get("power_switch", "targetname");
 	var_174ba740 setcursorhint("HINT_NOICON");
-	var_174ba740 waittill(#"trigger", user);
+	var_174ba740 waittill("trigger", user);
 	playsoundatposition("zmb_switch_flip", var_cf413835.origin);
 	playfx(level._effect["switch_sparks"], struct::get("elec_switch_fx", "script_noteworthy").origin);
 	var_cf413835 scene::play("p7_fxanim_zmhd_power_switch_bundle");
@@ -660,7 +660,7 @@ function wait_for_power()
 	zm_theater_teleporter::teleporter_init();
 	players = level.players;
 	level.quads_per_round = 4 * players.size;
-	level notify(#"quad_round_can_end");
+	level notify("quad_round_can_end");
 	level.delay_spawners = undefined;
 	level thread quad_wave_init();
 }
@@ -791,7 +791,7 @@ function quad_wave_init()
 	level thread time_for_quad_wave("theater_zone");
 	level thread time_for_quad_wave("stage_zone");
 	level thread time_for_quad_wave("dining_zone");
-	level waittill(#"end_of_round");
+	level waittill("end_of_round");
 	level flag::clear("special_quad_round");
 }
 
@@ -811,7 +811,7 @@ function time_for_quad_wave(zone_name)
 		return;
 	}
 	zone = level.zones[zone_name];
-	level waittill(#"between_round_over");
+	level waittill("between_round_over");
 	if(level.next_dog_round === level.round_number)
 	{
 		level thread time_for_quad_wave(zone_name);

@@ -174,7 +174,7 @@ function player_enter_beastmode(localclientnum)
 */
 function watch_scr_beast_no_visionset(localclientnum)
 {
-	self endon(#"beast_mode_exit");
+	self endon("beast_mode_exit");
 	was_scr_beast_no_visionset = getdvarint("scr_beast_no_visionset") > 0;
 	while(isdefined(self))
 	{
@@ -228,7 +228,7 @@ function function_faf41e73(localclientnum)
 */
 function function_cb236f81(localclientnum)
 {
-	self endon(#"beast_mode_exit");
+	self endon("beast_mode_exit");
 	if(!isdemoplaying())
 	{
 		return;
@@ -287,7 +287,7 @@ function function_56c9cf9d(localclientnum)
 */
 function player_exit_beastmode(localclientnum)
 {
-	self notify(#"beast_mode_exit");
+	self notify("beast_mode_exit");
 	/#
 		if(isdefined(self.beast_3p_trail))
 		{
@@ -415,7 +415,7 @@ function function_70f7f4d2(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_4685bc0f(localclientnum, var_2646032, var_72af98b3)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(isdefined(self))
 	{
 		filter::enable_filter_blood_spatter(self, 5);
@@ -441,9 +441,9 @@ function function_ef4c8536(localclientnum, var_2646032, var_72af98b3)
 {
 	self notify(#"hash_ef4c8536");
 	self endon(#"hash_ef4c8536");
-	self endon(#"death");
-	self endon(#"disconnect");
-	self endon(#"entityshutdown");
+	self endon("death");
+	self endon("disconnect");
+	self endon("entityshutdown");
 	if(!isdefined(self.var_90b6339d))
 	{
 		self.var_90b6339d = 0;
@@ -1004,8 +1004,8 @@ function sndbeastmode(activate)
 */
 function sndbeastmode_manastart()
 {
-	level endon(#"sndmanastop");
-	self endon(#"entityshutdown");
+	level endon("sndmanastop");
+	self endon("entityshutdown");
 	if(!isdefined(level.sndbeastmodeent))
 	{
 		level.sndbeastmodeent = spawn(0, (0, 0, 0), "script_origin");
@@ -1040,7 +1040,7 @@ function sndbeastmode_manastart()
 */
 function sndbeastmode_manastop()
 {
-	level notify(#"sndmanastop");
+	level notify("sndmanastop");
 	if(isdefined(level.sndbeastmodeent))
 	{
 		level.sndbeastmodeent delete();
@@ -1084,7 +1084,7 @@ function function_2a7bb7b3(localclientnum, on_off)
 	{
 		while(isdefined(self))
 		{
-			level waittill(#"notetrack", lcn, note);
+			level waittill("notetrack", lcn, note);
 			if(note == "shock_loop")
 			{
 				function_14637ad2(localclientnum);
@@ -1171,7 +1171,7 @@ function function_892cc334(localclientnum, time, var_c6eef0d, var_49d2fa23, char
 {
 	self notify(#"hash_892cc334");
 	self endon(#"hash_892cc334");
-	self endon(#"beast_mode_exit");
+	self endon("beast_mode_exit");
 	if(!isdefined(self.var_652e98))
 	{
 		self.var_652e98 = 0;
@@ -1276,7 +1276,7 @@ function function_ac7706bc()
 */
 function function_55af4b5b(player, tag, pivot, delay)
 {
-	player endon(#"grapple_done");
+	player endon("grapple_done");
 	wait(delay);
 	thread grapple_beam(player, tag, pivot);
 }
@@ -1293,7 +1293,7 @@ function function_55af4b5b(player, tag, pivot, delay)
 function grapple_beam(player, tag, pivot)
 {
 	level beam::launch(player, tag, pivot, "tag_origin", "zod_beast_grapple_beam");
-	player waittill(#"grapple_done");
+	player waittill("grapple_done");
 	level beam::kill(player, tag, pivot, "tag_origin", "zod_beast_grapple_beam");
 }
 
@@ -1308,14 +1308,14 @@ function grapple_beam(player, tag, pivot)
 */
 function grapple_watch(onoff, tag = "tag_flash", delay = 0.15)
 {
-	self notify(#"grapple_done");
-	self notify(#"grapple_watch");
-	self endon(#"grapple_watch");
+	self notify("grapple_done");
+	self notify("grapple_watch");
+	self endon("grapple_watch");
 	if(onoff)
 	{
 		while(isdefined(self))
 		{
-			self waittill(#"grapple_beam_on", pivot);
+			self waittill("grapple_beam_on", pivot);
 			var_1e66ebb1 = tag;
 			/#
 				if(getdvarint("") > 0)
@@ -1328,7 +1328,7 @@ function grapple_watch(onoff, tag = "tag_flash", delay = 0.15)
 				thread function_55af4b5b(self, var_1e66ebb1, pivot, delay);
 			}
 			evt = self util::waittill_any_ex(7.5, "grapple_pulled", "grapple_landed", "grapple_cancel", "grapple_beam_off", "grapple_watch", "disconnect");
-			self notify(#"grapple_done");
+			self notify("grapple_done");
 		}
 	}
 }

@@ -298,10 +298,10 @@ function menuautoassign(comingfrommenu)
 	{
 		self.statusicon = "hud_status_dead";
 	}
-	self notify(#"joined_team");
-	level notify(#"joined_team");
+	self notify("joined_team");
+	level notify("joined_team");
 	self callback::callback(#"hash_95a6c4c0");
-	self notify(#"end_respawn");
+	self notify("end_respawn");
 	self beginclasschoice();
 	self setclientscriptmainmenu(game["menu_start_menu"]);
 }
@@ -539,10 +539,10 @@ function menuteam(team)
 		self updateobjectivetext();
 		self.sessionteam = team;
 		self setclientscriptmainmenu(game["menu_start_menu"]);
-		self notify(#"joined_team");
-		level notify(#"joined_team");
+		self notify("joined_team");
+		level notify("joined_team");
 		self callback::callback(#"hash_95a6c4c0");
-		self notify(#"end_respawn");
+		self notify("end_respawn");
 	}
 	self beginclasschoice();
 }
@@ -579,7 +579,7 @@ function menuspectator()
 		[[level.spawnspectator]]();
 		self thread globallogic_player::spectate_player_watcher();
 		self setclientscriptmainmenu(game["menu_start_menu"]);
-		self notify(#"joined_spectators");
+		self notify("joined_spectators");
 	}
 }
 
@@ -608,9 +608,9 @@ function menuclass(response)
 */
 function removespawnmessageshortly(delay)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	waittillframeend();
-	self endon(#"end_respawn");
+	self endon("end_respawn");
 	wait(delay);
 	self util::clearlowermessage(2);
 }

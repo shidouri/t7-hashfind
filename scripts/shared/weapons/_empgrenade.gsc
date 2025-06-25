@@ -49,7 +49,7 @@ function __init__()
 */
 function on_player_spawned()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self thread monitorempgrenade();
 	self thread begin_other_grenade_tracking();
 }
@@ -65,13 +65,13 @@ function on_player_spawned()
 */
 function monitorempgrenade()
 {
-	self endon(#"disconnect");
-	self endon(#"death");
-	self endon(#"killempmonitor");
+	self endon("disconnect");
+	self endon("death");
+	self endon("killempmonitor");
 	self.empendtime = 0;
 	while(true)
 	{
-		self waittill(#"emp_grenaded", attacker, explosionpoint);
+		self waittill("emp_grenaded", attacker, explosionpoint);
 		if(!isalive(self) || self hasperk("specialty_immuneemp"))
 		{
 			continue;
@@ -132,10 +132,10 @@ function monitorempgrenade()
 */
 function applyemp(attacker, explosionpoint)
 {
-	self notify(#"applyemp");
-	self endon(#"applyemp");
-	self endon(#"disconnect");
-	self endon(#"death");
+	self notify("applyemp");
+	self endon("applyemp");
+	self endon("disconnect");
+	self endon("death");
 	wait(0.05);
 	if(!(isdefined(self) && isalive(self)))
 	{
@@ -187,7 +187,7 @@ function applyemp(attacker, explosionpoint)
 	}
 	if(isdefined(self))
 	{
-		self notify(#"empgrenadetimedout");
+		self notify("empgrenadetimedout");
 		self checktoturnoffemp();
 	}
 }
@@ -203,10 +203,10 @@ function applyemp(attacker, explosionpoint)
 */
 function empgrenadedeathwaiter()
 {
-	self notify(#"empgrenadedeathwaiter");
-	self endon(#"empgrenadedeathwaiter");
-	self endon(#"empgrenadetimedout");
-	self waittill(#"death");
+	self notify("empgrenadedeathwaiter");
+	self endon("empgrenadedeathwaiter");
+	self endon("empgrenadetimedout");
+	self waittill("death");
 	if(isdefined(self))
 	{
 		self checktoturnoffemp();
@@ -224,10 +224,10 @@ function empgrenadedeathwaiter()
 */
 function empgrenadecleansewaiter()
 {
-	self notify(#"empgrenadecleansewaiter");
-	self endon(#"empgrenadecleansewaiter");
-	self endon(#"empgrenadetimedout");
-	self waittill(#"gadget_cleanse_on");
+	self notify("empgrenadecleansewaiter");
+	self endon("empgrenadecleansewaiter");
+	self endon("empgrenadetimedout");
+	self waittill("gadget_cleanse_on");
 	if(isdefined(self))
 	{
 		self checktoturnoffemp();
@@ -287,8 +287,8 @@ function shutdownemprebootindicatormenu()
 */
 function emprumbleloop(duration)
 {
-	self endon(#"emp_rumble_loop");
-	self notify(#"emp_rumble_loop");
+	self endon("emp_rumble_loop");
+	self notify("emp_rumble_loop");
 	goaltime = gettime() + (duration * 1000);
 	while(gettime() < goaltime)
 	{
@@ -308,11 +308,11 @@ function emprumbleloop(duration)
 */
 function watchempexplosion(owner, weapon)
 {
-	owner endon(#"disconnect");
-	owner endon(#"team_changed");
-	self endon(#"trophy_destroyed");
+	owner endon("disconnect");
+	owner endon("team_changed");
+	self endon("trophy_destroyed");
 	owner addweaponstat(weapon, "used", 1);
-	self waittill(#"explode", origin, surface);
+	self waittill("explode", origin, surface);
 	level empexplosiondamageents(owner, weapon, origin, 425, 1);
 }
 
@@ -353,13 +353,13 @@ function empexplosiondamageents(owner, weapon, origin, radius, damageplayers)
 */
 function begin_other_grenade_tracking()
 {
-	self endon(#"death");
-	self endon(#"disconnect");
-	self notify(#"emptrackingstart");
-	self endon(#"emptrackingstart");
+	self endon("death");
+	self endon("disconnect");
+	self notify("emptrackingstart");
+	self endon("emptrackingstart");
 	for(;;)
 	{
-		self waittill(#"grenade_fire", grenade, weapon, cooktime);
+		self waittill("grenade_fire", grenade, weapon, cooktime);
 		if(grenade util::ishacked())
 		{
 			continue;

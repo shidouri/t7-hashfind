@@ -61,7 +61,7 @@ function init(localclientnum)
 */
 function rotating_object_think()
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	util::waitforallclients();
 	axis = "yaw";
 	direction = 360;
@@ -106,7 +106,7 @@ function rotating_object_think()
 				break;
 			}
 		}
-		self waittill(#"rotatedone");
+		self waittill("rotatedone");
 		self.angles = angles;
 	}
 }

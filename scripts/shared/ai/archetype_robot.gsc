@@ -225,7 +225,7 @@ function private robotlightsflicker(entity, asmstatename)
 {
 	entity ai::set_behavior_attribute("robot_lights", 1);
 	clientfield::set("robot_EMP", 1);
-	entity notify(#"emp_fx_start");
+	entity notify("emp_fx_start");
 	return 4;
 }
 
@@ -272,7 +272,7 @@ function private robotempidleinitialize(entity, asmstatename)
 {
 	entity.empstoptime = gettime() + entity.empshutdowntime;
 	animationstatenetworkutility::requeststate(entity, asmstatename);
-	entity notify(#"emp_shutdown_start");
+	entity notify("emp_shutdown_start");
 	return 5;
 }
 
@@ -309,7 +309,7 @@ function private robotempidleupdate(entity, asmstatename)
 */
 function private robotempidleterminate(entity, asmstatename)
 {
-	entity notify(#"emp_shutdown_end");
+	entity notify("emp_shutdown_end");
 	return 4;
 }
 
@@ -523,7 +523,7 @@ function robottraverseend(entity)
 	robottraverseragdollondeath(entity);
 	entity.skipdeath = 0;
 	entity.traversal = undefined;
-	entity notify(#"traverse_end");
+	entity notify("traverse_end");
 	return 4;
 }
 
@@ -1562,7 +1562,7 @@ function private robotbecomecrawler(entity)
 	entity allowpitchangle(1);
 	entity setpitchorient();
 	entity.crawlerlifetime = gettime() + randomintrange(10000, 20000);
-	entity notify(#"bhtn_action_notify", "rbCrawler");
+	entity notify("bhtn_action_notify", "rbCrawler");
 }
 
 /*
@@ -3209,7 +3209,7 @@ function private robotjukeinitialize(entity)
 {
 	aiutility::choosejukedirection(entity);
 	entity clearpath();
-	entity notify(#"bhtn_action_notify", "rbJuke");
+	entity notify("bhtn_action_notify", "rbJuke");
 	jukeinfo = spawnstruct();
 	jukeinfo.origin = entity.origin;
 	jukeinfo.entity = entity;
@@ -4054,7 +4054,7 @@ function private robotgivewasp(entity)
 */
 function private robotdeploywasp(entity)
 {
-	entity endon(#"death");
+	entity endon("death");
 	wait(randomfloatrange(7, 10));
 	if(isdefined(entity) && isdefined(entity.wasp))
 	{
@@ -4081,7 +4081,7 @@ function private robotdeploywasp(entity)
 */
 function private rapsdetonatecountdown(entity)
 {
-	entity endon(#"death");
+	entity endon("death");
 	wait(randomfloatrange(20, 30));
 	raps::detonate();
 }
@@ -4114,7 +4114,7 @@ function private becomecrawler(entity)
 */
 function private cleanupequipment(entity)
 {
-	entity waittill(#"death");
+	entity waittill("death");
 	if(!isdefined(entity))
 	{
 		return;

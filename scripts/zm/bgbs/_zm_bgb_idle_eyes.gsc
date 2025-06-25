@@ -79,7 +79,7 @@ function validation()
 */
 function activation()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	var_7092e170 = arraycopy(level.activeplayers);
 	array::thread_all(var_7092e170, &zm_utility::increment_ignoreme);
 	self.bgb_idle_eyes_active = 1;
@@ -129,7 +129,7 @@ function activation()
 function function_1f57344e(e_watch, var_7092e170)
 {
 	e_watch endon(#"hash_16ab3604");
-	e_watch waittill(#"disconnect");
+	e_watch waittill("disconnect");
 	deactivate(var_7092e170);
 }
 

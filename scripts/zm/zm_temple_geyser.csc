@@ -90,7 +90,7 @@ function geyser_player_setup_prone(localclientnum, oldval, newval, bnewent, bini
 		}
 		str_notify = "player_geyser" + localclientnum;
 		self notify(str_notify);
-		self notify(#"end_geyser");
+		self notify("end_geyser");
 		if(isdefined(self.fake_player[localclientnum].fake_weapon))
 		{
 			self.fake_player[localclientnum].fake_weapon delete();
@@ -171,7 +171,7 @@ function geyser_player_setup_stand(localclientnum, oldval, newval, bnewent, bini
 		}
 		str_notify = "player_geyser" + localclientnum;
 		self notify(str_notify);
-		self notify(#"end_geyser");
+		self notify("end_geyser");
 		if(isdefined(self.fake_player[localclientnum].fake_weapon))
 		{
 			self.fake_player[localclientnum].fake_weapon delete();
@@ -193,8 +193,8 @@ function geyser_player_setup_stand(localclientnum, oldval, newval, bnewent, bini
 */
 function geyser_weapon_monitor(fake_weapon)
 {
-	self endon(#"end_geyser");
-	self endon(#"disconnect");
+	self endon("end_geyser");
+	self endon("disconnect");
 	while(self.weapon == "none")
 	{
 		wait(0.05);
@@ -216,14 +216,14 @@ function geyser_weapon_monitor(fake_weapon)
 */
 function player_disconnect_tracker()
 {
-	self notify(#"stop_tracking");
-	self endon(#"stop_tracking");
+	self notify("stop_tracking");
+	self endon("stop_tracking");
 	ent_num = self getentitynumber();
 	while(isdefined(self))
 	{
 		wait(0.05);
 	}
-	level notify(#"player_disconnected", ent_num);
+	level notify("player_disconnected", ent_num);
 }
 
 /*
@@ -238,7 +238,7 @@ function player_disconnect_tracker()
 function geyser_model_remover(str_endon, player)
 {
 	player endon(str_endon);
-	level waittill(#"player_disconnected", client);
+	level waittill("player_disconnected", client);
 	if(isdefined(self.fake_weapon))
 	{
 		self.fake_weapon delete();

@@ -71,7 +71,7 @@ function function_6ded398b(localclientnum)
 */
 function function_ea48e71e(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -88,7 +88,7 @@ function function_ea48e71e(localclientnum)
 		self mapshaderconstant(localclientnum, 0, "scriptVector0", n_delta_val);
 	}
 	while(n_current_time < n_phase_in);
-	s_timer notify(#"timer_done");
+	s_timer notify("timer_done");
 }
 
 /*
@@ -119,8 +119,8 @@ function new_timer(localclientnum)
 */
 function timer_increment_loop(localclientnum, entity)
 {
-	entity endon(#"entityshutdown");
-	self endon(#"timer_done");
+	entity endon("entityshutdown");
+	self endon("timer_done");
 	while(isdefined(self))
 	{
 		util::server_wait(localclientnum, 0.016);
@@ -181,7 +181,7 @@ function reset_timer()
 */
 function function_6e8422e9(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -200,7 +200,7 @@ function function_6e8422e9(localclientnum, oldval, newval, bnewent, binitialsnap
 			self mapshaderconstant(localclientnum, 0, "scriptVector2", n_delta_val);
 		}
 		while(n_current_time < n_phase_in);
-		s_timer notify(#"timer_done");
+		s_timer notify("timer_done");
 		self.removingfireshader = 0;
 	}
 	else if(newval == 2)
@@ -219,7 +219,7 @@ function function_6e8422e9(localclientnum, oldval, newval, bnewent, binitialsnap
 			self mapshaderconstant(localclientnum, 0, "scriptVector0", n_delta_val);
 		}
 		while(n_current_time < n_phase_in);
-		s_timer notify(#"timer_done");
+		s_timer notify("timer_done");
 		self mapshaderconstant(localclientnum, 0, "scriptVector0", 0);
 	}
 }

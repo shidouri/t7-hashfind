@@ -182,15 +182,15 @@ function onspawnbouncingbetty(watcher, owner)
 */
 function trackusedstatondeath()
 {
-	self endon(#"do_not_track_used");
-	self waittill(#"death");
+	self endon("do_not_track_used");
+	self waittill("death");
 	waittillframeend();
 	if(isdefined(self.owner))
 	{
 		self.owner trackbouncingbettyasused();
 	}
-	self notify(#"end_donotrackusedonpickup");
-	self notify(#"end_donotrackusedonhacked");
+	self notify("end_donotrackusedonpickup");
+	self notify("end_donotrackusedonhacked");
 }
 
 /*
@@ -204,9 +204,9 @@ function trackusedstatondeath()
 */
 function donotrackusedstatonpickup()
 {
-	self endon(#"end_donotrackusedonpickup");
-	self waittill(#"picked_up");
-	self notify(#"do_not_track_used");
+	self endon("end_donotrackusedonpickup");
+	self waittill("picked_up");
+	self notify("do_not_track_used");
 }
 
 /*
@@ -220,10 +220,10 @@ function donotrackusedstatonpickup()
 */
 function trackusedonhack()
 {
-	self endon(#"end_donotrackusedonhacked");
-	self waittill(#"hacked");
+	self endon("end_donotrackusedonhacked");
+	self waittill("hacked");
 	self.originalowner trackbouncingbettyasused();
-	self notify(#"do_not_track_used");
+	self notify("do_not_track_used");
 }
 
 /*
@@ -283,7 +283,7 @@ function trackonowner(owner)
 */
 function spawnminemover()
 {
-	self endon(#"death");
+	self endon("death");
 	self util::waittillnotmoving();
 	self clientfield::set("bouncingbetty_state", 2);
 	self useanimtree($bouncing_betty);
@@ -319,7 +319,7 @@ function spawnminemover()
 */
 function killminemoveronpickup()
 {
-	self.minemover endon(#"death");
+	self.minemover endon("death");
 	self util::waittill_any("picked_up", "hacked");
 	self killminemover();
 }

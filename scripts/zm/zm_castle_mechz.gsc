@@ -166,7 +166,7 @@ function private function_ced5d8b0(var_2dba2212)
 */
 function function_216e21ed()
 {
-	self endon(#"death");
+	self endon("death");
 	wait(60);
 	if(isdefined(self.var_7c963fc4) && self.var_7c963fc4 || (isdefined(self.attack_trap) && self.attack_trap) || (isdefined(self.ignoreall) && self.ignoreall))
 	{
@@ -267,7 +267,7 @@ function function_7c295452(entity)
 		}
 		else
 		{
-			level.electric_trap notify(#"trap_deactivate");
+			level.electric_trap notify("trap_deactivate");
 		}
 	}
 	mechzbehavior::mechztargetservice(entity);
@@ -417,7 +417,7 @@ function mechz_round_tracker()
 	{
 		while(level.round_number < level.n_next_mechz_round)
 		{
-			level waittill(#"between_round_over");
+			level waittill("between_round_over");
 			/#
 				if(level.round_number > level.n_next_mechz_round)
 				{
@@ -433,7 +433,7 @@ function mechz_round_tracker()
 		{
 			function_6592b947();
 		}
-		level waittill(#"start_of_round");
+		level waittill("start_of_round");
 	}
 }
 
@@ -537,7 +537,7 @@ function function_d8d01032()
 	level.zombie_ai_limit--;
 	level thread achievement_watcher(self);
 	self thread mechz_corpse();
-	self waittill(#"death");
+	self waittill("death");
 	self thread function_2a2bfc25();
 	if(isdefined(self.attacker) && isplayer(self.attacker) && self.attacker hasweapon(getweapon("knife_plunger")))
 	{
@@ -559,7 +559,7 @@ function function_d8d01032()
 */
 function mechz_corpse()
 {
-	self waittill(#"actor_corpse", mechz);
+	self waittill("actor_corpse", mechz);
 	wait(60);
 	if(isdefined(mechz))
 	{
@@ -650,7 +650,7 @@ function function_314d744b(var_2533389a, s_loc, var_4211ee1f = 1)
 */
 function achievement_watcher(ai_mechz)
 {
-	ai_mechz waittill(#"death", attacker, meansofdeath);
+	ai_mechz waittill("death", attacker, meansofdeath);
 	if(isdefined(attacker.currentweapon) && attacker.currentweapon.name === "minigun")
 	{
 		arrayremovevalue(attacker.var_544cf8c7, ai_mechz.archetype);
@@ -730,7 +730,7 @@ function function_78e44cda()
 {
 	/#
 		wait(0.05);
-		level waittill(#"start_zombie_round_logic");
+		level waittill("start_zombie_round_logic");
 		wait(0.05);
 		setdvar("", 0);
 		adddebugcommand("");

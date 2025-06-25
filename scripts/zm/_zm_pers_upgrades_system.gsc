@@ -190,7 +190,7 @@ function wait_for_game_end()
 	{
 		return;
 	}
-	level waittill(#"end_game");
+	level waittill("end_game");
 	players = getplayers();
 	for(player_index = 0; player_index < players.size; player_index++)
 	{
@@ -300,7 +300,7 @@ function round_end()
 	{
 		return;
 	}
-	self notify(#"pers_stats_end_of_round");
+	self notify("pers_stats_end_of_round");
 	if(isdefined(self.pers["pers_max_round_reached"]))
 	{
 		if(level.round_number > self.pers["pers_max_round_reached"])

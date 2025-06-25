@@ -45,8 +45,8 @@ function __init__()
 */
 function planemortar_contrail(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"death");
-	self endon(#"entityshutdown");
+	self endon("death");
+	self endon("entityshutdown");
 	if(newval)
 	{
 		self.fx = playfxontag(localclientnum, level.planemortarexhaustfx, self, "tag_fx");

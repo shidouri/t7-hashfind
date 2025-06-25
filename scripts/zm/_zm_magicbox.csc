@@ -239,8 +239,8 @@ function magicbox_glow_callback(localclientnum, newval, fx)
 */
 function glow_obj_demo_jump_listener(localclientnum)
 {
-	self endon(#"end_demo_jump_listener");
-	level waittill(#"demo_jump");
+	self endon("end_demo_jump_listener");
+	level waittill("demo_jump");
 	if(isdefined(self))
 	{
 		self glow_obj_cleanup(localclientnum);
@@ -263,6 +263,6 @@ function glow_obj_cleanup(localclientnum)
 		stopfx(localclientnum, self.glow_fx_array[localclientnum]);
 		self.glow_fx_array[localclientnum] = undefined;
 	}
-	self notify(#"end_demo_jump_listener");
+	self notify("end_demo_jump_listener");
 }
 

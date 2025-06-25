@@ -404,7 +404,7 @@ function function_979d2797(localclientnum)
 */
 function function_90c151e6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!self hasdobj(localclientnum))
 	{
 		self util::waittill_dobj(localclientnum);
@@ -561,13 +561,13 @@ function function_939ae9de(m_dragon, localclientnum, direction, var_3c6f5c75)
 	self moveto(self.origin + var_6ea7737a, animlength * 0.75, animlength * 0.75, 0);
 	var_31e7de73 = m_dragon gettagangles("tag_attach");
 	self rotateto(var_31e7de73, animlength * 0.75);
-	self waittill(#"movedone");
+	self waittill("movedone");
 	animlength = getanimlength(var_3c6f5c75);
 	animlength = animlength - (animlength * m_dragon getanimtime(var_3c6f5c75));
 	animlength = max(animlength, 0.05);
 	var_6b61dff7 = m_dragon gettagorigin("tag_attach");
 	self moveto(var_6b61dff7, animlength, animlength, 0);
-	self waittill(#"movedone");
+	self waittill("movedone");
 	if(!isdefined(self))
 	{
 		return;
@@ -631,7 +631,7 @@ function function_badc23de(localclientnum)
 {
 	while(true)
 	{
-		self waittill(#"bite", note);
+		self waittill("bite", note);
 		if(note == "blood")
 		{
 		}

@@ -73,7 +73,7 @@ function on_localplayer_spawned(localclientnum)
 */
 function player_hacking(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self notify(#"player_hacking_callback");
+	self notify("player_hacking_callback");
 	player = self;
 	if(isdefined(level.hackingsoundid[localclientnum]))
 	{
@@ -139,8 +139,8 @@ function player_hacking(localclientnum, oldval, newval, bnewent, binitialsnap, f
 */
 function watchhackspeed(localclientnum, isbreachingfirewall)
 {
-	self endon(#"entityshutdown");
-	self endon(#"player_hacking_callback");
+	self endon("entityshutdown");
+	self endon("player_hacking_callback");
 	player = self;
 	for(;;)
 	{
@@ -166,9 +166,9 @@ function watchhackspeed(localclientnum, isbreachingfirewall)
 */
 function watchtargethack(localclientnum, player, isbreachingfirewall)
 {
-	self endon(#"entityshutdown");
-	player endon(#"entityshutdown");
-	self endon(#"player_hacking_callback");
+	self endon("entityshutdown");
+	player endon("entityshutdown");
+	self endon("player_hacking_callback");
 	targetent = self;
 	player.targetent = targetent;
 	if(isbreachingfirewall)
@@ -246,10 +246,10 @@ function watchtargethack(localclientnum, player, isbreachingfirewall)
 */
 function watchhackerplayershutdown(localclientnum, hackerplayer, targetent)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	killstreakentity = self;
-	hackerplayer endon(#"player_hacking_callback");
-	hackerplayer waittill(#"entityshutdown");
+	hackerplayer endon("player_hacking_callback");
+	hackerplayer waittill("entityshutdown");
 	if(isdefined(targetent))
 	{
 		targetent.isbreachingfirewall = 1;
@@ -269,8 +269,8 @@ function watchhackerplayershutdown(localclientnum, hackerplayer, targetent)
 */
 function watchforemp(localclientnum)
 {
-	self endon(#"entityshutdown");
-	self endon(#"player_hacking_callback");
+	self endon("entityshutdown");
+	self endon("player_hacking_callback");
 	while(true)
 	{
 		if(self isempjammed())

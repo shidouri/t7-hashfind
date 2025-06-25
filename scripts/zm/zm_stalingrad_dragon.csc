@@ -82,9 +82,9 @@ function init_clientfields()
 */
 function function_d28f5c87(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self notify(#"dragon_body_glow");
-	self endon(#"dragon_body_glow");
-	self endon(#"entityshutdown");
+	self notify("dragon_body_glow");
+	self endon("dragon_body_glow");
+	self endon("entityshutdown");
 	self thread function_9b0f57cf(localclientnum, newval);
 	if(newval)
 	{
@@ -217,11 +217,11 @@ function function_d6856592(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_2ce58010(n_local_client)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	level endon(#"hash_a35dee4e");
 	while(true)
 	{
-		self waittill(#"damage", e_attacker, v_impact_pos, var_778fe70f, str_bone);
+		self waittill("damage", e_attacker, v_impact_pos, var_778fe70f, str_bone);
 		if(level.var_ef6a691 > 0)
 		{
 			foreach(var_61c194b7 in level.var_61699bd7[level.var_ef6a691])
@@ -307,7 +307,7 @@ function function_bd038ea4(n_local_client, n_wound, var_116b515b)
 {
 	self notify(#"hash_bd038ea4");
 	self endon(#"hash_bd038ea4");
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	str_vector = undefined;
 	switch(n_wound)
 	{

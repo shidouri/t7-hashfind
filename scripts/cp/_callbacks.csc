@@ -101,7 +101,7 @@ function localclientconnect(localclientnum)
 */
 function playerspawned(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	player = getlocalplayer(localclientnum);
 	/#
 		assert(isdefined(player));
@@ -128,7 +128,7 @@ function playerspawned(localclientnum)
 */
 function entityspawned(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!isdefined(self.type))
 	{
 		/#
@@ -224,11 +224,11 @@ function callback_stunned(localclientnum, oldval, newval, bnewent, binitialsnap,
 	#/
 	if(newval)
 	{
-		self notify(#"stunned");
+		self notify("stunned");
 	}
 	else
 	{
-		self notify(#"not_stunned");
+		self notify("not_stunned");
 	}
 }
 
@@ -249,11 +249,11 @@ function callback_emp(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 	#/
 	if(newval)
 	{
-		self notify(#"emp");
+		self notify("emp");
 	}
 	else
 	{
-		self notify(#"not_emp");
+		self notify("not_emp");
 	}
 }
 

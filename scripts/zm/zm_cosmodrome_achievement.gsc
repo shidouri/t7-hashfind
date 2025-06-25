@@ -63,10 +63,10 @@ function achievement_the_eagle_has_landers()
 */
 function achievement_chimp_on_the_barbie()
 {
-	level endon(#"end_game");
+	level endon("end_game");
 	for(;;)
 	{
-		level waittill(#"trap_kill", zombie, trap);
+		level waittill("trap_kill", zombie, trap);
 		if(!isplayer(zombie) && "monkey_zombie" == zombie.animname && "fire" == trap._trap_type)
 		{
 			zm_utility::giveachievement_wrapper("DLC2_ZOM_FIREMONKEY", 1);
@@ -86,9 +86,9 @@ function achievement_chimp_on_the_barbie()
 */
 function achievement_all_dolled_up()
 {
-	level endon(#"end_game");
-	self endon(#"disconnect");
-	self waittill(#"nesting_doll_kills_achievement");
+	level endon("end_game");
+	self endon("disconnect");
+	self waittill("nesting_doll_kills_achievement");
 }
 
 /*
@@ -102,9 +102,9 @@ function achievement_all_dolled_up()
 */
 function achievement_black_hole()
 {
-	level endon(#"end_game");
-	self endon(#"disconnect");
-	self waittill(#"black_hole_kills_achievement");
+	level endon("end_game");
+	self endon("disconnect");
+	self waittill("black_hole_kills_achievement");
 }
 
 /*
@@ -118,8 +118,8 @@ function achievement_black_hole()
 */
 function achievement_space_race()
 {
-	level endon(#"end_game");
-	self endon(#"disconnect");
-	self waittill(#"pap_taken");
+	level endon("end_game");
+	self endon("disconnect");
+	self waittill("pap_taken");
 }
 

@@ -183,13 +183,13 @@ function private bgb_player_init()
 */
 function private bgb_end_game()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	if(!level flag::exists("consumables_reported"))
 	{
 		level flag::init("consumables_reported");
 	}
 	self flag::init("finished_reporting_consumables");
-	self waittill(#"report_bgb_consumption");
+	self waittill("report_bgb_consumption");
 	self thread take();
 	self __protected__reportnotedloot();
 	self zm_stats::set_global_stat("bgb_tokens_gained_this_game", self.bgb_tokens_gained_this_game);
@@ -253,7 +253,7 @@ function private bgb_finalize()
 */
 function private bgb_player_monitor()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(true)
 	{
 		str_return = level util::waittill_any_return("between_round_over", "restart_round");
@@ -266,7 +266,7 @@ function private bgb_player_monitor()
 		}
 		if(str_return === "restart_round")
 		{
-			level waittill(#"between_round_over");
+			level waittill("between_round_over");
 		}
 		else
 		{
@@ -418,9 +418,9 @@ function private bgb_set_debug_text(name, activations_remaining)
 		{
 			self clientfield::set_player_uimodel("", 0);
 		}
-		self notify(#"bgb_set_debug_text_thread");
-		self endon(#"bgb_set_debug_text_thread");
-		self endon(#"disconnect");
+		self notify("bgb_set_debug_text_thread");
+		self endon("bgb_set_debug_text_thread");
+		self endon("disconnect");
 		self.bgb_debug_text fadeovertime(0.05);
 		self.bgb_debug_text.alpha = 1;
 		prefix = "";
@@ -570,8 +570,8 @@ function private function_c3e0b2ba(bgb, activating)
 */
 function bgb_gumball_anim(bgb, activating)
 {
-	self endon(#"disconnect");
-	level endon(#"end_game");
+	self endon("disconnect");
+	level endon("end_game");
 	unlocked = __protected__getbgbunlocked();
 	if(activating)
 	{
@@ -580,7 +580,7 @@ function bgb_gumball_anim(bgb, activating)
 	}
 	while(self isswitchingweapons())
 	{
-		self waittill(#"weapon_change_complete");
+		self waittill("weapon_change_complete");
 	}
 	gun = self bgb_play_gumball_anim_begin(bgb, activating);
 	evt = self util::waittill_any_return("fake_death", "death", "player_downed", "weapon_change_complete", "disconnect");
@@ -607,7 +607,7 @@ function bgb_gumball_anim(bgb, activating)
 			{
 				return 0;
 			}
-			self notify(#"bgb_gumball_anim_give", bgb);
+			self notify("bgb_gumball_anim_give", bgb);
 			self thread give(bgb);
 			self zm_stats::increment_client_stat("bgbs_chewed");
 			self zm_stats::increment_player_stat("bgbs_chewed");
@@ -641,10 +641,10 @@ function bgb_gumball_anim(bgb, activating)
 */
 function private run_activation_func(bgb)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self set_active(1);
 	self do_one_shot_use();
-	self notify(#"bgb_bubble_blow_complete");
+	self notify("bgb_bubble_blow_complete");
 	self [[level.bgb[bgb].activation_func]]();
 	self set_active(0);
 	self activation_complete();
@@ -757,8 +757,8 @@ function private bgb_play_gumball_anim_end(w_original, bgb, activating)
 */
 function private bgb_clear_monitors_and_clientfields()
 {
-	self notify(#"bgb_limit_monitor");
-	self notify(#"bgb_activation_monitor");
+	self notify("bgb_limit_monitor");
+	self notify("bgb_activation_monitor");
 	self clientfield::set_player_uimodel("bgb_display", 0);
 	self clientfield::set_player_uimodel("bgb_activations_remaining", 0);
 	self clear_timer();
@@ -775,10 +775,10 @@ function private bgb_clear_monitors_and_clientfields()
 */
 function private bgb_limit_monitor()
 {
-	self endon(#"disconnect");
-	self endon(#"bgb_update");
-	self notify(#"bgb_limit_monitor");
-	self endon(#"bgb_limit_monitor");
+	self endon("disconnect");
+	self endon("bgb_update");
+	self notify("bgb_limit_monitor");
+	self endon("bgb_limit_monitor");
 	self clientfield::set_player_uimodel("bgb_display", 1);
 	self thread function_5fc6d844(self.bgb);
 	switch(level.bgb[self.bgb].limit_type)
@@ -799,7 +799,7 @@ function private bgb_limit_monitor()
 				}
 				self clientfield::set_player_uimodel("bgb_activations_remaining", i);
 				self thread bgb_set_debug_text(self.bgb, i);
-				self waittill(#"bgb_activation");
+				self waittill("bgb_activation");
 				while(isdefined(self get_active()) && self get_active())
 				{
 					wait(0.05);
@@ -830,7 +830,7 @@ function private bgb_limit_monitor()
 			for(i = 0; i < count; i++)
 			{
 				self set_timer(count - i, count);
-				level waittill(#"end_of_round");
+				level waittill("end_of_round");
 				self playsoundtoplayer("zmb_bgb_power_decrement", self);
 			}
 			self playsoundtoplayer("zmb_bgb_power_done_delayed", self);
@@ -865,12 +865,12 @@ function private bgb_limit_monitor()
 */
 function private bgb_bled_out_monitor()
 {
-	self endon(#"disconnect");
-	self endon(#"bgb_update");
-	self notify(#"bgb_bled_out_monitor");
-	self endon(#"bgb_bled_out_monitor");
-	self waittill(#"bled_out");
-	self notify(#"bgb_about_to_take_on_bled_out");
+	self endon("disconnect");
+	self endon("bgb_update");
+	self notify("bgb_bled_out_monitor");
+	self endon("bgb_bled_out_monitor");
+	self waittill("bled_out");
+	self notify("bgb_about_to_take_on_bled_out");
 	wait(0.1);
 	self thread take();
 }
@@ -886,23 +886,23 @@ function private bgb_bled_out_monitor()
 */
 function private bgb_activation_monitor()
 {
-	self endon(#"disconnect");
-	self notify(#"bgb_activation_monitor");
-	self endon(#"bgb_activation_monitor");
+	self endon("disconnect");
+	self notify("bgb_activation_monitor");
+	self endon("bgb_activation_monitor");
 	if("activated" != level.bgb[self.bgb].limit_type)
 	{
 		return;
 	}
 	for(;;)
 	{
-		self waittill(#"bgb_activation_request");
+		self waittill("bgb_activation_request");
 		if(!self function_b616fe7a(0))
 		{
 			continue;
 		}
 		if(self bgb_gumball_anim(self.bgb, 1))
 		{
-			self notify(#"bgb_activation", self.bgb);
+			self notify("bgb_activation", self.bgb);
 		}
 	}
 }
@@ -940,9 +940,9 @@ function private function_b616fe7a(var_5827b083 = 0)
 */
 function private function_5fc6d844(bgb)
 {
-	self endon(#"disconnect");
-	self endon(#"bled_out");
-	self endon(#"bgb_update");
+	self endon("disconnect");
+	self endon("bled_out");
+	self endon("bgb_update");
 	if(isdefined(level.bgb[bgb].var_50fe45f6) && level.bgb[bgb].var_50fe45f6)
 	{
 		function_650ca64(6);
@@ -951,7 +951,7 @@ function private function_5fc6d844(bgb)
 	{
 		return;
 	}
-	self waittill(#"bgb_activation_request");
+	self waittill("bgb_activation_request");
 	self thread take();
 }
 
@@ -1042,7 +1042,7 @@ function private activation_start()
 function private activation_complete()
 {
 	self.bgb_activation_in_progress = 0;
-	self notify(#"activation_complete");
+	self notify("activation_complete");
 }
 
 /*
@@ -1182,7 +1182,7 @@ function private calc_remaining_duration_lerp(start_time, end_time)
 */
 function private function_f9fad8b3(var_eeab9300, percent)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self endon(#"hash_f9fad8b3");
 	start_time = gettime();
 	end_time = start_time + 1000;
@@ -1257,9 +1257,9 @@ function set_timer(current, max)
 */
 function run_timer(max)
 {
-	self endon(#"disconnect");
-	self notify(#"bgb_run_timer");
-	self endon(#"bgb_run_timer");
+	self endon("disconnect");
+	self notify("bgb_run_timer");
+	self endon("bgb_run_timer");
 	current = max;
 	while(current > 0)
 	{
@@ -1282,7 +1282,7 @@ function run_timer(max)
 function clear_timer()
 {
 	self bgb_set_timer_clientfield(0);
-	self notify(#"bgb_run_timer");
+	self notify("bgb_run_timer");
 }
 
 /*
@@ -1560,7 +1560,7 @@ function give(name)
 	/#
 		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
-	self notify(#"bgb_update", name, self.bgb);
+	self notify("bgb_update", name, self.bgb);
 	self notify("bgb_update_give_" + name);
 	self.bgb = name;
 	self clientfield::set_player_uimodel("bgb_current", level.bgb[name].item_index);
@@ -1599,7 +1599,7 @@ function take()
 		self thread [[level.bgb[self.bgb].disable_func]]();
 	}
 	self bgb_clear_monitors_and_clientfields();
-	self notify(#"bgb_update", "none", self.bgb);
+	self notify("bgb_update", "none", self.bgb);
 	self notify("bgb_update_take_" + self.bgb);
 	self.bgb = "none";
 }
@@ -1754,7 +1754,7 @@ function function_434235f9(var_93eb638b)
 	var_93eb638b.clone_model unlink();
 	var_93eb638b.clone_model movez(60, 1, 0.25, 0.25);
 	var_93eb638b.clone_model vibrate(direction, 1.5, 2.5, 1);
-	var_93eb638b.clone_model waittill(#"movedone");
+	var_93eb638b.clone_model waittill("movedone");
 	if(isdefined(self.damagearea))
 	{
 		self.damagearea delete();
@@ -1969,9 +1969,9 @@ function function_d51db887()
 */
 function function_4ed517b9(n_max_distance, var_98a3e738, var_287a7adb)
 {
-	self endon(#"disconnect");
-	self endon(#"bled_out");
-	self endon(#"bgb_update");
+	self endon("disconnect");
+	self endon("bled_out");
+	self endon("bgb_update");
 	self.var_6638f10b = [];
 	while(true)
 	{
@@ -2114,13 +2114,13 @@ function revive_and_return_perk_on_bgb_activation(perk)
 {
 	self notify("revive_and_return_perk_on_bgb_activation" + perk);
 	self endon("revive_and_return_perk_on_bgb_activation" + perk);
-	self endon(#"disconnect");
-	self endon(#"bled_out");
+	self endon("disconnect");
+	self endon("bled_out");
 	if(perk == "specialty_widowswine")
 	{
 		var_376ad33c = self getweaponammoclip(self.current_lethal_grenade);
 	}
-	self waittill(#"player_revived", e_reviver);
+	self waittill("player_revived", e_reviver);
 	if(isdefined(self.var_df0decf1) && self.var_df0decf1 || (isdefined(e_reviver) && (isdefined(self.bgb) && self is_enabled("zm_bgb_near_death_experience")) || (isdefined(e_reviver.bgb) && e_reviver is_enabled("zm_bgb_near_death_experience"))))
 	{
 		if(zm_perks::use_solo_revive() && perk == "specialty_quickrevive")
@@ -2147,14 +2147,14 @@ function revive_and_return_perk_on_bgb_activation(perk)
 */
 function bgb_revive_watcher()
 {
-	self endon(#"disconnect");
-	self endon(#"death");
+	self endon("disconnect");
+	self endon("death");
 	self.var_df0decf1 = 1;
-	self waittill(#"player_revived", e_reviver);
+	self waittill("player_revived", e_reviver);
 	wait(0.05);
 	if(isdefined(self.var_df0decf1) && self.var_df0decf1)
 	{
-		self notify(#"bgb_revive");
+		self notify("bgb_revive");
 		self.var_df0decf1 = undefined;
 	}
 }

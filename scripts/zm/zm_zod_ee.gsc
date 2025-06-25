@@ -438,7 +438,7 @@ function function_db49b939()
 */
 function function_7f4562e9()
 {
-	level endon(#"end_game");
+	level endon("end_game");
 	level.musicsystemoverride = 1;
 	music::setmusicstate("zod_ee_shadfight");
 	level flag::wait_till("ee_boss_defeated");
@@ -545,7 +545,7 @@ function function_db8d1f6e()
 */
 function function_43750b40()
 {
-	level endon(#"end_game");
+	level endon("end_game");
 	level.musicsystemoverride = 1;
 	music::setmusicstate("zod_ee_apothifight");
 	level flag::wait_till("ee_final_boss_defeated");
@@ -566,7 +566,7 @@ function function_43750b40()
 function function_13d06927()
 {
 	level.disable_nuke_delay_spawning = 1;
-	level notify(#"disable_nuke_delay_spawning");
+	level notify("disable_nuke_delay_spawning");
 	level flag::clear("spawn_zombies");
 	function_5db6ba34();
 	level thread function_3fe90552();
@@ -607,7 +607,7 @@ function function_4778e04()
 */
 function function_224a2f3e()
 {
-	level endon(#"ee_final_boss_staggered");
+	level endon("ee_final_boss_staggered");
 	if(level flag::get("ee_final_boss_beam_active"))
 	{
 		return;
@@ -651,10 +651,10 @@ function function_224a2f3e()
 */
 function function_5334c072(player)
 {
-	player endon(#"death");
-	player endon(#"disconnect");
-	player endon(#"bled_out");
-	level endon(#"ee_final_boss_staggered");
+	player endon("death");
+	player endon("disconnect");
+	player endon("bled_out");
+	level endon("ee_final_boss_staggered");
 	player.var_884d1375 = 1;
 	player clientfield::set_to_player("ee_final_boss_attack_tell", 1);
 	var_dcd4f61a = struct::get_array("final_boss_safepoint", "targetname");
@@ -724,7 +724,7 @@ function function_3fe90552()
 */
 function function_9b59ab6()
 {
-	level endon(#"ee_final_boss_defeated");
+	level endon("ee_final_boss_defeated");
 	while(true)
 	{
 		while(!function_c7c3f7b5(level.var_a6e16eb2))
@@ -753,7 +753,7 @@ function function_9b59ab6()
 */
 function function_91c4dc69()
 {
-	level endon(#"ee_final_boss_defeated");
+	level endon("ee_final_boss_defeated");
 	zombie_utility::ai_calculate_health(level.round_number);
 	wait(3);
 	while(true)
@@ -800,7 +800,7 @@ function function_91c4dc69()
 				ai zombie_utility::set_zombie_run_cycle("run");
 			}
 			find_flesh_struct_string = "find_flesh";
-			ai notify(#"zombie_custom_think_done", find_flesh_struct_string);
+			ai notify("zombie_custom_think_done", find_flesh_struct_string);
 			ai ai::set_behavior_attribute("can_juke", 0);
 			if(level.zombie_respawns > 0 && level.zombie_vars["zombie_spawn_delay"] > 1)
 			{
@@ -826,8 +826,8 @@ function function_91c4dc69()
 */
 function function_91b5dbe8(var_225347e1)
 {
-	level endon(#"ee_final_boss_defeated");
-	var_225347e1 waittill(#"death");
+	level endon("ee_final_boss_defeated");
+	var_225347e1 waittill("death");
 	v_origin = var_225347e1.origin;
 	zm_altbody_beast::function_f6014f2c(v_origin, 3);
 	function_224a2f3e();
@@ -904,8 +904,8 @@ function function_821065e6()
 */
 function function_3bd22f9e(var_9a8bfa33)
 {
-	level endon(#"ee_final_boss_defeated");
-	level endon(#"ee_final_boss_staggered");
+	level endon("ee_final_boss_defeated");
+	level endon("ee_final_boss_staggered");
 	var_5dab4912 = "ee_district_rail_electrified_" + var_9a8bfa33;
 	var_9440a97c = getent(var_5dab4912, "targetname");
 	var_a5fd6c97 = getent(var_9440a97c.target, "targetname");
@@ -914,7 +914,7 @@ function function_3bd22f9e(var_9a8bfa33)
 	var_a5fd6c97 clientfield::set("ee_rail_electricity_state", 0);
 	while(true)
 	{
-		var_9440a97c waittill(#"trigger", e_triggerer);
+		var_9440a97c waittill("trigger", e_triggerer);
 		function_d3b3eb03(var_9a8bfa33);
 	}
 }
@@ -1046,7 +1046,7 @@ function function_378c2b96()
 */
 function function_729859d0()
 {
-	level endon(#"ee_final_boss_defeated");
+	level endon("ee_final_boss_defeated");
 	level flag::set("ee_superworm_present");
 	while(true)
 	{
@@ -1096,21 +1096,21 @@ function function_f30f87e4(n_index)
 {
 	level notify("ee_final_boss_keeper_electricity_watcher_" + n_index);
 	level endon("ee_final_boss_keeper_electricity_watcher_" + n_index);
-	level endon(#"ee_final_boss_defeated");
+	level endon("ee_final_boss_defeated");
 	mdl_keeper = level.var_76c101df[n_index];
-	mdl_keeper endon(#"delete");
+	mdl_keeper endon("delete");
 	mdl_keeper solid();
 	mdl_keeper setcandamage(1);
 	mdl_keeper.health = 1000000;
 	while(true)
 	{
-		mdl_keeper waittill(#"damage", amount, attacker, direction, point, mod, tagname, modelname, partname, weapon);
+		mdl_keeper waittill("damage", amount, attacker, direction, point, mod, tagname, modelname, partname, weapon);
 		mdl_keeper.health = 1000000;
 		if(zm_altbody_beast::is_lightning_weapon(weapon) && isdefined(attacker) && amount > 0)
 		{
 			if(isdefined(attacker))
 			{
-				attacker notify(#"shockable_shocked");
+				attacker notify("shockable_shocked");
 			}
 			level thread function_6774c6fd(mdl_keeper);
 			level flag::set("ee_final_boss_keeper_electricity_" + n_index);
@@ -1261,7 +1261,7 @@ function function_533399b1()
 			level clientfield::set("rain_state", 1);
 			level thread function_19076f5e();
 			cleanup_ai();
-			level notify(#"debug_pod_spawn");
+			level notify("debug_pod_spawn");
 			level clientfield::set("ee_keeper_beam_state", 2);
 			level.var_1a1d4400--;
 		}
@@ -1329,9 +1329,9 @@ function function_19076f5e()
 */
 function function_d26c80f1()
 {
-	self endon(#"death");
-	self endon(#"disconnect");
-	self endon(#"bled_out");
+	self endon("death");
+	self endon("disconnect");
+	self endon("bled_out");
 	self zm_zod_util::set_rumble_to_player(5);
 	earthquake(0.333, 7, self.origin, 1000);
 	wait(7);
@@ -1430,7 +1430,7 @@ function ee_ending()
 */
 function function_e186ed49(a_ents)
 {
-	a_ents["archon"] waittill(#"start_fade");
+	a_ents["archon"] waittill("start_fade");
 	level thread lui::screen_flash(1, 1.5, 0.5, 1, "white");
 	playsoundatposition("zmb_zod_endigc_whitescreen", (0, 0, 0));
 	wait(1);
@@ -1441,7 +1441,7 @@ function function_e186ed49(a_ents)
 		level clientfield::set(var_91341fca, 0);
 	}
 	level clientfield::set("ee_keeper_beam_state", 0);
-	a_ents["archon"] waittill(#"start_fade");
+	a_ents["archon"] waittill("start_fade");
 	level thread lui::screen_flash(0.5, 1, 0.5, 1, "black");
 	level flag::set("ee_complete");
 }
@@ -1529,7 +1529,7 @@ function function_e30b3505()
 {
 	while(true)
 	{
-		self waittill(#"trigger", player);
+		self waittill("trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;
@@ -1656,7 +1656,7 @@ function function_f3d23e2c()
 {
 	while(true)
 	{
-		self waittill(#"trigger", player);
+		self waittill("trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;
@@ -1716,7 +1716,7 @@ function function_9190a90e(n_char_index)
 	t_resurrect = getent(str_triggername, "targetname");
 	while(true)
 	{
-		t_resurrect waittill(#"trigger", player);
+		t_resurrect waittill("trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;
@@ -1882,7 +1882,7 @@ function function_3089f820(var_ee1ff130)
 	{
 		return;
 	}
-	level notify(#"ee_keeper_resurrection_failed");
+	level notify("ee_keeper_resurrection_failed");
 	level.var_dc1b8d40 = [];
 	level function_6f0edfa1();
 	if(isdefined(var_ee1ff130))
@@ -1913,7 +1913,7 @@ function function_3089f820(var_ee1ff130)
 */
 function function_5d546ced(var_ee1ff130)
 {
-	level notify(#"ee_keeper_resurrection_failed");
+	level notify("ee_keeper_resurrection_failed");
 	level.var_dc1b8d40 = [];
 	level function_6f0edfa1();
 	if(isdefined(var_ee1ff130))
@@ -1937,7 +1937,7 @@ function function_5d546ced(var_ee1ff130)
 function function_8f4b6b20(var_ee1ff130, var_dcdf1cd5 = 0)
 {
 	level function_6f0edfa1();
-	level notify(#"ee_keeper_resurrected");
+	level notify("ee_keeper_resurrected");
 	str_charname = function_d93f551b(var_ee1ff130);
 	level clientfield::set(("ee_keeper_" + str_charname) + "_state", 3);
 	level flag::set(("ee_keeper_" + str_charname) + "_resurrected");
@@ -1971,7 +1971,7 @@ function function_8f4b6b20(var_ee1ff130, var_dcdf1cd5 = 0)
 */
 function function_e6dd2eaf()
 {
-	level waittill(#"start_of_round");
+	level waittill("start_of_round");
 	level function_e525a12(1);
 	level clientfield::set("ee_totem_state", 1);
 }
@@ -2060,7 +2060,7 @@ function function_5eae8cbb()
 {
 	while(true)
 	{
-		self waittill(#"trigger", player);
+		self waittill("trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;
@@ -2101,7 +2101,7 @@ function function_5eae8cbb()
 */
 function function_4bcb6826()
 {
-	level endon(#"ee_boss_defeated");
+	level endon("ee_boss_defeated");
 	var_9eb45ed3 = array("boxer", "detective", "femme", "magician");
 	level.var_df5409ea = 9;
 	while(true)
@@ -2196,7 +2196,7 @@ function function_e59c5246(var_e6fb7eb3)
 */
 function function_e49d016d()
 {
-	level endon(#"ee_boss_defeated");
+	level endon("ee_boss_defeated");
 	level flag::wait_till("ee_boss_vulnerable");
 	level flag::wait_till_clear("ee_boss_vulnerable");
 	level thread function_877ea350();
@@ -2276,7 +2276,7 @@ function function_96ac6f7d()
 {
 	while(true)
 	{
-		self waittill(#"trigger", player);
+		self waittill("trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;
@@ -2371,7 +2371,7 @@ function function_57b64f04(player)
 {
 	player playsound("evt_nuke_flash");
 	level.disable_nuke_delay_spawning = 1;
-	level notify(#"disable_nuke_delay_spawning");
+	level notify("disable_nuke_delay_spawning");
 	level flag::clear("spawn_zombies");
 	function_5db6ba34(1, 1);
 	level thread function_83bdd16b();
@@ -2393,8 +2393,8 @@ function function_4cc29f4f(player)
 {
 	level notify(#"hash_4cc29f4f");
 	level endon(#"hash_4cc29f4f");
-	level endon(#"ee_keeper_resurrected");
-	level endon(#"ee_keeper_resurrection_failed");
+	level endon("ee_keeper_resurrected");
+	level endon("ee_keeper_resurrection_failed");
 	player endon(#"hash_f764159c");
 	player util::waittill_any("death", "disconnect", "player_downed");
 	if(isdefined(player.var_11104075))
@@ -2458,8 +2458,8 @@ function function_6b57b2d3()
 */
 function function_596e7950(goal)
 {
-	self endon(#"death");
-	self waittill(#"visible");
+	self endon("death");
+	self waittill("visible");
 	self vehicle_ai::set_state("scripted");
 	self setvehgoalpos(goal, 0, 1);
 	self thread zm_zod_shadowman::function_75c9aad2(goal, 64, 1);
@@ -2532,7 +2532,7 @@ function function_943c90e6()
 {
 	while(true)
 	{
-		self waittill(#"trigger", player);
+		self waittill("trigger", player);
 		if(player zm_utility::in_revive_trigger())
 		{
 			continue;
@@ -2561,7 +2561,7 @@ function function_943c90e6()
 */
 function function_f016ad0d(trig_stub, player)
 {
-	level endon(#"ee_keeper_resurrection_failed");
+	level endon("ee_keeper_resurrection_failed");
 	if(isdefined(trig_stub.b_completed) && trig_stub.b_completed)
 	{
 		if(!level flag::get("totem_placed"))
@@ -2722,7 +2722,7 @@ function function_224eb2ac()
 */
 function function_353871a(var_ee1ff130, owner)
 {
-	level endon(#"ee_keeper_resurrection_failed");
+	level endon("ee_keeper_resurrection_failed");
 	level endon(#"hash_26f14b55");
 	self.health = 1000000;
 	self.team = "allies";
@@ -2733,7 +2733,7 @@ function function_353871a(var_ee1ff130, owner)
 	var_a62764b3 = 2400 + -1600 * ((level.activeplayers.size - 1) / 3);
 	while(true)
 	{
-		self waittill(#"damage", amount, attacker, direction_vec, point, type, tagname, modelname, partname, weapon);
+		self waittill("damage", amount, attacker, direction_vec, point, type, tagname, modelname, partname, weapon);
 		self.health = 1000000;
 		if(isdefined(level.var_ad555b99) && level.var_ad555b99)
 		{
@@ -2786,7 +2786,7 @@ function function_353871a(var_ee1ff130, owner)
 */
 function function_ac3c8848(var_ee1ff130)
 {
-	level endon(#"ee_keeper_resurrection_failed");
+	level endon("ee_keeper_resurrection_failed");
 	level endon(#"hash_26f14b55");
 	var_cabf2f4c = 0;
 	var_3efd73a6 = 5;
@@ -2822,9 +2822,9 @@ function function_ac3c8848(var_ee1ff130)
 */
 function function_877ea350()
 {
-	level endon(#"ee_keeper_resurrected");
-	level endon(#"ee_keeper_resurrection_failed");
-	level endon(#"ee_boss_defeated");
+	level endon("ee_keeper_resurrected");
+	level endon("ee_keeper_resurrection_failed");
+	level endon("ee_boss_defeated");
 	zombie_utility::ai_calculate_health(level.round_number);
 	while(true)
 	{
@@ -2871,7 +2871,7 @@ function function_877ea350()
 				ai zombie_utility::set_zombie_run_cycle("run");
 			}
 			find_flesh_struct_string = "find_flesh";
-			ai notify(#"zombie_custom_think_done", find_flesh_struct_string);
+			ai notify("zombie_custom_think_done", find_flesh_struct_string);
 			ai ai::set_behavior_attribute("can_juke", 0);
 			if(level.zombie_respawns > 0 && level.zombie_vars["zombie_spawn_delay"] > 1)
 			{
@@ -2897,9 +2897,9 @@ function function_877ea350()
 */
 function function_737ebab()
 {
-	level endon(#"ee_keeper_resurrected");
-	level endon(#"ee_keeper_resurrection_failed");
-	level endon(#"ee_boss_defeated");
+	level endon("ee_keeper_resurrected");
+	level endon("ee_keeper_resurrection_failed");
+	level endon("ee_boss_defeated");
 	level.wasp_targets = getplayers();
 	for(i = 0; i < level.wasp_targets.size; i++)
 	{
@@ -3008,9 +3008,9 @@ function function_737ebab()
 */
 function function_83bdd16b()
 {
-	level endon(#"ee_keeper_resurrected");
-	level endon(#"ee_keeper_resurrection_failed");
-	level endon(#"ee_boss_defeated");
+	level endon("ee_keeper_resurrected");
+	level endon("ee_keeper_resurrection_failed");
+	level endon("ee_boss_defeated");
 	level.raps_targets = getplayers();
 	for(i = 0; i < level.raps_targets.size; i++)
 	{
@@ -3269,8 +3269,8 @@ function function_904cb175(var_e6fb7eb3)
 */
 function function_22d6774c(player, var_e6fb7eb3)
 {
-	level endon(#"ee_keeper_resurrected");
-	level endon(#"ee_keeper_resurrection_failed");
+	level endon("ee_keeper_resurrected");
+	level endon("ee_keeper_resurrection_failed");
 	player util::waittill_any("death", "bled_out", "disconnect");
 	if(isdefined(var_e6fb7eb3))
 	{

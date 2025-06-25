@@ -33,9 +33,9 @@ function main()
 */
 function function_f53f6b0a(localclientnum)
 {
-	self notify(#"stop_bbq_fx_loop");
-	self endon(#"stop_bbq_fx_loop");
-	self endon(#"entityshutdown");
+	self notify("stop_bbq_fx_loop");
+	self endon("stop_bbq_fx_loop");
+	self endon("entityshutdown");
 	while(true)
 	{
 		playfxontag(localclientnum, level._effect["fire_sacrifice_flame"], self, "tag_origin");
@@ -61,7 +61,7 @@ function barbecue_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fiel
 	}
 	else
 	{
-		self notify(#"stop_bbq_fx_loop");
+		self notify("stop_bbq_fx_loop");
 	}
 }
 

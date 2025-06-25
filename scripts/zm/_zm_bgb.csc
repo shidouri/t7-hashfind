@@ -184,8 +184,8 @@ function register(name, limit_type)
 */
 function private function_78c4bfa(localclientnum, time)
 {
-	self endon(#"death");
-	self endon(#"entityshutdown");
+	self endon("death");
+	self endon("entityshutdown");
 	if(isdemoplaying())
 	{
 		return;

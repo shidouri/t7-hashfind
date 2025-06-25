@@ -109,7 +109,7 @@ function spider_init(localclientnum)
 */
 function spider_round_fx(n_local_client, n_val_old, n_val_new, b_ent_new, b_initial_snap, str_field, b_demo_jump)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	setworldfogactivebank(n_local_client, 8);
 	if(isspectating(n_local_client))
 	{
@@ -151,7 +151,7 @@ function spider_end_of_round_reset(localclientnum, oldval, newval, bnewent, bini
 */
 function spider_round_ring_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	if(isspectating(localclientnum))
 	{
 		return;
@@ -172,7 +172,7 @@ function spider_round_ring_fx(localclientnum, oldval, newval, bnewent, binitials
 */
 function function_bea149a5(localclientnum, var_afc7cc94, var_b05b3457, b_on, n_alpha = 1, var_abf03d83 = 0, var_c0ce8db2 = 0)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(self.b_on === b_on)
 	{
 		return;

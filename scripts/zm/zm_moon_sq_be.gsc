@@ -111,14 +111,14 @@ function stage_logic_2()
 	}
 	zm_weap_quantum_bomb::quantum_bomb_register_result("be2", undefined, 100, &be2_validation);
 	level._be_pos = level._be.origin;
-	level waittill(#"be2_validation");
+	level waittill("be2_validation");
 	zm_weap_quantum_bomb::quantum_bomb_deregister_result("be2");
 	s = struct::get("be2_pos", "targetname");
 	level._be dontinterpolate();
 	level._be.origin = s.origin;
 	level.teleport_target_trigger = spawn("trigger_radius", s.origin + (vectorscale((0, 0, -1), 70)), 0, 125, 100);
 	level.black_hole_bomb_loc_check_func = &bhb_teleport_loc_check;
-	level waittill(#"be2_tp_done");
+	level waittill("be2_tp_done");
 	players = getplayers();
 	players[randomintrange(0, players.size)] thread zm_audio::create_and_play_dialog("eggs", "quest8", 2);
 	level.black_hole_bomb_loc_check_func = undefined;
@@ -138,8 +138,8 @@ function stage_logic_2()
 */
 function wait_for_close_player()
 {
-	level endon(#"be2_validation");
-	self endon(#"death");
+	level endon("be2_validation");
+	self endon("death");
 	wait(25);
 	while(true)
 	{
@@ -205,7 +205,7 @@ function teleport_target(grenade, model)
 	}
 	model playsound("zmb_gersh_teleporter_go");
 	wait(2);
-	level notify(#"be2_tp_done");
+	level notify("be2_tp_done");
 }
 
 /*
@@ -221,7 +221,7 @@ function be2_validation(position)
 {
 	if(distancesquared(level._be_pos, position) < 26896)
 	{
-		level notify(#"be2_validation");
+		level notify("be2_validation");
 	}
 	return false;
 }
@@ -296,7 +296,7 @@ function exit_stage_1(success)
 */
 function moon_be_start_capture()
 {
-	level endon(#"end_game");
+	level endon("end_game");
 	while(!level flag::get(level._be_complete[0]))
 	{
 		if(level flag::get("teleporter_breached") && !level flag::get("teleporter_blocked"))
@@ -349,7 +349,7 @@ function moon_be_activate()
 	start = 0;
 	while(!start)
 	{
-		d_trig waittill(#"damage", amount, attacker, direction, point, dmg_type, modelname, tagname);
+		d_trig waittill("damage", amount, attacker, direction, point, dmg_type, modelname, tagname);
 		if(isplayer(attacker) && moon_be_move(road_start.script_string))
 		{
 			if(moon_be_move(dmg_type))
@@ -377,14 +377,14 @@ function moon_be_activate()
 */
 function moon_be_think()
 {
-	self endon(#"death");
-	self endon(#"finished_path");
-	self endon(#"be_stage_one_over");
+	self endon("death");
+	self endon("finished_path");
+	self endon("be_stage_one_over");
 	vox_num = 2;
 	vox_dude = undefined;
 	while(isdefined(self))
 	{
-		self waittill(#"reached_node", node);
+		self waittill("reached_node", node);
 		if(level.var_e9ab794e)
 		{
 			nd_end = getvehiclenode(node.target, "targetname");
@@ -410,13 +410,13 @@ function moon_be_think()
 				if(isdefined(node.script_string) && node.script_string == "zap")
 				{
 					zm_weap_microwavegun::add_microwaveable_object(d_trig);
-					d_trig waittill(#"microwaved", vox_dude);
+					d_trig waittill("microwaved", vox_dude);
 					zm_weap_microwavegun::remove_microwaveable_object(d_trig);
 					motivation = 1;
 				}
 				else
 				{
-					d_trig waittill(#"damage", amount, attacker, direction, point, dmg_type, modelname, tagname);
+					d_trig waittill("damage", amount, attacker, direction, point, dmg_type, modelname, tagname);
 					if(isplayer(attacker) && moon_be_move(node.script_string))
 					{
 						motivation = moon_be_move(dmg_type);
@@ -499,7 +499,7 @@ function moon_be_think()
 					self setspeedimmediate(0);
 					self thread moon_be_stop_anim();
 					level flag::set("complete_be_1");
-					self notify(#"finished_path");
+					self notify("finished_path");
 					break;
 				}
 				default:
@@ -533,13 +533,13 @@ function moon_be_think()
 					if(isdefined(next_chain_start.script_string) && next_chain_start.script_string == "zap")
 					{
 						zm_weap_microwavegun::add_microwaveable_object(d_trig);
-						d_trig waittill(#"microwaved", vox_dude);
+						d_trig waittill("microwaved", vox_dude);
 						zm_weap_microwavegun::remove_microwaveable_object(d_trig);
 						motivation = 1;
 					}
 					else
 					{
-						d_trig waittill(#"damage", amount, attacker, direction, point, dmg_type, modelname, tagname);
+						d_trig waittill("damage", amount, attacker, direction, point, dmg_type, modelname, tagname);
 						if(isplayer(attacker) && moon_be_move(next_chain_start.script_string))
 						{
 							motivation = moon_be_move(dmg_type);
@@ -668,7 +668,7 @@ function get_closest_index_2d(org, array, dist = 9999999)
 */
 function moon_be_anim_swap(int_anim)
 {
-	self endon(#"death");
+	self endon("death");
 	self._be_model stopanimscripted();
 	if(int_anim == 0)
 	{
@@ -691,7 +691,7 @@ function moon_be_anim_swap(int_anim)
 */
 function moon_be_stop_anim()
 {
-	self endon(#"death");
+	self endon("death");
 	self._be_model stopanimscripted();
 }
 
@@ -706,8 +706,8 @@ function moon_be_stop_anim()
 */
 function moon_be_resume_anim()
 {
-	self endon(#"death");
-	self endon(#"be_stage_one_over");
+	self endon("death");
+	self endon("be_stage_one_over");
 	rand = randomint(1);
 	if(rand)
 	{

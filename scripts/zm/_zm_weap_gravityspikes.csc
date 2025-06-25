@@ -261,7 +261,7 @@ function ragdoll_impact_watch_start(localclientnum, oldval, newval, bnewent, bin
 */
 function ragdoll_impact_watch(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self.v_start_pos = self.origin;
 	n_wait_time = 0.05;
 	n_gib_speed = 20;
@@ -312,7 +312,7 @@ function gravity_trap_rumble_callback(localclientnum, oldval, newval, bnewent, b
 	}
 	else
 	{
-		self notify(#"vortex_stop");
+		self notify("vortex_stop");
 	}
 }
 
@@ -327,9 +327,9 @@ function gravity_trap_rumble_callback(localclientnum, oldval, newval, bnewent, b
 */
 function gravity_trap_rumble(localclientnum)
 {
-	level endon(#"demo_jump");
-	self endon(#"vortex_stop");
-	self endon(#"death");
+	level endon("demo_jump");
+	self endon("vortex_stop");
+	self endon("death");
 	while(isdefined(self))
 	{
 		self playrumbleonentity(localclientnum, "zod_idgun_vortex_interior");
@@ -437,7 +437,7 @@ function sparky_zombie_trail_fx_cb(localclientnum, oldval, newval, bnewent, bini
 */
 function gravity_spike_zombie_explode(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	playfxontag(localclientnum, level._effect["gravity_spike_zombie_explode"], self, "j_spine4");
 }

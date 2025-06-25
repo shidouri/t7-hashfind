@@ -80,7 +80,7 @@ function robot_burn(localclientnum, oldval, newval, bnewent, binitialsnap, field
 {
 	if(newval)
 	{
-		self endon(#"entityshutdown");
+		self endon("entityshutdown");
 		self util::waittill_dobj(localclientnum);
 		fxhandles = playtagfxset(localclientnum, "escort_robot_burn", self);
 		self thread watch_fx_shutdown(localclientnum, fxhandles);
@@ -152,7 +152,7 @@ function wait_team_changed(localclientnum)
 {
 	while(true)
 	{
-		level waittill(#"team_changed");
+		level waittill("team_changed");
 		while(!isdefined(getnonpredictedlocalplayer(localclientnum)))
 		{
 			wait(0.05);

@@ -207,7 +207,7 @@ function wait_for_black_box()
 	secondclientnum = -1;
 	while(true)
 	{
-		level waittill(#"black_box_start", localclientnum);
+		level waittill("black_box_start", localclientnum);
 		/#
 			assert(isdefined(localclientnum));
 		#/
@@ -216,7 +216,7 @@ function wait_for_black_box()
 		visionsetnaked(localclientnum, "default", 0);
 		while(secondclientnum != localclientnum)
 		{
-			level waittill(#"black_box_end", secondclientnum);
+			level waittill("black_box_end", secondclientnum);
 		}
 		visionsetnaked(localclientnum, savedvis, 0);
 	}
@@ -235,7 +235,7 @@ function wait_for_teleport_aftereffect()
 {
 	while(true)
 	{
-		level waittill(#"tae", localclientnum);
+		level waittill("tae", localclientnum);
 		if(getdvarstring("castleAftereffectOverride") == ("-1"))
 		{
 			self thread [[level.teleport_ae_funcs[randomint(level.teleport_ae_funcs.size)]]](localclientnum);

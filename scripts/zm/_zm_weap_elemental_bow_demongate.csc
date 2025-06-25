@@ -168,9 +168,9 @@ function demongate_portal_rumble(localclientnum, oldval, newval, bnewent, biniti
 */
 function function_35e3ef91(localclientnum)
 {
-	level endon(#"demo_jump");
+	level endon("demo_jump");
 	self endon(#"hash_3e0789ec");
-	self endon(#"death");
+	self endon("death");
 	while(isdefined(self))
 	{
 		self playrumbleonentity(localclientnum, "zod_idgun_vortex_interior");
@@ -231,7 +231,7 @@ function demongate_attack_locomotion_anim(localclientnum, oldval, newval, bnewen
 */
 function demongate_chomper_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(newval)
 	{
 		if(isdefined(self.var_a581816a))
@@ -265,7 +265,7 @@ function demongate_chomper_fx(localclientnum, oldval, newval, bnewent, binitials
 */
 function demongate_chomper_bite_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(isdefined(self.var_64b4f506))
 	{
 		stopfx(localclientnum, self.var_64b4f506);

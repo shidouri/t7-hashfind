@@ -189,7 +189,7 @@ function electric_cherry_perk_machine_think()
 		}
 		level thread zm_perks::do_initial_power_off_callback(machine, "electriccherry");
 		array::thread_all(machine_triggers, &zm_perks::set_power_on, 0);
-		level waittill(#"electric_cherry_on");
+		level waittill("electric_cherry_on");
 		for(i = 0; i < machine.size; i++)
 		{
 			machine[i] setmodel("p7_zm_vending_nuke");
@@ -198,9 +198,9 @@ function electric_cherry_perk_machine_think()
 			machine[i] thread zm_perks::perk_fx("electriccherry");
 			machine[i] thread zm_perks::play_loop_on_machine();
 		}
-		level notify(#"specialty_grenadepulldeath_power_on");
+		level notify("specialty_grenadepulldeath_power_on");
 		array::thread_all(machine_triggers, &zm_perks::set_power_on, 1);
-		level waittill(#"electric_cherry_off");
+		level waittill("electric_cherry_off");
 		array::thread_all(machine_triggers, &zm_perks::turn_perk_off);
 	}
 }
@@ -243,7 +243,7 @@ function electric_cherry_laststand()
 	{
 		playfx(level._effect["electric_cherry_explode"], self.origin);
 		self playsound("zmb_cherry_explode");
-		self notify(#"electric_cherry_start");
+		self notify("electric_cherry_start");
 		wait(0.05);
 		a_zombies = zombie_utility::get_round_enemy_array();
 		a_zombies = util::get_array_of_closest(self.origin, a_zombies, undefined, undefined, 500);
@@ -269,7 +269,7 @@ function electric_cherry_laststand()
 				a_zombies[i] dodamage(1000, self.origin, self, self, "none");
 			}
 		}
-		self notify(#"electric_cherry_end");
+		self notify("electric_cherry_end");
 	}
 }
 
@@ -284,7 +284,7 @@ function electric_cherry_laststand()
 */
 function electric_cherry_death_fx()
 {
-	self endon(#"death");
+	self endon("death");
 	self playsound("zmb_elec_jib_zombie");
 	if(!(isdefined(self.head_gibbed) && self.head_gibbed))
 	{
@@ -321,7 +321,7 @@ function electric_cherry_death_fx()
 */
 function electric_cherry_shock_fx()
 {
-	self endon(#"death");
+	self endon("death");
 	if(isvehicle(self))
 	{
 		self clientfield::set("tesla_shock_eyes_fx_veh", 1);
@@ -331,7 +331,7 @@ function electric_cherry_shock_fx()
 		self clientfield::set("tesla_shock_eyes_fx", 1);
 	}
 	self playsound("zmb_elec_jib_zombie");
-	self waittill(#"stun_fx_end");
+	self waittill("stun_fx_end");
 	if(isvehicle(self))
 	{
 		self clientfield::set("tesla_shock_eyes_fx_veh", 0);
@@ -353,9 +353,9 @@ function electric_cherry_shock_fx()
 */
 function electric_cherry_stun()
 {
-	self endon(#"death");
-	self notify(#"stun_zombie");
-	self endon(#"stun_zombie");
+	self endon("death");
+	self notify("stun_zombie");
+	self endon("stun_zombie");
 	if(self.health <= 0)
 	{
 		/#
@@ -374,7 +374,7 @@ function electric_cherry_stun()
 	{
 		self.zombie_tesla_hit = 0;
 		self.ignoreall = 0;
-		self notify(#"stun_fx_end");
+		self notify("stun_fx_end");
 	}
 }
 
@@ -389,14 +389,14 @@ function electric_cherry_stun()
 */
 function electric_cherry_reload_attack()
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	self endon("specialty_electriccherry" + "_stop");
 	self.wait_on_reload = [];
 	self.consecutive_electric_cherry_attacks = 0;
 	while(true)
 	{
-		self waittill(#"reload_start");
+		self waittill("reload_start");
 		current_weapon = self getcurrentweapon();
 		if(isinarray(self.wait_on_reload, current_weapon))
 		{
@@ -446,7 +446,7 @@ function electric_cherry_reload_attack()
 				continue;
 			}
 			self thread electric_cherry_reload_fx(n_fraction);
-			self notify(#"electric_cherry_start");
+			self notify("electric_cherry_start");
 			self playsound("zmb_cherry_explode");
 			a_zombies = zombie_utility::get_round_enemy_array();
 			a_zombies = util::get_array_of_closest(self.origin, a_zombies, undefined, undefined, perk_radius);
@@ -490,7 +490,7 @@ function electric_cherry_reload_attack()
 					}
 				}
 			}
-			self notify(#"electric_cherry_end");
+			self notify("electric_cherry_end");
 		}
 	}
 }
@@ -506,10 +506,10 @@ function electric_cherry_reload_attack()
 */
 function electric_cherry_cooldown_timer(current_weapon)
 {
-	self notify(#"electric_cherry_cooldown_started");
-	self endon(#"electric_cherry_cooldown_started");
-	self endon(#"death");
-	self endon(#"disconnect");
+	self notify("electric_cherry_cooldown_started");
+	self endon("electric_cherry_cooldown_started");
+	self endon("death");
+	self endon("disconnect");
 	n_reload_time = 0.25;
 	if(self hasperk("specialty_fastreload"))
 	{
@@ -531,13 +531,13 @@ function electric_cherry_cooldown_timer(current_weapon)
 */
 function check_for_reload_complete(weapon)
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	self endon("player_lost_weapon_" + weapon.name);
 	self thread weapon_replaced_monitor(weapon);
 	while(true)
 	{
-		self waittill(#"reload");
+		self waittill("reload");
 		current_weapon = self getcurrentweapon();
 		if(current_weapon == weapon)
 		{
@@ -559,12 +559,12 @@ function check_for_reload_complete(weapon)
 */
 function weapon_replaced_monitor(weapon)
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	self endon("weapon_reload_complete_" + weapon.name);
 	while(true)
 	{
-		self waittill(#"weapon_change");
+		self waittill("weapon_change");
 		primaryweapons = self getweaponslistprimaries();
 		if(!isinarray(primaryweapons, weapon))
 		{

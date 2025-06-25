@@ -145,10 +145,10 @@ function init()
 */
 function function_10d1beae()
 {
-	level endon(#"end_game");
+	level endon("end_game");
 	while(true)
 	{
-		level waittill(#"end_of_round");
+		level waittill("end_of_round");
 		level.var_2f83d088 = 0;
 	}
 }
@@ -219,7 +219,7 @@ function function_8aac3fe()
 	level.var_ebc4830 = level.round_number + randomintrange(4, 7);
 	while(true)
 	{
-		level waittill(#"between_round_over");
+		level waittill("between_round_over");
 		level.var_e51f5b82 = 0;
 		if(isdefined(level.n_next_spider_round) && level.round_number == level.n_next_spider_round)
 		{
@@ -244,7 +244,7 @@ function function_8aac3fe()
 			level.var_ebc4830 = level.round_number + 3;
 			level thread function_8b7e4b15();
 			level flag::set("thrasher_round");
-			level waittill(#"end_of_round");
+			level waittill("end_of_round");
 			level flag::clear("thrasher_round");
 			level.var_175273f2++;
 			/#
@@ -265,7 +265,7 @@ function function_8aac3fe()
 */
 function function_8b7e4b15()
 {
-	level endon(#"end_of_round");
+	level endon("end_of_round");
 	var_d1cba433 = [];
 	while(true)
 	{
@@ -423,7 +423,7 @@ function function_6d24956b(v_origin)
 */
 function function_68ee76ee(var_d1cba433, var_48cf4a3d = 1)
 {
-	level endon(#"end_of_round");
+	level endon("end_of_round");
 	/#
 		assert(var_d1cba433.size >= var_48cf4a3d, "");
 	#/
@@ -464,7 +464,7 @@ function function_68ee76ee(var_d1cba433, var_48cf4a3d = 1)
 */
 function function_8b323113(var_a4ef4373, var_42fbb5b1 = 1, var_ab0dd5e8 = 1, var_be10dc4f = 0)
 {
-	level endon(#"end_of_round");
+	level endon("end_of_round");
 	var_30f9e367 = "scene_zm_dlc2_thrasher_transform_zombie";
 	if(var_be10dc4f)
 	{
@@ -656,7 +656,7 @@ function spawn_thrasher(var_42fbb5b1 = 1)
 */
 function function_89976d94(v_pos)
 {
-	self endon(#"death");
+	self endon("death");
 	var_2e57f81c = util::spawn_model("tag_origin", self.origin, self.angles);
 	var_2e57f81c thread scene::play("scene_zm_dlc2_thrasher_teleport_out", self);
 	self util::waittill_notify_or_timeout("thrasher_teleport_out_done", 4);
@@ -1129,7 +1129,7 @@ function function_4912c054(hitentity)
 */
 function function_565fed9e(entity)
 {
-	entity endon(#"death");
+	entity endon("death");
 	if(isdefined(entity) && isalive(entity))
 	{
 		entity.bgbignorefearinheadlights = 1;
@@ -1196,7 +1196,7 @@ function function_70622dc9()
 */
 function function_871a3bd5()
 {
-	self waittill(#"death", e_attacker);
+	self waittill("death", e_attacker);
 	arrayremovevalue(level.var_35a5aa88, self);
 	if(isplayer(e_attacker))
 	{
@@ -1217,7 +1217,7 @@ function function_871a3bd5()
 	}
 	if(isdefined(e_attacker) && isai(e_attacker))
 	{
-		e_attacker notify(#"killed", self);
+		e_attacker notify("killed", self);
 	}
 }
 
@@ -1232,7 +1232,7 @@ function function_871a3bd5()
 */
 function sndthrasher()
 {
-	self endon(#"death");
+	self endon("death");
 	self playloopsound("zmb_thrasher_lp_close", 2);
 	wait(randomintrange(2, 5));
 	while(true)
@@ -1304,7 +1304,7 @@ function function_11d343a5(thrasher)
 	/#
 		thrasher notify(#"hash_eafe225a");
 		thrasher endon(#"hash_eafe225a");
-		thrasher endon(#"death");
+		thrasher endon("death");
 		thrasher.ignoreall = 1;
 		while(true)
 		{
@@ -1322,7 +1322,7 @@ function function_11d343a5(thrasher)
 				}
 			}
 			thrasher setgoal(var_46b60716);
-			thrasher waittill(#"goal");
+			thrasher waittill("goal");
 		}
 	#/
 }

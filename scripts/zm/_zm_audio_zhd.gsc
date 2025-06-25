@@ -123,7 +123,7 @@ function function_513f51e1(restart = 0)
 		mdl_ballerina = util::spawn_model(s_ballerina_start.model, s_ballerina_start.origin - vectorscale((0, 0, 1), 20), s_ballerina_start.angles);
 		mdl_ballerina clientfield::set("snd_zhdegg", 2);
 		mdl_ballerina moveto(s_ballerina_start.origin, 2);
-		mdl_ballerina waittill(#"movedone");
+		mdl_ballerina waittill("movedone");
 	}
 	else
 	{
@@ -132,7 +132,7 @@ function function_513f51e1(restart = 0)
 		mdl_ballerina clientfield::set("snd_zhdegg", 1);
 	}
 	s_ballerina_start zm_unitrigger::create_unitrigger(undefined, 80);
-	s_ballerina_start waittill(#"trigger_activated");
+	s_ballerina_start waittill("trigger_activated");
 	zm_unitrigger::unregister_unitrigger(s_ballerina_start.s_unitrigger);
 	mdl_ballerina clientfield::set("snd_zhdegg", 0);
 	util::wait_network_frame();
@@ -195,7 +195,7 @@ function function_3cf3ba48()
 	#/
 	self util::waittill_any("ballerina_destroyed", "ballerina_timeout");
 	/#
-		self.mdl_ballerina notify(#"end_print3d");
+		self.mdl_ballerina notify("end_print3d");
 	#/
 	self.mdl_ballerina clientfield::set("snd_zhdegg", 0);
 	util::wait_network_frame();
@@ -214,10 +214,10 @@ function function_3cf3ba48()
 */
 function function_9d55fd08()
 {
-	self.mdl_ballerina endon(#"death");
+	self.mdl_ballerina endon("death");
 	self endon(#"hash_636d801f");
-	self endon(#"ballerina_destroyed");
-	self endon(#"ballerina_timeout");
+	self endon("ballerina_destroyed");
+	self endon("ballerina_timeout");
 	while(true)
 	{
 		self.mdl_ballerina rotateyaw(360, 4);
@@ -236,12 +236,12 @@ function function_9d55fd08()
 */
 function function_2fdaabf3()
 {
-	self endon(#"ballerina_timeout");
+	self endon("ballerina_timeout");
 	self.mdl_ballerina setcandamage(1);
 	self.mdl_ballerina.health = 1000000;
 	while(true)
 	{
-		self.mdl_ballerina waittill(#"damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
+		self.mdl_ballerina waittill("damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
 		if(isdefined(level.var_252a085b) && level.var_252a085b)
 		{
 			continue;
@@ -255,7 +255,7 @@ function function_2fdaabf3()
 			continue;
 		}
 		self.success = 1;
-		self notify(#"ballerina_destroyed");
+		self notify("ballerina_destroyed");
 		level.var_252a085b = 1;
 		wait(0.1);
 		level.var_252a085b = 0;
@@ -274,7 +274,7 @@ function function_2fdaabf3()
 */
 function function_a9a34039()
 {
-	self endon(#"ballerina_destroyed");
+	self endon("ballerina_destroyed");
 	if(level.players.size > 1)
 	{
 		wait(90 - (15 * level.players.size));
@@ -283,7 +283,7 @@ function function_a9a34039()
 	{
 		wait(90);
 	}
-	self notify(#"ballerina_timeout");
+	self notify("ballerina_timeout");
 }
 
 /*
@@ -304,7 +304,7 @@ function function_5b2770da()
 	s_ballerina_end.mdl_ballerina playloopsound("mus_musicbox_lp", 2);
 	s_ballerina_end thread function_9d55fd08();
 	s_ballerina_end zm_unitrigger::create_unitrigger(undefined, 65);
-	s_ballerina_end waittill(#"trigger_activated");
+	s_ballerina_end waittill("trigger_activated");
 	zm_unitrigger::unregister_unitrigger(s_ballerina_end.s_unitrigger);
 	s_ballerina_end notify(#"hash_636d801f");
 	s_ballerina_end.mdl_ballerina stoploopsound(0.5);
@@ -320,14 +320,14 @@ function function_5b2770da()
 	s_ballerina_end.var_79dc7980 movez(20, 0.5);
 	wait(0.05);
 	s_ballerina_end.mdl_hand clientfield::increment("snd_zhdegg_arm");
-	s_ballerina_end.mdl_hand waittill(#"movedone");
+	s_ballerina_end.mdl_hand waittill("movedone");
 	wait(1);
 	s_ballerina_end.mdl_ballerina playloopsound("zmb_challenge_skel_arm_lp", 0.25);
 	s_ballerina_end.mdl_ballerina movez(-40, 1.5);
 	s_ballerina_end.mdl_hand movez(-40, 1.5);
 	s_ballerina_end.var_2a9b65c7 movez(-40, 1.5);
 	s_ballerina_end.var_79dc7980 movez(-40, 1.5);
-	s_ballerina_end.mdl_ballerina waittill(#"movedone");
+	s_ballerina_end.mdl_ballerina waittill("movedone");
 	zm_powerups::specific_powerup_drop("full_ammo", s_ballerina_end.origin);
 	s_ballerina_end.mdl_ballerina delete();
 	s_ballerina_end.mdl_hand delete();
@@ -380,7 +380,7 @@ function function_929c4dba()
 	#/
 	while(!(isdefined(e_origin.b_activated) && e_origin.b_activated))
 	{
-		e_origin waittill(#"trigger_activated", who);
+		e_origin waittill("trigger_activated", who);
 		if(!function_8090042c())
 		{
 			continue;
@@ -389,7 +389,7 @@ function function_929c4dba()
 		e_origin function_bd90259b(who);
 	}
 	/#
-		e_origin notify(#"end_print3d");
+		e_origin notify("end_print3d");
 	#/
 	zm_unitrigger::unregister_unitrigger(e_origin.s_unitrigger);
 	e_origin delete();
@@ -445,14 +445,14 @@ function function_bd90259b(e_player)
 */
 function snd_monty_radio()
 {
-	level waittill(#"connected", player);
+	level waittill("connected", player);
 	s_radio = struct::get("snd_monty_radio", "targetname");
 	if(!isdefined(s_radio))
 	{
 		return;
 	}
 	s_radio zm_unitrigger::create_unitrigger();
-	s_radio waittill(#"trigger_activated");
+	s_radio waittill("trigger_activated");
 	playsoundatposition("vox_abcd_radio", s_radio.origin);
 	zm_unitrigger::unregister_unitrigger(s_radio.s_unitrigger);
 }
@@ -521,7 +521,7 @@ function setup_personality_character_exerts()
 */
 function set_exert_id()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	util::wait_network_frame();
 	util::wait_network_frame();
 	self zm_audio::setexertvoice(self.characterindex + 1);

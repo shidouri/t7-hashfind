@@ -112,10 +112,10 @@ function on_spawned()
 */
 function round_tracking()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(true)
 	{
-		level waittill(#"end_of_round");
+		level waittill("end_of_round");
 		self.a_daily_challenges[3]++;
 		switch(self.a_daily_challenges[3])
 		{
@@ -407,10 +407,10 @@ function death_check_for_challenge_updates(e_attacker)
 */
 function spent_points_tracking()
 {
-	level endon(#"end_game");
+	level endon("end_game");
 	while(true)
 	{
-		level waittill(#"spent_points", player, n_points);
+		level waittill("spent_points", player, n_points);
 		player.a_daily_challenges[1] = player.a_daily_challenges[1] + n_points;
 		player zm_stats::increment_challenge_stat("ZM_DAILY_SPEND_25K", n_points);
 		player zm_stats::increment_challenge_stat("ZM_DAILY_SPEND_50K", n_points);
@@ -431,10 +431,10 @@ function spent_points_tracking()
 */
 function earned_points_tracking()
 {
-	level endon(#"end_game");
+	level endon("end_game");
 	while(true)
 	{
-		level waittill(#"earned_points", player, n_points);
+		level waittill("earned_points", player, n_points);
 		if(level.zombie_vars[player.team]["zombie_point_scalar"] == 2)
 		{
 			player.a_daily_challenges[2] = player.a_daily_challenges[2] + n_points;
@@ -457,9 +457,9 @@ function earned_points_tracking()
 */
 function challenge_ingame_time_tracking()
 {
-	self endon(#"disconnect");
-	self notify(#"stop_challenge_ingame_time_tracking");
-	self endon(#"stop_challenge_ingame_time_tracking");
+	self endon("disconnect");
+	self notify("stop_challenge_ingame_time_tracking");
+	self endon("stop_challenge_ingame_time_tracking");
 	level flag::wait_till("start_zombie_round_logic");
 	for(;;)
 	{
@@ -514,7 +514,7 @@ function increment_windows_repaired(s_barrier)
 */
 function private rebuild_timer()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self.b_dc_rebuild_timer_active = 1;
 	wait(45);
 	if(self.n_dc_barriers_rebuilt >= 5)
@@ -587,10 +587,10 @@ function increment_nuked_zombie()
 */
 function perk_purchase_tracking()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(true)
 	{
-		self waittill(#"perk_purchased", str_perk);
+		self waittill("perk_purchased", str_perk);
 		self zm_stats::increment_challenge_stat("ZM_DAILY_PURCHASE_PERKS");
 		/#
 			debug_print("");
@@ -609,10 +609,10 @@ function perk_purchase_tracking()
 */
 function perk_drink_tracking()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(true)
 	{
-		self waittill(#"perk_bought");
+		self waittill("perk_bought");
 		self zm_stats::increment_challenge_stat("ZM_DAILY_DRINK_PERKS");
 		/#
 			debug_print("");

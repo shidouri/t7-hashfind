@@ -86,7 +86,7 @@ function function_8554d5da()
 	self thread function_f184004e();
 	while(true)
 	{
-		self waittill(#"damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
+		self waittill("damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
 		if(!isdefined(attacker) || !isplayer(attacker))
 		{
 			continue;
@@ -128,7 +128,7 @@ function function_2d4f4459()
 			wait(0.05);
 		}
 		self playsoundwithnotify("zmb_musicradio_switch", "sounddone");
-		self waittill(#"sounddone");
+		self waittill("sounddone");
 		self thread function_c62f1c37();
 	}
 }
@@ -153,7 +153,7 @@ function function_c62f1c37()
 	{
 		self.tracknum = 0;
 	}
-	self waittill(#"songdone");
+	self waittill("songdone");
 	self notify(#"hash_34d24635");
 }
 

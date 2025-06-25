@@ -354,7 +354,7 @@ function private margwaheadrightcallback(localclientnum, oldvalue, newvalue, bne
 */
 function private margwastopsmashfx(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	wait(0.6);
 	if(isdefined(self.leftglowfx))
 	{
@@ -447,7 +447,7 @@ function private margwafxtraveltellcallback(localclientnum, oldvalue, newvalue, 
 		case 0:
 		{
 			deletefx(localclientnum, self.travelertellfx);
-			self notify(#"stop_margwatraveltell");
+			self notify("stop_margwatraveltell");
 			break;
 		}
 		case 1:
@@ -470,9 +470,9 @@ function private margwafxtraveltellcallback(localclientnum, oldvalue, newvalue, 
 */
 function private margwatraveltellupdate(localclientnum)
 {
-	self notify(#"stop_margwatraveltell");
-	self endon(#"stop_margwatraveltell");
-	self endon(#"entityshutdown");
+	self notify("stop_margwatraveltell");
+	self endon("stop_margwatraveltell");
+	self endon("entityshutdown");
 	player = getlocalplayer(localclientnum);
 	while(true)
 	{

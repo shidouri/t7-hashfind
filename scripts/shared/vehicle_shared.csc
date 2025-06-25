@@ -144,7 +144,7 @@ function spawned_callback(localclientnum)
 */
 function rumble(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!isdefined(self.rumbletype) || self.rumbleradius == 0)
 	{
 		return;
@@ -200,7 +200,7 @@ function rumble(localclientnum)
 */
 function kill_treads_forever()
 {
-	self notify(#"kill_treads_forever");
+	self notify("kill_treads_forever");
 }
 
 /*
@@ -237,7 +237,7 @@ function play_exhaust(localclientnum)
 			/#
 				assert(isdefined(self.exhaustfxtag1), self.vehicletype + "");
 			#/
-			self endon(#"entityshutdown");
+			self endon("entityshutdown");
 			self wait_for_dobj(localclientnum);
 			self.exhaust_id_left = playfxontag(localclientnum, self.exhaust_fx, self, self.exhaustfxtag1);
 			if(!isdefined(self.exhaust_id_right) && isdefined(self.exhaustfxtag2))
@@ -260,7 +260,7 @@ function play_exhaust(localclientnum)
 */
 function kill_exhaust_watcher(localclientnum)
 {
-	self waittill(#"stop_exhaust_fx");
+	self waittill("stop_exhaust_fx");
 	if(isdefined(self.exhaust_id_left))
 	{
 		stopfx(localclientnum, self.exhaust_id_left);
@@ -284,7 +284,7 @@ function kill_exhaust_watcher(localclientnum)
 */
 function stop_exhaust(localclientnum)
 {
-	self notify(#"stop_exhaust_fx");
+	self notify("stop_exhaust_fx");
 }
 
 /*
@@ -299,8 +299,8 @@ function stop_exhaust(localclientnum)
 function aircraft_dustkick()
 {
 	waittillframeend();
-	self endon(#"kill_treads_forever");
-	self endon(#"entityshutdown");
+	self endon("kill_treads_forever");
+	self endon("entityshutdown");
 	if(!isdefined(self))
 	{
 		return;
@@ -378,10 +378,10 @@ function aircraft_dustkick()
 */
 function weapon_fired()
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(true)
 	{
-		self waittill(#"weapon_fired");
+		self waittill("weapon_fired");
 		players = level.localplayers;
 		for(i = 0; i < players.size; i++)
 		{
@@ -446,7 +446,7 @@ function wait_for_dobj(localclientnum)
 */
 function lights_on(localclientnum, team)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	lights_off(localclientnum);
 	wait_for_dobj(localclientnum);
 	if(isdefined(self.lightfxnamearray))
@@ -518,7 +518,7 @@ function addanimtolist(animitem, &liston, &listoff, playwhenoff, id, maxid)
 */
 function ambient_anim_toggle(localclientnum, groupid, ison)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!isdefined(self.scriptbundlesettings))
 	{
 		return;
@@ -653,7 +653,7 @@ function field_toggle_ambient_anim_handler4(localclientnum, oldval, newval, bnew
 */
 function lights_group_toggle(localclientnum, id, ison)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!isdefined(self.scriptbundlesettings))
 	{
 		return;
@@ -892,7 +892,7 @@ function toggle_fx_bundle(localclientnum, name, turnon)
 	{
 		return;
 	}
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self notify("end_toggle_field_fx_" + name);
 	self endon("end_toggle_field_fx_" + name);
 	wait_for_dobj(localclientnum);
@@ -944,7 +944,7 @@ function toggle_fx_bundle(localclientnum, name, turnon)
 */
 function delayed_fx_thread(localclientnum, name, fx, tag, delay)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self endon("end_toggle_field_fx_" + name);
 	if(!isdefined(tag))
 	{
@@ -981,12 +981,12 @@ function field_toggle_sounds(localclientnum, oldval, newval, bnewent, binitialsn
 	{
 		if(newval)
 		{
-			self notify(#"stop_heli_sounds");
+			self notify("stop_heli_sounds");
 			self.should_not_play_sounds = 1;
 		}
 		else
 		{
-			self notify(#"play_heli_sounds");
+			self notify("play_heli_sounds");
 			self.should_not_play_sounds = 0;
 		}
 	}
@@ -1260,7 +1260,7 @@ function field_use_engine_damage_sounds(localclientnum, oldval, newval, bnewent,
 */
 function field_do_deathfx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(newval == 2)
 	{
 		self field_do_empdeathfx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump);
@@ -1886,7 +1886,7 @@ function damage_filter_enable(localclientnum, materialid)
 */
 function damage_filter_disable(localclientnum)
 {
-	level notify(#"damage_filter_off");
+	level notify("damage_filter_off");
 	level.localplayers[0].damage_filter_intensity = 0;
 	filter::set_filter_vehicle_damage_amount(level.localplayers[0], 3, level.localplayers[0].damage_filter_intensity);
 	filter::disable_filter_vehicle_damage(level.localplayers[0], 3);
@@ -1903,9 +1903,9 @@ function damage_filter_disable(localclientnum)
 */
 function damage_filter_off(localclientnum)
 {
-	level endon(#"damage_filter");
-	level endon(#"damage_filter_off");
-	level endon(#"damage_filter_heavy");
+	level endon("damage_filter");
+	level endon("damage_filter_off");
+	level endon("damage_filter_heavy");
 	if(!isdefined(level.localplayers[0].damage_filter_intensity))
 	{
 		return;
@@ -1933,9 +1933,9 @@ function damage_filter_off(localclientnum)
 */
 function damage_filter_light(localclientnum)
 {
-	level endon(#"damage_filter_off");
-	level endon(#"damage_filter_heavy");
-	level notify(#"damage_filter");
+	level endon("damage_filter_off");
+	level endon("damage_filter_heavy");
+	level notify("damage_filter");
 	while(level.localplayers[0].damage_filter_intensity < 0.5)
 	{
 		level.localplayers[0].damage_filter_intensity = level.localplayers[0].damage_filter_intensity + 0.083335;
@@ -1959,8 +1959,8 @@ function damage_filter_light(localclientnum)
 */
 function damage_filter_heavy(localclientnum)
 {
-	level endon(#"damage_filter_off");
-	level notify(#"damage_filter_heavy");
+	level endon("damage_filter_off");
+	level notify("damage_filter_heavy");
 	while(level.localplayers[0].damage_filter_intensity < 1)
 	{
 		level.localplayers[0].damage_filter_intensity = level.localplayers[0].damage_filter_intensity + 0.083335;

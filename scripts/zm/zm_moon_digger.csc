@@ -65,7 +65,7 @@ function digger_moving_earthquake_rumble(localclientnum, oldval, newval, bnewent
 				}
 			}
 		}
-		self notify(#"stop_moving_rumble");
+		self notify("stop_moving_rumble");
 	}
 }
 
@@ -111,8 +111,8 @@ function function_1e254f15()
 			player thread bio_breach_rumble(i);
 		}
 		scene::play("p7_fxanim_zmhd_moon_biodome_glass_bundle");
-		level notify(#"sl9");
-		level notify(#"sl10");
+		level notify("sl9");
+		level notify("sl10");
 	}
 }
 
@@ -127,7 +127,7 @@ function function_1e254f15()
 */
 function bio_breach_rumble(localclientnum)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	for(i = 0; i < 10; i++)
 	{
 		self playrumbleonentity(localclientnum, "damage_heavy");
@@ -159,7 +159,7 @@ function digger_digging_earthquake_rumble(localclientnum, oldval, newval, bnewen
 	}
 	else
 	{
-		self notify(#"stop_digging_rumble");
+		self notify("stop_digging_rumble");
 	}
 }
 
@@ -175,8 +175,8 @@ function digger_digging_earthquake_rumble(localclientnum, oldval, newval, bnewen
 function do_digger_moving_earthquake_rumble(localclientnum, quake_ent)
 {
 	quake_ent util::waittill_dobj(localclientnum);
-	quake_ent endon(#"entityshutdown");
-	quake_ent endon(#"stop_moving_rumble");
+	quake_ent endon("entityshutdown");
+	quake_ent endon("stop_moving_rumble");
 	dist_sqd = 6250000;
 	quake_ent.tread_fx = playfxontag(localclientnum, level._effect["digger_treadfx_fwd"], quake_ent, "tag_origin");
 	quake_ent.var_deef11e2 = playfxontag(localclientnum, level._effect["exca_body_all"], quake_ent, "tag_origin");
@@ -211,8 +211,8 @@ function do_digger_moving_earthquake_rumble(localclientnum, quake_ent)
 */
 function do_digger_digging_earthquake_rumble(localclientnum, quake_ent)
 {
-	quake_ent endon(#"entityshutdown");
-	quake_ent endon(#"stop_digging_rumble");
+	quake_ent endon("entityshutdown");
+	quake_ent endon("stop_digging_rumble");
 	player = getlocalplayers()[localclientnum];
 	if(!isdefined(player))
 	{
@@ -288,7 +288,7 @@ function digger_arm_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 */
 function do_digger_arm_fx(localclientnum, ent)
 {
-	ent endon(#"entityshutdown");
+	ent endon("entityshutdown");
 	player = getlocalplayers()[localclientnum];
 	if(!isdefined(player))
 	{

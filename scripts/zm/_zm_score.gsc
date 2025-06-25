@@ -80,7 +80,7 @@ function register_score_event(str_event, func_callback)
 */
 function reset_doublexp_timer()
 {
-	self notify(#"reset_doublexp_timer");
+	self notify("reset_doublexp_timer");
 	self thread doublexp_timer();
 }
 
@@ -95,10 +95,10 @@ function reset_doublexp_timer()
 */
 function doublexp_timer()
 {
-	self notify(#"doublexp_timer");
-	self endon(#"doublexp_timer");
-	self endon(#"reset_doublexp_timer");
-	self endon(#"end_game");
+	self notify("doublexp_timer");
+	self endon("doublexp_timer");
+	self endon("reset_doublexp_timer");
+	self endon("end_game");
 	level flagsys::wait_till("start_zombie_round_logic");
 	if(!level.onlinegame)
 	{
@@ -589,7 +589,7 @@ function player_reduce_points(event, n_amount)
 		case "downed":
 		{
 			percent = level.zombie_vars["penalty_downed"];
-			self notify(#"i_am_down");
+			self notify("i_am_down");
 			points = self.score * percent;
 			self.score_lost_when_downed = zm_utility::round_up_to_ten(int(points));
 			break;
@@ -630,7 +630,7 @@ function add_to_player_score(points, b_add_to_total = 1, str_awarded_by = "")
 	self.score = self.score + n_points_to_add_to_currency;
 	self.pers["score"] = self.score;
 	self incrementplayerstat("scoreEarned", n_points_to_add_to_currency);
-	level notify(#"earned_points", self, points);
+	level notify("earned_points", self, points);
 	if(b_add_to_total)
 	{
 		self.score_total = self.score_total + points;
@@ -662,7 +662,7 @@ function minus_to_player_score(points)
 	self.score = self.score - points;
 	self.pers["score"] = self.score;
 	self incrementplayerstat("scoreSpent", points);
-	level notify(#"spent_points", self, points);
+	level notify("spent_points", self, points);
 	if(isdefined(level.bgb_in_use) && level.bgb_in_use && level.onlinegame)
 	{
 		self bgb_token::award_check(points);

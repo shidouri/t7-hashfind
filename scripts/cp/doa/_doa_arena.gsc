@@ -1030,7 +1030,7 @@ function function_78c7b56e(cheat = 0)
 {
 	level notify(#"hash_78c7b56e");
 	level endon(#"hash_78c7b56e");
-	level endon(#"doa_game_is_over");
+	level endon("doa_game_is_over");
 	if(!level flag::get("doa_game_is_completed") && (level.doa.arena_round_number + 1) < level.doa.rules.var_88c0b67b)
 	{
 		if(cheat == 0)
@@ -1371,7 +1371,7 @@ function private function_47f8f274()
 	wait(0.1);
 	level util::waittill_any("exit_taken", "doa_game_is_over");
 	wait(0.05);
-	self notify(#"trigger");
+	self notify("trigger");
 }
 
 /*
@@ -1385,9 +1385,9 @@ function private function_47f8f274()
 */
 function private function_17665174(trigger)
 {
-	level endon(#"exit_taken");
-	level endon(#"doa_game_is_over");
-	trigger waittill(#"trigger");
+	level endon("exit_taken");
+	level endon("doa_game_is_over");
+	trigger waittill("trigger");
 	level.doa.var_c03fe5f1 = function_6b351e04(level.doa.forced_magical_room, level.doa.var_94073ca5);
 	if(isdefined(level.doa.var_c03fe5f1))
 	{
@@ -1482,7 +1482,7 @@ function function_f64e4b70(specific)
 		assert(level.doa.exits_open.size != 0, "");
 	#/
 	level clientfield::set("numexits", level.doa.exits_open.size);
-	level waittill(#"exit_taken", exit_trigger);
+	level waittill("exit_taken", exit_trigger);
 	level.doa.forced_magical_room = undefined;
 	level.doa.var_94073ca5 = undefined;
 	level notify(#"hash_b96c96ac", level.doa.exits_open.size > 1);
@@ -1523,7 +1523,7 @@ function function_a8b0c139(trigger, objective_id)
 	}
 	while(true)
 	{
-		trigger waittill(#"trigger", guy);
+		trigger waittill("trigger", guy);
 		if(isdefined(guy) && !isplayer(guy))
 		{
 			continue;
@@ -1538,10 +1538,10 @@ function function_a8b0c139(trigger, objective_id)
 	}
 	objective_delete(objective_id);
 	wait(0.1);
-	level notify(#"exit_taken", trigger);
+	level notify("exit_taken", trigger);
 	foreach(player in getplayers())
 	{
-		player notify(#"exit_taken");
+		player notify("exit_taken");
 	}
 }
 
@@ -1556,7 +1556,7 @@ function function_a8b0c139(trigger, objective_id)
 */
 function rotate()
 {
-	self endon(#"death");
+	self endon("death");
 	while(true)
 	{
 		self rotateto(self.angles + vectorscale((0, 1, 0), 180), 4);
@@ -1622,7 +1622,7 @@ function function_4586479a(var_57e102cb = 1)
 	}
 	start_point = location + (vectorscale((0, 0, -1), 50));
 	level.doa.teleporter = spawn("script_model", start_point);
-	level.doa.teleporter endon(#"death");
+	level.doa.teleporter endon("death");
 	level.doa.teleporter setmodel("zombietron_teleporter");
 	level.doa.teleporter enablelinkto();
 	level.doa.teleporter thread namespace_eaa992c::function_285a2999("teleporter");
@@ -1642,7 +1642,7 @@ function function_4586479a(var_57e102cb = 1)
 			level.doa.teleporter.trigger thread doa_utility::function_a4d1f25e("", randomfloatrange(0.1, 1));
 		}
 	#/
-	level.doa.teleporter.trigger waittill(#"trigger", player);
+	level.doa.teleporter.trigger waittill("trigger", player);
 	level notify(#"hash_6df89d17");
 	level notify(#"hash_3b432f18");
 	foreach(player in getplayers())

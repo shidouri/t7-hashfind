@@ -131,7 +131,7 @@ function function_4575bd06()
 	{
 		while(level.round_number < level.var_bf361dc0)
 		{
-			level waittill(#"between_round_over");
+			level waittill("between_round_over");
 			/#
 				if(level.round_number > level.var_bf361dc0)
 				{
@@ -144,7 +144,7 @@ function function_4575bd06()
 		{
 			function_aea74ccd();
 		}
-		level waittill(#"between_round_over");
+		level waittill("between_round_over");
 	}
 }
 
@@ -268,7 +268,7 @@ function function_8d578a58()
 {
 	level.var_6e63e659++;
 	level.zombie_ai_limit--;
-	self waittill(#"death");
+	self waittill("death");
 	level thread zm_zod_vo::function_c11b8117(self.origin);
 	level.var_6e63e659--;
 	level.zombie_ai_limit++;

@@ -143,8 +143,8 @@ function waitthenspawn()
 */
 function onspawnplayer(predictedspawn)
 {
-	self endon(#"disconnect");
-	level endon(#"end_game");
+	self endon("disconnect");
+	level endon("end_game");
 	self.usingobj = undefined;
 	self initplayerhud();
 	self waitthenspawn();
@@ -425,8 +425,8 @@ function initplayerhud()
 */
 function updateplayerhud()
 {
-	self endon(#"disconnect");
-	level endon(#"end_game");
+	self endon("disconnect");
+	level endon("end_game");
 	while(true)
 	{
 		if(self.team != "spectator")
@@ -456,7 +456,7 @@ function updateplayerhud()
 */
 function hideplayerhudongameend()
 {
-	level waittill(#"game_ended");
+	level waittill("game_ended");
 	foreach(elem in self.purpurgatorycountelem)
 	{
 		elem.alpha = 0;
@@ -532,8 +532,8 @@ function onspawnspectator(origin, angles)
 */
 function updatequeuemessage(team)
 {
-	self notify(#"updatequeuemessage");
-	self endon(#"updatequeuemessage");
+	self notify("updatequeuemessage");
+	self endon("updatequeuemessage");
 	util::waittillslowprocessallowed();
 	players = level.deadplayers[team];
 	for(i = 0; i < players.size; i++)

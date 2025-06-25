@@ -62,7 +62,7 @@ function __main__()
 */
 function function_7884e6b8()
 {
-	self endon(#"_zombie_game_over");
+	self endon("_zombie_game_over");
 	level.a_e_speakers = [];
 	var_f01f6eb2 = [];
 	array::add(var_f01f6eb2, array("vox_plr_3_interaction_takeo_rich_1_0", "vox_plr_2_interaction_takeo_rich_1_0"));
@@ -106,13 +106,13 @@ function function_7884e6b8()
 	array::add(var_4c7aad4a, array("vox_plr_1_interaction_niko_demp_4_0", "vox_plr_0_interaction_niko_demp_4_0"));
 	array::add(var_4c7aad4a, array("vox_plr_1_interaction_niko_demp_5_0", "vox_plr_0_interaction_niko_demp_5_0"));
 	var_22f40782 = 0;
-	level waittill(#"all_players_spawned");
+	level waittill("all_players_spawned");
 	wait(1);
 	while(true)
 	{
 		if(level.round_number > 4)
 		{
-			level waittill(#"end_of_round");
+			level waittill("end_of_round");
 			if(level.activeplayers.size > 1 && !level flag::get("flytrap"))
 			{
 				n_player_index = randomint(level.activeplayers.size);
@@ -309,8 +309,8 @@ function function_897246e4(str_vo_alias, n_wait = 0, b_wait_if_busy = 0, n_prior
 */
 function function_7b697614(str_vo_alias, n_delay = 0, b_wait_if_busy = 0, n_priority = 0, var_d1295208 = 0)
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	if(!self flag::exists("in_beastmode") || !self flag::get("in_beastmode"))
 	{
 		if(zm_audio::arenearbyspeakersactive(10000) && (!(isdefined(var_d1295208) && var_d1295208)))

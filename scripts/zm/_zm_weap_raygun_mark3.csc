@@ -82,10 +82,10 @@ function is_beam_raygun(weapon)
 function monitor_raygun_mark3(n_local_client)
 {
 	player = getlocalplayer(n_local_client);
-	player endon(#"death");
+	player endon("death");
 	while(true)
 	{
-		player waittill(#"weapon_change", weapon);
+		player waittill("weapon_change", weapon);
 		if(is_beam_raygun(weapon))
 		{
 			player mapshaderconstant(n_local_client, 0, "scriptVector2", 0, 1, 0, 0);
@@ -93,7 +93,7 @@ function monitor_raygun_mark3(n_local_client)
 		}
 		else
 		{
-			player notify(#"glow_monitor");
+			player notify("glow_monitor");
 			player mapshaderconstant(n_local_client, 0, "scriptVector2", 0, 0, 0, 0);
 		}
 	}
@@ -110,9 +110,9 @@ function monitor_raygun_mark3(n_local_client)
 */
 function glow_monitor(n_local_client)
 {
-	self notify(#"glow_monitor");
-	self endon(#"glow_monitor");
-	self endon(#"death");
+	self notify("glow_monitor");
+	self endon("glow_monitor");
+	self endon("death");
 	while(true)
 	{
 		self waittill_notetrack("clamps_open");
@@ -133,11 +133,11 @@ function glow_monitor(n_local_client)
 */
 function waittill_notetrack(str_notetrack)
 {
-	self endon(#"glow_monitor");
-	self endon(#"death");
+	self endon("glow_monitor");
+	self endon("death");
 	while(true)
 	{
-		self waittill(#"notetrack", str_note);
+		self waittill("notetrack", str_note);
 		if(str_note == str_notetrack)
 		{
 			return;
@@ -217,9 +217,9 @@ function ai_slow_vortex_fx(n_local_client, n_old, n_new, b_new_ent, b_initial_sn
 */
 function vortex_shake_and_rumble(n_local_client, n_damage_level)
 {
-	self notify(#"vortex_shake_and_rumble");
-	self endon(#"vortex_shake_and_rumble");
-	self endon(#"entity_shutdown");
+	self notify("vortex_shake_and_rumble");
+	self endon("vortex_shake_and_rumble");
+	self endon("entity_shutdown");
 	if(n_damage_level == 1)
 	{
 		str_rumble = "raygun_mark3_vortex_sm";
@@ -246,7 +246,7 @@ function vortex_shake_and_rumble(n_local_client, n_damage_level)
 */
 function zombie_blacken(n_local_client, b_blacken)
 {
-	self endon(#"entity_shutdown");
+	self endon("entity_shutdown");
 	if(!isdefined(self.n_blacken))
 	{
 		self.n_blacken = 0;
@@ -282,7 +282,7 @@ function zombie_blacken(n_local_client, b_blacken)
 */
 function ai_disintegrate(n_local_client, n_old, n_new, b_new_ent, b_initial_snap, str_field, b_was_time_jump)
 {
-	self endon(#"entity_shutdown");
+	self endon("entity_shutdown");
 	self duplicate_render::set_dr_flag("dissolve_on", n_new);
 	self duplicate_render::update_dr_filters(n_local_client);
 	self.n_dissolve = 1;

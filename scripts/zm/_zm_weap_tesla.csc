@@ -71,8 +71,8 @@ function player_init()
 */
 function tesla_fx_rail(localclientnum)
 {
-	self endon(#"disconnect");
-	self endon(#"entityshutdown");
+	self endon("disconnect");
+	self endon("entityshutdown");
 	for(;;)
 	{
 		waitrealtime(randomfloatrange(8, 12));
@@ -118,8 +118,8 @@ function tesla_fx_rail(localclientnum)
 */
 function tesla_fx_tube(localclientnum)
 {
-	self endon(#"disconnect");
-	self endon(#"entityshutdown");
+	self endon("disconnect");
+	self endon("entityshutdown");
 	for(;;)
 	{
 		waitrealtime(0.1);
@@ -221,7 +221,7 @@ function tesla_notetrack_think()
 {
 	for(;;)
 	{
-		level waittill(#"notetrack", localclientnum, note);
+		level waittill("notetrack", localclientnum, note);
 		switch(note)
 		{
 			case "tesla_play_fx_off":
@@ -251,7 +251,7 @@ function tesla_happy(localclientnum)
 {
 	for(;;)
 	{
-		level waittill(#"tgh");
+		level waittill("tgh");
 		currentweapon = getcurrentweapon(localclientnum);
 		if(currentweapon == level.weaponzmteslagun || currentweapon == level.weaponzmteslagunupgraded)
 		{
@@ -274,10 +274,10 @@ function tesla_happy(localclientnum)
 */
 function tesla_change_watcher(localclientnum)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(true)
 	{
-		self waittill(#"weapon_change");
+		self waittill("weapon_change");
 		self clear_tesla_tube_effect(localclientnum);
 	}
 }

@@ -322,7 +322,7 @@ function private function_25411db1(upgraded = 0, secondary = 0, attacker, weapon
 	self dodamage(self.health + 666, self.origin, (isdefined(attacker) ? attacker : undefined), undefined, "none", "MOD_UNKNOWN", 0, weapon, -1, 1);
 	if(self function_ceb2ee11())
 	{
-		self waittill(#"puke");
+		self waittill("puke");
 		playfxontag(level._effect["puke_reaction"], self, "j_neck");
 		if(isdefined(self.voiceprefix) && isdefined(self.bcvoicenumber))
 		{

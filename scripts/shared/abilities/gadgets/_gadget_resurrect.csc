@@ -69,8 +69,8 @@ function player_resurrect_changed(localclientnum, oldval, newval, bnewent, binit
 */
 function resurrect_down_fx(localclientnum)
 {
-	self endon(#"entityshutdown");
-	self endon(#"finish_rejack");
+	self endon("entityshutdown");
+	self endon("finish_rejack");
 	self thread postfx::playpostfxbundle("pstfx_resurrection_close");
 	wait(0.5);
 	self thread postfx::playpostfxbundle("pstfx_resurrection_pus");
@@ -87,8 +87,8 @@ function resurrect_down_fx(localclientnum)
 */
 function resurrect_up_fx(localclientnum)
 {
-	self endon(#"entityshutdown");
-	self notify(#"finish_rejack");
+	self endon("entityshutdown");
+	self notify("finish_rejack");
 	self thread postfx::playpostfxbundle("pstfx_resurrection_open");
 }
 

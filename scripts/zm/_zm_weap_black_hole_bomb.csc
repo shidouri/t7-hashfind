@@ -111,7 +111,7 @@ function black_hole_fx_start(local_client_num, ent_bomb)
 	bomb_fx_spot.sndlooper = bomb_fx_spot playloopsound("wpn_bhbomb_portal_loop");
 	playfxontag(local_client_num, level._effect["black_hole_bomb_portal"], bomb_fx_spot, "tag_origin");
 	playfxontag(local_client_num, level._effect["black_hole_bomb_marker_flare"], bomb_fx_spot, "tag_origin");
-	ent_bomb waittill(#"entityshutdown");
+	ent_bomb waittill("entityshutdown");
 	if(isdefined(bomb_fx_spot.sndlooper))
 	{
 		bomb_fx_spot stoploopsound(bomb_fx_spot.sndlooper);
@@ -139,7 +139,7 @@ function black_hole_activated(ent_model, int_local_client_num)
 	new_black_hole_struct.origin = ent_model.origin;
 	new_black_hole_struct._black_hole_active = 1;
 	array::add(level._current_black_hole_bombs, new_black_hole_struct);
-	ent_model waittill(#"entityshutdown");
+	ent_model waittill("entityshutdown");
 	new_black_hole_struct._black_hole_active = 0;
 	wait(0.2);
 }
@@ -155,8 +155,8 @@ function black_hole_activated(ent_model, int_local_client_num)
 */
 function black_hole_zombie_being_pulled(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	self endon(#"death");
-	self endon(#"entityshutdown");
+	self endon("death");
+	self endon("entityshutdown");
 	if(localclientnum != 0)
 	{
 		return;
@@ -176,7 +176,7 @@ function black_hole_zombie_being_pulled(localclientnum, oldval, newval, bnewent,
 	}
 	else if(isdefined(self._bhb_pulled_in_fx))
 	{
-		self._bhb_pulled_in_fx notify(#"no_clean_up_needed");
+		self._bhb_pulled_in_fx notify("no_clean_up_needed");
 		self._bhb_pulled_in_fx unlink();
 		self._bhb_pulled_in_fx delete();
 	}
@@ -193,12 +193,12 @@ function black_hole_zombie_being_pulled(localclientnum, oldval, newval, bnewent,
 */
 function black_hole_bomb_pulled_in_fx_clean(ent_zombie, ent_fx_origin)
 {
-	ent_fx_origin endon(#"no_clean_up_needed");
+	ent_fx_origin endon("no_clean_up_needed");
 	if(!isdefined(ent_zombie))
 	{
 		return;
 	}
-	ent_zombie waittill(#"entityshutdown");
+	ent_zombie waittill("entityshutdown");
 	if(isdefined(ent_fx_origin))
 	{
 		ent_fx_origin delete();

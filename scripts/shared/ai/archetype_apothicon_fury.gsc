@@ -1575,7 +1575,7 @@ function apothiconjukeinit(entity)
 	blackboard::setblackboardattribute(entity, "_juke_distance", jukeinfo.jukedistance);
 	blackboard::setblackboardattribute(entity, "_juke_direction", jukeinfo.jukedirection);
 	entity clearpath();
-	entity notify(#"bhtn_action_notify", "apothicon_fury_juke");
+	entity notify("bhtn_action_notify", "apothicon_fury_juke");
 	jukeinfo = spawnstruct();
 	jukeinfo.origin = entity.origin;
 	jukeinfo.entity = entity;
@@ -1815,7 +1815,7 @@ function apothiconbamfin(entity)
 		entity forceteleport(entity.traverseendnode.origin, entity.angles);
 		entity unlink();
 		entity.istraveling = 0;
-		entity notify(#"travel_complete");
+		entity notify("travel_complete");
 		entity setrepairpaths(1);
 		entity.blockingpain = 0;
 		entity.usegoalanimweight = 0;

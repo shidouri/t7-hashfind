@@ -55,7 +55,7 @@ function turret_microwave_sounds(localclientnum, oldval, newval, bnewent, biniti
 	}
 	else if(newval == 0)
 	{
-		self notify(#"sound_stop");
+		self notify("sound_stop");
 	}
 }
 
@@ -70,8 +70,8 @@ function turret_microwave_sounds(localclientnum, oldval, newval, bnewent, biniti
 */
 function turret_microwave_sound_start(localclientnum)
 {
-	self endon(#"entityshutdown");
-	self endon(#"sound_stop");
+	self endon("entityshutdown");
+	self endon("sound_stop");
 	if(isdefined(self.sound_loop_enabled) && self.sound_loop_enabled)
 	{
 		return;
@@ -130,8 +130,8 @@ function turret_microwave_sound_off_waiter(localclientnum)
 */
 function turret_microwave_sound_updater()
 {
-	self endon(#"beam_stop");
-	self endon(#"entityshutdown");
+	self endon("beam_stop");
+	self endon("entityshutdown");
 	while(true)
 	{
 		origin = self gettagorigin("tag_flash");
@@ -187,8 +187,8 @@ function microwave_open(localclientnum, oldval, newval, bnewent, binitialsnap, f
 		self useanimtree($mp_microwaveturret);
 		self setanim(%mp_microwaveturret::o_turret_guardian_open, 0);
 		self setanimrestart(%mp_microwaveturret::o_turret_guardian_close, 1, 0, 1);
-		self notify(#"beam_stop");
-		self notify(#"sound_stop");
+		self notify("beam_stop");
+		self notify("sound_stop");
 		return;
 	}
 	self useanimtree($mp_microwaveturret);
@@ -253,8 +253,8 @@ function debug_trace(origin, trace)
 function startmicrowavefx(localclientnum)
 {
 	turret = self;
-	turret endon(#"entityshutdown");
-	turret endon(#"beam_stop");
+	turret endon("entityshutdown");
+	turret endon("beam_stop");
 	turret.should_update_fx = 1;
 	self thread turret_microwave_sound_start(localclientnum);
 	origin = turret gettagorigin("tag_flash");
@@ -335,8 +335,8 @@ function startmicrowavefx(localclientnum)
 function updatemicrowaveaim(microwavefxent)
 {
 	turret = self;
-	turret endon(#"entityshutdown");
-	turret endon(#"beam_stop");
+	turret endon("entityshutdown");
+	turret endon("beam_stop");
 	last_angles = turret gettagangles("tag_flash");
 	while(true)
 	{

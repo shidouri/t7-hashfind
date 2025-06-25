@@ -79,12 +79,12 @@ function localplayer_spawned(localclientnum)
 */
 function underwaterwatchbegin()
 {
-	self notify(#"underwaterwatchbegin");
-	self endon(#"underwaterwatchbegin");
-	self endon(#"entityshutdown");
+	self notify("underwaterwatchbegin");
+	self endon("underwaterwatchbegin");
+	self endon("entityshutdown");
 	while(true)
 	{
-		self waittill(#"underwater_begin", teleported);
+		self waittill("underwater_begin", teleported);
 		if(teleported)
 		{
 			filter::disable_filter_water_sheeting(self, 1);
@@ -110,12 +110,12 @@ function underwaterwatchbegin()
 */
 function underwaterwatchend()
 {
-	self notify(#"underwaterwatchend");
-	self endon(#"underwaterwatchend");
-	self endon(#"entityshutdown");
+	self notify("underwaterwatchend");
+	self endon("underwaterwatchend");
+	self endon("entityshutdown");
 	while(true)
 	{
-		self waittill(#"underwater_end", teleported);
+		self waittill("underwater_end", teleported);
 		if(teleported)
 		{
 			filter::disable_filter_water_sheeting(self, 1);
@@ -141,9 +141,9 @@ function underwaterwatchend()
 */
 function underwaterbegin()
 {
-	self notify(#"water_surface_underwater_begin");
-	self endon(#"water_surface_underwater_begin");
-	self endon(#"entityshutdown");
+	self notify("water_surface_underwater_begin");
+	self endon("water_surface_underwater_begin");
+	self endon("entityshutdown");
 	localclientnum = self getlocalclientnumber();
 	filter::disable_filter_water_sheeting(self, 1);
 	stop_player_fx(self);
@@ -168,9 +168,9 @@ function underwaterbegin()
 */
 function underwaterend()
 {
-	self notify(#"water_surface_underwater_end");
-	self endon(#"water_surface_underwater_end");
-	self endon(#"entityshutdown");
+	self notify("water_surface_underwater_end");
+	self endon("water_surface_underwater_end");
+	self endon("entityshutdown");
 	localclientnum = self getlocalclientnumber();
 	if(islocalclientdead(localclientnum) == 0)
 	{
@@ -236,9 +236,9 @@ function startwaterdive()
 */
 function startwatersheeting()
 {
-	self notify(#"startwatersheeting_singleton");
-	self endon(#"startwatersheeting_singleton");
-	self endon(#"entityshutdown");
+	self notify("startwatersheeting_singleton");
+	self endon("startwatersheeting_singleton");
+	self endon("entityshutdown");
 	filter::enable_filter_water_sheeting(self, 1);
 	filter::set_filter_water_sheet_reveal(self, 1, 1);
 	filter::set_filter_water_sheet_speed(self, 1, 1);

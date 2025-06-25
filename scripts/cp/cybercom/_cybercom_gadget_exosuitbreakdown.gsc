@@ -365,7 +365,7 @@ function ai_activateexosuitbreakdown(target, var_9bc2efcb = 1)
 */
 function private function_69246d49(attacker, loops, weapon)
 {
-	self endon(#"death");
+	self endon("death");
 	self.is_disabled = 1;
 	self.ignoreall = 1;
 	self.special_weapon = weapon;
@@ -395,7 +395,7 @@ function private function_69246d49(attacker, loops, weapon)
 */
 function private _exo_breakdown(attacker)
 {
-	self endon(#"death");
+	self endon("death");
 	weapon = getweapon("gadget_exo_breakdown");
 	self notify(#"hash_f8c5dd60", weapon, attacker);
 	if(isdefined(attacker.cybercom) && isdefined(attacker.cybercom.exo_breakdown_lifetime))
@@ -416,7 +416,7 @@ function private _exo_breakdown(attacker)
 		self kill(self.origin, (isdefined(attacker) ? attacker : undefined));
 		return;
 	}
-	self notify(#"bhtn_action_notify", "reactExosuit");
+	self notify("bhtn_action_notify", "reactExosuit");
 	if(self.archetype == "warlord")
 	{
 		self thread function_69246d49(attacker, 1, weapon);
@@ -489,7 +489,7 @@ function function_58831b5a(loops, attacker, weapon, variant, base, type)
 */
 function function_e01b8059(attacker, weapon, variant, base, type)
 {
-	self endon(#"death");
+	self endon("death");
 	self animscripted("exo_loop_anim", self.origin, self.angles, (((("ai_" + base) + "_") + type) + "_exposed_suit_overload_react_loop") + variant, "normal", %generic::body, 1, 0.2);
 	self thread cybercom::stopanimscriptedonnotify("damage_pain", "exo_loop_anim", 1, attacker, weapon);
 	self thread cybercom::stopanimscriptedonnotify("breakout_exo_loop", "exo_loop_anim", 0, attacker, weapon);
@@ -507,7 +507,7 @@ function function_e01b8059(attacker, weapon, variant, base, type)
 */
 function function_53cfe88a()
 {
-	self endon(#"death");
+	self endon("death");
 	wait(getdvarfloat("scr_exo_breakdown_loop_time", 4.2));
 	self notify(#"hash_614ee876");
 }

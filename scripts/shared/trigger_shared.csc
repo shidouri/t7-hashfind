@@ -12,7 +12,7 @@
 */
 function function_d1278be0(ent, on_enter_payload, on_exit_payload)
 {
-	ent endon(#"entityshutdown");
+	ent endon("entityshutdown");
 	if(ent ent_already_in(self))
 	{
 		return;
@@ -113,7 +113,7 @@ function remove_from_ent(ent, trig)
 */
 function death_monitor(ent, ender)
 {
-	ent waittill(#"death");
+	ent waittill("death");
 	self endon(ender);
 	self remove_from_ent(ent);
 }

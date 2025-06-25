@@ -57,9 +57,9 @@ function __init__()
 */
 function event()
 {
-	self endon(#"disconnect");
-	self endon(#"bgb_update");
-	self waittill(#"zm_bgb_unbearable", e_chest);
+	self endon("disconnect");
+	self endon("bgb_update");
+	self waittill("zm_bgb_unbearable", e_chest);
 	self bgb::do_one_shot_use(1);
 	e_chest thread function_7a5dc39b(self);
 }
@@ -75,17 +75,17 @@ function event()
 */
 function function_7a5dc39b(player)
 {
-	self.zbarrier notify(#"randomization_done");
+	self.zbarrier notify("randomization_done");
 	self.zbarrier function_a612a2b3();
 	self.zbarrier clientfield::increment("zm_bgb_unbearable");
 	self.no_fly_away = 1;
-	self.zbarrier notify(#"box_hacked_respin");
+	self.zbarrier notify("box_hacked_respin");
 	self.zbarrier playsound("zmb_bgb_powerup_respin");
 	self thread zm_unitrigger::unregister_unitrigger(self.unitrigger_stub);
 	zm_utility::play_sound_at_pos("open_chest", self.zbarrier.origin);
 	zm_utility::play_sound_at_pos("music_chest", self.zbarrier.origin);
 	self.zbarrier thread zm_magicbox::treasure_chest_weapon_spawn(self, player);
-	self.zbarrier waittill(#"randomization_done");
+	self.zbarrier waittill("randomization_done");
 	self.no_fly_away = undefined;
 	if(!level flag::get("moving_chest_now"))
 	{
@@ -113,7 +113,7 @@ function function_a612a2b3()
 	self.weapon_model playsound("zmb_bgb_unbearable_activate");
 	wait(0.35);
 	self.weapon_model moveto(self.origin, 1, 0.5);
-	self.weapon_model waittill(#"movedone");
+	self.weapon_model waittill("movedone");
 	self.weapon_model delete();
 }
 

@@ -318,7 +318,7 @@ function onspawnplayer(predictedspawn)
 */
 function sr_playerspawnedcb()
 {
-	level notify(#"spawned_player");
+	level notify("spawned_player");
 }
 
 /*
@@ -435,7 +435,7 @@ function should_spawn_tags(einflictor, attacker, idamage, smeansofdeath, sweapon
 */
 function checkallowspectating()
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	wait(0.05);
 	update = 0;
 	livesleft = !(level.numlives && !self.pers["lives"]);
@@ -619,8 +619,8 @@ function warnlastplayer(team)
 */
 function givelastattackerwarning(team)
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	fullhealthtime = 0;
 	interval = 0.05;
 	self.lastmansd = 1;
@@ -837,7 +837,7 @@ function onenduse(team, player, result)
 	}
 	player.isdefusing = 0;
 	player.isplanting = 0;
-	player notify(#"event_ended");
+	player notify("event_ended");
 	if(self gameobjects::is_friendly_team(player.pers["team"]))
 	{
 		if(isdefined(level.sdbombmodel) && !result)
@@ -896,7 +896,7 @@ function onuseplantobject(player)
 			level.bombzones[index] gameobjects::disable_object();
 		}
 		thread sound::play_on_players(("mus_sd_planted" + "_") + level.teampostfix[player.pers["team"]]);
-		player notify(#"bomb_planted");
+		player notify("bomb_planted");
 		level thread popups::displayteammessagetoall(&"MP_EXPLOSIVES_PLANTED_BY", player);
 		if(isdefined(player.pers["plants"]))
 		{
@@ -923,7 +923,7 @@ function onuseplantobject(player)
 function onusedefuseobject(player)
 {
 	self gameobjects::set_flags(0);
-	player notify(#"bomb_defused");
+	player notify("bomb_defused");
 	/#
 		print("" + self.label);
 	#/
@@ -980,7 +980,7 @@ function ondrop(player)
 			}
 		#/
 	}
-	player notify(#"event_ended");
+	player notify("event_ended");
 	self gameobjects::set_3d_icon("friendly", "waypoint_bomb");
 	sound::play_on_players(game["bomb_dropped_sound"], game["attackers"]);
 	if(isdefined(level.bombdropbotevent))
@@ -1052,7 +1052,7 @@ function onreset()
 */
 function bombplantedmusicdelay()
 {
-	level endon(#"bomb_defused");
+	level endon("bomb_defused");
 	time = level.bombtimer - 30;
 	/#
 		if(getdvarint("") > 0)
@@ -1205,8 +1205,8 @@ function bombplanted(destroyedobj, player)
 */
 function bombtimerwait()
 {
-	level endon(#"game_ended");
-	level endon(#"bomb_defused");
+	level endon("game_ended");
+	level endon("bomb_defused");
 	hostmigration::waitlongdurationwithgameendtimeupdate(level.bombtimer);
 }
 
@@ -1227,7 +1227,7 @@ function bombdefused()
 	setbombtimer("B", 0);
 	setmatchflag("bomb_timer_a", 0);
 	setmatchflag("bomb_timer_b", 0);
-	level notify(#"bomb_defused");
+	level notify("bomb_defused");
 	thread globallogic_audio::set_music_on_team("silent");
 	wait(1.5);
 	setgameendtime(0);

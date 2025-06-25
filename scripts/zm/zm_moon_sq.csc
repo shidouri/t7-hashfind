@@ -186,7 +186,7 @@ function ctt_trail_runner(localclientnum, fx_name, dest)
 {
 	playfxontag(localclientnum, level._effect[fx_name], self, "tag_origin");
 	self moveto(dest, 0.5);
-	self waittill(#"movedone");
+	self waittill("movedone");
 	playsound(0, "zmb_squest_soul_impact", dest);
 	self delete();
 }
@@ -333,7 +333,7 @@ function sam_rise_and_bob(struct)
 {
 	endpos = struct::get(struct.target, "targetname");
 	self moveto(endpos.origin, 3);
-	self waittill(#"movedone");
+	self waittill("movedone");
 	start_z = self.origin;
 	amplitude = 7;
 	frequency = 75;
@@ -381,7 +381,7 @@ function sam_init(localclientnum, oldval, newval, bnewent, binitialsnap, fieldna
 */
 function bob_vg()
 {
-	self endon(#"death");
+	self endon("death");
 	start_z = self.origin;
 	amplitude = 2;
 	frequency = 100;
@@ -566,7 +566,7 @@ function sam_vo_rumble(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 */
 function function_9b1295b1(localclientnum)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	level endon(#"hash_306cf2d4");
 	while(true)
 	{
@@ -589,7 +589,7 @@ function raise_rockets(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 {
 	level thread do_rr_rumble();
 	wait(4.5);
-	level notify(#"_stop_rr");
+	level notify("_stop_rr");
 }
 
 /*
@@ -603,7 +603,7 @@ function raise_rockets(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 */
 function do_rr_rumble()
 {
-	level endon(#"_stop_rr");
+	level endon("_stop_rr");
 	while(true)
 	{
 		for(i = 0; i < level.localplayers.size; i++)
@@ -633,7 +633,7 @@ function rocket_launch(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 {
 	level thread do_rl_rumble();
 	wait(6);
-	level notify(#"_stop_rl");
+	level notify("_stop_rl");
 }
 
 /*
@@ -647,7 +647,7 @@ function rocket_launch(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 */
 function do_rl_rumble()
 {
-	level endon(#"_stop_rl");
+	level endon("_stop_rl");
 	while(true)
 	{
 		for(i = 0; i < level.localplayers.size; i++)
@@ -679,7 +679,7 @@ function rocket_explode(localclientnum, oldval, newval, bnewent, binitialsnap, f
 	wait(3.5);
 	level thread do_de_rumble();
 	wait(4);
-	level notify(#"_stop_de");
+	level notify("_stop_de");
 }
 
 /*
@@ -693,7 +693,7 @@ function rocket_explode(localclientnum, oldval, newval, bnewent, binitialsnap, f
 */
 function do_de_rumble()
 {
-	level endon(#"_stop_de");
+	level endon("_stop_de");
 	for(i = 0; i < level.localplayers.size; i++)
 	{
 		player = getlocalplayers()[i];

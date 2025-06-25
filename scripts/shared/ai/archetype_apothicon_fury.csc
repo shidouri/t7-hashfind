@@ -98,7 +98,7 @@ function apothiconstoploopingeffects(localclientnum)
 */
 function apothiconspawnshader(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -114,7 +114,7 @@ function apothiconspawnshader(localclientnum)
 		self mapshaderconstant(localclientnum, 0, "scriptVector2", n_delta_val);
 	}
 	while(n_current_time < n_phase_in);
-	s_timer notify(#"timer_done");
+	s_timer notify("timer_done");
 }
 
 /*
@@ -128,7 +128,7 @@ function apothiconspawnshader(localclientnum)
 */
 function apothiconjukeactive(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -157,7 +157,7 @@ function apothiconjukeactive(localclientnum, oldval, newval, bnewent, binitialsn
 */
 function apothiconfiredamageeffect(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -218,7 +218,7 @@ function apothiconfiredamageeffect(localclientnum, oldval, newval, bnewent, bini
 */
 function apothiconfurydeath(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -237,7 +237,7 @@ function apothiconfurydeath(localclientnum, oldval, newval, bnewent, binitialsna
 			self mapshaderconstant(localclientnum, 0, "scriptVector2", n_delta_val);
 		}
 		while(n_current_time < n_phase_in);
-		s_timer notify(#"timer_done");
+		s_timer notify("timer_done");
 		self.removingfireshader = 0;
 	}
 	else if(newval == 2)
@@ -259,7 +259,7 @@ function apothiconfurydeath(localclientnum, oldval, newval, bnewent, binitialsna
 			self mapshaderconstant(localclientnum, 0, "scriptVector0", n_delta_val);
 		}
 		while(n_current_time < n_phase_in && gettime() <= stoptime);
-		s_timer notify(#"timer_done");
+		s_timer notify("timer_done");
 		self mapshaderconstant(localclientnum, 0, "scriptVector0", 0);
 	}
 }
@@ -275,7 +275,7 @@ function apothiconfurydeath(localclientnum, oldval, newval, bnewent, binitialsna
 */
 function apothiconfuriousmodeeffect(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{
@@ -293,7 +293,7 @@ function apothiconfuriousmodeeffect(localclientnum, oldval, newval, bnewent, bin
 			self mapshaderconstant(localclientnum, 0, "scriptVector2", n_delta_val);
 		}
 		while(n_current_time < n_phase_in);
-		s_timer notify(#"timer_done");
+		s_timer notify("timer_done");
 	}
 }
 
@@ -325,8 +325,8 @@ function new_timer(localclientnum)
 */
 function timer_increment_loop(localclientnum, entity)
 {
-	entity endon(#"entityshutdown");
-	self endon(#"timer_done");
+	entity endon("entityshutdown");
+	self endon("timer_done");
 	while(isdefined(self))
 	{
 		util::server_wait(localclientnum, 0.016);
@@ -387,7 +387,7 @@ function reset_timer()
 */
 function apothiconbamflandeffect(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
 	{

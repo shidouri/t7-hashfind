@@ -95,7 +95,7 @@ function start_carpenter(origin)
 		{
 			carp_ent stoploopsound(1);
 			carp_ent playsoundwithnotify("evt_carpenter_end", "sound_done");
-			carp_ent waittill(#"sound_done");
+			carp_ent waittill("sound_done");
 			break;
 		}
 		else
@@ -248,14 +248,14 @@ function start_carpenter_new(origin)
 	}
 	carp_ent stoploopsound(1);
 	carp_ent playsoundwithnotify("evt_carpenter_end", "sound_done");
-	carp_ent waittill(#"sound_done");
+	carp_ent waittill("sound_done");
 	players = getplayers();
 	for(i = 0; i < players.size; i++)
 	{
 		players[i] zm_score::player_add_points("carpenter_powerup", 200);
 	}
 	carp_ent delete();
-	level notify(#"carpenter_finished");
+	level notify("carpenter_finished");
 	level.carpenter_powerup_active = undefined;
 }
 

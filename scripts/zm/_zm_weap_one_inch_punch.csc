@@ -30,8 +30,8 @@ function init()
 */
 function oneinchpunch_impact(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	self endon(#"death");
-	self endon(#"disconnect");
+	self endon("death");
+	self endon("disconnect");
 	var_4383636a = 75;
 	var_bf0c8e05 = 60;
 	if(newval == 1)
@@ -62,7 +62,7 @@ function oneinchpunch_impact(localclientnum, oldval, newval, bnewent, binitialsn
 */
 function oneinchpunch_physics_launchragdoll(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	self endon(#"entity_shutdown");
+	self endon("entity_shutdown");
 	if(newval == 1)
 	{
 		var_70efc576 = undefined;

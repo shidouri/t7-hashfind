@@ -78,7 +78,7 @@ function spawned(localclientnum)
 */
 function demo_think(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(!isdemoplaying())
 	{
 		return;
@@ -101,7 +101,7 @@ function demo_think(localclientnum)
 */
 function boost_blur(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	if(isdefined(self.owner) && self.owner islocalplayer())
 	{
 		enablespeedblur(localclientnum, getdvarfloat("scr_rcbomb_amount", 0.1), getdvarfloat("scr_rcbomb_inner_radius", 0.5), getdvarfloat("scr_rcbomb_outer_radius", 0.75), 0, 0);
@@ -121,10 +121,10 @@ function boost_blur(localclientnum)
 */
 function boost_think(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	for(;;)
 	{
-		self waittill(#"veh_boost");
+		self waittill("veh_boost");
 		self boost_blur(localclientnum);
 	}
 }
@@ -140,7 +140,7 @@ function boost_think(localclientnum)
 */
 function shutdown_think(localclientnum)
 {
-	self waittill(#"entityshutdown");
+	self waittill("entityshutdown");
 	disablespeedblur(localclientnum);
 }
 
@@ -215,7 +215,7 @@ function play_driving_screen_fx(localclientnum)
 */
 function play_boost_fx(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(true)
 	{
 		speed = self getspeed();
@@ -239,11 +239,11 @@ function play_boost_fx(localclientnum)
 */
 function stunnedhandler(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	self thread enginestutterhandler(localclientnum);
 	while(true)
 	{
-		self waittill(#"stunned");
+		self waittill("stunned");
 		self setstunned(1);
 		self thread notstunnedhandler(localclientnum);
 		self thread play_stunned_fx_handler(localclientnum);
@@ -261,9 +261,9 @@ function stunnedhandler(localclientnum)
 */
 function notstunnedhandler(localclientnum)
 {
-	self endon(#"entityshutdown");
-	self endon(#"stunned");
-	self waittill(#"not_stunned");
+	self endon("entityshutdown");
+	self endon("stunned");
+	self waittill("not_stunned");
 	self setstunned(0);
 }
 
@@ -278,9 +278,9 @@ function notstunnedhandler(localclientnum)
 */
 function play_stunned_fx_handler(localclientnum)
 {
-	self endon(#"entityshutdown");
-	self endon(#"stunned");
-	self endon(#"not_stunned");
+	self endon("entityshutdown");
+	self endon("stunned");
+	self endon("not_stunned");
 	while(true)
 	{
 		playfxontag(localclientnum, level._effect["rcbomb_stunned"], self, "tag_origin");
@@ -299,10 +299,10 @@ function play_stunned_fx_handler(localclientnum)
 */
 function enginestutterhandler(localclientnum)
 {
-	self endon(#"entityshutdown");
+	self endon("entityshutdown");
 	while(true)
 	{
-		self waittill(#"veh_engine_stutter");
+		self waittill("veh_engine_stutter");
 		if(self islocalclientdriver(localclientnum))
 		{
 			player = getlocalplayer(localclientnum);
