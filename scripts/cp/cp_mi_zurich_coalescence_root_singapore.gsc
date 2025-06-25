@@ -952,7 +952,7 @@ function function_252e350()
 		return;
 	}
 	level flag::set("sing_root_depthcharges");
-	level thread namespace_e9d9fb34::function_62b0213a();
+	level thread zurich_accolades::function_62b0213a();
 	var_8edc0313 = struct::get_array("singapore_depth_charge", "targetname");
 	array::thread_all(var_8edc0313, &create_depth_charge);
 	level thread function_1c297ab3();

@@ -266,6 +266,8 @@ apartment_civilian,c5b87ef7
 apartment_enemies,1dca7888
 apartment_enemy,6a00e3c4
 apartments_extend,f8576d57
+aquifer_accolades,b5b83650
+aquifer_ambience,1254c007
 aquifer_music,609d3ec
 aquifer_sound,71a63eac
 arena_changed,ec7ca67b
@@ -308,6 +310,7 @@ beacon_use,daea15a5
 beam_damage,f79a1db0
 bias_duration,1e08b2fd
 big_shake,2d58165a
+biodomes_accolades,769dc23f
 bit_value,8e34c2ec
 blacked_out,75756ef4
 blackstation_accolades,23567e72
@@ -321,6 +324,7 @@ boots_model,f7277ad6
 boss_event,1de9db1b
 boss_objectives,6800ac1d
 boss_think,695f38a7
+bot_escort,ebd80b8b
 bounce_effect,ffa114bb
 bowling_pin,c8b96c1f
 boxing_gloves,bfb9be95
@@ -555,6 +559,7 @@ ee_quest,673f721c
 egg_model,43922ff2
 enable_raz_rounds,7dfa7ca6
 enable_spider_rounds,d2716ad8
+enemy_highlight,68dfcbbe
 f_degrees,59fb42bf
 f_interfacer,382bb75
 f_wait,25322547
@@ -577,6 +582,7 @@ handle_nags,4463326b
 heart_model,afa6d081
 hurter,e42db353
 idol,f485e213
+infection_accolades,f25bd8c8
 init_spider_fx,5c48d276
 is_spider,f4795bf
 isdoa,e2c19907
@@ -584,6 +590,7 @@ island_dweller,b1d69866
 island_name,a3d40b8
 island_shield,b2c57c5e
 laps,a923fad3
+lotus_accolades,f4ff722a
 lotus2_sound,a92ad484
 m_chunk,c790d258
 m_crystal,a0a565ad
@@ -726,6 +733,7 @@ mp_freerun_02,bbf5f0d7
 mp_freerun_02_fx,97daed88
 mp_freerun_02_sound,e89da2ff
 mp_freerun_03,95f3766e
+mp_freerun_03_fx,f856db3b
 mp_freerun_03_sound,ad4c1fb2
 mp_freerun_04,d7e71261
 mp_freerun_04_fx,c68b7fb6
@@ -805,6 +813,7 @@ n_wasps,bd061860
 n_water,1153caa9
 n_weather,1cf7e9e8
 n_wound,2c17cb9d
+newworld_accolades,37a1dc33
 nikolai_jump,3c68f919
 nikolai_state,4ee9a8c8
 nikolai_walk,39d2d4b6
@@ -832,9 +841,12 @@ player_passed,f9256645
 player_random,165e92cc
 player_weather,b0f0dd1f
 plumpness,fe6ede28
+prologue_accolades,61c634f2
 prologue_sound,21b2c1f2
 prop_controls,4c773ed3
 prop_dev,baba9b52
+quadtank_util,855113f3
+ramses_accolades,38256252
 ramses_sound,e4c0c552
 ratings,6de9c3a5
 raz_ai,a09c80cd
@@ -917,6 +929,7 @@ s_web,48b5604f
 sawblade_model,97bbae9c
 sentinel_round_aftermath,53547f4d
 sentinel_round_spawning,7766fb04
+sgen_accolades,99202726
 sgen_sound,d40478f6
 skeleton_model,326cdb5e
 snared,89b28ec
@@ -1092,6 +1105,7 @@ t_well,16a4e32
 takeo_sway,75174ee
 teddy_bear_model,7f53bb28
 third,d9ac65f8
+training_sim,c550ee23
 troff,c053b2ca
 umbrella_model,f21ae3af
 v_best,9199584e
@@ -1141,6 +1155,7 @@ voice_zurich,2fedc4ad
 vortex_model,ed2fb7a7
 w_bgb_slaughter_slide,77eb3698
 waiting_for_next_spider_spawn,1abf8192
+wearables,6b38abe3
 withered,2b1c6c7
 zm_custom_get_next_raz_round,95444cb4
 zm_custom_get_next_sentinel_round,a1ca5313
@@ -1149,3 +1164,4 @@ zm_stalingrad_drop_pod,2e6e7fce
 zm_tomb_standard,a026fc99
 zombie_setup_attack_properties_raz,b4cd74ca
 zombie_setup_attack_properties_sentinel,60f92893
+zurich_accolades,e9d9fb34

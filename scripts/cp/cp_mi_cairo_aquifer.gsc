@@ -79,7 +79,7 @@ function main()
 	savegame::set_mission_name("aquifer");
 	cp_mi_cairo_aquifer_fx::main();
 	cp_mi_cairo_aquifer_sound::main();
-	namespace_1254c007::main();
+	aquifer_ambience::main();
 	cp_mi_cairo_aquifer_aitest::init();
 	thread cp_mi_cairo_aquifer_aitest::function_82230f12();
 	callback::on_finalize_initialization(&on_finalize_initialization);
@@ -93,7 +93,7 @@ function main()
 	spawner::add_global_spawn_function("axis", &function_f141f41c);
 	compass::setupminimap("compass_map_cp_mi_cairo_aquifer");
 	load::main();
-	namespace_b5b83650::function_4d39a2af();
+	aquifer_accolades::function_4d39a2af();
 	cp_mi_cairo_aquifer_patch::function_7403e82b();
 	aquifer_util::loadeffects();
 	thread function_c2c4ea75();

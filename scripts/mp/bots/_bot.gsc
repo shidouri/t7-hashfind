@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\mp\_util;
 #using scripts\mp\bots\_bot_ball;
@@ -832,7 +832,7 @@ function init_bot_gametype()
 		}
 		case "escort":
 		{
-			namespace_ebd80b8b::init();
+			bot_escort::init();
 			return true;
 		}
 		case "infect":
