@@ -1,10 +1,10 @@
-#using scripts\cp\_dialog;
+﻿#using scripts\cp\_dialog;
 
-#namespace namespace_398aada;
+#namespace voice_newworld;
 
 /*
 	Name: init_voice
-	Namespace: namespace_398aada
+	Namespace: voice_newworld
 	Checksum: 0xE0DD78F9
 	Offset: 0x4030
 	Size: 0x0
