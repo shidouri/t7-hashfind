@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_oed;
@@ -653,7 +653,7 @@ function function_da35c458(str_bonus, var_638b7f73)
 		}
 		case "raps":
 		{
-			self thread function_be188509();
+			self thread give_raps();
 			break;
 		}
 		default:
@@ -667,7 +667,7 @@ function function_da35c458(str_bonus, var_638b7f73)
 }
 
 /*
-	Name: function_be188509
+	Name: give_raps
 	Namespace: namespace_fdfaa57d
 	Checksum: 0xB82755B2
 	Offset: 0x2368
@@ -675,7 +675,7 @@ function function_da35c458(str_bonus, var_638b7f73)
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_be188509()
+function private give_raps()
 {
 	level.var_5a1513c4 = 1;
 	closestplayer = arraygetclosest(self.origin, level.players);

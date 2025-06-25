@@ -104,13 +104,13 @@ function function_7309e48()
 function function_7dea397f()
 {
 	level thread scene::init("p7_fxanim_zm_island_engine_trap_on_bundle");
-	level thread scene::add_scene_func("p7_fxanim_zm_island_engine_trap_on_bundle", &function_3c8c2e02, "init");
+	level thread scene::add_scene_func("p7_fxanim_zm_island_engine_trap_on_bundle", &trap_setup, "init");
 	function_9a88139e();
 	function_74859935();
 }
 
 /*
-	Name: function_3c8c2e02
+	Name: trap_setup
 	Namespace: zm_island_traps
 	Checksum: 0x1A1030A9
 	Offset: 0xCA0
@@ -118,7 +118,7 @@ function function_7dea397f()
 	Parameters: 1
 	Flags: Linked
 */
-function function_3c8c2e02(a_ents)
+function trap_setup(a_ents)
 {
 	var_f6dbc18f = a_ents["fxanim_engine_trap"];
 	var_f6dbc18f setignorepauseworld(1);

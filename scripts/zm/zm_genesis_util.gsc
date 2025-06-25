@@ -3327,7 +3327,7 @@ function function_dbc092aa(cmd)
 			{
 				foreach(e_player in level.activeplayers)
 				{
-					e_player zm_genesis_apothican::function_4d6562d8();
+					e_player zm_genesis_apothican::give_egg();
 				}
 				break;
 			}
@@ -3419,7 +3419,7 @@ function function_c78305e0()
 {
 	/#
 		self endon("death");
-		ball::function_5faeea5e(self);
+		ball::give_player_ball(self);
 	#/
 }
 

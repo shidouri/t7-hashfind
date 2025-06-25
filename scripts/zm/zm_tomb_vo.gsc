@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -2578,10 +2578,10 @@ function get_speaking_location_maxis_drone(player, s_craftable)
 function b_player_has_dieseldrone_weapon()
 {
 	a_players = getplayers();
-	var_703e6a13 = getweapon("equip_dieseldrone");
+	w_drone = getweapon("equip_dieseldrone");
 	foreach(player in a_players)
 	{
-		if(player hasweapon(var_703e6a13))
+		if(player hasweapon(w_drone))
 		{
 			return player;
 		}

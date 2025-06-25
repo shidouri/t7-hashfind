@@ -356,9 +356,9 @@ function function_6afa5293()
 	level.var_cf6e9729 thread function_b79713c();
 	level.var_cf6e9729 thread zm_stalingrad_vo::function_cd0b1f13();
 	level.var_cf6e9729 thread function_f8190c14();
-	level.var_cf6e9729.func_mod_damage_override = &function_934917cc;
-	level.var_cf6e9729.var_a555da3c = getweapon("spike_charge_siegebot_harpoon");
-	level.var_cf6e9729.var_70fcb15a = getweapon("siegebot_gatling_turret");
+	level.var_cf6e9729.func_mod_damage_override = &nikolai_mod_damage_override;
+	level.var_cf6e9729.w_lance = getweapon("spike_charge_siegebot_harpoon");
+	level.var_cf6e9729.w_gatling_gun = getweapon("siegebot_gatling_turret");
 }
 
 /*
@@ -1283,7 +1283,7 @@ function function_716d82f6()
 }
 
 /*
-	Name: function_934917cc
+	Name: nikolai_mod_damage_override
 	Namespace: zm_stalingrad_nikolai
 	Checksum: 0x6DB72BF8
 	Offset: 0x43B8
@@ -1291,13 +1291,13 @@ function function_716d82f6()
 	Parameters: 3
 	Flags: Linked
 */
-function function_934917cc(e_inflictor, str_mod, w_weapon)
+function nikolai_mod_damage_override(e_inflictor, str_mod, w_weapon)
 {
-	if(w_weapon === self.var_a555da3c)
+	if(w_weapon === self.w_lance)
 	{
 		return "MOD_UNKNOWN";
 	}
-	if(w_weapon === self.var_70fcb15a)
+	if(w_weapon === self.w_gatling_gun)
 	{
 		return "MOD_RIFLE_BULLET";
 	}

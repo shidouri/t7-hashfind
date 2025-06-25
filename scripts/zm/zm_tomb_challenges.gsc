@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -262,19 +262,19 @@ function footprint_zombie_killed(attacker)
 */
 function reward_packed_weapon(player, s_stat)
 {
-	if(!isdefined(s_stat.var_e564b69e))
+	if(!isdefined(s_stat.w_reward))
 	{
 		a_weapons = array("smg_capacity", "smg_mp40_1940", "ar_accurate");
 		var_7e5dd894 = getweapon(array::random(a_weapons));
-		s_stat.var_e564b69e = zm_weapons::get_upgrade_weapon(var_7e5dd894);
+		s_stat.w_reward = zm_weapons::get_upgrade_weapon(var_7e5dd894);
 	}
 	m_weapon = spawn("script_model", self.origin);
 	m_weapon.angles = self.angles + vectorscale((0, 1, 0), 180);
 	m_weapon playsound("zmb_spawn_powerup");
 	m_weapon playloopsound("zmb_spawn_powerup_loop", 0.5);
-	str_model = getweaponmodel(s_stat.var_e564b69e);
-	options = player zm_weapons::get_pack_a_punch_weapon_options(s_stat.var_e564b69e);
-	m_weapon useweaponmodel(s_stat.var_e564b69e, str_model, options);
+	str_model = getweaponmodel(s_stat.w_reward);
+	options = player zm_weapons::get_pack_a_punch_weapon_options(s_stat.w_reward);
+	m_weapon useweaponmodel(s_stat.w_reward, str_model, options);
 	util::wait_network_frame();
 	if(!zm_challenges_tomb::reward_rise_and_grab(m_weapon, 50, 2, 2, 10))
 	{
@@ -284,14 +284,14 @@ function reward_packed_weapon(player, s_stat)
 	primaries = player getweaponslistprimaries();
 	if(isdefined(primaries) && primaries.size >= weapon_limit)
 	{
-		player zm_weapons::weapon_give(s_stat.var_e564b69e);
+		player zm_weapons::weapon_give(s_stat.w_reward);
 	}
 	else
 	{
-		player zm_weapons::give_build_kit_weapon(s_stat.var_e564b69e);
-		player givestartammo(s_stat.var_e564b69e);
+		player zm_weapons::give_build_kit_weapon(s_stat.w_reward);
+		player givestartammo(s_stat.w_reward);
 	}
-	player switchtoweapon(s_stat.var_e564b69e);
+	player switchtoweapon(s_stat.w_reward);
 	m_weapon stoploopsound(0.1);
 	player playsound("zmb_powerup_grabbed");
 	m_weapon delete();

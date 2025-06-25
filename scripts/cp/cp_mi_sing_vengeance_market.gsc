@@ -709,11 +709,11 @@ function function_f14d81a9()
 function function_bc3db33d()
 {
 	level.quadtank waittill("trophy_system_disabled");
-	var_90911853 = getweapon("launcher_standard");
+	w_launcher = getweapon("launcher_standard");
 	foreach(e_player in level.activeplayers)
 	{
 		w_current_weapon = e_player getcurrentweapon();
-		if(e_player hasweapon(var_90911853) && w_current_weapon != var_90911853)
+		if(e_player hasweapon(w_launcher) && w_current_weapon != w_launcher)
 		{
 			e_player thread util::show_hint_text(&"COOP_EQUIP_XM53", undefined, undefined, 6);
 		}

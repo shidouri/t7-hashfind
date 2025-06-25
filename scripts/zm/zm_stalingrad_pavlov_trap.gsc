@@ -86,7 +86,7 @@ function function_fbea6a64(e_player)
 		self sethintstring(&"ZM_STALINGRAD_FLINGER_DISABLED");
 		return false;
 	}
-	if(isdefined(self.stub.var_66a9cd70) && self.stub.var_66a9cd70)
+	if(isdefined(self.stub.trap_on) && self.stub.trap_on)
 	{
 		self sethintstring(&"ZOMBIE_TRAP_ACTIVE");
 		return false;
@@ -152,13 +152,13 @@ function function_335dff5e()
 */
 function function_d9a07413(e_player, var_a70a7d09)
 {
-	self.var_66a9cd70 = 1;
+	self.trap_on = 1;
 	if(self.target === "flinger_pavlov_street")
 	{
 		var_76b899c0 = struct::get_array("flinger_pavlov_street", "target");
 		foreach(s_struct in var_76b899c0)
 		{
-			s_struct.var_66a9cd70 = 1;
+			s_struct.trap_on = 1;
 		}
 	}
 	self zm_stalingrad_util::function_903f6b36(1);
@@ -182,7 +182,7 @@ function function_d9a07413(e_player, var_a70a7d09)
 		n_total_time = (gettime() - n_start_time) / 1000;
 		wait(0.5);
 	}
-	self.var_66a9cd70 = 0;
+	self.trap_on = 0;
 	self.var_dd690f31 = 0;
 	var_76b899c0 = struct::get_array("flinger_pavlov_street", "target");
 	if(self.target === "flinger_pavlov_street")
@@ -190,7 +190,7 @@ function function_d9a07413(e_player, var_a70a7d09)
 		foreach(s_struct in var_76b899c0)
 		{
 			s_struct.var_dd690f31 = 0;
-			s_struct.var_66a9cd70 = 0;
+			s_struct.trap_on = 0;
 		}
 	}
 	wait(120);

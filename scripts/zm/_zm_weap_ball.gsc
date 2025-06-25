@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\_oob;
 #using scripts\shared\ai\systems\gib;
@@ -607,7 +607,7 @@ function function_a41df27c()
 }
 
 /*
-	Name: function_5faeea5e
+	Name: give_player_ball
 	Namespace: ball
 	Checksum: 0xA72152B5
 	Offset: 0x1CD8
@@ -615,7 +615,7 @@ function function_a41df27c()
 	Parameters: 1
 	Flags: Linked
 */
-function function_5faeea5e(player)
+function give_player_ball(player)
 {
 	level.ball_start = spawn("trigger_radius", player.origin + (0, 0, 0), 2, 50, 50);
 	level.ball = spawn_ball(level.ball_start);

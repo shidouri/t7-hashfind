@@ -5116,9 +5116,9 @@ function function_9476c2d5()
 	while(true)
 	{
 		var_6d4fe22b = 0;
-		if(isdefined(self.var_bded8100))
+		if(isdefined(self.pitch_enemy))
 		{
-			var_6d4fe22b = angleclamp180(vectortoangles(self.var_bded8100.origin - self.origin)[0]);
+			var_6d4fe22b = angleclamp180(vectortoangles(self.pitch_enemy.origin - self.origin)[0]);
 			var_6d4fe22b = math::clamp(var_6d4fe22b, -30, 30);
 		}
 		if((abs(var_6d4fe22b - self.var_51cc2ae)) <= self.var_36c3df0c)
@@ -5154,7 +5154,7 @@ function function_5b6daa1a(focus, isrockettype, var_a3a78823)
 {
 	self endon("death");
 	level endon(#"hash_96450f49");
-	self.var_bded8100 = undefined;
+	self.pitch_enemy = undefined;
 	self thread function_9476c2d5();
 	while(true)
 	{
@@ -5202,11 +5202,11 @@ function function_5b6daa1a(focus, isrockettype, var_a3a78823)
 		}
 		if(enemy == focus)
 		{
-			self.var_bded8100 = undefined;
+			self.pitch_enemy = undefined;
 			wait(0.5);
 			continue;
 		}
-		self.var_bded8100 = enemy;
+		self.pitch_enemy = enemy;
 		self setlookatent(enemy);
 		if(isrockettype)
 		{

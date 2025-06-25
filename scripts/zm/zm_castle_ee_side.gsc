@@ -2023,11 +2023,11 @@ function function_1fcb04d7()
 function function_9daec9e3()
 {
 	self endon("disconnect");
-	var_7c4fe278 = getweapon("knife_plunger");
+	w_plunger = getweapon("knife_plunger");
 	while(true)
 	{
 		self waittill("weapon_melee", weapon);
-		if(weapon == var_7c4fe278 && isdefined(self.var_ea5424ae) && self.var_ea5424ae > 0)
+		if(weapon == w_plunger && isdefined(self.var_ea5424ae) && self.var_ea5424ae > 0)
 		{
 			self clientfield::increment_to_player("plunger_charged_strike");
 		}
@@ -2071,8 +2071,8 @@ function charge_plunger(attacker)
 */
 function function_8d95ec46(e_attacker)
 {
-	var_7c4fe278 = getweapon("knife_plunger");
-	if(var_7c4fe278 == self.damageweapon)
+	w_plunger = getweapon("knife_plunger");
+	if(w_plunger == self.damageweapon)
 	{
 		self zombie_utility::zombie_head_gib();
 		return true;
@@ -2091,8 +2091,8 @@ function function_8d95ec46(e_attacker)
 */
 function function_f10f1879(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	var_7c4fe278 = getweapon("knife_plunger");
-	if(weapon == var_7c4fe278 && isdefined(attacker) && isplayer(attacker) && isdefined(attacker.var_ea5424ae) && attacker.var_ea5424ae > 0)
+	w_plunger = getweapon("knife_plunger");
+	if(weapon == w_plunger && isdefined(attacker) && isplayer(attacker) && isdefined(attacker.var_ea5424ae) && attacker.var_ea5424ae > 0)
 	{
 		damage = 777 * self.health;
 		if(isdefined(self))

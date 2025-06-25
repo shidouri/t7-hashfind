@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -707,28 +707,28 @@ function function_26e22a99()
 			continue;
 		}
 		var_dd27188c = zm_utility::get_player_weapon_limit(e_who);
-		var_d4434fab = e_who getweaponslistprimaries();
-		if(var_d4434fab.size > var_dd27188c)
+		a_w_primary = e_who getweaponslistprimaries();
+		if(a_w_primary.size > var_dd27188c)
 		{
 			w_current = e_who getcurrentweapon();
 			e_who zm_weapons::weapon_take(w_current);
 		}
-		var_e1041201 = getweapon("elemental_bow");
-		e_who zm_weapons::weapon_give(var_e1041201, 0, 0, 1);
+		w_bow = getweapon("elemental_bow");
+		e_who zm_weapons::weapon_give(w_bow, 0, 0, 1);
 		e_who thread zm_castle_vo::base_bow_picked_up();
 		if(isdefined(e_who.var_e8e28d9e))
 		{
-			e_who setweaponammostock(var_e1041201, e_who.var_e8e28d9e);
+			e_who setweaponammostock(w_bow, e_who.var_e8e28d9e);
 		}
 		if(isdefined(e_who.var_8f97fa0b))
 		{
-			e_who setweaponammoclip(var_e1041201, e_who.var_8f97fa0b);
+			e_who setweaponammoclip(w_bow, e_who.var_8f97fa0b);
 		}
 		else
 		{
-			e_who setweaponammoclip(var_e1041201, var_e1041201.clipsize);
+			e_who setweaponammoclip(w_bow, w_bow.clipsize);
 		}
-		e_who switchtoweapon(var_e1041201);
+		e_who switchtoweapon(w_bow);
 		e_who thread function_fb853e2c();
 		e_who thread function_71d4f620();
 		level.var_15acc392 setinvisibletoplayer(e_who);

@@ -263,9 +263,9 @@ function private function_2ffb7337(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_d8f5da34(var_2dba2212)
+function private function_d8f5da34(trap_name)
 {
-	a_s_traps = struct::get_array(var_2dba2212, "script_noteworthy");
+	a_s_traps = struct::get_array(trap_name, "script_noteworthy");
 	self.s_trap = undefined;
 	n_closest_dist_sq = 57600;
 	foreach(s_trap in a_s_traps)

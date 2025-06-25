@@ -1335,7 +1335,7 @@ function function_c73dbcf0(s_egg)
 	if(!e_player flag::get("holding_egg"))
 	{
 		e_player thread zm_genesis_vo::function_2a22bd54();
-		e_player function_4d6562d8(s_egg);
+		e_player give_egg(s_egg);
 		e_player playsound("zmb_main_omelettes_egg_pickup");
 		self delete();
 		zm_unitrigger::unregister_unitrigger(s_unitrigger);
@@ -1524,7 +1524,7 @@ function function_4661867f(e_player)
 }
 
 /*
-	Name: function_4d6562d8
+	Name: give_egg
 	Namespace: zm_genesis_apothican
 	Checksum: 0x8AFB0DDE
 	Offset: 0x4A10
@@ -1532,7 +1532,7 @@ function function_4661867f(e_player)
 	Parameters: 1
 	Flags: Linked
 */
-function function_4d6562d8(s_egg)
+function give_egg(s_egg)
 {
 	self thread function_b67eab19("player_apothicon_egg", "zmInventory.widget_apothicon_egg", 1);
 	self clientfield::set_player_uimodel("zmInventory.player_apothicon_egg_bg", 1);

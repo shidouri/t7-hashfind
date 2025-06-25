@@ -620,7 +620,7 @@ function teleport_players(var_edc2ee2a = 0, var_66f7e6b9 = 0)
 		var_764d9cb = struct::get_array(self.target, "targetname");
 	}
 	var_492a5e1e = struct::get_array("teleport_room_pos", "targetname");
-	var_19ff0dfb = [];
+	a_players_touching = [];
 	var_daad3c3c = vectorscale((0, 0, 1), 49);
 	var_6b55b1c4 = vectorscale((0, 0, 1), 20);
 	var_3abe10e2 = (0, 0, 0);
@@ -682,7 +682,7 @@ function teleport_players(var_edc2ee2a = 0, var_66f7e6b9 = 0)
 						desired_origin = var_492a5e1e[i].origin + var_3abe10e2;
 					}
 				}
-				array::add(var_19ff0dfb, player, 0);
+				array::add(a_players_touching, player, 0);
 				player.var_601ebf01 = util::spawn_model("tag_origin", player.origin, player.angles);
 				player linkto(player.var_601ebf01);
 				player dontinterpolate();
@@ -708,9 +708,9 @@ function teleport_players(var_edc2ee2a = 0, var_66f7e6b9 = 0)
 		util::setclientsysstate("levelNotify", "black_box_end", level.activeplayers[i]);
 	}
 	util::wait_network_frame();
-	for(i = 0; i < var_19ff0dfb.size; i++)
+	for(i = 0; i < a_players_touching.size; i++)
 	{
-		player = var_19ff0dfb[i];
+		player = a_players_touching[i];
 		if(!isdefined(player))
 		{
 			continue;

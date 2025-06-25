@@ -113,9 +113,9 @@ function disable()
 function function_32710943()
 {
 	var_dd341085 = getarraykeys(level.zombie_weapons);
-	foreach(var_134a15b0 in var_dd341085)
+	foreach(w_player in var_dd341085)
 	{
-		var_134a15b0 function_32818605();
+		w_player function_32818605();
 	}
 	if(isdefined(level.aat))
 	{
@@ -133,9 +133,9 @@ function function_32710943()
 	Parameters: 1
 	Flags: None
 */
-function function_a2ab8d19(var_390e457)
+function function_a2ab8d19(w_remove)
 {
-	arrayremovevalue(level.var_8fcdc919, var_390e457);
+	arrayremovevalue(level.var_8fcdc919, w_remove);
 }
 
 /*
@@ -285,27 +285,27 @@ function function_4035ce17(n_index, b_upgraded, var_77bd95a)
 		level.var_8fcdc919 = array::randomize(level.var_8fcdc919);
 		n_index = 0;
 	}
-	var_e3c04036 = level.var_8fcdc919[n_index];
+	w_random = level.var_8fcdc919[n_index];
 	if(b_upgraded)
 	{
-		var_e3c04036 = zm_weapons::get_upgrade_weapon(var_e3c04036);
+		w_random = zm_weapons::get_upgrade_weapon(w_random);
 	}
-	if(!self has_weapon(var_e3c04036))
+	if(!self has_weapon(w_random))
 	{
-		var_e3c04036 = self zm_weapons::give_build_kit_weapon(var_e3c04036);
-		self.var_8cee13f3 = var_e3c04036;
-		self giveweapon(var_e3c04036);
-		self shoulddoinitialweaponraise(var_e3c04036, 0);
-		self switchtoweaponimmediate(var_e3c04036);
+		w_random = self zm_weapons::give_build_kit_weapon(w_random);
+		self.var_8cee13f3 = w_random;
+		self giveweapon(w_random);
+		self shoulddoinitialweaponraise(w_random, 0);
+		self switchtoweaponimmediate(w_random);
 		if(isdefined(var_77bd95a) && var_77bd95a != "none")
 		{
-			self thread aat::acquire(var_e3c04036, var_77bd95a);
+			self thread aat::acquire(w_random, var_77bd95a);
 		}
 		self bgb::do_one_shot_use(1);
 		return true;
 	}
 	/#
-		println("" + var_e3c04036.displayname);
+		println("" + w_random.displayname);
 	#/
 	return false;
 }
@@ -475,8 +475,8 @@ function has_weapon(f_interfacer)
 	{
 		return true;
 	}
-	var_7321b53b = zm_weapons::get_upgrade_weapon(f_interfacer);
-	if(self hasweapon(var_7321b53b, 1))
+	w_upgraded = zm_weapons::get_upgrade_weapon(f_interfacer);
+	if(self hasweapon(w_upgraded, 1))
 	{
 		return true;
 	}

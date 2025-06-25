@@ -840,11 +840,11 @@ function function_24240140()
 	wait(3);
 	playsoundatposition("zmb_main_reel3_bone_disappear", self.origin);
 	self stoploopsound(2);
-	self function_156b5313();
+	self give_bone();
 }
 
 /*
-	Name: function_156b5313
+	Name: give_bone
 	Namespace: zm_genesis_ee_quest
 	Checksum: 0xA23913F7
 	Offset: 0x3D68
@@ -852,7 +852,7 @@ function function_24240140()
 	Parameters: 0
 	Flags: Linked
 */
-function function_156b5313()
+function give_bone()
 {
 	self setmodel(self.script_string);
 	level.var_4d6344fd++;
@@ -2770,7 +2770,7 @@ function function_2e1bc559(n_val)
 		var_2efcd138 = getentarray("", "");
 		foreach(mdl_bone in var_2efcd138)
 		{
-			mdl_bone thread function_156b5313();
+			mdl_bone thread give_bone();
 		}
 	#/
 }

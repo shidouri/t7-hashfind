@@ -154,11 +154,11 @@ function function_3ae55c2d(var_f2bd831, a_s_switches)
 		playsoundatposition("zmb_robo_eye_beam_start", s_target.origin);
 	}
 	s_target zm_stalingrad_util::function_903f6b36(1);
-	self thread function_8bc8cc13(var_f2bd831, a_s_switches);
+	self thread beam_trap_think(var_f2bd831, a_s_switches);
 }
 
 /*
-	Name: function_8bc8cc13
+	Name: beam_trap_think
 	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0xCAFAFA64
 	Offset: 0xC40
@@ -166,25 +166,25 @@ function function_3ae55c2d(var_f2bd831, a_s_switches)
 	Parameters: 2
 	Flags: Linked
 */
-function function_8bc8cc13(var_f2bd831, a_s_switches)
+function beam_trap_think(var_f2bd831, a_s_switches)
 {
 	n_start_time = gettime();
 	n_total_time = 0;
 	e_kill_zone = self.var_4ae7f8db;
 	s_exploder = self.s_exploder;
 	exploder::exploder(s_exploder);
-	var_f7261317 = getent("eye_beam_volume_" + e_kill_zone.script_string, "targetname");
+	e_eye_beam_volume = getent("eye_beam_volume_" + e_kill_zone.script_string, "targetname");
 	var_f2bd831 thread zm_stalingrad_vo::function_176ac3fa();
 	level clientfield::set("eye_beam_rumble_" + e_kill_zone.script_string, 1);
 	level thread function_78f79e79(1);
 	n_total_kills = 0;
 	while(30 > n_total_time)
 	{
-		var_910826d7 = e_kill_zone array::get_touching(level.players);
+		a_e_players_touching = e_kill_zone array::get_touching(level.players);
 		a_ai_enemies = getaiteamarray(level.zombie_team);
 		a_ai_touching = e_kill_zone array::get_touching(a_ai_enemies);
 		var_21d30559 = getvehicleteamarray("axis");
-		var_f7291731 = var_f7261317 array::get_touching(var_21d30559);
+		var_f7291731 = e_eye_beam_volume array::get_touching(var_21d30559);
 		foreach(var_5307d079 in var_f7291731)
 		{
 			array::add(a_ai_touching, var_5307d079, 0);
@@ -206,7 +206,7 @@ function function_8bc8cc13(var_f2bd831, a_s_switches)
 				n_total_kills++;
 			}
 		}
-		foreach(e_player in var_910826d7)
+		foreach(e_player in a_e_players_touching)
 		{
 			if(zm_utility::is_player_valid(e_player) && (!(isdefined(e_player.var_5a524cf9) && e_player.var_5a524cf9)))
 			{
@@ -247,10 +247,10 @@ function function_8bc8cc13(var_f2bd831, a_s_switches)
 	Parameters: 1
 	Flags: Linked
 */
-function function_78f79e79(var_66a9cd70)
+function function_78f79e79(trap_on)
 {
 	mdl_head = getent("robot_head_clocktower", "targetname");
-	if(var_66a9cd70)
+	if(trap_on)
 	{
 		mdl_head playsound("zmb_robo_eye_head_start");
 		mdl_head playloopsound("zmb_robo_eye_head_lp", 1.5);

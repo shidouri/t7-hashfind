@@ -904,10 +904,10 @@ function function_9fb5e88f(str_start, n_delay, str_scene)
 	{
 		wait(n_delay);
 	}
-	var_90911853 = getweapon("launcher_standard_magic_bullet");
+	w_launcher = getweapon("launcher_standard_magic_bullet");
 	s_start = struct::get(str_start, "targetname");
 	s_end = struct::get(s_start.target, "targetname");
-	e_missile = magicbullet(var_90911853, s_start.origin, s_end.origin);
+	e_missile = magicbullet(w_launcher, s_start.origin, s_end.origin);
 	e_missile waittill("death");
 	if(isdefined(str_scene))
 	{

@@ -1,4 +1,4 @@
-#using scripts\shared\ai_shared;
+﻿#using scripts\shared\ai_shared;
 #using scripts\shared\stealth;
 #using scripts\shared\stealth_aware;
 #using scripts\shared\stealth_debug;
@@ -67,7 +67,7 @@ function enabled()
 }
 
 /*
-	Name: function_1664d989
+	Name: vehicle_awareness
 	Namespace: stealth_vehicle
 	Checksum: 0x1A064429
 	Offset: 0x410
@@ -75,7 +75,7 @@ function enabled()
 	Parameters: 0
 	Flags: None
 */
-function function_1664d989()
+function vehicle_awareness()
 {
 	// Unsupported VM revision (1B).
 }

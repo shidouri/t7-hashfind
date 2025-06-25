@@ -1530,7 +1530,7 @@ function function_10abb15e()
 		wait(2);
 		self upgrade_weapon();
 		wait(2);
-		self thread function_f77f0da9();
+		self thread give_player_jug();
 	#/
 }
 
@@ -1651,7 +1651,7 @@ function upgrade_weapon()
 }
 
 /*
-	Name: function_f77f0da9
+	Name: give_player_jug
 	Namespace: zm_island_spider_quest
 	Checksum: 0x4232F756
 	Offset: 0x5288
@@ -1659,7 +1659,7 @@ function upgrade_weapon()
 	Parameters: 0
 	Flags: Linked
 */
-function function_f77f0da9()
+function give_player_jug()
 {
 	/#
 		self endon("disconnect");

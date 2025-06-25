@@ -166,11 +166,11 @@ function function_2e776cf4()
 	level flag::wait_till("pod_go");
 	var_fccc406f = struct::get_array("rpg_begin");
 	s_pod = struct::get("pod_pos");
-	var_90911853 = getweapon("launcher_standard_magic_bullet");
+	w_launcher = getweapon("launcher_standard_magic_bullet");
 	foreach(s_rpg in var_fccc406f)
 	{
 		wait(1);
-		magicbullet(var_90911853, s_rpg.origin, s_pod.origin);
+		magicbullet(w_launcher, s_rpg.origin, s_pod.origin);
 	}
 	wait(0.3);
 	level thread function_9716eddb();
@@ -196,13 +196,13 @@ function function_9716eddb()
 {
 	level endon(#"hash_2e90f258");
 	var_fccc406f = struct::get_array("rpg_begin");
-	var_90911853 = getweapon("launcher_standard_magic_bullet");
+	w_launcher = getweapon("launcher_standard_magic_bullet");
 	while(true)
 	{
 		foreach(s_rpg in var_fccc406f)
 		{
 			v_offset = (randomintrange(-100, 100), randomintrange(-100, 100), randomintrange(-100, 100));
-			magicbullet(var_90911853, s_rpg.origin, struct::get(s_rpg.target).origin + v_offset);
+			magicbullet(w_launcher, s_rpg.origin, struct::get(s_rpg.target).origin + v_offset);
 			wait(0.75);
 		}
 		wait(1.5);
@@ -453,7 +453,7 @@ function function_40fd81b()
 	self.grenadeammo = 0;
 	self.goalradius = 16;
 	wait(randomfloatrange(2, 3.5));
-	var_90911853 = getweapon("launcher_standard_magic_bullet");
+	w_launcher = getweapon("launcher_standard_magic_bullet");
 	v_muzzle = self gettagorigin("tag_flash");
 	while(true)
 	{
@@ -498,14 +498,14 @@ function function_54454538()
 	self waittill("goal");
 	var_5aebca26 = getent("rpg_target", "targetname");
 	var_5aebca26.health = 1;
-	var_90911853 = getweapon("launcher_standard_magic_bullet");
+	w_launcher = getweapon("launcher_standard_magic_bullet");
 	v_muzzle = self gettagorigin("tag_flash");
 	wait(1);
 	if(!isdefined(v_muzzle))
 	{
 		v_muzzle = self.origin;
 	}
-	e_projectile = magicbullet(var_90911853, v_muzzle, var_5aebca26.origin);
+	e_projectile = magicbullet(w_launcher, v_muzzle, var_5aebca26.origin);
 	e_projectile waittill("death");
 	e_projectile thread fx::play("rock_explosion", e_projectile.origin);
 	wait(1);
@@ -1255,8 +1255,8 @@ function function_c794d3c2(n_height = 300, var_7ad049d6 = 100, b_do_rumble = 1, 
 	var_652493a5 = v_player_fwd * var_7ad049d6;
 	var_f720f8d7 = (self.origin + (0, 0, n_height)) + var_652493a5;
 	var_f9f8910c = self.origin + var_652493a5;
-	var_90911853 = getweapon("launcher_standard_magic_bullet");
-	magicbullet(var_90911853, var_f720f8d7, var_f9f8910c);
+	w_launcher = getweapon("launcher_standard_magic_bullet");
+	magicbullet(w_launcher, var_f720f8d7, var_f9f8910c);
 	self playsoundtoplayer("evt_outro_explosion", self);
 	wait(0.25);
 	level thread fx::play("rock_explosion", var_f9f8910c);
@@ -1285,8 +1285,8 @@ function function_6e3b3bec(a_ents)
 	var_a5eb4761 = struct::get("s_rocket_player_hookup", "targetname");
 	var_2c7e0a5a = struct::get(var_a5eb4761.target, "targetname");
 	level waittill(#"hash_37113ae1");
-	var_90911853 = getweapon("launcher_standard_magic_bullet");
-	magicbullet(var_90911853, var_a5eb4761.origin, var_2c7e0a5a.origin);
+	w_launcher = getweapon("launcher_standard_magic_bullet");
+	magicbullet(w_launcher, var_a5eb4761.origin, var_2c7e0a5a.origin);
 }
 
 /*
@@ -1377,11 +1377,11 @@ function function_aba4324()
 function function_3df1f906(s_rpg)
 {
 	self endon("death");
-	var_90911853 = getweapon("launcher_standard");
+	w_launcher = getweapon("launcher_standard");
 	for(i = 0; i < 8; i++)
 	{
 		v_offset = (randomintrange(-1500, -1300), randomintrange(-100, 100), randomintrange(-100, 100));
-		magicbullet(var_90911853, s_rpg.origin, self.origin + v_offset);
+		magicbullet(w_launcher, s_rpg.origin, self.origin + v_offset);
 		wait(randomfloatrange(1, 2));
 	}
 }
@@ -1479,15 +1479,15 @@ function function_34d9d6a7()
 */
 function function_114d2017(e_target)
 {
-	var_8af78429 = getweapon("launcher_standard");
+	w_missile = getweapon("launcher_standard");
 	var_9fab05ff = self gettagorigin("tag_fx_rocket_pod_l");
 	v_target = e_target.origin;
 	v_offset = (randomintrange(-100, 100), randomintrange(-100, 100), randomintrange(-80, 80));
-	e_missile = magicbullet(var_8af78429, var_9fab05ff, v_target);
+	e_missile = magicbullet(w_missile, var_9fab05ff, v_target);
 	e_missile thread function_1082845c(v_target + v_offset);
 	wait(0.5);
 	var_4bd7a161 = self gettagorigin("tag_fx_rocket_pod_r");
-	e_missile = magicbullet(var_8af78429, var_4bd7a161, v_target + v_offset);
+	e_missile = magicbullet(w_missile, var_4bd7a161, v_target + v_offset);
 	e_missile thread function_1082845c(v_target + v_offset);
 }
 

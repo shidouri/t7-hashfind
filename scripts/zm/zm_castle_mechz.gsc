@@ -130,9 +130,9 @@ function private function_78c0d00b(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_ced5d8b0(var_2dba2212)
+function private function_ced5d8b0(trap_name)
 {
-	traps = struct::get_array(var_2dba2212, "script_noteworthy");
+	traps = struct::get_array(trap_name, "script_noteworthy");
 	self.trap_struct = undefined;
 	closest_dist_sq = 57600;
 	foreach(trap in traps)

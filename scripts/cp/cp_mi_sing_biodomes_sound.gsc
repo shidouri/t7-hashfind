@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\voice\voice_biodomes;
 #using scripts\shared\music_shared;
 
@@ -189,7 +189,7 @@ function function_11139d81()
 }
 
 /*
-	Name: function_3919d226
+	Name: a_w_veil_excrete
 	Namespace: namespace_f1b4cbbc
 	Checksum: 0xD1075EE3
 	Offset: 0x3B0
@@ -197,7 +197,7 @@ function function_11139d81()
 	Parameters: 0
 	Flags: None
 */
-function function_3919d226()
+function a_w_veil_excrete()
 {
 	// Unsupported VM revision (1B).
 }

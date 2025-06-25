@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -804,8 +804,8 @@ function swap_weapon(var_375664a9, e_player)
 	foreach(weapon in var_6c6831af)
 	{
 		w_base = zm_weapons::get_base_weapon(weapon);
-		var_7321b53b = zm_weapons::get_upgrade_weapon(weapon);
-		if(var_375664a9 === w_base || var_375664a9 === var_7321b53b)
+		w_upgraded = zm_weapons::get_upgrade_weapon(weapon);
+		if(var_375664a9 === w_base || var_375664a9 === w_upgraded)
 		{
 			e_player givemaxammo(weapon);
 			return;

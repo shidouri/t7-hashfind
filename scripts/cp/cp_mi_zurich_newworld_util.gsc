@@ -1288,9 +1288,9 @@ function function_2e7b4007()
 	self.var_8a320fc6 = 0;
 	var_6d5d984c = function_71840183("cybercom_immolation");
 	var_bb989cf4 = var_6d5d984c.name + "_fired";
-	var_239727aa = function_71840183("cybercom_fireflyswarm", 1);
-	str_firefly = var_239727aa.name + "_fired";
-	self thread function_6851db33(var_6d5d984c, var_239727aa);
+	w_firefly = function_71840183("cybercom_fireflyswarm", 1);
+	str_firefly = w_firefly.name + "_fired";
+	self thread function_6851db33(var_6d5d984c, w_firefly);
 	while(true)
 	{
 		self util::waittill_any(var_bb989cf4, str_firefly);
@@ -1308,7 +1308,7 @@ function function_2e7b4007()
 	Parameters: 2
 	Flags: Linked
 */
-function function_6851db33(var_3283f77e, var_239727aa)
+function function_6851db33(var_3283f77e, w_firefly)
 {
 	self endon("death");
 	level endon(#"hash_982eac9f");
@@ -1322,7 +1322,7 @@ function function_6851db33(var_3283f77e, var_239727aa)
 			{
 				self thread function_6062e90("cybercom_immolation", 0, "underground_combat_complete", 1, "CP_MI_ZURICH_NEWWORLD_IMMOLATION_TARGET", "CP_MI_ZURICH_NEWWORLD_IMMOLATION_RELEASE");
 			}
-			else if(self._gadgets_player[0] === var_239727aa)
+			else if(self._gadgets_player[0] === w_firefly)
 			{
 				self thread function_6062e90("cybercom_fireflyswarm", 1, "underground_combat_complete", 1, "CP_MI_ZURICH_NEWWORLD_FIREFLY_SWARM_TUTORIAL");
 			}

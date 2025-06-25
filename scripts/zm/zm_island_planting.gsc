@@ -3250,7 +3250,7 @@ function function_7a0f914c(b_success)
 		self zm_utility::increment_is_drinking();
 	}
 	w_original = self getcurrentweapon();
-	var_c9d7dbd3 = function_d60b4013(b_success);
+	w_fruit = function_d60b4013(b_success);
 	if(w_original != level.weaponnone && (!(isdefined(zm_utility::is_placeable_mine(w_original)) && zm_utility::is_placeable_mine(w_original))) && (!(isdefined(zm_equipment::is_equipment(w_original)) && zm_equipment::is_equipment(w_original))) && (!(isdefined(self zm_laststand::is_reviving_any()) && self zm_laststand::is_reviving_any())) && (!(isdefined(self laststand::player_is_in_laststand()) && self laststand::player_is_in_laststand())))
 	{
 		self.original_weapon = w_original;
@@ -3262,8 +3262,8 @@ function function_7a0f914c(b_success)
 	}
 	self.var_db9c1f55 = 1;
 	self zm_utility::disable_player_move_states(1);
-	self giveweapon(var_c9d7dbd3);
-	self switchtoweapon(var_c9d7dbd3);
+	self giveweapon(w_fruit);
+	self switchtoweapon(w_fruit);
 }
 
 /*
@@ -3279,10 +3279,10 @@ function function_37e9f650(b_success)
 {
 	self endon("disconnect");
 	self zm_utility::enable_player_move_states();
-	var_c9d7dbd3 = function_d60b4013(b_success);
+	w_fruit = function_d60b4013(b_success);
 	if(self laststand::player_is_in_laststand() || (isdefined(self.intermission) && self.intermission))
 	{
-		self takeweapon(var_c9d7dbd3);
+		self takeweapon(w_fruit);
 		return;
 	}
 	if(self.is_drinking > 0)
@@ -3290,7 +3290,7 @@ function function_37e9f650(b_success)
 		self zm_utility::decrement_is_drinking();
 	}
 	a_primaries = self getweaponslistprimaries();
-	self takeweapon(var_c9d7dbd3);
+	self takeweapon(w_fruit);
 	if(self.is_drinking > 0)
 	{
 		return;
@@ -3332,13 +3332,13 @@ function function_d60b4013(b_success)
 {
 	if(b_success == 1)
 	{
-		var_c9d7dbd3 = level.var_5ef907c8;
+		w_fruit = level.var_5ef907c8;
 	}
 	else
 	{
-		var_c9d7dbd3 = level.var_8a542f3f;
+		w_fruit = level.var_8a542f3f;
 	}
-	return var_c9d7dbd3;
+	return w_fruit;
 }
 
 /*

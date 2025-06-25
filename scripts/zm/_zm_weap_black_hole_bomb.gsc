@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\ai\zombie_vortex;
@@ -222,9 +222,9 @@ function function_e877695e()
 	self endon(#"hash_e877695e");
 	while(true)
 	{
-		self waittill("grenade_pullback", var_f4612f93);
+		self waittill("grenade_pullback", w_new);
 		var_fe9168ca = 0.75;
-		if(var_f4612f93 == level.w_black_hole_bomb)
+		if(w_new == level.w_black_hole_bomb)
 		{
 			wait(var_fe9168ca);
 			self clientfield::set_to_player("bhb_viewlights", 1);

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
@@ -44,8 +44,8 @@ function init_stage()
 	}
 	level.var_5f315f0b = 0;
 	zm_temple_sq_brock::delete_radio();
-	var_b28c3b10 = getentarray("sq_spiketrap", "targetname");
-	array::thread_all(var_b28c3b10, &function_d0295ce3);
+	a_e_spike_traps = getentarray("sq_spiketrap", "targetname");
+	array::thread_all(a_e_spike_traps, &trap_thread);
 	level thread delayed_start_skit();
 }
 
@@ -88,7 +88,7 @@ function trap_trigger()
 }
 
 /*
-	Name: function_d0295ce3
+	Name: trap_thread
 	Namespace: zm_temple_sq_bttp
 	Checksum: 0x319F992A
 	Offset: 0x7D0
@@ -96,7 +96,7 @@ function trap_trigger()
 	Parameters: 0
 	Flags: Linked
 */
-function function_d0295ce3()
+function trap_thread()
 {
 	level endon(#"hash_20531487");
 	self.trigger = spawn("trigger_damage", self.origin, 0, 32, 72);
@@ -303,7 +303,7 @@ function stage_logic()
 */
 function exit_stage(success)
 {
-	var_b28c3b10 = getentarray("sq_spiketrap", "targetname");
+	a_e_spike_traps = getentarray("sq_spiketrap", "targetname");
 	if(success)
 	{
 		zm_temple_sq::remove_skel();
@@ -316,13 +316,13 @@ function exit_stage(success)
 			level._sq_skel show();
 		}
 		zm_temple_sq_brock::create_radio(6);
-		foreach(e_trap in var_b28c3b10)
+		foreach(e_trap in a_e_spike_traps)
 		{
 			e_trap show();
 		}
 		level thread zm_temple_sq_skits::fail_skit();
 	}
-	foreach(e_trap in var_b28c3b10)
+	foreach(e_trap in a_e_spike_traps)
 	{
 		if(isdefined(e_trap.trigger))
 		{

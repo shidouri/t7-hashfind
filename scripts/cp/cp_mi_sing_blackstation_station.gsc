@@ -346,7 +346,7 @@ function kane_take_out_enemies()
 }
 
 /*
-	Name: function_3f00de07
+	Name: shoot_enemy
 	Namespace: cp_mi_sing_blackstation_station
 	Checksum: 0xDC3ABAAE
 	Offset: 0x3010
@@ -354,7 +354,7 @@ function kane_take_out_enemies()
 	Parameters: 1
 	Flags: None
 */
-function function_3f00de07()
+function shoot_enemy()
 {
 	// Unsupported VM revision (1B).
 }

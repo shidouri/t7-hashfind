@@ -3615,11 +3615,11 @@ function function_2601ae75(var_c37a8358, var_18f50dca)
 		level endon(#"hash_2a8e7fe2");
 	#/
 	level endon("wolf_howl_paintings");
-	var_e1041201 = getweapon("elemental_bow");
+	w_bow = getweapon("elemental_bow");
 	while(true)
 	{
 		self.var_67b5dd94 waittill("trigger", e_who);
-		if(e_who hasweapon(var_e1041201) || e_who function_fae23b43())
+		if(e_who hasweapon(w_bow) || e_who function_fae23b43())
 		{
 			if(level.var_f1193c94 == var_c37a8358)
 			{
@@ -5945,7 +5945,7 @@ function function_4688cd22()
 	self endon("death");
 	self endon("quest_swap");
 	a_e_battery = getentarray("aq_es_battery_volume_charged", "script_noteworthy");
-	var_e1041201 = getweapon("elemental_bow");
+	w_bow = getweapon("elemental_bow");
 	while(!level flag::get("elemental_storm_beacons_charged"))
 	{
 		if(self ischargeshotpending() && self.chargeshotlevel === 4)
@@ -7346,11 +7346,11 @@ function function_fb704679(e_target_player = undefined)
 		level.var_e8a6b6f7 = array(level.var_e8a6b6f7);
 	}
 	level.var_e8a6b6f7[level.var_e8a6b6f7.size] = self.var_67b5dd94;
-	var_b4810425 = getweapon(self.script_label);
+	w_upgrade = getweapon(self.script_label);
 	while(true)
 	{
 		self.var_67b5dd94 waittill("trigger", e_who);
-		if(e_who function_9dfa159b() || e_who hasweapon(var_b4810425))
+		if(e_who function_9dfa159b() || e_who hasweapon(w_upgrade))
 		{
 			continue;
 		}
@@ -7386,20 +7386,20 @@ function function_fb704679(e_target_player = undefined)
 					}
 				}
 			}
-			e_who zm_weapons::weapon_give(var_b4810425, 0, 0, 1);
-			if(isdefined(level.var_7df95fd1) && isdefined(level.var_7df95fd1[var_b4810425.name]))
+			e_who zm_weapons::weapon_give(w_upgrade, 0, 0, 1);
+			if(isdefined(level.var_7df95fd1) && isdefined(level.var_7df95fd1[w_upgrade.name]))
 			{
-				e_who setweaponammostock(var_b4810425, level.var_7df95fd1[var_b4810425.name]);
+				e_who setweaponammostock(w_upgrade, level.var_7df95fd1[w_upgrade.name]);
 			}
-			if(isdefined(level.var_67616e8e) && isdefined(level.var_67616e8e[var_b4810425.name]))
+			if(isdefined(level.var_67616e8e) && isdefined(level.var_67616e8e[w_upgrade.name]))
 			{
-				e_who setweaponammoclip(var_b4810425, level.var_67616e8e[var_b4810425.name]);
+				e_who setweaponammoclip(w_upgrade, level.var_67616e8e[w_upgrade.name]);
 			}
 			else
 			{
-				e_who setweaponammoclip(var_b4810425, var_b4810425.clipsize);
+				e_who setweaponammoclip(w_upgrade, w_upgrade.clipsize);
 			}
-			e_who switchtoweapon(var_b4810425);
+			e_who switchtoweapon(w_upgrade);
 			e_who playsound("zmb_bow_pickup");
 			self.mdl_bow hide();
 			arrayremovevalue(level.var_e8a6b6f7, self.var_67b5dd94);
@@ -7411,7 +7411,7 @@ function function_fb704679(e_target_player = undefined)
 				{
 					for(i = 2; i < a_w_weapons.size; i++)
 					{
-						if(a_w_weapons[i] == var_b4810425)
+						if(a_w_weapons[i] == w_upgrade)
 						{
 							e_who.var_bec0aa15 = 1;
 							break;
@@ -7439,20 +7439,20 @@ function function_fb704679(e_target_player = undefined)
 function function_971e3797()
 {
 	self function_3313abd5(&function_6041c7d9);
-	var_b4810425 = getweapon(self.script_label);
+	w_upgrade = getweapon(self.script_label);
 	if(1)
 	{
 		for(;;)
 		{
 			self.var_67b5dd94 waittill("trigger", e_who);
 		}
-		if(e_who function_9dfa159b() || !e_who hasweapon(var_b4810425))
+		if(e_who function_9dfa159b() || !e_who hasweapon(w_upgrade))
 		{
 		}
 		e_who playsound("zmb_bow_return");
-		level.var_7df95fd1[var_b4810425.name] = e_who getweaponammostock(var_b4810425);
-		level.var_67616e8e[var_b4810425.name] = e_who getweaponammoclip(var_b4810425);
-		e_who zm_weapons::weapon_take(var_b4810425);
+		level.var_7df95fd1[w_upgrade.name] = e_who getweaponammostock(w_upgrade);
+		level.var_67616e8e[w_upgrade.name] = e_who getweaponammoclip(w_upgrade);
+		e_who zm_weapons::weapon_take(w_upgrade);
 		zm_unitrigger::unregister_unitrigger(self.var_67b5dd94);
 		e_who.var_bec0aa15 = undefined;
 		str_notify = self.script_label + "_returned";
@@ -7499,20 +7499,20 @@ function function_a4861409(e_player, s_bow)
 		}
 		else
 		{
-			var_e1041201 = getweapon(s_bow.script_label);
+			w_bow = getweapon(s_bow.script_label);
 			if(isdefined(e_player.var_bec0aa15) && e_player.var_bec0aa15 && (isdefined(e_player.laststand) && e_player.laststand) && str_notify != "bled_out")
 			{
 				continue;
 			}
 			if(var_bbdf3539)
 			{
-				if(e_player hasweapon(var_e1041201))
+				if(e_player hasweapon(w_bow))
 				{
 					var_bbdf3539 = 0;
 				}
 				continue;
 			}
-			if(!e_player hasweapon(var_e1041201) && !e_player bgb::is_enabled("zm_bgb_disorderly_combat"))
+			if(!e_player hasweapon(w_bow) && !e_player bgb::is_enabled("zm_bgb_disorderly_combat"))
 			{
 				e_player.var_bec0aa15 = undefined;
 				zm_unitrigger::unregister_unitrigger(s_bow.var_67b5dd94);

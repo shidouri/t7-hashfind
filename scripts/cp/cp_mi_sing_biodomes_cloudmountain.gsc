@@ -1400,7 +1400,7 @@ function setup_server_room_door_use_object()
 	level clientfield::set("set_exposure_bank", 1);
 	level thread function_d28364c1();
 	level thread dialog::player_say("plyr_we_have_to_take_her_0", 1);
-	level thread namespace_f1b4cbbc::function_3919d226();
+	level thread namespace_f1b4cbbc::a_w_veil_excrete();
 	level scene::add_scene_func("cin_bio_09_accessdrives_3rd_sh010", &function_2db7566e, "play");
 	level scene::add_scene_func("cin_bio_09_accessdrives_3rd_sh020", &function_3de47a8b, "play");
 	level scene::add_scene_func("cin_bio_09_accessdrives_3rd_sh090", &function_cbdd0b50, "play");

@@ -1030,7 +1030,7 @@ function function_3945e60c(var_c6cad973, var_44bdb80e, var_3f242b55, var_b89973c
 }
 
 /*
-	Name: function_d570abb
+	Name: give_bucket
 	Namespace: zm_island_power
 	Checksum: 0x7DDB49C1
 	Offset: 0x37A8
@@ -1038,7 +1038,7 @@ function function_3945e60c(var_c6cad973, var_44bdb80e, var_3f242b55, var_b89973c
 	Parameters: 0
 	Flags: Linked
 */
-function function_d570abb()
+function give_bucket()
 {
 	if(!self clientfield::get_to_player("bucket_held"))
 	{

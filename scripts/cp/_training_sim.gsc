@@ -740,8 +740,8 @@ function function_cce02c2e()
 	var_38184ced = 2;
 	while(isdefined(level.var_a6bed3c2[self.var_38da1d8e]))
 	{
-		self.var_1e13e77e = self.s_beacon;
-		self.s_beacon = function_c9db2b14(self.var_1e13e77e);
+		self.s_last_beacon = self.s_beacon;
+		self.s_beacon = get_next_beacon(self.s_last_beacon);
 		self thread function_7407182f(self.s_beacon.origin);
 		thread function_cf1101c0();
 		self setluimenudata(self.var_43693cde, "round_num", "" + self.var_38da1d8e);
@@ -1084,7 +1084,7 @@ function function_4837ece8(s_beacon)
 }
 
 /*
-	Name: function_c9db2b14
+	Name: get_next_beacon
 	Namespace: training_sim
 	Checksum: 0x91252BDF
 	Offset: 0x4058
@@ -1092,7 +1092,7 @@ function function_4837ece8(s_beacon)
 	Parameters: 1
 	Flags: Linked
 */
-function function_c9db2b14(var_d8d3a227)
+function get_next_beacon(var_d8d3a227)
 {
 	a_beacons = get_struct_array("round_beacon", "script_noteworthy");
 	if(isdefined(var_d8d3a227))
@@ -1200,7 +1200,7 @@ function function_27b9fdd3(e_spawned, v_pos, var_8e7d3ece)
 			var_ac2f333b = 0;
 			var_819d27f5 = e_spawned.spawner.radius;
 			var_226a15c3 = (self.s_beacon.origin[0], self.s_beacon.origin[1], e_spawned.spawner.origin[2]);
-			var_c4a9fefc = (self.var_1e13e77e.origin[0], self.var_1e13e77e.origin[1], var_226a15c3[2]);
+			var_c4a9fefc = (self.s_last_beacon.origin[0], self.s_last_beacon.origin[1], var_226a15c3[2]);
 			v_pos = var_226a15c3 + ((vectornormalize(var_c4a9fefc - var_226a15c3)) * var_bbcaca07);
 		}
 		else

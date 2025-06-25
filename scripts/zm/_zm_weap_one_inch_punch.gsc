@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -165,14 +165,14 @@ function monitor_melee_swipe()
 	self notify("stop_monitor_melee_swipe");
 	self endon("stop_monitor_melee_swipe");
 	self endon("bled_out");
-	var_ac486a40 = getweapon("tomb_shield");
+	w_shield = getweapon("tomb_shield");
 	while(true)
 	{
 		while(!self ismeleeing())
 		{
 			wait(0.05);
 		}
-		if(self getcurrentweapon() == var_ac486a40)
+		if(self getcurrentweapon() == w_shield)
 		{
 			wait(0.1);
 			continue;

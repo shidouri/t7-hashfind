@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\laststand_shared;
@@ -342,19 +342,19 @@ function gasmask_debug_print(msg, color)
 	Parameters: 4
 	Flags: Linked
 */
-function function_7cb416b(var_226f0a45, var_4bbe5bcf, var_d79c9dc0, str_notify)
+function function_7cb416b(w_equipment, var_4bbe5bcf, var_d79c9dc0, str_notify)
 {
-	if(var_4bbe5bcf == var_226f0a45)
+	if(var_4bbe5bcf == w_equipment)
 	{
-		if(self.current_equipment_active[var_226f0a45] == 1)
+		if(self.current_equipment_active[w_equipment] == 1)
 		{
 			self notify(str_notify.deactivate);
-			self.current_equipment_active[var_226f0a45] = 0;
+			self.current_equipment_active[w_equipment] = 0;
 		}
-		else if(self.current_equipment_active[var_226f0a45] == 0)
+		else if(self.current_equipment_active[w_equipment] == 0)
 		{
 			self notify(str_notify.activate);
-			self.current_equipment_active[var_226f0a45] = 1;
+			self.current_equipment_active[w_equipment] = 1;
 		}
 		self waittill("equipment_select_response_done");
 	}

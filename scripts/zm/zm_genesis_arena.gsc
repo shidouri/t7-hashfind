@@ -4442,7 +4442,7 @@ function function_1aa64a8(e_triggerer)
 {
 	level clientfield::set("summoning_key_pickup", 0);
 	playsoundatposition("zmb_summoning_ball_pickup", e_triggerer.origin);
-	ball::function_5faeea5e(e_triggerer);
+	ball::give_player_ball(e_triggerer);
 	level notify(#"hash_f81a82d1");
 }
 
@@ -5264,7 +5264,7 @@ function function_f20e5aa1()
 		if(var_c386eb4d == 3)
 		{
 			level clientfield::set("basin_state_" + self.stub.var_549b41ba, 4);
-			ball::function_5faeea5e(e_triggerer);
+			ball::give_player_ball(e_triggerer);
 			e_triggerer playsound("zmb_finalfight_key_pickup");
 			level.var_2fe260b8 = 2;
 			level thread function_867f6495();

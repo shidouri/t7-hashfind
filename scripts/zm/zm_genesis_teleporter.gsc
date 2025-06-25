@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -453,7 +453,7 @@ function teleport_players(a_s_pos, var_1bac7e2b, var_e11d2975, var_6bd63d0d = 0)
 	}
 	if(var_e11d2975 || var_c172b345)
 	{
-		var_19ff0dfb = [];
+		a_players_touching = [];
 		var_daad3c3c = vectorscale((0, 0, 1), 49);
 		var_6b55b1c4 = vectorscale((0, 0, 1), 20);
 		var_3abe10e2 = (0, 0, 0);
@@ -496,7 +496,7 @@ function teleport_players(a_s_pos, var_1bac7e2b, var_e11d2975, var_6bd63d0d = 0)
 							var_e2a6e15f = var_a80e3914[i].origin + var_3abe10e2;
 						}
 					}
-					array::add(var_19ff0dfb, e_player, 0);
+					array::add(a_players_touching, e_player, 0);
 					e_player.var_601ebf01 = util::spawn_model("tag_origin", e_player.origin, e_player.angles);
 					e_player linkto(e_player.var_601ebf01);
 					e_player dontinterpolate();
@@ -513,7 +513,7 @@ function teleport_players(a_s_pos, var_1bac7e2b, var_e11d2975, var_6bd63d0d = 0)
 				}
 			}
 		}
-		if(var_1bac7e2b && var_19ff0dfb.size == level.activeplayers.size)
+		if(var_1bac7e2b && a_players_touching.size == level.activeplayers.size)
 		{
 			if(level flag::get("spawn_zombies"))
 			{
@@ -527,9 +527,9 @@ function teleport_players(a_s_pos, var_1bac7e2b, var_e11d2975, var_6bd63d0d = 0)
 			util::setclientsysstate("levelNotify", "black_box_end", level.activeplayers[i]);
 		}
 		util::wait_network_frame();
-		for(i = 0; i < var_19ff0dfb.size; i++)
+		for(i = 0; i < a_players_touching.size; i++)
 		{
-			e_player = var_19ff0dfb[i];
+			e_player = a_players_touching[i];
 			if(!isdefined(e_player))
 			{
 				continue;

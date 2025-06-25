@@ -587,8 +587,8 @@ function function_31f1d173(n_direction)
 function function_4b210fe6(var_b87a2184)
 {
 	/#
-		dragon::function_30560c4b();
-		dragon::function_cf119cfd();
+		dragon::dragon_boss_stop();
+		dragon::dragon_boss_cleanup();
 		level flag::set("");
 		level zm_stalingrad_util::function_3804dbf1();
 		zm_stalingrad_util::function_adf4d1d0();

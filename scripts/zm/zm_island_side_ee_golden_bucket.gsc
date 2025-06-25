@@ -743,7 +743,7 @@ function function_bbd146a7()
 {
 	self endon("disconnect");
 	self.var_b6a244f9 = 1;
-	self zm_island_power::function_d570abb();
+	self zm_island_power::give_bucket();
 	self thread function_da0bbc71();
 }
 

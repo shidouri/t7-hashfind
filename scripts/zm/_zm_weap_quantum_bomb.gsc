@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -534,11 +534,11 @@ function quantum_bomb_random_weapon_starburst_result(position)
 	#/
 	a_weapons_list = [];
 	var_dd341085 = getarraykeys(level.zombie_weapons);
-	foreach(var_134a15b0 in var_dd341085)
+	foreach(w_player in var_dd341085)
 	{
-		if(!var_134a15b0.ismeleeweapon && !var_134a15b0.isgrenadeweapon && !var_134a15b0.islauncher && !function_29e8b3fc(var_134a15b0))
+		if(!w_player.ismeleeweapon && !w_player.isgrenadeweapon && !w_player.islauncher && !function_29e8b3fc(w_player))
 		{
-			array::add(a_weapons_list, var_134a15b0, 0);
+			array::add(a_weapons_list, w_player, 0);
 		}
 	}
 	weapon = array::random(a_weapons_list);

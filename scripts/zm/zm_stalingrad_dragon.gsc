@@ -262,7 +262,7 @@ function function_30137a38()
 function function_8be04f83()
 {
 	level.var_163a43e4 = [];
-	level.var_428b5b88 = 0;
+	level.n_dragon_passenger = 0;
 	level.var_f73b438a = 0;
 	level.var_fc730f22 = [];
 	zm_weapons::add_custom_limited_weapon_check(&function_8c1bac65);
@@ -295,19 +295,19 @@ function function_8be04f83()
 	Parameters: 1
 	Flags: Linked
 */
-function function_8c1bac65(var_953206f3)
+function function_8c1bac65(w_checking)
 {
 	n_count = 0;
-	foreach(var_3ee6fb6a in level.var_fc730f22)
+	foreach(w_dragon in level.var_fc730f22)
 	{
-		if(var_953206f3 == var_3ee6fb6a)
+		if(w_checking == w_dragon)
 		{
 			n_count++;
 			continue;
 		}
-		if(isdefined(level.zombie_weapons[var_953206f3]) && isdefined(level.zombie_weapons[var_953206f3].upgrade))
+		if(isdefined(level.zombie_weapons[w_checking]) && isdefined(level.zombie_weapons[w_checking].upgrade))
 		{
-			if(var_3ee6fb6a == level.zombie_weapons[var_953206f3].upgrade)
+			if(w_dragon == level.zombie_weapons[w_checking].upgrade)
 			{
 				n_count++;
 			}
@@ -783,17 +783,17 @@ function dragon_ride()
 				zm_powerups::weapon_powerup_remove(player, "minigun_time_over", "minigun", 1);
 				wait(0.3);
 			}
-			var_d2f4cbdf = player getweaponslistprimaries();
+			a_w_primaries = player getweaponslistprimaries();
 			w_current = player getcurrentweapon();
 			if(zm_utility::is_offhand_weapon(w_current))
 			{
-				player.var_de933247 = var_d2f4cbdf[0];
+				player.var_de933247 = a_w_primaries[0];
 			}
 			else
 			{
 				player.var_de933247 = w_current;
 			}
-			foreach(w_primary in var_d2f4cbdf)
+			foreach(w_primary in a_w_primaries)
 			{
 				if(isdefined(level.limited_weapons[w_primary]))
 				{
@@ -2443,14 +2443,14 @@ function function_280af5e8()
 	self endon("death");
 	if(!array::contains(level.var_163a43e4, self))
 	{
-		level.var_428b5b88++;
+		level.n_dragon_passenger++;
 		if(level.activeplayers.size == 1)
 		{
 			var_ce48aee6 = "tag_passenger" + level.var_3f756142;
 		}
 		else
 		{
-			var_ce48aee6 = "tag_passenger" + level.var_428b5b88;
+			var_ce48aee6 = "tag_passenger" + level.n_dragon_passenger;
 		}
 		array::add(level.var_163a43e4, self);
 		self thread function_d1ac3943();
@@ -2470,7 +2470,7 @@ function function_280af5e8()
 			level thread function_4e945eab();
 		}
 	}
-	if(level.var_428b5b88 == level.activeplayers.size)
+	if(level.n_dragon_passenger == level.activeplayers.size)
 	{
 		level flag::set("dragon_full");
 		level thread function_825bb926();
@@ -2601,7 +2601,7 @@ function function_3f0f5f61()
 		var_9544a498++;
 	}
 	level.var_163a43e4 = [];
-	level.var_428b5b88 = 0;
+	level.n_dragon_passenger = 0;
 	level notify(#"hash_9a634383");
 }
 
@@ -2696,7 +2696,7 @@ function dragon_boss(b_debug = 0)
 	level flag::set("dragon_boss_start");
 	level thread util::clientnotify("dfs");
 	level.var_357a65b.b_override_explosive_damage_cap = 1;
-	level thread function_80c3dfb0(1);
+	level thread dragon_boss_music(1);
 	level clientfield::set("deactivate_ai_vox", 1);
 	/#
 		if(b_debug)
@@ -3038,7 +3038,7 @@ function dragon_boss_init()
 	level.var_299d7581[3] = 20;
 	level.var_357a65b clientfield::set("dragon_notify_bullet_impact", 1);
 	level.var_9f0dc220 = level.var_ce49fa61[level.activeplayers.size - 1];
-	level thread function_9f54bfc4();
+	level thread dragon_boss_progression();
 	level flag::set("dragon_boss_init");
 }
 
@@ -3102,11 +3102,11 @@ function function_109151c2(a_ents)
 	{
 		level.var_4c8e35f4[post.script_string] = post;
 	}
-	level.var_1564d2c8 = [];
+	level.dragon_boss_posts = [];
 	posts = struct::get_array("dragon_boss_post", "targetname");
 	foreach(post in posts)
 	{
-		level.var_1564d2c8[post.script_string] = post;
+		level.dragon_boss_posts[post.script_string] = post;
 	}
 	level.var_ef9c43d7.var_1c9faafd = level.var_ef9c43d7 current_post();
 	level thread scene::play("cin_sta_intro_3rd_crashed_mech_loop");
@@ -3366,7 +3366,7 @@ function function_3a34c204()
 {
 	self endon(#"hash_7869a7a5");
 	level endon(#"hash_a35dee4e");
-	var_6646a04b = getweapon("launcher_dragon_fireball");
+	w_fire = getweapon("launcher_dragon_fireball");
 	self waittill(#"hash_5556f7b");
 	v_mouth = level.var_357a65b gettagorigin("tag_aim");
 	a_e_players = arraysortclosest(level.activeplayers, v_mouth);
@@ -3380,7 +3380,7 @@ function function_3a34c204()
 	{
 		var_270cdd14 = anglestoforward((0, randomintrange(-180, 180), 0));
 		v_target_origin = var_4cc0e23c + (var_270cdd14 * randomintrange(36, 72));
-		self thread function_98ee9e20(i, var_6646a04b, v_target_origin);
+		self thread function_98ee9e20(i, w_fire, v_target_origin);
 		util::wait_network_frame();
 		var_4cc0e23c = var_4cc0e23c + (var_f840b1a7 * 256);
 	}
@@ -3395,7 +3395,7 @@ function function_3a34c204()
 	Parameters: 4
 	Flags: Linked
 */
-function function_98ee9e20(n_number, var_6646a04b, v_target_origin, e_player)
+function function_98ee9e20(n_number, w_fire, v_target_origin, e_player)
 {
 	ground_trace = bullettrace(v_target_origin + vectorscale((0, 0, 1), 128), v_target_origin + (vectorscale((0, 0, -1), 500)), 0, e_player);
 	e_fx = fx::play("meatball_impact", ground_trace["position"], (0, 0, 0), "stop_meatball_impact");
@@ -3405,7 +3405,7 @@ function function_98ee9e20(n_number, var_6646a04b, v_target_origin, e_player)
 		wait(n_number * 0.1);
 	}
 	v_mouth = level.var_357a65b gettagorigin("tag_aim");
-	var_aa911866 = magicbullet(var_6646a04b, v_mouth, v_target_origin, level.var_357a65b);
+	var_aa911866 = magicbullet(w_fire, v_mouth, v_target_origin, level.var_357a65b);
 	var_aa911866 waittill("death");
 	e_fx delete();
 }
@@ -3932,7 +3932,7 @@ function function_883bba2(a_ents)
 {
 	dragon_boss_init();
 	level.var_357a65b thread dragon_damage();
-	level thread function_262689b5();
+	level thread dragon_boss_think();
 	function_c0e035d6("boss_arena_spawn");
 }
 
@@ -4253,7 +4253,7 @@ function function_6a9f428b()
 }
 
 /*
-	Name: function_262689b5
+	Name: dragon_boss_think
 	Namespace: dragon
 	Checksum: 0x30CAD714
 	Offset: 0xD8B8
@@ -4261,7 +4261,7 @@ function function_6a9f428b()
 	Parameters: 0
 	Flags: Linked
 */
-function function_262689b5()
+function dragon_boss_think()
 {
 	level endon(#"hash_a35dee4e");
 	level.var_181b1223 = "south";
@@ -4324,14 +4324,14 @@ function dragon_damage()
 */
 function function_8a29cbcb()
 {
-	function_30560c4b();
+	dragon_boss_stop();
 	level.var_357a65b clientfield::set("dragon_body_glow", 1);
 	for(i = 1; i <= 3; i++)
 	{
 		level.var_357a65b clientfield::set("dragon_wound_glow_on", i);
 	}
 	level scene::play("cin_t7_ai_zm_dlc3_dragon_boss_fight_death_b");
-	function_cf119cfd();
+	dragon_boss_cleanup();
 }
 
 /*
@@ -4349,7 +4349,7 @@ function function_471551b5(b_debug = 0)
 }
 
 /*
-	Name: function_30560c4b
+	Name: dragon_boss_stop
 	Namespace: dragon
 	Checksum: 0xC6BAC094
 	Offset: 0xDCC0
@@ -4357,13 +4357,13 @@ function function_471551b5(b_debug = 0)
 	Parameters: 0
 	Flags: Linked
 */
-function function_30560c4b()
+function dragon_boss_stop()
 {
 	level notify(#"hash_dfaade1d");
 	level notify(#"hash_a35dee4e");
 	level notify("stop_dragon_boss_zombie");
 	level thread zm_stalingrad_util::function_adf4d1d0();
-	level thread function_80c3dfb0(0);
+	level thread dragon_boss_music(0);
 	level clientfield::set("deactivate_ai_vox", 0);
 	level.var_357a65b scene::stop();
 	level.var_357a65b clientfield::set("dragon_notify_bullet_impact", 0);
@@ -4372,7 +4372,7 @@ function function_30560c4b()
 }
 
 /*
-	Name: function_cf119cfd
+	Name: dragon_boss_cleanup
 	Namespace: dragon
 	Checksum: 0x90C664B7
 	Offset: 0xDD90
@@ -4380,7 +4380,7 @@ function function_30560c4b()
 	Parameters: 0
 	Flags: Linked
 */
-function function_cf119cfd()
+function dragon_boss_cleanup()
 {
 	foreach(var_5cd4afc1 in level.var_553153a1)
 	{
@@ -4421,7 +4421,7 @@ function function_cf119cfd()
 }
 
 /*
-	Name: function_80c3dfb0
+	Name: dragon_boss_music
 	Namespace: dragon
 	Checksum: 0x40D4B664
 	Offset: 0xE348
@@ -4429,7 +4429,7 @@ function function_cf119cfd()
 	Parameters: 1
 	Flags: Linked
 */
-function function_80c3dfb0(turnon)
+function dragon_boss_music(turnon)
 {
 	if(turnon)
 	{
@@ -4809,7 +4809,7 @@ function function_bdbc171f(var_93eb638b)
 }
 
 /*
-	Name: function_9f54bfc4
+	Name: dragon_boss_progression
 	Namespace: dragon
 	Checksum: 0x9F32691
 	Offset: 0xF378
@@ -4817,7 +4817,7 @@ function function_bdbc171f(var_93eb638b)
 	Parameters: 0
 	Flags: Linked
 */
-function function_9f54bfc4()
+function dragon_boss_progression()
 {
 	level endon(#"hash_a35dee4e");
 	level thread function_b1bbbd8f();
@@ -4873,7 +4873,7 @@ function function_f3810a1d(var_2443f661)
 {
 	self notify(#"hash_f3810a1d");
 	self endon(#"hash_f3810a1d");
-	var_9e426197 = level.var_1564d2c8[var_2443f661];
+	var_9e426197 = level.dragon_boss_posts[var_2443f661];
 	while(true)
 	{
 		if(distance2dsquared(level.var_357a65b.origin, var_9e426197.origin) < (300 * 300))
@@ -5177,8 +5177,8 @@ function function_ef4a09c3()
 		if(level flag::get("") && !level flag::get(""))
 		{
 			zm_stalingrad_util::function_4da6e8(1);
-			function_30560c4b();
-			function_cf119cfd();
+			dragon_boss_stop();
+			dragon_boss_cleanup();
 			function_11044369();
 			util::wait_network_frame();
 			level thread function_b4d22afe();

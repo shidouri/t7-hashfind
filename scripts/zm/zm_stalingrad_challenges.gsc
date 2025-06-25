@@ -889,9 +889,9 @@ function player_give_reward(mdl_reward)
 		{
 			if(isdefined(mdl_reward.str_weapon_name))
 			{
-				var_e564b69e = getweapon(mdl_reward.str_weapon_name);
+				w_reward = getweapon(mdl_reward.str_weapon_name);
 			}
-			self thread swap_weapon(var_e564b69e);
+			self thread swap_weapon(w_reward);
 			break;
 		}
 		case 3:
@@ -930,7 +930,7 @@ function player_give_reward(mdl_reward)
 	Parameters: 1
 	Flags: Linked
 */
-function swap_weapon(var_f4612f93)
+function swap_weapon(w_new)
 {
 	w_current = self getcurrentweapon();
 	if(!zm_utility::is_player_valid(self))
@@ -945,13 +945,13 @@ function swap_weapon(var_f4612f93)
 	{
 		return;
 	}
-	if(!self hasweapon(var_f4612f93.rootweapon, 1))
+	if(!self hasweapon(w_new.rootweapon, 1))
 	{
-		self take_old_weapon_and_give_new(w_current, var_f4612f93);
+		self take_old_weapon_and_give_new(w_current, w_new);
 	}
 	else
 	{
-		self givemaxammo(var_f4612f93);
+		self givemaxammo(w_new);
 	}
 }
 
@@ -964,14 +964,14 @@ function swap_weapon(var_f4612f93)
 	Parameters: 2
 	Flags: Linked
 */
-function take_old_weapon_and_give_new(w_current, var_f4612f93)
+function take_old_weapon_and_give_new(w_current, w_new)
 {
-	var_d2f4cbdf = self getweaponslistprimaries();
-	if(isdefined(var_d2f4cbdf) && var_d2f4cbdf.size >= zm_utility::get_player_weapon_limit(self))
+	a_w_primaries = self getweaponslistprimaries();
+	if(isdefined(a_w_primaries) && a_w_primaries.size >= zm_utility::get_player_weapon_limit(self))
 	{
 		self takeweapon(w_current);
 	}
-	var_6fc96b00 = self zm_weapons::give_build_kit_weapon(var_f4612f93);
+	var_6fc96b00 = self zm_weapons::give_build_kit_weapon(w_new);
 	self giveweapon(var_6fc96b00);
 	self switchtoweapon(var_6fc96b00);
 }
@@ -985,18 +985,18 @@ function take_old_weapon_and_give_new(w_current, var_f4612f93)
 	Parameters: 1
 	Flags: None
 */
-function function_3420bc2f(var_f4612f93)
+function function_3420bc2f(w_new)
 {
-	var_6f845c3d = self getweaponslist(1);
-	foreach(var_cdee635d in var_6f845c3d)
+	a_w_inventory = self getweaponslist(1);
+	foreach(w_inventory in a_w_inventory)
 	{
-		if(var_cdee635d.type === "melee")
+		if(w_inventory.type === "melee")
 		{
-			self takeweapon(var_cdee635d);
+			self takeweapon(w_inventory);
 			break;
 		}
 	}
-	var_6fc96b00 = self zm_weapons::give_build_kit_weapon(var_f4612f93);
+	var_6fc96b00 = self zm_weapons::give_build_kit_weapon(w_new);
 	self giveweapon(var_6fc96b00);
 }
 
