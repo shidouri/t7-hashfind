@@ -317,7 +317,7 @@ function function_e1963311()
 		mdl_chalk delete();
 		iprintln("");
 		e_who = getplayers()[0];
-		e_who.var_fb4f9b70 = 1;
+		e_who.b_has_chalk = 1;
 		level.var_6d7c54f9 = "";
 		level notify(#"hash_94556ac9");
 	#/
@@ -344,7 +344,7 @@ function chalk_pickup()
 	/#
 		iprintln("");
 	#/
-	e_who.var_fb4f9b70 = 1;
+	e_who.b_has_chalk = 1;
 	e_who thread function_7367d2c6();
 	if(!isdefined(level.var_6d7c54f9))
 	{
@@ -409,7 +409,7 @@ function function_a8fc7a77()
 	while(true)
 	{
 		self waittill("trigger_activated", e_player);
-		if(isdefined(e_player.var_fb4f9b70) && e_player.var_fb4f9b70)
+		if(isdefined(e_player.b_has_chalk) && e_player.b_has_chalk)
 		{
 			var_5d3ba118 = level.var_6d7c54f9;
 			if(level.var_6d7c54f9 == "tag_origin")

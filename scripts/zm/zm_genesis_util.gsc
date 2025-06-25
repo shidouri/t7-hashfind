@@ -519,14 +519,14 @@ function function_721925b6(var_216e90fd, var_8a2d164)
 		case 2:
 		{
 			self clientfield::set("fire_trap", 1);
-			self.var_bbfa873e = 1;
+			self.n_inflame_count = 1;
 			break;
 		}
 		case 1:
 		case 3:
 		{
 			self clientfield::set("fire_trap", 3);
-			self.var_bbfa873e = 2;
+			self.n_inflame_count = 2;
 			break;
 		}
 	}
@@ -630,8 +630,8 @@ function function_1f629fb(var_216e90fd)
 				if(isdefined(b_result) && b_result)
 				{
 					self notify(#"hash_b2a721cd");
-					self.var_bbfa873e--;
-					if(self.var_bbfa873e <= 0)
+					self.n_inflame_count--;
+					if(self.n_inflame_count <= 0)
 					{
 						self flag::set("deactivate_fire_trap");
 					}
@@ -1359,7 +1359,7 @@ function function_e3e6bdba()
 	a_zombies = getaiteamarray("axis");
 	for(i = 0; i < a_zombies.size; i++)
 	{
-		if(isdefined(a_zombies[i].var_b8385ee5) && a_zombies[i].var_b8385ee5)
+		if(isdefined(a_zombies[i].b_is_keeper) && a_zombies[i].b_is_keeper)
 		{
 			var_9911df60++;
 		}

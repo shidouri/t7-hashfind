@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\callbacks_shared;
@@ -96,10 +96,10 @@ function register_clientfields()
 */
 function function_6adb5862(player)
 {
-	var_f65b973 = player clientfield::get_to_player("has_island_seed");
-	if(var_f65b973 < 3)
+	n_seed_count = player clientfield::get_to_player("has_island_seed");
+	if(n_seed_count < 3)
 	{
-		var_b5c360bd = var_f65b973 + 1;
+		var_b5c360bd = n_seed_count + 1;
 		player clientfield::set_to_player("has_island_seed", var_b5c360bd);
 		player function_3968a493(1);
 		player notify(#"hash_97e69ab7");
@@ -117,10 +117,10 @@ function function_6adb5862(player)
 */
 function function_58b6724f(player)
 {
-	var_f65b973 = player clientfield::get_to_player("has_island_seed");
-	if(var_f65b973 > 0)
+	n_seed_count = player clientfield::get_to_player("has_island_seed");
+	if(n_seed_count > 0)
 	{
-		var_b5c360bd = var_f65b973 - 1;
+		var_b5c360bd = n_seed_count - 1;
 		player clientfield::set_to_player("has_island_seed", var_b5c360bd);
 		player function_3968a493(1);
 		player notify(#"hash_9d289b3a");
@@ -155,9 +155,9 @@ function function_735cfef2(player)
 	Parameters: 1
 	Flags: Linked
 */
-function function_aeda54f6(var_f65b973)
+function function_aeda54f6(n_seed_count)
 {
-	self clientfield::set_to_player("has_island_seed", var_f65b973);
+	self clientfield::set_to_player("has_island_seed", n_seed_count);
 	self function_3968a493();
 }
 
@@ -172,8 +172,8 @@ function function_aeda54f6(var_f65b973)
 */
 function function_3968a493(var_b89973c8 = 0)
 {
-	var_f65b973 = function_735cfef2(self);
-	switch(var_f65b973)
+	n_seed_count = function_735cfef2(self);
+	switch(n_seed_count)
 	{
 		case 0:
 		{

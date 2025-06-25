@@ -457,7 +457,7 @@ function function_ba48ca38()
 	while(true)
 	{
 		e_trig waittill("trigger", e_who);
-		if(!isdefined(e_who.var_ee422cb0))
+		if(!isdefined(e_who.b_is_falling))
 		{
 			e_who thread function_23f211e9();
 		}
@@ -475,12 +475,12 @@ function function_ba48ca38()
 */
 function function_23f211e9()
 {
-	self.var_ee422cb0 = 1;
+	self.b_is_falling = 1;
 	self playlocalsound("zmb_teleporter_teleport_2d");
 	playsoundatposition("zmb_teleporter_teleport_out", self.origin);
 	a_s_port_locs = struct::get_array("temple_portal_top", "targetname");
 	self zm_genesis_portals::portal_teleport_player(1, a_s_port_locs, undefined, self.origin, "temple_portal_top");
-	self.var_ee422cb0 = undefined;
+	self.b_is_falling = undefined;
 }
 
 /*

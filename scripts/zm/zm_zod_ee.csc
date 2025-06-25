@@ -178,10 +178,10 @@ class class_b454dc63
 		Parameters: 3
 		Flags: Linked
 	*/
-	function init(localclientnum, mdl_god, var_bae1bdd7)
+	function init(localclientnum, mdl_god, b_is_overhead)
 	{
 		var_dbea7369 = mdl_god;
-		var_8d207f9b = var_bae1bdd7;
+		var_8d207f9b = b_is_overhead;
 		var_dbea7369 util::waittill_dobj(localclientnum);
 		var_dbea7369 useanimtree($generic);
 		var_dbea7369 setanim("p7_fxanim_zm_zod_apothicons_god_mouth_idle_anim", 1, 0, 1);
@@ -1184,7 +1184,7 @@ function function_274ba0e6(str_animname, var_e3c27047)
 	Parameters: 5
 	Flags: Linked
 */
-function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc5d76 = 0, str_tag = "tag_origin")
+function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, b_is_ent = 0, str_tag = "tag_origin")
 {
 	if(b_on)
 	{
@@ -1192,7 +1192,7 @@ function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc
 		{
 			stopfx(localclientnum, self.vfx_ref);
 		}
-		if(var_afcc5d76)
+		if(b_is_ent)
 		{
 			self.vfx_ref = playfxontag(localclientnum, fx_id, self, str_tag);
 		}

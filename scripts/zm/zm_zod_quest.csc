@@ -215,9 +215,9 @@ function create_client_ritual_assembly(localclientnum, n_current_ritual)
 	Parameters: 3
 	Flags: Linked
 */
-function function_9118f74a(localclientnum, n_current_ritual, var_85dc52da)
+function function_9118f74a(localclientnum, n_current_ritual, b_is_lit)
 {
-	if(var_85dc52da)
+	if(b_is_lit)
 	{
 		a_mdl_circles = getentarray(localclientnum, "quest_ritual_magic_circle_on", "targetname");
 	}
@@ -819,7 +819,7 @@ function function_46df8306(localclientnum, str_name, b_on = 1)
 	Parameters: 5
 	Flags: Linked
 */
-function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc5d76 = 0, str_tag = "tag_origin")
+function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, b_is_ent = 0, str_tag = "tag_origin")
 {
 	if(!isdefined(self.vfx_ref))
 	{
@@ -835,7 +835,7 @@ function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc
 		{
 			stopfx(localclientnum, self.vfx_ref[localclientnum]);
 		}
-		if(var_afcc5d76)
+		if(b_is_ent)
 		{
 			self.vfx_ref[localclientnum] = playfxontag(localclientnum, fx_id, self, str_tag);
 		}

@@ -1116,7 +1116,7 @@ function function_17f9c5ad(var_861443b0 = 1)
 		s_bury_loc = struct::get("s_bury_loc", "targetname");
 		var_382a4db = s_bury_loc.origin;
 		self function_4ecb5bf5(var_382a4db, self.var_d7ae6fe9);
-		self.var_f391d884 = 1;
+		self.b_is_buried = 1;
 	}
 	else
 	{
@@ -1126,7 +1126,7 @@ function function_17f9c5ad(var_861443b0 = 1)
 		self function_4ecb5bf5(self.var_f11ace87, self.var_d7ae6fe9);
 		self.var_f11ace87 = undefined;
 		self.var_d7ae6fe9 = undefined;
-		self.var_f391d884 = 0;
+		self.b_is_buried = 0;
 	}
 }
 

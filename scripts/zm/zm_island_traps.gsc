@@ -142,7 +142,7 @@ function function_9a88139e()
 	level.var_e938db57 hide();
 	level.var_e938db57.mdl_propeller hide();
 	level.var_e938db57.t_death = getent("t_propellertrap_a_death", "script_string");
-	level.var_e938db57.var_2a4af70 = getent("t_proptrap_a_spiders", "targetname");
+	level.var_e938db57.t_spiders = getent("t_proptrap_a_spiders", "targetname");
 	level.var_e938db57.var_7117876c = level.var_e938db57.origin;
 	level.var_e938db57.v_off_pos = level.var_e938db57.origin + vectorscale((0, 0, 1), 30);
 	level.var_e938db57.var_380861c6 = level.var_e938db57.angles;
@@ -170,7 +170,7 @@ function function_74859935()
 	level.var_77316c1c hide();
 	level.var_77316c1c.mdl_propeller hide();
 	level.var_77316c1c.t_death = getent("t_propellertrap_b_death", "script_string");
-	level.var_77316c1c.var_2a4af70 = getent("t_proptrap_b_spiders", "targetname");
+	level.var_77316c1c.t_spiders = getent("t_proptrap_b_spiders", "targetname");
 	level.var_77316c1c.var_7117876c = level.var_77316c1c.origin;
 	level.var_77316c1c.v_off_pos = level.var_77316c1c.origin + vectorscale((0, 0, 1), 100);
 	level.var_77316c1c.var_380861c6 = (75, 270, -89.992);
@@ -413,7 +413,7 @@ function function_b3390115()
 	self endon("trap_off");
 	while(self.b_on === 1)
 	{
-		self.var_2a4af70 waittill("trigger", ent);
+		self.t_spiders waittill("trigger", ent);
 		if(ent.archetype === "spider" && isalive(ent) && (!(isdefined(ent.var_b6e7a15) && ent.var_b6e7a15)))
 		{
 			ent.var_b6e7a15 = 1;
@@ -976,7 +976,7 @@ function function_55a15733(var_a464d35b)
 		}
 		self.var_96ff34d0 = 0;
 	}
-	else if(!(isdefined(self.var_61f7b3a0) && self.var_61f7b3a0))
+	else if(!(isdefined(self.b_is_thrasher) && self.b_is_thrasher))
 	{
 		var_4ed4eec0 = util::spawn_model("tag_origin", self.origin, self.angles);
 		self linkto(var_4ed4eec0);

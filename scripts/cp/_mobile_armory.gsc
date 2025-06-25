@@ -93,11 +93,11 @@ class cmobilearmory
 	*/
 	function function_69cca2a0(var_ab455203)
 	{
-		if(var_ab455203.var_ce22f999)
+		if(var_ab455203.b_is_animating)
 		{
 			return;
 		}
-		var_ab455203.var_ce22f999 = 1;
+		var_ab455203.b_is_animating = 1;
 		var_ab455203 showpart("tag_weapons_01_jnt");
 		var_ab455203 showpart("tag_weapons_02_jnt");
 		var_ab455203 showpart("tag_weapons_03_jnt");
@@ -123,7 +123,7 @@ class cmobilearmory
 		var_ab455203 hidepart("tag_weapons_02_jnt");
 		var_ab455203 hidepart("tag_weapons_03_jnt");
 		var_ab455203 hidepart("tag_weapons_04_jnt");
-		var_ab455203.var_ce22f999 = 0;
+		var_ab455203.b_is_animating = 0;
 	}
 
 	/*
@@ -450,7 +450,7 @@ class cmobilearmory
 		}
 		mdl_mobile_armory.gameobject = s_mobile_armory_object;
 		var_ab455203 = mdl_mobile_armory;
-		var_ab455203.var_ce22f999 = 0;
+		var_ab455203.b_is_animating = 0;
 		t_animate = spawn("trigger_radius", t_use.origin, 0, 94, 64);
 		t_animate setvisibletoall();
 		t_animate setteamfortrigger("allies");

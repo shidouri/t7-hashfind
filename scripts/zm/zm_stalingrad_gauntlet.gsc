@@ -809,7 +809,7 @@ function function_fd19472b()
 			var_19494298[var_19494298.size] = level.var_c2c83bb6.var_b372c418[i];
 		}
 	}
-	level.var_c2c83bb6.var_4eb67098 = 0;
+	level.var_c2c83bb6.n_sentinel_count = 0;
 	level.var_c2c83bb6.var_d5abe4af = 1;
 	var_5c17f194 = level.zombie_vars["zombie_spawn_delay"];
 	level thread function_f4ceb3f8();

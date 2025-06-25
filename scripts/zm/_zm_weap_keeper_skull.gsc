@@ -347,11 +347,11 @@ function function_32afe89a(ai_zombie)
 {
 	self endon("disconnect");
 	ai_zombie endon("death");
-	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 	{
 		ai_zombie thread zombie_utility::zombie_eye_glow_stop();
 		ai_zombie clientfield::set("death_ray_shock_eye_fx", 1);
-		if(isalive(ai_zombie) && (!(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)))
+		if(isalive(ai_zombie) && (!(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)))
 		{
 			if(ai_zombie isplayinganimscripted())
 			{
@@ -372,7 +372,7 @@ function function_32afe89a(ai_zombie)
 			break;
 		}
 		ai_zombie.var_20b8c74a = 1;
-		if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+		if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 		{
 			ai_zombie thread zm_audio::zmbaivox_playvox(ai_zombie, "skull_scream", 1, 11);
 			wait(1);
@@ -391,7 +391,7 @@ function function_32afe89a(ai_zombie)
 				ai_zombie playsound("evt_zombie_skull_breathe");
 			}
 			wait(0.05);
-			if(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)
+			if(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)
 			{
 				if(var_9ae6d5f2 == 0)
 				{
@@ -420,13 +420,13 @@ function function_32afe89a(ai_zombie)
 		}
 	}
 	ai_zombie.var_20b8c74a = 0;
-	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 	{
 		ai_zombie notify(#"hash_2766d719");
 		ai_zombie thread scene::stop("cin_zm_dlc1_zombie_dth_deathray_04");
 		ai_zombie thread zombie_utility::zombie_eye_glow();
 		ai_zombie clientfield::set("death_ray_shock_eye_fx", 0);
-		if(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)
+		if(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)
 		{
 			ai_zombie clientfield::set("thrasher_skull_fire", 0);
 		}

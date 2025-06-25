@@ -588,7 +588,7 @@ function function_1c683357()
 		{
 			if(str_zone === "zone_meteor_site" || str_zone === "zone_meteor_site_2" || str_zone === "zone_swamp_lab_underneath" || str_zone === "zone_swamp_lab_underneath_2")
 			{
-				if(!isdefined(ai_zombie.completed_emerging_into_playable_area) && (!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)) && (!(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)) && ai_zombie.archetype === "zombie")
+				if(!isdefined(ai_zombie.completed_emerging_into_playable_area) && (!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)) && (!(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)) && ai_zombie.archetype === "zombie")
 				{
 					array::add(a_ai_carriers, ai_zombie);
 				}

@@ -376,7 +376,7 @@ function function_11ac3c33(localclientnum, str_areaname, b_is_top)
 	Parameters: 4
 	Flags: Linked
 */
-function function_c0c1771a(localclientnum, s_loc, b_open, var_9c9cfb54 = 0)
+function function_c0c1771a(localclientnum, s_loc, b_open, b_is_subway = 0)
 {
 	v_fwd = anglestoforward(s_loc.angles);
 	if(!isdefined(s_loc.var_7c0ed442))
@@ -419,7 +419,7 @@ function function_c0c1771a(localclientnum, s_loc, b_open, var_9c9cfb54 = 0)
 	}
 	else
 	{
-		if(var_9c9cfb54)
+		if(b_is_subway)
 		{
 			s_loc.var_20dc3b64[localclientnum] = playfx(localclientnum, level._effect["portal_shortcut_closed_base"], s_loc.origin - vectorscale((0, 0, 1), 48), v_fwd);
 		}

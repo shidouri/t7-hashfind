@@ -3803,7 +3803,7 @@ function function_2e1830eb(str_station, str_objective)
 	Parameters: 6
 	Flags: Linked
 */
-function function_27904cd4(str_station, str_objective, n_count = 0, var_31561fde = 1, n_min_time = 1, n_max_time = 4)
+function function_27904cd4(str_station, str_objective, n_count = 0, n_active_count = 1, n_min_time = 1, n_max_time = 4)
 {
 	level endon(str_objective + "_completed");
 	str_scenedef = "cin_zur_02_01_climb_aie_charging_station";
@@ -3824,7 +3824,7 @@ function function_27904cd4(str_station, str_objective, n_count = 0, var_31561fde
 	do
 	{
 		mdl_control.a_ai = array::remove_dead(mdl_control.a_ai);
-		if(mdl_control.a_ai.size >= var_31561fde)
+		if(mdl_control.a_ai.size >= n_active_count)
 		{
 			wait(2);
 		}

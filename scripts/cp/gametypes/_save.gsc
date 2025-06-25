@@ -390,11 +390,11 @@ function function_fb150717()
 	{
 		return;
 	}
-	level thread function_74fcb9ca();
+	level thread b_has_sticked();
 }
 
 /*
-	Name: function_74fcb9ca
+	Name: b_has_sticked
 	Namespace: savegame
 	Checksum: 0x7B915531
 	Offset: 0xDA0
@@ -402,7 +402,7 @@ function function_fb150717()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_74fcb9ca()
+function private b_has_sticked()
 {
 	level notify("checkpoint_save");
 	level endon("checkpoint_save");

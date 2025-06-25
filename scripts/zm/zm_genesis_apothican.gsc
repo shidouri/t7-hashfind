@@ -212,7 +212,7 @@ function function_ea9e816a()
 	while(true)
 	{
 		self waittill("trigger", e_portee);
-		if(isdefined(e_portee.var_5aef0317) && e_portee.var_5aef0317)
+		if(isdefined(e_portee.b_is_flung) && e_portee.b_is_flung)
 		{
 			continue;
 		}
@@ -236,11 +236,11 @@ function function_657f1d1(s_stub, str_zone, v_portal, var_db6533 = 0)
 {
 	self endon("disconnect");
 	self endon("death");
-	if(isdefined(self.var_5aef0317) && self.var_5aef0317)
+	if(isdefined(self.b_is_flung) && self.b_is_flung)
 	{
 		return;
 	}
-	self.var_5aef0317 = 1;
+	self.b_is_flung = 1;
 	a_s_spots = struct::get_array(("apothican_exit_" + s_stub.name) + "_pos", "targetname");
 	self zm_utility::create_streamer_hint(a_s_spots[0].origin, a_s_spots[0].angles, 1);
 	self.b_invulnerable = self enableinvulnerability();
@@ -279,7 +279,7 @@ function function_657f1d1(s_stub, str_zone, v_portal, var_db6533 = 0)
 	var_413ea50f scene::stop("cin_zm_gen_player_fall_loop");
 	self enableweapons();
 	self zm_utility::clear_streamer_hint();
-	self.var_5aef0317 = undefined;
+	self.b_is_flung = undefined;
 	util::wait_network_frame();
 	var_413ea50f.delete_on_death = 1;
 	var_413ea50f notify("death");
@@ -1132,21 +1132,21 @@ function function_26da4beb(n_stage)
 */
 function function_a6e114bc(s_pos)
 {
-	var_d695363e = 1;
+	b_can_spawn = 1;
 	n_current_time = gettime();
 	if(isdefined(level.var_f77d7372))
 	{
 		var_47768568 = (n_current_time - level.var_f77d7372) / 1000;
 		if(var_47768568 < 300)
 		{
-			var_d695363e = 0;
+			b_can_spawn = 0;
 		}
 	}
 	if(level.var_2306bf38 >= 1 || level.var_638dde56 >= 1)
 	{
-		var_d695363e = 0;
+		b_can_spawn = 0;
 	}
-	if(!var_d695363e)
+	if(!b_can_spawn)
 	{
 		return false;
 	}

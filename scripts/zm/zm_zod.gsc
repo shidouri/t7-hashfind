@@ -442,15 +442,15 @@ function function_2d0e5eb6()
 	powerup_keys = [];
 	for(i = 0; i < var_5cf494cb.size; i++)
 	{
-		var_77917a61 = 0;
+		b_should_skip = 0;
 		foreach(var_68de493a in var_b4442b55)
 		{
 			if(var_5cf494cb[i] == var_68de493a)
 			{
-				var_77917a61 = 1;
+				b_should_skip = 1;
 			}
 		}
-		if(var_77917a61)
+		if(b_should_skip)
 		{
 			continue;
 			continue;
@@ -3163,7 +3163,7 @@ function function_f88e4c70()
 function function_35c958af()
 {
 	self endon("death");
-	var_f1af2991 = 0;
+	n_outside_count = 0;
 	while(true)
 	{
 		n_delay = randomfloatrange(0.9, 1.4);
@@ -3178,12 +3178,12 @@ function function_35c958af()
 		b_in_active_zone = zm_utility::check_point_in_enabled_zone(var_ccacea03, 1, level.active_zones);
 		if(b_in_active_zone)
 		{
-			var_f1af2991 = 0;
+			n_outside_count = 0;
 		}
 		else
 		{
-			var_f1af2991++;
-			if(var_f1af2991 >= 5)
+			n_outside_count++;
+			if(n_outside_count >= 5)
 			{
 				zm_ai_wasp::wasp_add_to_spawn_pool(self.enemy);
 				self kill();

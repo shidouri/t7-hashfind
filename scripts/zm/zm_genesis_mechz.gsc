@@ -656,7 +656,7 @@ function function_2a26e636()
 		players = getplayers();
 		foreach(player in players)
 		{
-			if(isdefined(player.var_5aef0317) && player.var_5aef0317 || (isdefined(player.var_a393601c) && player.var_a393601c))
+			if(isdefined(player.b_is_flung) && player.b_is_flung || (isdefined(player.var_a393601c) && player.var_a393601c))
 			{
 				var_225b5e15 = 0;
 				var_e01c8f74 = 0;

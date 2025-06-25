@@ -245,8 +245,8 @@ function function_ba9b0148()
 function function_2650d73f(player)
 {
 	var_5d0b57e4 = level clientfield::get("hope_state");
-	var_3d088ac6 = player clientfield::get_to_player("hope_spark");
-	if(!var_3d088ac6)
+	b_has_spark = player clientfield::get_to_player("hope_spark");
+	if(!b_has_spark)
 	{
 		return false;
 	}
@@ -285,8 +285,8 @@ function function_46cfcb01()
 		{
 			continue;
 		}
-		var_3d088ac6 = e_triggerer clientfield::get_to_player("hope_spark");
-		if(!var_3d088ac6)
+		b_has_spark = e_triggerer clientfield::get_to_player("hope_spark");
+		if(!b_has_spark)
 		{
 			continue;
 		}

@@ -478,7 +478,7 @@ function function_ba7a3b74(is_enemy, b_hero_weapon, e_attacker)
 					}
 				}
 			}
-			else if(isdefined(self.var_61f7b3a0) && self.var_61f7b3a0)
+			else if(isdefined(self.b_is_thrasher) && self.b_is_thrasher)
 			{
 				if(!self.var_d07c64b6)
 				{

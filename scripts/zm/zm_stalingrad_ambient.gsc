@@ -144,11 +144,11 @@ function function_8c898920()
 		while(!isdefined(str_zone) || !isdefined(level.var_10752e7a[str_zone]));
 		if(str_zone == "pavlovs" || str_zone == "alley")
 		{
-			var_e3975fbf = 1;
+			b_is_mortars = 1;
 		}
 		else
 		{
-			var_e3975fbf = 0;
+			b_is_mortars = 0;
 		}
 		var_89d001a3 = randomintrange(10, 15);
 		for(i = 0; i < var_89d001a3; i++)
@@ -156,7 +156,7 @@ function function_8c898920()
 			var_620fe12a = function_7af373ba(str_zone);
 			if(isdefined(var_620fe12a))
 			{
-				var_620fe12a thread function_8affee60(var_e3975fbf);
+				var_620fe12a thread function_8affee60(b_is_mortars);
 			}
 			wait(randomfloatrange(0.5, 1.5));
 		}
@@ -232,7 +232,7 @@ function function_7af373ba(str_zone)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8affee60(var_e3975fbf)
+function function_8affee60(b_is_mortars)
 {
 	i = 0;
 	while(level.var_2b8ea588[i].b_in_use == 1)
@@ -246,7 +246,7 @@ function function_8affee60(var_e3975fbf)
 	}
 	level.var_2b8ea588[i].origin = self.origin;
 	level.var_2b8ea588[i].b_in_use = 1;
-	if(var_e3975fbf)
+	if(b_is_mortars)
 	{
 		var_efccacc4 = "ambient_mortar_strike";
 	}

@@ -761,12 +761,12 @@ function function_c7a0c111(b_success = 1, var_bf49654c = 1)
 */
 function function_44181b60()
 {
-	var_6c71c640 = 0;
+	b_is_defended = 0;
 	foreach(zone in self.var_aa15c945)
 	{
-		var_6c71c640 = var_6c71c640 || zm_zonemgr::any_player_in_zone(zone);
+		b_is_defended = b_is_defended || zm_zonemgr::any_player_in_zone(zone);
 	}
-	return var_6c71c640;
+	return b_is_defended;
 }
 
 /*

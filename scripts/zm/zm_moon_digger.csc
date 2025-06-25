@@ -451,13 +451,13 @@ function function_774edb15(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 3
 	Flags: Linked
 */
-function function_9b3daafa(localclientnum, mdl_console, var_a61a4e58)
+function function_9b3daafa(localclientnum, mdl_console, b_is_on)
 {
 	if(isdefined(mdl_console.n_fx_id))
 	{
 		stopfx(localclientnum, mdl_console.n_fx_id);
 	}
-	if(var_a61a4e58)
+	if(b_is_on)
 	{
 		mdl_console.n_fx_id = playfxontag(localclientnum, level._effect["panel_on"], mdl_console, "tag_origin");
 	}

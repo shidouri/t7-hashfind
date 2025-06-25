@@ -1143,11 +1143,11 @@ function function_fb907799(n_count)
 {
 	level endon("spider_baby_round_timeout");
 	level endon(#"hash_c69c8ddc");
-	var_d67f0d95 = 0;
-	while(var_d67f0d95 != n_count)
+	n_destroyed_count = 0;
+	while(n_destroyed_count != n_count)
 	{
 		level waittill(#"hash_7e0a837a");
-		var_d67f0d95 = var_d67f0d95 + 1;
+		n_destroyed_count = n_destroyed_count + 1;
 	}
 	level flag::set("spider_baby_round_done");
 }

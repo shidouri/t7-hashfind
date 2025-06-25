@@ -307,18 +307,18 @@ function private function_1121f26a(var_c856ad1d, evictim)
 	}
 	if(var_1efe785f >= 3937)
 	{
-		var_46907f23 = var_c856ad1d getdstat("Achievements", "CP_DISTANCE_KILL");
-		var_46907f23++;
+		n_current_count = var_c856ad1d getdstat("Achievements", "CP_DISTANCE_KILL");
+		n_current_count++;
 		/#
-			printtoprightln((("" + var_1efe785f) + "") + var_46907f23, (1, 1, 1));
+			printtoprightln((("" + var_1efe785f) + "") + n_current_count, (1, 1, 1));
 		#/
-		if(var_46907f23 >= 5)
+		if(n_current_count >= 5)
 		{
 			var_c856ad1d give_achievement("CP_DISTANCE_KILL");
 		}
 		else
 		{
-			var_c856ad1d setdstat("Achievements", "CP_DISTANCE_KILL", var_46907f23);
+			var_c856ad1d setdstat("Achievements", "CP_DISTANCE_KILL", n_current_count);
 		}
 	}
 }

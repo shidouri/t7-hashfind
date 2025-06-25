@@ -34,7 +34,7 @@ function function_ea61aedc()
 {
 	self endon("death");
 	self endon(#"hash_f1e417ec");
-	var_fae93870 = 0;
+	n_rocket_count = 0;
 	var_c1df3693 = 2;
 	var_9a15ea97 = getweapon("launcher_standard");
 	while(true)
@@ -43,10 +43,10 @@ function function_ea61aedc()
 		self waittill("projectile_applyattractor", missile);
 		if(missile.weapon === var_9a15ea97)
 		{
-			var_fae93870++;
-			if(var_fae93870 >= var_c1df3693)
+			n_rocket_count++;
+			if(n_rocket_count >= var_c1df3693)
 			{
-				var_fae93870 = 0;
+				n_rocket_count = 0;
 				foreach(player in level.activeplayers)
 				{
 					player thread util::show_hint_text(&"OBJECTIVES_QUAD_TANK_HINT_TROPHY", 0, "quad_tank_trophy_hint_disable");

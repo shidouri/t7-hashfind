@@ -673,14 +673,14 @@ function function_3630300b()
 {
 	var_d1f154fd = struct::get_array("s_ballerina_timed", "targetname");
 	var_d1f154fd = array::sort_by_script_int(var_d1f154fd, 1);
-	level.var_aa39de8 = 0;
+	level.n_ballerina_count = 0;
 	wait(1);
 	foreach(s_ballerina in var_d1f154fd)
 	{
 		s_ballerina thread function_b8227f87();
 		wait(1);
 	}
-	while(level.var_aa39de8 < var_d1f154fd.size)
+	while(level.n_ballerina_count < var_d1f154fd.size)
 	{
 		wait(0.1);
 	}
@@ -705,7 +705,7 @@ function function_b8227f87()
 	self thread zm_audio_zhd::function_9d55fd08();
 	self thread zm_audio_zhd::function_2fdaabf3();
 	self util::waittill_any("ballerina_destroyed");
-	level.var_aa39de8++;
+	level.n_ballerina_count++;
 	self.mdl_ballerina clientfield::set("snd_zhdegg", 0);
 	util::wait_network_frame();
 	self.mdl_ballerina delete();

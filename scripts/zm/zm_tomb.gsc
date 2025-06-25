@@ -386,16 +386,16 @@ function function_2d0e5eb6()
 	var_62e2eaf2 = [];
 	for(i = 0; i < var_cdb0f86b.size; i++)
 	{
-		var_77917a61 = 0;
+		b_should_skip = 0;
 		foreach(var_68de493a in var_b4442b55)
 		{
 			if(var_cdb0f86b[i] == var_68de493a)
 			{
-				var_77917a61 = 1;
+				b_should_skip = 1;
 				break;
 			}
 		}
-		if(var_77917a61)
+		if(b_should_skip)
 		{
 			continue;
 			continue;

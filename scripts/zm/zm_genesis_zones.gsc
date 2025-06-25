@@ -81,7 +81,7 @@ function __main__()
 */
 function player_out_of_playable_area_override()
 {
-	if(isdefined(self.b_teleporting) && self.b_teleporting || (isdefined(self.b_teleported) && self.b_teleported) || (isdefined(self.var_5aef0317) && self.var_5aef0317) || (isdefined(self.is_flung) && self.is_flung))
+	if(isdefined(self.b_teleporting) && self.b_teleporting || (isdefined(self.b_teleported) && self.b_teleported) || (isdefined(self.b_is_flung) && self.b_is_flung) || (isdefined(self.is_flung) && self.is_flung))
 	{
 		return false;
 	}

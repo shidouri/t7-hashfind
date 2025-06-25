@@ -649,14 +649,14 @@ function function_959c5937()
 	v_target_origin = self.origin + vectorscale((0, 0, 1), 32);
 	foreach(var_6757c7e1 in var_d320e401)
 	{
-		var_4b9c2228 = randomintrange(1, 5);
+		n_shot_count = randomintrange(1, 5);
 		do
 		{
 			magicbullet(weapon, var_6757c7e1.origin, v_target_origin);
 			wait(randomfloatrange(0, 0.1));
-			var_4b9c2228--;
+			n_shot_count--;
 		}
-		while(var_4b9c2228 > 0);
+		while(n_shot_count > 0);
 		wait(randomfloatrange(0, 0.2));
 	}
 }

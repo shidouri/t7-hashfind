@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\ai_shared;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -179,7 +179,7 @@ function shadow_zombie_cursetrap_fx(localclientnum, oldval, newval, bnewent, bin
 	Parameters: 5
 	Flags: Linked
 */
-function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc5d76 = 0, str_tag = "tag_origin")
+function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, b_is_ent = 0, str_tag = "tag_origin")
 {
 	if(b_on)
 	{
@@ -187,7 +187,7 @@ function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc
 		{
 			stopfx(localclientnum, self.vfx_ref);
 		}
-		if(var_afcc5d76)
+		if(b_is_ent)
 		{
 			self.vfx_ref = playfxontag(localclientnum, fx_id, self, str_tag);
 		}

@@ -114,12 +114,12 @@ function __main__()
 	Parameters: 5
 	Flags: Linked
 */
-function init_challenges(n_challenge_index, str_challenge_info, var_80792f67, str_challenge_notify, var_d675d6d8 = undefined)
+function init_challenges(n_challenge_index, str_challenge_info, n_challenge_count, str_challenge_notify, var_d675d6d8 = undefined)
 {
 	s_challenge = spawnstruct();
 	s_challenge.n_index = n_challenge_index;
 	s_challenge.str_info = str_challenge_info;
-	s_challenge.n_count = var_80792f67;
+	s_challenge.n_count = n_challenge_count;
 	s_challenge.str_notify = str_challenge_notify;
 	s_challenge.func_think = var_d675d6d8;
 	return s_challenge;
@@ -537,19 +537,19 @@ function function_3ae0d6d5(e_player)
 				{
 					self sethintstringforplayer(e_player, "");
 					e_player thread function_23c9ffd3(self);
-					var_a51a0ba6 = 1;
+					b_is_looking = 1;
 					return true;
 				}
 				if(!e_player flag::get("flag_player_collected_reward_" + i) && (!(isdefined(e_player.var_c981566c) && e_player.var_c981566c)))
 				{
 					self sethintstringforplayer(e_player, &"ZM_STALINGRAD_CHALLENGE_REWARD");
 					e_player thread function_23c9ffd3(self);
-					var_a51a0ba6 = 1;
+					b_is_looking = 1;
 					return true;
 				}
 				self sethintstringforplayer(e_player, "");
 				e_player thread function_23c9ffd3(self);
-				var_a51a0ba6 = 1;
+				b_is_looking = 1;
 				return true;
 			}
 		}
@@ -1746,13 +1746,13 @@ function function_2ce855f3(s_challenge)
 		self.var_873a3e27 = [];
 	}
 	self.var_873a3e27[s_challenge.n_index] = 0;
-	var_80792f67 = s_challenge.n_count;
+	n_challenge_count = s_challenge.n_count;
 	var_ea184c3d = s_challenge.n_count;
-	while(var_80792f67 > 0)
+	while(n_challenge_count > 0)
 	{
 		self waittill(s_challenge.str_notify);
-		var_80792f67--;
-		self.var_873a3e27[s_challenge.n_index] = 1 - (var_80792f67 / var_ea184c3d);
+		n_challenge_count--;
+		self.var_873a3e27[s_challenge.n_index] = 1 - (n_challenge_count / var_ea184c3d);
 	}
 	self flag::set("flag_player_completed_challenge_" + s_challenge.n_index);
 	self thread function_c79e93d1();
@@ -1910,7 +1910,7 @@ function function_4ca86c86()
 */
 function function_be89247c()
 {
-	if(!(isdefined(self.var_62708302) && self.var_62708302))
+	if(!(isdefined(self.b_has_bouquet) && self.b_has_bouquet))
 	{
 		self clientfield::set_to_player("pr_b", self getentitynumber());
 	}
@@ -1918,7 +1918,7 @@ function function_be89247c()
 	{
 		self clientfield::set_to_player("pr_b", 4);
 	}
-	if(!(isdefined(self.var_4aaffb90) && self.var_4aaffb90))
+	if(!(isdefined(self.b_has_candle) && self.b_has_candle))
 	{
 		self clientfield::set_to_player("pr_c", self getentitynumber());
 	}
@@ -1945,7 +1945,7 @@ function function_d5da2be8(var_7ee6d8e6)
 		self waittill("trigger_activated", e_who);
 		if(e_who == var_7ee6d8e6)
 		{
-			e_who.var_62708302 = 1;
+			e_who.b_has_bouquet = 1;
 			e_who clientfield::set_to_player("pr_b", 4);
 			e_who playsound("zmb_bouquet_pickup");
 			break;
@@ -1974,7 +1974,7 @@ function function_38091734(var_7ee6d8e6)
 		self waittill("trigger_activated", e_who);
 		if(e_who == var_7ee6d8e6)
 		{
-			e_who.var_4aaffb90 = 1;
+			e_who.b_has_candle = 1;
 			e_who clientfield::set_to_player("pr_c", 4);
 			e_who playsound("zmb_candle_pickup");
 			break;
@@ -2091,7 +2091,7 @@ function function_14e16a1c(e_grenade)
 */
 function function_9ffe5c12()
 {
-	if(level flag::get("pr_m") && (isdefined(self.var_62708302) && self.var_62708302) && (isdefined(self.var_4aaffb90) && self.var_4aaffb90) && (isdefined(self.var_621ab6ef) && self.var_621ab6ef) && !self flag::get("flag_player_collected_reward_5"))
+	if(level flag::get("pr_m") && (isdefined(self.b_has_bouquet) && self.b_has_bouquet) && (isdefined(self.b_has_candle) && self.b_has_candle) && (isdefined(self.var_621ab6ef) && self.var_621ab6ef) && !self flag::get("flag_player_collected_reward_5"))
 	{
 		var_36d214f8 = struct::get_array("challenge_fire_struct", "targetname");
 		foreach(var_47398c71 in var_36d214f8)
@@ -2360,8 +2360,8 @@ function function_f506b074()
 {
 	/#
 		level flag::set("");
-		self.var_62708302 = 1;
-		self.var_4aaffb90 = 1;
+		self.b_has_bouquet = 1;
+		self.b_has_candle = 1;
 	#/
 }
 

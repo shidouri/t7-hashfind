@@ -283,7 +283,7 @@ function spawn_boss(str_enemy, v_pos)
 	{
 		e_boss forceteleport(v_pos, e_boss.angles);
 	}
-	e_boss.var_953b581c = 1;
+	e_boss.b_is_boss = 1;
 	return e_boss;
 }
 

@@ -2043,7 +2043,7 @@ function function_2bacd397(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var
 	Parameters: 2
 	Flags: Linked
 */
-function function_80340a8d(n_path_index, var_45868921)
+function function_80340a8d(n_path_index, n_path_count)
 {
 	level endon("arena_challenge_ended");
 	level endon("shadow_challenge_ended");
@@ -2067,7 +2067,7 @@ function function_80340a8d(n_path_index, var_45868921)
 	while(true)
 	{
 		n_path_index = n_path_index + 1;
-		if(n_path_index == var_45868921)
+		if(n_path_index == n_path_count)
 		{
 			n_path_index = 0;
 		}
@@ -2703,12 +2703,12 @@ function function_a0aeb892(n_location_index)
 	Parameters: 2
 	Flags: Linked
 */
-function function_4706cfff(n_duration, var_325cfa0d = 0)
+function function_4706cfff(n_duration, b_is_column = 0)
 {
 	level endon("arena_challenge_ended");
 	level endon("fire_challenge_ended");
 	self endon("delete");
-	if(var_325cfa0d)
+	if(b_is_column)
 	{
 		self clientfield::set("fire_column", 1);
 		var_112f4912 = 4;
@@ -2723,7 +2723,7 @@ function function_4706cfff(n_duration, var_325cfa0d = 0)
 	n_time_elapsed = gettime() - n_start_time;
 	var_a8c2ff4b = 0;
 	var_e2b185cf = n_duration * 0.9;
-	if(var_325cfa0d)
+	if(b_is_column)
 	{
 		self thread scene::play("p7_fxanim_zm_gen_dark_arena_lava_01_bundle", self);
 	}
@@ -2741,7 +2741,7 @@ function function_4706cfff(n_duration, var_325cfa0d = 0)
 		n_sin = sin(n_time_elapsed * n_rate);
 		n_sin = abs(n_sin);
 		n_scale = 0.25 + (n_sin * var_c8ec0774);
-		if(var_325cfa0d && n_time_elapsed > var_e2b185cf && !var_a8c2ff4b)
+		if(b_is_column && n_time_elapsed > var_e2b185cf && !var_a8c2ff4b)
 		{
 			self clientfield::set("fire_column", 0);
 			var_a8c2ff4b = 1;
@@ -4225,11 +4225,11 @@ function function_292fd4ff()
 	Parameters: 2
 	Flags: Linked
 */
-function function_e6146239(s_spawnpoint, var_cbc1f143 = 0)
+function function_e6146239(s_spawnpoint, b_is_meteor = 0)
 {
 	v_origin = s_spawnpoint.origin;
 	v_angles = s_spawnpoint.angles;
-	if(var_cbc1f143)
+	if(b_is_meteor)
 	{
 		zm_genesis_ai_spawning::function_1f0a0b52(v_origin);
 	}
@@ -5105,7 +5105,7 @@ function function_4888688f(v_origin, v_angles)
 	{
 		level.var_338630d6 = level.var_338630d6 + 1;
 		e_keeper.spawn_time = gettime();
-		e_keeper.var_b8385ee5 = 1;
+		e_keeper.b_is_keeper = 1;
 		e_keeper.health = level.zombie_health;
 		e_keeper.no_powerups = 1;
 		e_keeper thread zm::update_zone_name();

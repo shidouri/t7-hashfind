@@ -1528,7 +1528,7 @@ function function_bb75f24a()
 function function_db379af2()
 {
 	level endon(#"hash_137fb152");
-	self.var_46907f23 = 0;
+	self.n_current_count = 0;
 	self.activated = 0;
 	if(isdefined(self.script_noteworthy) && self.script_noteworthy == "toilet3")
 	{
@@ -1541,17 +1541,17 @@ function function_db379af2()
 	while(true)
 	{
 		self waittill("trigger_activated");
-		self.var_46907f23++;
-		if(self.var_46907f23 > 9)
+		self.n_current_count++;
+		if(self.n_current_count > 9)
 		{
 			playsoundatposition("zmb_zhd_toilet_flusheroo", self.origin);
-			self.var_46907f23 = 0;
+			self.n_current_count = 0;
 		}
 		else
 		{
 			playsoundatposition("zmb_zhd_toilet_hit", self.origin);
 		}
-		if(self.var_46907f23 == self.script_int)
+		if(self.n_current_count == self.script_int)
 		{
 			self.activated = 1;
 			level.var_a3dcfd4f++;
@@ -1612,9 +1612,9 @@ function function_fa408417()
 		{
 			if(isdefined(struct.script_noteworthy) && struct.script_noteworthy == "toilet3")
 			{
-				if(struct.var_46907f23 > 0 && level.var_a3dcfd4f <= 1)
+				if(struct.n_current_count > 0 && level.var_a3dcfd4f <= 1)
 				{
-					struct.var_46907f23 = 0;
+					struct.n_current_count = 0;
 					playsoundatposition("zmb_zhd_toilet_flusheroo", struct.origin);
 				}
 				if(isdefined(struct.activated) && struct.activated && level.var_a3dcfd4f <= 2)

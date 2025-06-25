@@ -597,7 +597,7 @@ function function_f55d851b()
 					level.var_c4336559["keeper"]--;
 					e_keeper endon("death");
 					e_keeper.spawn_time = gettime();
-					e_keeper.var_b8385ee5 = 1;
+					e_keeper.b_is_keeper = 1;
 					e_keeper.health = level.zombie_health;
 					e_keeper.heroweapon_kill_power = 2;
 					level thread zm_spawner::zombie_death_event(e_keeper);
@@ -829,7 +829,7 @@ function function_b3e803ec()
 	for(i = 0; i < a_ai.size; i++)
 	{
 		e_zombie = a_ai[i];
-		if(isdefined(e_zombie.var_953b581c) && e_zombie.var_953b581c)
+		if(isdefined(e_zombie.b_is_boss) && e_zombie.b_is_boss)
 		{
 			e_zombie kill();
 		}

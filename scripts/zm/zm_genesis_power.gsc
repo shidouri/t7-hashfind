@@ -657,8 +657,8 @@ function function_8a3885f2()
 			for(i = 0; i < a_players.size; i++)
 			{
 				e_player = a_players[i];
-				var_2638ea5e = self function_8961cbdb(e_player);
-				if(var_2638ea5e)
+				b_can_activate = self function_8961cbdb(e_player);
+				if(b_can_activate)
 				{
 					n_cost = function_fe2cf77b(self);
 					if(e_player usebuttonpressed() && e_player zm_score::can_player_purchase(n_cost) && (!(isdefined(e_player.laststand) && e_player.laststand)) && (!(isdefined(e_player.is_reviving_any) && e_player.is_reviving_any)))
@@ -1086,7 +1086,7 @@ function function_5003c1cd(var_21f1f59c, var_4c2039)
 		{
 			continue;
 		}
-		if(isdefined(zombies[i].var_953b581c) && zombies[i].var_953b581c && (!(isdefined(var_4c2039) && var_4c2039)))
+		if(isdefined(zombies[i].b_is_boss) && zombies[i].b_is_boss && (!(isdefined(var_4c2039) && var_4c2039)))
 		{
 			continue;
 		}
@@ -1153,7 +1153,7 @@ function function_fbb9459a(power_volume)
 		{
 			continue;
 		}
-		if(isdefined(zombie.marked_for_death) && zombie.marked_for_death || (isdefined(zombie.nuked) && zombie.nuked) || (isdefined(zombie.var_953b581c) && zombie.var_953b581c))
+		if(isdefined(zombie.marked_for_death) && zombie.marked_for_death || (isdefined(zombie.nuked) && zombie.nuked) || (isdefined(zombie.b_is_boss) && zombie.b_is_boss))
 		{
 			continue;
 		}

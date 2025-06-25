@@ -2509,12 +2509,12 @@ function function_fe31ce39(var_1652ac62)
 */
 function function_51ca11ba(player)
 {
-	var_10cc4e3e = 0;
+	b_is_charging = 0;
 	if(!(isdefined(self.stub.b_completed) && self.stub.b_completed) && level flag::get("totem_placed"))
 	{
-		var_10cc4e3e = 1;
+		b_is_charging = 1;
 	}
-	b_is_invis = isdefined(player.beastmode) && player.beastmode || var_10cc4e3e || (isdefined(self.stub.b_taken) && self.stub.b_taken);
+	b_is_invis = isdefined(player.beastmode) && player.beastmode || b_is_charging || (isdefined(self.stub.b_taken) && self.stub.b_taken);
 	self setinvisibletoplayer(player, b_is_invis);
 	return true;
 }

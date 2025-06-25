@@ -618,7 +618,7 @@ function function_d3b8fbb0(v_pos, e_plant)
 					{
 						e_plant notify("withered");
 					}
-					if(!(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0) && (!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)))
+					if(!(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher) && (!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)))
 					{
 						wait(0.5);
 					}
@@ -922,11 +922,11 @@ function function_e0d7bd91(v_position)
 			if(function_8734b840(ai_zombie.origin, v_position, n_range_sq) && var_bd236d05 < 1)
 			{
 				self thread function_d150c3fe(ai_zombie);
-				if(!(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+				if(!(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 				{
 					var_bd236d05++;
 				}
-				if(!(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0) && (!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)))
+				if(!(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher) && (!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)))
 				{
 					wait(1);
 				}
@@ -948,7 +948,7 @@ function function_d150c3fe(ai_zombie)
 {
 	self endon("disconnect");
 	ai_zombie endon("death");
-	if(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)
+	if(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)
 	{
 		if(!(isdefined(ai_zombie.var_365c1d50) && ai_zombie.var_365c1d50))
 		{
@@ -1074,7 +1074,7 @@ function function_3bc42e24(var_8b84dc1b)
 	Parameters: 1
 	Flags: Linked
 */
-function function_b7e68127(var_7364b0dd)
+function function_b7e68127(b_is_crawler)
 {
 	self endon("death");
 	if(!isdefined(level.var_d290a02b))
@@ -1086,7 +1086,7 @@ function function_b7e68127(var_7364b0dd)
 		level.var_7a9b882a = 0;
 	}
 	self.marked_for_death = 1;
-	if(var_7364b0dd)
+	if(b_is_crawler)
 	{
 		level.var_d290a02b++;
 		if(level.var_d290a02b > 2)

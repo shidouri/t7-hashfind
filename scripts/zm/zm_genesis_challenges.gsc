@@ -134,12 +134,12 @@ function main()
 	Parameters: 5
 	Flags: Linked
 */
-function init_challenges(n_challenge_index, str_challenge_info, var_80792f67, str_challenge_notify, var_d675d6d8)
+function init_challenges(n_challenge_index, str_challenge_info, n_challenge_count, str_challenge_notify, var_d675d6d8)
 {
 	s_challenge = spawnstruct();
 	s_challenge.n_index = n_challenge_index;
 	s_challenge.str_info = str_challenge_info;
-	s_challenge.n_count = var_80792f67;
+	s_challenge.n_count = n_challenge_count;
 	s_challenge.str_notify = str_challenge_notify;
 	s_challenge.func_think = var_d675d6d8;
 	return s_challenge;
@@ -800,7 +800,7 @@ function function_3ae0d6d5(e_player)
 {
 	if(self.stub.related_parent.script_int == e_player getentitynumber())
 	{
-		var_a51a0ba6 = 0;
+		b_is_looking = 0;
 		if(e_player flag::get("flag_player_initialized_reward"))
 		{
 			self sethintstringforplayer(e_player, &"ZM_GENESIS_CHALLENGE_REWARD_TAKE");
@@ -812,7 +812,7 @@ function function_3ae0d6d5(e_player)
 					self sethintstringforplayer(e_player, "");
 				}
 			}
-			var_a51a0ba6 = 1;
+			b_is_looking = 1;
 			return true;
 		}
 		for(i = 1; i <= 3; i++)
@@ -827,21 +827,21 @@ function function_3ae0d6d5(e_player)
 				if(!e_player flag::get("flag_player_completed_challenge_" + i))
 				{
 					self sethintstringforplayer(e_player, "");
-					var_a51a0ba6 = 1;
+					b_is_looking = 1;
 					return true;
 				}
 				if(!e_player flag::get("flag_player_collected_reward_" + i) && (!(isdefined(e_player.var_c981566c) && e_player.var_c981566c)))
 				{
 					self sethintstringforplayer(e_player, &"ZM_GENESIS_CHALLENGE_REWARD");
-					var_a51a0ba6 = 1;
+					b_is_looking = 1;
 					return true;
 				}
 				self sethintstringforplayer(e_player, "");
-				var_a51a0ba6 = 1;
+				b_is_looking = 1;
 				return true;
 			}
 		}
-		if(!var_a51a0ba6)
+		if(!b_is_looking)
 		{
 			self sethintstringforplayer(e_player, "");
 			e_player clientfield::set_player_uimodel("trialWidget.visible", 0);
@@ -2001,18 +2001,18 @@ function function_2ce855f3(s_challenge)
 	{
 		self thread [[s_challenge.func_think]]();
 	}
-	var_80792f67 = s_challenge.n_count;
+	n_challenge_count = s_challenge.n_count;
 	if(!isdefined(self.var_5315d90d))
 	{
 		self.var_5315d90d = [];
 	}
 	self.var_5315d90d[s_challenge.n_index] = 0;
-	var_ea184c3d = var_80792f67;
-	while(var_80792f67 > 0)
+	var_ea184c3d = n_challenge_count;
+	while(n_challenge_count > 0)
 	{
 		self waittill(s_challenge.str_notify);
-		var_80792f67--;
-		self.var_5315d90d[s_challenge.n_index] = 1 - (var_80792f67 / var_ea184c3d);
+		n_challenge_count--;
+		self.var_5315d90d[s_challenge.n_index] = 1 - (n_challenge_count / var_ea184c3d);
 	}
 	self function_33e91747(s_challenge.n_index, 1);
 	self flag::set("flag_player_completed_challenge_" + s_challenge.n_index);

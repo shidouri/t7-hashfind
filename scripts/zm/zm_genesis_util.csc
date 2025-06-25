@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
@@ -339,7 +339,7 @@ function fire_trap_ignite_enemy(localclientnum, oldval, newval, bnewent, binitia
 	Parameters: 5
 	Flags: None
 */
-function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc5d76 = 0, str_tag = "tag_origin")
+function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, b_is_ent = 0, str_tag = "tag_origin")
 {
 	if(!isdefined(self.vfx_ref))
 	{
@@ -355,7 +355,7 @@ function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc
 		{
 			stopfx(localclientnum, self.vfx_ref[localclientnum]);
 		}
-		if(var_afcc5d76)
+		if(b_is_ent)
 		{
 			self.vfx_ref[localclientnum] = playfxontag(localclientnum, fx_id, self, str_tag);
 		}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\cp_mi_zurich_newworld_util;
@@ -704,7 +704,7 @@ function function_b45c2459(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self thread function_dd551c54(localclientnum);
+		self thread train_rumble_loop(localclientnum);
 	}
 	else
 	{
@@ -713,7 +713,7 @@ function function_b45c2459(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_dd551c54
+	Name: train_rumble_loop
 	Namespace: newworld_util
 	Checksum: 0xDCF3D5B
 	Offset: 0x2E68
@@ -721,7 +721,7 @@ function function_b45c2459(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked
 */
-function function_dd551c54(localclientnum)
+function train_rumble_loop(localclientnum)
 {
 	self endon("death");
 	self endon("entityshutdown");

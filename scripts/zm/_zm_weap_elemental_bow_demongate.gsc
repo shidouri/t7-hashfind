@@ -555,11 +555,11 @@ function function_b6e7ec91(e_player)
 	if(zm_weap_elemental_bow::function_5aec3adc(self.target_enemy))
 	{
 		var_aad66aa4 = randomintrange(1, 7);
-		var_7364b0dd = self.target_enemy.missinglegs;
+		b_is_crawler = self.target_enemy.missinglegs;
 		self.target_enemy.var_98056717 = 1;
 		self.var_603f1f19 = 0;
 		self.var_fcd07456 = self.var_fcd07456 - var_c32fcb8f;
-		self thread function_3c03253d(var_aad66aa4, var_7364b0dd);
+		self thread function_3c03253d(var_aad66aa4, b_is_crawler);
 		self thread function_3a5a56c7();
 		self thread function_67903a83(e_player);
 		if(isdefined(self.target_enemy.isdog) && self.target_enemy.isdog || isvehicle(self.target_enemy))
@@ -581,7 +581,7 @@ function function_b6e7ec91(e_player)
 		}
 		self.target_enemy util::waittill_notify_or_timeout("death", n_wait_time);
 		self notify(#"hash_368634cd");
-		self function_43415734(var_aad66aa4, var_7364b0dd);
+		self function_43415734(var_aad66aa4, b_is_crawler);
 		if(self.var_fcd07456 < 1)
 		{
 			self thread function_308e6c6f();
@@ -636,7 +636,7 @@ function function_3a5a56c7()
 	Parameters: 2
 	Flags: Linked
 */
-function function_3c03253d(var_aad66aa4, var_7364b0dd)
+function function_3c03253d(var_aad66aa4, b_is_crawler)
 {
 	self.target_enemy endon("death");
 	if(isdefined(self.target_enemy.isdog) && self.target_enemy.isdog)
@@ -657,7 +657,7 @@ function function_3c03253d(var_aad66aa4, var_7364b0dd)
 			}
 			else
 			{
-				if(isdefined(var_7364b0dd) && var_7364b0dd)
+				if(isdefined(b_is_crawler) && b_is_crawler)
 				{
 					self.target_enemy scene::play("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler", array(self.target_enemy, self));
 				}
@@ -705,7 +705,7 @@ function function_c5e710f7()
 	Parameters: 2
 	Flags: Linked
 */
-function function_43415734(var_aad66aa4, var_7364b0dd)
+function function_43415734(var_aad66aa4, b_is_crawler)
 {
 	if(isdefined(self.target_enemy) && self.target_enemy.archetype === "mechz")
 	{
@@ -714,7 +714,7 @@ function function_43415734(var_aad66aa4, var_7364b0dd)
 	}
 	if(isdefined(self.target_enemy) && (!(isdefined(self.target_enemy.isdog) && self.target_enemy.isdog)))
 	{
-		if(isdefined(var_7364b0dd) && var_7364b0dd)
+		if(isdefined(b_is_crawler) && b_is_crawler)
 		{
 			self.target_enemy thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler");
 		}
@@ -723,7 +723,7 @@ function function_43415734(var_aad66aa4, var_7364b0dd)
 			self.target_enemy thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_0" + var_aad66aa4);
 		}
 	}
-	if(isdefined(var_7364b0dd) && var_7364b0dd)
+	if(isdefined(b_is_crawler) && b_is_crawler)
 	{
 		self thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler");
 	}

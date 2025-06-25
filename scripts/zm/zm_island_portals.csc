@@ -242,7 +242,7 @@ function function_11ac3c33(localclientnum, str_areaname, b_is_top)
 	Parameters: 4
 	Flags: Linked
 */
-function function_c0c1771a(localclientnum, s_loc, b_open, var_9c9cfb54 = 0)
+function function_c0c1771a(localclientnum, s_loc, b_open, b_is_subway = 0)
 {
 	v_fwd = anglestoforward(s_loc.angles);
 	if(!isdefined(s_loc.var_7c0ed442))

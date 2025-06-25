@@ -394,12 +394,12 @@ function function_ac03c228(player)
 	{
 		self setinvisibletoplayer(player);
 	}
-	var_a3338832 = self function_4a703d7c(player);
+	b_can_use = self function_4a703d7c(player);
 	if(isdefined(self.hint_string))
 	{
 		self sethintstring(self.hint_string);
 	}
-	return var_a3338832;
+	return b_can_use;
 }
 
 /*
@@ -543,12 +543,12 @@ function magic_circle_trigger_visibility(player)
 	{
 		return 0;
 	}
-	var_a3338832 = self function_74e5c19(player);
+	b_can_use = self function_74e5c19(player);
 	if(isdefined(self.hint_string))
 	{
 		self sethintstring(self.hint_string);
 	}
-	return var_a3338832;
+	return b_can_use;
 }
 
 /*
@@ -688,7 +688,7 @@ function magic_circle_trigger_activate(trig_stub, player)
 		n_kills_needed = 2;
 	}
 	var_73fc403f = 0;
-	trig_stub.var_87b7360 = 0;
+	trig_stub.n_thread_count = 0;
 	var_fb35e9c2 = struct::get_array("sword_quest_margwa_spawnpoint", "targetname");
 	player.sword_power = 1;
 	player clientfield::set_player_uimodel("zmhud.swordEnergy", player.sword_power);
@@ -701,13 +701,13 @@ function magic_circle_trigger_activate(trig_stub, player)
 		var_90e5cd72 = 0;
 		while(var_90e5cd72 < 2 && var_73fc403f < n_kills_needed)
 		{
-			trig_stub.var_87b7360++;
+			trig_stub.n_thread_count++;
 			level thread function_7922af5f(player, trig_stub, var_90e5cd72, str_endon);
 			var_90e5cd72++;
 			var_73fc403f++;
 			wait(0.05);
 		}
-		while(trig_stub.var_87b7360 > 0)
+		while(trig_stub.n_thread_count > 0)
 		{
 			wait(0.05);
 		}
@@ -768,7 +768,7 @@ function function_7922af5f(player, trig_stub, index, str_endon)
 		if(isdefined(var_13b27531 === level.sword_quest.weapons[player.characterindex][1]))
 		{
 			player.sword_quest_2.kills[var_181b74a5]++;
-			trig_stub.var_87b7360--;
+			trig_stub.n_thread_count--;
 			break;
 		}
 		else
@@ -1051,16 +1051,16 @@ function function_6f69a416(s_loc, n_char_index)
 function function_8ca48fdc(player)
 {
 	self setinvisibletoplayer(player);
-	var_a3338832 = self function_c722bbbb(player);
+	b_can_use = self function_c722bbbb(player);
 	if(isdefined(self.hint_string))
 	{
 		self sethintstring(self.hint_string);
 	}
-	if(var_a3338832)
+	if(b_can_use)
 	{
 		self setvisibletoplayer(player);
 	}
-	return var_a3338832;
+	return b_can_use;
 }
 
 /*

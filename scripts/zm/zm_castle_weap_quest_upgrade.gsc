@@ -7789,14 +7789,14 @@ function function_ab623d34(var_e459d8fb, e_volume = undefined)
 	Parameters: 4
 	Flags: Linked
 */
-function function_55c48922(v_origin, v_target, var_25c1c42e, var_7364b0dd)
+function function_55c48922(v_origin, v_target, var_25c1c42e, b_is_crawler)
 {
 	if(!isdefined(v_origin) || !isdefined(v_target))
 	{
 		return;
 	}
 	str_clientfield_name = ("zombie_soul_" + var_25c1c42e) + "_fx";
-	if(!var_7364b0dd)
+	if(!b_is_crawler)
 	{
 		v_origin = v_origin + vectorscale((0, 0, 1), 48);
 	}

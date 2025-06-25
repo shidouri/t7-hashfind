@@ -978,7 +978,7 @@ function function_4ea8a87a()
 		self.var_bd61ef5b = 0;
 		self.var_9defe760 = 0;
 		self.var_bc88fb8b = 0;
-		self.var_8a71c4c5 = 0;
+		self.n_attacker_count = 0;
 		self.a_ai_attackers = [];
 		self.a_s_spawnpts = array::randomize(self.a_s_spawnpts);
 		zm_spawner::register_zombie_death_event_callback(&function_3127ccbd);
@@ -995,7 +995,7 @@ function function_4ea8a87a()
 				{
 					wait(0.05);
 				}
-				while(self.var_8a71c4c5 >= self.var_eca4fee1)
+				while(self.n_attacker_count >= self.var_eca4fee1)
 				{
 					wait(0.05);
 				}
@@ -1041,7 +1041,7 @@ function function_4ea8a87a()
 						ai_attacker.no_damage_points = 1;
 						ai_attacker.deathpoints_already_given = 1;
 						ai_attacker.var_bf5bc647 = 1;
-						self.var_8a71c4c5++;
+						self.n_attacker_count++;
 						array::add(self.a_ai_attackers, ai_attacker);
 						switch(e_spawner.script_noteworthy)
 						{
@@ -1281,7 +1281,7 @@ function function_3127ccbd(e_attacker)
 {
 	if(isdefined(self) && (isdefined(self.var_bf5bc647) && self.var_bf5bc647))
 	{
-		level.var_bbdc1f95.var_8a71c4c5--;
+		level.var_bbdc1f95.n_attacker_count--;
 		arrayremovevalue(level.var_bbdc1f95.a_ai_attackers, self);
 		level.var_bbdc1f95.n_kill_count++;
 		if(self.script_noteworthy === "zombie_thrasher_spawner")

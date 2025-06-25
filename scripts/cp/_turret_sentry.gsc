@@ -315,12 +315,12 @@ function function_c2d2b587()
 */
 function function_e7857e05(e_enemy)
 {
-	var_b9baf316 = 1;
+	b_can_target = 1;
 	if(isdefined(e_enemy.archetype) && isdefined(self.var_c35cf4ed))
 	{
-		var_b9baf316 = !isinarray(self.var_c35cf4ed, e_enemy.archetype);
+		b_can_target = !isinarray(self.var_c35cf4ed, e_enemy.archetype);
 	}
-	return var_b9baf316;
+	return b_can_target;
 }
 
 /*

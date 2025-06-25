@@ -75,11 +75,11 @@ class cammocrate
 	function function_2902ab6c(var_60a09143)
 	{
 		var_60a09143 endon("death");
-		if(var_60a09143.var_ce22f999)
+		if(var_60a09143.b_is_animating)
 		{
 			return;
 		}
-		var_60a09143.var_ce22f999 = 1;
+		var_60a09143.b_is_animating = 1;
 		var_60a09143 scene::play("p7_fxanim_gp_ammo_resupply_02_open_bundle", var_60a09143);
 		wait(1);
 		var_d3571721 = 1;
@@ -97,7 +97,7 @@ class cammocrate
 			wait(0.5);
 		}
 		var_60a09143 scene::play("p7_fxanim_gp_ammo_resupply_02_close_bundle", var_60a09143);
-		var_60a09143.var_ce22f999 = 0;
+		var_60a09143.b_is_animating = 0;
 	}
 
 	/*
@@ -284,7 +284,7 @@ class cammocrate
 			s_ammo_cache_object.single_use = 0;
 			mdl_ammo_cache.gameobject = s_ammo_cache_object;
 			var_60a09143 = mdl_ammo_cache;
-			var_60a09143.var_ce22f999 = 0;
+			var_60a09143.b_is_animating = 0;
 			t_animate = spawn("trigger_radius", t_use.origin, 0, 94, 64);
 			t_animate setvisibletoall();
 			t_animate setteamfortrigger("allies");

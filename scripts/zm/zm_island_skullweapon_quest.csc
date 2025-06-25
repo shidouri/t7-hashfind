@@ -475,7 +475,7 @@ function ritual_attacker_fx(localclientnum, oldval, newval, bnewent, binitialsna
 	Parameters: 5
 	Flags: Linked
 */
-function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc5d76 = 0, str_tag = "tag_origin")
+function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, b_is_ent = 0, str_tag = "tag_origin")
 {
 	if(!isdefined(self.vfx_ref))
 	{
@@ -491,7 +491,7 @@ function function_267f859f(localclientnum, fx_id = undefined, b_on = 1, var_afcc
 		{
 			stopfx(localclientnum, self.vfx_ref[localclientnum]);
 		}
-		if(var_afcc5d76)
+		if(b_is_ent)
 		{
 			self.vfx_ref[localclientnum] = playfxontag(localclientnum, fx_id, self, str_tag);
 		}

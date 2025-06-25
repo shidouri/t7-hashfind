@@ -1228,7 +1228,7 @@ function init_level_specific_audio()
 */
 function function_d166ac07()
 {
-	level.var_8ec97b54 = 0;
+	level.n_plate_count = 0;
 	var_5e490b83 = getentarray("sndzhd_plates", "targetname");
 	array::thread_all(var_5e490b83, &function_4bb6626e);
 }
@@ -1259,11 +1259,11 @@ function function_4bb6626e()
 		{
 			continue;
 		}
-		level.var_8ec97b54++;
+		level.n_plate_count++;
 		playsoundatposition("zmb_zhd_plate_hit", self.origin);
 		break;
 	}
-	if(level.var_8ec97b54 >= 4)
+	if(level.n_plate_count >= 4)
 	{
 		level flag::set("snd_zhdegg_activate");
 	}

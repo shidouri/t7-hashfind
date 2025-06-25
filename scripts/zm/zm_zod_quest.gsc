@@ -217,11 +217,11 @@ function function_70a7429b(var_25bc1c51)
 	while(isdefined(self))
 	{
 		dist2 = distancesquared(self.origin, s_centerpoint.origin);
-		var_f7225255 = dist2 < 4096;
-		if(var_f7225255 != var_33e67e27)
+		b_is_near = dist2 < 4096;
+		if(b_is_near != var_33e67e27)
 		{
-			self clientfield::set_to_player(("check_" + a_str_names[var_25bc1c51]) + "_memento", var_f7225255);
-			var_33e67e27 = var_f7225255;
+			self clientfield::set_to_player(("check_" + a_str_names[var_25bc1c51]) + "_memento", b_is_near);
+			var_33e67e27 = b_is_near;
 		}
 		wait(0.1);
 	}
@@ -2003,9 +2003,9 @@ function get_worm_basin(str_flag)
 	Parameters: 2
 	Flags: Linked
 */
-function watch_wallrun(var_e7fbc48, str_flag)
+function watch_wallrun(b_is_left, str_flag)
 {
-	if(var_e7fbc48)
+	if(b_is_left)
 	{
 		str_side = "left";
 	}
@@ -2025,8 +2025,8 @@ function watch_wallrun(var_e7fbc48, str_flag)
 		flag::wait_till(str_flag);
 		exploder::exploder(("fx_exploder_ritual_" + str_flag) + "_path");
 		gatestone_increment_power();
-		set_frieze_power(var_e7fbc48, 1);
-		if(var_e7fbc48)
+		set_frieze_power(b_is_left, 1);
+		if(b_is_left)
 		{
 			level clientfield::set("wallrun_footprints", 1);
 		}
@@ -2037,7 +2037,7 @@ function watch_wallrun(var_e7fbc48, str_flag)
 		flag::wait_till_clear(str_flag);
 		gatestone_decrement_power();
 		exploder::stop_exploder(("fx_exploder_ritual_" + str_flag) + "_path");
-		set_frieze_power(var_e7fbc48, 0);
+		set_frieze_power(b_is_left, 0);
 	}
 }
 
@@ -2050,9 +2050,9 @@ function watch_wallrun(var_e7fbc48, str_flag)
 	Parameters: 2
 	Flags: Linked
 */
-function set_frieze_power(var_e7fbc48, b_on)
+function set_frieze_power(b_is_left, b_on)
 {
-	if(var_e7fbc48)
+	if(b_is_left)
 	{
 		str_side = "left";
 	}
@@ -2270,9 +2270,9 @@ function enable_wallrun(t_trigger)
 	Parameters: 2
 	Flags: Linked
 */
-function watch_island(var_f7225255, str_flag)
+function watch_island(b_is_near, str_flag)
 {
-	if(var_f7225255)
+	if(b_is_near)
 	{
 		str_side = "near";
 	}
@@ -2289,11 +2289,11 @@ function watch_island(var_f7225255, str_flag)
 		flag::wait_till(str_flag);
 		gatestone_increment_power();
 		exploder::exploder(("fx_exploder_ritual_" + str_flag) + "_path");
-		function_c3e5d4f(var_f7225255, 1);
+		function_c3e5d4f(b_is_near, 1);
 		flag::wait_till_clear(str_flag);
 		gatestone_decrement_power();
 		exploder::stop_exploder(("fx_exploder_ritual_" + str_flag) + "_path");
-		function_c3e5d4f(var_f7225255, 0);
+		function_c3e5d4f(b_is_near, 0);
 	}
 }
 
@@ -2306,9 +2306,9 @@ function watch_island(var_f7225255, str_flag)
 	Parameters: 2
 	Flags: Linked
 */
-function function_c3e5d4f(var_f7225255, b_on)
+function function_c3e5d4f(b_is_near, b_on)
 {
-	if(var_f7225255)
+	if(b_is_near)
 	{
 		str_side = "near";
 		var_ea5390b2 = 1;

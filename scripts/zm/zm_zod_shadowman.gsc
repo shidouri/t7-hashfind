@@ -93,7 +93,7 @@ function on_player_connect()
 	Parameters: 4
 	Flags: Linked
 */
-function function_12e7164a(var_5b35973a = 1, var_d250bd20 = 0, var_b7791b4b = 0, var_32a5629a = 0)
+function function_12e7164a(b_can_damage = 1, var_d250bd20 = 0, var_b7791b4b = 0, var_32a5629a = 0)
 {
 	self.var_93dad597 = util::spawn_model("c_zom_zod_shadowman_fb", self.origin, self.angles);
 	self.var_93dad597 useanimtree($generic);
@@ -114,7 +114,7 @@ function function_12e7164a(var_5b35973a = 1, var_d250bd20 = 0, var_b7791b4b = 0,
 			self.var_93dad597 thread animation::play("ai_zombie_zod_shadowman_human_stand_idle_loop");
 		}
 	}
-	if(var_5b35973a)
+	if(b_can_damage)
 	{
 		self.var_93dad597 setcandamage(1);
 	}
@@ -133,7 +133,7 @@ function function_12e7164a(var_5b35973a = 1, var_d250bd20 = 0, var_b7791b4b = 0,
 	Parameters: 4
 	Flags: Linked
 */
-function function_8888a532(var_5b35973a = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, var_32a5629a = 0)
+function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, var_32a5629a = 0)
 {
 	self.var_5afdc7fe = util::spawn_model("c_zom_zod_shadowman_tentacles_fb", self.origin, self.angles);
 	self.var_5afdc7fe useanimtree($generic);
@@ -150,7 +150,7 @@ function function_8888a532(var_5b35973a = 1, var_d250bd20 = 0, var_2c1a0d8f = 0,
 			self.var_5afdc7fe thread animation::play("ai_zombie_zod_shadowman_stand_idle_loop");
 		}
 	}
-	if(var_5b35973a)
+	if(b_can_damage)
 	{
 		self.var_5afdc7fe setcandamage(1);
 	}

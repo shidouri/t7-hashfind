@@ -474,7 +474,7 @@ function function_8b323113(var_a4ef4373, var_42fbb5b1 = 1, var_ab0dd5e8 = 1, var
 	{
 		wait(0.05);
 	}
-	if(isdefined(var_a4ef4373.var_61f7b3a0) && var_a4ef4373.var_61f7b3a0)
+	if(isdefined(var_a4ef4373.b_is_thrasher) && var_a4ef4373.b_is_thrasher)
 	{
 		return;
 	}
@@ -721,7 +721,7 @@ function function_22338aad()
 */
 function function_a716de1f()
 {
-	self.var_61f7b3a0 = 1;
+	self.b_is_thrasher = 1;
 	zombiehealth = level.zombie_health;
 	if(!isdefined(zombiehealth))
 	{

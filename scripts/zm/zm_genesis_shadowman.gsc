@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\ai\zombie_utility;
@@ -80,7 +80,7 @@ function __main__()
 	Parameters: 4
 	Flags: Linked
 */
-function function_8888a532(var_5b35973a = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, var_32a5629a = 0)
+function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, var_32a5629a = 0)
 {
 	self.var_94d7beef = util::spawn_model("c_zom_dlc4_shadowman_fb", self.origin, self.angles);
 	self.var_94d7beef useanimtree($zm_genesis);
@@ -98,7 +98,7 @@ function function_8888a532(var_5b35973a = 1, var_d250bd20 = 0, var_2c1a0d8f = 0,
 			self.var_94d7beef thread animation::play("ai_zm_dlc4_shadowman_idle");
 		}
 	}
-	if(var_5b35973a)
+	if(b_can_damage)
 	{
 		self.var_94d7beef setcandamage(1);
 	}

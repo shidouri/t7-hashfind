@@ -1992,7 +1992,7 @@ function function_17a41767(var_a6a648f0)
 {
 	self endon("death");
 	self.var_93100ec2 = 1;
-	if(isdefined(self.var_61f7b3a0) && self.var_61f7b3a0)
+	if(isdefined(self.b_is_thrasher) && self.b_is_thrasher)
 	{
 		var_ab201dd8 = util::spawn_model("tag_origin", self.origin, self.angles);
 		var_ab201dd8 thread scene::play("scene_zm_dlc2_thrasher_attack_swing_swipe", self);
@@ -2599,9 +2599,9 @@ function function_6b1cc9fb(b_destroyed = 0, v_origin, v_angles, var_ef07eb9d = 0
 	Parameters: 3
 	Flags: Linked
 */
-function function_9b41e249(var_eddcecaa = 1, str_type, b_completed = 0)
+function function_9b41e249(b_should_play = 1, str_type, b_completed = 0)
 {
-	if(!var_eddcecaa)
+	if(!b_should_play)
 	{
 		self clientfield::set("play_spider_web_tear_fx", 0);
 		return;
