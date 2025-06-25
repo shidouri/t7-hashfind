@@ -97,13 +97,13 @@ function main()
 	util::waitforallclients();
 	wait(1);
 	level.dragon_heads = [];
-	level.var_3cc6503b = [];
+	level.dragon_bodies = [];
 	level.var_abd9e961 = [];
 	players = getlocalplayers();
 	for(j = 0; j < players.size; j++)
 	{
 		level.dragon_heads[j] = [];
-		level.var_3cc6503b[j] = [];
+		level.dragon_bodies[j] = [];
 		level.var_abd9e961[j] = [];
 		for(i = 0; i < level.var_f302359b.size; i++)
 		{
@@ -112,9 +112,9 @@ function main()
 			level.dragon_heads[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_right");
 			level.dragon_heads[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_left");
 			level.dragon_heads[j][level.var_f302359b[i].script_parameters].var_7d382bfa = 1;
-			level.var_3cc6503b[j][level.var_f302359b[i].script_parameters] = getent(j, level.var_f302359b[i].script_friendname, "targetname");
-			level.var_3cc6503b[j][level.var_f302359b[i].script_parameters] hide();
-			level.var_3cc6503b[j][level.var_f302359b[i].script_parameters] useanimtree($zm_castle);
+			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] = getent(j, level.var_f302359b[i].script_friendname, "targetname");
+			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] hide();
+			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] useanimtree($zm_castle);
 			level.var_abd9e961[j][level.var_f302359b[i].script_parameters] = getent(j, level.var_f302359b[i].script_label + "_mini", "targetname");
 		}
 		array::run_all(level.var_abd9e961[j], &function_c9ca8c4b, j);
@@ -148,7 +148,7 @@ function function_cda3a15d(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(newval == 1)
 		{
-			level.var_3cc6503b[localclientnum][fieldname] hide();
+			level.dragon_bodies[localclientnum][fieldname] hide();
 			if(isdefined(level.dragon_heads[localclientnum][fieldname]))
 			{
 				level.dragon_heads[localclientnum][fieldname] show();
@@ -160,14 +160,14 @@ function function_cda3a15d(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			if(newval == 2)
 			{
-				level.var_3cc6503b[localclientnum][fieldname] hide();
-				if(isdefined(level.var_3cc6503b[localclientnum][fieldname].head))
+				level.dragon_bodies[localclientnum][fieldname] hide();
+				if(isdefined(level.dragon_bodies[localclientnum][fieldname].head))
 				{
-					if(isdefined(level.var_3cc6503b[localclientnum][fieldname].head.hat))
+					if(isdefined(level.dragon_bodies[localclientnum][fieldname].head.hat))
 					{
-						level.var_3cc6503b[localclientnum][fieldname].head.hat hide();
+						level.dragon_bodies[localclientnum][fieldname].head.hat hide();
 					}
-					level.var_3cc6503b[localclientnum][fieldname].head hide();
+					level.dragon_bodies[localclientnum][fieldname].head hide();
 				}
 				if(isdefined(level.dragon_heads[localclientnum][fieldname]))
 				{
@@ -184,17 +184,17 @@ function function_cda3a15d(localclientnum, oldval, newval, bnewent, binitialsnap
 						level.dragon_heads[localclientnum][fieldname] show();
 						if(newval == 3)
 						{
-							level.dragon_heads[localclientnum][fieldname] thread function_4ae89880(level.var_3cc6503b[localclientnum][fieldname], localclientnum, "front");
+							level.dragon_heads[localclientnum][fieldname] thread function_4ae89880(level.dragon_bodies[localclientnum][fieldname], localclientnum, "front");
 						}
 						else
 						{
 							if(newval == 4)
 							{
-								level.dragon_heads[localclientnum][fieldname] thread function_4ae89880(level.var_3cc6503b[localclientnum][fieldname], localclientnum, "right");
+								level.dragon_heads[localclientnum][fieldname] thread function_4ae89880(level.dragon_bodies[localclientnum][fieldname], localclientnum, "right");
 							}
 							else
 							{
-								level.dragon_heads[localclientnum][fieldname] thread function_4ae89880(level.var_3cc6503b[localclientnum][fieldname], localclientnum, "left");
+								level.dragon_heads[localclientnum][fieldname] thread function_4ae89880(level.dragon_bodies[localclientnum][fieldname], localclientnum, "left");
 							}
 						}
 					}
@@ -203,19 +203,19 @@ function function_cda3a15d(localclientnum, oldval, newval, bnewent, binitialsnap
 				{
 					if(newval == 6)
 					{
-						level.var_3cc6503b[localclientnum][fieldname] hide();
-						if(isdefined(level.var_3cc6503b[localclientnum][fieldname].head))
+						level.dragon_bodies[localclientnum][fieldname] hide();
+						if(isdefined(level.dragon_bodies[localclientnum][fieldname].head))
 						{
-							if(isdefined(level.var_3cc6503b[localclientnum][fieldname].head.hat))
+							if(isdefined(level.dragon_bodies[localclientnum][fieldname].head.hat))
 							{
-								level.var_3cc6503b[localclientnum][fieldname].head.hat hide();
+								level.dragon_bodies[localclientnum][fieldname].head.hat hide();
 							}
-							level.var_3cc6503b[localclientnum][fieldname].head hide();
+							level.dragon_bodies[localclientnum][fieldname].head hide();
 						}
 						if(isdefined(level.dragon_heads[localclientnum][fieldname]))
 						{
 							level.dragon_heads[localclientnum][fieldname] show();
-							level.dragon_heads[localclientnum][fieldname] thread function_aba7532b(localclientnum, level.var_3cc6503b[localclientnum][fieldname], level.var_abd9e961[localclientnum][fieldname]);
+							level.dragon_heads[localclientnum][fieldname] thread function_aba7532b(localclientnum, level.dragon_bodies[localclientnum][fieldname], level.var_abd9e961[localclientnum][fieldname]);
 						}
 					}
 					else if(newval == 0)
@@ -376,8 +376,8 @@ function function_a5ee5367(localclientnum)
 */
 function function_979d2797(localclientnum)
 {
-	self endon(#"hash_4b8a9b1");
-	self endon(#"hash_4846b79f");
+	self endon("dragon_eating");
+	self endon("dragon_departing");
 	self notify("dragon_idling");
 	if(isdefined(self.var_d90397ef) && self.var_d90397ef)
 	{
@@ -420,7 +420,7 @@ function function_90c151e6(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	s_closest = array::get_all_closest(self.origin, level.var_f302359b);
 	fieldname = s_closest[0].script_parameters;
-	m_body = level.var_3cc6503b[localclientnum][fieldname];
+	m_body = level.dragon_bodies[localclientnum][fieldname];
 	if(isdefined(m_body))
 	{
 		m_body delete();
@@ -431,7 +431,7 @@ function function_90c151e6(localclientnum, oldval, newval, bnewent, binitialsnap
 			m_body hidepart(localclientnum, "tag_weapon_right");
 		}
 		m_body gibclientutils::handlegibnotetracks(localclientnum);
-		level.var_3cc6503b[localclientnum][fieldname] = m_body;
+		level.dragon_bodies[localclientnum][fieldname] = m_body;
 	}
 	m_body useanimtree($zm_castle);
 	m_body.origin = self.origin;
@@ -485,8 +485,8 @@ function function_8cce2397(a_ents)
 {
 	self notify(#"hash_7291a140");
 	self endon(#"hash_7291a140");
-	self endon(#"hash_4b8a9b1");
-	self endon(#"hash_4846b79f");
+	self endon("dragon_eating");
+	self endon("dragon_departing");
 	while(true)
 	{
 		self waittillmatch(#"_anim_notify_");
@@ -513,8 +513,8 @@ function function_def5820e(a_ents)
 {
 	self notify(#"hash_7291a140");
 	self endon(#"hash_7291a140");
-	self endon(#"hash_4b8a9b1");
-	self endon(#"hash_4846b79f");
+	self endon("dragon_eating");
+	self endon("dragon_departing");
 	while(true)
 	{
 		self waittillmatch(#"_anim_notify_");
@@ -592,12 +592,12 @@ function function_939ae9de(m_dragon, localclientnum, direction, var_3c6f5c75)
 function function_4ae89880(body, localclientnum, direction)
 {
 	self endon("dragon_idling");
-	self endon(#"hash_4846b79f");
-	self notify(#"hash_4b8a9b1");
+	self endon("dragon_departing");
+	self notify("dragon_eating");
 	self.var_d90397ef = 0;
 	s_closest = array::get_all_closest(self.origin, level.var_f302359b);
 	fieldname = s_closest[0].script_parameters;
-	m_body = level.var_3cc6503b[localclientnum][fieldname];
+	m_body = level.dragon_bodies[localclientnum][fieldname];
 	m_dragon = level.dragon_heads[localclientnum][fieldname];
 	level function_4bdc99a(m_body, m_dragon, localclientnum, direction);
 	if(!isdefined(m_dragon) || !isdefined(m_body))
@@ -654,7 +654,7 @@ function function_aba7532b(localclientnum, body, mini)
 {
 	if(isdefined(self.var_7d382bfa) && self.var_7d382bfa)
 	{
-		self notify(#"hash_4846b79f");
+		self notify("dragon_departing");
 		self.var_7d382bfa = undefined;
 		var_1656bbd4 = level.var_a79e1598[self.targetname];
 		self.var_d90397ef = 0;

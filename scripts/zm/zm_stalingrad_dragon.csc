@@ -197,7 +197,7 @@ function function_d6856592(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(oldval == 0 && newval == 1)
 	{
 		self.notifyonbulletimpact = 1;
-		self thread function_2ce58010(localclientnum);
+		self thread dragon_damage(localclientnum);
 	}
 	else if(oldval == 1 && newval == 0)
 	{
@@ -207,7 +207,7 @@ function function_d6856592(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_2ce58010
+	Name: dragon_damage
 	Namespace: dragon
 	Checksum: 0xCBD9C71C
 	Offset: 0x1300
@@ -215,7 +215,7 @@ function function_d6856592(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked
 */
-function function_2ce58010(n_local_client)
+function dragon_damage(n_local_client)
 {
 	self endon("entityshutdown");
 	level endon(#"hash_a35dee4e");

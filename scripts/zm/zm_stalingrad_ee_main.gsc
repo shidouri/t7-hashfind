@@ -4357,7 +4357,7 @@ function function_e957e3bc()
 	self struct::delete();
 	level function_d6702e87();
 	level thread zm_stalingrad_vo::function_e8e9cba8();
-	level dragon::function_63326db4(0);
+	level dragon::dragon_boss(0);
 }
 
 /*

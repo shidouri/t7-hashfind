@@ -514,6 +514,11 @@ doa_sound,1a381543
 doa_tesla,3f3eaecb
 doa_turret,aa4730ec
 doa_vehicle,2848f8c2
+dragon_bodies,3cc6503b
+dragon_boss,63326db4
+dragon_damage,2ce58010
+dragon_departing,4846b79f
+dragon_eating,4b8a9b1
 dragon_heads,792780c0
 dragon_idling,8c17cec
 dragon_ride,83dd194d

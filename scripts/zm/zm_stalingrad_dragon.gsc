@@ -2682,7 +2682,7 @@ function function_4f5115c6(n_wound)
 }
 
 /*
-	Name: function_63326db4
+	Name: dragon_boss
 	Namespace: dragon
 	Checksum: 0x3F9B06D7
 	Offset: 0x93B0
@@ -2690,7 +2690,7 @@ function function_4f5115c6(n_wound)
 	Parameters: 1
 	Flags: Linked
 */
-function function_63326db4(b_debug = 0)
+function dragon_boss(b_debug = 0)
 {
 	level endon(#"hash_a35dee4e");
 	level flag::set("dragon_boss_start");
@@ -3931,7 +3931,7 @@ function function_ee289cd()
 function function_883bba2(a_ents)
 {
 	dragon_boss_init();
-	level.var_357a65b thread function_2ce58010();
+	level.var_357a65b thread dragon_damage();
 	level thread function_262689b5();
 	function_c0e035d6("boss_arena_spawn");
 }
@@ -4269,7 +4269,7 @@ function function_262689b5()
 }
 
 /*
-	Name: function_2ce58010
+	Name: dragon_damage
 	Namespace: dragon
 	Checksum: 0x2E0172D0
 	Offset: 0xD900
@@ -4277,7 +4277,7 @@ function function_262689b5()
 	Parameters: 0
 	Flags: Linked
 */
-function function_2ce58010()
+function dragon_damage()
 {
 	level endon(#"hash_a35dee4e");
 	while(true)
@@ -5157,7 +5157,7 @@ function function_941c2339()
 		{
 			zm_stalingrad_util::function_4da6e8(0);
 			wait(0.05);
-			level thread function_63326db4(1);
+			level thread dragon_boss(1);
 		}
 	#/
 }
