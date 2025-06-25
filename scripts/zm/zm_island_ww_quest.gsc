@@ -889,11 +889,11 @@ function function_9faff60c()
 		}
 		if(isdefined(level.var_90e478e7) && level.var_90e478e7 && (isdefined(level.var_1deeff56) && level.var_1deeff56))
 		{
-			namespace_1aa6bd0c::function_69f5a9c5(str_control);
+			spider_ee_quest::function_69f5a9c5(str_control);
 		}
 		if(!(isdefined(level.var_90e478e7) && level.var_90e478e7) && (isdefined(level.var_1deeff56) && level.var_1deeff56))
 		{
-			namespace_1aa6bd0c::function_c9e92f7b();
+			spider_ee_quest::function_c9e92f7b();
 		}
 	}
 }
@@ -997,7 +997,7 @@ function function_ebbb27ae()
 		{
 			if(isdefined(ai_zombie.var_f7522faa) && ai_zombie.var_f7522faa)
 			{
-				t_trap thread namespace_1aa6bd0c::function_aa515242(ai_zombie);
+				t_trap thread spider_ee_quest::function_aa515242(ai_zombie);
 			}
 			else
 			{
@@ -1055,7 +1055,7 @@ function function_cc8fe309(ai_spider, var_18130313)
 {
 	if(isdefined(ai_spider.var_41ff1b25) && ai_spider.var_41ff1b25)
 	{
-		level._powerup_timeout_custom_time = &namespace_1aa6bd0c::function_3321a018;
+		level._powerup_timeout_custom_time = &spider_ee_quest::function_3321a018;
 		e_linkto = util::spawn_model("tag_origin", level.var_1a139831.origin, level.var_1a139831.angles);
 		e_linkto linkto(level.var_1a139831);
 		var_93eb638b = zm_powerups::specific_powerup_drop("full_ammo", var_18130313 + (vectorscale((0, 0, -1), 16)));
@@ -1602,7 +1602,7 @@ function function_961485f0()
 			util::wait_network_frame();
 		}
 		level.var_e48a6587 waittill(#"trigger", player);
-		level notify(#"hash_9d1c8527");
+		level notify("cage_end");
 		if(level.var_f353ae68.is_moving)
 		{
 			continue;
@@ -1617,13 +1617,13 @@ function function_961485f0()
 		}
 		if(!level.var_f353ae68.is_down)
 		{
-			function_3cd05ecf("down");
+			cage_mover("down");
 			level thread function_1d3366a8();
 			level thread zm_island_vo::function_3bf2d62a("lower_cage", 0, 0, 1);
 		}
 		else
 		{
-			function_3cd05ecf("up");
+			cage_mover("up");
 			level thread zm_island_vo::function_3bf2d62a("raise_cage", 0, 0, 1);
 		}
 	}
@@ -1640,11 +1640,11 @@ function function_961485f0()
 */
 function function_1d3366a8()
 {
-	level endon(#"hash_9d1c8527");
+	level endon("cage_end");
 	wait(60);
 	if(level.var_f353ae68.is_down && !level.var_f353ae68.is_moving)
 	{
-		function_3cd05ecf("up");
+		cage_mover("up");
 	}
 }
 
@@ -1676,10 +1676,10 @@ function function_871dbb3a()
 			{
 				function_d452a2ca(player);
 				wait(1);
-				function_3cd05ecf("down");
+				cage_mover("down");
 				level thread zm_island_vo::function_3bf2d62a("lower_cage", 0, 0, 1);
 				wait(5);
-				function_3cd05ecf("up");
+				cage_mover("up");
 				level thread zm_island_vo::function_3bf2d62a("raise_cage", 0, 0, 1);
 				player unlink();
 			}
@@ -1772,7 +1772,7 @@ function function_953bec10(str_state)
 }
 
 /*
-	Name: function_3cd05ecf
+	Name: cage_mover
 	Namespace: zm_island_ww_quest
 	Checksum: 0xFC7F169D
 	Offset: 0x60B0
@@ -1780,7 +1780,7 @@ function function_953bec10(str_state)
 	Parameters: 1
 	Flags: Linked
 */
-function function_3cd05ecf(str_direction)
+function cage_mover(str_direction)
 {
 	level thread function_46d3d1b0(1);
 	level.var_f353ae68.is_moving = 1;

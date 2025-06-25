@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_safehouse;
@@ -24,8 +24,8 @@
 */
 function main()
 {
-	namespace_43c49144::main();
-	namespace_94ce943b::main();
+	cp_sh_mobile_fx::main();
+	cp_sh_mobile_sound::main();
 	load::main();
 	level thread set_ambient_state();
 	level thread setup_vignettes();

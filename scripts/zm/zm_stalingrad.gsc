@@ -282,7 +282,7 @@ function main()
 	_zm_weap_cymbal_monkey::init();
 	level._round_start_func = &zm::round_start;
 	level.fn_custom_round_ai_spawn = &function_33aa4940;
-	level.var_c7da0559 = &function_58a468e4;
+	level.var_c7da0559 = &raz_cleanup_check;
 	level.func_custom_sentinel_drone_cleanup_check = &function_b9d3803a;
 	level thread zm_ai_sentinel_drone::function_2f7416e5();
 	level.player_intersection_tracker_override = &dragon::player_intersection_tracker_override;
@@ -1263,7 +1263,7 @@ function function_33aa4940()
 	}
 	if(isdefined(level.a_zombie_respawn_health["raz"]) && level.a_zombie_respawn_health["raz"].size > 0)
 	{
-		if(zm_ai_raz::function_7ed6c714(1) == 1)
+		if(zm_ai_raz::special_raz_spawn(1) == 1)
 		{
 			level.zombie_total--;
 			return true;
@@ -1319,7 +1319,7 @@ function function_33aa4940()
 		n_roll = randomint(100);
 		if(level.round_number < 11 || n_roll < 50)
 		{
-			if(zm_ai_raz::function_ea911683() && level.var_88fe7b16 < level.var_d60a655e && zm_ai_raz::function_7ed6c714(1) == 1)
+			if(zm_ai_raz::can_spawn_raz() && level.var_88fe7b16 < level.var_d60a655e && zm_ai_raz::special_raz_spawn(1) == 1)
 			{
 				level.var_88fe7b16++;
 				level.zombie_total--;
@@ -1339,7 +1339,7 @@ function function_33aa4940()
 }
 
 /*
-	Name: function_58a468e4
+	Name: raz_cleanup_check
 	Namespace: zm_stalingrad
 	Checksum: 0xF4237C87
 	Offset: 0x6AA0
@@ -1347,7 +1347,7 @@ function function_33aa4940()
 	Parameters: 0
 	Flags: Linked
 */
-function function_58a468e4()
+function raz_cleanup_check()
 {
 	if(self.b_ignore_cleanup === 1)
 	{

@@ -849,9 +849,9 @@ function function_432cdad9(a_spawnpoints, var_e41e673a)
 {
 	players = getplayers();
 	var_19764360 = zm_ai_raz::get_favorite_enemy();
-	if(isdefined(level.var_a3559c05))
+	if(isdefined(level.raz_spawn_func))
 	{
-		s_spawn_loc = [[level.var_a3559c05]](level.var_6bca5baa, var_19764360);
+		s_spawn_loc = [[level.raz_spawn_func]](level.a_sp_raz, var_19764360);
 	}
 	else
 	{
@@ -868,7 +868,7 @@ function function_432cdad9(a_spawnpoints, var_e41e673a)
 	{
 		return undefined;
 	}
-	ai = zm_ai_raz::function_665a13cd(level.var_6bca5baa[0]);
+	ai = zm_ai_raz::function_665a13cd(level.a_sp_raz[0]);
 	if(isdefined(ai))
 	{
 		ai forceteleport(s_spawn_loc.origin, s_spawn_loc.angles);

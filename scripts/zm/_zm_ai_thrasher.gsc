@@ -221,7 +221,7 @@ function function_8aac3fe()
 	{
 		level waittill(#"between_round_over");
 		level.var_e51f5b82 = 0;
-		if(isdefined(level.var_3013498) && level.round_number == level.var_3013498)
+		if(isdefined(level.n_next_spider_round) && level.round_number == level.n_next_spider_round)
 		{
 			level.var_ebc4830 = level.var_ebc4830 + 1;
 			continue;
@@ -785,7 +785,7 @@ function function_a716de1f()
 	self.missinglegs = 0;
 	self.b_ignore_cleanup = 1;
 	self thread function_871a3bd5();
-	self thread function_632dead();
+	self thread sndthrasher();
 	if(!isdefined(level.var_35a5aa88))
 	{
 		level.var_35a5aa88 = [];
@@ -908,8 +908,8 @@ function function_a7b4c742(player, gib)
 function function_74b91821(entity)
 {
 	var_6a9eb5b0 = zombie_utility::get_zombie_array();
-	var_e38f15ea = arraysortclosest(var_6a9eb5b0, entity.origin, 5, 50, 96);
-	foreach(zombie in var_e38f15ea)
+	addressable_braces = arraysortclosest(var_6a9eb5b0, entity.origin, 5, 50, 96);
+	foreach(zombie in addressable_braces)
 	{
 		if(!isdefined(zombie) || (isdefined(zombie.knockdown) && zombie.knockdown) || (isdefined(zombie.var_3f6ea790) && zombie.var_3f6ea790) || (isdefined(zombie.missinglegs) && zombie.missinglegs) || (isdefined(zombie.thrasherconsumed) && zombie.thrasherconsumed) || zombie isragdoll())
 		{
@@ -995,10 +995,10 @@ function function_7dfa2cf1(entity, zombie)
 */
 function function_5185e56a(entity)
 {
-	var_650c1f8b = function_74b91821(entity);
-	if(isdefined(var_650c1f8b))
+	addressable_brace = function_74b91821(entity);
+	if(isdefined(addressable_brace))
 	{
-		entity thread function_7dfa2cf1(entity, var_650c1f8b);
+		entity thread function_7dfa2cf1(entity, addressable_brace);
 		return true;
 	}
 	return false;
@@ -1222,7 +1222,7 @@ function function_871a3bd5()
 }
 
 /*
-	Name: function_632dead
+	Name: sndthrasher
 	Namespace: zm_ai_thrasher
 	Checksum: 0xF6ED57DB
 	Offset: 0x3690
@@ -1230,7 +1230,7 @@ function function_871a3bd5()
 	Parameters: 0
 	Flags: Linked
 */
-function function_632dead()
+function sndthrasher()
 {
 	self endon(#"death");
 	self playloopsound("zmb_thrasher_lp_close", 2);

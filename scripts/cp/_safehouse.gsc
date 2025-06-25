@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_decorations;
 #using scripts\cp\_dialog;
 #using scripts\cp\_objectives;
@@ -786,7 +786,7 @@ function console_think()
 }
 
 /*
-	Name: function_df2a7519
+	Name: chair_think
 	Namespace: safehouse
 	Checksum: 0xF9A78DBC
 	Offset: 0x71C0
@@ -794,7 +794,7 @@ function console_think()
 	Parameters: 0
 	Flags: None
 */
-function function_df2a7519()
+function chair_think()
 {
 	// Unsupported VM revision (1B).
 }
@@ -968,7 +968,7 @@ function function_6ca97001()
 }
 
 /*
-	Name: function_46e83736
+	Name: close_locker
 	Namespace: safehouse
 	Checksum: 0x1749DA68
 	Offset: 0x82C0
@@ -976,7 +976,7 @@ function function_6ca97001()
 	Parameters: 1
 	Flags: None
 */
-function function_46e83736()
+function close_locker()
 {
 	// Unsupported VM revision (1B).
 }
@@ -1136,7 +1136,7 @@ function function_ffeaa7c4()
 }
 
 /*
-	Name: function_2049a4ce
+	Name: close_wardrobe
 	Namespace: safehouse
 	Checksum: 0xC2E98D4E
 	Offset: 0x91B8
@@ -1144,7 +1144,7 @@ function function_ffeaa7c4()
 	Parameters: 1
 	Flags: None
 */
-function function_2049a4ce()
+function close_wardrobe()
 {
 	// Unsupported VM revision (1B).
 }

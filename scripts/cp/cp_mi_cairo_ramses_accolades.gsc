@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_accolades;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\util_shared;
@@ -20,7 +20,7 @@ function function_4d39a2af()
 }
 
 /*
-	Name: function_c27610f9
+	Name: accolade_increment
 	Namespace: namespace_38256252
 	Checksum: 0x2B7DA42E
 	Offset: 0x740
@@ -28,7 +28,7 @@ function function_4d39a2af()
 	Parameters: 2
 	Flags: None
 */
-function function_c27610f9()
+function accolade_increment()
 {
 	// Unsupported VM revision (1B).
 }

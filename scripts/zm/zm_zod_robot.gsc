@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\ai\zombie_utility;
@@ -352,7 +352,7 @@ function spawn_robot(player, trig_stub, n_spawn_delay)
 	trig_stub zm_unitrigger::run_visibility_function_for_all_triggers();
 	level.ai_robot.time_expired = 0;
 	level.ai_robot playloopsound("fly_civil_protector_loop");
-	level.var_bfd9ed83 = player;
+	level.companion_leader = player;
 	foreach(player in level.players)
 	{
 		player setperk("specialty_pistoldeath");

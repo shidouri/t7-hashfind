@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_squad_control;
@@ -30,7 +30,7 @@ function main()
 	cp_mi_sing_biodomes_sound::main();
 	load::main();
 	util::waitforclient(0);
-	namespace_8d32191f::function_7403e82b();
+	cp_mi_sing_biodomes_patch_c::function_7403e82b();
 }
 
 /*

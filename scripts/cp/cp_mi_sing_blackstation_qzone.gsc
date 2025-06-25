@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
 #using scripts\cp\_objectives;
@@ -427,7 +427,7 @@ function function_1dc7c14c()
 }
 
 /*
-	Name: function_d4e7d4e4
+	Name: player_invulnerable
 	Namespace: cp_mi_sing_blackstation_qzone
 	Checksum: 0x631501B7
 	Offset: 0x27A0
@@ -435,7 +435,7 @@ function function_1dc7c14c()
 	Parameters: 0
 	Flags: None
 */
-function function_d4e7d4e4()
+function player_invulnerable()
 {
 	// Unsupported VM revision (1B).
 }

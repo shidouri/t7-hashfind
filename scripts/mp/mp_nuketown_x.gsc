@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\mp\_destructible;
 #using scripts\mp\_load;
@@ -46,8 +46,8 @@ function main()
 	clientfield::register("scriptmover", "nuketown_population_tens", 1, 4, "int");
 	clientfield::register("world", "nuketown_endgame", 1, 1, "int");
 	precache();
-	namespace_6044bb60::main();
-	namespace_4cda09f7::main();
+	mp_nuketown_x_fx::main();
+	mp_nuketown_x_sound::main();
 	level.remotemissile_kill_z = -175 + 50;
 	level.team_free_targeting = 1;
 	level.update_escort_robot_path = &update_escort_robot_path;

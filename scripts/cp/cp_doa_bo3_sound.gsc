@@ -1,12 +1,12 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\util_shared;
 
-#namespace namespace_4fca3ee8;
+#namespace cp_doa_bo3_sound;
 
 /*
 	Name: main
-	Namespace: namespace_4fca3ee8
+	Namespace: cp_doa_bo3_sound
 	Checksum: 0x99EC1590
 	Offset: 0xD0
 	Size: 0x4
@@ -17,11 +17,11 @@ function main()
 {
 }
 
-#namespace namespace_1a381543;
+#namespace doa_sound;
 
 /*
 	Name: function_68fdd800
-	Namespace: namespace_1a381543
+	Namespace: doa_sound
 	Checksum: 0x8514A9DF
 	Offset: 0xE0
 	Size: 0x6C
@@ -40,7 +40,7 @@ function function_68fdd800()
 
 /*
 	Name: function_42b6c406
-	Namespace: namespace_1a381543
+	Namespace: doa_sound
 	Checksum: 0x87E393D2
 	Offset: 0x158
 	Size: 0x3C

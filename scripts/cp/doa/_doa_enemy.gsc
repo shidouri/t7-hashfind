@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_arena;
 #using scripts\cp\doa\_doa_dev;
@@ -505,9 +505,9 @@ function function_a1761846(behaviortreeentity)
 			if(behaviortreeentity.team == "axis")
 			{
 				validtargets = arraycombine(getaiteamarray("team3"), namespace_831a4a7c::function_5eb6e4d1(), 0, 0);
-				if(isdefined(level.doa.var_1332e37a) && level.doa.var_1332e37a.size)
+				if(isdefined(level.doa.active_guardians) && level.doa.active_guardians.size)
 				{
-					validtargets = arraycombine(validtargets, level.doa.var_1332e37a, 0, 0);
+					validtargets = arraycombine(validtargets, level.doa.active_guardians, 0, 0);
 				}
 				closest = arraygetclosest(behaviortreeentity.origin, validtargets);
 			}
@@ -1211,7 +1211,7 @@ function function_a4e16560(sp_enemy, s_spawn_loc, force = 0)
 	ai_spawned.maxsightdistsqrd = 512 * 512;
 	ai_spawned.fovcosine = 0.77;
 	ai_spawned.anim_rate = level.doa.var_c061227e;
-	if(isdefined(sp_enemy.var_8d1af144) && sp_enemy.var_8d1af144)
+	if(isdefined(sp_enemy.basic_spawner) && sp_enemy.basic_spawner)
 	{
 		ai_spawned asmsetanimationrate(ai_spawned.anim_rate);
 		ai_spawned.var_96437a17 = 1;

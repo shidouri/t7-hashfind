@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
 #using scripts\cp\_objectives;
@@ -777,7 +777,7 @@ function function_1232fdd1()
 }
 
 /*
-	Name: function_90b59893
+	Name: ambient_grenades
 	Namespace: hangar
 	Checksum: 0x53CBBE8E
 	Offset: 0x4850
@@ -785,7 +785,7 @@ function function_1232fdd1()
 	Parameters: 0
 	Flags: None
 */
-function function_90b59893()
+function ambient_grenades()
 {
 	// Unsupported VM revision (1B).
 }

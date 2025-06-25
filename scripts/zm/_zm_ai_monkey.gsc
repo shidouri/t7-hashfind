@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\archetype_utility;
@@ -3552,7 +3552,7 @@ function monkey_revive_solo_fx()
 function monkey_print(str)
 {
 	/#
-		if(isdefined(level.var_ce37864e) && level.var_ce37864e)
+		if(isdefined(level.debug_monkey) && level.debug_monkey)
 		{
 			iprintln(str + "");
 		}

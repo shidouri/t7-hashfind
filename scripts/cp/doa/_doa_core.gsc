@@ -336,11 +336,11 @@ function function_57863b20()
 		level waittill(#"host_migration_begin");
 		level waittill(#"host_migration_end");
 		namespace_2f63e553::setupdevgui();
-		if(isdefined(level.doa.var_52cccfb6))
+		if(isdefined(level.doa.challenge_room))
 		{
-			if(isdefined(level.doa.var_52cccfb6.host_migration))
+			if(isdefined(level.doa.challenge_room.host_migration))
 			{
-				[[level.doa.var_52cccfb6.host_migration]](level.doa.var_52cccfb6);
+				[[level.doa.challenge_room.host_migration]](level.doa.challenge_room);
 			}
 		}
 	}
@@ -545,7 +545,7 @@ function init()
 	}
 	namespace_64c6b720::init();
 	namespace_eaa992c::init();
-	namespace_1a381543::init();
+	doa_sound::init();
 	namespace_fba031c8::init();
 	doa_pickups::init();
 	namespace_3f3eaecb::init();
@@ -694,7 +694,7 @@ function function_555fb805()
 	level.disableclassselection = 1;
 	level.disable_damage_blur = 1;
 	level.disable_damage_overlay = 1;
-	level.doa.var_ab5c3535 = getweapon("zombietron_launcher_magic_bullet");
+	level.doa.chicken_launcher = getweapon("zombietron_launcher_magic_bullet");
 	level.doa.var_5706a235 = getweapon("zombietron_launcher_1_magic_bullet");
 	level.doa.var_7d091c9e = getweapon("zombietron_launcher_2_magic_bullet");
 	level.doa.var_e6a7c945 = getweapon("zombietron_rpg");
@@ -767,7 +767,7 @@ function function_53bcdb30()
 	level.doa.rules.var_da7e08a6 = 40;
 	level.doa.rules.monkey_fuse_time = 10;
 	level.doa.rules.var_ecfc4359 = 14;
-	level.doa.rules.var_942b8706 = 244;
+	level.doa.rules.clock_radius = 244;
 	level.doa.rules.var_187f2874 = 256;
 	level.doa.rules.var_92fcc00c = level.doa.rules.var_187f2874 * level.doa.rules.var_187f2874;
 	level.doa.var_b351e5fb = 0;

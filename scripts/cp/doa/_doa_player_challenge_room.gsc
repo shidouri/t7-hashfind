@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_arena;
 #using scripts\cp\doa\_doa_chicken_pickup;
@@ -46,7 +46,7 @@ function init()
 function function_471d1403()
 {
 	possible = [];
-	foreach(room in level.doa.var_ec2bff7b)
+	foreach(room in level.doa.bonus_rooms)
 	{
 		if(room.type != 13)
 		{
@@ -193,7 +193,7 @@ function function_15a0c9b5(room)
 	level notify(#"hash_4d952f70");
 	if(isdefined(room.var_6f369ab4) && room.var_57ce7582.size >= room.var_6f369ab4)
 	{
-		arrayremovevalue(level.doa.var_ec2bff7b, room, 0);
+		arrayremovevalue(level.doa.bonus_rooms, room, 0);
 	}
 	level notify(#"hash_3b432f18");
 	foreach(player in getplayers())
@@ -210,7 +210,7 @@ function function_15a0c9b5(room)
 	{
 		settopdowncamerayaw(0);
 	}
-	level.doa.var_52cccfb6 = room;
+	level.doa.challenge_room = room;
 	if(isdefined(room.var_45da785b))
 	{
 		level [[room.var_45da785b]](room);
@@ -240,7 +240,7 @@ function function_15a0c9b5(room)
 	{
 		level clientfield::set("activateBanner", room.banner);
 	}
-	level notify(#"hash_6d346dac");
+	level notify("challenge_running");
 	if(room.timeout > 0)
 	{
 		msg = level util::waittill_any_timeout(room.timeout, "player_challenge_failure", "player_challenge_success", "doa_game_is_over");

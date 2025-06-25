@@ -231,7 +231,7 @@ function function_dc84c8cc()
 				var_7da7c388 = gettime() - var_c17e74e6;
 				if(var_7da7c388 > var_a83e7943)
 				{
-					level notify(#"hash_b1d69866", self);
+					level notify("island_dweller", self);
 				}
 				if(var_7da7c388 > var_320b8666)
 				{

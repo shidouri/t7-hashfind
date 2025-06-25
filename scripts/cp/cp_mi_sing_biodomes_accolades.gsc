@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_accolades;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\spawner_shared;
@@ -20,7 +20,7 @@ function function_4d39a2af()
 }
 
 /*
-	Name: function_ed573577
+	Name: accolades_cleanup
 	Namespace: namespace_769dc23f
 	Checksum: 0x8CD130C1
 	Offset: 0x6A8
@@ -28,7 +28,7 @@ function function_4d39a2af()
 	Parameters: 0
 	Flags: None
 */
-function function_ed573577()
+function accolades_cleanup()
 {
 	// Unsupported VM revision (1B).
 }
@@ -692,7 +692,7 @@ function function_17fe87c5()
 }
 
 /*
-	Name: function_fea6ae9f
+	Name: accolade_reward
 	Namespace: namespace_769dc23f
 	Checksum: 0x27720A3E
 	Offset: 0x1910
@@ -700,7 +700,7 @@ function function_17fe87c5()
 	Parameters: 1
 	Flags: None
 */
-function function_fea6ae9f()
+function accolade_reward()
 {
 	// Unsupported VM revision (1B).
 }

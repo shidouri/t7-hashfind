@@ -84,7 +84,7 @@ function main()
 	callback::on_spawned(&on_player_spawned);
 	level.riotshield_melee_juke_callback = &function_c6930415;
 	level flag::wait_till("all_players_spawned");
-	level thread function_932e3574();
+	level thread audio_recordings();
 	level thread ciphers();
 	level thread function_a59032c3();
 	level thread function_e947749a();
@@ -635,7 +635,7 @@ function function_1b5affd(player)
 }
 
 /*
-	Name: function_932e3574
+	Name: audio_recordings
 	Namespace: zm_zod_ee_side
 	Checksum: 0xBAEF565B
 	Offset: 0x2AD8
@@ -643,7 +643,7 @@ function function_1b5affd(player)
 	Parameters: 0
 	Flags: Linked
 */
-function function_932e3574()
+function audio_recordings()
 {
 	level.var_4a9b0bd3 = 0;
 	a_s_recordings = struct::get_array("audio_recording");
@@ -1656,9 +1656,9 @@ function function_c6930415(a_enemies)
 {
 	foreach(e_enemy in a_enemies)
 	{
-		if(!(isdefined(e_enemy.var_c8b96c1f) && e_enemy.var_c8b96c1f))
+		if(!(isdefined(e_enemy.bowling_pin) && e_enemy.bowling_pin))
 		{
-			e_enemy.var_c8b96c1f = 1;
+			e_enemy.bowling_pin = 1;
 			self.var_c2faf069 = self.var_c2faf069 + 1;
 		}
 	}

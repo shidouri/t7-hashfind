@@ -30,11 +30,11 @@
 #using scripts\shared\vehicles\_quadtank;
 #using scripts\shared\vehicles\_spider;
 
-#namespace namespace_bb5d050c;
+#namespace cp_doa_bo3;
 
 /*
 	Name: setup_rex_starts
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x2E28129
 	Offset: 0xB78
 	Size: 0x1C
@@ -48,7 +48,7 @@ function setup_rex_starts()
 
 /*
 	Name: function_30fd2139
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x62F115D8
 	Offset: 0xBA0
 	Size: 0x4C
@@ -68,7 +68,7 @@ function function_30fd2139()
 
 /*
 	Name: main
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x28026E3F
 	Offset: 0xBF8
 	Size: 0x23C
@@ -92,13 +92,13 @@ function main()
 	level.var_7ed6996d = &init;
 	level.var_fd84aa1f = &function_56600114;
 	level thread namespace_693feb87::main();
-	level thread namespace_e8effba5::main();
-	level thread namespace_4fca3ee8::main();
+	level thread cp_doa_bo3_fx::main();
+	level thread cp_doa_bo3_sound::main();
 }
 
 /*
 	Name: init
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x3C0C3CDF
 	Offset: 0xE40
 	Size: 0x522
@@ -180,7 +180,7 @@ function init()
 
 /*
 	Name: function_dbb56674
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xE5C83BD6
 	Offset: 0x1370
 	Size: 0x72
@@ -206,7 +206,7 @@ function function_dbb56674()
 
 /*
 	Name: function_5ee7262b
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xB36CB384
 	Offset: 0x13F0
 	Size: 0x56
@@ -233,7 +233,7 @@ function function_5ee7262b(def)
 
 /*
 	Name: function_d1c7245c
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x347F17A3
 	Offset: 0x1450
 	Size: 0x18E
@@ -243,7 +243,7 @@ function function_5ee7262b(def)
 function function_d1c7245c()
 {
 	level.doa.guardians = [];
-	level.doa.var_1332e37a = [];
+	level.doa.active_guardians = [];
 	guardian = spawnstruct();
 	guardian.type = 30;
 	guardian.spawner = getent("spawner_zombietron_skeleton", "targetname");
@@ -260,7 +260,7 @@ function function_d1c7245c()
 
 /*
 	Name: function_75772673
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x447350F3
 	Offset: 0x15E8
 	Size: 0x390
@@ -294,7 +294,7 @@ function function_75772673(player)
 	trail = "gem_trail_" + color;
 	self setplayercollision(0);
 	self namespace_51bd792::droptoground(self.origin, trail, "turret_impact", 0, 0);
-	self namespace_1a381543::function_90118d8c("evt_robot_land");
+	self doa_sound::function_90118d8c("evt_robot_land");
 	self namespace_eaa992c::function_285a2999("player_trail_" + color);
 	while(isdefined(player))
 	{
@@ -311,7 +311,7 @@ function function_75772673(player)
 
 /*
 	Name: function_e1cd643e
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xFE5A1155
 	Offset: 0x1980
 	Size: 0xFC
@@ -334,7 +334,7 @@ function function_e1cd643e(projectile, weapon, player)
 
 /*
 	Name: function_8e619e60
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xA4B45D19
 	Offset: 0x1A88
 	Size: 0x120
@@ -359,7 +359,7 @@ function function_8e619e60(player)
 
 /*
 	Name: function_89a2ffc4
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x6954A683
 	Offset: 0x1BB0
 	Size: 0x25C
@@ -387,7 +387,7 @@ function function_89a2ffc4(player)
 		self kill();
 		return;
 	}
-	self namespace_1a381543::function_90118d8c("evt_skel_rise");
+	self doa_sound::function_90118d8c("evt_skel_rise");
 	if(!isdefined(player.doa.guardians))
 	{
 		player.doa.guardians = [];
@@ -403,7 +403,7 @@ function function_89a2ffc4(player)
 
 /*
 	Name: function_f45d4afc
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xC22A792B
 	Offset: 0x1E18
 	Size: 0xCC
@@ -421,13 +421,13 @@ function function_f45d4afc(target)
 	if(isdefined(target))
 	{
 		target dodamage(1100, target.origin, self, self);
-		self namespace_1a381543::function_90118d8c("evt_skel_attack");
+		self doa_sound::function_90118d8c("evt_skel_attack");
 	}
 }
 
 /*
 	Name: function_cd6da677
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x263E7F4C
 	Offset: 0x1EF0
 	Size: 0x84
@@ -452,7 +452,7 @@ function function_cd6da677(owner)
 
 /*
 	Name: function_5633d485
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x6450786
 	Offset: 0x1F80
 	Size: 0xC4
@@ -472,7 +472,7 @@ function function_5633d485()
 
 /*
 	Name: function_cef7f9fd
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xE48330A4
 	Offset: 0x2050
 	Size: 0x264
@@ -489,14 +489,14 @@ function function_cef7f9fd()
 	wait(lifetime);
 	self clientfield::increment("burnZombie");
 	self.ignoreall = 1;
-	self namespace_1a381543::function_90118d8c("gdt_immolation_robot_countdown");
+	self doa_sound::function_90118d8c("gdt_immolation_robot_countdown");
 	var_989e36b3 = 2000 + gettime();
 	while(gettime() < var_989e36b3)
 	{
 		self dodamage(5, self.origin, undefined, undefined, "none", "MOD_RIFLE_BULLET", 0, getweapon("gadget_immolation"), -1, 1);
 		self waittillmatch(#"bhtn_action_terminate");
 	}
-	self namespace_1a381543::function_90118d8c("wpn_incendiary_explode");
+	self doa_sound::function_90118d8c("wpn_incendiary_explode");
 	playfxontag("explosions/fx_ability_exp_immolation", self, "j_spinelower");
 	physicsexplosionsphere(self.origin, 200, 32, 2);
 	util::wait_network_frame();
@@ -510,7 +510,7 @@ function function_cef7f9fd()
 
 /*
 	Name: function_165c9bd0
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x8F53391B
 	Offset: 0x22C0
 	Size: 0x242
@@ -531,7 +531,7 @@ function function_165c9bd0()
 			namespace_831a4a7c::function_82e3b1cb();
 		}
 		level.doa.var_602737ab = undefined;
-		level thread function_1de9db1b("silverback");
+		level thread boss_event("silverback");
 		return true;
 	}
 	if(var_e6171788 == "cave" && level.doa.arena_round_number == 0 || (isdefined(level.doa.var_bae65231) && level.doa.var_bae65231))
@@ -544,22 +544,22 @@ function function_165c9bd0()
 			namespace_831a4a7c::function_82e3b1cb();
 		}
 		level.doa.var_bae65231 = undefined;
-		level thread function_1de9db1b("margwa");
+		level thread boss_event("margwa");
 		return false;
 	}
 	return false;
 }
 
 /*
-	Name: function_1de9db1b
-	Namespace: namespace_bb5d050c
+	Name: boss_event
+	Namespace: cp_doa_bo3
 	Checksum: 0x2E0B43E3
 	Offset: 0x2510
 	Size: 0x186
 	Parameters: 1
 	Flags: Linked
 */
-function function_1de9db1b(name)
+function boss_event(name)
 {
 	switch(name)
 	{
@@ -588,7 +588,7 @@ function function_1de9db1b(name)
 
 /*
 	Name: function_87092704
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xFD2F38F0
 	Offset: 0x26A0
 	Size: 0x472
@@ -669,7 +669,7 @@ function function_87092704(room)
 
 /*
 	Name: arenainit
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x679A7877
 	Offset: 0x2B20
 	Size: 0x78
@@ -690,7 +690,7 @@ function arenainit(arena)
 
 /*
 	Name: function_957373c6
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xB8D66199
 	Offset: 0x2BA0
 	Size: 0xB7E
@@ -898,7 +898,7 @@ function function_957373c6(def)
 
 /*
 	Name: function_7ea6d638
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xF3BEC92
 	Offset: 0x3728
 	Size: 0xF0
@@ -920,7 +920,7 @@ function function_7ea6d638(def)
 
 /*
 	Name: function_45c28296
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x95EE55EB
 	Offset: 0x3820
 	Size: 0x20
@@ -934,7 +934,7 @@ function function_45c28296(def)
 
 /*
 	Name: function_f8fa5dcf
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x28719132
 	Offset: 0x3848
 	Size: 0x20
@@ -948,7 +948,7 @@ function function_f8fa5dcf(def)
 
 /*
 	Name: function_dd708257
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xD18C0989
 	Offset: 0x3870
 	Size: 0x20
@@ -962,7 +962,7 @@ function function_dd708257(def)
 
 /*
 	Name: function_aab05139
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x31060C1A
 	Offset: 0x3898
 	Size: 0x1C
@@ -976,7 +976,7 @@ function function_aab05139()
 
 /*
 	Name: function_ceb822db
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x43C2AF38
 	Offset: 0x38C0
 	Size: 0x10
@@ -990,7 +990,7 @@ function function_ceb822db(var_fed4dbb3)
 
 /*
 	Name: function_9d32f5d
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x3411383E
 	Offset: 0x38D8
 	Size: 0x6A
@@ -1008,7 +1008,7 @@ function function_9d32f5d()
 
 /*
 	Name: function_b8aa2b56
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xB8FD3C3
 	Offset: 0x3950
 	Size: 0x6A
@@ -1026,7 +1026,7 @@ function function_b8aa2b56()
 
 /*
 	Name: function_56600114
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xE164F14D
 	Offset: 0x39C8
 	Size: 0x56
@@ -1049,7 +1049,7 @@ function function_56600114(name)
 
 /*
 	Name: function_2fb9e83f
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x1170786D
 	Offset: 0x3A28
 	Size: 0x184
@@ -1060,7 +1060,7 @@ function function_2fb9e83f()
 {
 	level notify(#"hash_2fb9e83f");
 	level endon(#"hash_2fb9e83f");
-	level endon(#"hash_ec7ca67b");
+	level endon("arena_changed");
 	wait(60);
 	var_2c8bf5cd = math::clamp(level.doa.var_da96f13c + 1, 0, 3);
 	level.doa.var_2c8bf5cd = [];

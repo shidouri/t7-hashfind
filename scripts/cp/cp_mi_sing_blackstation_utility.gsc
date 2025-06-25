@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_hazard;
@@ -234,7 +234,7 @@ function toggle_player_anchor(b_anchor)
 		self.is_anchored = 0;
 		level notify(#"enable_cybercom", self, 1);
 		self util::hide_hint_text();
-		self notify(#"hash_af6705ff");
+		self notify("anchor_away");
 	}
 	else if(b_anchor)
 	{
@@ -267,13 +267,13 @@ function toggle_player_anchor(b_anchor)
 				self openluimenu("AnchorDeployed");
 			}
 			self thread function_a81e2f8f();
-			self thread function_c87bc7e2();
+			self thread anchor_timeout();
 		}
 	}
 }
 
 /*
-	Name: function_c87bc7e2
+	Name: anchor_timeout
 	Namespace: blackstation_utility
 	Checksum: 0xE4AE1060
 	Offset: 0x1930
@@ -281,10 +281,10 @@ function toggle_player_anchor(b_anchor)
 	Parameters: 0
 	Flags: Linked
 */
-function function_c87bc7e2()
+function anchor_timeout()
 {
 	self endon(#"death");
-	self endon(#"hash_af6705ff");
+	self endon("anchor_away");
 	wait(20);
 	if(self.is_anchored)
 	{
@@ -356,7 +356,7 @@ function function_a81e2f8f()
 }
 
 /*
-	Name: function_12398a8b
+	Name: anchor_mechanic
 	Namespace: blackstation_utility
 	Checksum: 0xE168E6BB
 	Offset: 0x1B98
@@ -364,7 +364,7 @@ function function_a81e2f8f()
 	Parameters: 1
 	Flags: Linked
 */
-function function_12398a8b(a_ents)
+function anchor_mechanic(a_ents)
 {
 	self endon(#"death");
 	e_anchor = a_ents["spike"];
@@ -2899,7 +2899,7 @@ function close_launcher_hint()
 }
 
 /*
-	Name: function_76b75dc7
+	Name: current_flow
 	Namespace: blackstation_utility
 	Checksum: 0xDFEF7507
 	Offset: 0x7F98
@@ -2907,7 +2907,7 @@ function close_launcher_hint()
 	Parameters: 3
 	Flags: Linked
 */
-function function_76b75dc7(str_endon, var_cca258db = 12, var_ab7d99d = 200)
+function current_flow(str_endon, var_cca258db = 12, var_ab7d99d = 200)
 {
 	level endon(str_endon);
 	self endon(#"death");

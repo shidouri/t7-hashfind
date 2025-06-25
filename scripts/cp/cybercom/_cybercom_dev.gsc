@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\cybercom\_cybercom_gadget;
 #using scripts\cp\cybercom\_cybercom_tactical_rig;
 #using scripts\cp\cybercom\_cybercom_util;
@@ -74,7 +74,7 @@ function constantjuice()
 	while(true)
 	{
 		wait(1);
-		if(isdefined(self.cybercom.var_ebeecfd5) && self.cybercom.var_ebeecfd5)
+		if(isdefined(self.cybercom.block_juice) && self.cybercom.block_juice)
 		{
 			continue;
 		}

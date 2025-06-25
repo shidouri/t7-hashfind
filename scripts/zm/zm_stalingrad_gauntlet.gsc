@@ -829,7 +829,7 @@ function function_fd19472b()
 		{
 			ai thread function_91191904();
 		}
-		if(zm_ai_sentinel_drone::function_41375d48() < level.var_c2c83bb6.var_d5abe4af && !level flag::get("basement_sentinel_wait"))
+		if(zm_ai_sentinel_drone::get_current_sentinel_count() < level.var_c2c83bb6.var_d5abe4af && !level flag::get("basement_sentinel_wait"))
 		{
 			wait(var_5c17f194);
 			var_4bf80f4b = array::random(level.var_c2c83bb6.var_73844a4a);

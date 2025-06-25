@@ -61,37 +61,37 @@ function init()
 	level.doa.pickups.var_3e3b7a53 = [];
 	level.doa.pickups.items = [];
 	level.doa.var_3cc04c3a = [];
-	level.doa.var_bd919311 = "zombietron_ammobox";
+	level.doa.ammo_model = "zombietron_ammobox";
 	level.doa.turret_model = "veh_t7_turret_sentry_gun_world";
 	level.doa.var_b851a0fc = "zombietron_grenade_turret";
-	level.doa.var_f7277ad6 = "zombietron_boots";
-	level.doa.var_8d63e734 = "zombietron_chicken";
+	level.doa.boots_model = "zombietron_boots";
+	level.doa.chicken_model = "zombietron_chicken";
 	level.doa.var_9505395a = "zombietron_chicken_gold";
 	level.doa.var_a7cfb7eb = "zombietron_chicken_silver";
 	level.doa.var_f6e22ab8 = "zombietron_electric_ball";
-	level.doa.var_f6947407 = "zombietron_barrel";
+	level.doa.barrel_model = "zombietron_barrel";
 	level.doa.extra_life_model = "zombietron_extra_life";
 	level.doa.var_3b704a85 = "veh_t7_drone_hunter_zombietron";
 	level.doa.booster_model = "zombietron_lightning_bolt";
-	level.doa.var_d6256e83 = "zombietron_monkey_bomb";
-	level.doa.var_501f85b4 = "zombietron_nuke";
-	level.doa.var_7f53bb28 = "zombietron_teddy_bear";
-	level.doa.var_27f4032b = "zombietron_wallclock";
-	level.doa.var_90650338 = "zombietron_water_buffalo";
-	level.doa.var_f21ae3af = "zombietron_umbrella";
-	level.doa.var_97bbae9c = "zombietron_sawblade";
-	level.doa.var_304b4b41 = "zombietron_sprinkler";
-	level.doa.var_3481ab4d = "zombietron_magnet";
+	level.doa.monkey_bomb_model = "zombietron_monkey_bomb";
+	level.doa.nuke_model = "zombietron_nuke";
+	level.doa.teddy_bear_model = "zombietron_teddy_bear";
+	level.doa.clock_model = "zombietron_wallclock";
+	level.doa.bull_model = "zombietron_water_buffalo";
+	level.doa.umbrella_model = "zombietron_umbrella";
+	level.doa.sawblade_model = "zombietron_sawblade";
+	level.doa.sprinkler_model = "zombietron_sprinkler";
+	level.doa.magnet_model = "zombietron_magnet";
 	level.doa.var_4aa90d77 = "veh_t7_drone_amws_armored_mp_lite";
-	level.doa.var_43922ff2 = "zombietron_egg";
+	level.doa.egg_model = "zombietron_egg";
 	level.doa.var_468af4f0 = "zombietron_egggold";
 	level.doa.var_d17dd2a6 = "zombietron_eggxl";
 	level.doa.var_e1df04b = "zombietron_siegebot_mini";
 	level.doa.var_4de532b3 = "veh_t7_drone_raps_zombietron";
 	level.doa.tank_model = "veh_t7_mil_tank_tiger_zombietron";
-	level.doa.var_326cdb5e = "zombietron_bones_skeleton";
-	level.doa.var_afa6d081 = "zombietron_heart";
-	level.doa.var_ed2fb7a7 = "zombietron_vortex";
+	level.doa.skeleton_model = "zombietron_bones_skeleton";
+	level.doa.heart_model = "zombietron_heart";
+	level.doa.vortex_model = "zombietron_vortex";
 	level.doa.gloves = "zombietron_boxing_gloves_rt";
 	level.doa.var_1eaa8907 = "zombietron_chicken_fido";
 	level.doa.var_24fe9829 = "c_54i_robot_3";
@@ -125,37 +125,37 @@ function init()
 	function_db1442f2("zombietron_launcher", &function_92d90e55, 0, 1, 2.4, 100, 16, 2);
 	function_db1442f2("zombietron_rpg", &function_92d90e55, 0, 1, 2.4, 100, 16, 3);
 	function_db1442f2("zombietron_flamethrower", &function_92d90e55, 0, 1, 2, 100, 16, 5);
-	function_db1442f2(level.doa.var_bd919311, &function_92d90e55, 0, 1, 2, 100, 2);
-	function_db1442f2(level.doa.var_bd919311, &function_92d90e55, 0, 1, 2, 100, 2);
-	function_db1442f2(level.doa.var_bd919311, &function_92d90e55, 0, 1, 2, 100, 2);
-	function_db1442f2(level.doa.var_8d63e734, &function_92d90e55, 0, 1, 1, 100, 5, undefined, (0, 0, 0));
-	function_db1442f2(level.doa.var_8d63e734, &function_92d90e55, 0, 1, 1, 100, 5, undefined, (0, 0, 0));
+	function_db1442f2(level.doa.ammo_model, &function_92d90e55, 0, 1, 2, 100, 2);
+	function_db1442f2(level.doa.ammo_model, &function_92d90e55, 0, 1, 2, 100, 2);
+	function_db1442f2(level.doa.ammo_model, &function_92d90e55, 0, 1, 2, 100, 2);
+	function_db1442f2(level.doa.chicken_model, &function_92d90e55, 0, 1, 1, 100, 5, undefined, (0, 0, 0));
+	function_db1442f2(level.doa.chicken_model, &function_92d90e55, 0, 1, 1, 100, 5, undefined, (0, 0, 0));
 	function_db1442f2(level.doa.turret_model, &function_92d90e55, 0, 1, 0.75, 100, 3);
-	function_db1442f2(level.doa.var_f6947407, &function_92d90e55, 0, 1, 1, 100, 7);
-	function_db1442f2(level.doa.var_97bbae9c, &function_92d90e55, 0, 1, 2, 100, 19, undefined, (0, 0, 0));
-	function_db1442f2(level.doa.var_f21ae3af, &function_92d90e55, 0, 3, 0.5, 100, 17);
+	function_db1442f2(level.doa.barrel_model, &function_92d90e55, 0, 1, 1, 100, 7);
+	function_db1442f2(level.doa.sawblade_model, &function_92d90e55, 0, 1, 2, 100, 19, undefined, (0, 0, 0));
+	function_db1442f2(level.doa.umbrella_model, &function_92d90e55, 0, 3, 0.5, 100, 17);
 	function_db1442f2(level.doa.firstperson, &function_92d90e55, 0, 3, 3, 100, 35, undefined, vectorscale((0, 0, -1), 70), undefined, &function_5c21c936, &function_76a2dd5c);
 	function_db1442f2(level.doa.firstperson, &function_92d90e55, 0, 4, 3, 100, 35, undefined, vectorscale((0, 0, -1), 70), undefined, &function_5c21c936, &function_76a2dd5c);
 	function_db1442f2(level.doa.var_f6e22ab8, &function_92d90e55, 0, 5, 1.5, 100, 6);
-	function_db1442f2(level.doa.var_f7277ad6, &function_92d90e55, 0, 5, 2, 100, 4);
+	function_db1442f2(level.doa.boots_model, &function_92d90e55, 0, 5, 2, 100, 4);
 	function_db1442f2(level.doa.booster_model, &function_92d90e55, 0, 5, 1.5, 100, 10);
 	function_db1442f2(level.doa.booster_model, &function_92d90e55, 0, 5, 1.5, 100, 10);
 	function_db1442f2(level.doa.var_4de532b3, &function_92d90e55, 0, 5, 1, 50, 25);
-	function_db1442f2(level.doa.var_501f85b4, &function_92d90e55, 0, 5, 0.8, 100, 12);
-	function_db1442f2(level.doa.var_501f85b4, &function_92d90e55, 0, 5, 0.8, 100, 12);
-	function_db1442f2(level.doa.var_304b4b41, &function_92d90e55, 0, 9, 5.5, 100, 20);
-	function_db1442f2(level.doa.var_d6256e83, &function_92d90e55, 0, 9, 1, 100, 11);
-	function_db1442f2(level.doa.var_3481ab4d, &function_92d90e55, 0, 9, 3, 100, 21);
-	function_db1442f2(level.doa.var_7f53bb28, &function_92d90e55, 0, 9, 1.6, 25, 13);
+	function_db1442f2(level.doa.nuke_model, &function_92d90e55, 0, 5, 0.8, 100, 12);
+	function_db1442f2(level.doa.nuke_model, &function_92d90e55, 0, 5, 0.8, 100, 12);
+	function_db1442f2(level.doa.sprinkler_model, &function_92d90e55, 0, 9, 5.5, 100, 20);
+	function_db1442f2(level.doa.monkey_bomb_model, &function_92d90e55, 0, 9, 1, 100, 11);
+	function_db1442f2(level.doa.magnet_model, &function_92d90e55, 0, 9, 3, 100, 21);
+	function_db1442f2(level.doa.teddy_bear_model, &function_92d90e55, 0, 9, 1.6, 25, 13);
 	function_db1442f2(level.doa.tank_model, &function_92d90e55, 0, 10, 1, 100, 33);
 	function_db1442f2(level.doa.gloves, &function_92d90e55, 0, 10, 1, 100, 34);
-	function_db1442f2(level.doa.var_43922ff2, &function_92d90e55, 0, 13, 1, 25, 23);
-	function_db1442f2(level.doa.var_27f4032b, &function_92d90e55, 0, 13, 1, 100, 14);
+	function_db1442f2(level.doa.egg_model, &function_92d90e55, 0, 13, 1, 25, 23);
+	function_db1442f2(level.doa.clock_model, &function_92d90e55, 0, 13, 1, 100, 14);
 	function_db1442f2(level.doa.var_b851a0fc, &function_92d90e55, 0, 17, 1, 100, 18);
-	function_db1442f2(level.doa.var_326cdb5e, &function_92d90e55, 0, 17, 1.4, 50, 30, undefined, vectorscale((1, 0, 0), 20), undefined, &function_d0397bc7);
+	function_db1442f2(level.doa.skeleton_model, &function_92d90e55, 0, 17, 1.4, 50, 30, undefined, vectorscale((1, 0, 0), 20), undefined, &function_d0397bc7);
 	function_db1442f2(level.doa.var_4aa90d77, &function_92d90e55, 0, 21, 1, 100, 22);
-	function_db1442f2(level.doa.var_ed2fb7a7, &function_92d90e55, 0, 22, 0.5, 100, 29);
-	function_db1442f2(level.doa.var_afa6d081, &function_92d90e55, 0, 23, 1, 100, 26);
+	function_db1442f2(level.doa.vortex_model, &function_92d90e55, 0, 22, 0.5, 100, 29);
+	function_db1442f2(level.doa.heart_model, &function_92d90e55, 0, 23, 1, 100, 26);
 	function_db1442f2(level.doa.coat_of_arms, &function_92d90e55, 0, 24, 3, 25, 37, undefined, vectorscale((0, 0, 1), 75));
 	function_db1442f2(level.doa.var_e1df04b, &function_92d90e55, 0, 25, 0.7, 25, 24);
 	function_db1442f2(level.doa.var_24fe9829, &function_92d90e55, 0, 26, 1, 50, 31, undefined, vectorscale((1, 0, 0), 20), undefined, &function_d0397bc7);
@@ -295,7 +295,7 @@ function function_9fc58738(var_742d8fb5, origin, launch = 0, ondeath = 0, var_b0
 	pickup.trigger linkto(pickup);
 	pickup.score = pickup.def.data;
 	pickup.def.count++;
-	pickup thread namespace_1a381543::function_90118d8c("zmb_spawn_pickup_money");
+	pickup thread doa_sound::function_90118d8c("zmb_spawn_pickup_money");
 	if(level.doa.arena_round_number == 3)
 	{
 		pickup setnosunshadow();
@@ -526,7 +526,7 @@ function function_92d90e55(var_742d8fb5, location, timeout = 1, rotate = 1, angl
 	{
 		pickup setnosunshadow();
 	}
-	pickup thread namespace_1a381543::function_90118d8c("zmb_pickup_spawn");
+	pickup thread doa_sound::function_90118d8c("zmb_pickup_spawn");
 	if(isdefined(pickup.type) && pickup.type == 26)
 	{
 		pickup playloopsound("zmb_heart_lp", 2);
@@ -1552,7 +1552,7 @@ function function_967df2b6(var_1db3e61a)
 			{
 				return 0;
 			}
-			if(isdefined(player.doa.var_bfb9be95))
+			if(isdefined(player.doa.boxing_gloves))
 			{
 				return 0;
 			}
@@ -1646,7 +1646,7 @@ function function_d526f0bb()
 					}
 					player.doa.skulls++;
 					player.doa.var_fda5a6e5++;
-					self thread namespace_1a381543::function_90118d8c("zmb_pickup_nurgle");
+					self thread doa_sound::function_90118d8c("zmb_pickup_nurgle");
 					player namespace_831a4a7c::function_71dab8e8(self.var_25ffdef1);
 					self function_6b4a5f81(player);
 					break;
@@ -1664,7 +1664,7 @@ function function_d526f0bb()
 						player.doa.gems++;
 						player.doa.var_6946711f++;
 					}
-					self thread namespace_1a381543::function_90118d8c("zmb_pickup_money");
+					self thread doa_sound::function_90118d8c("zmb_pickup_money");
 					player thread namespace_64c6b720::function_850bb47e((isdefined(self.var_5d2140f2) ? self.var_5d2140f2 : level.doa.rules.var_a9114441));
 					player thread namespace_64c6b720::function_80eb303(self.score);
 					self function_6b4a5f81(player);
@@ -1672,7 +1672,7 @@ function function_d526f0bb()
 				}
 				case 16:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_weapon");
+					player thread doa_sound::function_90118d8c("zmb_pickup_weapon");
 					player namespace_831a4a7c::function_d5f89a15(self.def.gdtname, 1);
 					player.special_weapon = getweapon(self.def.gdtname);
 					/#
@@ -1682,14 +1682,14 @@ function function_d526f0bb()
 				}
 				case 10:
 				{
-					self thread namespace_1a381543::function_90118d8c("zmb_pickup_powerup");
+					self thread doa_sound::function_90118d8c("zmb_pickup_powerup");
 					player thread namespace_831a4a7c::function_f3748dcb();
 					self function_6b4a5f81(player);
 					break;
 				}
 				case 12:
 				{
-					self thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					self thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					player thread namespace_831a4a7c::function_ba145a39();
 					self function_6b4a5f81(player);
 					break;
@@ -1727,9 +1727,9 @@ function function_d526f0bb()
 					{
 						player thread namespace_831a4a7c::function_6a52a347();
 					}
-					self thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					self thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					self function_6b4a5f81(player);
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_life");
+					player thread doa_sound::function_90118d8c("zmb_pickup_life");
 					break;
 				}
 				case 4:
@@ -1741,7 +1741,7 @@ function function_d526f0bb()
 				{
 					player.doa.var_c2b9d7d0 = gettime() + (int(player doa_utility::function_1ded48e6(level.doa.rules.var_c05a9a3f) * 1000));
 					player namespace_831a4a7c::function_71dab8e8((int(getdvarint("scr_doa_weapon_increment_range", 1024) / getdvarint("scr_doa_weapon_increment", 64))) - 1);
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_ammo");
+					player thread doa_sound::function_90118d8c("zmb_pickup_ammo");
 					player thread function_322262ea();
 					break;
 				}
@@ -1749,7 +1749,7 @@ function function_d526f0bb()
 				{
 					player.chickens++;
 					player.doa.var_d92a8d3e++;
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_chicken");
+					player thread doa_sound::function_90118d8c("zmb_pickup_chicken");
 					player namespace_5e6c5d1f::function_d35a405a();
 					break;
 				}
@@ -1760,135 +1760,135 @@ function function_d526f0bb()
 				}
 				case 29:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_vortex");
+					player thread doa_sound::function_90118d8c("zmb_pickup_vortex");
 					level thread namespace_4f1562f7::function_d171e15a(player, self.origin);
 					break;
 				}
 				case 17:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_umbrella");
+					player thread doa_sound::function_90118d8c("zmb_pickup_umbrella");
 					self thread function_68c8220(player);
 					break;
 				}
 				case 7:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					player thread namespace_6df66aa5::barrelupdate();
 					break;
 				}
 				case 13:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					player thread namespace_6df66aa5::function_affe0c28();
 					break;
 				}
 				case 3:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_aa4730ec::function_eabe8c0(player);
 					break;
 				}
 				case 18:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_aa4730ec::function_eabe8c0(player, 1);
 					break;
 				}
 				case 6:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					player thread namespace_3f3eaecb::tesla_blockers_update();
 					break;
 				}
 				case 21:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					player thread namespace_6df66aa5::function_2016b381();
 					break;
 				}
 				case 28:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level notify(#"hash_bbc7bdf9", player);
 					break;
 				}
 				case 19:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					player thread namespace_6df66aa5::sawbladeupdate();
 					break;
 				}
 				case 20:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_aa4730ec::function_3ce8bf1c(player, self.origin);
 					break;
 				}
 				case 22:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_aa4730ec::function_62c5a5a(player, self.origin + vectorscale((0, 0, 1), 20));
 					break;
 				}
 				case 14:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_4f1562f7::timeshifterupdate(player, self.origin);
 					break;
 				}
 				case 24:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_2848f8c2::function_21af9396(player, self.origin + vectorscale((0, 0, 1), 20));
 					break;
 				}
 				case 38:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_2848f8c2::function_2ef99744(player, self.origin + vectorscale((0, 0, 1), 20));
 					break;
 				}
 				case 9:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_2848f8c2::function_f27a22c8(player, self.origin + vectorscale((0, 0, 1), 50));
 					break;
 				}
 				case 25:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_2848f8c2::function_1e663abe(player, self.origin + vectorscale((0, 0, 1), 20));
 					break;
 				}
 				case 33:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_2848f8c2::function_e9f445ce(player, self.origin + vectorscale((0, 0, 1), 20));
 					break;
 				}
 				case 34:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					player thread namespace_6df66aa5::boxingpickupupdate();
 					break;
 				}
 				case 30:
 				case 31:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread function_411355c0(self.type, player, player.origin);
 					break;
 				}
 				case 26:
 				{
 					self stoploopsound();
-					player thread namespace_1a381543::function_90118d8c("zmb_heart_pickup");
+					player thread doa_sound::function_90118d8c("zmb_heart_pickup");
 					level thread function_fce74a5f(self);
 					break;
 				}
 				case 35:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread function_8bf960cf(player);
 					break;
 				}
@@ -1901,7 +1901,7 @@ function function_d526f0bb()
 				}
 				case 37:
 				{
-					player thread namespace_1a381543::function_90118d8c("zmb_pickup_generic");
+					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
 					level thread namespace_4f1562f7::function_ca06d008(player, self.origin);
 					break;
 				}
@@ -2802,7 +2802,7 @@ function function_411355c0(type, player, origin)
 		ai notify(#"hash_6dcbb83e");
 		ai notify(#"hash_67a97d62");
 		ai thread [[var_f3cefb9b.initfunction]](player);
-		level.doa.var_1332e37a[level.doa.var_1332e37a.size] = ai;
+		level.doa.active_guardians[level.doa.active_guardians.size] = ai;
 	}
 }
 
@@ -2818,11 +2818,11 @@ function function_411355c0(type, player, origin)
 function function_9908c4ec()
 {
 	self waittill(#"death");
-	if(!isdefined(level.doa.var_1332e37a))
+	if(!isdefined(level.doa.active_guardians))
 	{
-		level.doa.var_1332e37a = [];
+		level.doa.active_guardians = [];
 	}
-	level.doa.var_1332e37a = array::remove_undefined(level.doa.var_1332e37a);
+	level.doa.active_guardians = array::remove_undefined(level.doa.active_guardians);
 }
 
 /*

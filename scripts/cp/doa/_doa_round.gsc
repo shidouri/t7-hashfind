@@ -33,7 +33,7 @@
 function private function_542758d0()
 {
 	level.doa.var_f5e35752 = [];
-	level.doa.var_5a609640 = [];
+	level.doa.challenge_rounds = [];
 	challenges = struct::get_array("doa_challenge_def");
 	for(i = 0; i < challenges.size; i++)
 	{
@@ -69,7 +69,7 @@ function private function_542758d0()
 		{
 			var_72085a07.var_83bae1f8 = level.doa.rules.var_466591b1;
 		}
-		level.doa.var_5a609640[level.doa.var_5a609640.size] = var_72085a07;
+		level.doa.challenge_rounds[level.doa.challenge_rounds.size] = var_72085a07;
 	}
 }
 
@@ -84,11 +84,11 @@ function private function_542758d0()
 */
 function function_8c6e89b4(round)
 {
-	for(i = 0; i < level.doa.var_5a609640.size; i++)
+	for(i = 0; i < level.doa.challenge_rounds.size; i++)
 	{
-		if(level.doa.var_5a609640[i].round == round)
+		if(level.doa.challenge_rounds[i].round == round)
 		{
-			return level.doa.var_5a609640[i];
+			return level.doa.challenge_rounds[i];
 		}
 	}
 }
@@ -156,7 +156,7 @@ function function_691ef36b()
 		}
 		if(int(spawners[i].script_noteworthy) <= level.doa.round_number)
 		{
-			spawners[i].var_8d1af144 = 1;
+			spawners[i].basic_spawner = 1;
 			level.doa.var_c838db72[level.doa.var_c838db72.size] = spawners[i];
 		}
 	}
@@ -537,7 +537,7 @@ function function_21a582ff(current_wave, endnote)
 			if(isdefined(ai))
 			{
 				current_wave.var_3f7b0d81--;
-				ai.var_d3c93fe9 = 1;
+				ai.challenge_enemy = 1;
 				var_48be25f5 = undefined;
 			}
 		}

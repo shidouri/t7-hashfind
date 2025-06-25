@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\audio_shared;
@@ -142,12 +142,12 @@ function function_64b44f6b(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_8020f50b = playfxontag(localclientnum, level._effect["fist_glow"], self, "J_Wrist_RI");
 			self.var_9c121695 = playfxontag(localclientnum, level._effect["fist_glow"], self, "J_Wrist_LE");
 		}
-		if(!isdefined(self.var_3a8912f4))
+		if(!isdefined(self.sndfist))
 		{
-			self.var_3a8912f4 = spawn(0, self.origin, "script_origin");
-			self.var_3a8912f4 linkto(self);
-			self.var_3a8912f4 playloopsound("zmb_squest_punchtime_fist_loop", 1);
-			self thread snddeletesndent(self.var_3a8912f4);
+			self.sndfist = spawn(0, self.origin, "script_origin");
+			self.sndfist linkto(self);
+			self.sndfist playloopsound("zmb_squest_punchtime_fist_loop", 1);
+			self thread snddeletesndent(self.sndfist);
 		}
 	}
 	else
@@ -303,17 +303,17 @@ function function_b628a101(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		if(!isdefined(self.var_e6c8ca8e))
+		if(!isdefined(self.beacon_portal))
 		{
-			self.var_e6c8ca8e = 1;
+			self.beacon_portal = 1;
 			self thread function_4e9276ed(localclientnum);
 			self.m_reward = util::spawn_model(localclientnum, level.w_beacon.worldmodel, (-141, 4464, -322) + (8, 35, 20), self.angles);
 			self.m_reward thread function_17bc361f(localclientnum);
 		}
 	}
-	else if(isdefined(self.var_e6c8ca8e))
+	else if(isdefined(self.beacon_portal))
 	{
-		self.var_e6c8ca8e = 0;
+		self.beacon_portal = 0;
 		self notify(#"hash_7066982d");
 		self.m_reward delete();
 	}

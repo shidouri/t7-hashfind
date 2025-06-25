@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
@@ -684,9 +684,9 @@ function function_10dcd1d5(kiosk_name)
 	level.beast_kiosks = struct::get_array(kiosk_name, "targetname");
 	foreach(kiosk in level.beast_kiosks)
 	{
-		kiosk.var_80eeb471 = (kiosk_name + "_plr_") + kiosk.origin;
+		kiosk.player_label = (kiosk_name + "_plr_") + kiosk.origin;
 		kiosk.var_39a60f4a = (kiosk_name + "_crs_") + kiosk.origin;
-		clientfield::register("world", kiosk.var_80eeb471, 1, 4, "int");
+		clientfield::register("world", kiosk.player_label, 1, 4, "int");
 		kiosk thread _kiosk_cooldown();
 	}
 }
@@ -708,7 +708,7 @@ function update_kiosk_effects()
 		n_ent_num = self getentitynumber();
 		foreach(kiosk in level.beast_kiosks)
 		{
-			n_players_allowed = level clientfield::get(kiosk.var_80eeb471);
+			n_players_allowed = level clientfield::get(kiosk.player_label);
 			if(kiosk_allowed(kiosk))
 			{
 				n_players_allowed = n_players_allowed | (1 << n_ent_num);
@@ -717,7 +717,7 @@ function update_kiosk_effects()
 			{
 				n_players_allowed = n_players_allowed & (~(1 << n_ent_num));
 			}
-			level clientfield::set(kiosk.var_80eeb471, n_players_allowed);
+			level clientfield::set(kiosk.player_label, n_players_allowed);
 		}
 		wait(randomfloatrange(0.2, 0.5));
 	}

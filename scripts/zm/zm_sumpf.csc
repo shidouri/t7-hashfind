@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\util_shared;
@@ -225,9 +225,9 @@ function function_938d448f()
 		self waittill(#"trigger", who);
 		if(who isplayer())
 		{
-			if(!(isdefined(who.var_b115a3e6) && who.var_b115a3e6))
+			if(!(isdefined(who.sndwading) && who.sndwading))
 			{
-				who.var_b115a3e6 = 1;
+				who.sndwading = 1;
 				who thread function_387efde5(self);
 			}
 		}
@@ -256,6 +256,6 @@ function function_387efde5(trigger)
 		}
 		wait(randomfloatrange(0.5, 1));
 	}
-	self.var_b115a3e6 = 0;
+	self.sndwading = 0;
 }
 

@@ -476,8 +476,8 @@ function function_8b413656(var_d2eebe84, e_ent)
 			self thread function_503a50a8();
 		}
 	}
-	var_b45ec125 = array(0.5, 0.3, 0.2, 0.15, 0.1, 0.5);
-	foreach(num in var_b45ec125)
+	sndarray = array(0.5, 0.3, 0.2, 0.15, 0.1, 0.5);
+	foreach(num in sndarray)
 	{
 		if(var_d2eebe84 != 0 && var_d2eebe84 <= num)
 		{
@@ -486,11 +486,11 @@ function function_8b413656(var_d2eebe84, e_ent)
 				self playsound("vox_plyr_uw_gasp");
 				if(num < 0.4)
 				{
-					self thread function_fda01c41("vox_plyr_uw_emerge_gasp");
+					self thread sndemerge("vox_plyr_uw_emerge_gasp");
 				}
 				else
 				{
-					self thread function_fda01c41("vox_plyr_uw_emerge");
+					self thread sndemerge("vox_plyr_uw_emerge");
 				}
 				break;
 			}
@@ -500,7 +500,7 @@ function function_8b413656(var_d2eebe84, e_ent)
 }
 
 /*
-	Name: function_fda01c41
+	Name: sndemerge
 	Namespace: hazard
 	Checksum: 0x15C159CC
 	Offset: 0x1340
@@ -508,10 +508,10 @@ function function_8b413656(var_d2eebe84, e_ent)
 	Parameters: 1
 	Flags: Linked
 */
-function function_fda01c41(alias)
+function sndemerge(alias)
 {
-	self notify(#"hash_fda01c41");
-	self endon(#"hash_fda01c41");
+	self notify("sndemerge");
+	self endon("sndemerge");
 	self endon(#"death");
 	self endon(#"disconnect");
 	level endon(#"save_restore");

@@ -279,7 +279,7 @@ function function_a91b6cca()
 		foreach(beacon in struct::get_array("round_beacon", "script_noteworthy"))
 		{
 			e_trig = getent(beacon.targetname, "target");
-			beacon.prompt = safehouse::init_interactive_prompt(e_trig, &"cp_safehouse_training_nextround", &"CP_SH_CAIRO_TRAINING_START_ROUND", &function_daea15a5, 0);
+			beacon.prompt = safehouse::init_interactive_prompt(e_trig, &"cp_safehouse_training_nextround", &"CP_SH_CAIRO_TRAINING_START_ROUND", &beacon_use, 0);
 			beacon.prompt safehouse::function_e04cba0f();
 			beacon.prompt.beacon = beacon;
 		}
@@ -287,7 +287,7 @@ function function_a91b6cca()
 }
 
 /*
-	Name: function_daea15a5
+	Name: beacon_use
 	Namespace: namespace_c550ee23
 	Checksum: 0x99884F8B
 	Offset: 0x18D0
@@ -295,7 +295,7 @@ function function_a91b6cca()
 	Parameters: 1
 	Flags: Linked
 */
-function function_daea15a5(e_player)
+function beacon_use(e_player)
 {
 	self.beacon notify(#"trigger", e_player);
 }
@@ -445,23 +445,23 @@ function teleport_player(var_cc1de81f)
 */
 function function_17f2cd2f()
 {
-	if(self.var_d6d35c88 == level.ratings.size)
+	if(self.current_rating == level.ratings.size)
 	{
 		return;
 	}
-	if(level.ratings[self.var_d6d35c88].var_92142c80 <= self.var_d1b47d51)
+	if(level.ratings[self.current_rating].var_92142c80 <= self.var_d1b47d51)
 	{
-		if(!(isdefined(self getdstat("trainingSimStats", "ranksAchieved", self.var_d6d35c88)) && self getdstat("trainingSimStats", "ranksAchieved", self.var_d6d35c88)))
+		if(!(isdefined(self getdstat("trainingSimStats", "ranksAchieved", self.current_rating)) && self getdstat("trainingSimStats", "ranksAchieved", self.current_rating)))
 		{
-			self setdstat("trainingSimStats", "ranksAchieved", self.var_d6d35c88, 1);
-			self setdstat("PlayerStatsByMap", "cp_sh_cairo", "completedDifficulties", self.var_d6d35c88, 1);
-			self giveunlocktoken(level.ratings[self.var_d6d35c88].tokensawarded);
-			self addplayerstat("career_tokens", level.ratings[self.var_d6d35c88].tokensawarded);
-			self addrankxpvalue("completed_training_sim_rating", level.ratings[self.var_d6d35c88].var_9f813737);
+			self setdstat("trainingSimStats", "ranksAchieved", self.current_rating, 1);
+			self setdstat("PlayerStatsByMap", "cp_sh_cairo", "completedDifficulties", self.current_rating, 1);
+			self giveunlocktoken(level.ratings[self.current_rating].tokensawarded);
+			self addplayerstat("career_tokens", level.ratings[self.current_rating].tokensawarded);
+			self addrankxpvalue("completed_training_sim_rating", level.ratings[self.current_rating].var_9f813737);
 			self addplayerstat("CAREER_TRAINING_SIM", 1);
 		}
-		self.var_d6d35c88++;
-		self setluimenudata(self.var_43693cde, "currentRating", self.var_d6d35c88);
+		self.current_rating++;
+		self setluimenudata(self.var_43693cde, "currentRating", self.current_rating);
 	}
 }
 
@@ -683,7 +683,7 @@ function function_b5b532e8()
 {
 	var_762314d8 = function_d2614e32();
 	e_trig = getent(var_762314d8.targetname, "target");
-	var_762314d8.prompt = safehouse::init_interactive_prompt(e_trig, &"cp_safehouse_training_start", &"CP_SH_CAIRO_TRAINING_START_ROUND", &function_daea15a5, 0);
+	var_762314d8.prompt = safehouse::init_interactive_prompt(e_trig, &"cp_safehouse_training_start", &"CP_SH_CAIRO_TRAINING_START_ROUND", &beacon_use, 0);
 	var_762314d8.prompt safehouse::function_e04cba0f();
 	var_762314d8.prompt.beacon = var_762314d8;
 	objectives::show("cp_safehouse_training_start", self);
@@ -730,13 +730,13 @@ function function_cce02c2e()
 	function_b5b532e8();
 	self.var_43693cde = self openluimenu("TrainingSim");
 	self setdstat("trainingSimStats", "ranksAchieved", 0, 1);
-	self.var_d6d35c88 = self function_635d5e9d();
+	self.current_rating = self function_635d5e9d();
 	self.var_38da1d8e++;
 	self setluimenudata(self.var_43693cde, "training_sim_time_bonus", "");
 	self setluimenudata(self.var_43693cde, "round_num", "1");
 	self setluimenudata(self.var_43693cde, "score", "0");
 	self setluimenudata(self.var_43693cde, "roundStartTime", gettime());
-	self setluimenudata(self.var_43693cde, "currentRating", self.var_d6d35c88);
+	self setluimenudata(self.var_43693cde, "currentRating", self.current_rating);
 	var_38184ced = 2;
 	while(isdefined(level.var_a6bed3c2[self.var_38da1d8e]))
 	{
@@ -1858,9 +1858,9 @@ function function_3206b93a()
 	{
 		self givedecoration("cp_medal_training_sim");
 	}
-	if(isdefined(self.var_d6d35c88))
+	if(isdefined(self.current_rating))
 	{
-		if(self.var_d6d35c88 == level.ratings.size)
+		if(self.current_rating == level.ratings.size)
 		{
 			self achievements::give_achievement("CP_TRAINING_GOLD");
 		}
@@ -1984,7 +1984,7 @@ function end_round()
 			level array::run_all(array::remove_dead(self.var_4c79ddb8), &kill);
 		}
 		wait(5);
-		self.s_beacon.prompt function_daea15a5(self);
+		self.s_beacon.prompt beacon_use(self);
 	#/
 }
 

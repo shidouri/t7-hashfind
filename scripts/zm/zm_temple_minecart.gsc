@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\exploder_shared;
@@ -81,11 +81,11 @@ function function_807ee0b0()
 	{
 		self.cage linkto(self);
 	}
-	self.var_cd74abf8 = getent(self.targetname + "_cage_door", "targetname");
-	if(isdefined(self.var_cd74abf8))
+	self.cage_door = getent(self.targetname + "_cage_door", "targetname");
+	if(isdefined(self.cage_door))
 	{
-		self.var_cd74abf8 linkto(self);
-		self.var_cd74abf8 notsolid();
+		self.cage_door linkto(self);
+		self.cage_door notsolid();
 	}
 	self.door = getent(self.targetname + "_door", "targetname");
 	if(isdefined(self.door))
@@ -154,7 +154,7 @@ function blocker_think(minecart)
 	{
 		if(self function_742e2b0d(minecart))
 		{
-			self thread function_78442d5();
+			self thread blocker_break();
 			break;
 		}
 		wait(0.05);
@@ -199,7 +199,7 @@ function function_1306489b()
 }
 
 /*
-	Name: function_78442d5
+	Name: blocker_break
 	Namespace: zm_temple_minecart
 	Checksum: 0x153B5B05
 	Offset: 0xF28
@@ -207,7 +207,7 @@ function function_1306489b()
 	Parameters: 0
 	Flags: Linked
 */
-function function_78442d5()
+function blocker_break()
 {
 	level thread scene::play("p7_fxanim_zm_sha_minecart_gate_bundle");
 	exploder::exploder("fxexp_400");
@@ -247,9 +247,9 @@ function function_46d092ff()
 {
 	wait(0.5);
 	players = getplayers();
-	if(isdefined(self.var_cd74abf8))
+	if(isdefined(self.cage_door))
 	{
-		self.var_cd74abf8 solid();
+		self.cage_door solid();
 	}
 	for(i = 0; i < self.linkents.size; i++)
 	{
@@ -780,9 +780,9 @@ function function_f8358462()
 		{
 			self.minecart.cage solid();
 		}
-		if(isdefined(self.minecart.var_cd74abf8))
+		if(isdefined(self.minecart.cage_door))
 		{
-			self.minecart.var_cd74abf8 notsolid();
+			self.minecart.cage_door notsolid();
 		}
 		if(isdefined(self.minecart.front))
 		{

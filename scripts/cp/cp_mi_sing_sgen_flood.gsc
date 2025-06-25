@@ -255,7 +255,7 @@ function main()
 	level thread handle_fallback();
 	level thread handle_fallback_runners_cleanup();
 	level thread hendricks_movement();
-	level thread function_28b80c6f();
+	level thread ceiling_collapses();
 	level util::clientnotify("escp");
 	scene::add_scene_func("cin_sgen_20_02_twinrevenge_1st_elevator", &function_4234be51, "done");
 	level thread scene::play("cin_sgen_20_02_twinrevenge_1st_elevator");
@@ -1116,7 +1116,7 @@ function defend_logic(b_starting)
 	level thread catwalk_zone_anti_camper_measures();
 	level flag::wait_till("hendricks_defend_started");
 	spawn_manager::enable("flood_combat_reinforcements_human");
-	level thread namespace_d40478f6::function_72ef07c3();
+	level thread sgen_sound::function_72ef07c3();
 	level.ai_hendricks ai::set_ignoreall(1);
 	level thread surgical_room_entrance_close_resistance();
 	wait(18);
@@ -1162,7 +1162,7 @@ function function_3ed2d232()
 function function_d0378b1a(e_player)
 {
 	level notify(#"floor_door_open");
-	level thread namespace_d40478f6::function_973b77f9();
+	level thread sgen_sound::function_973b77f9();
 	self gameobjects::disable_object();
 	objectives::complete("cp_level_sgen_use_door");
 	if(isdefined(level.bzm_sgendialogue8_2callback))
@@ -1176,7 +1176,7 @@ function function_d0378b1a(e_player)
 	wait(0.05);
 	if(!isdefined(level.var_5580212f))
 	{
-		level notify(#"hash_f8576d57");
+		level notify("apartments_extend");
 		play_water_teleport_fx();
 	}
 	level notify(#"stop_flood_sounds");
@@ -1198,7 +1198,7 @@ function function_d0378b1a(e_player)
 */
 function function_7ade3b88(a_ents)
 {
-	level endon(#"hash_f8576d57");
+	level endon("apartments_extend");
 	wait(1.5);
 	play_water_teleport_fx();
 }
@@ -1246,7 +1246,7 @@ function stop_water_teleport_fx(a_ents)
 }
 
 /*
-	Name: function_28b80c6f
+	Name: ceiling_collapses
 	Namespace: cp_mi_sing_sgen_flood
 	Checksum: 0x1E4130A3
 	Offset: 0x5530
@@ -1254,7 +1254,7 @@ function stop_water_teleport_fx(a_ents)
 	Parameters: 0
 	Flags: Linked
 */
-function function_28b80c6f()
+function ceiling_collapses()
 {
 	trigger::wait_till("trig_hallway_ceiling_collapse_01");
 	level clientfield::set("ceiling_collapse", 1);

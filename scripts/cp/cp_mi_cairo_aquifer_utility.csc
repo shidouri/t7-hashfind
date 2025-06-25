@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\shared\array_shared;
@@ -868,11 +868,11 @@ function function_791c5d3e(localclientnum, oldval, newval, bnewent, binitialsnap
 	indices = [];
 	for(i = 3; i >= 0; i--)
 	{
-		var_8e34c2ec = pow(2, i);
-		if(newval >= var_8e34c2ec)
+		bit_value = pow(2, i);
+		if(newval >= bit_value)
 		{
 			indices[indices.size] = i + 1;
-			newval = newval - var_8e34c2ec;
+			newval = newval - bit_value;
 		}
 	}
 	var_dda84f1a = getentarray(localclientnum, "landing_zone", "targetname");
@@ -1373,15 +1373,15 @@ function function_21e63f39(localclientnum)
 */
 function function_458ed430()
 {
-	var_50e4abf2 = [];
-	var_50e4abf2[var_50e4abf2.size] = "tag_fx_cockpit_1";
-	var_50e4abf2[var_50e4abf2.size] = "tag_fx_cockpit_2";
-	var_50e4abf2[var_50e4abf2.size] = "tag_fx_cockpit_3";
-	var_50e4abf2[var_50e4abf2.size] = "tag_fx_cockpit_4";
-	var_50e4abf2[var_50e4abf2.size] = "tag_fx_cockpit_5";
-	var_50e4abf2[var_50e4abf2.size] = "tag_fx_cockpit_6";
-	var_50e4abf2[var_50e4abf2.size] = "tag_fx_cockpit_7";
-	return array::randomize(var_50e4abf2);
+	damage_tags = [];
+	damage_tags[damage_tags.size] = "tag_fx_cockpit_1";
+	damage_tags[damage_tags.size] = "tag_fx_cockpit_2";
+	damage_tags[damage_tags.size] = "tag_fx_cockpit_3";
+	damage_tags[damage_tags.size] = "tag_fx_cockpit_4";
+	damage_tags[damage_tags.size] = "tag_fx_cockpit_5";
+	damage_tags[damage_tags.size] = "tag_fx_cockpit_6";
+	damage_tags[damage_tags.size] = "tag_fx_cockpit_7";
+	return array::randomize(damage_tags);
 }
 
 /*
@@ -1405,7 +1405,7 @@ function function_63bf76ee(localclientnum)
 	{
 		var_614619a5[i] = [];
 	}
-	var_50e4abf2 = function_458ed430();
+	damage_tags = function_458ed430();
 	var_59fc256 = [];
 	var_59fc256[var_59fc256.size] = 3;
 	var_59fc256[var_59fc256.size] = 3;
@@ -1426,7 +1426,7 @@ function function_63bf76ee(localclientnum)
 				}
 				damage_state = [];
 			}
-			var_50e4abf2 = function_458ed430();
+			damage_tags = function_458ed430();
 		}
 		else
 		{
@@ -1438,7 +1438,7 @@ function function_63bf76ee(localclientnum)
 			}
 			for(i = 0; i < var_59fc256[index]; i++)
 			{
-				var_614619a5[index][var_614619a5[index].size] = playfxontag(localclientnum, damage_fx, self.vehicle, array::pop(var_50e4abf2));
+				var_614619a5[index][var_614619a5[index].size] = playfxontag(localclientnum, damage_fx, self.vehicle, array::pop(damage_tags));
 			}
 		}
 	}

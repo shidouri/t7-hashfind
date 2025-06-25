@@ -373,7 +373,7 @@ class class_d7100ae3
 	}
 
 	/*
-		Name: function_719601e4
+		Name: activation_switch
 		Namespace: namespace_d7100ae3
 		Checksum: 0xE06F50EB
 		Offset: 0x4518
@@ -381,7 +381,7 @@ class class_d7100ae3
 		Parameters: 0
 		Flags: Linked
 	*/
-	function function_719601e4()
+	function activation_switch()
 	{
 		m_mdl_switch zm_castle_util::create_unitrigger();
 		while(true)
@@ -442,13 +442,13 @@ class class_d7100ae3
 			{
 				zm_castle_ee_side::function_779bfe1e();
 				var_1ed02f45 playsound("evt_clock_comp");
-				function_614407e2();
+				advance_hands();
 			}
 		}
 	}
 
 	/*
-		Name: function_614407e2
+		Name: advance_hands
 		Namespace: namespace_d7100ae3
 		Checksum: 0x3B3523D
 		Offset: 0x42D0
@@ -456,7 +456,7 @@ class class_d7100ae3
 		Parameters: 0
 		Flags: Linked
 	*/
-	function function_614407e2()
+	function advance_hands()
 	{
 		var_246b41b3++;
 		if(var_246b41b3 == 60)
@@ -530,12 +530,12 @@ class class_d7100ae3
 	*/
 	function start()
 	{
-		self thread function_719601e4();
+		self thread activation_switch();
 		while(true)
 		{
 			if(m_b_active)
 			{
-				function_614407e2();
+				advance_hands();
 			}
 			if(!m_b_active)
 			{
@@ -1166,8 +1166,8 @@ function function_769b2ff()
 	level.var_23825200 = [];
 	for(i = 0; i < 3; i++)
 	{
-		var_95164560 = struct::get(("ee_claw_" + i) + "_start");
-		level.var_23825200[i] = util::spawn_model("c_t6_zom_mech_claw", var_95164560.origin, var_95164560.angles);
+		s_mechz_claw = struct::get(("ee_claw_" + i) + "_start");
+		level.var_23825200[i] = util::spawn_model("c_t6_zom_mech_claw", s_mechz_claw.origin, s_mechz_claw.angles);
 		level.var_23825200[i] flag::init("mechz_claw_revealed");
 		level.var_23825200[i] setcandamage(1);
 		level.var_23825200[i] thread function_e249cd7(i);
@@ -1958,15 +1958,15 @@ function function_b7365949(trig_stub, player)
 	{
 		if(isdefined(player) && isalive(player))
 		{
-			player thread function_45b9eba4();
+			player thread award_plunger();
 		}
 	}
-	callback::on_spawned(&function_45b9eba4);
+	callback::on_spawned(&award_plunger);
 	trig_stub zm_unitrigger::run_visibility_function_for_all_triggers();
 }
 
 /*
-	Name: function_45b9eba4
+	Name: award_plunger
 	Namespace: zm_castle_ee_side
 	Checksum: 0xE1993545
 	Offset: 0x5908
@@ -1974,7 +1974,7 @@ function function_b7365949(trig_stub, player)
 	Parameters: 0
 	Flags: Linked
 */
-function function_45b9eba4()
+function award_plunger()
 {
 	self.widows_wine_knife_override = &function_9ce92341;
 	self zm_melee_weapon::award_melee_weapon("knife_plunger");
@@ -2035,7 +2035,7 @@ function function_9daec9e3()
 }
 
 /*
-	Name: function_c7bb86e5
+	Name: charge_plunger
 	Namespace: zm_castle_ee_side
 	Checksum: 0x51532645
 	Offset: 0x5A60
@@ -2043,7 +2043,7 @@ function function_9daec9e3()
 	Parameters: 1
 	Flags: Linked
 */
-function function_c7bb86e5(attacker)
+function charge_plunger(attacker)
 {
 	if(!isdefined(attacker.var_ea5424ae))
 	{
@@ -2378,7 +2378,7 @@ function function_ce8b131c(n_val)
 		players = level.activeplayers;
 		foreach(player in players)
 		{
-			player thread function_45b9eba4();
+			player thread award_plunger();
 		}
 	#/
 }
@@ -2482,7 +2482,7 @@ function function_d40e8eab(n_val)
 		players = level.activeplayers;
 		foreach(player in players)
 		{
-			level thread function_c7bb86e5(player);
+			level thread charge_plunger(player);
 		}
 	#/
 }

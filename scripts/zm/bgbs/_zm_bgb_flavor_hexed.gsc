@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -61,9 +61,9 @@ function event()
 	self endon(#"bled_out");
 	self.var_c3a5a8 = [];
 	var_2cf032a6 = self.bgb_pack;
-	foreach(str_bgb, var_410edbc8 in level.bgb)
+	foreach(str_bgb, s_bgb in level.bgb)
 	{
-		if(var_410edbc8.consumable == 1)
+		if(s_bgb.consumable == 1)
 		{
 			if(!isinarray(var_2cf032a6, str_bgb) && str_bgb != "zm_bgb_flavor_hexed")
 			{

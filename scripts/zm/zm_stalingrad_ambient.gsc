@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -121,8 +121,8 @@ function function_8c898920()
 		}
 		do
 		{
-			var_165e92cc = array::random(level.activeplayers);
-			str_zone = var_165e92cc zm_zonemgr::get_player_zone();
+			player_random = array::random(level.activeplayers);
+			str_zone = player_random zm_zonemgr::get_player_zone();
 			if(isdefined(str_zone))
 			{
 				var_32db8f92 = strtok(str_zone, "_");

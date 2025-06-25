@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -54,7 +54,7 @@ function skipto_temple_init(str_objective, b_starting)
 		vengeance_util::init_hero("hendricks", str_objective);
 		level thread vengeance_util::function_cc6f3598();
 		level thread vengeance_util::function_3f34106b();
-		level thread namespace_9fd035::function_dad71f51();
+		level thread vengeance_sound::function_dad71f51();
 		load::function_a2995f22();
 		objectives::set("cp_level_vengeance_rescue_kane");
 		objectives::set("cp_level_vengeance_go_to_safehouse");
@@ -550,14 +550,14 @@ function function_578145a3()
 	if(isdefined(var_1044cded) && var_1044cded)
 	{
 		ally_volume = getent("temple_ally_gv_0" + i, "targetname");
-		var_a2d2b3b = getent("temple_axis_gv_0" + i, "targetname");
-		var_fcf2483c = getent("temple_axis_cleanup_volume_0" + i, "targetname");
-		level thread function_620fbb8a(var_17994622, var_fcf2483c);
+		axis_volume = getent("temple_axis_gv_0" + i, "targetname");
+		cleanup_volume = getent("temple_axis_cleanup_volume_0" + i, "targetname");
+		level thread function_620fbb8a(var_17994622, cleanup_volume);
 	}
 	else
 	{
 		ally_volume = getent("temple_ally_gv_01", "targetname");
-		var_a2d2b3b = getent("temple_axis_gv_01", "targetname");
+		axis_volume = getent("temple_axis_gv_01", "targetname");
 	}
 	foreach(guy in var_17994622)
 	{
@@ -565,7 +565,7 @@ function function_578145a3()
 		{
 			guy clearforcedgoal();
 			guy cleargoalvolume();
-			guy setgoal(var_a2d2b3b);
+			guy setgoal(axis_volume);
 		}
 	}
 	if(isdefined(var_1044cded) && var_1044cded)
@@ -579,7 +579,7 @@ function function_578145a3()
 	level.ai_hendricks cleargoalvolume();
 	level.ai_hendricks setgoal(ally_volume);
 	ally_volume = getent("temple_ally_gv_02", "targetname");
-	var_a2d2b3b = getent("temple_axis_gv_02", "targetname");
+	axis_volume = getent("temple_axis_gv_02", "targetname");
 	while(true)
 	{
 		if(isdefined(var_1044cded) && var_1044cded && i >= 2)
@@ -595,7 +595,7 @@ function function_578145a3()
 				{
 					guy clearforcedgoal();
 					guy cleargoalvolume();
-					guy setgoal(var_a2d2b3b);
+					guy setgoal(axis_volume);
 				}
 			}
 			level.ai_hendricks clearforcedgoal();
@@ -606,7 +606,7 @@ function function_578145a3()
 		wait(0.1);
 	}
 	ally_volume = getent("temple_ally_gv_03", "targetname");
-	var_a2d2b3b = getent("temple_axis_gv_03", "targetname");
+	axis_volume = getent("temple_axis_gv_03", "targetname");
 	while(true)
 	{
 		if(isdefined(var_1044cded) && var_1044cded && i >= 3)
@@ -622,7 +622,7 @@ function function_578145a3()
 				{
 					guy clearforcedgoal();
 					guy cleargoalvolume();
-					guy setgoal(var_a2d2b3b);
+					guy setgoal(axis_volume);
 				}
 			}
 			level.ai_hendricks clearforcedgoal();
@@ -633,7 +633,7 @@ function function_578145a3()
 		wait(0.1);
 	}
 	ally_volume = getent("temple_ally_gv_04", "targetname");
-	var_a2d2b3b = getent("temple_axis_gv_04", "targetname");
+	axis_volume = getent("temple_axis_gv_04", "targetname");
 	while(true)
 	{
 		guys_left = getaiteamarray("axis");
@@ -645,7 +645,7 @@ function function_578145a3()
 				{
 					guy clearforcedgoal();
 					guy cleargoalvolume();
-					guy setgoal(var_a2d2b3b);
+					guy setgoal(axis_volume);
 				}
 			}
 			level.ai_hendricks clearforcedgoal();
@@ -933,7 +933,7 @@ function function_e4612dd6()
 	line = array::random(var_eb6e35ef);
 	vengeance_util::function_ee75acde(line);
 	vengeance_util::function_ee75acde("hend_if_we_can_clear_the_0", 4);
-	level thread namespace_9fd035::function_14592f48();
+	level thread vengeance_sound::function_14592f48();
 	level.ai_hendricks battlechatter::function_d9f49fba(1);
 }
 

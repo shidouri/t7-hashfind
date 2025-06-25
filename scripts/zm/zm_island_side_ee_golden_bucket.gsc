@@ -399,7 +399,7 @@ function function_738acad6()
 	level endon(#"hash_247c3608");
 	level endon(#"hash_4d1841e4");
 	wait(600);
-	level thread function_72c0a344();
+	level thread cleanup_plants();
 }
 
 /*
@@ -426,7 +426,7 @@ function function_f0d8de1d()
 			n_counter = n_counter - 1;
 			if(n_counter == 0)
 			{
-				level thread function_72c0a344();
+				level thread cleanup_plants();
 				level notify(#"hash_62e8dbc1");
 			}
 			wait(1);
@@ -436,7 +436,7 @@ function function_f0d8de1d()
 }
 
 /*
-	Name: function_72c0a344
+	Name: cleanup_plants
 	Namespace: namespace_d9f30fb4
 	Checksum: 0xB928972C
 	Offset: 0x1860
@@ -444,7 +444,7 @@ function function_f0d8de1d()
 	Parameters: 0
 	Flags: Linked
 */
-function function_72c0a344()
+function cleanup_plants()
 {
 	a_s_planters = struct::get_array("planting_spot_golden_bucket_challenge", "targetname");
 	foreach(s_planter in a_s_planters)
@@ -580,7 +580,7 @@ function function_c1f64636(b_completed)
 			{
 				self.s_plant.s_attackable zm_attackables::do_damage(self.s_plant.s_attackable.health);
 			}
-			if(self.var_75c7a97e == 0)
+			if(self.b_seed_planted == 0)
 			{
 				self notify(#"hash_7a0cef7b");
 				break;

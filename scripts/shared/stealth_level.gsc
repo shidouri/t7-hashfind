@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai_shared;
 #using scripts\shared\ai_sniper_shared;
@@ -321,7 +321,7 @@ function update_arrays()
 	}
 	alertcount = 0;
 	level.combatcount = 0;
-	level.stealth.var_e7ad9c1f = 0;
+	level.stealth.player_combatants = 0;
 	foreach(ai in ailist)
 	{
 		if(isdefined(ai.ignoreme) && ai.ignoreme)
@@ -367,7 +367,7 @@ function update_arrays()
 							combatant stealth_player::function_b9393d6c("combat");
 							if(!combatant.stealth.incombat)
 							{
-								level.stealth.var_e7ad9c1f++;
+								level.stealth.player_combatants++;
 							}
 							combatant.stealth.incombat = 1;
 						}
@@ -419,14 +419,14 @@ function function_a3cf57bf()
 	while(true)
 	{
 		level flag::wait_till("stealth_combat");
-		if(level.stealth.var_e7ad9c1f == 0)
+		if(level.stealth.player_combatants == 0)
 		{
 			wait(0.05);
 			continue;
 		}
-		level.stealth.var_30d9fcc6 = 1;
+		level.stealth.combat_timing = 1;
 		wait(grace_period);
-		level.stealth.var_30d9fcc6 = 0;
+		level.stealth.combat_timing = 0;
 		if(flag::get("stealth_combat"))
 		{
 			level flag::set("stealth_discovered");
@@ -459,8 +459,8 @@ function function_f8b0594a()
 		level flag::wait_till("stealth_alert");
 		level flag::wait_till_clear("stealth_alert");
 		wait(randomfloatrange(1.5, 3));
-		var_c6d0ac06 = isdefined(level.stealth) && (isdefined(level.stealth.var_30d9fcc6) && level.stealth.var_30d9fcc6);
-		while(isdefined(level.stealth) && (isdefined(level.stealth.var_30d9fcc6) && level.stealth.var_30d9fcc6))
+		var_c6d0ac06 = isdefined(level.stealth) && (isdefined(level.stealth.combat_timing) && level.stealth.combat_timing);
+		while(isdefined(level.stealth) && (isdefined(level.stealth.combat_timing) && level.stealth.combat_timing))
 		{
 			wait(0.05);
 		}

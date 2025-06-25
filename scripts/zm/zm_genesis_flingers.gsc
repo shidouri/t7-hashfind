@@ -533,7 +533,7 @@ function function_3298b25f(var_a89f74ed)
 	self endon(#"death");
 	self.var_3298b25f = 0;
 	var_a7d28374 = 0;
-	var_a05a47c7 = var_a89f74ed function_fbd80603();
+	var_a05a47c7 = var_a89f74ed achievement_none();
 	var_16f5c370 = var_a05a47c7.origin;
 	while(positionwouldtelefrag(var_16f5c370))
 	{
@@ -541,7 +541,7 @@ function function_3298b25f(var_a89f74ed)
 		var_a7d28374++;
 		if(var_a7d28374 > 4)
 		{
-			var_a05a47c7 = var_a89f74ed function_fbd80603(1);
+			var_a05a47c7 = var_a89f74ed achievement_none(1);
 			var_16f5c370 = var_a05a47c7.origin;
 		}
 		else
@@ -563,7 +563,7 @@ function function_3298b25f(var_a89f74ed)
 }
 
 /*
-	Name: function_fbd80603
+	Name: achievement_none
 	Namespace: zm_genesis_flingers
 	Checksum: 0xF39B2E93
 	Offset: 0x2300
@@ -571,7 +571,7 @@ function function_3298b25f(var_a89f74ed)
 	Parameters: 1
 	Flags: Linked
 */
-function function_fbd80603(b_random = 0)
+function achievement_none(b_random = 0)
 {
 	var_2b58409e = struct::get(self.script_noteworthy, "targetname");
 	/#

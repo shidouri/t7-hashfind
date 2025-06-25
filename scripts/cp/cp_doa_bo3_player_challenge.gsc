@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\cp_doa_bo3_enemy;
@@ -136,8 +136,8 @@ function function_31c377e(room)
 			count = 0;
 		}
 	}
-	var_2b8e59af = getentarray(room.name + "_barrier_trigger", "targetname");
-	foreach(trigger in var_2b8e59af)
+	barricades_triggers = getentarray(room.name + "_barrier_trigger", "targetname");
+	foreach(trigger in barricades_triggers)
 	{
 		trigger thread triggernotify();
 	}
@@ -427,7 +427,7 @@ function function_b6c25c3c(spot)
 		startpoints = struct::get_array("tankmaze_player_spawnpoint");
 		spot = startpoints[self.entnum];
 	}
-	self.room = level.doa.var_52cccfb6;
+	self.room = level.doa.challenge_room;
 	tank = getent("doa_tankmaze_spawner", "targetname") spawner::spawn(1);
 	self setorigin(spot.origin);
 	tank setmodel("veh_t7_mil_tank_tiger_zombietron_" + namespace_831a4a7c::function_ee495f41(self.entnum));
@@ -995,7 +995,7 @@ function function_14e75d7a(spot)
 	self.doa.var_4b3052ec = 0;
 	level clientfield::set("set_ui_gprDOA" + self.entnum, 0);
 	level clientfield::set("set_ui_gpr2DOA" + self.entnum, 0);
-	self.doa.bombs = level.doa.var_52cccfb6.var_2f400c3b;
+	self.doa.bombs = level.doa.challenge_room.var_2f400c3b;
 	self.doa.boosters = self.doa.var_37efabf7;
 	self freezecontrols(!level flag::get("doa_challenge_running"));
 	wait(0.05);
@@ -1052,7 +1052,7 @@ function function_ba487e2a(room)
 	{
 		player thread function_14e75d7a();
 	}
-	level thread namespace_1a381543::function_68fdd800();
+	level thread doa_sound::function_68fdd800();
 	level thread function_10aa3e48(room);
 	level flag::set("doa_challenge_ready");
 }
@@ -1805,7 +1805,7 @@ function function_76dd5557(room)
 		if(isdefined(self.var_a2d7b04a))
 		{
 			self.var_a2d7b04a thread function_db9097e4(room);
-			self thread namespace_1a381543::function_90118d8c("zmb_eggbowl_goal");
+			self thread doa_sound::function_90118d8c("zmb_eggbowl_goal");
 			level thread function_8f4c809d(room, self.var_a2d7b04a);
 			arrayremovevalue(room.var_677f63c8, self);
 			wait(5);

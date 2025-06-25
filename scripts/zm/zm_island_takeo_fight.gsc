@@ -970,7 +970,7 @@ function function_4ea8a87a()
 		a_spawners = [];
 		var_89f44116 = level.zombie_spawners;
 		var_64cc2fa5 = level.var_feebf312;
-		var_6469b451 = level.var_c38a4fee;
+		var_6469b451 = level.spider_spawners;
 		var_62813733 = 0;
 		a_spawners = array(var_64cc2fa5[0], var_6469b451[0], var_89f44116[0]);
 		self function_2e25785c();
@@ -1064,7 +1064,7 @@ function function_4ea8a87a()
 							{
 								self.var_bc88fb8b++;
 								ai_attacker.favoriteenemy = zm_ai_spiders::get_favorite_enemy();
-								self.a_s_spawnpts[i] thread zm_ai_spiders::function_49e57a3b(ai_attacker, self.a_s_spawnpts[i]);
+								self.a_s_spawnpts[i] thread zm_ai_spiders::spider_spawn_fx(ai_attacker, self.a_s_spawnpts[i]);
 								break;
 							}
 						}

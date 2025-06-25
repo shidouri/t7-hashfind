@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\doa\_doa_dev;
@@ -327,7 +327,7 @@ function tesla_play_death_fx(arc_num)
 		self thread namespace_eaa992c::function_285a2999("tesla_shock_eyes");
 	}
 	self thread namespace_eaa992c::function_285a2999("tesla_shock");
-	self thread namespace_1a381543::function_90118d8c("zmb_pwup_coco_impact");
+	self thread doa_sound::function_90118d8c("zmb_pwup_coco_impact");
 	if(isdefined(self.tesla_head_gib_func))
 	{
 		[[self.tesla_head_gib_func]]();
@@ -373,7 +373,7 @@ function tesla_play_arc_fx(target)
 	fxorg.targetname = "tesla_trail";
 	fxorg setmodel("tag_origin");
 	fxorg thread namespace_eaa992c::function_285a2999("tesla_trail");
-	fxorg thread namespace_1a381543::function_90118d8c("zmb_pwup_coco_bounce");
+	fxorg thread doa_sound::function_90118d8c("zmb_pwup_coco_bounce");
 	fxorg moveto(target_origin, timemove);
 	fxorg util::waittill_any_timeout(timemove + 1, "movedone");
 	fxorg delete();
@@ -491,7 +491,7 @@ function tesla_blockers_timeout(org, note)
 	wait(self doa_utility::function_1ded48e6(level.doa.rules.var_37d05402));
 	org stopsounds();
 	org stoploopsound(0.5);
-	self thread namespace_1a381543::function_90118d8c("zmb_pwup_coco_end");
+	self thread doa_sound::function_90118d8c("zmb_pwup_coco_end");
 	self notify(note);
 }
 

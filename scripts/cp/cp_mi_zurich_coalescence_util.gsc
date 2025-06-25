@@ -143,24 +143,24 @@ function on_player_spawned()
 		{
 			case "zurich":
 			{
-				self function_b0f0dd1f(1, "regular_snow");
+				self player_weather(1, "regular_snow");
 				break;
 			}
 			case "street":
 			{
-				self function_b0f0dd1f(1, "regular_snow");
+				self player_weather(1, "regular_snow");
 				self thread util::player_frost_breath(1);
 				break;
 			}
 			case "rails":
 			{
-				self function_b0f0dd1f(1, "regular_snow");
+				self player_weather(1, "regular_snow");
 				self thread util::player_frost_breath(1);
 				break;
 			}
 			case "plaza_battle":
 			{
-				self function_b0f0dd1f(1, "regular_snow");
+				self player_weather(1, "regular_snow");
 				self thread util::player_frost_breath(1);
 				level thread function_df1fc23b(0);
 				break;
@@ -183,13 +183,13 @@ function on_player_spawned()
 			}
 			case "clearing_start":
 			{
-				self function_b0f0dd1f(1, "light_snow");
+				self player_weather(1, "light_snow");
 				self thread util::player_frost_breath(1);
 				break;
 			}
 			case "clearing_waterfall":
 			{
-				self function_b0f0dd1f(1, "light_snow");
+				self player_weather(1, "light_snow");
 				self thread function_39af75ef("clearing_path_selected");
 				self thread util::player_frost_breath(1);
 				break;
@@ -197,14 +197,14 @@ function on_player_spawned()
 			case "clearing_path_choice":
 			{
 				self function_11b424e5();
-				self function_b0f0dd1f(1, "light_snow");
+				self player_weather(1, "light_snow");
 				self thread util::player_frost_breath(1);
 				break;
 			}
 			case "clearing_end":
 			{
 				self function_11b424e5();
-				self function_b0f0dd1f(1, "light_snow");
+				self player_weather(1, "light_snow");
 				self thread util::player_frost_breath(1);
 				break;
 			}
@@ -228,7 +228,7 @@ function on_player_spawned()
 			}
 			case "root_zurich_start":
 			{
-				self function_b0f0dd1f(1, "regular_snow");
+				self player_weather(1, "regular_snow");
 				self thread util::player_frost_breath(1);
 				break;
 			}
@@ -239,7 +239,7 @@ function on_player_spawned()
 			}
 			case "frozen_forest":
 			{
-				self function_b0f0dd1f(1, "red_rain");
+				self player_weather(1, "red_rain");
 				break;
 			}
 			case "server_interior":
@@ -2172,7 +2172,7 @@ function function_dd842585(str_objective, var_ed1d0e16, str_trig)
 		if(isplayer(who) && (!(isdefined(who.teleporting) && who.teleporting)))
 		{
 			who thread function_c51939f4(str_objective, var_ed1d0e16);
-			who function_b0f0dd1f(0);
+			who player_weather(0);
 		}
 		wait(0.25);
 	}
@@ -2222,7 +2222,7 @@ function function_a03f30f2(str_objective, var_ed1d0e16, str_trig)
 	trigger::wait_till(str_trig);
 	level flag::set(var_ed1d0e16);
 	level notify(str_objective + "_done");
-	level function_b0f0dd1f(0);
+	level player_weather(0);
 }
 
 /*
@@ -2494,9 +2494,9 @@ function function_d0103e8d(var_95fca89b = 395, var_62320a5b = 0.7)
 				var_10b4a7a6 = a_enemies[i] geteye();
 				var_b8f6e26f = player util::is_player_looking_at(var_10b4a7a6, var_62320a5b, 1, player);
 				in_range = distancesquared(self.origin, a_enemies[i].origin) >= (var_95fca89b * var_95fca89b);
-				var_7792c65f = sighttracepassed(self geteye(), var_10b4a7a6, 0, a_enemies[i]);
+				can_trace = sighttracepassed(self geteye(), var_10b4a7a6, 0, a_enemies[i]);
 				var_39e0fee4 = isalive(a_enemies[i]) && a_enemies[i].allowdeath !== 0 && a_enemies[i].magic_bullet_shield !== 1 && a_enemies[i].ignoreme == 0;
-				if(var_b8f6e26f && var_7792c65f && var_39e0fee4 && in_range && a_enemies[i] function_50c2e8b0())
+				if(var_b8f6e26f && can_trace && var_39e0fee4 && in_range && a_enemies[i] function_50c2e8b0())
 				{
 					self thread function_fc91db35(a_enemies[i]);
 					break;
@@ -2836,9 +2836,9 @@ function function_2153e0ef(s_start = self, s_next, n_multiplier, var_bd62ea22 = 
 function function_f9afa212(str_key, str_val = "targetname", var_d646fb81)
 {
 	var_33b370d9 = getspawnerarray(str_key, str_val);
-	foreach(n_index, var_907b6d46 in var_33b370d9)
+	foreach(n_index, sp_camera in var_33b370d9)
 	{
-		var_d697d6e2[n_index] = spawner::simple_spawn_single(var_907b6d46, &function_12141c31);
+		var_d697d6e2[n_index] = spawner::simple_spawn_single(sp_camera, &function_12141c31);
 	}
 	return var_d697d6e2;
 }
@@ -3051,11 +3051,11 @@ function function_a569867c(nd_point = self, spawn_func, i = 0, param1, param2, p
 	/#
 		assert(isdefined(nd_point.script_noteworthy), ((("" + nd_point.origin) + "") + self.targetname) + "");
 	#/
-	var_2a999a2c = getent(nd_point.script_noteworthy, "targetname");
+	sp_spawn = getent(nd_point.script_noteworthy, "targetname");
 	/#
-		assert(isdefined(var_2a999a2c), "" + nd_point.script_noteworthy);
+		assert(isdefined(sp_spawn), "" + nd_point.script_noteworthy);
 	#/
-	self.a_ai[i] = spawner::simple_spawn_single(var_2a999a2c);
+	self.a_ai[i] = spawner::simple_spawn_single(sp_spawn);
 	if(!isalive(self.a_ai[i]))
 	{
 		return;
@@ -3331,7 +3331,7 @@ function function_17fdda66()
 }
 
 /*
-	Name: function_b0f0dd1f
+	Name: player_weather
 	Namespace: zurich_util
 	Checksum: 0x2526ADA0
 	Offset: 0xA350
@@ -3339,7 +3339,7 @@ function function_17fdda66()
 	Parameters: 2
 	Flags: Linked
 */
-function function_b0f0dd1f(is_on, str_effect)
+function player_weather(is_on, str_effect)
 {
 	if(is_on && isdefined(str_effect))
 	{

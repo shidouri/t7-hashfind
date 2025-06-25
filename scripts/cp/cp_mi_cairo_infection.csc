@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_siegebot_theia;
@@ -35,7 +35,7 @@ function main()
 	cp_mi_cairo_infection_sgen_test_chamber::main();
 	load::main();
 	util::waitforclient(0);
-	namespace_f397b667::function_7403e82b();
+	cp_mi_cairo_infection_patch_c::function_7403e82b();
 }
 
 /*

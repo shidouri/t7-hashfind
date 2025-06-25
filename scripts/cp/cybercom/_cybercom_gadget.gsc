@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_bb;
 #using scripts\cp\cybercom\_cybercom;
@@ -51,13 +51,13 @@ function init()
 	cybercom_gadget_servo_shortout::init();
 	cybercom_gadget_exosuitbreakdown::init();
 	cybercom_gadget_surge::init();
-	namespace_9cc756f9::init();
-	namespace_f388b961::init();
+	cybercom_gadget_ravage_core::init();
+	cybercom_gadget_overdrive::init();
 	cybercom_gadget_unstoppable_force::init();
 	cybercom_gadget_concussive_wave::init();
 	cybercom_gadget_active_camo::init();
-	namespace_6dcc04c7::init();
-	namespace_328b6406::init();
+	cybercom_gadget_cacophany::init();
+	cybercom_gadget_rapid_strike::init();
 	cybercom_gadget_immolation::init();
 	cybercom_gadget_sensory_overload::init();
 	cybercom_gadget_forced_malfunction::init();
@@ -65,7 +65,7 @@ function init()
 	cybercom_gadget_smokescreen::init();
 	cybercom_gadget_misdirection::init();
 	cybercom_gadget_electrostatic_strike::init();
-	namespace_e44205a2::init();
+	cybercom_gadget_mrpukey::init();
 }
 
 /*
@@ -87,18 +87,18 @@ function main()
 	cybercom_gadget_iff_override::main();
 	cybercom_gadget_security_breach::main();
 	cybercom_gadget_servo_shortout::main();
-	namespace_9cc756f9::main();
-	namespace_f388b961::main();
+	cybercom_gadget_ravage_core::main();
+	cybercom_gadget_overdrive::main();
 	cybercom_gadget_smokescreen::main();
 	cybercom_gadget_forced_malfunction::main();
 	cybercom_gadget_active_camo::main();
 	cybercom_gadget_concussive_wave::main();
 	cybercom_gadget_unstoppable_force::main();
-	namespace_328b6406::main();
+	cybercom_gadget_rapid_strike::main();
 	cybercom_gadget_sensory_overload::main();
 	cybercom_gadget_misdirection::main();
-	namespace_6dcc04c7::main();
-	namespace_e44205a2::main();
+	cybercom_gadget_cacophany::main();
+	cybercom_gadget_mrpukey::main();
 	cybercom_gadget_firefly::main();
 	cybercom_gadget_immolation::main();
 	cybercom_gadget_electrostatic_strike::main();

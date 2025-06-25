@@ -652,8 +652,8 @@ function function_af12b9a4()
 	level waittill(#"hash_4619f71b");
 	zm_spawner::register_zombie_death_event_callback(&function_e8de9974);
 	var_b2b5bc6e = struct::get("keeper_spawn_loc", "targetname");
-	var_aae59061 = getent("keeper_archon", "targetname");
-	ai_keeper = zombie_utility::spawn_zombie(var_aae59061, "keeper_archon_ai", var_b2b5bc6e);
+	sp_keeper = getent("keeper_archon", "targetname");
+	ai_keeper = zombie_utility::spawn_zombie(sp_keeper, "keeper_archon_ai", var_b2b5bc6e);
 	ai_keeper function_2d0c5aa1(var_b2b5bc6e);
 	ai_keeper playsound("zmb_ee_resurrect_keeper_spawn");
 	ai_keeper playloopsound("zmb_ee_resurrect_keeper_lp", 2);
@@ -2876,8 +2876,8 @@ function function_5db6ba34(var_1a60ad71 = 1)
 		}
 	}
 	var_6cbdc65 = [];
-	var_c94c86a8 = getentarray("mechz", "targetname");
-	foreach(ai_mechz in var_c94c86a8)
+	a_mechz = getentarray("mechz", "targetname");
+	foreach(ai_mechz in a_mechz)
 	{
 		var_63b71acf = 0;
 		if(isdefined(ai_mechz.no_damage_points) && ai_mechz.no_damage_points)

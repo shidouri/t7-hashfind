@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_dev;
 #using scripts\cp\doa\_doa_fx;
@@ -83,14 +83,14 @@ function function_ca06d008(player, origin)
 		coat thread function_be253d27();
 		coat.targetname = "coat_of_arms";
 		coat setmodel(level.doa.coat_of_arms);
-		coat thread namespace_1a381543::function_90118d8c("zmb_coat_of_arms");
+		coat thread doa_sound::function_90118d8c("zmb_coat_of_arms");
 	}
-	trigger = spawn("trigger_radius", coat.origin, 9, level.doa.rules.var_942b8706, 60);
+	trigger = spawn("trigger_radius", coat.origin, 9, level.doa.rules.clock_radius, 60);
 	trigger.targetname = "teamShifterUpdate";
 	trigger enablelinkto();
 	trigger.opentime = 2300;
 	trigger.var_96ff2cda = gettime() + trigger.opentime;
-	trigger.radiussq = level.doa.rules.var_942b8706 * level.doa.rules.var_942b8706;
+	trigger.radiussq = level.doa.rules.clock_radius * level.doa.rules.clock_radius;
 	playfx("zombie/fx_exp_rpg_red_doa", coat.origin);
 	org thread namespace_eaa992c::function_285a2999("teamShift");
 	trigger thread function_963e13a0();
@@ -215,23 +215,23 @@ function timeshifterupdate(player, origin)
 	mark = origin + vectorscale((0, 0, 1), 28);
 	clock = spawn("script_model", origin);
 	clock.targetname = "clock";
-	clock setmodel(level.doa.var_27f4032b);
-	clock thread namespace_1a381543::function_90118d8c("zmb_pwup_clock_start");
+	clock setmodel(level.doa.clock_model);
+	clock thread doa_sound::function_90118d8c("zmb_pwup_clock_start");
 	clock playloopsound("zmb_pwup_clock_loop", 2);
-	trigger = spawn("trigger_radius", clock.origin, 9, level.doa.rules.var_942b8706, 60);
+	trigger = spawn("trigger_radius", clock.origin, 9, level.doa.rules.clock_radius, 60);
 	trigger.targetname = "timeShifterUpdate";
 	trigger enablelinkto();
 	trigger linkto(clock);
 	trigger.opentime = 3000;
 	trigger.var_96ff2cda = gettime() + trigger.opentime;
-	trigger.radiussq = level.doa.rules.var_942b8706 * level.doa.rules.var_942b8706;
+	trigger.radiussq = level.doa.rules.clock_radius * level.doa.rules.clock_radius;
 	timetowait = player doa_utility::function_1ded48e6(level.doa.rules.var_ecfc4359);
 	/#
 	#/
 	clock thread namespace_eaa992c::function_285a2999("timeshift");
 	trigger thread function_78d20ce0();
 	level util::waittill_any_timeout(player doa_utility::function_1ded48e6(level.doa.rules.var_ecfc4359), "exit_taken");
-	clock thread namespace_1a381543::function_90118d8c("zmb_pwup_clock_end");
+	clock thread doa_sound::function_90118d8c("zmb_pwup_clock_end");
 	wait(1);
 	if(isdefined(clock))
 	{
@@ -356,7 +356,7 @@ function function_159bb1dd(player, origin)
 	mark = origin + vectorscale((0, 0, 1), 12);
 	monkey = spawn("script_model", origin);
 	monkey.targetname = "monkeyUpdate";
-	monkey setmodel(level.doa.var_d6256e83);
+	monkey setmodel(level.doa.monkey_bomb_model);
 	monkey thread namespace_eaa992c::function_285a2999(namespace_831a4a7c::function_e7e0aa7f(player.entnum));
 	def = doa_pickups::function_bac08508(11);
 	monkey useanimtree($zombie_cymbal_monkey);
@@ -386,7 +386,7 @@ function function_2271edf2(player)
 	self endon(#"death");
 	self waittill(#"hash_2271edf2");
 	doa_utility::function_3d81b494(self);
-	self thread namespace_1a381543::function_90118d8c("zmb_monkey_explo");
+	self thread doa_sound::function_90118d8c("zmb_monkey_explo");
 	self thread namespace_eaa992c::function_285a2999("monkey_explode");
 	if(isdefined(player))
 	{

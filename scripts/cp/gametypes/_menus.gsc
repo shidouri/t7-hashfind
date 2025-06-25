@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\gametypes\_globallogic;
@@ -220,7 +220,7 @@ function on_menu_response()
 				}
 				player clearallnoncheckpointdata();
 			}
-			world.var_bf966ebd = undefined;
+			world.checkpoint_used = undefined;
 			missionrestart();
 			continue;
 		}

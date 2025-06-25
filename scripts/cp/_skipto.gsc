@@ -206,7 +206,7 @@ function add(skipto, func, str_name, cleanup_func, launch_after, end_before, var
 }
 
 /*
-	Name: function_d68e678e
+	Name: add_saved
 	Namespace: skipto
 	Checksum: 0xF4AE8E96
 	Offset: 0x1828
@@ -214,7 +214,7 @@ function add(skipto, func, str_name, cleanup_func, launch_after, end_before, var
 	Parameters: 6
 	Flags: None
 */
-function function_d68e678e(skipto, func, str_name, cleanup_func, launch_after, end_before)
+function add_saved(skipto, func, str_name, cleanup_func, launch_after, end_before)
 {
 	struct = add(skipto, func, str_name, cleanup_func, launch_after, undefined, 1);
 }
@@ -3275,7 +3275,7 @@ function level_completed(skipto, starting)
 			achievements::function_733a6065(e_player, getrootmapname(), level.gameskilllowest, sessionmodeiscampaignzombiesgame());
 			if(level.gameskilllowest >= 2)
 			{
-				e_player notify(#"hash_ee109657", level.savename);
+				e_player notify("complete_mission", level.savename);
 				e_player addplayerstat("mission_diff_" + getsubstr(getmissionname(), 0, 3), 1);
 			}
 			e_player function_95093ed5();
@@ -3284,7 +3284,7 @@ function level_completed(skipto, starting)
 			e_player setdstat("PlayerStatsByMap", getrootmapname(), "lastCompletedDifficulty", level.gameskilllowest);
 			if(!e_player decorations::function_25328f50("cp_medal_no_deaths"))
 			{
-				if(level.gameskilllowest >= 3 && (!(isdefined(world.var_bf966ebd) && world.var_bf966ebd)))
+				if(level.gameskilllowest >= 3 && (!(isdefined(world.checkpoint_used) && world.checkpoint_used)))
 				{
 					e_player setdstat("PlayerStatsByMap", getrootmapname(), "checkpointUsed", 0);
 					if(e_player decorations::function_931263b1(3))
@@ -3317,7 +3317,7 @@ function level_completed(skipto, starting)
 	}
 	level flag::wait_till_timeout(3, "all_players_set_aar_scoreboard");
 	function_54fdc879();
-	world.var_bf966ebd = undefined;
+	world.checkpoint_used = undefined;
 	recordgameresult("draw");
 	globallogic_player::recordactiveplayersendgamematchrecordstats();
 	finalizematchrecord();

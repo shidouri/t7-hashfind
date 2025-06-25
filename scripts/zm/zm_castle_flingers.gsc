@@ -711,7 +711,7 @@ function function_c1f1756a()
 */
 function function_3298b25f(nd_start)
 {
-	var_a05a47c7 = nd_start function_fbd80603();
+	var_a05a47c7 = nd_start achievement_none();
 	var_16f5c370 = var_a05a47c7.origin;
 	while(positionwouldtelefrag(var_16f5c370))
 	{
@@ -730,7 +730,7 @@ function function_3298b25f(nd_start)
 }
 
 /*
-	Name: function_fbd80603
+	Name: achievement_none
 	Namespace: zm_castle_flingers
 	Checksum: 0x378E2534
 	Offset: 0x29A8
@@ -738,7 +738,7 @@ function function_3298b25f(nd_start)
 	Parameters: 0
 	Flags: Linked
 */
-function function_fbd80603()
+function achievement_none()
 {
 	var_df826fd8 = self function_53f4df();
 	a_s_spots = struct::get_array(var_df826fd8.target, "targetname");

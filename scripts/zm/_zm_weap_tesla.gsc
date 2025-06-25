@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -321,16 +321,16 @@ function play_tesla_sound(emotion)
 	if(!isdefined(level.one_emo_at_a_time))
 	{
 		level.one_emo_at_a_time = 0;
-		level.var_9533aed = 0;
+		level.var_counter = 0;
 	}
 	if(level.one_emo_at_a_time == 0)
 	{
-		level.var_9533aed++;
+		level.var_counter++;
 		level.one_emo_at_a_time = 1;
 		org = spawn("script_origin", self.origin);
 		org linkto(self);
-		org playsoundwithnotify(emotion, ("sound_complete" + "_") + level.var_9533aed);
-		org waittill(("sound_complete" + "_") + level.var_9533aed);
+		org playsoundwithnotify(emotion, ("sound_complete" + "_") + level.var_counter);
+		org waittill(("sound_complete" + "_") + level.var_counter);
 		org delete();
 		level.one_emo_at_a_time = 0;
 	}

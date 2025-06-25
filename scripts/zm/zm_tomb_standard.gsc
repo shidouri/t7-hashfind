@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_magicbox;
 #using scripts\zm\gametypes\_zm_gametype;
 
-#namespace namespace_a026fc99;
+#namespace zm_tomb_standard;
 
 /*
 	Name: precache
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0x99EC1590
 	Offset: 0x1B8
 	Size: 0x4
@@ -25,7 +25,7 @@ function precache()
 
 /*
 	Name: main
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0xC5F36992
 	Offset: 0x1C8
 	Size: 0x54
@@ -41,7 +41,7 @@ function main()
 
 /*
 	Name: zm_treasure_chest_init
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0x6B5EF0A4
 	Offset: 0x228
 	Size: 0xC4

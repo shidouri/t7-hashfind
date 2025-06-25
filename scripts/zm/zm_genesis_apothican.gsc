@@ -360,7 +360,7 @@ function private function_3298b25f(s_stub)
 {
 	self endon(#"death");
 	a_s_spots = struct::get_array(("apothican_exit_" + s_stub.name) + "_pos", "targetname");
-	var_a05a47c7 = s_stub function_fbd80603(self);
+	var_a05a47c7 = s_stub achievement_none(self);
 	while(positionwouldtelefrag(var_a05a47c7.origin))
 	{
 		util::wait_network_frame();
@@ -373,7 +373,7 @@ function private function_3298b25f(s_stub)
 }
 
 /*
-	Name: function_fbd80603
+	Name: achievement_none
 	Namespace: zm_genesis_apothican
 	Checksum: 0xD90A2531
 	Offset: 0x1D48
@@ -381,7 +381,7 @@ function private function_3298b25f(s_stub)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_fbd80603(player)
+function private achievement_none(player)
 {
 	a_s_spots = struct::get_array(("apothican_exit_" + self.name) + "_pos", "targetname");
 	/#
@@ -456,7 +456,7 @@ function function_bb3f566()
 	var_ed731554 = [];
 	for(i = 0; i < 3; i++)
 	{
-		ai_spider = zm_ai_spiders::function_f4bd92a2(1);
+		ai_spider = zm_ai_spiders::special_spider_spawn(1);
 		if(isai(ai_spider))
 		{
 			if(!isdefined(var_ed731554))
@@ -856,12 +856,12 @@ function spider_round_spawning()
 	level.var_a3ad836b = 8;
 	level flag::wait_till_all(array("power_on1", "power_on2", "power_on3", "power_on4"));
 	function_9ccb8410(120);
-	level.var_3013498 = level.round_number + 2;
+	level.n_next_spider_round = level.round_number + 2;
 	while(true)
 	{
 		level waittill(#"between_round_over");
 		var_8a82d706 = 0;
-		if(level.var_3013498 <= level.round_number)
+		if(level.n_next_spider_round <= level.round_number)
 		{
 			if(level.var_b8b48a73.size > 0)
 			{
@@ -873,7 +873,7 @@ function spider_round_spawning()
 		if(var_8a82d706)
 		{
 			level waittill(#"end_of_round");
-			level.var_3013498 = level.round_number + randomintrange(4, 6);
+			level.n_next_spider_round = level.round_number + randomintrange(4, 6);
 		}
 	}
 }
@@ -1006,13 +1006,13 @@ function function_57f2485e(var_d3c04db8 = 0)
 {
 	if(var_d3c04db8)
 	{
-		var_43ac43b2 = struct::get("apothican_mechz_spawn", "targetname");
+		s_mechz = struct::get("apothican_mechz_spawn", "targetname");
 	}
 	else
 	{
-		var_43ac43b2 = self;
+		s_mechz = self;
 	}
-	ai_mechz = zm_ai_mechz::spawn_mechz(var_43ac43b2, 0);
+	ai_mechz = zm_ai_mechz::spawn_mechz(s_mechz, 0);
 	if(isdefined(ai_mechz))
 	{
 		ai_mechz.var_9b31a70d = 1;

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\ai\archetype_cover_utility;
 #using scripts\shared\ai\archetype_locomotion_utility;
 #using scripts\shared\ai\archetype_mocomps_utility;
@@ -582,9 +582,9 @@ function private function_469c9511(entity)
 */
 function private keepercompanionmovementservice(entity)
 {
-	if(isdefined(level.var_bfd9ed83) && (isdefined(level.var_bfd9ed83.eligible_leader) && level.var_bfd9ed83.eligible_leader))
+	if(isdefined(level.companion_leader) && (isdefined(level.companion_leader.eligible_leader) && level.companion_leader.eligible_leader))
 	{
-		entity.leader = level.var_bfd9ed83;
+		entity.leader = level.companion_leader;
 	}
 	if(isdefined(entity.outro) && entity.outro)
 	{
@@ -1298,9 +1298,9 @@ function private keepercompanionupdateleader(entity)
 */
 function private define_new_leader()
 {
-	if(isdefined(level.var_bfd9ed83) && (isdefined(level.var_bfd9ed83.eligible_leader) && level.var_bfd9ed83.eligible_leader))
+	if(isdefined(level.companion_leader) && (isdefined(level.companion_leader.eligible_leader) && level.companion_leader.eligible_leader))
 	{
-		self.leader = level.var_bfd9ed83;
+		self.leader = level.companion_leader;
 	}
 	else
 	{

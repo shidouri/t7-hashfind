@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_debug;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -312,7 +312,7 @@ function function_d39f39b7()
 }
 
 /*
-	Name: function_2d58165a
+	Name: big_shake
 	Namespace: vengeance_safehouse
 	Checksum: 0x9EC88173
 	Offset: 0x2088
@@ -320,7 +320,7 @@ function function_d39f39b7()
 	Parameters: 0
 	Flags: None
 */
-function function_2d58165a()
+function big_shake()
 {
 	// Unsupported VM revision (1B).
 }

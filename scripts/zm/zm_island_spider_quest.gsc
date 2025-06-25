@@ -1187,10 +1187,10 @@ function spider_baby_round_timeout(n_count)
 function function_3d4c345d()
 {
 	level endon(#"hash_2dc546da");
-	ai_spider = zombie_utility::spawn_zombie(level.var_c38a4fee[0], "spider_baby", self);
+	ai_spider = zombie_utility::spawn_zombie(level.spider_spawners[0], "spider_baby", self);
 	ai_spider thread function_5d1bd65f();
 	ai_spider.favoriteenemy = zm_ai_spiders::get_favorite_enemy();
-	self thread zm_ai_spiders::function_49e57a3b(ai_spider, self);
+	self thread zm_ai_spiders::spider_spawn_fx(ai_spider, self);
 	ai_spider thread function_46c109d1();
 	playsoundatposition("zmb_foley_squeen_birth_spider", self.origin);
 	level.var_e18ab0f2++;

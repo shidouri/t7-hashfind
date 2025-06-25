@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\mp\_load;
 #using scripts\mp\_util;
@@ -6,11 +6,11 @@
 #using scripts\mp\mp_infection_sound;
 #using scripts\shared\util_shared;
 
-#namespace namespace_82e4b148;
+#namespace mp_infection;
 
 /*
 	Name: main
-	Namespace: namespace_82e4b148
+	Namespace: mp_infection
 	Checksum: 0x1BEE8B2B
 	Offset: 0x138
 	Size: 0x5C
@@ -19,8 +19,8 @@
 */
 function main()
 {
-	namespace_5d379c9::main();
-	namespace_83fbe97c::main();
+	mp_infection_fx::main();
+	mp_infection_sound::main();
 	load::main();
 	util::waitforclient(0);
 	level.endgamexcamname = "ui_cam_endgame_mp_infection";

@@ -95,9 +95,9 @@ function start()
 	{
 		foreach(str_quest in a_str_quests)
 		{
-			var_dc163518 = (player zm_stats::get_global_stat(("DARKOPS_" + str_quest) + "_SUPER_EE")) > 0;
+			b_quest_completed = (player zm_stats::get_global_stat(("DARKOPS_" + str_quest) + "_SUPER_EE")) > 0;
 			var_9d5e869 = isinarray(var_61d59a5a, str_quest);
-			if(var_dc163518 && !var_9d5e869)
+			if(b_quest_completed && !var_9d5e869)
 			{
 				if(!isdefined(var_61d59a5a))
 				{
@@ -329,7 +329,7 @@ function function_6143b210(e_triggerer)
 	playsoundatposition("zmb_overachiever_spark_success", (0, 0, 0));
 	level.wallbuy_should_upgrade_weapon_override = &function_afddb902;
 	level.magicbox_should_upgrade_weapon_override = &function_7e7eb906;
-	zm_genesis_timer::function_cc8ae246(200);
+	zm_genesis_timer::award_item(200);
 	level thread bgb::function_93da425("zm_bgb_crate_power", &function_f648c43);
 	level thread bgb::function_93da425("zm_bgb_wall_power", &function_f648c43);
 }

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -575,7 +575,7 @@ function activatezip(rider)
 		}
 	}
 	level thread zip_line_audio();
-	var_d496a1ae = array("link_player1", "link_player2", "link_player3", "link_player4");
+	a_attachspot = array("link_player1", "link_player2", "link_player3", "link_player4");
 	peeps = getplayers();
 	for(i = 0; i < peeps.size; i++)
 	{
@@ -584,20 +584,20 @@ function activatezip(rider)
 			prevdist = undefined;
 			playerspot = undefined;
 			playerorg = peeps[i] getorigin();
-			foreach(var_bcd49665 in var_d496a1ae)
+			foreach(attach_spot in a_attachspot)
 			{
-				attachorg = self.zip gettagorigin(var_bcd49665);
+				attachorg = self.zip gettagorigin(attach_spot);
 				dist = distance2d(playerorg, attachorg);
 				if(!isdefined(prevdist))
 				{
 					prevdist = dist;
-					playerspot = var_bcd49665;
+					playerspot = attach_spot;
 					continue;
 				}
 				if(dist <= prevdist)
 				{
 					prevdist = dist;
-					playerspot = var_bcd49665;
+					playerspot = attach_spot;
 				}
 			}
 			if(!isdefined(self.riders))
@@ -617,16 +617,16 @@ function activatezip(rider)
 			peeps[i] allowprone(0);
 			peeps[i] clientfield::set("player_legs_hide", 1);
 			peeps[i] playerlinkto(self.zip, playerspot, 0, 180, 180, 180, 180, 1);
-			arrayremovevalue(var_d496a1ae, playerspot);
+			arrayremovevalue(a_attachspot, playerspot);
 		}
 	}
 	wait(0.1);
-	if(var_d496a1ae.size > 0)
+	if(a_attachspot.size > 0)
 	{
 		center = self.zip gettagorigin("link_zipline_jnt");
 		physicsexplosionsphere(center, 128, 64, 2);
 	}
-	self thread function_58047fdd();
+	self thread activate_switch();
 	if(!isdefined(level.direction))
 	{
 		self.aiblocker solid();
@@ -671,7 +671,7 @@ function activatezip(rider)
 }
 
 /*
-	Name: function_58047fdd
+	Name: activate_switch
 	Namespace: zm_sumpf_zipline
 	Checksum: 0x60335074
 	Offset: 0x28F0
@@ -679,7 +679,7 @@ function activatezip(rider)
 	Parameters: 0
 	Flags: Linked
 */
-function function_58047fdd()
+function activate_switch()
 {
 	wait(0.5);
 	self.zipdamagetrigger thread zipdamage(self);

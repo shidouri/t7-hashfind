@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_hacking;
 #using scripts\cp\_load;
@@ -745,7 +745,7 @@ function function_d1996775()
 }
 
 /*
-	Name: function_5edd0266
+	Name: container_hack
 	Namespace: cp_mi_sing_blackstation_port
 	Checksum: 0x83316DDB
 	Offset: 0x53B0
@@ -753,7 +753,7 @@ function function_d1996775()
 	Parameters: 0
 	Flags: None
 */
-function function_5edd0266()
+function container_hack()
 {
 	// Unsupported VM revision (1B).
 }

@@ -260,7 +260,7 @@ function main()
 	zm_island_ww_quest::function_30d4f164();
 	main_quest::function_30d4f164();
 	zm_island_pap_quest::init();
-	namespace_1aa6bd0c::init();
+	spider_ee_quest::init();
 	namespace_d9f30fb4::init();
 	zm_island_inventory::init();
 	level thread zm_island_dogfights::init();
@@ -276,7 +276,7 @@ function main()
 	level.no_target_override = &no_target_override;
 	level.player_intersection_tracker_override = &function_4fc0dcb3;
 	level.fn_custom_round_ai_spawn = &zm_island_spiders::function_33aa4940;
-	level thread zm_ai_spiders::function_d2716ad8();
+	level thread zm_ai_spiders::enable_spider_rounds();
 	level.var_5f1b87ca = &zm_island_vo::function_5f161c52;
 	level function_1b14c4b0();
 	level thread zm_ai_thrasher::function_5e5433d8();
@@ -308,7 +308,7 @@ function main()
 	level thread zm_island_takeo_fight::main();
 	level thread zm_island_dogfights::main();
 	level thread zm_island_challenges::main();
-	level thread namespace_1aa6bd0c::main();
+	level thread spider_ee_quest::main();
 	level thread zm_island_side_ee_distant_monster::main();
 	level thread zm_island_side_ee_doppleganger::main();
 	level thread zm_island_side_ee_good_thrasher::main();
@@ -403,12 +403,12 @@ function function_75015b6c()
 			var_a44b86c3 = level.bgb_machines;
 			if(chest.zbarrier.script_noteworthy == "zone_crash_site_chest_zbarrier")
 			{
-				foreach(var_4fdd617e in var_a44b86c3)
+				foreach(e_bgb in var_a44b86c3)
 				{
-					if(var_4fdd617e.script_string === "bgb_crash_site")
+					if(e_bgb.script_string === "bgb_crash_site")
 					{
-						arrayremovevalue(var_a44b86c3, var_4fdd617e);
-						var_4fdd617e thread bgb_machine::hide_bgb_machine();
+						arrayremovevalue(var_a44b86c3, e_bgb);
+						e_bgb thread bgb_machine::hide_bgb_machine();
 						function_a7fdfd3c(var_a44b86c3);
 						break;
 					}
@@ -418,12 +418,12 @@ function function_75015b6c()
 			{
 				if(chest.zbarrier.script_noteworthy == "zone_ruins_chest_zbarrier")
 				{
-					foreach(var_4fdd617e in var_a44b86c3)
+					foreach(e_bgb in var_a44b86c3)
 					{
-						if(var_4fdd617e.script_string === "bgb_ruins")
+						if(e_bgb.script_string === "bgb_ruins")
 						{
-							arrayremovevalue(var_a44b86c3, var_4fdd617e);
-							var_4fdd617e thread bgb_machine::hide_bgb_machine();
+							arrayremovevalue(var_a44b86c3, e_bgb);
+							e_bgb thread bgb_machine::hide_bgb_machine();
 							function_a7fdfd3c(var_a44b86c3);
 							break;
 						}

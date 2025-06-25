@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_dev;
 #using scripts\cp\doa\_doa_enemy;
@@ -206,8 +206,8 @@ function function_ee6962d9(player, chicken)
 			continue;
 		}
 		spot = chicken gettagorigin("tail") + (vectorscale((0, 0, -1), 32));
-		chicken thread namespace_1a381543::function_90118d8c("zmb_golden_chicken_pop");
-		level doa_pickups::function_3238133b(level.doa.var_43922ff2, spot, 1);
+		chicken thread doa_sound::function_90118d8c("zmb_golden_chicken_pop");
+		level doa_pickups::function_3238133b(level.doa.egg_model, spot, 1);
 	}
 }
 

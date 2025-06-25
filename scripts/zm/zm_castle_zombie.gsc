@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\systems\animation_state_machine_mocomp;
 #using scripts\shared\ai\systems\animation_state_machine_notetracks;
@@ -431,10 +431,10 @@ function private update_closest_player()
 	{
 		reset_closest_player = 1;
 		zombies = zombie_utility::get_round_enemy_array();
-		var_6aad1b23 = getaiarchetypearray("mechz", level.zombie_team);
-		if(var_6aad1b23.size)
+		mechzs = getaiarchetypearray("mechz", level.zombie_team);
+		if(mechzs.size)
 		{
-			zombies = arraycombine(zombies, var_6aad1b23, 0, 0);
+			zombies = arraycombine(zombies, mechzs, 0, 0);
 		}
 		foreach(zombie in zombies)
 		{

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\_challenges;
 #using scripts\cp\_objectives;
 #using scripts\cp\_util;
@@ -111,14 +111,14 @@ function function_37aecd21()
 	Parameters: 3
 	Flags: None
 */
-function function_93523442(var_977e0f67, radius = 60, offset = (0, 0, 0))
+function function_93523442(collectible_model, radius = 60, offset = (0, 0, 0))
 {
-	if(!isdefined(level.var_3efe1e22[var_977e0f67]))
+	if(!isdefined(level.var_3efe1e22[collectible_model]))
 	{
-		level.var_3efe1e22[var_977e0f67] = spawnstruct();
+		level.var_3efe1e22[collectible_model] = spawnstruct();
 	}
-	level.var_3efe1e22[var_977e0f67].radius = radius;
-	level.var_3efe1e22[var_977e0f67].offset = offset;
+	level.var_3efe1e22[collectible_model].radius = radius;
+	level.var_3efe1e22[collectible_model].offset = offset;
 }
 
 /*
@@ -293,26 +293,26 @@ function function_8765a33c(mdl_collectible)
 	trigger_use setcursorhint("HINT_INTERACTIVE_PROMPT");
 	trigger_use sethintstring(&"COLLECTIBLE_PICK_UP");
 	istring = istring(mdl_collectible.model);
-	var_837a6185 = gameobjects::create_use_object("any", trigger_use, array(mdl_collectible), (0, 0, 0), istring);
-	var_837a6185 gameobjects::allow_use("any");
-	var_837a6185 gameobjects::set_use_time(0.35);
-	var_837a6185 gameobjects::set_owner_team("allies");
-	var_837a6185 gameobjects::set_visible_team("any");
-	var_837a6185.mdl_collectible = mdl_collectible;
-	var_837a6185.onuse = &onuse;
-	var_837a6185.onbeginuse = &onbeginuse;
-	var_837a6185.single_use = 1;
-	var_837a6185.origin = mdl_collectible.origin;
-	var_837a6185.angles = var_837a6185.angles;
+	collectible_object = gameobjects::create_use_object("any", trigger_use, array(mdl_collectible), (0, 0, 0), istring);
+	collectible_object gameobjects::allow_use("any");
+	collectible_object gameobjects::set_use_time(0.35);
+	collectible_object gameobjects::set_owner_team("allies");
+	collectible_object gameobjects::set_visible_team("any");
+	collectible_object.mdl_collectible = mdl_collectible;
+	collectible_object.onuse = &onuse;
+	collectible_object.onbeginuse = &onbeginuse;
+	collectible_object.single_use = 1;
+	collectible_object.origin = mdl_collectible.origin;
+	collectible_object.angles = collectible_object.angles;
 	if(isdefined(mdl_collectible.script_int))
 	{
-		var_837a6185.index = mdl_collectible.script_int - 1;
+		collectible_object.index = mdl_collectible.script_int - 1;
 	}
 	else
 	{
-		var_837a6185.index = (int(getsubstr(mdl_collectible.model, mdl_collectible.model.size - 2))) - 1;
+		collectible_object.index = (int(getsubstr(mdl_collectible.model, mdl_collectible.model.size - 2))) - 1;
 	}
-	return var_837a6185;
+	return collectible_object;
 }
 
 /*
@@ -457,9 +457,9 @@ function function_a8d8b9c7()
 	Parameters: 2
 	Flags: Linked
 */
-function function_8acd43fd(var_5c0b5b64, value)
+function function_8acd43fd(collectible_index, value)
 {
-	self setnoncheckpointdata(("collectibles" + var_5c0b5b64) + "value", value);
+	self setnoncheckpointdata(("collectibles" + collectible_index) + "value", value);
 }
 
 /*
@@ -471,9 +471,9 @@ function function_8acd43fd(var_5c0b5b64, value)
 	Parameters: 1
 	Flags: Linked
 */
-function function_70b41d41(var_5c0b5b64)
+function function_70b41d41(collectible_index)
 {
-	return self getnoncheckpointdata(("collectibles" + var_5c0b5b64) + "value");
+	return self getnoncheckpointdata(("collectibles" + collectible_index) + "value");
 }
 
 /*

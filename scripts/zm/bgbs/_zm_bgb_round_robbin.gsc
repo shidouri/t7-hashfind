@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\flag_shared;
@@ -101,7 +101,7 @@ function activation()
 }
 
 /*
-	Name: function_b10a9b0c
+	Name: can_kill
 	Namespace: zm_bgb_round_robbin
 	Checksum: 0x5ADE134F
 	Offset: 0x448
@@ -109,7 +109,7 @@ function activation()
 	Parameters: 1
 	Flags: Linked
 */
-function function_b10a9b0c(zombie)
+function can_kill(zombie)
 {
 	if(!isdefined(zombie))
 	{
@@ -156,7 +156,7 @@ function function_8824774d(target_round)
 		e_last = undefined;
 		foreach(zombie in zombies)
 		{
-			if(function_b10a9b0c(zombie))
+			if(can_kill(zombie))
 			{
 				e_last = zombie;
 			}
@@ -172,7 +172,7 @@ function function_8824774d(target_round)
 	{
 		foreach(zombie in zombies)
 		{
-			if(!function_b10a9b0c(zombie))
+			if(!can_kill(zombie))
 			{
 				continue;
 			}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\behavior_zombie_dog;
 #using scripts\shared\ai\zombie;
@@ -1394,11 +1394,11 @@ function function_aeabaa98(zbarrier)
 function function_ee8a2035(piece_index, zbarrier)
 {
 	self endon(#"damage");
-	var_31410ef7 = "closed";
-	while(var_31410ef7 != "open" && var_31410ef7 != "opening")
+	piece_state = "closed";
+	while(piece_state != "open" && piece_state != "opening")
 	{
 		wait(0.05);
-		var_31410ef7 = zbarrier getzbarrierpiecestate(piece_index);
+		piece_state = zbarrier getzbarrierpiecestate(piece_index);
 	}
 	self notify(#"torn_down");
 	e_piece = zbarrier.dynents[piece_index];

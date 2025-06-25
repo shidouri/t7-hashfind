@@ -95,12 +95,12 @@ function register_clientfields()
 function init()
 {
 	zm::register_player_damage_callback(&function_94372a17);
-	level.var_2e815d61 = 1;
-	level.var_629d0743 = 0;
-	level.var_d4fa016a = 1;
+	level.b_raz_enabled = 1;
+	level.b_raz_rounds_enabled = 0;
+	level.n_raz_round_count = 1;
 	level.var_b9ce6312 = 0;
-	level.var_6bca5baa = [];
-	level.var_f95eaac8 = 5500;
+	level.a_sp_raz = [];
+	level.n_raz_health = 5500;
 	zm_score::register_score_event("death_raz", &function_6fdcefe3);
 	level flag::init("raz_round");
 	level flag::init("raz_round_in_progress");
@@ -109,7 +109,7 @@ function init()
 	level thread aat::register_immunity("zm_aat_fire_works", "raz", 1, 1, 1);
 	level thread aat::register_immunity("zm_aat_thunder_wall", "raz", 1, 1, 1);
 	level thread aat::register_immunity("zm_aat_turned", "raz", 1, 1, 1);
-	function_e099c556();
+	raz_spawner_init();
 	level thread function_ff9b21c4();
 }
 
@@ -141,7 +141,7 @@ function function_6fdcefe3(str_event, str_mod, str_hit_location, var_48d0b2fe, v
 }
 
 /*
-	Name: function_7dfa7ca6
+	Name: enable_raz_rounds
 	Namespace: zm_ai_raz
 	Checksum: 0x128A22B3
 	Offset: 0x940
@@ -149,18 +149,18 @@ function function_6fdcefe3(str_event, str_mod, str_hit_location, var_48d0b2fe, v
 	Parameters: 0
 	Flags: None
 */
-function function_7dfa7ca6()
+function enable_raz_rounds()
 {
-	level.var_629d0743 = 1;
-	if(!isdefined(level.var_c810e243))
+	level.b_raz_rounds_enabled = 1;
+	if(!isdefined(level.func_raz_round_track_override))
 	{
-		level.var_c810e243 = &function_684ce0;
+		level.func_raz_round_track_override = &raz_round_tracker;
 	}
-	level thread [[level.var_c810e243]]();
+	level thread [[level.func_raz_round_track_override]]();
 }
 
 /*
-	Name: function_e099c556
+	Name: raz_spawner_init
 	Namespace: zm_ai_raz
 	Checksum: 0x7F78B32B
 	Offset: 0x990
@@ -168,21 +168,21 @@ function function_7dfa7ca6()
 	Parameters: 0
 	Flags: Linked
 */
-function function_e099c556()
+function raz_spawner_init()
 {
-	level.var_6bca5baa = getentarray("zombie_raz_spawner", "script_noteworthy");
-	if(level.var_6bca5baa.size == 0)
+	level.a_sp_raz = getentarray("zombie_raz_spawner", "script_noteworthy");
+	if(level.a_sp_raz.size == 0)
 	{
 		/#
 			assertmsg("");
 		#/
 		return;
 	}
-	foreach(var_ad58b9ca in level.var_6bca5baa)
+	foreach(sp_raz in level.a_sp_raz)
 	{
-		var_ad58b9ca.is_enabled = 1;
-		var_ad58b9ca.script_forcespawn = 1;
-		var_ad58b9ca spawner::add_spawn_function(&function_4749ab89);
+		sp_raz.is_enabled = 1;
+		sp_raz.script_forcespawn = 1;
+		sp_raz spawner::add_spawn_function(&raz_init);
 	}
 }
 
@@ -209,7 +209,7 @@ function function_ff9b21c4()
 }
 
 /*
-	Name: function_684ce0
+	Name: raz_round_tracker
 	Namespace: zm_ai_raz
 	Checksum: 0x7D2B7D3A
 	Offset: 0xB10
@@ -217,14 +217,14 @@ function function_ff9b21c4()
 	Parameters: 0
 	Flags: Linked
 */
-function function_684ce0()
+function raz_round_tracker()
 {
-	level.var_d4fa016a = 1;
-	level.var_51a5abd0 = randomintrange(5, 8);
+	level.n_raz_round_count = 1;
+	level.n_next_raz_round = randomintrange(5, 8);
 	/#
 		if(getdvarint("") > 0)
 		{
-			level.var_51a5abd0 = 5;
+			level.n_next_raz_round = 5;
 		}
 	#/
 	old_spawn_func = level.round_spawn_func;
@@ -235,35 +235,35 @@ function function_684ce0()
 		/#
 			if(getdvarint("") > 0)
 			{
-				level.var_51a5abd0 = level.round_number;
+				level.n_next_raz_round = level.round_number;
 			}
 		#/
-		if(level.round_number == level.var_51a5abd0)
+		if(level.round_number == level.n_next_raz_round)
 		{
 			level.sndmusicspecialround = 1;
 			old_spawn_func = level.round_spawn_func;
 			old_wait_func = level.round_wait_func;
 			function_77ff30a0();
 			level.round_spawn_func = &raz_round_spawning;
-			level.round_wait_func = &function_692370a0;
-			if(isdefined(level.var_95444cb4))
+			level.round_wait_func = &raz_round_wait_func;
+			if(isdefined(level.zm_custom_get_next_raz_round))
 			{
-				level.var_51a5abd0 = [[level.var_95444cb4]]();
+				level.n_next_raz_round = [[level.zm_custom_get_next_raz_round]]();
 			}
 			else
 			{
-				level.var_51a5abd0 = level.var_51a5abd0 + randomintrange(5, 8);
+				level.n_next_raz_round = level.n_next_raz_round + randomintrange(5, 8);
 			}
 			/#
-				getplayers()[0] iprintln("" + level.var_51a5abd0);
+				getplayers()[0] iprintln("" + level.n_next_raz_round);
 			#/
 		}
 		else if(level flag::get("raz_round"))
 		{
-			function_783ab6ac();
+			raz_round_stop();
 			level.round_spawn_func = old_spawn_func;
 			level.round_wait_func = old_wait_func;
-			level.var_d4fa016a++;
+			level.n_raz_round_count++;
 		}
 	}
 }
@@ -287,7 +287,7 @@ function function_77ff30a0()
 }
 
 /*
-	Name: function_783ab6ac
+	Name: raz_round_stop
 	Namespace: zm_ai_raz
 	Checksum: 0x8C6D8007
 	Offset: 0xDE0
@@ -295,12 +295,12 @@ function function_77ff30a0()
 	Parameters: 0
 	Flags: Linked
 */
-function function_783ab6ac()
+function raz_round_stop()
 {
 	level flag::clear("raz_round");
 	level flag::clear("special_round");
 	level.var_b9ce6312 = 0;
-	level notify(#"hash_22aa6eed");
+	level notify("raz_round_ending");
 }
 
 /*
@@ -316,10 +316,10 @@ function raz_round_spawning()
 {
 	level endon(#"intermission");
 	level endon(#"raz_round");
-	level.var_bc3f44bf = getplayers();
-	for(i = 0; i < level.var_bc3f44bf.size; i++)
+	level.a_e_raz_targets = getplayers();
+	for(i = 0; i < level.a_e_raz_targets.size; i++)
 	{
-		level.var_bc3f44bf[i].hunted_by = 0;
+		level.a_e_raz_targets[i].hunted_by = 0;
 	}
 	level endon(#"restart_round");
 	/#
@@ -333,8 +333,8 @@ function raz_round_spawning()
 	{
 		return;
 	}
-	array::thread_all(level.players, &function_bdf13070);
-	n_wave_count = function_852019c2();
+	array::thread_all(level.players, &play_raz_round);
+	n_wave_count = get_raz_spawn_total();
 	function_a67ada8();
 	level.zombie_total = int(n_wave_count);
 	/#
@@ -346,10 +346,10 @@ function raz_round_spawning()
 	#/
 	wait(1);
 	wait(6);
-	var_c55cf881 = 0;
+	n_raz_alive = 0;
 	level flag::set("raz_round_in_progress");
 	level endon(#"last_ai_down");
-	level thread function_25561504();
+	level thread raz_round_aftermath();
 	while(true)
 	{
 		while(level.zombie_total > 0)
@@ -359,7 +359,7 @@ function raz_round_spawning()
 				util::wait_network_frame();
 				continue;
 			}
-			function_45bace88();
+			spawn_raz();
 			util::wait_network_frame();
 		}
 		util::wait_network_frame();
@@ -377,14 +377,14 @@ function raz_round_spawning()
 */
 function function_665a13cd(spawner, s_spot)
 {
-	var_a09c80cd = zombie_utility::spawn_zombie(level.var_6bca5baa[0], "raz", s_spot);
-	if(isdefined(var_a09c80cd))
+	raz_ai = zombie_utility::spawn_zombie(level.a_sp_raz[0], "raz", s_spot);
+	if(isdefined(raz_ai))
 	{
-		var_a09c80cd.check_point_in_enabled_zone = &zm_utility::check_point_in_playable_area;
-		var_a09c80cd thread zombie_utility::round_spawn_failsafe();
-		var_a09c80cd thread function_b8671cc0(s_spot);
+		raz_ai.check_point_in_enabled_zone = &zm_utility::check_point_in_playable_area;
+		raz_ai thread zombie_utility::round_spawn_failsafe();
+		raz_ai thread function_b8671cc0(s_spot);
 	}
-	return var_a09c80cd;
+	return raz_ai;
 }
 
 /*
@@ -409,7 +409,7 @@ function function_b8671cc0(s_spot)
 }
 
 /*
-	Name: function_45bace88
+	Name: spawn_raz
 	Namespace: zm_ai_raz
 	Checksum: 0x937CFA31
 	Offset: 0x1208
@@ -417,9 +417,9 @@ function function_b8671cc0(s_spot)
 	Parameters: 0
 	Flags: Linked
 */
-function function_45bace88()
+function spawn_raz()
 {
-	while(!function_ea911683())
+	while(!can_spawn_raz())
 	{
 		wait(0.1);
 	}
@@ -430,9 +430,9 @@ function function_45bace88()
 		wait(randomfloatrange(0.3333333, 0.6666667));
 		return;
 	}
-	if(isdefined(level.var_e80c1065))
+	if(isdefined(level.func_raz_spawn))
 	{
-		s_spawn_loc = [[level.var_e80c1065]](var_19764360);
+		s_spawn_loc = [[level.func_raz_spawn]](var_19764360);
 	}
 	else
 	{
@@ -449,7 +449,7 @@ function function_45bace88()
 		wait(randomfloatrange(0.3333333, 0.6666667));
 		return;
 	}
-	ai = function_665a13cd(level.var_6bca5baa[0]);
+	ai = function_665a13cd(level.a_sp_raz[0]);
 	if(isdefined(ai))
 	{
 		ai thread function_b8671cc0(s_spawn_loc);
@@ -465,7 +465,7 @@ function function_45bace88()
 }
 
 /*
-	Name: function_852019c2
+	Name: get_raz_spawn_total
 	Namespace: zm_ai_raz
 	Checksum: 0x9A8FF8B
 	Offset: 0x1418
@@ -473,7 +473,7 @@ function function_45bace88()
 	Parameters: 0
 	Flags: Linked
 */
-function function_852019c2()
+function get_raz_spawn_total()
 {
 	switch(level.players.size)
 	{
@@ -503,7 +503,7 @@ function function_852019c2()
 }
 
 /*
-	Name: function_692370a0
+	Name: raz_round_wait_func
 	Namespace: zm_ai_raz
 	Checksum: 0x1E8870C6
 	Offset: 0x14A8
@@ -511,7 +511,7 @@ function function_852019c2()
 	Parameters: 0
 	Flags: Linked
 */
-function function_692370a0()
+function raz_round_wait_func()
 {
 	level endon(#"restart_round");
 	/#
@@ -526,7 +526,7 @@ function function_692370a0()
 }
 
 /*
-	Name: function_a1d75eeb
+	Name: get_current_raz_count
 	Namespace: zm_ai_raz
 	Checksum: 0xF4B64643
 	Offset: 0x1538
@@ -534,18 +534,18 @@ function function_692370a0()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a1d75eeb()
+function get_current_raz_count()
 {
 	a_ai_raz = getentarray("zombie_raz", "targetname");
-	var_c55cf881 = a_ai_raz.size;
+	n_raz_alive = a_ai_raz.size;
 	foreach(ai_raz in a_ai_raz)
 	{
 		if(!isalive(ai_raz))
 		{
-			var_c55cf881--;
+			n_raz_alive--;
 		}
 	}
-	return var_c55cf881;
+	return n_raz_alive;
 }
 
 /*
@@ -585,7 +585,7 @@ function function_bcbbda54()
 }
 
 /*
-	Name: function_ea911683
+	Name: can_spawn_raz
 	Namespace: zm_ai_raz
 	Checksum: 0x2E506707
 	Offset: 0x1688
@@ -593,11 +593,11 @@ function function_bcbbda54()
 	Parameters: 0
 	Flags: Linked
 */
-function function_ea911683()
+function can_spawn_raz()
 {
-	var_c55cf881 = function_a1d75eeb();
+	n_raz_alive = get_current_raz_count();
 	var_f0ab435a = function_bcbbda54();
-	if(var_c55cf881 >= var_f0ab435a || !level flag::get("spawn_zombies"))
+	if(n_raz_alive >= var_f0ab435a || !level flag::get("spawn_zombies"))
 	{
 		return false;
 	}
@@ -642,7 +642,7 @@ function function_a74c2884()
 }
 
 /*
-	Name: function_25561504
+	Name: raz_round_aftermath
 	Namespace: zm_ai_raz
 	Checksum: 0x1B0A7EB7
 	Offset: 0x1798
@@ -650,7 +650,7 @@ function function_a74c2884()
 	Parameters: 0
 	Flags: Linked
 */
-function function_25561504()
+function raz_round_aftermath()
 {
 	level waittill(#"last_ai_down", e_enemy_ai);
 	level thread zm_audio::sndmusicsystem_playstate("raz_over");
@@ -685,9 +685,9 @@ function function_25561504()
 */
 function get_favorite_enemy()
 {
-	var_bc3f44bf = getplayers();
+	a_e_raz_targets = getplayers();
 	e_least_hunted = undefined;
-	foreach(e_target in var_bc3f44bf)
+	foreach(e_target in a_e_raz_targets)
 	{
 		if(!isdefined(e_target.hunted_by))
 		{
@@ -725,25 +725,25 @@ function get_favorite_enemy()
 */
 function function_a67ada8()
 {
-	level.var_f95eaac8 = 5500 + (level.round_number * 100);
-	if(level.var_f95eaac8 < 5500)
+	level.n_raz_health = 5500 + (level.round_number * 100);
+	if(level.n_raz_health < 5500)
 	{
-		level.var_f95eaac8 = 5500;
+		level.n_raz_health = 5500;
 	}
-	else if(level.var_f95eaac8 > 15000)
+	else if(level.n_raz_health > 15000)
 	{
-		level.var_f95eaac8 = 15000;
+		level.n_raz_health = 15000;
 	}
-	level.var_f95eaac8 = int(level.var_f95eaac8 * (1 + (0.15 * (level.players.size - 1))));
-	level.razgunhealth = level.var_f95eaac8 * 0.15;
-	level.razhelmethealth = level.var_f95eaac8 * 0.3;
-	level.razleftshoulderarmorhealth = level.var_f95eaac8 * 0.25;
-	level.razchestarmorhealth = level.var_f95eaac8 * 0.4;
-	level.razthigharmorhealth = level.var_f95eaac8 * 0.25;
+	level.n_raz_health = int(level.n_raz_health * (1 + (0.15 * (level.players.size - 1))));
+	level.razgunhealth = level.n_raz_health * 0.15;
+	level.razhelmethealth = level.n_raz_health * 0.3;
+	level.razleftshoulderarmorhealth = level.n_raz_health * 0.25;
+	level.razchestarmorhealth = level.n_raz_health * 0.4;
+	level.razthigharmorhealth = level.n_raz_health * 0.25;
 }
 
 /*
-	Name: function_bdf13070
+	Name: play_raz_round
 	Namespace: zm_ai_raz
 	Checksum: 0x164C9D33
 	Offset: 0x1B58
@@ -751,7 +751,7 @@ function function_a67ada8()
 	Parameters: 0
 	Flags: Linked
 */
-function function_bdf13070()
+function play_raz_round()
 {
 	self playlocalsound("zmb_raz_round_start");
 	variation_count = 5;
@@ -762,7 +762,7 @@ function function_bdf13070()
 }
 
 /*
-	Name: function_4749ab89
+	Name: raz_init
 	Namespace: zm_ai_raz
 	Checksum: 0x4B0DD4EC
 	Offset: 0x1C18
@@ -770,7 +770,7 @@ function function_bdf13070()
 	Parameters: 0
 	Flags: Linked
 */
-function function_4749ab89()
+function raz_init()
 {
 	self.targetname = "zombie_raz";
 	self.script_noteworthy = undefined;
@@ -802,7 +802,7 @@ function function_4749ab89()
 	{
 		self.func_custom_cleanup_check = level.var_c7da0559;
 	}
-	self.maxhealth = level.var_f95eaac8;
+	self.maxhealth = level.n_raz_health;
 	if(isdefined(level.a_zombie_respawn_health[self.archetype]) && level.a_zombie_respawn_health[self.archetype].size > 0)
 	{
 		self.health = level.a_zombie_respawn_health[self.archetype][0];
@@ -835,7 +835,7 @@ function raz_death()
 {
 	self waittill(#"death", attacker);
 	self thread zombie_utility::zombie_eye_glow_stop();
-	if(function_a1d75eeb() == 0 && level.zombie_total == 0)
+	if(get_current_raz_count() == 0 && level.zombie_total == 0)
 	{
 		if(!isdefined(level.zm_ai_round_over) || [[level.zm_ai_round_over]]())
 		{
@@ -864,12 +864,12 @@ function raz_death()
 	if(isdefined(self))
 	{
 		self stoploopsound();
-		self thread function_b1f85217(self.origin);
+		self thread raz_explode_fx(self.origin);
 	}
 }
 
 /*
-	Name: function_b1f85217
+	Name: raz_explode_fx
 	Namespace: zm_ai_raz
 	Checksum: 0x7B764799
 	Offset: 0x20D0
@@ -877,12 +877,12 @@ function raz_death()
 	Parameters: 1
 	Flags: Linked
 */
-function function_b1f85217(origin)
+function raz_explode_fx(origin)
 {
 }
 
 /*
-	Name: function_b4cd74ca
+	Name: zombie_setup_attack_properties_raz
 	Namespace: zm_ai_raz
 	Checksum: 0xF9B73238
 	Offset: 0x20E8
@@ -890,7 +890,7 @@ function function_b1f85217(origin)
 	Parameters: 0
 	Flags: None
 */
-function function_b4cd74ca()
+function zombie_setup_attack_properties_raz()
 {
 	self zm_spawner::zombie_history("zombie_setup_attack_properties()");
 	self.ignoreall = 0;
@@ -900,7 +900,7 @@ function function_b4cd74ca()
 }
 
 /*
-	Name: function_7b5bfac6
+	Name: stop_raz_sound_on_death
 	Namespace: zm_ai_raz
 	Checksum: 0xB82979D6
 	Offset: 0x2148
@@ -908,14 +908,14 @@ function function_b4cd74ca()
 	Parameters: 0
 	Flags: None
 */
-function function_7b5bfac6()
+function stop_raz_sound_on_death()
 {
 	self waittill(#"death");
 	self stopsounds();
 }
 
 /*
-	Name: function_7ed6c714
+	Name: special_raz_spawn
 	Namespace: zm_ai_raz
 	Checksum: 0x35FFAC78
 	Offset: 0x2178
@@ -923,12 +923,12 @@ function function_7b5bfac6()
 	Parameters: 4
 	Flags: Linked
 */
-function function_7ed6c714(n_to_spawn = 1, var_e41e673a, b_force_spawn = 0, var_b7959229 = undefined)
+function special_raz_spawn(n_to_spawn = 1, var_e41e673a, b_force_spawn = 0, var_b7959229 = undefined)
 {
 	n_spawned = 0;
 	while(n_spawned < n_to_spawn)
 	{
-		if(!b_force_spawn && !function_ea911683())
+		if(!b_force_spawn && !can_spawn_raz())
 		{
 			return n_spawned;
 		}
@@ -940,9 +940,9 @@ function function_7ed6c714(n_to_spawn = 1, var_e41e673a, b_force_spawn = 0, var_
 		}
 		else
 		{
-			if(isdefined(level.var_a3559c05))
+			if(isdefined(level.raz_spawn_func))
 			{
-				s_spawn_loc = [[level.var_a3559c05]](level.var_6bca5baa, var_19764360);
+				s_spawn_loc = [[level.raz_spawn_func]](level.a_sp_raz, var_19764360);
 			}
 			else if(level.zm_loc_types["raz_location"].size > 0)
 			{
@@ -953,7 +953,7 @@ function function_7ed6c714(n_to_spawn = 1, var_e41e673a, b_force_spawn = 0, var_
 		{
 			return 0;
 		}
-		ai = function_665a13cd(level.var_6bca5baa[0]);
+		ai = function_665a13cd(level.a_sp_raz[0]);
 		if(isdefined(ai))
 		{
 			ai forceteleport(s_spawn_loc.origin, s_spawn_loc.angles);
@@ -996,7 +996,7 @@ function function_175052a7()
 }
 
 /*
-	Name: function_d1fed7c2
+	Name: raz_thundergun_knockdown
 	Namespace: zm_ai_raz
 	Checksum: 0x652F53AC
 	Offset: 0x2488
@@ -1004,7 +1004,7 @@ function function_175052a7()
 	Parameters: 2
 	Flags: None
 */
-function function_d1fed7c2(player, gib)
+function raz_thundergun_knockdown(player, gib)
 {
 	self endon(#"death");
 	damage = int(self.maxhealth * 0.5);
@@ -1027,9 +1027,9 @@ function function_94372a17(inflictor, attacker, damage, dflags, mod, weapon, poi
 	{
 		dist_sq = distancesquared(attacker.origin, player.origin);
 		var_bfa346a2 = 16384;
-		var_a9914202 = 1 - (dist_sq / var_bfa346a2);
-		var_2882f9d = 35;
-		damage = var_2882f9d * var_a9914202;
+		damage_ratio = 1 - (dist_sq / var_bfa346a2);
+		damage_gradient = 35;
+		damage = damage_gradient * damage_ratio;
 		damage = int(damage);
 		damage = damage + 15;
 		return damage;
@@ -1148,7 +1148,7 @@ function function_39a724b1()
 			s_spot.origin = player.origin;
 		}
 		s_spot.angles = (0, player.angles[1] - 180, 0);
-		function_7ed6c714(1, undefined, 1, s_spot);
+		special_raz_spawn(1, undefined, 1, s_spot);
 		return true;
 	#/
 }
@@ -1188,20 +1188,20 @@ function function_9a80ee5f()
 function function_e115a394(n_raz)
 {
 	/#
-		if(!isdefined(level.var_2e815d61) || !level.var_2e815d61)
+		if(!isdefined(level.b_raz_enabled) || !level.b_raz_enabled)
 		{
 			return;
 		}
-		if(!isdefined(level.var_629d0743) || !level.var_629d0743)
+		if(!isdefined(level.b_raz_rounds_enabled) || !level.b_raz_rounds_enabled)
 		{
 			return;
 		}
-		if(!isdefined(level.var_6bca5baa) || level.var_6bca5baa.size < 1)
+		if(!isdefined(level.a_sp_raz) || level.a_sp_raz.size < 1)
 		{
 			return;
 		}
 		function_d8afb0d4(n_raz);
-		level.var_51a5abd0 = level.round_number + 1;
+		level.n_next_raz_round = level.round_number + 1;
 	#/
 }
 
@@ -1217,10 +1217,10 @@ function function_e115a394(n_raz)
 function function_70864ef2(n_raz)
 {
 	/#
-		if(isdefined(level.var_51a5abd0))
+		if(isdefined(level.n_next_raz_round))
 		{
 			function_d8afb0d4(n_raz);
-			zm_devgui::zombie_devgui_goto_round(level.var_51a5abd0);
+			zm_devgui::zombie_devgui_goto_round(level.n_next_raz_round);
 		}
 	#/
 }

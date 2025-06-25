@@ -175,11 +175,11 @@ function function_1e5d8e69()
 		#/
 		return;
 	}
-	foreach(var_5631b793 in level.var_fda4b3f3)
+	foreach(sp_sentinel in level.var_fda4b3f3)
 	{
-		var_5631b793.is_enabled = 1;
-		var_5631b793.script_forcespawn = 1;
-		var_5631b793 spawner::add_spawn_function(&function_3b40bf32);
+		sp_sentinel.is_enabled = 1;
+		sp_sentinel.script_forcespawn = 1;
+		sp_sentinel spawner::add_spawn_function(&function_3b40bf32);
 	}
 }
 
@@ -221,9 +221,9 @@ function function_e38b964d()
 			function_71f8e359();
 			level.round_spawn_func = &sentinel_round_spawning;
 			level.round_wait_func = &function_989acb59;
-			if(isdefined(level.var_a1ca5313))
+			if(isdefined(level.zm_custom_get_next_sentinel_round))
 			{
-				level.var_a78effc7 = [[level.var_a1ca5313]]();
+				level.var_a78effc7 = [[level.zm_custom_get_next_sentinel_round]]();
 			}
 			else
 			{
@@ -340,7 +340,7 @@ function sentinel_round_spawning()
 				continue;
 			}
 			var_c94972aa = level.var_35078afd > 1 && (level.zombie_total % 2) == 0;
-			function_23a30f49(var_c94972aa);
+			spawn_sentinel(var_c94972aa);
 			util::wait_network_frame();
 		}
 		util::wait_network_frame();
@@ -414,7 +414,7 @@ function function_f9c9e7e0()
 }
 
 /*
-	Name: function_23a30f49
+	Name: spawn_sentinel
 	Namespace: zm_ai_sentinel_drone
 	Checksum: 0xB32843F5
 	Offset: 0x1888
@@ -422,7 +422,7 @@ function function_f9c9e7e0()
 	Parameters: 1
 	Flags: Linked
 */
-function function_23a30f49(var_c94972aa = 0)
+function spawn_sentinel(var_c94972aa = 0)
 {
 	while(!function_74ab7484())
 	{
@@ -999,7 +999,7 @@ function function_989acb59()
 }
 
 /*
-	Name: function_41375d48
+	Name: get_current_sentinel_count
 	Namespace: zm_ai_sentinel_drone
 	Checksum: 0xDB916B7F
 	Offset: 0x2E70
@@ -1007,7 +1007,7 @@ function function_989acb59()
 	Parameters: 0
 	Flags: Linked
 */
-function function_41375d48()
+function get_current_sentinel_count()
 {
 	a_ai_sentinel = getentarray("zombie_sentinel", "targetname");
 	var_5eecf676 = a_ai_sentinel.size;
@@ -1089,7 +1089,7 @@ function sentinel_round_fx(n_val)
 */
 function function_74ab7484()
 {
-	var_8d70c285 = function_41375d48();
+	var_8d70c285 = get_current_sentinel_count();
 	var_f285bab2 = function_e4aafac();
 	if(var_8d70c285 >= var_f285bab2 || !level flag::get("spawn_zombies"))
 	{
@@ -1292,7 +1292,7 @@ function function_3b40bf32()
 		self.health = self.maxhealth;
 	}
 	self thread function_d0769312();
-	self thread function_6cb24476();
+	self thread compact_mode();
 	self flag::init("completed_spawning");
 	level thread zm_spawner::zombie_death_event(self);
 	self thread zm_spawner::enemy_death_detection();
@@ -1319,7 +1319,7 @@ function function_3b40bf32()
 function function_d0769312()
 {
 	self waittill(#"death", attacker);
-	if(function_41375d48() == 0 && level.zombie_total <= 0)
+	if(get_current_sentinel_count() == 0 && level.zombie_total <= 0)
 	{
 		if(!isdefined(level.zm_ai_round_over) || [[level.zm_ai_round_over]]())
 		{
@@ -1366,7 +1366,7 @@ function function_acaa3ee4(origin)
 }
 
 /*
-	Name: function_6cb24476
+	Name: compact_mode
 	Namespace: zm_ai_sentinel_drone
 	Checksum: 0x88A4A165
 	Offset: 0x3A38
@@ -1374,7 +1374,7 @@ function function_acaa3ee4(origin)
 	Parameters: 0
 	Flags: Linked
 */
-function function_6cb24476()
+function compact_mode()
 {
 	self endon(#"death");
 	v_compact_mode = getent("sentinel_compact", "targetname");
@@ -1394,7 +1394,7 @@ function function_6cb24476()
 }
 
 /*
-	Name: function_60f92893
+	Name: zombie_setup_attack_properties_sentinel
 	Namespace: zm_ai_sentinel_drone
 	Checksum: 0xF5FCC519
 	Offset: 0x3B00
@@ -1402,7 +1402,7 @@ function function_6cb24476()
 	Parameters: 0
 	Flags: None
 */
-function function_60f92893()
+function zombie_setup_attack_properties_sentinel()
 {
 	self zm_spawner::zombie_history("zombie_setup_attack_properties()");
 	self ai::set_ignoreall(0);
@@ -1412,7 +1412,7 @@ function function_60f92893()
 }
 
 /*
-	Name: function_586ac2c3
+	Name: stop_sentinel_sound_on_death
 	Namespace: zm_ai_sentinel_drone
 	Checksum: 0x912AF253
 	Offset: 0x3B68
@@ -1420,7 +1420,7 @@ function function_60f92893()
 	Parameters: 0
 	Flags: None
 */
-function function_586ac2c3()
+function stop_sentinel_sound_on_death()
 {
 	self waittill(#"death");
 	self stopsounds();

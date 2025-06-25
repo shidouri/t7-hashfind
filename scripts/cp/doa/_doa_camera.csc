@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\doa\_doa_arena;
 #using scripts\shared\array_shared;
 #using scripts\shared\math_shared;
@@ -119,11 +119,11 @@ function function_d207ecc1(localclientnum, delta_time)
 	}
 	if(level.localplayers.size >= 2)
 	{
-		if(!isdefined(level.var_3d977189))
+		if(!isdefined(level.sp_flag))
 		{
 			setdvar("r_deadOpsActive", 1);
 			setdvar("r_splitScreenExpandFull", 1);
-			level.var_3d977189 = 1;
+			level.sp_flag = 1;
 		}
 	}
 	if(!isdefined(var_44509e49))
@@ -253,9 +253,9 @@ function function_d207ecc1(localclientnum, delta_time)
 		mins = function_44a2ae85(origin, mins);
 		maxs = function_b72ba417(origin, maxs);
 	}
-	if(isarray(level.var_172ed9a1))
+	if(isarray(level.camera_focus))
 	{
-		foreach(target in level.var_172ed9a1)
+		foreach(target in level.camera_focus)
 		{
 			if(!isdefined(target))
 			{
@@ -275,15 +275,15 @@ function function_d207ecc1(localclientnum, delta_time)
 	cam_pos = center;
 	if(players.size == 1)
 	{
-		var_4d44f2a6 = namespace_3ca3c537::function_be152c54();
-		if(var_4d44f2a6 == 99)
+		player_influence = namespace_3ca3c537::function_be152c54();
+		if(player_influence == 99)
 		{
 			cam_pos = (players[0].origin[0], players[0].origin[1], arena_center[2]);
 		}
 		else
 		{
 			dir_to_player = center - arena_center;
-			cam_pos = arena_center + (dir_to_player * var_4d44f2a6);
+			cam_pos = arena_center + (dir_to_player * player_influence);
 		}
 	}
 	if(level.localplayers.size > 1)

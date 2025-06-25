@@ -805,7 +805,7 @@ function function_e1e53e16(localclientnum, n_character_index)
 {
 	function_1461c206(localclientnum, n_character_index);
 	s_loc = struct::get("keeper_spirit_" + (n_character_index - 1), "targetname");
-	s_keeper = level.var_673f721c[localclientnum][n_character_index];
+	s_keeper = level.ee_quest[localclientnum][n_character_index];
 	if(!isdefined(s_keeper.model))
 	{
 		s_keeper.model = spawn(localclientnum, s_loc.origin, "script_model");
@@ -837,7 +837,7 @@ function function_e1e53e16(localclientnum, n_character_index)
 function function_2c557738(localclientnum, n_character_index)
 {
 	function_1461c206(localclientnum, n_character_index);
-	s_keeper = level.var_673f721c[localclientnum][n_character_index];
+	s_keeper = level.ee_quest[localclientnum][n_character_index];
 	if(isdefined(s_keeper.var_f929ecf4))
 	{
 		return s_keeper.var_f929ecf4;
@@ -1138,17 +1138,17 @@ function ee_rail_electricity_state(localclientnum, oldval, newval, bnewent, bini
 */
 function function_1461c206(localclientnum, n_character_index)
 {
-	if(!isdefined(level.var_673f721c))
+	if(!isdefined(level.ee_quest))
 	{
-		level.var_673f721c = [];
+		level.ee_quest = [];
 	}
-	if(!isdefined(level.var_673f721c[localclientnum]))
+	if(!isdefined(level.ee_quest[localclientnum]))
 	{
-		level.var_673f721c[localclientnum] = [];
+		level.ee_quest[localclientnum] = [];
 	}
-	if(!isdefined(level.var_673f721c[localclientnum][n_character_index]))
+	if(!isdefined(level.ee_quest[localclientnum][n_character_index]))
 	{
-		level.var_673f721c[localclientnum][n_character_index] = spawnstruct();
+		level.ee_quest[localclientnum][n_character_index] = spawnstruct();
 	}
 }
 

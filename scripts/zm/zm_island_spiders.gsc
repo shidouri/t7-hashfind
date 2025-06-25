@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -86,13 +86,13 @@ function function_c102a998()
 */
 function function_33aa4940()
 {
-	var_7ac5425b = 0;
+	b_spawn_spider = 0;
 	var_622d2c20 = 0;
 	if(level.round_number > 35)
 	{
 		if(randomfloat(100) < 10)
 		{
-			var_7ac5425b = 1;
+			b_spawn_spider = 1;
 		}
 	}
 	else
@@ -101,7 +101,7 @@ function function_33aa4940()
 		{
 			if(randomfloat(100) < 8)
 			{
-				var_7ac5425b = 1;
+				b_spawn_spider = 1;
 			}
 		}
 		else
@@ -110,14 +110,14 @@ function function_33aa4940()
 			{
 				if(randomfloat(100) < 7)
 				{
-					var_7ac5425b = 1;
+					b_spawn_spider = 1;
 				}
 			}
 			else if(level.round_number > 20)
 			{
 				if(randomfloat(100) < 5)
 				{
-					var_7ac5425b = 1;
+					b_spawn_spider = 1;
 				}
 			}
 		}
@@ -128,42 +128,42 @@ function function_33aa4940()
 		{
 			if(randomfloat(100) < 30 && level.var_ab7eb3d4 < 3)
 			{
-				var_7ac5425b = 1;
+				b_spawn_spider = 1;
 				var_622d2c20 = 1;
 			}
 		}
 	}
-	if(var_7ac5425b)
+	if(b_spawn_spider)
 	{
 		if(var_622d2c20)
 		{
 			var_a5f01313 = struct::get_array("zone_spider_lair_spawners", "targetname");
-			var_901f5ace = [];
+			a_spider_spawners = [];
 			foreach(s_spawner in var_a5f01313)
 			{
 				if(s_spawner.script_noteworthy == "spider_location")
 				{
-					if(!isdefined(var_901f5ace))
+					if(!isdefined(a_spider_spawners))
 					{
-						var_901f5ace = [];
+						a_spider_spawners = [];
 					}
-					else if(!isarray(var_901f5ace))
+					else if(!isarray(a_spider_spawners))
 					{
-						var_901f5ace = array(var_901f5ace);
+						a_spider_spawners = array(a_spider_spawners);
 					}
-					var_901f5ace[var_901f5ace.size] = s_spawner;
+					a_spider_spawners[a_spider_spawners.size] = s_spawner;
 				}
 			}
-			zm_ai_spiders::function_f4bd92a2(1, array::random(var_901f5ace));
+			zm_ai_spiders::special_spider_spawn(1, array::random(a_spider_spawners));
 			level.var_ab7eb3d4++;
 		}
 		else
 		{
-			zm_ai_spiders::function_f4bd92a2(1);
+			zm_ai_spiders::special_spider_spawn(1);
 		}
 		level.zombie_total--;
 	}
-	return var_7ac5425b;
+	return b_spawn_spider;
 }
 
 /*

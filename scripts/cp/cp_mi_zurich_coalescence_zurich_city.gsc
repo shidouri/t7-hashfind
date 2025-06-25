@@ -171,7 +171,7 @@ function function_ab4451a1()
 	array::thread_all(a_mdl_doors, &function_52073baf);
 	while(true)
 	{
-		level waittill(#"hash_443f3c33");
+		level waittill("bar_open");
 		a_mdl_doors = array::randomize(a_mdl_doors);
 		foreach(mdl in a_mdl_doors)
 		{
@@ -197,7 +197,7 @@ function function_ab4451a1()
 			mdl movez(85 * -1, randomfloatrange(0.9, 1.2));
 		}
 		mdl waittill(#"movedone");
-		level notify(#"hash_2fa6d91");
+		level notify("bar_close");
 	}
 }
 
@@ -220,9 +220,9 @@ function function_52073baf()
 		self waittill(#"damage", n_damage, e_attacker, $_, $_, str_damage_type);
 		if(isplayer(e_attacker))
 		{
-			level notify(#"hash_443f3c33");
+			level notify("bar_open");
 			self setcandamage(0);
-			level waittill(#"hash_2fa6d91");
+			level waittill("bar_close");
 		}
 	}
 }

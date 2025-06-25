@@ -1,12 +1,12 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\exploder_shared;
 
-#namespace namespace_e7a4a9df;
+#namespace mp_apartments_lighting;
 
 /*
 	Name: function_c667ac79
-	Namespace: namespace_e7a4a9df
+	Namespace: mp_apartments_lighting
 	Checksum: 0xCA6617C4
 	Offset: 0x120
 	Size: 0x230
@@ -75,7 +75,7 @@ function function_c667ac79()
 
 /*
 	Name: main
-	Namespace: namespace_e7a4a9df
+	Namespace: mp_apartments_lighting
 	Checksum: 0x9473CAA5
 	Offset: 0x358
 	Size: 0x14

@@ -65,7 +65,7 @@ function __init__()
 	level.var_e12ec39f = 500;
 	level.mechz_powercap_health = level.var_e12ec39f;
 	level.var_3f1bf221 = 250;
-	level.var_2cbc5b59 = level.var_3f1bf221;
+	level.mechz_armor_health = level.var_3f1bf221;
 	level.mechz_health_increase = 100;
 	level.var_1a5bb9d8 = 100;
 	level.var_a1943286 = 15;
@@ -228,9 +228,9 @@ function private mechz_setup()
 	self.team = level.zombie_team;
 	self.zombie_lift_override = &function_817c85eb;
 	self.thundergun_fling_func = &function_9bac2f00;
-	self.thundergun_knockdown_func = &function_19b9b682;
+	self.thundergun_knockdown_func = &mechz_thundergun_knockdown;
 	self.var_23340a5d = &function_9bac2f00;
-	self.var_e1dbd63 = &function_19b9b682;
+	self.var_e1dbd63 = &mechz_thundergun_knockdown;
 	self.var_48cabef5 = &function_48cabef5;
 	level thread zm_spawner::zombie_death_event(self);
 }
@@ -291,7 +291,7 @@ function function_9bac2f00(e_player, gib)
 }
 
 /*
-	Name: function_19b9b682
+	Name: mechz_thundergun_knockdown
 	Namespace: zm_ai_mechz
 	Checksum: 0xF8494751
 	Offset: 0xFB0
@@ -299,7 +299,7 @@ function function_9bac2f00(e_player, gib)
 	Parameters: 2
 	Flags: Linked
 */
-function function_19b9b682(e_player, gib)
+function mechz_thundergun_knockdown(e_player, gib)
 {
 	self endon(#"death");
 	self function_b8e0ce15(e_player);
@@ -357,16 +357,16 @@ function spawn_mechz(s_location, flyin = 0)
 				ai thread function_75a79bb5();
 			#/
 			ai.actor_damage_func = &mechzserverutils::mechzdamagecallback;
-			ai.damage_scoring_function = &function_b03abc02;
-			ai.mechz_melee_knockdown_function = &function_55483494;
+			ai.damage_scoring_function = &mechz_damage_scoring;
+			ai.mechz_melee_knockdown_function = &mechz_melee_knockdown;
 			ai.health = level.mechz_health;
 			ai.faceplate_health = level.mechz_faceplate_health;
 			ai.powercap_cover_health = level.mechz_powercap_cover_health;
 			ai.powercap_health = level.mechz_powercap_health;
-			ai.left_knee_armor_health = level.var_2cbc5b59;
-			ai.right_knee_armor_health = level.var_2cbc5b59;
-			ai.left_shoulder_armor_health = level.var_2cbc5b59;
-			ai.right_shoulder_armor_health = level.var_2cbc5b59;
+			ai.left_knee_armor_health = level.mechz_armor_health;
+			ai.right_knee_armor_health = level.mechz_armor_health;
+			ai.left_shoulder_armor_health = level.mechz_armor_health;
+			ai.right_shoulder_armor_health = level.mechz_armor_health;
 			ai.heroweapon_kill_power = 10;
 			e_player = zm_utility::get_closest_player(s_location.origin);
 			v_dir = e_player.origin - s_location.origin;
@@ -734,7 +734,7 @@ function function_949a3fdf()
 }
 
 /*
-	Name: function_b03abc02
+	Name: mechz_damage_scoring
 	Namespace: zm_ai_mechz
 	Checksum: 0xD98EAD1A
 	Offset: 0x2500
@@ -742,7 +742,7 @@ function function_949a3fdf()
 	Parameters: 12
 	Flags: Linked
 */
-function function_b03abc02(inflictor, attacker, damage, dflags, mod, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function mechz_damage_scoring(inflictor, attacker, damage, dflags, mod, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	if(isdefined(attacker) && isplayer(attacker))
 	{
@@ -818,7 +818,7 @@ function function_3efae612(zombie)
 }
 
 /*
-	Name: function_55483494
+	Name: mechz_melee_knockdown
 	Namespace: zm_ai_mechz
 	Checksum: 0x8DDC6FC8
 	Offset: 0x28C8
@@ -826,7 +826,7 @@ function function_3efae612(zombie)
 	Parameters: 0
 	Flags: Linked
 */
-function function_55483494()
+function mechz_melee_knockdown()
 {
 	a_zombies = getaiarchetypearray("zombie");
 	foreach(zombie in a_zombies)
@@ -946,8 +946,8 @@ function private function_94a24a91(cmd)
 {
 	/#
 		players = getplayers();
-		var_6aad1b23 = getentarray("", "");
-		mechz = arraygetclosest(getplayers()[0].origin, var_6aad1b23);
+		mechzs = getentarray("", "");
+		mechz = arraygetclosest(getplayers()[0].origin, mechzs);
 		switch(cmd)
 		{
 			case "":

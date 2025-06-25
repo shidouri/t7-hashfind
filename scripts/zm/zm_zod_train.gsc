@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -2087,7 +2087,7 @@ class czmtrain
 		{
 			duration = 1;
 			var_6ffe9d93 = 240;
-			var_4dc5a359 = 12;
+			arrow_width = 12;
 			origin = m_vh_train.origin;
 			origin = origin + (vectorscale((0, 0, -1), 90));
 			forward = anglestoforward(m_vh_train.angles);
@@ -2096,15 +2096,15 @@ class czmtrain
 			{
 				forward = -1 * forward;
 			}
-			var_bba032ca = origin + (var_6ffe9d93 * forward);
+			arrow_end = origin + (var_6ffe9d93 * forward);
 			/#
-				line(origin, var_bba032ca, (1, 0, 0), 1, 1, duration);
+				line(origin, arrow_end, (1, 0, 0), 1, 1, duration);
 			#/
 			/#
-				line(var_bba032ca, (var_bba032ca - (var_4dc5a359 * forward)) - (var_4dc5a359 * right), (1, 0, 0), 1, 1, duration);
+				line(arrow_end, (arrow_end - (arrow_width * forward)) - (arrow_width * right), (1, 0, 0), 1, 1, duration);
 			#/
 			/#
-				line(var_bba032ca, (var_bba032ca - (var_4dc5a359 * forward)) + (var_4dc5a359 * right), (1, 0, 0), 1, 1, duration);
+				line(arrow_end, (arrow_end - (arrow_width * forward)) + (arrow_width * right), (1, 0, 0), 1, 1, duration);
 			#/
 			foreach(e_door in m_a_mdl_doors)
 			{

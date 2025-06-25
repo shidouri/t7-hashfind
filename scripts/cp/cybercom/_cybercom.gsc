@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\cybercom\_cybercom_dev;
 #using scripts\cp\cybercom\_cybercom_gadget;
@@ -232,7 +232,7 @@ function function_25889576(einflictor, eattacker, idamage, idflags, smeansofdeat
 	}
 	if(idamage > 30)
 	{
-		self notify(#"hash_15b29ba5");
+		self notify("damage_pain");
 	}
 	return idamage;
 }
@@ -686,7 +686,7 @@ function function_d240e350(var_7872e02, target, var_9bc2efcb = 1, upgraded = 0)
 		}
 		case "cybercom_mrpukey":
 		{
-			namespace_e44205a2::function_da7ef8ba(target, var_9bc2efcb, upgraded);
+			cybercom_gadget_mrpukey::function_da7ef8ba(target, var_9bc2efcb, upgraded);
 			break;
 		}
 		case "cybercom_concussive":

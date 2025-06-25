@@ -292,7 +292,7 @@ function init_clientfields()
 */
 function function_a4a54181()
 {
-	level notify(#"hash_fd9adc1e");
+	level notify("cue_music");
 	level flag::wait_till("lander_intro_done");
 	zm::round_start();
 }
@@ -389,20 +389,20 @@ function centrifuge_jumpup_fix()
 		return;
 	}
 	jump_pos = var_157ff899.origin;
-	var_b9bd08ae = 0;
+	centrifuge_occupied = 0;
 	while(true)
 	{
-		if(level.zones["centrifuge_zone"].is_occupied && var_b9bd08ae == 0)
+		if(level.zones["centrifuge_zone"].is_occupied && centrifuge_occupied == 0)
 		{
 			var_157ff899 movex(jump_pos[0] + 64, 0.1);
 			var_157ff899 disconnectpaths();
-			var_b9bd08ae = 1;
+			centrifuge_occupied = 1;
 		}
-		else if(!level.zones["centrifuge_zone"].is_occupied && var_b9bd08ae == 1)
+		else if(!level.zones["centrifuge_zone"].is_occupied && centrifuge_occupied == 1)
 		{
 			var_157ff899 moveto(jump_pos, 0.1);
 			var_157ff899 connectpaths();
-			var_b9bd08ae = 0;
+			centrifuge_occupied = 0;
 		}
 		wait(1);
 	}
@@ -726,7 +726,7 @@ function centrifuge_init()
 	centrifuge = getent("centrifuge", "targetname");
 	if(isdefined(centrifuge))
 	{
-		centrifuge function_c6807eeb();
+		centrifuge centrifuge_rotate();
 	}
 }
 
@@ -749,11 +749,11 @@ function function_a97cb654()
 			pieces[i] linkto(self);
 		}
 	}
-	self thread function_c6807eeb();
+	self thread centrifuge_rotate();
 }
 
 /*
-	Name: function_c6807eeb
+	Name: centrifuge_rotate
 	Namespace: zm_cosmodrome
 	Checksum: 0x5FDA2F15
 	Offset: 0x39C8
@@ -761,7 +761,7 @@ function function_a97cb654()
 	Parameters: 0
 	Flags: Linked
 */
-function function_c6807eeb()
+function centrifuge_rotate()
 {
 	while(true)
 	{
@@ -1845,7 +1845,7 @@ function function_9a889da5(str_msg, str_ender)
 }
 
 /*
-	Name: function_bb831d
+	Name: debug_remove
 	Namespace: zm_cosmodrome
 	Checksum: 0x2986CF87
 	Offset: 0x65A8
@@ -1853,7 +1853,7 @@ function function_9a889da5(str_msg, str_ender)
 	Parameters: 1
 	Flags: Linked
 */
-function function_bb831d(str_ender)
+function debug_remove(str_ender)
 {
 	/#
 		self notify(str_ender);

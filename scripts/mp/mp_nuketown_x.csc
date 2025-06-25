@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\mp\_load;
 #using scripts\mp\_util;
@@ -23,8 +23,8 @@ function main()
 	clientfield::register("scriptmover", "nuketown_population_ones", 1, 4, "int", &function_a3fc1001, 0, 0);
 	clientfield::register("scriptmover", "nuketown_population_tens", 1, 4, "int", &function_a3fc1001, 0, 0);
 	clientfield::register("world", "nuketown_endgame", 1, 1, "int", &function_db2629eb, 0, 0);
-	namespace_6044bb60::main();
-	namespace_4cda09f7::main();
+	mp_nuketown_x_fx::main();
+	mp_nuketown_x_sound::main();
 	load::main();
 	level.domflagbasefxoverride = &dom_flag_base_fx_override;
 	level.domflagcapfxoverride = &dom_flag_cap_fx_override;

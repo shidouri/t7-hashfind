@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
@@ -234,7 +234,7 @@ function function_86419da()
 			{
 				luinotifyevent(&"zombie_time_attack_notification", 2, zm::get_round_number() - 1, level.players.size);
 				playsoundatposition("zmb_genesis_timetrial_complete", (0, 0, 0));
-				level thread function_cc8ae246(var_99870abd);
+				level thread award_item(var_99870abd);
 			}
 		}
 	}
@@ -242,7 +242,7 @@ function function_86419da()
 }
 
 /*
-	Name: function_cc8ae246
+	Name: award_item
 	Namespace: zm_genesis_timer
 	Checksum: 0xDA77AC43
 	Offset: 0x920
@@ -250,7 +250,7 @@ function function_86419da()
 	Parameters: 1
 	Flags: Linked
 */
-function function_cc8ae246(n_reward)
+function award_item(n_reward)
 {
 	if(n_reward != 200 && level flag::get("hope_done"))
 	{

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\systems\blackboard;
@@ -4045,10 +4045,10 @@ function zombie_devgui_dump_zombie_vars()
 		{
 			return;
 		}
-		var_66026a81 = getarraykeys(level.zombie_vars);
+		var_names = getarraykeys(level.zombie_vars);
 		for(i = 0; i < level.zombie_vars.size; i++)
 		{
-			key = var_66026a81[i];
+			key = var_names[i];
 			println((key + "") + level.zombie_vars[key]);
 		}
 		println("");

@@ -457,14 +457,14 @@ function function_be26578d(n_reel)
 	mdl_rock waittill(#"movedone");
 	while(true)
 	{
-		if(isdefined(level.ai_companion) && isalive(level.var_bfd9ed83))
+		if(isdefined(level.ai_companion) && isalive(level.companion_leader))
 		{
 			if(level.ai_companion.reviving_a_player === 1 || level.ai_companion.b_teleporting === 1 || isdefined(level.ai_companion.traversestartnode))
 			{
 				wait(0.1);
 				continue;
 			}
-			if(distancesquared(level.var_bfd9ed83.origin, mdl_rock.origin) < 2500 && distancesquared(level.ai_companion.origin, mdl_rock.origin) < 40000)
+			if(distancesquared(level.companion_leader.origin, mdl_rock.origin) < 2500 && distancesquared(level.ai_companion.origin, mdl_rock.origin) < 40000)
 			{
 				b_success = level.ai_companion function_3877f225(mdl_rock);
 				if(b_success)
@@ -2566,8 +2566,8 @@ function function_5db6ba34(var_1a60ad71 = 1)
 		}
 	}
 	var_6cbdc65 = [];
-	var_c94c86a8 = getentarray("mechz", "targetname");
-	foreach(ai_mechz in var_c94c86a8)
+	a_mechz = getentarray("mechz", "targetname");
+	foreach(ai_mechz in a_mechz)
 	{
 		var_63b71acf = 0;
 		if(isdefined(ai_mechz.no_damage_points) && ai_mechz.no_damage_points)

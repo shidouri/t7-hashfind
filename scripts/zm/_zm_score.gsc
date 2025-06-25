@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -665,7 +665,7 @@ function minus_to_player_score(points)
 	level notify(#"spent_points", self, points);
 	if(isdefined(level.bgb_in_use) && level.bgb_in_use && level.onlinegame)
 	{
-		self bgb_token::function_51cf4361(points);
+		self bgb_token::award_check(points);
 	}
 }
 

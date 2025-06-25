@@ -391,7 +391,7 @@ function function_633f337()
 	spawn_manager::kill("sm_robot_defend_tower");
 	spawn_manager::enable("sm_robot_swarm");
 	level flag::wait_till("pod_go");
-	level thread namespace_21b2c1f2::function_fcb67450();
+	level thread prologue_sound::function_fcb67450();
 	spawn_manager::kill("sm_hilltop_guard");
 	spawn_manager::kill("sm_perimeter_guard");
 	spawn_manager::kill("sm_defend_rpg");
@@ -1400,7 +1400,7 @@ function function_6947ce3()
 	wait(1);
 	var_f5882947 = getent("fxanim_vtol_pod", "animname");
 	var_f5882947 thread function_34d9d6a7();
-	level waittill(#"hash_27dfe41d");
+	level waittill("cease_fire");
 	level thread function_94856821();
 }
 
@@ -1465,7 +1465,7 @@ function function_34d9d6a7()
 			wait(0.5);
 		}
 	}
-	level notify(#"hash_27dfe41d");
+	level notify("cease_fire");
 }
 
 /*
@@ -1583,7 +1583,7 @@ function background_effects()
 function function_6ba94a8()
 {
 	battlechatter::function_d9f49fba(0);
-	level thread namespace_21b2c1f2::function_92382f5c();
+	level thread prologue_sound::function_92382f5c();
 	level.ai_hendricks dialog::say("hend_there_s_our_ride_0");
 	level.apc dialog::say("dops_exfil_pod_first_pass_0", 0.2, 1);
 	level flag::wait_till("pod_on_ground");

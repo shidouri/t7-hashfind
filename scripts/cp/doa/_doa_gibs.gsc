@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_dev;
 #using scripts\cp\doa\_doa_fx;
@@ -35,7 +35,7 @@
 function init()
 {
 	level.doa.var_2b941d3f = array(getweapon("zombietron_deathmachine"), getweapon("zombietron_deathmachine_1"), getweapon("zombietron_deathmachine_2"), getweapon("zombietron_shotgun"), getweapon("zombietron_shotgun_1"), getweapon("zombietron_shotgun_2"), getweapon("zombietron_rpg_1"), getweapon("zombietron_rpg_2"), getweapon("zombietron_nightfury"));
-	level.doa.var_1a7175b1 = array("MOD_GRENADE", "MOD_GRENADE_SPLASH", "MOD_PROJECTILE", "MOD_PROJECTIVLE_SPLASH", "MOD_EXPLOSIVE");
+	level.doa.damage_explosions = array("MOD_GRENADE", "MOD_GRENADE_SPLASH", "MOD_PROJECTILE", "MOD_PROJECTIVLE_SPLASH", "MOD_EXPLOSIVE");
 	level.doa.hitlocs = array("left_hand", "left_arm_lower", "left_arm_upper", "right_hand", "right_arm_lower", "right_arm_upper");
 }
 
@@ -111,7 +111,7 @@ function function_45dffa6b(launchvector)
 	self thread doa_utility::function_e3c30240(launchvector);
 	if(isdefined(launchvector))
 	{
-		self thread namespace_1a381543::function_90118d8c("zmb_ragdoll_launched");
+		self thread doa_sound::function_90118d8c("zmb_ragdoll_launched");
 	}
 }
 
@@ -324,7 +324,7 @@ function function_15a268a6(attacker, damage, meansofdeath, weapon, hitloc, vdir)
 		return;
 	}
 	self endon(#"death");
-	isexplosive = isinarray(level.doa.var_1a7175b1, meansofdeath);
+	isexplosive = isinarray(level.doa.damage_explosions, meansofdeath);
 	trygibbinglimb(self, damage, hitloc, isexplosive);
 	trygibbinglegs(self, damage, hitloc, isexplosive, attacker);
 	if(damage > self.health && gettime() > self.birthtime)

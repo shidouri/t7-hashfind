@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\beam_shared;
@@ -793,11 +793,11 @@ function function_10dcd1d5(kiosk_name)
 		{
 			kiosk.fake_ent = [];
 		}
-		kiosk.var_80eeb471 = (kiosk_name + "_plr_") + kiosk.origin;
+		kiosk.player_label = (kiosk_name + "_plr_") + kiosk.origin;
 		kiosk.var_39a60f4a = (kiosk_name + "_crs_") + kiosk.origin;
-		level.var_dc56ce87[kiosk.var_80eeb471] = kiosk;
+		level.var_dc56ce87[kiosk.player_label] = kiosk;
 		level.var_104eabe[kiosk.var_39a60f4a] = kiosk;
-		clientfield::register("world", kiosk.var_80eeb471, 1, 4, "int", &function_fa828651, 0, 0);
+		clientfield::register("world", kiosk.player_label, 1, 4, "int", &function_fa828651, 0, 0);
 	}
 }
 
@@ -827,7 +827,7 @@ function function_62095f03(localclientnum)
 			kiosk.fake_ent[localclientnum] = util::spawn_model(localclientnum, "tag_origin", kiosk.origin, kiosk.angles);
 			if(isdefined(kiosk.state[localclientnum]))
 			{
-				kiosk.fake_ent[localclientnum] update_kiosk_state(localclientnum, kiosk.state[localclientnum], kiosk.state[localclientnum], 1, 0, kiosk.var_80eeb471, 0);
+				kiosk.fake_ent[localclientnum] update_kiosk_state(localclientnum, kiosk.state[localclientnum], kiosk.state[localclientnum], 1, 0, kiosk.player_label, 0);
 			}
 		}
 	}
@@ -1389,24 +1389,24 @@ function function_89d6f49a(localclientnum, onoff)
 	}
 	var_781fc232 = (63, 103, 4) / 255;
 	var_27745be8 = (105, 148, 24) / 255;
-	var_d7805253 = 2;
-	var_ec055171 = 0.25;
-	cycle_time = var_d7805253;
+	cycle_period = 2;
+	cycle_refresh = 0.25;
+	cycle_time = cycle_period;
 	old_color = function_4778b020(var_781fc232, var_27745be8);
 	new_color = old_color;
 	while(isdefined(self))
 	{
-		if(cycle_time >= var_d7805253)
+		if(cycle_time >= cycle_period)
 		{
 			old_color = new_color;
 			new_color = function_4778b020(var_781fc232, var_27745be8);
 			cycle_time = 0;
 		}
-		color = function_4b2bbece(old_color, new_color, cycle_time / var_d7805253);
+		color = function_4b2bbece(old_color, new_color, cycle_time / cycle_period);
 		self setcontrollerlightbarcolor(localclientnum, color);
 		self.controllercolor = color;
-		cycle_time = cycle_time + var_ec055171;
-		wait(var_ec055171);
+		cycle_time = cycle_time + cycle_refresh;
+		wait(cycle_refresh);
 	}
 }
 

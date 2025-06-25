@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\zombie_utility;
@@ -78,7 +78,7 @@ function function_33aa4940()
 			assert(isdefined(s_spawn_point), "");
 		#/
 		level.var_718361fb = function_3f180afe();
-		zm_ai_spiders::function_f4bd92a2(1, s_spawn_point);
+		zm_ai_spiders::special_spider_spawn(1, s_spawn_point);
 	}
 	if(!var_c0692329)
 	{
@@ -127,26 +127,26 @@ function function_3f180afe()
 {
 	if(level.round_number < 5)
 	{
-		var_fda270a4 = 400;
+		n_spider_health = 400;
 	}
 	else
 	{
 		if(level.round_number < 10)
 		{
-			var_fda270a4 = 900;
+			n_spider_health = 900;
 		}
 		else
 		{
 			if(level.round_number < 15)
 			{
-				var_fda270a4 = 1300;
+				n_spider_health = 1300;
 			}
 			else
 			{
-				var_fda270a4 = 1600;
+				n_spider_health = 1600;
 			}
 		}
 	}
-	return int(var_fda270a4 * 0.35);
+	return int(n_spider_health * 0.35);
 }
 

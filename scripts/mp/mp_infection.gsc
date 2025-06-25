@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\mp\_load;
 #using scripts\mp\_util;
@@ -7,11 +7,11 @@
 #using scripts\shared\compass;
 #using scripts\shared\util_shared;
 
-#namespace namespace_82e4b148;
+#namespace mp_infection;
 
 /*
 	Name: main
-	Namespace: namespace_82e4b148
+	Namespace: mp_infection
 	Checksum: 0xC13691C0
 	Offset: 0x220
 	Size: 0xC14
@@ -31,8 +31,8 @@ function main()
 	level.add_raps_omit_locations = &add_raps_omit_locations;
 	level.add_raps_drop_locations = &add_raps_drop_locations;
 	level.remotemissile_kill_z = -800;
-	namespace_5d379c9::main();
-	namespace_83fbe97c::main();
+	mp_infection_fx::main();
+	mp_infection_sound::main();
 	load::main();
 	compass::setupminimap("compass_map_mp_infection");
 	setdvar("compassmaxrange", "2100");
@@ -81,7 +81,7 @@ function main()
 
 /*
 	Name: precache
-	Namespace: namespace_82e4b148
+	Namespace: mp_infection
 	Checksum: 0x99EC1590
 	Offset: 0xE40
 	Size: 0x4
@@ -94,7 +94,7 @@ function precache()
 
 /*
 	Name: add_raps_omit_locations
-	Namespace: namespace_82e4b148
+	Namespace: mp_infection
 	Checksum: 0x15FE86B8
 	Offset: 0xE50
 	Size: 0x1AC
@@ -143,7 +143,7 @@ function add_raps_omit_locations(&omit_locations)
 
 /*
 	Name: add_raps_drop_locations
-	Namespace: namespace_82e4b148
+	Namespace: mp_infection
 	Checksum: 0x626FD65D
 	Offset: 0x1008
 	Size: 0xDC

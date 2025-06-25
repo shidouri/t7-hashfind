@@ -207,7 +207,7 @@ function function_7d947aff()
 	self thread function_935679b0();
 	while(self.a_e_islands.size > 0)
 	{
-		self waittill(#"hash_421672a9");
+		self waittill("changed_island");
 	}
 	self giveachievement("ZM_GENESIS_GRAND_TOUR");
 	self.a_e_islands = undefined;
@@ -240,7 +240,7 @@ function function_935679b0()
 		{
 			self thread function_f17c9ba1();
 			var_e274e0c3 = self.island_name;
-			self notify(#"hash_421672a9");
+			self notify("changed_island");
 		}
 		wait(randomfloatrange(0.5, 1));
 	}
@@ -269,7 +269,7 @@ function function_f17c9ba1()
 	{
 		return;
 	}
-	self waittill(#"hash_421672a9");
+	self waittill("changed_island");
 	wait(120);
 	if(isdefined(self.a_e_islands))
 	{

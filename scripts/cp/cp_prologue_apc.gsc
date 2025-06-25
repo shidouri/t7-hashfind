@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_accolades;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -934,7 +934,7 @@ function function_aac37081()
 }
 
 /*
-	Name: function_7fd9539
+	Name: sndsnapshots
 	Namespace: apc
 	Checksum: 0xB6F6C817
 	Offset: 0x65F0
@@ -942,7 +942,7 @@ function function_aac37081()
 	Parameters: 0
 	Flags: None
 */
-function function_7fd9539()
+function sndsnapshots()
 {
 	// Unsupported VM revision (1B).
 }

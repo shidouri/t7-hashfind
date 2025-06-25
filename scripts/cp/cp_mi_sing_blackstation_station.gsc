@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
 #using scripts\cp\_objectives;
@@ -486,7 +486,7 @@ function function_bfa694b0()
 }
 
 /*
-	Name: function_4472fea7
+	Name: control_rocket
 	Namespace: cp_mi_sing_blackstation_station
 	Checksum: 0x8CAD5E32
 	Offset: 0x3648
@@ -494,7 +494,7 @@ function function_bfa694b0()
 	Parameters: 0
 	Flags: None
 */
-function function_4472fea7()
+function control_rocket()
 {
 	// Unsupported VM revision (1B).
 }

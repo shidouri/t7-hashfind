@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\mp\_util;
 #using scripts\mp\bots\_bot;
 #using scripts\mp\teams\_teams;
@@ -41,7 +41,7 @@ function bot_idle()
 {
 	if(self.team == game["attackers"])
 	{
-		self function_69879c50();
+		self attackers_idle();
 	}
 	else
 	{
@@ -50,7 +50,7 @@ function bot_idle()
 }
 
 /*
-	Name: function_69879c50
+	Name: attackers_idle
 	Namespace: namespace_ebd80b8b
 	Checksum: 0x8B74385B
 	Offset: 0x278
@@ -58,7 +58,7 @@ function bot_idle()
 	Parameters: 0
 	Flags: Linked
 */
-function function_69879c50()
+function attackers_idle()
 {
 	if(isdefined(level.moveobject) && (level.robot.active || level.rebootplayers > 0))
 	{

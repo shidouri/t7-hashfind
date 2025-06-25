@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_util;
@@ -11,11 +11,11 @@
 #using scripts\shared\vehicle_shared;
 #using scripts\shared\vehicles\_quadtank;
 
-#namespace namespace_ba84f16;
+#namespace cp_mi_eth_prologue_patch_c;
 
 /*
 	Name: function_7403e82b
-	Namespace: namespace_ba84f16
+	Namespace: cp_mi_eth_prologue_patch_c
 	Checksum: 0x99EC1590
 	Offset: 0x1D0
 	Size: 0x4

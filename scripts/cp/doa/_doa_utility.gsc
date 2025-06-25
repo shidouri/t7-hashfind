@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_arena;
 #using scripts\cp\doa\_doa_dev;
@@ -798,7 +798,7 @@ function function_fe180f6f(count = 1)
 		{
 			continue;
 		}
-		if(!(isdefined(guy.spawner.var_8d1af144) && guy.spawner.var_8d1af144))
+		if(!(isdefined(guy.spawner.basic_spawner) && guy.spawner.basic_spawner))
 		{
 			continue;
 		}

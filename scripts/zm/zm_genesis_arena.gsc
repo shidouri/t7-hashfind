@@ -391,7 +391,7 @@ class class_d90687be
 	}
 
 	/*
-		Name: function_34c1d454
+		Name: arena_mechz_spawning
 		Namespace: namespace_d90687be
 		Checksum: 0x12C670B3
 		Offset: 0x48C0
@@ -399,7 +399,7 @@ class class_d90687be
 		Parameters: 1
 		Flags: Linked
 	*/
-	function function_34c1d454(var_87c8152d)
+	function arena_mechz_spawning(var_87c8152d)
 	{
 		var_dacf61a8 = [];
 		while(level clientfield::get("circle_state") == 3)
@@ -579,7 +579,7 @@ class class_d90687be
 	}
 
 	/*
-		Name: function_7ebc257e
+		Name: arena_spider_spawning
 		Namespace: namespace_d90687be
 		Checksum: 0x3CDA432
 		Offset: 0x3EE0
@@ -587,7 +587,7 @@ class class_d90687be
 		Parameters: 0
 		Flags: Linked
 	*/
-	function function_7ebc257e()
+	function arena_spider_spawning()
 	{
 		var_8c5f9971 = [];
 		var_d12aa484 = struct::get_array("arena_spider_spawner", "targetname");
@@ -599,7 +599,7 @@ class class_d90687be
 			{
 				s_spawn_point = array::random(var_d12aa484);
 				level.var_718361fb = zm_genesis_spiders::function_3f180afe();
-				ai = zm_ai_spiders::function_f4bd92a2(1, s_spawn_point);
+				ai = zm_ai_spiders::special_spider_spawn(1, s_spawn_point);
 				array::add(var_8c5f9971, ai, 0);
 			}
 			wait(1);
@@ -874,7 +874,7 @@ class class_d90687be
 			#/
 			wait(1);
 		}
-		level notify(#"hash_b7da93ea");
+		level notify("arena_timeout");
 	}
 
 	/*
@@ -888,7 +888,7 @@ class class_d90687be
 	*/
 	function function_32374471()
 	{
-		level endon(#"hash_b7da93ea");
+		level endon("arena_timeout");
 		while(true)
 		{
 			level thread function_f115a4c8();
@@ -897,7 +897,7 @@ class class_d90687be
 	}
 
 	/*
-		Name: function_15715797
+		Name: arena_session
 		Namespace: namespace_d90687be
 		Checksum: 0xBD11F13C
 		Offset: 0x3300
@@ -905,7 +905,7 @@ class class_d90687be
 		Parameters: 0
 		Flags: Linked
 	*/
-	function function_15715797()
+	function arena_session()
 	{
 		level endon(#"hash_fa713eaf");
 		level flag::wait_till("test_activate_arena");
@@ -923,7 +923,7 @@ class class_d90687be
 			level clientfield::set("circle_state", 2);
 			level flag::wait_till("arena_timer");
 			level thread function_32374471();
-			level waittill(#"hash_b7da93ea");
+			level waittill("arena_timeout");
 			level thread function_cba8ad32();
 			level flag::wait_till_clear("test_activate_arena");
 			flag::clear("test_activate_arena");
@@ -1073,7 +1073,7 @@ class class_d90687be
 		var_95ceb5f7 = getent("dark_arena_volume", "targetname");
 		var_4ff05dea = struct::get_array("arena_scripted_zombie_spawn", "targetname");
 		zm_genesis_arena::function_c1402204();
-		level thread function_15715797();
+		level thread arena_session();
 	}
 
 }
@@ -4465,7 +4465,7 @@ function function_386f30f4()
 	level flag::set("book_runes_success");
 	level flag::set("final_boss_started");
 	level thread zm_genesis_sound::function_e9341208();
-	level notify(#"hash_b7da93ea");
+	level notify("arena_timeout");
 	level notify(#"hash_f115a4c8");
 	level notify(#"hash_fa713eaf");
 	level clientfield::set("arena_state", 4);
@@ -5513,8 +5513,8 @@ function function_7fd60b47()
 	{
 		foreach(str_quest in a_str_quests)
 		{
-			var_dc163518 = (player zm_stats::get_global_stat(("DARKOPS_" + str_quest) + "_SUPER_EE")) > 0;
-			if(var_dc163518)
+			b_quest_completed = (player zm_stats::get_global_stat(("DARKOPS_" + str_quest) + "_SUPER_EE")) > 0;
+			if(b_quest_completed)
 			{
 				var_ce48d9bb[str_quest] = 1;
 			}
@@ -5614,9 +5614,9 @@ function function_43049e1e()
 	{
 		foreach(str_quest in a_str_quests)
 		{
-			var_dc163518 = (player zm_stats::get_global_stat(("DARKOPS_" + str_quest) + "_SUPER_EE")) > 0;
+			b_quest_completed = (player zm_stats::get_global_stat(("DARKOPS_" + str_quest) + "_SUPER_EE")) > 0;
 			var_9d5e869 = isinarray(var_61d59a5a, str_quest);
-			if(var_dc163518 && !var_9d5e869)
+			if(b_quest_completed && !var_9d5e869)
 			{
 				if(!isdefined(var_61d59a5a))
 				{

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_pickups;
 #using scripts\cp\doa\_doa_player_utility;
@@ -198,7 +198,7 @@ function function_80eb303(points, var_c979daec = 0)
 		{
 			if(randomint(100) > 50)
 			{
-				self thread doa_pickups::directeditemawardto(self, level.doa.var_326cdb5e);
+				self thread doa_pickups::directeditemawardto(self, level.doa.skeleton_model);
 			}
 			else
 			{

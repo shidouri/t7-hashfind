@@ -40,7 +40,7 @@
 function main()
 {
 	function_16f0344e();
-	function_d0901c34();
+	cocoon_setup();
 	function_f4a071bb();
 	function_4fdc8e70();
 }
@@ -462,7 +462,7 @@ function function_90913542(str_flag)
 }
 
 /*
-	Name: function_d0901c34
+	Name: cocoon_setup
 	Namespace: zm_island_pap_quest
 	Checksum: 0x539D5C33
 	Offset: 0x1B70
@@ -470,7 +470,7 @@ function function_90913542(str_flag)
 	Parameters: 0
 	Flags: Linked
 */
-function function_d0901c34()
+function cocoon_setup()
 {
 	level.var_e1bb72d5 = 0;
 	level.var_69ca3c45 = 0;
@@ -505,7 +505,7 @@ function function_c762197b()
 		self.clip delete();
 	}
 	self.is_open = 1;
-	self thread function_7a0ede5();
+	self thread cocoon_effects();
 	var_aa12511 = self.var_aa12511;
 	ai_zombie = zombie_utility::spawn_zombie(level.zombie_spawners[0], "cocoon_zombie", var_aa12511);
 	if(isdefined(ai_zombie))
@@ -520,7 +520,7 @@ function function_c762197b()
 }
 
 /*
-	Name: function_bd8082d1
+	Name: cocoon_select
 	Namespace: zm_island_pap_quest
 	Checksum: 0xDA978203
 	Offset: 0x1E88
@@ -528,7 +528,7 @@ function function_c762197b()
 	Parameters: 0
 	Flags: Linked
 */
-function function_bd8082d1()
+function cocoon_select()
 {
 	a_mdl_cocoons = getentarray("cocoon_bunker", "targetname");
 	var_d43245b8 = [];
@@ -552,7 +552,7 @@ function function_bd8082d1()
 }
 
 /*
-	Name: function_7a0ede5
+	Name: cocoon_effects
 	Namespace: zm_island_pap_quest
 	Checksum: 0x5270CDAF
 	Offset: 0x1FE0
@@ -560,7 +560,7 @@ function function_bd8082d1()
 	Parameters: 0
 	Flags: Linked
 */
-function function_7a0ede5()
+function cocoon_effects()
 {
 	self playloopsound("zmb_cocoon_lp", 1);
 	playsoundatposition("evt_cocoon_explode", self.origin + (vectorscale((0, 0, -1), 100)));
@@ -573,7 +573,7 @@ function function_7a0ede5()
 	if(level.var_e1bb72d5 >= 3 && !level.var_69ca3c45)
 	{
 		level.var_69ca3c45 = 1;
-		function_bd8082d1();
+		cocoon_select();
 	}
 }
 

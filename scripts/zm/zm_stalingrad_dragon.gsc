@@ -2706,7 +2706,7 @@ function function_63326db4(b_debug = 0)
 			function_17b7a6a();
 		}
 	#/
-	zm_spawner::deregister_zombie_death_event_callback(&namespace_2e6e7fce::function_1389d425);
+	zm_spawner::deregister_zombie_death_event_callback(&zm_stalingrad_drop_pod::function_1389d425);
 	level zm_stalingrad_util::function_3804dbf1();
 	zm_stalingrad_util::function_adf4d1d0();
 	util::wait_network_frame();
@@ -2730,7 +2730,7 @@ function function_63326db4(b_debug = 0)
 	Parameters: 3
 	Flags: Linked
 */
-function function_c0e035d6(str_spawn, var_bf7e118f = 0, var_8f4dddff = 1)
+function function_c0e035d6(str_spawn, b_raz = 0, var_8f4dddff = 1)
 {
 	if(level.round_number < 20)
 	{
@@ -2738,7 +2738,7 @@ function function_c0e035d6(str_spawn, var_bf7e118f = 0, var_8f4dddff = 1)
 	}
 	a_s_spawn = struct::get_array(str_spawn, "targetname");
 	a_s_spawn = array::filter(a_s_spawn, 0, &zm_stalingrad_util::function_c66f2957);
-	if(!var_bf7e118f)
+	if(!b_raz)
 	{
 		level notify(#"stop_dragon_boss_zombie");
 		wait(1);
@@ -3108,7 +3108,7 @@ function function_109151c2(a_ents)
 	{
 		level.var_1564d2c8[post.script_string] = post;
 	}
-	level.var_ef9c43d7.var_1c9faafd = level.var_ef9c43d7 function_b1a4952d();
+	level.var_ef9c43d7.var_1c9faafd = level.var_ef9c43d7 current_post();
 	level thread scene::play("cin_sta_intro_3rd_crashed_mech_loop");
 }
 
@@ -3284,11 +3284,11 @@ function function_1a2d9dc9()
 	{
 		return false;
 	}
-	var_b1a4952d = level.var_ef9c43d7 function_b1a4952d();
+	current_post = level.var_ef9c43d7 current_post();
 	var_7649b699 = undefined;
-	if(isdefined(var_b1a4952d))
+	if(isdefined(current_post))
 	{
-		var_7649b699 = var_b1a4952d.script_string;
+		var_7649b699 = current_post.script_string;
 	}
 	if(level.var_7a29ed06 == 1 && var_7649b699 === "north")
 	{
@@ -4502,7 +4502,7 @@ function function_30e5b419(s_pos, str_pos, var_6e2a6191, var_4827e728)
 }
 
 /*
-	Name: function_b1a4952d
+	Name: current_post
 	Namespace: dragon
 	Checksum: 0x9B4DC423
 	Offset: 0xE4F0
@@ -4510,17 +4510,17 @@ function function_30e5b419(s_pos, str_pos, var_6e2a6191, var_4827e728)
 	Parameters: 0
 	Flags: Linked
 */
-function function_b1a4952d()
+function current_post()
 {
-	if(isdefined(self.var_b1a4952d) && distance2dsquared(self.origin, self.var_b1a4952d.origin) < (100 * 100))
+	if(isdefined(self.current_post) && distance2dsquared(self.origin, self.current_post.origin) < (100 * 100))
 	{
-		return self.var_b1a4952d;
+		return self.current_post;
 	}
 	foreach(post in level.var_4c8e35f4)
 	{
 		if(distance2dsquared(self.origin, post.origin) < (100 * 100))
 		{
-			self.var_b1a4952d = post;
+			self.current_post = post;
 			return post;
 		}
 	}
@@ -4693,11 +4693,11 @@ function function_32faa6e1(no_delay = 0)
 			continue;
 		}
 		self setneargoalnotifydist(self.radius);
-		var_b1a4952d = self function_b1a4952d();
+		current_post = self current_post();
 		var_7649b699 = undefined;
-		if(isdefined(var_b1a4952d))
+		if(isdefined(current_post))
 		{
-			var_7649b699 = var_b1a4952d.script_string;
+			var_7649b699 = current_post.script_string;
 		}
 		var_f315c28 = array::filter(level.var_4c8e35f4, 0, &function_30e5b419, level.var_181b1223, var_7649b699);
 		var_2cd775bb = array::random(var_f315c28);

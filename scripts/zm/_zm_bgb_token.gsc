@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\callbacks_shared;
@@ -250,7 +250,7 @@ function private bgb_token_percent_chance(target_percent)
 }
 
 /*
-	Name: function_51cf4361
+	Name: award_check
 	Namespace: bgb_token
 	Checksum: 0x9FEF18D2
 	Offset: 0x7E0
@@ -258,7 +258,7 @@ function private bgb_token_percent_chance(target_percent)
 	Parameters: 1
 	Flags: Linked
 */
-function function_51cf4361(var_5561679e)
+function award_check(var_5561679e)
 {
 	if(!is_bgb_token_in_use())
 	{

@@ -16,11 +16,11 @@
 #using_animtree("critter");
 #using_animtree("chicken_mech");
 
-#namespace namespace_bb5d050c;
+#namespace cp_doa_bo3;
 
 /*
 	Name: main
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x30EFFFB5
 	Offset: 0x620
 	Size: 0x29C
@@ -32,8 +32,8 @@ function main()
 	setdvar("doa_redins_rally", 0);
 	level.var_2eda2d85 = &function_62423327;
 	level.var_1f314fb9 = &function_4eb73a5;
-	namespace_e8effba5::main();
-	namespace_4fca3ee8::main();
+	cp_doa_bo3_fx::main();
+	cp_doa_bo3_sound::main();
 	setdvar("bg_friendlyFireMode", 0);
 	clientfield::register("world", "redinsExploder", 1, 2, "int", &function_1dd0a889, 0, 0);
 	clientfield::register("world", "activateBanner", 1, 3, "int", &function_99e9c8d, 0, 0);
@@ -48,7 +48,7 @@ function main()
 
 /*
 	Name: function_4eb73a5
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x37DA1161
 	Offset: 0x8C8
 	Size: 0x616
@@ -181,7 +181,7 @@ function function_4eb73a5(localclientnum, mapname, var_5fb1dd3e)
 
 /*
 	Name: function_62423327
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x8F58643F
 	Offset: 0xEE8
 	Size: 0x252
@@ -250,7 +250,7 @@ function function_62423327(arena)
 
 /*
 	Name: function_98982de8
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xF010A2CC
 	Offset: 0x1148
 	Size: 0x74
@@ -264,7 +264,7 @@ function function_98982de8(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_99e9c8d
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xF77E8105
 	Offset: 0x11C8
 	Size: 0x7EE
@@ -341,7 +341,7 @@ function function_99e9c8d(localclientnum, oldval, newval, bnewent, binitialsnap,
 
 /*
 	Name: function_b5e8546d
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xAC1D1A5
 	Offset: 0x19C0
 	Size: 0x64
@@ -357,7 +357,7 @@ function function_b5e8546d(localclientnum)
 
 /*
 	Name: function_caffcc1d
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xC95040B3
 	Offset: 0x1A30
 	Size: 0x54
@@ -366,14 +366,14 @@ function function_b5e8546d(localclientnum)
 */
 function function_caffcc1d(localclientnum)
 {
-	level waittill(#"hash_ec7ca67b");
+	level waittill("arena_changed");
 	level.var_81528e19 = undefined;
 	setuimodelvalue(createuimodel(level.var_7e2a814c, "driving"), 0);
 }
 
 /*
 	Name: function_c8020bd9
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xF0EFE55C
 	Offset: 0x1A90
 	Size: 0x294
@@ -382,7 +382,7 @@ function function_caffcc1d(localclientnum)
 */
 function function_c8020bd9(localclientnum)
 {
-	level waittill(#"hash_ec7ca67b");
+	level waittill("arena_changed");
 	level.var_81528e19 = undefined;
 	setuimodelvalue(createuimodel(level.var_7e2a814c, "redins"), "");
 	setuimodelvalue(createuimodel(level.var_7e2a814c, "gtxt0"), "");
@@ -400,7 +400,7 @@ function function_c8020bd9(localclientnum)
 
 /*
 	Name: function_7183a31d
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x6F9026B6
 	Offset: 0x1D30
 	Size: 0xAC
@@ -418,7 +418,7 @@ function function_7183a31d(fieldname, diff)
 
 /*
 	Name: function_ec984567
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x8D746E19
 	Offset: 0x1DE8
 	Size: 0x68
@@ -427,7 +427,7 @@ function function_7183a31d(fieldname, diff)
 */
 function function_ec984567()
 {
-	level endon(#"hash_ec7ca67b");
+	level endon("arena_changed");
 	while(true)
 	{
 		level waittill(#"hash_48152b36", fieldname, diff);
@@ -440,7 +440,7 @@ function function_ec984567()
 
 /*
 	Name: function_1dd0a889
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x338D40BD
 	Offset: 0x1E58
 	Size: 0xD6
@@ -472,7 +472,7 @@ function function_1dd0a889(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_9cbb849c
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x75B9F59E
 	Offset: 0x1F38
 	Size: 0x114
@@ -496,7 +496,7 @@ function function_9cbb849c(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_c7163a08
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x70DAEACF
 	Offset: 0x2058
 	Size: 0x19E
@@ -534,7 +534,7 @@ function function_c7163a08(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_96abee17
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x40BB40BA
 	Offset: 0x2200
 	Size: 0x22
@@ -543,13 +543,13 @@ function function_c7163a08(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_96abee17(localclientnum)
 {
-	level waittill(#"hash_ec7ca67b");
+	level waittill("arena_changed");
 	level.var_81528e19 = undefined;
 }
 
 /*
 	Name: function_52612667
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x105D0475
 	Offset: 0x2230
 	Size: 0x94
@@ -558,7 +558,7 @@ function function_96abee17(localclientnum)
 */
 function function_52612667(localclientnum)
 {
-	level endon(#"hash_ec7ca67b");
+	level endon("arena_changed");
 	if(isdefined(level.weatherfx) && isdefined(level.weatherfx[localclientnum]))
 	{
 		stopfx(localclientnum, level.weatherfx[localclientnum]);
@@ -570,7 +570,7 @@ function function_52612667(localclientnum)
 
 /*
 	Name: function_787f2b69
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xB426FE52
 	Offset: 0x22D0
 	Size: 0x420
@@ -579,7 +579,7 @@ function function_52612667(localclientnum)
 */
 function function_787f2b69(localclientnum)
 {
-	level endon(#"hash_ec7ca67b");
+	level endon("arena_changed");
 	if(isdefined(level.weatherfx) && isdefined(level.weatherfx[localclientnum]))
 	{
 		stopfx(localclientnum, level.weatherfx[localclientnum]);
@@ -633,7 +633,7 @@ function function_787f2b69(localclientnum)
 
 /*
 	Name: function_a8eb710
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xBD477641
 	Offset: 0x26F8
 	Size: 0xA4
@@ -650,7 +650,7 @@ function function_a8eb710()
 
 /*
 	Name: function_caf96f2d
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0x4FA3529E
 	Offset: 0x27A8
 	Size: 0x5C
@@ -667,7 +667,7 @@ function function_caf96f2d(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_27542390
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xCB822D64
 	Offset: 0x2810
 	Size: 0x1C8
@@ -725,7 +725,7 @@ function function_27542390(localclientnum, state)
 
 /*
 	Name: function_f9064aec
-	Namespace: namespace_bb5d050c
+	Namespace: cp_doa_bo3
 	Checksum: 0xF0BE704A
 	Offset: 0x29E0
 	Size: 0x5C

@@ -236,7 +236,7 @@ function function_95b88092(str_objective, b_starting)
 	level thread scene::init("singapore_fxanim_heart_ceiling", "targetname");
 	exploder::exploder("heartLightsSing");
 	level thread namespace_67110270::function_973b77f9();
-	self zurich_util::function_b0f0dd1f(0);
+	self zurich_util::player_weather(0);
 	level thread function_4b2f6f7();
 	if(level.players === 1)
 	{
@@ -514,7 +514,7 @@ function function_eb271a4b(str_objective)
 */
 function function_26f61e7c()
 {
-	level zurich_util::function_b0f0dd1f(1, "red_rain");
+	level zurich_util::player_weather(1, "red_rain");
 }
 
 /*
@@ -970,7 +970,7 @@ function function_252e350()
 function create_depth_charge()
 {
 	level endon(#"hash_cc8de88d");
-	self endon(#"hash_f9256645");
+	self endon("player_passed");
 	self thread function_6a938164();
 	n_spawned = 0;
 	wait(1);
@@ -1025,14 +1025,14 @@ function function_1c297ab3()
 */
 function function_6a938164()
 {
-	self endon(#"hash_f9256645");
+	self endon("player_passed");
 	level endon(#"hash_cc8de88d");
 	while(true)
 	{
 		e_player = arraygetclosest(self.origin, level.activeplayers);
 		if(isdefined(e_player) && distance(e_player.origin, self.origin) < 256)
 		{
-			self notify(#"hash_f9256645");
+			self notify("player_passed");
 		}
 		wait(0.1);
 	}

@@ -131,7 +131,7 @@ function robot_horde_main()
 		ai_ally ai::set_behavior_attribute("cqb", 1);
 	}
 	level flag::wait_till("player_in_alley");
-	cp_prologue_util::function_b50f5d52();
+	cp_prologue_util::cleanup_enemies();
 	a_ai_allies = cp_prologue_util::get_ai_allies();
 	a_ai_allies[a_ai_allies.size] = level.ai_theia;
 	a_ai_allies[a_ai_allies.size] = level.ai_hendricks;
@@ -293,7 +293,7 @@ function function_59071a25()
 {
 	trigger::wait_till("player_inside_garage");
 	level flag::set("players_in_garage");
-	level thread namespace_21b2c1f2::function_fb0b7bb6();
+	level thread prologue_sound::function_fb0b7bb6();
 	objectives::complete("cp_waypoint_breadcrumb", level.garage_door);
 }
 
@@ -740,7 +740,7 @@ function function_38c8ec92()
 	level.ai_hyperion dialog::say("mare_you_guys_hear_tha_0", 0.5);
 	level.ai_pallas dialog::say("diaz_you_re_hearing_thing_0", 0.5);
 	level flag::set("spawn_robot_horde");
-	level thread namespace_21b2c1f2::function_448421b7();
+	level thread prologue_sound::function_448421b7();
 	level.ai_hyperion dialog::say("mare_hey_fuck_you_0", 0.5);
 	level.ai_hendricks dialog::say("hend_shut_up_i_hear_it_t_0", 0.5);
 	level flag::set("robot_contact");
@@ -756,7 +756,7 @@ function function_38c8ec92()
 	level.ai_hyperion dialog::say("mare_get_to_the_extract_0", 1);
 	level.ai_hyperion dialog::say("mare_we_ll_deal_with_robo_0", 0.35);
 	level.ai_theia dialog::say("hall_get_the_minister_ins_0", 0.5);
-	level thread namespace_21b2c1f2::function_37a511a();
+	level thread prologue_sound::function_37a511a();
 	if(!level flag::get("players_in_garage") && !sessionmodeiscampaignzombiesgame())
 	{
 		level thread function_f0042481();
@@ -774,9 +774,9 @@ function function_38c8ec92()
 */
 function function_e3231637(var_8a4b0c9)
 {
-	if(isdefined(level.var_681ad194))
+	if(isdefined(level.alpha_squad))
 	{
-		foreach(e_soldier in level.var_681ad194)
+		foreach(e_soldier in level.alpha_squad)
 		{
 			e_soldier ai::set_pacifist(var_8a4b0c9);
 			if(var_8a4b0c9)

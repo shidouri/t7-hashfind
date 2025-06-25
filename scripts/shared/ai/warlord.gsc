@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\ai\archetype_locomotion_utility;
 #using scripts\shared\ai\archetype_mocomps_utility;
 #using scripts\shared\ai\archetype_utility;
@@ -845,7 +845,7 @@ function warlordangryattack_shootthemall(entity, attackersarray)
 {
 	entity endon(#"disconnect");
 	entity endon(#"death");
-	entity notify(#"hash_b160390f");
+	entity notify("angry_attack");
 	shoottime = getdvarfloat("warlordangryattack", 3);
 	foreach(attacker in attackersarray)
 	{
@@ -1616,7 +1616,7 @@ function warlorddangerousenemyattack(entity, attacker, threat)
 	entity endon(#"disconnect");
 	entity endon(#"death");
 	attacker endon(#"death");
-	entity endon(#"hash_b160390f");
+	entity endon("angry_attack");
 	entity notify(#"hash_beb03d5e");
 	entity endon(#"hash_beb03d5e");
 	entity.lastdangerousattackertime = gettime();

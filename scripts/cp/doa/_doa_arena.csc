@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\cp_doa_bo3_fx;
@@ -239,7 +239,7 @@ function init()
 		level.doa.arenas[level.doa.arenas.size] = arena;
 	}
 	level.doa.current_arena = 0;
-	level.doa.var_95e3fdf9 = -1;
+	level.doa.arena_last = -1;
 	level.doa.var_1a75d02b = 1;
 	level.doa.var_d94564a5 = "morning";
 	level thread function_a83dfb2c();
@@ -341,11 +341,11 @@ function function_d6bfcb75(keywords)
 			i--;
 		}
 	}
-	var_e5c5b3d2 = level.struct_class_names;
-	var_7234d8ce = getarraykeys(var_e5c5b3d2);
+	class_names = level.struct_class_names;
+	var_7234d8ce = getarraykeys(class_names);
 	for(i = 0; i < var_7234d8ce.size; i++)
 	{
-		var_df94bc60 = var_e5c5b3d2[var_7234d8ce[i]];
+		var_df94bc60 = class_names[var_7234d8ce[i]];
 		keys = getarraykeys(var_df94bc60);
 		for(j = 0; j < keys.size; j++)
 		{
@@ -401,7 +401,7 @@ function function_a5b9b9b9(var_92804e37, var_b092b293, struct)
 function restart()
 {
 	level.doa.current_arena = 0;
-	level.doa.var_95e3fdf9 = -1;
+	level.doa.arena_last = -1;
 	level.doa.var_708cc739 = undefined;
 	level.doa.var_1a75d02b = 1;
 	level.doa.flipped = 0;
@@ -721,16 +721,16 @@ function function_43141563(localclientnum)
 */
 function setarena(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(level.doa.current_arena == newval && level.doa.var_95e3fdf9 != -1)
+	if(level.doa.current_arena == newval && level.doa.arena_last != -1)
 	{
 		return;
 	}
 	level.doa.var_708cc739 = undefined;
-	level notify(#"hash_ec7ca67b");
+	level notify("arena_changed");
 	/#
 		namespace_693feb87::debugmsg((("" + level.doa.arenas[level.doa.current_arena].name) + "") + level.doa.arenas[newval].name);
 	#/
-	level.doa.var_95e3fdf9 = level.doa.current_arena;
+	level.doa.arena_last = level.doa.current_arena;
 	level.doa.current_arena = newval;
 	if(level.doa.arenas[level.doa.current_arena].var_37d3a53b)
 	{

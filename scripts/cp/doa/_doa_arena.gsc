@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\doa\_doa_dev;
 #using scripts\cp\doa\_doa_enemy;
@@ -36,11 +36,11 @@ function private function_a55a134f()
 	arenas = struct::get_array("arena_center");
 	for(i = 0; i < arenas.size; i++)
 	{
-		if(isdefined(arenas[i].var_e121d9e4) && arenas[i].var_e121d9e4 || (isdefined(arenas[i].script_parameters) && issubstr(arenas[i].script_parameters, "player_challenge")))
+		if(isdefined(arenas[i].player_challenge) && arenas[i].player_challenge || (isdefined(arenas[i].script_parameters) && issubstr(arenas[i].script_parameters, "player_challenge")))
 		{
 			level.doa.var_3c04d3df[level.doa.var_3c04d3df.size] = arenas[i];
 			arenas[i].script_parameters = "99999";
-			arenas[i].var_e121d9e4 = 1;
+			arenas[i].player_challenge = 1;
 		}
 	}
 	unsorted = arenas;
@@ -76,7 +76,7 @@ function init()
 		arenas[i] function_b7dafa0c(arenas[i].script_noteworthy, arenas[i].origin, arenas[i].script_parameters == "99999");
 	}
 	level.doa.current_arena = 0;
-	level.doa.var_ec2bff7b = [];
+	level.doa.bonus_rooms = [];
 	function_abd3b624("vault", 5, 2, &"DOA_VAULT", undefined, "vault");
 	function_abd3b624("coop", 9, 3, &"DOA_FARM", undefined, "coop");
 	function_abd3b624("armory", 13, 1, &"DOA_ARMORY", undefined, "armory");
@@ -124,7 +124,7 @@ function private function_abd3b624(name, var_5281efe5, type, text, var_cbad0e8f,
 			level thread [[level.doa.var_cefa8799]](room);
 		}
 	}
-	level.doa.var_ec2bff7b[level.doa.var_ec2bff7b.size] = room;
+	level.doa.bonus_rooms[level.doa.bonus_rooms.size] = room;
 	location = (isdefined(var_c9a1f25a) ? var_c9a1f25a : name);
 	room.player_spawn_points = struct::get_array(location + "_player_spawnpoint");
 	if(type != 13)
@@ -153,7 +153,7 @@ function private function_abd3b624(name, var_5281efe5, type, text, var_cbad0e8f,
 */
 function function_8b90b6a7()
 {
-	foreach(room in level.doa.var_ec2bff7b)
+	foreach(room in level.doa.bonus_rooms)
 	{
 		if(room.type == 10)
 		{
@@ -190,8 +190,8 @@ function function_8b90b6a7()
 */
 function function_63bc3226(type, var_436ba068)
 {
-	temp = doa_utility::function_4e9a23a9(level.doa.var_ec2bff7b);
-	foreach(room in level.doa.var_ec2bff7b)
+	temp = doa_utility::function_4e9a23a9(level.doa.bonus_rooms);
+	foreach(room in level.doa.bonus_rooms)
 	{
 		if(isdefined(var_436ba068))
 		{
@@ -218,7 +218,7 @@ function function_63bc3226(type, var_436ba068)
 */
 function function_46b3be09()
 {
-	foreach(room in level.doa.var_ec2bff7b)
+	foreach(room in level.doa.bonus_rooms)
 	{
 		if(room.type == 13)
 		{
@@ -253,7 +253,7 @@ function function_46b3be09()
 */
 function private function_6b351e04(type = 0, var_436ba068)
 {
-	temp = doa_utility::function_4e9a23a9(level.doa.var_ec2bff7b);
+	temp = doa_utility::function_4e9a23a9(level.doa.bonus_rooms);
 	if(type != 0)
 	{
 		var_c50a98cb = function_63bc3226(type, var_436ba068);
@@ -458,7 +458,7 @@ function private function_1c54aa82(room)
 			var_4833a640 = 1;
 			level thread doa_pickups::spawnmoneyglob(0, 15, 0.1);
 			level thread doa_pickups::function_3238133b(level.doa.booster_model, undefined, 2);
-			level thread doa_pickups::function_3238133b(level.doa.var_501f85b4, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.nuke_model, undefined, 1);
 			break;
 		}
 		case 1:
@@ -468,20 +468,20 @@ function private function_1c54aa82(room)
 			var_4833a640 = 1;
 			level thread doa_pickups::spawnmoneyglob(0, 2, randomfloatrange(2, 4));
 			level thread doa_pickups::function_3238133b(level.doa.booster_model, undefined, 2);
-			level thread doa_pickups::function_3238133b(level.doa.var_501f85b4, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.nuke_model, undefined, 1);
 			break;
 		}
 		case 3:
 		{
 			flag::set("doa_bonusroom_active");
 			level thread doa_pickups::spawnmoneyglob(0, 2, randomfloatrange(2, 4));
-			level thread doa_pickups::function_3238133b(level.doa.var_8d63e734, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.chicken_model, undefined, 1);
 			level thread doa_pickups::function_3238133b(level.doa.booster_model, undefined, 2);
-			level thread doa_pickups::function_3238133b(level.doa.var_501f85b4, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.nuke_model, undefined, 1);
 			spot = doa_pickups::function_ac410a13();
 			if(isdefined(spot))
 			{
-				level doa_pickups::function_3238133b(level.doa.var_43922ff2, spot.origin + (randomfloatrange(-30, 30), randomfloatrange(-30, 30), 0), 7);
+				level doa_pickups::function_3238133b(level.doa.egg_model, spot.origin + (randomfloatrange(-30, 30), randomfloatrange(-30, 30), 0), 7);
 				room.cooloff = gettime() + (30 * 60000);
 			}
 			if(randomint(100) < 5)
@@ -496,7 +496,7 @@ function private function_1c54aa82(room)
 			level thread doa_pickups::spawnmoneyglob(1, 5, 0.1);
 			level thread doa_pickups::spawnmoneyglob(0, 2, randomfloatrange(2, 4));
 			level thread doa_pickups::function_3238133b(level.doa.booster_model, undefined, 2);
-			level thread doa_pickups::function_3238133b(level.doa.var_501f85b4, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.nuke_model, undefined, 1);
 			room.cooloff = gettime() + (30 * 60000);
 			break;
 		}
@@ -508,11 +508,11 @@ function private function_1c54aa82(room)
 				player notify(#"hash_d28ba89d");
 			}
 			level thread doa_pickups::spawnmoneyglob(0, 2, randomfloatrange(2, 4));
-			level doa_pickups::function_3238133b(level.doa.var_f6947407, undefined, 2);
-			level doa_pickups::function_3238133b(level.doa.var_97bbae9c, undefined, 4);
+			level doa_pickups::function_3238133b(level.doa.barrel_model, undefined, 2);
+			level doa_pickups::function_3238133b(level.doa.sawblade_model, undefined, 4);
 			level doa_pickups::function_3238133b(level.doa.var_f6e22ab8, undefined, 3);
 			level thread doa_pickups::function_3238133b(level.doa.booster_model, undefined, 2);
-			level thread doa_pickups::function_3238133b(level.doa.var_501f85b4, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.nuke_model, undefined, 1);
 			break;
 		}
 		case 5:
@@ -523,7 +523,7 @@ function private function_1c54aa82(room)
 			level.doa.var_a3a11449 = 1;
 			level thread doa_pickups::spawnmoneyglob(0, 2, randomfloatrange(2, 4));
 			level thread doa_pickups::function_3238133b(level.doa.booster_model, undefined, 2);
-			level thread doa_pickups::function_3238133b(level.doa.var_501f85b4, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.nuke_model, undefined, 1);
 			break;
 		}
 		case 7:
@@ -533,7 +533,7 @@ function private function_1c54aa82(room)
 			var_4833a640 = 1;
 			level thread doa_pickups::spawnmoneyglob(0, 2, randomfloatrange(2, 4));
 			level thread doa_pickups::function_3238133b(level.doa.booster_model, undefined, 2);
-			level thread doa_pickups::function_3238133b(level.doa.var_501f85b4, undefined, 1);
+			level thread doa_pickups::function_3238133b(level.doa.nuke_model, undefined, 1);
 			break;
 		}
 		case 8:
@@ -1142,7 +1142,7 @@ function function_5af67667(var_7dd30d23, var_b4ca654f = 0)
 		level flag::clear("doa_game_is_completed");
 	}
 	level.doa.current_arena = var_7dd30d23;
-	level notify(#"hash_ec7ca67b");
+	level notify("arena_changed");
 	level clientfield::set("arenaUpdate", level.doa.current_arena);
 	util::wait_network_frame();
 	level thread function_a50a72db();
@@ -1180,7 +1180,7 @@ function function_fd84aa1f()
 */
 function function_a50a72db()
 {
-	level endon(#"hash_ec7ca67b");
+	level endon("arena_changed");
 	level endon(#"hash_24d3a44");
 	level notify(#"hash_a50a72db");
 	level endon(#"hash_a50a72db");
@@ -1235,7 +1235,7 @@ function function_1c812a03()
 */
 function function_573ad24e()
 {
-	level endon(#"hash_ec7ca67b");
+	level endon("arena_changed");
 	if(!isdefined(self.script_noteworthy))
 	{
 		self.script_noteworthy = "move_to_target";
@@ -1291,7 +1291,7 @@ function function_573ad24e()
 */
 function function_852998f1(trigger)
 {
-	level endon(#"hash_ec7ca67b");
+	level endon("arena_changed");
 	wait(0.4);
 	trigger enablelinkto();
 	trigger linkto(self);
@@ -1340,7 +1340,7 @@ function function_852998f1(trigger)
 */
 function function_7d65367c()
 {
-	level waittill(#"hash_ec7ca67b");
+	level waittill("arena_changed");
 	self setmovingplatformenabled(0);
 	nodes = getnodearray(function_d2d75f5d() + "_platform_traversal_node", "targetname");
 	foreach(node in nodes)
@@ -1632,7 +1632,7 @@ function function_4586479a(var_57e102cb = 1)
 	level.doa.teleporter util::waittill_any_timeout(4, "movedone");
 	physicsexplosionsphere(start_point, 200, 128, 3);
 	level.doa.teleporter setmovingplatformenabled(1);
-	level.doa.teleporter thread namespace_1a381543::function_90118d8c("zmb_teleporter_spawn");
+	level.doa.teleporter thread doa_sound::function_90118d8c("zmb_teleporter_spawn");
 	level.doa.teleporter playloopsound("zmb_teleporter_loop", 3);
 	level.doa.teleporter.trigger = spawn("trigger_radius", location + (vectorscale((0, 0, -1), 100)), 0, 20, 200);
 	level.doa.teleporter.trigger.targetname = "teleporter";
@@ -1656,9 +1656,9 @@ function function_4586479a(var_57e102cb = 1)
 	}
 	playrumbleonposition("artillery_rumble", location);
 	level.doa.teleporter stoploopsound(2);
-	level.doa.teleporter thread namespace_1a381543::function_4f06fb8("zmb_teleporter_spawn");
+	level.doa.teleporter thread doa_sound::function_4f06fb8("zmb_teleporter_spawn");
 	level notify(#"hash_ba37290e", "arenatransition");
-	level.doa.teleporter thread namespace_1a381543::function_90118d8c("zmb_teleporter_tele_out");
+	level.doa.teleporter thread doa_sound::function_90118d8c("zmb_teleporter_tele_out");
 	doa_utility::function_44eb090b();
 	level clientfield::set("roundMenu", 0);
 	level clientfield::set("teleportMenu", 0);

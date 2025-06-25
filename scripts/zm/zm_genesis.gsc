@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\archetype_apothicon_fury;
 #using scripts\shared\ai\margwa;
@@ -230,8 +230,8 @@ function main()
 	zombie_utility::set_zombie_var("zombie_powerup_drop_max_per_round", 4);
 	level.do_randomized_zigzag_path = 1;
 	level.zm_custom_spawn_location_selection = &genesis_custom_spawn_location_selection;
-	level.enemy_location_override_func = &function_b51f6175;
-	level.player_intersection_tracker_override = &function_1b647c97;
+	level.enemy_location_override_func = &genesis_enemy_location_override;
+	level.player_intersection_tracker_override = &genesis_player_intersection_tracker_override;
 	level.var_9aaae7ae = &function_869d6f66;
 	level.var_9cef605e = &function_cc2772da;
 	level.var_2d4e3645 = &function_d9e1ec4d;
@@ -579,7 +579,7 @@ function on_player_connected()
 {
 	self thread zm_genesis_undercroft_low_grav::function_c3f6aa22();
 	self zm_genesis_challenges::on_player_connect();
-	self.overrideplayerdamage = &function_7427eacc;
+	self.overrideplayerdamage = &genesis_player_damage_override;
 	if(level.players.size > 1 && !level flag::get("is_coop_door_price"))
 	{
 		function_898d7758();
@@ -858,9 +858,9 @@ function function_9160f4d3()
 	var_6b2d3150 = var_bbe5e3fe + var_e632342f;
 	if(var_bbe5e3fe > 0)
 	{
-		foreach(var_4b4c3616 in level.var_727bd376)
+		foreach(sp_skeleton in level.var_727bd376)
 		{
-			array::add(var_6af221a2, var_4b4c3616, 0);
+			array::add(var_6af221a2, sp_skeleton, 0);
 		}
 	}
 	if(var_e632342f > 0)
@@ -1266,7 +1266,7 @@ function function_dcf0070e()
 }
 
 /*
-	Name: function_b51f6175
+	Name: genesis_enemy_location_override
 	Namespace: zm_genesis
 	Checksum: 0xA6EB37EE
 	Offset: 0x5EF8
@@ -1274,7 +1274,7 @@ function function_dcf0070e()
 	Parameters: 2
 	Flags: Linked
 */
-function function_b51f6175(zombie, enemy)
+function genesis_enemy_location_override(zombie, enemy)
 {
 	if(isdefined(enemy.b_teleporting) && enemy.b_teleporting)
 	{
@@ -1366,7 +1366,7 @@ function function_fc65af2e()
 }
 
 /*
-	Name: function_1b647c97
+	Name: genesis_player_intersection_tracker_override
 	Namespace: zm_genesis
 	Checksum: 0xB99AE348
 	Offset: 0x6330
@@ -1374,7 +1374,7 @@ function function_fc65af2e()
 	Parameters: 1
 	Flags: Linked
 */
-function function_1b647c97(var_3c6a24bf)
+function genesis_player_intersection_tracker_override(var_3c6a24bf)
 {
 	if(isdefined(self.is_flung) && self.is_flung || (isdefined(var_3c6a24bf.is_flung) && var_3c6a24bf.is_flung) || (isdefined(self.var_4870991a) && self.var_4870991a))
 	{
@@ -1552,7 +1552,7 @@ function genesis_custom_spawn_location_selection(a_spots)
 }
 
 /*
-	Name: function_7427eacc
+	Name: genesis_player_damage_override
 	Namespace: zm_genesis
 	Checksum: 0x1042AAED
 	Offset: 0x67D8
@@ -1560,7 +1560,7 @@ function genesis_custom_spawn_location_selection(a_spots)
 	Parameters: 10
 	Flags: Linked
 */
-function function_7427eacc(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
+function genesis_player_damage_override(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
 {
 	if(isdefined(self.var_e1384d1e))
 	{

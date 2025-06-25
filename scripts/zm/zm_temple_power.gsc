@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -231,9 +231,9 @@ function function_fb70e1ed(var_68f7eb77)
 	Parameters: 4
 	Flags: Linked
 */
-function function_d57d875f(z_value, time, acceleration_time, var_cff30a24)
+function function_d57d875f(z_value, time, acceleration_time, deceleration_time)
 {
-	self movez(z_value, time, acceleration_time, var_cff30a24);
+	self movez(z_value, time, acceleration_time, deceleration_time);
 }
 
 /*

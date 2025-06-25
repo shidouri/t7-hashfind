@@ -190,13 +190,13 @@ function function_c052f9b8()
 	while(true)
 	{
 		level waittill(#"hash_f099c69d");
-		if(isdefined(level.var_1c69bb12.var_b13d6dfb) && level.var_1c69bb12.var_b13d6dfb)
+		if(isdefined(level.sndweather.var_b13d6dfb) && level.sndweather.var_b13d6dfb)
 		{
 			setsoundcontext("train", "country");
 		}
 		else
 		{
-			if(isdefined(level.var_1c69bb12.var_308c43c8) && level.var_1c69bb12.var_308c43c8)
+			if(isdefined(level.sndweather.var_308c43c8) && level.sndweather.var_308c43c8)
 			{
 				setsoundcontext("train", "city");
 			}
@@ -219,9 +219,9 @@ function function_c052f9b8()
 */
 function function_33be1969()
 {
-	level.var_1c69bb12 = spawnstruct();
-	level.var_1c69bb12.var_b13d6dfb = 0;
-	level.var_1c69bb12.var_308c43c8 = 0;
+	level.sndweather = spawnstruct();
+	level.sndweather.var_b13d6dfb = 0;
+	level.sndweather.var_308c43c8 = 0;
 }
 
 /*
@@ -326,7 +326,7 @@ function function_8e8fcdfc(player)
 	{
 		player.var_c7721e47 = 0;
 	}
-	self notify(#"hash_961b140e");
+	self notify("player_left");
 }
 
 /*
@@ -361,7 +361,7 @@ function function_74c85975()
 {
 	while(true)
 	{
-		self waittill(#"hash_961b140e");
+		self waittill("player_left");
 		if(self.players <= 0)
 		{
 			self.players = 0;

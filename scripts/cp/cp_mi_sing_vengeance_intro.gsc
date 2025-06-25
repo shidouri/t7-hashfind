@@ -76,7 +76,7 @@ function intro_main(str_objective)
 	level flag::set("intro_wall_done");
 	level thread intro_hendricks();
 	level thread function_858195d5();
-	level thread namespace_9fd035::function_d4c52995();
+	level thread vengeance_sound::function_d4c52995();
 	level clientfield::set("gameplay_started", 1);
 	savegame::checkpoint_save();
 	thread cp_mi_sing_vengeance_sound::intro_complete();
@@ -189,7 +189,7 @@ function intro_screen(str_objective)
 	{
 		level thread [[level.bzm_vengeancedialogue1callback]]();
 	}
-	level thread namespace_9fd035::function_7dc66faa();
+	level thread vengeance_sound::function_7dc66faa();
 	intro_anim_struct scene::play("cin_ven_01_intro_3rd_sh010");
 	level waittill(#"intro_igc_done");
 	util::clear_streamer_hint();
@@ -739,11 +739,11 @@ function function_dcf3d41b()
 function function_5ef7fdc2()
 {
 	trigger::wait_till("apartment_light_fire_trigger");
-	level.var_1dca7888 = [];
+	level.apartment_enemies = [];
 	var_71e5f989 = getentarray("apartment_enemy", "script_noteworthy");
-	var_6a00e3c4 = spawner::simple_spawn(var_71e5f989, &function_1f707d1e);
+	apartment_enemy = spawner::simple_spawn(var_71e5f989, &function_1f707d1e);
 	var_12d51ad2 = getentarray("apartment_civilian", "script_noteworthy");
-	var_c5b87ef7 = spawner::simple_spawn(var_12d51ad2, &function_a645cfd9);
+	apartment_civilian = spawner::simple_spawn(var_12d51ad2, &function_a645cfd9);
 	var_1cef4611 = getent("bedroom_door_right", "targetname");
 	var_59f550ce = getent("bedroom_door_right_clip", "targetname");
 	var_59f550ce linkto(var_1cef4611);
@@ -751,7 +751,7 @@ function function_5ef7fdc2()
 	var_702c9f7 = getent("bedroom_door_left_clip", "targetname");
 	var_702c9f7 linkto(var_517e2322);
 	level.var_5bc00cbb thread scene::init("cin_ven_02_20_synckill_vign");
-	level.var_7819b21b = level.var_1dca7888.size;
+	level.var_7819b21b = level.apartment_enemies.size;
 	namespace_523da15d::function_dab879d0();
 	trigger = getent("syncshot_lookat_trigger", "targetname");
 	foreach(player in level.players)
@@ -833,7 +833,7 @@ function function_7f6de599()
 function function_1f707d1e()
 {
 	self endon(#"death");
-	array::add(level.var_1dca7888, self);
+	array::add(level.apartment_enemies, self);
 	self.goalradius = 32;
 	if(isdefined(self.targetname))
 	{
@@ -911,8 +911,8 @@ function function_fb5e09cf()
 	{
 		level flag::set("apartment_enemy_dead");
 	}
-	level.var_1dca7888 = array::remove_dead(level.var_1dca7888);
-	if(level.var_1dca7888.size == 0)
+	level.apartment_enemies = array::remove_dead(level.apartment_enemies);
+	if(level.apartment_enemies.size == 0)
 	{
 		level flag::set("apartment_enemies_dead");
 	}
@@ -1360,7 +1360,7 @@ function hendricks_takedown_vo()
 	wait(1.5);
 	level thread function_d07dfdc1();
 	level waittill(#"hash_d1668ed6");
-	level thread namespace_9fd035::function_e18f629a();
+	level thread vengeance_sound::function_e18f629a();
 	level.ai_hendricks waittill(#"hash_6ed80778");
 	level dialog::player_say("plyr_this_is_what_happens_0");
 	level dialog::player_say("plyr_we_get_kane_then_w_0");

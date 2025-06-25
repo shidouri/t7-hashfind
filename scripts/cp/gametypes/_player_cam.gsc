@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\_util;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -273,16 +273,16 @@ function function_c003e53f(vdir, var_f120d111, var_f40ed68d, var_9aadeff9, var_9
 		if(!(isdefined(var_505f8faa) && var_505f8faa))
 		{
 			var_e79cd0f2 = vectorscale(forwardvec, var_933bfc9b);
-			var_cdbed540 = length(var_e79cd0f2);
+			added_length = length(var_e79cd0f2);
 			var_206341c9 = position - original_position;
 			var_3b8e30c5 = length((var_206341c9[0], var_206341c9[1], 0));
-			if((var_3b8e30c5 + var_cdbed540) >= var_f40ed68d)
+			if((var_3b8e30c5 + added_length) >= var_f40ed68d)
 			{
-				var_cdbed540 = var_f40ed68d - var_3b8e30c5;
+				added_length = var_f40ed68d - var_3b8e30c5;
 				var_505f8faa = 1;
 			}
-			new_position = position - vectorscale(forwardvec, var_cdbed540);
-			var_381dd463 = position - (vectorscale(forwardvec, var_cdbed540 + epsilon));
+			new_position = position - vectorscale(forwardvec, added_length);
+			var_381dd463 = position - (vectorscale(forwardvec, added_length + epsilon));
 			if(function_e2d94882(position, var_381dd463))
 			{
 				position = new_position;
@@ -570,8 +570,8 @@ function function_514913aa(einflictor, attacker, idamage, weapon, vdir, shitloc)
 	var_9aadeff9 = getdvarfloat("cam_explosion_max_z_length", 50);
 	var_67ca400f = getdvarfloat("cam_explosion_position_z_speed", 10);
 	thread function_c003e53f(undefined, 3, 0, var_9aadeff9, 0, var_67ca400f, undefined, undefined, forwarddir);
-	var_253910ca = getdvarfloat("cam_bubbles_wait", 3);
-	wait(var_253910ca);
+	bubbles_wait = getdvarfloat("cam_bubbles_wait", 3);
+	wait(bubbles_wait);
 	self clientfield::set_to_player("player_cam_bubbles", 0);
 	self notify(#"hash_d3468831");
 }

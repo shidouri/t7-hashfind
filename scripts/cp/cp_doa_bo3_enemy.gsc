@@ -413,7 +413,7 @@ function function_8b898788()
 		{
 			continue;
 		}
-		guy thread namespace_1a381543::function_90118d8c("zmb_hazard_hit");
+		guy thread doa_sound::function_90118d8c("zmb_hazard_hit");
 		guy thread namespace_eaa992c::function_285a2999("hazard_electric");
 		if(!isplayer(guy))
 		{
@@ -470,19 +470,19 @@ function function_d4107a2a()
 		wait(0.05);
 	}
 	self thread namespace_eaa992c::function_285a2999("tesla_shock_eyes");
-	self thread namespace_1a381543::function_90118d8c("zmb_hazard_hit");
+	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
 	self thread namespace_eaa992c::function_285a2999("hazard_electric");
 	wait(1);
-	self thread namespace_1a381543::function_90118d8c("zmb_hazard_hit");
+	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
 	self thread namespace_eaa992c::function_285a2999("hazard_electric");
 	wait(1);
-	self thread namespace_1a381543::function_90118d8c("zmb_hazard_hit");
+	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
 	self thread namespace_eaa992c::function_285a2999("hazard_electric");
 	wait(1);
-	self thread namespace_1a381543::function_90118d8c("zmb_hazard_hit");
+	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
 	self thread namespace_eaa992c::function_285a2999("hazard_electric");
 	wait(1);
-	self thread namespace_1a381543::function_90118d8c("zmb_hazard_hit");
+	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
 	self thread namespace_eaa992c::function_285a2999("hazard_electric");
 	level thread function_7517e6b7(self.origin);
 	self.takedamage = 1;
@@ -682,9 +682,9 @@ function droptoground(origin, trailfx, var_b8f99479 = "turret_impact", var_96214
 	org enablelinkto();
 	self linkto(org, "tag_origin");
 	org moveto(dst.origin, 1.2);
-	org thread namespace_1a381543::function_90118d8c("zmb_enemy_incoming");
+	org thread doa_sound::function_90118d8c("zmb_enemy_incoming");
 	org util::waittill_any_timeout(1.5, "movedone");
-	org thread namespace_1a381543::function_90118d8c("zmb_enemy_impact");
+	org thread doa_sound::function_90118d8c("zmb_enemy_impact");
 	physicsexplosionsphere(dst.origin, 200, 128, 3);
 	playrumbleonposition("grenade_rumble", dst.origin);
 	self unlink();
@@ -913,19 +913,19 @@ function function_7ebf419e()
 	loc.angles = self.angles;
 	loc.origin = self.origin;
 	loc.def = self.def;
-	level namespace_e8effba5::raps_explode_fx(loc.origin);
+	level cp_doa_bo3_fx::raps_explode_fx(loc.origin);
 	if(self.model == "veh_t7_drone_insanity_elemental_v2_large")
 	{
 		function_fb051310(level.doa.var_b2669ad0["medium"], loc, loc.def, 0, 600, 1);
 		loc.origin = loc.origin + (randomfloatrange(-40, 40), randomfloatrange(-40, 40), 32);
-		level namespace_e8effba5::raps_explode_fx(loc.origin);
+		level cp_doa_bo3_fx::raps_explode_fx(loc.origin);
 		function_fb051310(level.doa.var_b2669ad0["medium"], loc, loc.def, 0, 600, 1);
 	}
 	else if(self.model == "veh_t7_drone_insanity_elemental_v2_med")
 	{
 		function_fb051310(level.doa.var_b2669ad0["small"], loc, loc.def, 0, 100, 1);
 		loc.origin = loc.origin + (randomfloatrange(-40, 40), randomfloatrange(-40, 40), 32);
-		level namespace_e8effba5::raps_explode_fx(loc.origin);
+		level cp_doa_bo3_fx::raps_explode_fx(loc.origin);
 		function_fb051310(level.doa.var_b2669ad0["small"], loc, loc.def, 0, 100, 1);
 	}
 }
@@ -1011,7 +1011,7 @@ function function_1631202b(spawner, loc, def)
 	Parameters: 3
 	Flags: Linked
 */
-function function_ee2c4b95(spawner = level.doa.var_4720602e, loc, def)
+function function_ee2c4b95(spawner = level.doa.spiderspawner, loc, def)
 {
 	ai = doa_enemy::function_a4e16560(spawner, loc, (isdefined(def) ? def.forcespawn : 0));
 	if(isdefined(ai))
@@ -1019,7 +1019,7 @@ function function_ee2c4b95(spawner = level.doa.var_4720602e, loc, def)
 		ai.maxhealth = ai.health;
 		ai.var_ad61c13d = 1;
 		ai.var_2d8174e3 = 1;
-		ai.var_f4795bf = 1;
+		ai.is_spider = 1;
 		ai.meleedamage = 50;
 		ai.squelch_damage_overlay = 1;
 		ai.updatesight = 1;
@@ -1042,9 +1042,9 @@ function function_ee2c4b95(spawner = level.doa.var_4720602e, loc, def)
 */
 function function_e59bd7c5(carrier)
 {
-	if(!isdefined(level.doa.var_4720602e))
+	if(!isdefined(level.doa.spiderspawner))
 	{
-		level.doa.var_4720602e = getent("doa_spider", "targetname");
+		level.doa.spiderspawner = getent("doa_spider", "targetname");
 	}
 	loc = spawnstruct();
 	loc.origin = carrier.origin;
@@ -1550,7 +1550,7 @@ function shadowteleportmenow(initial = 0)
 	org.spawner = self.spawner;
 	org thread namespace_eaa992c::function_285a2999("shadow_move");
 	org thread namespace_eaa992c::function_285a2999("shadow_glow");
-	org thread namespace_1a381543::function_90118d8c("zmb_enemy_smokeman_poof");
+	org thread doa_sound::function_90118d8c("zmb_enemy_smokeman_poof");
 	wait(0.3);
 	self ghost();
 	self notsolid();
@@ -1560,9 +1560,9 @@ function shadowteleportmenow(initial = 0)
 	org util::waittill_any_timeout(2.1, "movedone");
 	org thread namespace_eaa992c::function_285a2999("shadow_appear");
 	wait(1);
-	org thread namespace_1a381543::function_90118d8c("zmb_enemy_smokeman_wings");
+	org thread doa_sound::function_90118d8c("zmb_enemy_smokeman_wings");
 	wait(1);
-	self thread namespace_1a381543::function_90118d8c("zmb_enemy_smokeman_poof");
+	self thread doa_sound::function_90118d8c("zmb_enemy_smokeman_poof");
 	self unlink();
 	self forceteleport(org.origin);
 	self show();
@@ -2573,7 +2573,7 @@ function function_771e3915()
 	{
 		wait(90 + extrawait);
 		extrawait = 0;
-		if(isdefined(level.doa.var_52cccfb6))
+		if(isdefined(level.doa.challenge_room))
 		{
 			continue;
 		}

@@ -877,12 +877,12 @@ function function_a86bf815()
 	self.mechz_faceplate_health = int(n_player_modifier * (level.var_fa14536d + (level.var_1a5bb9d8 * var_485a2c2c)));
 	self.mechz_powercap_cover_health = int(n_player_modifier * (level.mechz_powercap_cover_health + (level.var_a1943286 * var_485a2c2c)));
 	self.mechz_powercap_health = int(n_player_modifier * (level.mechz_powercap_health + (level.var_9684c99e * var_485a2c2c)));
-	self.var_2cbc5b59 = int(n_player_modifier * (level.var_3f1bf221 + (level.var_158234c * var_485a2c2c)));
+	self.mechz_armor_health = int(n_player_modifier * (level.var_3f1bf221 + (level.var_158234c * var_485a2c2c)));
 	self.mechz_health = zm_castle_mechz::function_26beb37e(self.mechz_health, 17500, n_player_modifier);
 	self.mechz_faceplate_health = zm_castle_mechz::function_26beb37e(self.mechz_faceplate_health, 16000, n_player_modifier);
 	self.mechz_powercap_cover_health = zm_castle_mechz::function_26beb37e(self.mechz_powercap_cover_health, 7500, n_player_modifier);
 	self.mechz_powercap_health = zm_castle_mechz::function_26beb37e(self.mechz_powercap_health, 5000, n_player_modifier);
-	self.var_2cbc5b59 = zm_castle_mechz::function_26beb37e(self.var_2cbc5b59, 3500, n_player_modifier);
+	self.mechz_armor_health = zm_castle_mechz::function_26beb37e(self.mechz_armor_health, 3500, n_player_modifier);
 }
 
 /*
@@ -1520,7 +1520,7 @@ function function_28bb5727(var_4a14cd40)
 				var_cfe6cb9 = array::remove_undefined(var_cfe6cb9, 0);
 				if(var_cfe6cb9.size < 1)
 				{
-					ai_zombie = self function_8a46476();
+					ai_zombie = self spawn_mech();
 					if(!isdefined(var_cfe6cb9))
 					{
 						var_cfe6cb9 = [];
@@ -1605,11 +1605,11 @@ function function_28bb5727(var_4a14cd40)
 			level notify(#"hash_cd6f3cf8");
 			if(isdefined(var_cfe6cb9))
 			{
-				foreach(var_24c17812 in var_cfe6cb9)
+				foreach(e_mech in var_cfe6cb9)
 				{
-					if(isdefined(var_24c17812) && isalive(var_24c17812))
+					if(isdefined(e_mech) && isalive(e_mech))
 					{
-						var_24c17812 kill();
+						e_mech kill();
 					}
 				}
 			}
@@ -1830,7 +1830,7 @@ function function_1dddcbf0()
 		{
 			while(var_c0fca9d < var_39253c05 && var_bc61c0c2.size < var_740f7270)
 			{
-				ai_zombie = self function_8a46476();
+				ai_zombie = self spawn_mech();
 				array::add(var_bc61c0c2, ai_zombie, 0);
 				var_c0fca9d++;
 				wait(randomfloatrange(0.25, 0.5));
@@ -3034,7 +3034,7 @@ function function_369525ff()
 }
 
 /*
-	Name: function_8a46476
+	Name: spawn_mech
 	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x41D72D8
 	Offset: 0xAFF0
@@ -3042,7 +3042,7 @@ function function_369525ff()
 	Parameters: 0
 	Flags: Linked
 */
-function function_8a46476()
+function spawn_mech()
 {
 	s_location = self get_unused_spawn_point(0, 0, 1);
 	if(isdefined(level.mechz_spawners[0]))
@@ -3055,16 +3055,16 @@ function function_8a46476()
 			ai thread zm_ai_mechz::function_75a79bb5();
 		#/
 		ai.actor_damage_func = &mechzserverutils::mechzdamagecallback;
-		ai.damage_scoring_function = &zm_ai_mechz::function_b03abc02;
-		ai.mechz_melee_knockdown_function = &zm_ai_mechz::function_55483494;
+		ai.damage_scoring_function = &zm_ai_mechz::mechz_damage_scoring;
+		ai.mechz_melee_knockdown_function = &zm_ai_mechz::mechz_melee_knockdown;
 		ai.health = self.mechz_health;
 		ai.faceplate_health = self.mechz_faceplate_health;
 		ai.powercap_cover_health = self.mechz_powercap_cover_health;
 		ai.powercap_health = self.mechz_powercap_health;
-		ai.left_knee_armor_health = self.var_2cbc5b59;
-		ai.right_knee_armor_health = self.var_2cbc5b59;
-		ai.left_shoulder_armor_health = self.var_2cbc5b59;
-		ai.right_shoulder_armor_health = self.var_2cbc5b59;
+		ai.left_knee_armor_health = self.mechz_armor_health;
+		ai.right_knee_armor_health = self.mechz_armor_health;
+		ai.left_shoulder_armor_health = self.mechz_armor_health;
+		ai.right_shoulder_armor_health = self.mechz_armor_health;
 		ai.heroweapon_kill_power = 20;
 		ai.deathpoints_already_given = 1;
 		ai.no_damage_points = 1;

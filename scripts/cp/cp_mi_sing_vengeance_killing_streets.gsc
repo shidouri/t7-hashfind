@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
@@ -198,7 +198,7 @@ function function_9736d8c9()
 	playsoundatposition("mus_alley_stinger", (0, 0, 0));
 	util::clientnotify("sndLRstart");
 	var_bba8f947 thread scene::play("cin_ven_03_15_killingstreets_vign_snipershot");
-	thread cp_mi_sing_vengeance_sound::function_68da61d9();
+	thread cp_mi_sing_vengeance_sound::civilian_shot();
 	wait(0.1);
 	while(true)
 	{
@@ -790,7 +790,7 @@ function setup_killing_streets_lineup_patroller_spawners()
 	self ai::set_ignoreme(0);
 	level flag::set("killing_streets_lineup_patrollers_alerted");
 	util::clientnotify("sndLRstop");
-	level thread namespace_9fd035::function_6c2fa1d0();
+	level thread vengeance_sound::function_6c2fa1d0();
 	self stopanimscripted();
 }
 

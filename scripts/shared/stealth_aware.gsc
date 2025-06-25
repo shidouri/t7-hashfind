@@ -529,7 +529,7 @@ function on_alert_changed(eventpackage)
 		{
 			self thread delayed_service_event(8, i_id);
 		}
-		if(isplayer(e_originator) && str_newalert == "combat" && level.stealth.var_e7ad9c1f == 0)
+		if(isplayer(e_originator) && str_newalert == "combat" && level.stealth.player_combatants == 0)
 		{
 			if(isdefined(self.blindaim) && self.blindaim)
 			{

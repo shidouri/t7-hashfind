@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\core\_multi_extracam;
 #using scripts\cp\_training_sim;
 #using scripts\shared\_character_customization;
@@ -184,7 +184,7 @@ function toggle_console_4()
 }
 
 /*
-	Name: function_c9199cc8
+	Name: player_clone
 	Namespace: safehouse
 	Checksum: 0xEB837CFD
 	Offset: 0x1E98
@@ -192,7 +192,7 @@ function toggle_console_4()
 	Parameters: 7
 	Flags: None
 */
-function function_c9199cc8()
+function player_clone()
 {
 	// Unsupported VM revision (1B).
 }
