@@ -28,11 +28,11 @@
 #using scripts\shared\flagsys_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_51bd792;
+#namespace bo3_enemy;
 
 /*
 	Name: init
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xA727E1B2
 	Offset: 0xCE0
 	Size: 0x8C
@@ -48,7 +48,7 @@ function init()
 
 /*
 	Name: function_65762352
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xD6022E23
 	Offset: 0xD78
 	Size: 0x7B4
@@ -214,7 +214,7 @@ function function_65762352(classname, var_3a9f2119)
 
 /*
 	Name: function_36aa8b6c
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x450DFE93
 	Offset: 0x1538
 	Size: 0x218
@@ -235,7 +235,7 @@ function function_36aa8b6c(loc)
 		ai.var_2d8174e3 = 1;
 		ai.takedamage = 0;
 		ai.meleedamage = 20000;
-		ai namespace_eaa992c::function_285a2999("cyber_eye");
+		ai doa_fx::function_285a2999("cyber_eye");
 		ai forceteleport(loc.origin, loc.angles);
 		ai notify(#"hash_10fd80ee");
 		ai notify(#"hash_6e8326fc");
@@ -245,7 +245,7 @@ function function_36aa8b6c(loc)
 		ai notify(#"hash_67a97d62");
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
 	}
 	return ai;
@@ -253,7 +253,7 @@ function function_36aa8b6c(loc)
 
 /*
 	Name: function_a0d7d949
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x11676B75
 	Offset: 0x1758
 	Size: 0x200
@@ -280,7 +280,7 @@ function function_a0d7d949(spawner, loc, def)
 		ai.doa.var_da2f5272 = 1;
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
 	}
 	return ai;
@@ -288,7 +288,7 @@ function function_a0d7d949(spawner, loc, def)
 
 /*
 	Name: function_bb3b0416
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xD9F3C085
 	Offset: 0x1960
 	Size: 0x288
@@ -319,7 +319,7 @@ function function_bb3b0416(spawner, loc, def)
 		ai.var_d538832c = 1;
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
 	}
 	return ai;
@@ -327,7 +327,7 @@ function function_bb3b0416(spawner, loc, def)
 
 /*
 	Name: function_92159541
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x52ADF71
 	Offset: 0x1BF0
 	Size: 0x318
@@ -354,9 +354,9 @@ function function_92159541(spawner, loc, def)
 		ai.doa.var_da2f5272 = 1;
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
-		ai thread namespace_eaa992c::function_285a2999("blue_eyes");
+		ai thread doa_fx::function_285a2999("blue_eyes");
 		spots = doa_utility::function_8fc4387a(32);
 		ai.var_8f12ed02 = spots[randomint(spots.size)].origin;
 		ai setgoal(ai.var_8f12ed02);
@@ -372,7 +372,7 @@ function function_92159541(spawner, loc, def)
 
 /*
 	Name: function_8b898788
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x6735A9CC
 	Offset: 0x1F10
 	Size: 0x2A8
@@ -414,7 +414,7 @@ function function_8b898788()
 			continue;
 		}
 		guy thread doa_sound::function_90118d8c("zmb_hazard_hit");
-		guy thread namespace_eaa992c::function_285a2999("hazard_electric");
+		guy thread doa_fx::function_285a2999("hazard_electric");
 		if(!isplayer(guy))
 		{
 			dir = guy.origin - self.damage_trigger.origin;
@@ -432,7 +432,7 @@ function function_8b898788()
 
 /*
 	Name: function_b18c6347
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x685A7769
 	Offset: 0x21C0
 	Size: 0x90
@@ -442,8 +442,8 @@ function function_8b898788()
 function function_b18c6347()
 {
 	self endon("death");
-	self thread namespace_eaa992c::function_285a2999("player_shield_short");
-	self thread namespace_eaa992c::function_285a2999("electrical_surge");
+	self thread doa_fx::function_285a2999("player_shield_short");
+	self thread doa_fx::function_285a2999("electrical_surge");
 	invultime = gettime() + 3000;
 	while(gettime() < invultime)
 	{
@@ -455,7 +455,7 @@ function function_b18c6347()
 
 /*
 	Name: function_d4107a2a
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xC58096F4
 	Offset: 0x2258
 	Size: 0x1F4
@@ -469,21 +469,21 @@ function function_d4107a2a()
 	{
 		wait(0.05);
 	}
-	self thread namespace_eaa992c::function_285a2999("tesla_shock_eyes");
+	self thread doa_fx::function_285a2999("tesla_shock_eyes");
 	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
-	self thread namespace_eaa992c::function_285a2999("hazard_electric");
+	self thread doa_fx::function_285a2999("hazard_electric");
 	wait(1);
 	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
-	self thread namespace_eaa992c::function_285a2999("hazard_electric");
+	self thread doa_fx::function_285a2999("hazard_electric");
 	wait(1);
 	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
-	self thread namespace_eaa992c::function_285a2999("hazard_electric");
+	self thread doa_fx::function_285a2999("hazard_electric");
 	wait(1);
 	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
-	self thread namespace_eaa992c::function_285a2999("hazard_electric");
+	self thread doa_fx::function_285a2999("hazard_electric");
 	wait(1);
 	self thread doa_sound::function_90118d8c("zmb_hazard_hit");
-	self thread namespace_eaa992c::function_285a2999("hazard_electric");
+	self thread doa_fx::function_285a2999("hazard_electric");
 	level thread function_7517e6b7(self.origin);
 	self.takedamage = 1;
 	self.tesla_death = 1;
@@ -492,7 +492,7 @@ function function_d4107a2a()
 
 /*
 	Name: function_7517e6b7
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x29B941F8
 	Offset: 0x2458
 	Size: 0x30C
@@ -518,7 +518,7 @@ function function_7517e6b7(origin)
 	{
 		return;
 	}
-	origin = namespace_d88e3a06::function_3341776e(origin);
+	origin = doa_hazard::function_3341776e(origin);
 	if(!isdefined(origin))
 	{
 		return;
@@ -545,13 +545,13 @@ function function_7517e6b7(origin)
 	wait(2);
 	if(isdefined(hazard))
 	{
-		hazard thread namespace_d88e3a06::function_5d31907f();
+		hazard thread doa_hazard::function_5d31907f();
 	}
 }
 
 /*
 	Name: function_471897
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xCD0676C4
 	Offset: 0x2770
 	Size: 0x34
@@ -569,7 +569,7 @@ function function_471897()
 
 /*
 	Name: function_b3a0f63
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x98E565D1
 	Offset: 0x27B0
 	Size: 0x80
@@ -583,14 +583,14 @@ function function_b3a0f63()
 	timeout = gettime() + 2100;
 	while(gettime() < timeout)
 	{
-		self thread namespace_eaa992c::function_285a2999("tesla_shock");
+		self thread doa_fx::function_285a2999("tesla_shock");
 		wait(randomfloatrange(0.1, 0.4));
 	}
 }
 
 /*
 	Name: function_5e86b6fa
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xECD9EEDA
 	Offset: 0x2838
 	Size: 0x1C8
@@ -624,7 +624,7 @@ function function_5e86b6fa(spawner, loc, def)
 
 /*
 	Name: droptoground
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xE7FEEE9A
 	Offset: 0x2A08
 	Size: 0x594
@@ -658,7 +658,7 @@ function droptoground(origin, trailfx, var_b8f99479 = "turret_impact", var_96214
 	dst.angles = (0, randomint(180), 0);
 	if(isdefined(var_96214f04) && var_96214f04)
 	{
-		dst thread namespace_eaa992c::function_285a2999("incoming_impact");
+		dst thread doa_fx::function_285a2999("incoming_impact");
 	}
 	dst thread doa_utility::function_1bd67aef(3);
 	pos = dst.origin + vectorscale((0, 0, 1), 2000);
@@ -675,7 +675,7 @@ function droptoground(origin, trailfx, var_b8f99479 = "turret_impact", var_96214
 	org setmodel("tag_origin");
 	if(isdefined(trailfx))
 	{
-		org thread namespace_eaa992c::function_285a2999(trailfx);
+		org thread doa_fx::function_285a2999(trailfx);
 	}
 	org thread doa_utility::function_1bd67aef(2);
 	self enablelinkto();
@@ -696,7 +696,7 @@ function droptoground(origin, trailfx, var_b8f99479 = "turret_impact", var_96214
 	{
 		self.origin = dst.origin;
 	}
-	dst thread namespace_eaa992c::function_285a2999(var_b8f99479);
+	dst thread doa_fx::function_285a2999(var_b8f99479);
 	util::wait_network_frame();
 	self.ignoreall = 0;
 	self.dropping = undefined;
@@ -712,7 +712,7 @@ function droptoground(origin, trailfx, var_b8f99479 = "turret_impact", var_96214
 
 /*
 	Name: function_9a5d69ac
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x3C24FBB8
 	Offset: 0x2FA8
 	Size: 0x94
@@ -733,7 +733,7 @@ function private function_9a5d69ac()
 
 /*
 	Name: function_a1f1cd46
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xBFF6A035
 	Offset: 0x3048
 	Size: 0x74
@@ -752,7 +752,7 @@ function function_a1f1cd46()
 
 /*
 	Name: function_d45df351
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xEA51BFCD
 	Offset: 0x30C8
 	Size: 0x8
@@ -766,7 +766,7 @@ function function_d45df351()
 
 /*
 	Name: function_4d2a4a76
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x8E0DB57E
 	Offset: 0x30D8
 	Size: 0x268
@@ -796,7 +796,7 @@ function function_4d2a4a76(spawner, loc, def)
 		ai thread function_a1f1cd46();
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
 	}
 	return ai;
@@ -804,7 +804,7 @@ function function_4d2a4a76(spawner, loc, def)
 
 /*
 	Name: function_d4213fbb
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xA6655E47
 	Offset: 0x3348
 	Size: 0x8
@@ -818,7 +818,7 @@ function function_d4213fbb()
 
 /*
 	Name: function_fb051310
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x2A730891
 	Offset: 0x3358
 	Size: 0x2F8
@@ -868,7 +868,7 @@ function function_fb051310(spawner, loc, def, droptoground = 1, hp, force = 0)
 
 /*
 	Name: function_5f1a1e65
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xEAA22DB
 	Offset: 0x3658
 	Size: 0x58
@@ -890,7 +890,7 @@ function function_5f1a1e65(var_b48b7b5d)
 
 /*
 	Name: function_7ebf419e
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xF084D199
 	Offset: 0x36B8
 	Size: 0x374
@@ -932,7 +932,7 @@ function function_7ebf419e()
 
 /*
 	Name: function_307cc86e
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x3D065A00
 	Offset: 0x3A38
 	Size: 0x54
@@ -943,12 +943,12 @@ function function_307cc86e()
 {
 	self endon("death");
 	self waittill("goal");
-	self setgoal(namespace_3ca3c537::function_2a9d778d() + vectorscale((0, 0, 1), 42), 0);
+	self setgoal(doa_arena::function_2a9d778d() + vectorscale((0, 0, 1), 42), 0);
 }
 
 /*
 	Name: function_1631202b
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x389E16
 	Offset: 0x3A98
 	Size: 0x3C8
@@ -987,7 +987,7 @@ function function_1631202b(spawner, loc, def)
 		ai.meleedamage = 0;
 		ai.squelch_damage_overlay = 1;
 		ai.goalradius = 512;
-		goal = namespace_3ca3c537::function_2a9d778d();
+		goal = doa_arena::function_2a9d778d();
 		spots = doa_utility::function_308fa126();
 		if(isdefined(spots) && spots.size)
 		{
@@ -997,14 +997,14 @@ function function_1631202b(spawner, loc, def)
 		ai setgoal(goal, 1);
 		ai.updatesight = 1;
 		ai thread function_307cc86e();
-		ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+		ai thread doa_fx::function_285a2999("spawnZombie");
 	}
 	return ai;
 }
 
 /*
 	Name: function_ee2c4b95
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x53D36D3F
 	Offset: 0x3E68
 	Size: 0x1B0
@@ -1025,7 +1025,7 @@ function function_ee2c4b95(spawner = level.doa.spiderspawner, loc, def)
 		ai.updatesight = 1;
 		ai.team = "axis";
 		ai.health = 2000 + (150 * level.doa.round_number);
-		goal = namespace_3ca3c537::function_2a9d778d();
+		goal = doa_arena::function_2a9d778d();
 		ai setgoal(goal);
 	}
 	return ai;
@@ -1033,7 +1033,7 @@ function function_ee2c4b95(spawner = level.doa.spiderspawner, loc, def)
 
 /*
 	Name: function_e59bd7c5
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xC68DA95D
 	Offset: 0x4020
 	Size: 0xC2
@@ -1054,7 +1054,7 @@ function function_e59bd7c5(carrier)
 
 /*
 	Name: function_3dc77ad7
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x3F9D4A00
 	Offset: 0x40F0
 	Size: 0x5E
@@ -1073,7 +1073,7 @@ function function_3dc77ad7()
 
 /*
 	Name: function_e4004164
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x5D8ECD76
 	Offset: 0x4158
 	Size: 0x1C
@@ -1087,7 +1087,7 @@ function function_e4004164()
 
 /*
 	Name: function_deb6cf13
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x1E5AA1E8
 	Offset: 0x4180
 	Size: 0x88
@@ -1110,7 +1110,7 @@ function function_deb6cf13()
 
 /*
 	Name: function_70320f4a
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x99A75888
 	Offset: 0x4210
 	Size: 0x94
@@ -1129,7 +1129,7 @@ function function_70320f4a(time = 5)
 
 /*
 	Name: function_197752f7
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xA103AAC6
 	Offset: 0x42B0
 	Size: 0x134
@@ -1153,7 +1153,7 @@ function function_197752f7(lifetime = 15)
 
 /*
 	Name: function_e0df2a3e
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x426DD6F7
 	Offset: 0x43F0
 	Size: 0x44
@@ -1168,7 +1168,7 @@ function function_e0df2a3e()
 
 /*
 	Name: function_8fe0340c
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xADF7CACB
 	Offset: 0x4440
 	Size: 0x80
@@ -1192,7 +1192,7 @@ function function_8fe0340c()
 
 /*
 	Name: function_517ce292
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xA0D1AF29
 	Offset: 0x44C8
 	Size: 0x54
@@ -1211,7 +1211,7 @@ function function_517ce292()
 
 /*
 	Name: function_7512c5ee
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xE764F91A
 	Offset: 0x4528
 	Size: 0x258
@@ -1244,7 +1244,7 @@ function function_7512c5ee(spawner, loc, def, forced = 0)
 		ai thread function_4c047459();
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
 	}
 	return ai;
@@ -1252,7 +1252,7 @@ function function_7512c5ee(spawner, loc, def, forced = 0)
 
 /*
 	Name: function_129ef3d
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xD7280B3
 	Offset: 0x4788
 	Size: 0x1E
@@ -1270,7 +1270,7 @@ function function_129ef3d()
 
 /*
 	Name: function_4c047459
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x495AB5BA
 	Offset: 0x47B0
 	Size: 0x1F4
@@ -1305,7 +1305,7 @@ function function_4c047459()
 
 /*
 	Name: function_ecbf1358
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xFBF90D0E
 	Offset: 0x49B0
 	Size: 0x1BE
@@ -1340,7 +1340,7 @@ function function_ecbf1358(origin, angles, carried = 0)
 
 /*
 	Name: function_33525e11
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xA9B05891
 	Offset: 0x4B78
 	Size: 0x3B8
@@ -1378,7 +1378,7 @@ function function_33525e11(spawner, loc, def)
 		ai.meleedamage = 0;
 		ai.squelch_damage_overlay = 1;
 		ai.goalradius = 512;
-		goal = namespace_3ca3c537::function_2a9d778d();
+		goal = doa_arena::function_2a9d778d();
 		spots = doa_utility::function_308fa126();
 		if(isdefined(spots) && spots.size)
 		{
@@ -1388,14 +1388,14 @@ function function_33525e11(spawner, loc, def)
 		ai setgoal(goal, 1);
 		ai thread function_307cc86e();
 		ai.updatesight = 1;
-		ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+		ai thread doa_fx::function_285a2999("spawnZombie");
 	}
 	return ai;
 }
 
 /*
 	Name: function_ce9bce16
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xF77E3281
 	Offset: 0x4F38
 	Size: 0x210
@@ -1419,7 +1419,7 @@ function function_ce9bce16(spawner, loc, def)
 		ai.goalradius = 64;
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
 		if(level.players.size == 1 && ai.zombie_move_speed == "sprint")
 		{
@@ -1431,7 +1431,7 @@ function function_ce9bce16(spawner, loc, def)
 
 /*
 	Name: function_b9980eda
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x5864B6EC
 	Offset: 0x5150
 	Size: 0x2C0
@@ -1478,7 +1478,7 @@ function function_b9980eda(spawner, loc, def, teleport = 1)
 
 /*
 	Name: function_ef4fa49d
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xE80376F1
 	Offset: 0x5418
 	Size: 0x100
@@ -1501,7 +1501,7 @@ function function_ef4fa49d(&spots, mindist = 300)
 
 /*
 	Name: shadowteleportmenow
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x9AF476A2
 	Offset: 0x5520
 	Size: 0x482
@@ -1539,7 +1539,7 @@ function shadowteleportmenow(initial = 0)
 	}
 	self.ignoreall = 1;
 	self.takedamage = 0;
-	self thread namespace_eaa992c::function_285a2999("shadow_fade");
+	self thread doa_fx::function_285a2999("shadow_fade");
 	wait(0.1);
 	org = spawn("script_model", self.origin + vectorscale((0, 0, 1), 40));
 	org setmodel("tag_origin");
@@ -1548,8 +1548,8 @@ function shadowteleportmenow(initial = 0)
 	org thread doa_utility::function_981c685d(self);
 	org.teleports = self.teleports;
 	org.spawner = self.spawner;
-	org thread namespace_eaa992c::function_285a2999("shadow_move");
-	org thread namespace_eaa992c::function_285a2999("shadow_glow");
+	org thread doa_fx::function_285a2999("shadow_move");
+	org thread doa_fx::function_285a2999("shadow_glow");
 	org thread doa_sound::function_90118d8c("zmb_enemy_smokeman_poof");
 	wait(0.3);
 	self ghost();
@@ -1558,7 +1558,7 @@ function shadowteleportmenow(initial = 0)
 	self linkto(org);
 	org moveto(goal.origin + vectorscale((0, 0, 1), 40), 2);
 	org util::waittill_any_timeout(2.1, "movedone");
-	org thread namespace_eaa992c::function_285a2999("shadow_appear");
+	org thread doa_fx::function_285a2999("shadow_appear");
 	wait(1);
 	org thread doa_sound::function_90118d8c("zmb_enemy_smokeman_wings");
 	wait(1);
@@ -1568,7 +1568,7 @@ function shadowteleportmenow(initial = 0)
 	self show();
 	self solid();
 	self setplayercollision(1);
-	self thread namespace_eaa992c::function_285a2999("spawnZombie");
+	self thread doa_fx::function_285a2999("spawnZombie");
 	org delete();
 	wait(1);
 	self.ignoreall = 0;
@@ -1578,7 +1578,7 @@ function shadowteleportmenow(initial = 0)
 
 /*
 	Name: function_c1b5c042
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x412482D2
 	Offset: 0x59B0
 	Size: 0x148
@@ -1597,7 +1597,7 @@ function function_c1b5c042(einflictor, eattacker, idamage, idflags, smeansofdeat
 	}
 	if(self.health == 1)
 	{
-		self thread namespace_eaa992c::function_285a2999("shadow_die");
+		self thread doa_fx::function_285a2999("shadow_die");
 		self show();
 		self.takedamage = 0;
 		self.aioverridedamage = undefined;
@@ -1608,7 +1608,7 @@ function function_c1b5c042(einflictor, eattacker, idamage, idflags, smeansofdeat
 
 /*
 	Name: function_575e3933
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x647C8E47
 	Offset: 0x5B00
 	Size: 0x44
@@ -1623,7 +1623,7 @@ function function_575e3933(spawner, loc)
 
 /*
 	Name: function_862e15fa
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xA2AF06D0
 	Offset: 0x5B50
 	Size: 0x68
@@ -1642,7 +1642,7 @@ function function_862e15fa(spawner, loc)
 
 /*
 	Name: function_17de14f1
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x47B5CD81
 	Offset: 0x5BC0
 	Size: 0x280
@@ -1686,7 +1686,7 @@ function function_17de14f1(spawner, loc, def)
 
 /*
 	Name: function_45849d81
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x1C56757D
 	Offset: 0x5E48
 	Size: 0x358
@@ -1746,7 +1746,7 @@ function function_45849d81(spawner, loc, def)
 
 /*
 	Name: function_28cdab69
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xBC4259CB
 	Offset: 0x61A8
 	Size: 0x15E
@@ -1774,7 +1774,7 @@ function private function_28cdab69(def)
 
 /*
 	Name: function_1ee8b18c
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xD3BCA543
 	Offset: 0x6310
 	Size: 0x3C
@@ -1790,7 +1790,7 @@ function private function_1ee8b18c(def, ai)
 
 /*
 	Name: function_be745286
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xA70A5C0D
 	Offset: 0x6358
 	Size: 0xA4
@@ -1814,7 +1814,7 @@ function private function_be745286(def, ai)
 
 /*
 	Name: function_b6d31d3a
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xC692FA53
 	Offset: 0x6408
 	Size: 0x292
@@ -1858,7 +1858,7 @@ function private function_b6d31d3a(spot, hold = 0, fx = "zombie_riser_fx", var_3
 
 /*
 	Name: function_2f0633b5
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xE4A672C1
 	Offset: 0x66A8
 	Size: 0x34
@@ -1877,7 +1877,7 @@ function private function_2f0633b5()
 
 /*
 	Name: function_7c9f5521
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x36C88A16
 	Offset: 0x66E8
 	Size: 0xA4
@@ -1900,7 +1900,7 @@ function private function_7c9f5521(zombie, spot)
 
 /*
 	Name: function_43f48136
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x5B32DA12
 	Offset: 0x6798
 	Size: 0x82
@@ -1930,7 +1930,7 @@ function function_43f48136(var_bbd280b0)
 
 /*
 	Name: function_57aea19e
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xE13C372A
 	Offset: 0x6828
 	Size: 0x1BE
@@ -1953,7 +1953,7 @@ function function_57aea19e()
 	bomb setmodel("zombietron_Warlord_mine");
 	bomb playsound("zmb_bomb_initialized");
 	bomb playloopsound("zmb_bomb_looper", 1);
-	bomb thread namespace_eaa992c::function_285a2999("explo_warning_light");
+	bomb thread doa_fx::function_285a2999("explo_warning_light");
 	bomb thread function_97fb783(5);
 	bomb.takedamage = 1;
 	self waittillmatch(#"hash_eecd4c04");
@@ -1962,7 +1962,7 @@ function function_57aea19e()
 
 /*
 	Name: function_c9e4e727
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x77A9E81F
 	Offset: 0x69F0
 	Size: 0xB8
@@ -1988,7 +1988,7 @@ function function_c9e4e727(var_bbd280b0, asmstatename)
 
 /*
 	Name: function_c238a312
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xF9C5E58E
 	Offset: 0x6AB0
 	Size: 0x4C
@@ -2010,7 +2010,7 @@ function function_c238a312(var_bbd280b0, asmstatename)
 
 /*
 	Name: function_97fb783
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x35A181CA
 	Offset: 0x6B08
 	Size: 0xCC
@@ -2023,14 +2023,14 @@ function function_97fb783(fusetime)
 	self util::waittill_any_timeout(fusetime, "damage");
 	radiusdamage(self.origin, 72, 10000, 0, undefined, "MOD_GAS");
 	self playsound("zmb_bomb_explode");
-	self thread namespace_eaa992c::function_285a2999("def_explode");
+	self thread doa_fx::function_285a2999("def_explode");
 	util::wait_network_frame();
 	self delete();
 }
 
 /*
 	Name: function_2fd0d5c7
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x12221CCB
 	Offset: 0x6BE0
 	Size: 0x3A6
@@ -2097,7 +2097,7 @@ function function_2fd0d5c7(behaviortreeentity)
 
 /*
 	Name: function_53b44cb7
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xEEE8C80A
 	Offset: 0x6F90
 	Size: 0x240
@@ -2133,7 +2133,7 @@ function function_53b44cb7(spawner, loc, def, forced = 0)
 		ai thread function_772a04fe();
 		if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 		{
-			ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+			ai thread doa_fx::function_285a2999("spawnZombie");
 		}
 	}
 	return ai;
@@ -2141,7 +2141,7 @@ function function_53b44cb7(spawner, loc, def, forced = 0)
 
 /*
 	Name: function_c783bef2
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xC49A0EB7
 	Offset: 0x71D8
 	Size: 0x12
@@ -2150,12 +2150,12 @@ function function_53b44cb7(spawner, loc, def, forced = 0)
 */
 function function_c783bef2()
 {
-	return namespace_d88e3a06::function_cda60edb();
+	return doa_hazard::function_cda60edb();
 }
 
 /*
 	Name: function_772a04fe
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xC0713486
 	Offset: 0x71F8
 	Size: 0x24C
@@ -2180,7 +2180,7 @@ function function_772a04fe()
 	trashcan linkto(self, "tag_origin", vectorscale((0, 0, 1), 54));
 	trashcan thread function_45f23318(self);
 	self doa_enemy::function_d30fe558(self.var_8f12ed02, 1);
-	trashcan thread namespace_d88e3a06::function_d8d20160();
+	trashcan thread doa_hazard::function_d8d20160();
 	self waittill("goal");
 	self.var_8f12ed02 = undefined;
 	if(isdefined(trashcan))
@@ -2194,7 +2194,7 @@ function function_772a04fe()
 
 /*
 	Name: function_45f23318
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x29A05752
 	Offset: 0x7450
 	Size: 0x50
@@ -2214,7 +2214,7 @@ function private function_45f23318(ai)
 
 /*
 	Name: function_7e51c1d2
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x9204838A
 	Offset: 0x74A8
 	Size: 0x8C
@@ -2234,7 +2234,7 @@ function function_7e51c1d2()
 
 /*
 	Name: margwaspawn
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x7DB95EFC
 	Offset: 0x7540
 	Size: 0x120
@@ -2257,7 +2257,7 @@ function margwaspawn(loc, bossbattle = 0)
 
 /*
 	Name: function_4ce6d0ea
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xFBF0338F
 	Offset: 0x7668
 	Size: 0x402
@@ -2270,7 +2270,7 @@ function function_4ce6d0ea()
 	level thread function_7e51c1d2();
 	level notify(#"hash_e2918623");
 	setdvar("scr_margwa_footstep_eq_radius", 0);
-	foreach(player in namespace_831a4a7c::function_5eb6e4d1())
+	foreach(player in doa_player_utility::function_5eb6e4d1())
 	{
 		player notify(#"hash_d28ba89d");
 	}
@@ -2279,7 +2279,7 @@ function function_4ce6d0ea()
 	level notify(#"hash_ba37290e", "bossbattle");
 	wait(1);
 	level thread doa_utility::function_37fb5c23(&"CP_DOA_BO3_MARGWA_LAIR", undefined, 5, (1, 0, 0));
-	var_60de7d19 = namespace_3ca3c537::function_61d60e0b();
+	var_60de7d19 = doa_arena::function_61d60e0b();
 	loc = spawnstruct();
 	loc.angles = (0, 0, 0);
 	loc.origin = var_60de7d19 + vectorscale((0, 0, 1), 3000);
@@ -2309,7 +2309,7 @@ function function_4ce6d0ea()
 
 /*
 	Name: function_e8a17069
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x39D501E4
 	Offset: 0x7A78
 	Size: 0xE8
@@ -2324,7 +2324,7 @@ function private function_e8a17069()
 		if(getdvarint("scr_doa_soak_think", 0))
 		{
 			damage = int(self.maxhealth * randomfloatrange(0.1, 0.2));
-			attacker = namespace_831a4a7c::function_35f36dec(self.origin);
+			attacker = doa_player_utility::function_35f36dec(self.origin);
 			self dodamage(damage, self.origin, attacker, attacker);
 		}
 		wait(randomint(10));
@@ -2333,7 +2333,7 @@ function private function_e8a17069()
 
 /*
 	Name: function_62d794a5
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xC76B1FE3
 	Offset: 0x7B68
 	Size: 0x14E
@@ -2356,7 +2356,7 @@ function function_62d794a5()
 
 /*
 	Name: function_13109fad
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xF4C52146
 	Offset: 0x7CC0
 	Size: 0x40
@@ -2375,7 +2375,7 @@ function private function_13109fad()
 
 /*
 	Name: function_c0147a11
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xF419B2ED
 	Offset: 0x7D08
 	Size: 0x310
@@ -2402,7 +2402,7 @@ function private function_c0147a11()
 	/#
 		if(isdefined(level.doa.dev_level_skipped))
 		{
-			self thread namespace_4973e019::function_76b30cc1();
+			self thread doa_boss::function_76b30cc1();
 		}
 	#/
 	if(isdefined(level.doa.margwa) && level.doa.margwa == self)
@@ -2415,7 +2415,7 @@ function private function_c0147a11()
 			level clientfield::set("pumpBannerBar", data);
 			if(isdefined(attacker) && isplayer(attacker))
 			{
-				attacker namespace_64c6b720::function_80eb303(int(damage * 0.25), 1);
+				attacker doa_score::function_80eb303(int(damage * 0.25), 1);
 			}
 			/#
 				doa_utility::debugmsg("" + self.health);
@@ -2426,7 +2426,7 @@ function private function_c0147a11()
 
 /*
 	Name: margwadamage
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x72B9B59A
 	Offset: 0x8020
 	Size: 0x440
@@ -2441,9 +2441,9 @@ function margwadamage(inflictor, attacker, damage, dflags, mod, weapon, point, d
 		modelhit = "c_zom_margwa_chunks_le";
 		if(isdefined(self.bossbattle) && self.bossbattle)
 		{
-			level thread namespace_cdb9a8fe::function_691ef36b();
-			level thread namespace_cdb9a8fe::function_703bb8b2(30);
-			level thread namespace_cdb9a8fe::function_87703158(1);
+			level thread doa_round::function_691ef36b();
+			level thread doa_round::function_703bb8b2(30);
+			level thread doa_round::function_87703158(1);
 		}
 		org = spawn("script_model", self gettagorigin("J_Head_LE"));
 		org.targetname = "margwa1";
@@ -2487,7 +2487,7 @@ function margwadamage(inflictor, attacker, damage, dflags, mod, weapon, point, d
 
 /*
 	Name: function_7ee81ba4
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xE3BCD2FA
 	Offset: 0x8468
 	Size: 0x4C
@@ -2496,14 +2496,14 @@ function margwadamage(inflictor, attacker, damage, dflags, mod, weapon, point, d
 */
 function private function_7ee81ba4(org)
 {
-	org thread namespace_eaa992c::function_285a2999("margwa_head_explode");
+	org thread doa_fx::function_285a2999("margwa_head_explode");
 	wait(1);
 	org delete();
 }
 
 /*
 	Name: margwaupdatemovespeed
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x14CB7732
 	Offset: 0x84C0
 	Size: 0xDC
@@ -2528,7 +2528,7 @@ function private margwaupdatemovespeed()
 
 /*
 	Name: function_1c99c7cd
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0x348E59FF
 	Offset: 0x85A8
 	Size: 0x130
@@ -2556,7 +2556,7 @@ function private function_1c99c7cd()
 
 /*
 	Name: function_771e3915
-	Namespace: namespace_51bd792
+	Namespace: bo3_enemy
 	Checksum: 0xFC4F5F47
 	Offset: 0x86E0
 	Size: 0x242

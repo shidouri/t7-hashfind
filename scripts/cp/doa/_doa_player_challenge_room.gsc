@@ -18,11 +18,11 @@
 #using scripts\shared\flagsys_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_74ae326f;
+#namespace doa_player_challenge;
 
 /*
 	Name: init
-	Namespace: namespace_74ae326f
+	Namespace: doa_player_challenge
 	Checksum: 0x1B0ADF2D
 	Offset: 0x4B8
 	Size: 0x18
@@ -36,7 +36,7 @@ function init()
 
 /*
 	Name: function_471d1403
-	Namespace: namespace_74ae326f
+	Namespace: doa_player_challenge
 	Checksum: 0xD46CDC40
 	Offset: 0x4D8
 	Size: 0x38C
@@ -110,7 +110,7 @@ function function_471d1403()
 
 /*
 	Name: function_4952be41
-	Namespace: namespace_74ae326f
+	Namespace: doa_player_challenge
 	Checksum: 0xBCB28ABC
 	Offset: 0x870
 	Size: 0x2D6
@@ -174,7 +174,7 @@ function private function_4952be41(room)
 
 /*
 	Name: function_15a0c9b5
-	Namespace: namespace_74ae326f
+	Namespace: doa_player_challenge
 	Checksum: 0xB08EC637
 	Offset: 0xB50
 	Size: 0x844
@@ -187,7 +187,7 @@ function function_15a0c9b5(room)
 	level flag::clear("doa_challenge_running");
 	level notify(#"hash_e2918623");
 	level thread doa_utility::clearallcorpses();
-	level thread namespace_d88e3a06::function_116bb43();
+	level thread doa_hazard::function_116bb43();
 	level thread doa_pickups::function_c1869ec8();
 	level waittill(#"hash_229914a6");
 	level notify(#"hash_4d952f70");
@@ -201,7 +201,7 @@ function function_15a0c9b5(room)
 		player notify(#"hash_d28ba89d");
 	}
 	wait(0.25);
-	namespace_cdb9a8fe::function_55762a85(namespace_831a4a7c::function_68ece679().origin);
+	doa_round::function_55762a85(doa_player_utility::function_68ece679().origin);
 	level clientfield::set("flipCamera", 0);
 	level clientfield::increment("killweather");
 	level clientfield::increment("killfog");

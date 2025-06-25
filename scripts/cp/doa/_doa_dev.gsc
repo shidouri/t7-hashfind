@@ -9,11 +9,11 @@
 #using scripts\shared\flagsys_shared;
 #using scripts\shared\system_shared;
 
-#namespace namespace_2f63e553;
+#namespace doa_dev;
 
 /*
 	Name: function_40206fdf
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x5D704E08
 	Offset: 0x770
 	Size: 0x288
@@ -80,7 +80,7 @@ function function_40206fdf()
 
 /*
 	Name: function_35d58a26
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0xD11245EC
 	Offset: 0xA00
 	Size: 0xDA
@@ -89,12 +89,12 @@ function function_40206fdf()
 */
 function function_35d58a26()
 {
-	while(namespace_831a4a7c::function_5eb6e4d1().size == 0)
+	while(doa_player_utility::function_5eb6e4d1().size == 0)
 	{
 		wait(0.05);
 	}
 	doa_utility::debugmsg("Hail to the King baby!");
-	foreach(player in namespace_831a4a7c::function_5eb6e4d1())
+	foreach(player in doa_player_utility::function_5eb6e4d1())
 	{
 		player thread function_92c840a6(1);
 	}
@@ -102,7 +102,7 @@ function function_35d58a26()
 
 /*
 	Name: setupdevgui
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0xCCB7ECE2
 	Offset: 0xAE8
 	Size: 0x4A4
@@ -145,7 +145,7 @@ function setupdevgui()
 			doa_utility::killallenemy();
 			world.var_e5cf1b41 = undefined;
 			doa_utility::debugmsg("");
-			foreach(player in namespace_831a4a7c::function_5eb6e4d1())
+			foreach(player in doa_player_utility::function_5eb6e4d1())
 			{
 				player thread function_92c840a6(5);
 			}
@@ -169,7 +169,7 @@ function setupdevgui()
 
 /*
 	Name: function_92c840a6
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0xAE695569
 	Offset: 0xF98
 	Size: 0xF4
@@ -203,7 +203,7 @@ function function_92c840a6(delay = 0.1)
 
 /*
 	Name: function_a4d5519a
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x8D98C1B0
 	Offset: 0x1098
 	Size: 0x23C
@@ -219,8 +219,8 @@ function function_a4d5519a(pickup)
 	{
 		return;
 	}
-	level thread doa_utility::debug_circle(pickup.origin + vectorscale((0, 0, 1), 20), 30, 3, namespace_831a4a7c::function_fea7ed75(self.entnum));
-	level thread doa_utility::debug_line(self.origin + vectorscale((0, 0, 1), 20), pickup.origin + vectorscale((0, 0, 1), 20), 3, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread doa_utility::debug_circle(pickup.origin + vectorscale((0, 0, 1), 20), 30, 3, doa_player_utility::function_fea7ed75(self.entnum));
+	level thread doa_utility::debug_line(self.origin + vectorscale((0, 0, 1), 20), pickup.origin + vectorscale((0, 0, 1), 20), 3, doa_player_utility::function_fea7ed75(self.entnum));
 	yaw = doa_utility::function_fa8a86e8(self, pickup);
 	if(!isdefined(yaw))
 	{
@@ -242,7 +242,7 @@ function function_a4d5519a(pickup)
 
 /*
 	Name: function_733651c
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x321D8385
 	Offset: 0x12E0
 	Size: 0x118
@@ -275,7 +275,7 @@ function function_733651c()
 
 /*
 	Name: function_7abdb1e8
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x9C92CCFE
 	Offset: 0x1400
 	Size: 0x54
@@ -293,7 +293,7 @@ function function_7abdb1e8()
 
 /*
 	Name: function_f71d59c
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x9D9D9DAB
 	Offset: 0x1460
 	Size: 0x44
@@ -310,7 +310,7 @@ function function_f71d59c()
 
 /*
 	Name: function_a3bba13d
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x68E748D4
 	Offset: 0x14B0
 	Size: 0x850
@@ -330,7 +330,7 @@ function function_a3bba13d()
 	adddebugcommand("set bot_AllowMovement 0; set bot_PressAttackBtn 1; set bot_PressMeleeBtn 0; set scr_botsAllowKillstreaks 0; set bot_AllowGrenades 1");
 	while(level.var_1575b6db)
 	{
-		foreach(guy in namespace_831a4a7c::function_5eb6e4d1())
+		foreach(guy in doa_player_utility::function_5eb6e4d1())
 		{
 			if(!isdefined(guy))
 			{
@@ -390,7 +390,7 @@ function function_a3bba13d()
 		if(level.doa.fates.var_cadf4b04.size > 0)
 		{
 			i = 0;
-			foreach(guy in namespace_831a4a7c::function_5eb6e4d1())
+			foreach(guy in doa_player_utility::function_5eb6e4d1())
 			{
 				if(guy arecontrolsfrozen() == 0)
 				{
@@ -449,7 +449,7 @@ function function_a3bba13d()
 
 /*
 	Name: function_f24eee41
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x34C478BD
 	Offset: 0x1D08
 	Size: 0x50
@@ -469,7 +469,7 @@ function function_f24eee41()
 
 /*
 	Name: devguithink
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x3480E02E
 	Offset: 0x1D60
 	Size: 0x16E8
@@ -489,7 +489,7 @@ function devguithink()
 			setdvar("scr_doa_kingme_soak_think", 0);
 			setdvar("scr_doa_soak_think", 1);
 			doa_utility::debugmsg("Hail to the King baby!");
-			foreach(player in namespace_831a4a7c::function_5eb6e4d1())
+			foreach(player in doa_player_utility::function_5eb6e4d1())
 			{
 				player thread function_92c840a6();
 			}
@@ -516,7 +516,7 @@ function devguithink()
 		{
 			case "outro":
 			{
-				players = namespace_831a4a7c::function_5eb6e4d1();
+				players = doa_player_utility::function_5eb6e4d1();
 				for(i = 0; i < players.size; i++)
 				{
 					players[i].doa.lives = 0;
@@ -615,7 +615,7 @@ function devguithink()
 			case "gem":
 			{
 				doa_utility::debugmsg("Gem Launching!");
-				players = namespace_831a4a7c::function_5eb6e4d1();
+				players = doa_player_utility::function_5eb6e4d1();
 				for(i = 0; i < players.size; i++)
 				{
 					level thread doa_pickups::spawnubertreasure(players[i].origin, 4, 10, 1, 1);
@@ -625,7 +625,7 @@ function devguithink()
 			case "gemX":
 			{
 				doa_utility::debugmsg("Gem Launching!");
-				players = namespace_831a4a7c::function_5eb6e4d1();
+				players = doa_player_utility::function_5eb6e4d1();
 				scale = int(getdvarstring("scr_spawn_pickup"));
 				for(i = 0; i < players.size; i++)
 				{
@@ -636,7 +636,7 @@ function devguithink()
 			case "king":
 			{
 				doa_utility::debugmsg("Hail to the King baby!");
-				foreach(player in namespace_831a4a7c::function_5eb6e4d1())
+				foreach(player in doa_player_utility::function_5eb6e4d1())
 				{
 					player thread function_92c840a6();
 				}
@@ -662,7 +662,7 @@ function devguithink()
 				}
 				if(level.doa.forced_magical_room == 10)
 				{
-					players = namespace_831a4a7c::function_5eb6e4d1();
+					players = doa_player_utility::function_5eb6e4d1();
 					for(i = 1; i < players.size; i++)
 					{
 						if(players[i].doa.fate == 0)
@@ -696,7 +696,7 @@ function devguithink()
 				type = getdvarint("scr_spawn_pickup");
 				doa_utility::debugmsg(("Fating you ->") + type);
 				level.doa.fates_have_been_chosen = 1;
-				players = namespace_831a4a7c::function_5eb6e4d1();
+				players = doa_player_utility::function_5eb6e4d1();
 				for(i = 0; i < players.size; i++)
 				{
 					if(type < 10)
@@ -728,7 +728,7 @@ function devguithink()
 			}
 			case "arena":
 			{
-				world.var_e5cf1b41 = namespace_3ca3c537::function_5835533a(getdvarstring("scr_spawn_room_name"));
+				world.var_e5cf1b41 = doa_arena::function_5835533a(getdvarstring("scr_spawn_room_name"));
 				doa_utility::debugmsg((("Advance To Arena =" + getdvarstring("scr_spawn_room_name")) + " idx=") + world.var_e5cf1b41);
 				setdvar("scr_spawn_room_name", "");
 				adddebugcommand("map_restart");
@@ -737,7 +737,7 @@ function devguithink()
 			case "warp":
 			{
 				flag::clear("doa_round_active");
-				level.doa.var_b5c260bb = namespace_3ca3c537::function_5835533a(getdvarstring("scr_spawn_room_name"));
+				level.doa.var_b5c260bb = doa_arena::function_5835533a(getdvarstring("scr_spawn_room_name"));
 				level.doa.arena_round_number = level.doa.rules.var_88c0b67b - 1;
 				round_number = level.doa.var_b5c260bb * level.doa.rules.var_88c0b67b;
 				foreach(room in level.doa.bonus_rooms)
@@ -817,7 +817,7 @@ function devguithink()
 			case "kill":
 			{
 				doa_utility::debugmsg("death has been notified ...");
-				players = namespace_831a4a7c::function_5eb6e4d1();
+				players = doa_player_utility::function_5eb6e4d1();
 				if(players.size == 1)
 				{
 					player = players[0];
@@ -832,7 +832,7 @@ function devguithink()
 			case "kill_all":
 			{
 				doa_utility::debugmsg("death to all...");
-				players = namespace_831a4a7c::function_5eb6e4d1();
+				players = doa_player_utility::function_5eb6e4d1();
 				for(i = 0; i < players.size; i++)
 				{
 					players[i] dodamage(players[i].health + 100, players[i].origin);
@@ -851,7 +851,7 @@ function devguithink()
 
 /*
 	Name: function_5e6b8376
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x879EDB88
 	Offset: 0x3450
 	Size: 0x200
@@ -888,7 +888,7 @@ function function_5e6b8376(origin, radius, time, color = (0, 1, 0))
 
 /*
 	Name: plotpoints
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0xBAB68229
 	Offset: 0x3658
 	Size: 0xFA
@@ -917,7 +917,7 @@ function plotpoints(plotpoints, var_c75b4e78, server_frames = 1)
 
 /*
 	Name: drawcylinder
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0xC42DB679
 	Offset: 0x3760
 	Size: 0x2FA
@@ -948,7 +948,7 @@ function drawcylinder(pos, rad, height, server_frames = 1, color = (0, 0, 0))
 
 /*
 	Name: debugorigin
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0xD8D2482E
 	Offset: 0x3A68
 	Size: 0x1D0
@@ -979,7 +979,7 @@ function debugorigin()
 
 /*
 	Name: function_a0e51d80
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0x963F7917
 	Offset: 0x3C40
 	Size: 0x1C0
@@ -1009,7 +1009,7 @@ function function_a0e51d80(point, timesec, size, color)
 
 /*
 	Name: debugline
-	Namespace: namespace_2f63e553
+	Namespace: doa_dev
 	Checksum: 0xBBBDD605
 	Offset: 0x3E08
 	Size: 0x88

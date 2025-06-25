@@ -504,7 +504,7 @@ function function_a1761846(behaviortreeentity)
 			behaviortreeentity.var_dc3adfc7 = time + 1500;
 			if(behaviortreeentity.team == "axis")
 			{
-				validtargets = arraycombine(getaiteamarray("team3"), namespace_831a4a7c::function_5eb6e4d1(), 0, 0);
+				validtargets = arraycombine(getaiteamarray("team3"), doa_player_utility::function_5eb6e4d1(), 0, 0);
 				if(isdefined(level.doa.active_guardians) && level.doa.active_guardians.size)
 				{
 					validtargets = arraycombine(validtargets, level.doa.active_guardians, 0, 0);
@@ -517,7 +517,7 @@ function function_a1761846(behaviortreeentity)
 			}
 			if(isdefined(closest) && behaviortreeentity.enemy != closest)
 			{
-				if(namespace_831a4a7c::function_5eb6e4d1().size > 1 && isplayer(closest))
+				if(doa_player_utility::function_5eb6e4d1().size > 1 && isplayer(closest))
 				{
 					behaviortreeentity.favoriteenemy = closest;
 					behaviortreeentity setpersonalthreatbias(closest, 5000, 1.5);
@@ -862,7 +862,7 @@ function function_2241fc21(einflictor, eattacker, idamage, idflags, smeansofdeat
 	}
 	if(isdefined(self.fx) && self.health <= idamage)
 	{
-		self thread namespace_eaa992c::turnofffx(self.fx);
+		self thread doa_fx::turnofffx(self.fx);
 		self.fx = undefined;
 	}
 	if(isdefined(weapon) && isdefined(level.doa.var_7808fc8c[weapon.name]))
@@ -871,7 +871,7 @@ function function_2241fc21(einflictor, eattacker, idamage, idflags, smeansofdeat
 	}
 	if(!(isdefined(self.boss) && self.boss))
 	{
-		self namespace_fba031c8::function_15a268a6(eattacker, idamage, smeansofdeath, weapon, shitloc, vdir);
+		self doa_gib::function_15a268a6(eattacker, idamage, smeansofdeath, weapon, shitloc, vdir);
 	}
 	if(smeansofdeath == "MOD_BURNED")
 	{
@@ -951,7 +951,7 @@ function function_ff217d39(einflictor, eattacker, idamage, smeansofdeath, weapon
 	}
 	if(isdefined(self.fx))
 	{
-		self thread namespace_eaa992c::turnofffx(self.fx);
+		self thread doa_fx::turnofffx(self.fx);
 	}
 	if(randomint(100) < 20)
 	{
@@ -959,17 +959,17 @@ function function_ff217d39(einflictor, eattacker, idamage, smeansofdeath, weapon
 		{
 			case 0:
 			{
-				self thread namespace_eaa992c::function_285a2999("headshot");
+				self thread doa_fx::function_285a2999("headshot");
 				break;
 			}
 			case 1:
 			{
-				self thread namespace_eaa992c::function_285a2999("headshot_nochunks");
+				self thread doa_fx::function_285a2999("headshot_nochunks");
 				break;
 			}
 			default:
 			{
-				self thread namespace_eaa992c::function_285a2999("bloodspurt");
+				self thread doa_fx::function_285a2999("bloodspurt");
 				break;
 			}
 		}
@@ -984,7 +984,7 @@ function function_ff217d39(einflictor, eattacker, idamage, smeansofdeath, weapon
 	}
 	if(isdefined(self.interdimensional_gun_kill) && self.interdimensional_gun_kill)
 	{
-		self namespace_fba031c8::function_7b3e39cb();
+		self doa_gib::function_7b3e39cb();
 		level thread doa_pickups::spawnubertreasure(self.origin, 1, 1, 1, 1);
 	}
 	if(isdefined(eattacker))
@@ -997,7 +997,7 @@ function function_ff217d39(einflictor, eattacker, idamage, smeansofdeath, weapon
 		{
 			eattacker.kills = math::clamp(eattacker.kills + 1, 0, 65535);
 			eattacker.doa.kills++;
-			eattacker namespace_64c6b720::function_80eb303(self.doa.points);
+			eattacker doa_score::function_80eb303(self.doa.points);
 		}
 	}
 	if(smeansofdeath == "MOD_CRUSH")
@@ -1005,7 +1005,7 @@ function function_ff217d39(einflictor, eattacker, idamage, smeansofdeath, weapon
 		/#
 			assert(!(isdefined(self.boss) && self.boss));
 		#/
-		self namespace_fba031c8::function_ddf685e8(undefined, eattacker);
+		self doa_gib::function_ddf685e8(undefined, eattacker);
 		if(isdefined(eattacker))
 		{
 			eattacker notify(#"hash_108fd845");
@@ -1072,7 +1072,7 @@ function function_90772ac6(einflictor, eattacker, idamage, smeansofdeath, weapon
 	{
 		eattacker.kills = math::clamp(eattacker.kills + 1, 0, 65535);
 		eattacker.doa.kills++;
-		eattacker namespace_64c6b720::function_80eb303(self.doa.points);
+		eattacker doa_score::function_80eb303(self.doa.points);
 	}
 	params = spawnstruct();
 	params.einflictor = einflictor;
@@ -1125,7 +1125,7 @@ function function_7c435737()
 	self endon(#"hash_10fd80ee");
 	while(isalive(self))
 	{
-		target = namespace_831a4a7c::function_35f36dec(self.origin);
+		target = doa_player_utility::function_35f36dec(self.origin);
 		if(isdefined(target) && (!(isdefined(self.ignoreall) && self.ignoreall)))
 		{
 			self setentitytarget(target);
@@ -1450,7 +1450,7 @@ function function_155957e9()
 	while(!level flag::get("doa_game_is_over"))
 	{
 		wait(1);
-		safezone = namespace_3ca3c537::function_dc34896f();
+		safezone = doa_arena::function_dc34896f();
 		if(!self istouching(safezone))
 		{
 			var_2f36e0eb++;

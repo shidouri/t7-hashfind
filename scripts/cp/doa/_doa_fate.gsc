@@ -185,7 +185,7 @@ function function_77ed1bae()
 	var_526b2f85.origin = var_526b2f85.origin + (vectorscale((0, 0, -1), 1000));
 	level thread doa_pickups::function_c1869ec8();
 	level thread doa_utility::clearallcorpses();
-	level thread namespace_d88e3a06::function_116bb43();
+	level thread doa_hazard::function_116bb43();
 	level notify(#"hash_a50a72db");
 	locs = struct::get_array("fate_player_spawn", "targetname");
 	if(isdefined(locs) && locs.size == 4)
@@ -193,13 +193,13 @@ function function_77ed1bae()
 		foreach(player in getplayers())
 		{
 			spot = locs[player.entnum];
-			player namespace_cdb9a8fe::function_fe0946ac(spot.origin);
+			player doa_round::function_fe0946ac(spot.origin);
 			player setplayerangles((0, spot.angles[1], 0));
 		}
 	}
 	else
 	{
-		namespace_cdb9a8fe::function_55762a85(namespace_3ca3c537::function_61d60e0b());
+		doa_round::function_55762a85(doa_arena::function_61d60e0b());
 	}
 	level thread doa_utility::set_lighting_state(3);
 	for(i = 0; i < level.doa.fates.types.size; i++)
@@ -236,7 +236,7 @@ function function_77ed1bae()
 		players[i] freezecontrols(0);
 	}
 	level thread function_6162a853();
-	level thread namespace_3ca3c537::function_a50a72db();
+	level thread doa_arena::function_a50a72db();
 	level notify(#"hash_3b6e1e2");
 	level waittill(#"hash_7b036079");
 	wait(1);
@@ -285,20 +285,20 @@ function private function_524284e0()
 	{
 		case "trigger_fated":
 		{
-			self.rock thread namespace_eaa992c::function_285a2999("fate_impact");
-			self.rock thread namespace_eaa992c::function_285a2999("fate_trigger");
-			self.rock thread namespace_eaa992c::function_285a2999("fate_impact");
+			self.rock thread doa_fx::function_285a2999("fate_impact");
+			self.rock thread doa_fx::function_285a2999("fate_trigger");
+			self.rock thread doa_fx::function_285a2999("fate_impact");
 			break;
 		}
 		case "trigger_right_match":
 		{
-			self.rock thread namespace_eaa992c::function_285a2999("fate_impact");
-			self.rock thread namespace_eaa992c::function_285a2999("fate_trigger");
+			self.rock thread doa_fx::function_285a2999("fate_impact");
+			self.rock thread doa_fx::function_285a2999("fate_trigger");
 			break;
 		}
 		case "trigger_wrong_match":
 		{
-			self.rock thread namespace_eaa992c::function_285a2999("fate_impact");
+			self.rock thread doa_fx::function_285a2999("fate_impact");
 			break;
 		}
 	}
@@ -319,13 +319,13 @@ function private function_271ba816(var_26fc4461 = 0)
 	level endon(#"hash_7b036079");
 	self thread function_46575fe6();
 	self thread function_524284e0();
-	self.rock thread namespace_eaa992c::function_285a2999("glow_blue");
+	self.rock thread doa_fx::function_285a2999("glow_blue");
 	level waittill(#"hash_4213cffb");
 	wait(randomfloatrange(1, 2.5));
 	self.rock thread doa_utility::function_a98c85b2(self.rock.var_e35d13, 1.5);
 	self.rock thread doa_sound::function_90118d8c("zmb_fate_rock_spawn");
 	wait(1.5);
-	self.rock thread namespace_eaa992c::function_285a2999("fate_impact");
+	self.rock thread doa_fx::function_285a2999("fate_impact");
 	self.rock thread doa_sound::function_90118d8c("zmb_fate_rock_imp");
 	objective_add(self.id, "active", self.origin);
 	objective_set3d(self.id, 1, "default", "*");
@@ -360,7 +360,7 @@ function private function_271ba816(var_26fc4461 = 0)
 			if(guy.doa.fate == 0)
 			{
 				avail = level.doa.fates.types;
-				players = namespace_831a4a7c::function_5eb6e4d1();
+				players = doa_player_utility::function_5eb6e4d1();
 				foreach(player in players)
 				{
 					if(player == guy)
@@ -514,10 +514,10 @@ function private function_271ba816(var_26fc4461 = 0)
 */
 function function_b6841741()
 {
-	level thread function_fd0b8976(&"DOA_FATE_FIREPOWER", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread function_fd0b8976(&"DOA_FATE_FIREPOWER", 4, doa_player_utility::function_fea7ed75(self.entnum));
 	self.doa.default_weap = level.doa.var_416914d0;
 	self.doa.var_1b58e8ba = 1;
-	self namespace_831a4a7c::function_baa7411e(self.doa.default_weap);
+	self doa_player_utility::function_baa7411e(self.doa.default_weap);
 }
 
 /*
@@ -531,10 +531,10 @@ function function_b6841741()
 */
 function function_d30f9791()
 {
-	level thread function_fd0b8976(&"DOA_FATE_FORTUNE", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread function_fd0b8976(&"DOA_FATE_FORTUNE", 4, doa_player_utility::function_fea7ed75(self.entnum));
 	if(self.doa.multiplier < 2)
 	{
-		self namespace_64c6b720::function_126dc996(2);
+		self doa_score::function_126dc996(2);
 	}
 }
 
@@ -549,10 +549,10 @@ function function_d30f9791()
 */
 function function_2a2ab6f9()
 {
-	level thread function_fd0b8976(&"DOA_FATE_FEET", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread function_fd0b8976(&"DOA_FATE_FEET", 4, doa_player_utility::function_fea7ed75(self.entnum));
 	self.doa.default_movespeed = level.doa.rules.var_b92b82b;
 	self setmovespeedscale(level.doa.rules.var_b92b82b);
-	self thread namespace_eaa992c::function_285a2999("fast_feet");
+	self thread doa_fx::function_285a2999("fast_feet");
 }
 
 /*
@@ -567,8 +567,8 @@ function function_2a2ab6f9()
 function function_4c552db8()
 {
 	self.doa.var_1b58e8ba = 2;
-	level thread function_fd0b8976(&"DOA_FATE_FRIENDSHIP", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
-	self thread namespace_5e6c5d1f::function_d35a405a(level.doa.var_a7cfb7eb, 1);
+	level thread function_fd0b8976(&"DOA_FATE_FRIENDSHIP", 4, doa_player_utility::function_fea7ed75(self.entnum));
+	self thread doa_chicken::function_d35a405a(level.doa.var_a7cfb7eb, 1);
 }
 
 /*
@@ -582,12 +582,12 @@ function function_4c552db8()
 */
 function function_c8508847()
 {
-	level thread function_fd0b8976(&"DOA_FATE_FORCE", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread function_fd0b8976(&"DOA_FATE_FORCE", 4, doa_player_utility::function_fea7ed75(self.entnum));
 	if(self.doa.boosters < 4)
 	{
 		self.doa.boosters = 4;
 	}
-	self thread namespace_eaa992c::function_285a2999("fate2_awarded");
+	self thread doa_fx::function_285a2999("fate2_awarded");
 }
 
 /*
@@ -601,13 +601,13 @@ function function_c8508847()
 */
 function function_47b8a2a2()
 {
-	level thread function_fd0b8976(&"DOA_FATE_FORTITUDE", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread function_fd0b8976(&"DOA_FATE_FORTITUDE", 4, doa_player_utility::function_fea7ed75(self.entnum));
 	if(self.doa.multiplier < 3)
 	{
-		self namespace_64c6b720::function_126dc996(3);
+		self doa_score::function_126dc996(3);
 	}
-	self thread namespace_6df66aa5::function_2016b381();
-	self thread namespace_eaa992c::function_285a2999("fate2_awarded");
+	self thread doa_shield::function_2016b381();
+	self thread doa_fx::function_285a2999("fate2_awarded");
 }
 
 /*
@@ -621,9 +621,9 @@ function function_47b8a2a2()
 */
 function function_78c32d42()
 {
-	level thread function_fd0b8976(&"DOA_FATE_FAVOR", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
-	self thread namespace_5e6c5d1f::function_d35a405a(level.doa.var_9505395a, 2, 1.5);
-	self thread namespace_eaa992c::function_285a2999("fate2_awarded");
+	level thread function_fd0b8976(&"DOA_FATE_FAVOR", 4, doa_player_utility::function_fea7ed75(self.entnum));
+	self thread doa_chicken::function_d35a405a(level.doa.var_9505395a, 2, 1.5);
+	self thread doa_fx::function_285a2999("fate2_awarded");
 }
 
 /*
@@ -637,14 +637,14 @@ function function_78c32d42()
 */
 function function_8c9288de()
 {
-	level thread function_fd0b8976(&"DOA_FATE_FURY", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread function_fd0b8976(&"DOA_FATE_FURY", 4, doa_player_utility::function_fea7ed75(self.entnum));
 	if(self.doa.bombs < 1)
 	{
 		self.doa.bombs = 1;
 	}
 	self.doa.default_weap = level.doa.var_69899304;
-	self namespace_831a4a7c::function_baa7411e(self.doa.default_weap);
-	self thread namespace_eaa992c::function_285a2999("fate2_awarded");
+	self doa_player_utility::function_baa7411e(self.doa.default_weap);
+	self thread doa_fx::function_285a2999("fate2_awarded");
 }
 
 /*
@@ -658,7 +658,7 @@ function function_8c9288de()
 */
 function private function_78f27983(player)
 {
-	level thread function_fd0b8976(&"DOA_FATE_BOOBY_PRIZE", 4, namespace_831a4a7c::function_fea7ed75(self.entnum));
+	level thread function_fd0b8976(&"DOA_FATE_BOOBY_PRIZE", 4, doa_player_utility::function_fea7ed75(self.entnum));
 	if(isdefined(player.doa.var_eb1cd159))
 	{
 		player thread doa_pickups::directeditemawardto(player, "zombietron_extra_life");
@@ -690,7 +690,7 @@ function awardfate(type, rock)
 {
 	if(isdefined(rock))
 	{
-		rock thread namespace_eaa992c::function_285a2999("fate_trigger");
+		rock thread doa_fx::function_285a2999("fate_trigger");
 		rock thread doa_sound::function_90118d8c("zmb_fate_choose");
 	}
 	self.doa.fate = type;
@@ -784,7 +784,7 @@ function function_17fb777b(player, model, modelscale, fate_cb)
 	}
 	if(isplayer(player))
 	{
-		object thread namespace_eaa992c::function_285a2999("fate_explode");
+		object thread doa_fx::function_285a2999("fate_explode");
 		player playrumbleonentity("artillery_rumble");
 		if(mayspawnentity())
 		{
@@ -913,11 +913,11 @@ function function_833dad0d()
 	level.doa.rules.max_enemy_count = 20;
 	level thread doa_pickups::function_c1869ec8();
 	level thread doa_utility::clearallcorpses();
-	level thread namespace_d88e3a06::function_116bb43();
+	level thread doa_hazard::function_116bb43();
 	level notify(#"hash_a50a72db");
 	level thread doa_utility::set_lighting_state(3);
-	namespace_cdb9a8fe::function_691ef36b();
-	namespace_cdb9a8fe::function_703bb8b2(30);
+	doa_round::function_691ef36b();
+	doa_round::function_703bb8b2(30);
 	players = getplayers();
 	for(i = 0; i < players.size; i++)
 	{
@@ -942,7 +942,7 @@ function function_833dad0d()
 	wait(3);
 	level clientfield::set("activateBanner", 1);
 	wait(4);
-	level thread namespace_3ca3c537::function_a50a72db();
+	level thread doa_arena::function_a50a72db();
 	level notify(#"hash_3b6e1e2");
 	/#
 		doa_utility::debugmsg("");
@@ -996,16 +996,16 @@ function function_833dad0d()
 		foreach(player in getplayers())
 		{
 			spot = locs[player.entnum];
-			player namespace_cdb9a8fe::function_fe0946ac(spot.origin);
+			player doa_round::function_fe0946ac(spot.origin);
 			player setplayerangles((0, spot.angles[1], 0));
 		}
 	}
 	else
 	{
-		namespace_cdb9a8fe::function_55762a85(namespace_3ca3c537::function_61d60e0b());
+		doa_round::function_55762a85(doa_arena::function_61d60e0b());
 	}
 	level thread doa_utility::set_lighting_state(3);
-	namespace_831a4a7c::function_82e3b1cb();
+	doa_player_utility::function_82e3b1cb();
 	/#
 		doa_utility::debugmsg("");
 	#/
@@ -1024,7 +1024,7 @@ function function_833dad0d()
 	foreach(player in getplayers())
 	{
 		player freezecontrols(0);
-		player thread namespace_831a4a7c::function_4519b17(0);
+		player thread doa_player_utility::function_4519b17(0);
 	}
 	level thread function_6162a853(1);
 	/#
@@ -1065,7 +1065,7 @@ function function_be1e2cfc(guardian, var_526b2f85)
 	guardian.origin = guardian.origin + vectorscale((0, 0, 1), 1000);
 	var_526b2f85.origin = var_526b2f85.origin + vectorscale((0, 0, 1), 1000);
 	level.doa.fates.var_1bcf76cc = 0;
-	level.doa.rules.max_enemy_count = namespace_3ca3c537::function_b0e9983(namespace_3ca3c537::function_d2d75f5d());
+	level.doa.rules.max_enemy_count = doa_arena::function_b0e9983(doa_arena::function_d2d75f5d());
 }
 
 /*
@@ -1101,7 +1101,7 @@ function private function_5aaa5a64(shield)
 			continue;
 		}
 		guy.doa.var_d6d294af = gettime() + 3000;
-		guy thread namespace_eaa992c::function_285a2999("stoneboss_shield_death");
+		guy thread doa_fx::function_285a2999("stoneboss_shield_death");
 		shield thread doa_sound::function_90118d8c("zmb_boss_shield_death");
 		guy dodamage(guy.health + 500, guy.origin);
 	}
@@ -1127,7 +1127,7 @@ function private function_d654dcd9()
 			{
 				self.shield.trigger delete();
 			}
-			self.shield thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
+			self.shield thread doa_fx::function_285a2999("stoneboss_shield_explode");
 			util::wait_network_frame();
 			if(isdefined(self) && isdefined(self.shield))
 			{
@@ -1173,7 +1173,7 @@ function private function_60a14daa(boss)
 function private function_b1d23a45(boss)
 {
 	level endon(#"hash_d1f5acf7");
-	self thread namespace_eaa992c::function_285a2999("tesla_trail");
+	self thread doa_fx::function_285a2999("tesla_trail");
 	self.angles = vectorscale((0, 0, 1), 180);
 	self.trigger = spawn("trigger_radius", self.origin, 0, 30, 50);
 	self.trigger.targetname = "boss_shieldThink";
@@ -1191,7 +1191,7 @@ function private function_b1d23a45(boss)
 		self waittill("damage", damage);
 		if(isdefined(self.var_e34a8df9))
 		{
-			self thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
+			self thread doa_fx::function_285a2999("stoneboss_shield_explode");
 			loc = spawnstruct();
 			loc.origin = self.origin;
 			loc.angles = self.angles;
@@ -1200,7 +1200,7 @@ function private function_b1d23a45(boss)
 				doa_utility::function_fe180f6f(3);
 				wait(0.05);
 			}
-			ai = namespace_51bd792::function_fb051310(self.var_e34a8df9, loc, undefined, 0, 1);
+			ai = bo3_enemy::function_fb051310(self.var_e34a8df9, loc, undefined, 0, 1);
 			if(isdefined(ai))
 			{
 				ai.spawner = self.var_e34a8df9;
@@ -1218,12 +1218,12 @@ function private function_b1d23a45(boss)
 			if(lasthealth > stage1 && self.health < stage1)
 			{
 				self setmodel("zombietron_boss_shield_damage_size" + self.org.regenerated);
-				self thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
+				self thread doa_fx::function_285a2999("stoneboss_shield_explode");
 			}
 			else if(lasthealth > stage2 && self.health < stage2)
 			{
 				self setmodel("zombietron_boss_shield_destroyed_size" + self.org.regenerated);
-				self thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
+				self thread doa_fx::function_285a2999("stoneboss_shield_explode");
 			}
 		}
 	}
@@ -1380,7 +1380,7 @@ function private function_cb98790d()
 		{
 			if(isdefined(ball))
 			{
-				ball thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
+				ball thread doa_fx::function_285a2999("stoneboss_shield_explode");
 				util::wait_network_frame();
 				if(isdefined(ball))
 				{
@@ -1423,7 +1423,7 @@ function private function_c492e72d()
 	/#
 		if(isdefined(level.doa.dev_level_skipped))
 		{
-			self thread namespace_4973e019::function_76b30cc1();
+			self thread doa_boss::function_76b30cc1();
 		}
 	#/
 	while(self.health > 0)
@@ -1448,12 +1448,12 @@ function private function_c492e72d()
 					attacker.doa.var_eb1cd159 = 0;
 				}
 				attacker.doa.var_eb1cd159 = attacker.doa.var_eb1cd159 + damage;
-				attacker namespace_64c6b720::function_80eb303(int(damage * 0.25), 1);
+				attacker doa_score::function_80eb303(int(damage * 0.25), 1);
 			}
 		}
 		if(lasthealth > stage1 && self.health < stage1)
 		{
-			self thread namespace_eaa992c::function_285a2999("stoneboss_dmg1");
+			self thread doa_fx::function_285a2999("stoneboss_dmg1");
 			self thread doa_sound::function_90118d8c("zmb_stoneboss_damaged");
 			level notify(#"hash_55acdab7");
 		}
@@ -1461,7 +1461,7 @@ function private function_c492e72d()
 		{
 			if(lasthealth > stage2 && self.health < stage2)
 			{
-				self thread namespace_eaa992c::function_285a2999("stoneboss_dmg2");
+				self thread doa_fx::function_285a2999("stoneboss_dmg2");
 				self thread doa_sound::function_90118d8c("zmb_stoneboss_damaged");
 				level notify(#"hash_55acdab7");
 			}
@@ -1469,7 +1469,7 @@ function private function_c492e72d()
 			{
 				if(lasthealth > stage3 && self.health < stage3)
 				{
-					self thread namespace_eaa992c::function_285a2999("stoneboss_dmg3");
+					self thread doa_fx::function_285a2999("stoneboss_dmg3");
 					self thread doa_sound::function_90118d8c("zmb_stoneboss_damaged");
 					level notify(#"hash_55acdab7");
 				}
@@ -1477,13 +1477,13 @@ function private function_c492e72d()
 				{
 					if(lasthealth > var_301961e7 && self.health < var_301961e7)
 					{
-						self thread namespace_eaa992c::function_285a2999("stoneboss_dmg4");
+						self thread doa_fx::function_285a2999("stoneboss_dmg4");
 						self thread doa_sound::function_90118d8c("zmb_stoneboss_damaged");
 						level notify(#"hash_55acdab7");
 					}
 					else if(lasthealth > var_a16e77e && self.health < var_a16e77e)
 					{
-						self thread namespace_eaa992c::function_285a2999("stoneboss_dmg5");
+						self thread doa_fx::function_285a2999("stoneboss_dmg5");
 						self thread doa_sound::function_90118d8c("zmb_stoneboss_damaged");
 						level notify(#"hash_55acdab7");
 					}
@@ -1494,7 +1494,7 @@ function private function_c492e72d()
 			doa_utility::debugmsg("" + self.health);
 		#/
 	}
-	self thread namespace_eaa992c::function_285a2999("stoneboss_death");
+	self thread doa_fx::function_285a2999("stoneboss_death");
 	self thread doa_sound::function_90118d8c("zmb_stoneboss_died");
 	self notify("defeated");
 	level notify("defeated", self);
@@ -1558,7 +1558,7 @@ function private function_5c819284()
 				return;
 			}
 			level.doa.current_wave = level.doa.spawn_sequence[wave];
-			level thread namespace_cdb9a8fe::function_21a582ff(level.doa.current_wave, "boss_of_justice_died");
+			level thread doa_round::function_21a582ff(level.doa.current_wave, "boss_of_justice_died");
 		}
 	}
 }
@@ -1576,7 +1576,7 @@ function private function_b6a1fab3()
 {
 	level endon(#"hash_d1f5acf7");
 	level.doa.var_d0cde02c = undefined;
-	var_60de7d19 = namespace_3ca3c537::function_61d60e0b();
+	var_60de7d19 = doa_arena::function_61d60e0b();
 	var_9a550361 = var_60de7d19;
 	boss = spawn("script_model", var_9a550361);
 	boss.targetname = "stoneguardian";
@@ -1620,24 +1620,24 @@ function private function_b6a1fab3()
 		wait(randomfloatrange(0.25, 1.2));
 	}
 	boss thread doa_utility::function_a98c85b2(boss.origin + vectorscale((0, 0, 1), 2000), 1.75);
-	boss thread namespace_eaa992c::function_285a2999("fate_impact");
-	boss thread namespace_eaa992c::function_285a2999("stoneboss_death");
+	boss thread doa_fx::function_285a2999("fate_impact");
+	boss thread doa_fx::function_285a2999("stoneboss_death");
 	wait(4);
 	fury thread doa_utility::function_a98c85b2(fury.origin + vectorscale((0, 0, 1), 2000), 1.75);
-	fury thread namespace_eaa992c::function_285a2999("fate_impact");
-	fury thread namespace_eaa992c::function_285a2999("fate_launch");
+	fury thread doa_fx::function_285a2999("fate_impact");
+	fury thread doa_fx::function_285a2999("fate_launch");
 	wait(1);
 	force thread doa_utility::function_a98c85b2(force.origin + vectorscale((0, 0, 1), 2000), 1.75);
-	force thread namespace_eaa992c::function_285a2999("fate_impact");
-	force thread namespace_eaa992c::function_285a2999("fate_launch");
+	force thread doa_fx::function_285a2999("fate_impact");
+	force thread doa_fx::function_285a2999("fate_launch");
 	wait(1);
 	fortitude thread doa_utility::function_a98c85b2(fortitude.origin + vectorscale((0, 0, 1), 2000), 1.75);
-	fortitude thread namespace_eaa992c::function_285a2999("fate_impact");
-	fortitude thread namespace_eaa992c::function_285a2999("fate_launch");
+	fortitude thread doa_fx::function_285a2999("fate_impact");
+	fortitude thread doa_fx::function_285a2999("fate_launch");
 	wait(1);
 	favor thread doa_utility::function_a98c85b2(favor.origin + vectorscale((0, 0, 1), 2000), 1.75);
-	favor thread namespace_eaa992c::function_285a2999("fate_impact");
-	favor thread namespace_eaa992c::function_285a2999("fate_launch");
+	favor thread doa_fx::function_285a2999("fate_impact");
+	favor thread doa_fx::function_285a2999("fate_launch");
 	wait(2);
 	level notify(#"hash_852a9fcd");
 	boss delete();

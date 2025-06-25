@@ -4,11 +4,11 @@
 #using scripts\shared\math_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_ad544aeb;
+#namespace doa_camera;
 
 /*
 	Name: function_d22ceb57
-	Namespace: namespace_ad544aeb
+	Namespace: doa_camera
 	Checksum: 0xA988DA5D
 	Offset: 0x118
 	Size: 0xFC
@@ -38,7 +38,7 @@ function function_d22ceb57(angles, min_dist, max_dist = 0)
 
 /*
 	Name: function_44a2ae85
-	Namespace: namespace_ad544aeb
+	Namespace: doa_camera
 	Checksum: 0xE78FD80
 	Offset: 0x220
 	Size: 0xCE
@@ -64,7 +64,7 @@ function function_44a2ae85(vec, mins)
 
 /*
 	Name: function_b72ba417
-	Namespace: namespace_ad544aeb
+	Namespace: doa_camera
 	Checksum: 0x86F9A1C4
 	Offset: 0x2F8
 	Size: 0xCE
@@ -90,7 +90,7 @@ function function_b72ba417(vec, maxs)
 
 /*
 	Name: function_d207ecc1
-	Namespace: namespace_ad544aeb
+	Namespace: doa_camera
 	Checksum: 0x142BCAA0
 	Offset: 0x3D0
 	Size: 0x12DC
@@ -267,7 +267,7 @@ function function_d207ecc1(localclientnum, delta_time)
 	}
 	dims = maxs - mins;
 	var_733be899 = (mins + maxs) * 0.5;
-	arena_center = namespace_3ca3c537::function_61d60e0b();
+	arena_center = doa_arena::function_61d60e0b();
 	mins = function_44a2ae85(arena_center, mins);
 	maxs = function_b72ba417(arena_center, maxs);
 	center = mins + maxs;
@@ -275,7 +275,7 @@ function function_d207ecc1(localclientnum, delta_time)
 	cam_pos = center;
 	if(players.size == 1)
 	{
-		player_influence = namespace_3ca3c537::function_be152c54();
+		player_influence = doa_arena::function_be152c54();
 		if(player_influence == 99)
 		{
 			cam_pos = (players[0].origin[0], players[0].origin[1], arena_center[2]);

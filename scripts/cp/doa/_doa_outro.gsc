@@ -33,11 +33,11 @@
 
 #using_animtree("generic");
 
-#namespace namespace_917e49b3;
+#namespace doa_outro;
 
 /*
 	Name: function_d4766377
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x6BD79DB7
 	Offset: 0xD98
 	Size: 0x574
@@ -113,7 +113,7 @@ function function_d4766377()
 
 /*
 	Name: function_ef727812
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0xBA963CF9
 	Offset: 0x1318
 	Size: 0x2CC
@@ -150,7 +150,7 @@ function function_ef727812(num)
 
 /*
 	Name: function_a85eaca4
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x46DC5F3
 	Offset: 0x15F0
 	Size: 0xC0
@@ -183,7 +183,7 @@ function function_a85eaca4()
 
 /*
 	Name: function_e2d6beb9
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x3399359
 	Offset: 0x16B8
 	Size: 0x3CC
@@ -239,7 +239,7 @@ function function_e2d6beb9()
 
 /*
 	Name: function_5e04bf78
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x525A5501
 	Offset: 0x1A90
 	Size: 0x12DE
@@ -260,27 +260,27 @@ function function_5e04bf78()
 	org2 thread doa_utility::function_783519c1("podiumAllDone", 1);
 	org2.angles = point1.angles;
 	playsoundatposition("zmb_ape_prespawn", org.origin);
-	org thread namespace_eaa992c::function_285a2999("silverback_intro");
+	org thread doa_fx::function_285a2999("silverback_intro");
 	wait(0.5);
-	org thread namespace_eaa992c::function_285a2999("silverback_intro");
-	org thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
+	org thread doa_fx::function_285a2999("silverback_intro");
+	org thread doa_fx::function_285a2999("stoneboss_shield_explode");
 	wait(0.5);
-	org thread namespace_eaa992c::function_285a2999("silverback_intro");
-	org thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
+	org thread doa_fx::function_285a2999("silverback_intro");
+	org thread doa_fx::function_285a2999("stoneboss_shield_explode");
 	wait(0.5);
-	silverback = namespace_51bd792::function_36aa8b6c(org2);
+	silverback = bo3_enemy::function_36aa8b6c(org2);
 	silverback thread doa_utility::function_783519c1("podiumAllDone", 1);
 	silverback linkto(org2);
-	silverback thread namespace_eaa992c::function_285a2999("player_trail_red");
-	silverback thread namespace_eaa992c::function_285a2999("silverback_intro_trail1");
-	silverback thread namespace_eaa992c::function_285a2999("silverback_intro_trail2");
+	silverback thread doa_fx::function_285a2999("player_trail_red");
+	silverback thread doa_fx::function_285a2999("silverback_intro_trail1");
+	silverback thread doa_fx::function_285a2999("silverback_intro_trail2");
 	silverback forceteleport(org2.origin, org2.angles);
 	org2 moveto(org.origin, 1);
 	org2 util::waittill_any_timeout(1.5, "movedone");
 	silverback.takedamage = 0;
-	silverback thread namespace_eaa992c::function_285a2999("silverback_intro_explo");
-	silverback thread namespace_eaa992c::turnofffx("silverback_intro_trail1");
-	silverback thread namespace_eaa992c::turnofffx("silverback_intro_trail2");
+	silverback thread doa_fx::function_285a2999("silverback_intro_explo");
+	silverback thread doa_fx::turnofffx("silverback_intro_trail1");
+	silverback thread doa_fx::turnofffx("silverback_intro_trail2");
 	playrumbleonposition("explosion_generic", org.origin);
 	playsoundatposition("zmb_ape_spawn", org.origin);
 	silverback unlink();
@@ -292,8 +292,8 @@ function function_5e04bf78()
 	silverback waittillmatch(#"pissedoff");
 	silverback playsound("zmb_simianaut_roar");
 	silverback playsound("evt_turret_takeoff");
-	silverback thread namespace_eaa992c::function_285a2999("boss_takeoff");
-	silverback thread namespace_eaa992c::function_285a2999("crater_dust");
+	silverback thread doa_fx::function_285a2999("boss_takeoff");
+	silverback thread doa_fx::function_285a2999("crater_dust");
 	playrumbleonposition("explosion_generic", silverback.origin);
 	height = 800;
 	timems = (height / 1000) * 3000;
@@ -301,7 +301,7 @@ function function_5e04bf78()
 	org.origin = silverback.origin;
 	silverback linkto(org);
 	org namespace_a3646565::move_to_position_over_time(point2.origin, timems, height);
-	silverback thread namespace_eaa992c::function_285a2999("turret_impact");
+	silverback thread doa_fx::function_285a2999("turret_impact");
 	silverback playsound("zmb_simianaut_roar");
 	level.doa.var_63e2b87e = silverback;
 	level notify(#"hash_5c2d4fa4", "end", "zombie_melee");
@@ -316,8 +316,8 @@ function function_5e04bf78()
 	level notify("zombie_outro_mood_angry");
 	level.doa.var_63e2b87e = level.doa.var_e102b46;
 	silverback playsound("evt_turret_takeoff");
-	silverback thread namespace_eaa992c::function_285a2999("boss_takeoff");
-	silverback thread namespace_eaa992c::function_285a2999("crater_dust");
+	silverback thread doa_fx::function_285a2999("boss_takeoff");
+	silverback thread doa_fx::function_285a2999("crater_dust");
 	playrumbleonposition("explosion_generic", silverback.origin);
 	org.angles = silverback.angles;
 	org.origin = silverback.origin;
@@ -345,14 +345,14 @@ function function_5e04bf78()
 	mech.driver linkto(mech, "tag_driver");
 	mech.driver thread function_fb3b78fe();
 	mech linkto(org);
-	org thread namespace_eaa992c::function_285a2999("fire_trail");
+	org thread doa_fx::function_285a2999("fire_trail");
 	wait(0.05);
 	mech show();
 	mech.driver show();
 	org moveto(point3.origin, 2);
 	mech playsound("evt_doa_monkeymech_land");
 	org util::waittill_any_timeout(3, "movedone");
-	org thread namespace_eaa992c::function_285a2999("def_explode");
+	org thread doa_fx::function_285a2999("def_explode");
 	mech setturrettargetent(level.doa.var_c12009c9);
 	mech setgunnertargetent(level.doa.var_c12009c9, (0, 0, 0), 1);
 	mech unlink();
@@ -408,7 +408,7 @@ function function_5e04bf78()
 	wait(2);
 	mech linkto(org);
 	mech playsound("evt_doa_monkeymech_takeoff");
-	org thread namespace_eaa992c::function_285a2999("def_explode");
+	org thread doa_fx::function_285a2999("def_explode");
 	org moveto(point3.origin + vectorscale((0, 0, 1), 2500), 2);
 	org util::waittill_any_timeout(2.3, "movedone");
 	if(isdefined(mech))
@@ -429,7 +429,7 @@ function function_5e04bf78()
 
 /*
 	Name: function_f7e6e4b1
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x8C0ECD04
 	Offset: 0x2D78
 	Size: 0xEC
@@ -455,7 +455,7 @@ function function_f7e6e4b1(scale = 1, var_fb37ad89 = 9999)
 
 /*
 	Name: function_d834fdd0
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x96CF2D5F
 	Offset: 0x2E70
 	Size: 0x2DA
@@ -466,7 +466,7 @@ function function_d834fdd0()
 {
 	level endon(#"hash_448ca7a6");
 	level waittill(#"hash_71c0bde9");
-	level.doa.var_e102b46 thread namespace_eaa992c::function_285a2999("bomb");
+	level.doa.var_e102b46 thread doa_fx::function_285a2999("bomb");
 	foreach(podium in level.doa.var_92721db3)
 	{
 		if(isdefined(podium.var_53538eb0))
@@ -495,7 +495,7 @@ function function_d834fdd0()
 
 /*
 	Name: function_566de51a
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x6EC5CCCD
 	Offset: 0x3158
 	Size: 0x9C
@@ -505,7 +505,7 @@ function function_d834fdd0()
 function function_566de51a()
 {
 	self endon("death");
-	self thread namespace_eaa992c::function_285a2999("bomb");
+	self thread doa_fx::function_285a2999("bomb");
 	self stopanimscripted();
 	self startragdoll(1);
 	util::wait_network_frame();
@@ -515,7 +515,7 @@ function function_566de51a()
 
 /*
 	Name: function_2b20420b
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0xEE8B64F9
 	Offset: 0x3200
 	Size: 0x24E
@@ -567,7 +567,7 @@ function function_2b20420b(podium)
 
 /*
 	Name: function_1aaa038
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x9A2E7A9A
 	Offset: 0x3458
 	Size: 0x26E
@@ -606,7 +606,7 @@ function function_1aaa038(droporigin)
 
 /*
 	Name: fireworks
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x2088AB7E
 	Offset: 0x36D0
 	Size: 0x76
@@ -628,7 +628,7 @@ function fireworks()
 
 /*
 	Name: function_5ec4f559
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x37B8C29F
 	Offset: 0x3750
 	Size: 0xE8
@@ -667,7 +667,7 @@ function function_5ec4f559(player)
 
 /*
 	Name: function_5e06cff2
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x95BFA4DC
 	Offset: 0x3840
 	Size: 0x1BC
@@ -698,7 +698,7 @@ function function_5e06cff2()
 
 /*
 	Name: function_7206982b
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0xFF511C7A
 	Offset: 0x3A08
 	Size: 0xDE
@@ -721,7 +721,7 @@ function function_7206982b()
 
 /*
 	Name: function_78713841
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x7893005
 	Offset: 0x3AF0
 	Size: 0xF2
@@ -749,7 +749,7 @@ function function_78713841()
 
 /*
 	Name: function_b8de7628
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0xE925C19E
 	Offset: 0x3BF0
 	Size: 0x1A8
@@ -782,7 +782,7 @@ function function_b8de7628()
 
 /*
 	Name: function_fccfcf0c
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x4F1B6A74
 	Offset: 0x3DA0
 	Size: 0x140
@@ -824,7 +824,7 @@ function function_fccfcf0c()
 
 /*
 	Name: function_fb3b78fe
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x6DD936F7
 	Offset: 0x3EE8
 	Size: 0xEE
@@ -853,7 +853,7 @@ function function_fb3b78fe()
 
 /*
 	Name: function_4036d4c6
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0xDC186FCF
 	Offset: 0x3FE0
 	Size: 0xA6
@@ -877,7 +877,7 @@ function function_4036d4c6()
 
 /*
 	Name: function_e4d4b80
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x41A3BBD2
 	Offset: 0x4090
 	Size: 0xDE
@@ -900,7 +900,7 @@ function function_e4d4b80(animation)
 
 /*
 	Name: function_46882430
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x931BCC37
 	Offset: 0x4178
 	Size: 0xD4
@@ -917,7 +917,7 @@ function function_46882430(string, location, hold = 3, fade = 1)
 
 /*
 	Name: function_d040f4a6
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x7EAECF4
 	Offset: 0x4258
 	Size: 0x334
@@ -969,7 +969,7 @@ function function_d040f4a6(podium)
 
 /*
 	Name: function_1b6034b2
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x41831433
 	Offset: 0x4598
 	Size: 0x23C
@@ -1012,7 +1012,7 @@ function function_1b6034b2(podium)
 
 /*
 	Name: function_87082601
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0x8900DDA7
 	Offset: 0x47E0
 	Size: 0x23C
@@ -1056,7 +1056,7 @@ function function_87082601(podium)
 
 /*
 	Name: function_b7bde10a
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0xC0079DB0
 	Offset: 0x4A28
 	Size: 0x22C
@@ -1093,7 +1093,7 @@ function function_b7bde10a(podium)
 
 /*
 	Name: function_4d8b6e1e
-	Namespace: namespace_917e49b3
+	Namespace: doa_outro
 	Checksum: 0xB1BCD44E
 	Offset: 0x4C60
 	Size: 0x1AC
@@ -1113,7 +1113,7 @@ function function_4d8b6e1e()
 	}
 	for(i = 1; i < players.size; i++)
 	{
-		for(j = i; j > 0 && (int(players[j - 1] namespace_64c6b720::function_93ccc5da())) < int(players[j] namespace_64c6b720::function_93ccc5da()); j--)
+		for(j = i; j > 0 && (int(players[j - 1] doa_score::function_93ccc5da())) < int(players[j] doa_score::function_93ccc5da()); j--)
 		{
 			array::swap(players, j, j - 1);
 		}

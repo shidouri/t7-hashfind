@@ -11,11 +11,11 @@
 #using scripts\shared\flagsys_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_6df66aa5;
+#namespace doa_shield;
 
 /*
 	Name: boxingpickupupdate
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x3CA3ADA0
 	Offset: 0x5B0
 	Size: 0x514
@@ -68,7 +68,7 @@ function boxingpickupupdate()
 
 /*
 	Name: function_fa8666fa
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x7E60F24B
 	Offset: 0xAD0
 	Size: 0x5C
@@ -77,14 +77,14 @@ function boxingpickupupdate()
 */
 function function_fa8666fa()
 {
-	self thread namespace_eaa992c::function_285a2999("boxing_stars");
+	self thread doa_fx::function_285a2999("boxing_stars");
 	self waittill("actor_corpse", corpse);
-	corpse thread namespace_eaa992c::function_285a2999("boxing_stars");
+	corpse thread doa_fx::function_285a2999("boxing_stars");
 }
 
 /*
 	Name: barrelupdate
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x66A9AB17
 	Offset: 0xB38
 	Size: 0x4E0
@@ -138,7 +138,7 @@ function barrelupdate()
 
 /*
 	Name: function_80bf1f40
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0xE52DF30F
 	Offset: 0x1020
 	Size: 0x270
@@ -169,7 +169,7 @@ function private function_80bf1f40(player, note, sfx, var_5e61e69d, mod = "MOD_C
 		}
 		if(isdefined(var_5e61e69d))
 		{
-			guy thread namespace_eaa992c::function_285a2999(var_5e61e69d);
+			guy thread doa_fx::function_285a2999(var_5e61e69d);
 		}
 		if(isdefined(var_aa78744e))
 		{
@@ -192,7 +192,7 @@ function private function_80bf1f40(player, note, sfx, var_5e61e69d, mod = "MOD_C
 
 /*
 	Name: function_3c5a0d64
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0xAEEE4FBC
 	Offset: 0x1298
 	Size: 0x11E
@@ -225,7 +225,7 @@ function private function_3c5a0d64(org, note, var_3587f608, var_eaac4dd5)
 
 /*
 	Name: function_121caed2
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x5DB8301B
 	Offset: 0x13C0
 	Size: 0x1DC
@@ -285,7 +285,7 @@ function private function_121caed2(player)
 
 /*
 	Name: function_6143f535
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0xB745FF56
 	Offset: 0x15A8
 	Size: 0x564
@@ -382,7 +382,7 @@ function private function_6143f535(org, note)
 
 /*
 	Name: function_a0a646c2
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x6D81E761
 	Offset: 0x1B18
 	Size: 0x8C
@@ -393,15 +393,15 @@ function private function_a0a646c2()
 {
 	self endon("death");
 	self.doa.stunned = 1;
-	self thread namespace_eaa992c::function_285a2999("stunbear_affected");
+	self thread doa_fx::function_285a2999("stunbear_affected");
 	wait(level.doa.rules.var_83dda8f2);
 	self.doa.stunned = 0;
-	self thread namespace_eaa992c::turnofffx("stunbear_affected");
+	self thread doa_fx::turnofffx("stunbear_affected");
 }
 
 /*
 	Name: function_5f0b5579
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x329A811A
 	Offset: 0x1BB0
 	Size: 0x138
@@ -427,7 +427,7 @@ function private function_5f0b5579(player)
 		if(guy.doa.stunned == 0)
 		{
 			guy thread doa_sound::function_90118d8c("zmb_pwup_bear_stun");
-			guy thread namespace_eaa992c::function_285a2999("stunbear_contact");
+			guy thread doa_fx::function_285a2999("stunbear_contact");
 			player playrumbleonentity("slide_rumble");
 			guy thread function_a0a646c2();
 		}
@@ -436,7 +436,7 @@ function private function_5f0b5579(player)
 
 /*
 	Name: function_813e9dbd
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0xC083A8AC
 	Offset: 0x1CF0
 	Size: 0xB2
@@ -459,7 +459,7 @@ function private function_813e9dbd()
 
 /*
 	Name: function_e6abac68
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x9FDF37FF
 	Offset: 0x1DB0
 	Size: 0x144
@@ -473,8 +473,8 @@ function private function_e6abac68(trigger)
 	{
 		self notify(#"hash_792240f4");
 		self.doa.var_908e6b76 = undefined;
-		self thread namespace_eaa992c::turnofffx("stunbear");
-		self thread namespace_eaa992c::function_285a2999("stunbear_fade");
+		self thread doa_fx::turnofffx("stunbear");
+		self thread doa_fx::function_285a2999("stunbear_fade");
 		self stoploopsound(2);
 	}
 	wait(0.5);
@@ -482,7 +482,7 @@ function private function_e6abac68(trigger)
 	if(isdefined(self))
 	{
 		self thread doa_sound::function_90118d8c("zmb_pwup_bear_end");
-		self thread namespace_eaa992c::turnofffx("stunbear_fade");
+		self thread doa_fx::turnofffx("stunbear_fade");
 	}
 	if(isdefined(trigger))
 	{
@@ -492,7 +492,7 @@ function private function_e6abac68(trigger)
 
 /*
 	Name: function_affe0c28
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x1671988F
 	Offset: 0x1F00
 	Size: 0x1E4
@@ -515,14 +515,14 @@ function function_affe0c28()
 	self.doa.var_21520b4e linkto(self);
 	self.doa.var_21520b4e thread function_5f0b5579(self);
 	self playloopsound("zmb_pwup_bear_loop");
-	self thread namespace_eaa992c::function_285a2999("stunbear");
+	self thread doa_fx::function_285a2999("stunbear");
 	self thread function_813e9dbd();
 	self thread function_e6abac68(self.doa.var_21520b4e);
 }
 
 /*
 	Name: function_45123d3c
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x12A727C1
 	Offset: 0x20F0
 	Size: 0x1EA
@@ -549,7 +549,7 @@ function function_45123d3c(player)
 
 /*
 	Name: sawbladeupdate
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0xBDC27F3B
 	Offset: 0x22E8
 	Size: 0x228
@@ -591,7 +591,7 @@ function sawbladeupdate()
 
 /*
 	Name: function_92374630
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0xD9BC99F7
 	Offset: 0x2518
 	Size: 0x198
@@ -619,7 +619,7 @@ function private function_92374630(player)
 			vel = vectorscale(self.origin - player.origin, 0.2);
 			if(!(isdefined(guy.var_ad61c13d) && guy.var_ad61c13d))
 			{
-				guy namespace_fba031c8::function_ddf685e8(vel, player);
+				guy doa_gib::function_ddf685e8(vel, player);
 				guy thread doa_utility::function_ba30b321(0.5, player);
 			}
 			else
@@ -636,7 +636,7 @@ function private function_92374630(player)
 
 /*
 	Name: function_f797c54
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x6491F1AD
 	Offset: 0x26B8
 	Size: 0xE6
@@ -662,7 +662,7 @@ function private function_f797c54(org, note)
 
 /*
 	Name: function_595842c5
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x228DFCF4
 	Offset: 0x27A8
 	Size: 0x22A
@@ -702,7 +702,7 @@ function private function_595842c5(org, note)
 
 /*
 	Name: function_64bb8338
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0xB1DE8E0
 	Offset: 0x29E0
 	Size: 0x12C
@@ -717,8 +717,8 @@ function function_64bb8338(orb)
 		orb delete();
 		return;
 	}
-	orb thread namespace_eaa992c::turnofffx("magnet_on");
-	orb thread namespace_eaa992c::function_285a2999("magnet_fade");
+	orb thread doa_fx::turnofffx("magnet_on");
+	orb thread doa_fx::function_285a2999("magnet_fade");
 	wait(1);
 	if(isdefined(self))
 	{
@@ -730,7 +730,7 @@ function function_64bb8338(orb)
 
 /*
 	Name: function_2016b381
-	Namespace: namespace_6df66aa5
+	Namespace: doa_shield
 	Checksum: 0x74D19B07
 	Offset: 0x2B18
 	Size: 0x1B2
@@ -750,7 +750,7 @@ function function_2016b381(time)
 	self.doa.var_3df27425 = orb;
 	self thread function_64bb8338(orb);
 	self thread doa_sound::function_90118d8c("zmb_pwup_magnet_loop");
-	orb thread namespace_eaa992c::function_285a2999("magnet_on");
+	orb thread doa_fx::function_285a2999("magnet_on");
 	level doa_utility::function_c8f4d63a();
 	if(isdefined(time))
 	{

@@ -34,11 +34,11 @@
 
 #using_animtree("critter");
 
-#namespace namespace_df93fc7c;
+#namespace doa_bo3_player_challenge;
 
 /*
 	Name: function_4c171b8e
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x584205E
 	Offset: 0xF50
 	Size: 0xDC
@@ -62,7 +62,7 @@ function function_4c171b8e()
 
 /*
 	Name: function_bb59f698
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xDC565969
 	Offset: 0x1038
 	Size: 0x7A
@@ -81,7 +81,7 @@ function function_bb59f698()
 
 /*
 	Name: function_31c377e
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x3C09361A
 	Offset: 0x10C0
 	Size: 0x7AC
@@ -95,28 +95,28 @@ function function_31c377e(room)
 	room.vox = "vox_doaa_temple_fortress";
 	room.var_e5c8b9e7 = level.doa.var_bc9b7c71;
 	level.doa.var_bc9b7c71 = &function_4c171b8e;
-	level thread namespace_3ca3c537::function_4586479a(0);
+	level thread doa_arena::function_4586479a(0);
 	level thread function_bb59f698();
 	room.glow = [];
-	glow = spawn("script_model", namespace_3ca3c537::function_61d60e0b() + vectorscale((0, 0, 1), 36));
+	glow = spawn("script_model", doa_arena::function_61d60e0b() + vectorscale((0, 0, 1), 36));
 	glow.targetname = "spiralglow1";
 	glow setmodel("tag_origin");
-	glow thread namespace_eaa992c::function_285a2999("glow_blue");
+	glow thread doa_fx::function_285a2999("glow_blue");
 	room.glow[room.glow.size] = glow;
-	glow = spawn("script_model", namespace_3ca3c537::function_61d60e0b() + vectorscale((0, 0, 1), 72));
+	glow = spawn("script_model", doa_arena::function_61d60e0b() + vectorscale((0, 0, 1), 72));
 	glow.targetname = "spiralglow2";
 	glow setmodel("tag_origin");
-	glow thread namespace_eaa992c::function_285a2999("glow_blue");
+	glow thread doa_fx::function_285a2999("glow_blue");
 	room.glow[room.glow.size] = glow;
-	glow = spawn("script_model", namespace_3ca3c537::function_61d60e0b() + vectorscale((0, 0, 1), 128));
+	glow = spawn("script_model", doa_arena::function_61d60e0b() + vectorscale((0, 0, 1), 128));
 	glow.targetname = "spiralglow3";
 	glow setmodel("tag_origin");
-	glow thread namespace_eaa992c::function_285a2999("glow_blue");
+	glow thread doa_fx::function_285a2999("glow_blue");
 	room.glow[room.glow.size] = glow;
-	glow = spawn("script_model", namespace_3ca3c537::function_61d60e0b() + vectorscale((0, 0, 1), 160));
+	glow = spawn("script_model", doa_arena::function_61d60e0b() + vectorscale((0, 0, 1), 160));
 	glow.targetname = "spiralglow4";
 	glow setmodel("tag_origin");
-	glow thread namespace_eaa992c::function_285a2999("glow_blue");
+	glow thread doa_fx::function_285a2999("glow_blue");
 	room.glow[room.glow.size] = glow;
 	barricades = struct::get_array(room.name + "_destructible", "targetname");
 	count = 0;
@@ -155,7 +155,7 @@ function function_31c377e(room)
 
 /*
 	Name: function_ffe2a6ea
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x952940E0
 	Offset: 0x1878
 	Size: 0xA4
@@ -172,7 +172,7 @@ function function_ffe2a6ea()
 
 /*
 	Name: triggernotify
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x497498FC
 	Offset: 0x1928
 	Size: 0xC2
@@ -190,7 +190,7 @@ function triggernotify()
 
 /*
 	Name: function_e1b0de53
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xACD3CFB3
 	Offset: 0x19F8
 	Size: 0x4C
@@ -208,7 +208,7 @@ function function_e1b0de53(note)
 
 /*
 	Name: function_8e0e22bb
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x75FCDADF
 	Offset: 0x1A50
 	Size: 0x1FE
@@ -242,7 +242,7 @@ function function_8e0e22bb(room)
 
 /*
 	Name: function_47a3686b
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xE3D59817
 	Offset: 0x1C58
 	Size: 0x1C
@@ -256,7 +256,7 @@ function function_47a3686b(room)
 
 /*
 	Name: function_7823dbb8
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x1590E2B1
 	Offset: 0x1C80
 	Size: 0xB2
@@ -274,7 +274,7 @@ function function_7823dbb8(room)
 
 /*
 	Name: function_eee6e911
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x458F3EFF
 	Offset: 0x1D40
 	Size: 0x234
@@ -301,14 +301,14 @@ function function_eee6e911(room)
 			glow delete();
 		}
 	}
-	level.doa.lastarena = namespace_3ca3c537::function_5835533a("temple");
-	namespace_3ca3c537::function_5af67667(level.doa.lastarena, 1);
+	level.doa.lastarena = doa_arena::function_5835533a("temple");
+	doa_arena::function_5af67667(level.doa.lastarena, 1);
 	doa_fate::function_77ed1bae();
 }
 
 /*
 	Name: function_533483a3
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xE9CB8ECF
 	Offset: 0x1F80
 	Size: 0x32A
@@ -335,7 +335,7 @@ function private function_533483a3(room)
 			while(var_e1a06452)
 			{
 				var_e1a06452--;
-				ai = namespace_51bd792::function_45849d81(var_48be25f5, undefined, undefined);
+				ai = bo3_enemy::function_45849d81(var_48be25f5, undefined, undefined);
 				if(isdefined(ai))
 				{
 					ai hidepart("TAG_WEAPON_LEFT");
@@ -381,7 +381,7 @@ function private function_533483a3(room)
 
 /*
 	Name: function_c0808a91
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xDECA6A86
 	Offset: 0x22B8
 	Size: 0x108
@@ -407,7 +407,7 @@ function function_c0808a91()
 
 /*
 	Name: function_b6c25c3c
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x85E7AF3D
 	Offset: 0x23C8
 	Size: 0x2E4
@@ -430,7 +430,7 @@ function function_b6c25c3c(spot)
 	self.room = level.doa.challenge_room;
 	tank = getent("doa_tankmaze_spawner", "targetname") spawner::spawn(1);
 	self setorigin(spot.origin);
-	tank setmodel("veh_t7_mil_tank_tiger_zombietron_" + namespace_831a4a7c::function_ee495f41(self.entnum));
+	tank setmodel("veh_t7_mil_tank_tiger_zombietron_" + doa_player_utility::function_ee495f41(self.entnum));
 	tank.origin = spot.origin;
 	tank.spawnpoint = spot.origin;
 	tank.angles = spot.angles;
@@ -449,12 +449,12 @@ function function_b6c25c3c(spot)
 	self freezecontrols(!level flag::get("doa_challenge_running"));
 	wait(0.05);
 	self thread function_810ced6b();
-	self namespace_5e6c5d1f::function_8397461e();
+	self doa_chicken::function_8397461e();
 }
 
 /*
 	Name: function_6aa91f48
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x28BBC71F
 	Offset: 0x26B8
 	Size: 0x23C
@@ -487,7 +487,7 @@ function function_6aa91f48(room)
 
 /*
 	Name: function_246d3adb
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xFD250CE9
 	Offset: 0x2900
 	Size: 0x49A
@@ -498,7 +498,7 @@ function function_246d3adb(room)
 {
 	total = room.var_4f002f93.size;
 	var_82361971 = int(ceil(total / 80));
-	arena = level.doa.arenas[namespace_3ca3c537::function_5835533a(room.name)];
+	arena = level.doa.arenas[doa_arena::function_5835533a(room.name)];
 	var_86a35fbd = struct::get(arena.entity.target, "targetname");
 	while(isdefined(var_86a35fbd) && total > 0)
 	{
@@ -565,7 +565,7 @@ function function_246d3adb(room)
 
 /*
 	Name: function_5900e5de
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x10F7222B
 	Offset: 0x2DA8
 	Size: 0x40
@@ -582,7 +582,7 @@ function function_5900e5de(room)
 
 /*
 	Name: function_a1151ae3
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xA1DFE2AD
 	Offset: 0x2DF0
 	Size: 0x56
@@ -600,7 +600,7 @@ function function_a1151ae3(room)
 
 /*
 	Name: function_db531f2f
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x6D05B244
 	Offset: 0x2E50
 	Size: 0x370
@@ -624,7 +624,7 @@ function function_db531f2f(room)
 			fake.targetname = "tankmaze_EnemySpawner";
 			fake setmodel(level.doa.var_4aa90d77);
 			fake.angles = spot.angles;
-			fake thread namespace_eaa992c::function_285a2999("fire_trail");
+			fake thread doa_fx::function_285a2999("fire_trail");
 			fake playsound("evt_amws_incoming");
 			fake moveto(spot.origin, 0.75);
 			fake thread doa_utility::function_1bd67aef(1);
@@ -638,7 +638,7 @@ function function_db531f2f(room)
 				amws.angles = spot.angles;
 				amws.health = 100;
 				amws.team = "axis";
-				amws thread namespace_eaa992c::function_285a2999("turret_impact");
+				amws thread doa_fx::function_285a2999("turret_impact");
 				amws.script_noteworthy = "tankmaze_enemy";
 				amws thread function_a1151ae3(room);
 			}
@@ -650,7 +650,7 @@ function function_db531f2f(room)
 
 /*
 	Name: function_ee260997
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x4D12511B
 	Offset: 0x31C8
 	Size: 0x9C
@@ -671,7 +671,7 @@ function function_ee260997(room)
 
 /*
 	Name: function_5f0b67a9
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xA426EFA5
 	Offset: 0x3270
 	Size: 0x212
@@ -710,7 +710,7 @@ function function_5f0b67a9(room)
 
 /*
 	Name: function_9e5e0a15
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x7AAF7505
 	Offset: 0x3490
 	Size: 0xC
@@ -723,7 +723,7 @@ function function_9e5e0a15(room)
 
 /*
 	Name: function_a25fc96
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x4AB8F1E3
 	Offset: 0x34A8
 	Size: 0xC
@@ -736,7 +736,7 @@ function function_a25fc96(room)
 
 /*
 	Name: function_f1915ffb
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x9E9D9272
 	Offset: 0x34C0
 	Size: 0x25C
@@ -763,7 +763,7 @@ function function_f1915ffb(room)
 				player.doa.vehicle delete();
 				player.doa.vehicle = undefined;
 			}
-			player namespace_831a4a7c::function_7d7a7fde();
+			player doa_player_utility::function_7d7a7fde();
 			if(!isdefined(player))
 			{
 				continue;
@@ -773,7 +773,7 @@ function function_f1915ffb(room)
 			player.doa.var_3e3bcaa1 = undefined;
 		}
 		player.ignoreme = 0;
-		player namespace_2848f8c2::function_d41a4517();
+		player doa_vehicle::function_d41a4517();
 	}
 	level.doa.var_bc9b7c71 = room.var_e5c8b9e7;
 	level.callbackvehicledamage = room.var_dc49d6a4;
@@ -782,7 +782,7 @@ function function_f1915ffb(room)
 
 /*
 	Name: function_fe1ce5f1
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x2E62BE29
 	Offset: 0x3728
 	Size: 0x5A4
@@ -888,7 +888,7 @@ function function_fe1ce5f1(einflictor, eattacker, idamage, idflags, smeansofdeat
 
 /*
 	Name: function_c2b99e74
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x596E1741
 	Offset: 0x3CD8
 	Size: 0x31A
@@ -931,7 +931,7 @@ function function_c2b99e74(room)
 
 /*
 	Name: function_9c687a5d
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x7D4BAD4C
 	Offset: 0x4000
 	Size: 0x3C
@@ -947,7 +947,7 @@ function function_9c687a5d(player)
 
 /*
 	Name: function_14e75d7a
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x7D93E241
 	Offset: 0x4048
 	Size: 0x42C
@@ -983,7 +983,7 @@ function function_14e75d7a(spot)
 	truck.takedamage = 0;
 	truck.var_f71159da = 0;
 	truck.owner = self;
-	truck setmodel("veh_t7_civ_truck_pickup_tech_nrc_mini_" + namespace_831a4a7c::function_ee495f41(self.entnum));
+	truck setmodel("veh_t7_civ_truck_pickup_tech_nrc_mini_" + doa_player_utility::function_ee495f41(self.entnum));
 	self.doa.vehicle = truck;
 	self.doa.var_de24aff7 = 0;
 	self.doa.var_37efabf7 = 1;
@@ -1001,12 +1001,12 @@ function function_14e75d7a(spot)
 	wait(0.05);
 	self enableinvulnerability();
 	self thread function_810ced6b();
-	self namespace_5e6c5d1f::function_8397461e();
+	self doa_chicken::function_8397461e();
 }
 
 /*
 	Name: function_810ced6b
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xB6897C7D
 	Offset: 0x4480
 	Size: 0x1C
@@ -1016,12 +1016,12 @@ function function_14e75d7a(spot)
 function function_810ced6b()
 {
 	wait(1);
-	self namespace_2848f8c2::function_d460de4b();
+	self doa_vehicle::function_d460de4b();
 }
 
 /*
 	Name: function_ba487e2a
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x2EB73FDA
 	Offset: 0x44A8
 	Size: 0x2BC
@@ -1059,7 +1059,7 @@ function function_ba487e2a(room)
 
 /*
 	Name: function_f14ef72f
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x9A0113A0
 	Offset: 0x4770
 	Size: 0x28A
@@ -1099,7 +1099,7 @@ function function_f14ef72f(room)
 
 /*
 	Name: function_10aa3e48
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x2B431BBE
 	Offset: 0x4A08
 	Size: 0x122
@@ -1123,7 +1123,7 @@ function function_10aa3e48(room)
 
 /*
 	Name: function_e13abd74
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x5F30C1DB
 	Offset: 0x4B38
 	Size: 0xC
@@ -1136,7 +1136,7 @@ function function_e13abd74(room)
 
 /*
 	Name: function_9d1b24f7
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x643F4B0F
 	Offset: 0x4B50
 	Size: 0xC
@@ -1149,7 +1149,7 @@ function function_9d1b24f7(room)
 
 /*
 	Name: function_455c43ca
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xABCF65A6
 	Offset: 0x4B68
 	Size: 0x1AA
@@ -1170,7 +1170,7 @@ function function_455c43ca()
 		count = doa_utility::function_b99d78c7();
 		if(count < getdvarint("scr_redins_enemy_count", 16))
 		{
-			ai = namespace_51bd792::function_45849d81(var_48be25f5, spawnpoints[randomint(spawnpoints.size)], undefined);
+			ai = bo3_enemy::function_45849d81(var_48be25f5, spawnpoints[randomint(spawnpoints.size)], undefined);
 			ai forceteleport(ai.origin, (0, randomint(360), 0));
 			ai.doa.var_4d252af6 = 1;
 			wait(randomfloatrange(0.1, 2));
@@ -1184,7 +1184,7 @@ function function_455c43ca()
 
 /*
 	Name: function_ce5fc0d
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x4AB544A5
 	Offset: 0x4D20
 	Size: 0x384
@@ -1208,7 +1208,7 @@ function function_ce5fc0d(room)
 				player.doa.vehicle delete();
 				player.doa.vehicle = undefined;
 			}
-			player namespace_831a4a7c::function_7d7a7fde();
+			player doa_player_utility::function_7d7a7fde();
 			player disableinvulnerability();
 			player.doa.var_3024fd0f = undefined;
 			player.doa.var_f30b49ec = 1;
@@ -1217,7 +1217,7 @@ function function_ce5fc0d(room)
 			player.doa.bombs = player.var_b1c8a8a2;
 			player.doa.boosters = player.var_e9aff98;
 		}
-		player namespace_2848f8c2::function_d41a4517();
+		player doa_vehicle::function_d41a4517();
 	}
 	spots = struct::get_array("redins_pickup_location");
 	level notify("ro");
@@ -1235,7 +1235,7 @@ function function_ce5fc0d(room)
 
 /*
 	Name: function_67b5ba67
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x6C79C7DF
 	Offset: 0x50B0
 	Size: 0xB4
@@ -1260,7 +1260,7 @@ function function_67b5ba67()
 
 /*
 	Name: function_3ed913b4
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x4C34F18B
 	Offset: 0x5170
 	Size: 0x6BE
@@ -1360,13 +1360,13 @@ function function_3ed913b4(room)
 	winner.doa.var_74c73153++;
 	spots = struct::get_array("redins_pickup_location");
 	level notify(#"hash_e1dc3538");
-	winner thread namespace_831a4a7c::function_139199e1();
+	winner thread doa_player_utility::function_139199e1();
 	level notify(#"hash_276164a7", winner);
 }
 
 /*
 	Name: function_2228a040
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x7FCF4EC0
 	Offset: 0x5838
 	Size: 0xAC
@@ -1386,7 +1386,7 @@ function function_2228a040(item)
 
 /*
 	Name: function_c218114a
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x7823E39A
 	Offset: 0x58F0
 	Size: 0xAC
@@ -1410,7 +1410,7 @@ function function_c218114a()
 
 /*
 	Name: function_bbb36dbe
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xAE532E53
 	Offset: 0x59A8
 	Size: 0x60
@@ -1428,7 +1428,7 @@ function function_bbb36dbe(flag)
 
 /*
 	Name: function_fa6d5f56
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x214035AE
 	Offset: 0x5A10
 	Size: 0xBC
@@ -1451,7 +1451,7 @@ function function_fa6d5f56()
 
 /*
 	Name: function_c71e611c
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xE12E46DE
 	Offset: 0x5AD8
 	Size: 0x1B6
@@ -1492,7 +1492,7 @@ function function_c71e611c(vehicle)
 
 /*
 	Name: function_36c315b
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x970B61CD
 	Offset: 0x5C98
 	Size: 0x4C
@@ -1507,7 +1507,7 @@ function function_36c315b()
 
 /*
 	Name: function_e812f929
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x2FEBCF83
 	Offset: 0x5CF0
 	Size: 0xC2
@@ -1527,7 +1527,7 @@ function function_e812f929()
 
 /*
 	Name: function_fb199a7c
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xC1D36911
 	Offset: 0x5DC0
 	Size: 0x1E8
@@ -1561,7 +1561,7 @@ function function_fb199a7c()
 
 /*
 	Name: function_41ecdf7e
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xBCC6B6FA
 	Offset: 0x5FB0
 	Size: 0x368
@@ -1624,7 +1624,7 @@ function function_41ecdf7e(triggers)
 
 /*
 	Name: function_d64204d9
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xB5161A51
 	Offset: 0x6320
 	Size: 0x1AC
@@ -1665,7 +1665,7 @@ function function_d64204d9()
 
 /*
 	Name: function_dae418ed
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x694F1F85
 	Offset: 0x64D8
 	Size: 0x3BC
@@ -1691,7 +1691,7 @@ function function_dae418ed()
 	}
 	var_f3a9458e = getent("doa_redins_truck", "targetname");
 	truck = var_f3a9458e spawner::spawn(1);
-	truck setmodel("veh_t7_civ_truck_pickup_tech_nrc_mini_" + namespace_831a4a7c::function_ee495f41(self.entnum));
+	truck setmodel("veh_t7_civ_truck_pickup_tech_nrc_mini_" + doa_player_utility::function_ee495f41(self.entnum));
 	truck.origin = spot.origin;
 	truck.spawnpoint = spot.origin;
 	truck.angles = spot.angles;
@@ -1707,17 +1707,17 @@ function function_dae418ed()
 	self.doa.var_3024fd0f = 1;
 	self.doa.var_3e3bcaa1 = 1;
 	self thread function_e619ee5(truck);
-	truck thread namespace_eaa992c::function_285a2999("gem_trail_" + namespace_831a4a7c::function_ee495f41(self.entnum));
+	truck thread doa_fx::function_285a2999("gem_trail_" + doa_player_utility::function_ee495f41(self.entnum));
 	self freezecontrols(!level flag::get("doa_challenge_running"));
 	wait(0.05);
 	self enableinvulnerability();
 	self thread function_810ced6b();
-	self namespace_5e6c5d1f::function_8397461e();
+	self doa_chicken::function_8397461e();
 }
 
 /*
 	Name: function_c7e4d911
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x64F5F6A0
 	Offset: 0x68A0
 	Size: 0x364
@@ -1733,7 +1733,7 @@ function function_c7e4d911(room)
 	room.vox = "vox_doaa_chicken_bowl";
 	room.var_7daa1c03 = struct::get("truck_soccer_ball", "targetname");
 	room.var_14ee1a58 = getent("doa_mork_veh", "targetname");
-	room.safezone = namespace_3ca3c537::function_dc34896f();
+	room.safezone = doa_arena::function_dc34896f();
 	room.host_migration = &function_c2b99e74;
 	room.var_677f63c8 = [];
 	room.var_efbfafed = 0;
@@ -1757,7 +1757,7 @@ function function_c7e4d911(room)
 
 /*
 	Name: function_5284e8dc
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xC8C11D9B
 	Offset: 0x6C10
 	Size: 0x15C
@@ -1784,7 +1784,7 @@ function function_5284e8dc(room)
 
 /*
 	Name: function_76dd5557
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x63F59C27
 	Offset: 0x6D78
 	Size: 0x168
@@ -1809,7 +1809,7 @@ function function_76dd5557(room)
 			level thread function_8f4c809d(room, self.var_a2d7b04a);
 			arrayremovevalue(room.var_677f63c8, self);
 			wait(5);
-			self thread namespace_eaa992c::function_285a2999("egg_hatch");
+			self thread doa_fx::function_285a2999("egg_hatch");
 			util::wait_network_frame();
 			self delete();
 		}
@@ -1819,7 +1819,7 @@ function function_76dd5557(room)
 
 /*
 	Name: function_90585f48
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xE88A10D1
 	Offset: 0x6EE8
 	Size: 0x3E
@@ -1838,7 +1838,7 @@ function function_90585f48(room)
 
 /*
 	Name: function_ebb572b
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x754A7181
 	Offset: 0x6F30
 	Size: 0x1B2
@@ -1889,7 +1889,7 @@ function function_ebb572b(player)
 
 /*
 	Name: function_db9097e4
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x2166CA00
 	Offset: 0x70F0
 	Size: 0xA2
@@ -1910,7 +1910,7 @@ function function_db9097e4(room)
 
 /*
 	Name: function_7c9617ef
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x6C501E7A
 	Offset: 0x71A0
 	Size: 0xCE
@@ -1935,7 +1935,7 @@ function function_7c9617ef(var_7bb420a0, goaltrigger)
 
 /*
 	Name: function_60fcd122
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x3F70F413
 	Offset: 0x7278
 	Size: 0x734
@@ -1983,7 +1983,7 @@ function function_60fcd122(room, goaltrigger)
 					}
 					foreach(color in goaltrigger.colors)
 					{
-						glow.org thread namespace_eaa992c::turnofffx("gem_trail_" + color);
+						glow.org thread doa_fx::turnofffx("gem_trail_" + color);
 					}
 				}
 				lastcount = 0;
@@ -2002,7 +2002,7 @@ function function_60fcd122(room, goaltrigger)
 				}
 				foreach(color in goaltrigger.colors)
 				{
-					glow.org thread namespace_eaa992c::turnofffx("gem_trail_" + color);
+					glow.org thread doa_fx::turnofffx("gem_trail_" + color);
 				}
 				count++;
 			}
@@ -2026,7 +2026,7 @@ function function_60fcd122(room, goaltrigger)
 				}
 				if(isdefined(player))
 				{
-					glow.org thread namespace_eaa992c::function_285a2999("gem_trail_" + namespace_831a4a7c::function_ee495f41(player.entnum));
+					glow.org thread doa_fx::function_285a2999("gem_trail_" + doa_player_utility::function_ee495f41(player.entnum));
 				}
 			}
 			lastcount = goaltrigger.var_f1e29613.size;
@@ -2037,7 +2037,7 @@ function function_60fcd122(room, goaltrigger)
 
 /*
 	Name: function_5dac2dae
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xBB709A70
 	Offset: 0x79B8
 	Size: 0x248
@@ -2050,7 +2050,7 @@ function function_5dac2dae(room)
 	self.org = spawn("script_model", self.origin);
 	self.org.targetname = "trucksoccer_BlowTriggerThink";
 	self.org setmodel("tag_origin");
-	self.org thread namespace_eaa992c::function_285a2999("blow_hole");
+	self.org thread doa_fx::function_285a2999("blow_hole");
 	while(true)
 	{
 		self waittill("trigger", guy);
@@ -2081,7 +2081,7 @@ function function_5dac2dae(room)
 
 /*
 	Name: function_8f4c809d
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x51DBD4EB
 	Offset: 0x7C08
 	Size: 0xC0
@@ -2101,7 +2101,7 @@ function function_8f4c809d(room, goaltrigger)
 
 /*
 	Name: function_71be5ae5
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xBE388BA4
 	Offset: 0x7CD0
 	Size: 0x268
@@ -2150,7 +2150,7 @@ function function_71be5ae5(room)
 
 /*
 	Name: function_88777838
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xD6B17B88
 	Offset: 0x7F40
 	Size: 0x72
@@ -2169,7 +2169,7 @@ function function_88777838(room)
 
 /*
 	Name: function_92349eb6
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xB6831738
 	Offset: 0x7FC0
 	Size: 0xC
@@ -2182,7 +2182,7 @@ function function_92349eb6(room)
 
 /*
 	Name: function_fd4f5419
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xD380A261
 	Offset: 0x7FD8
 	Size: 0xC
@@ -2195,7 +2195,7 @@ function function_fd4f5419(room)
 
 /*
 	Name: function_2ea4cb82
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x45046AA7
 	Offset: 0x7FF0
 	Size: 0x2CC
@@ -2249,7 +2249,7 @@ function function_2ea4cb82(room)
 
 /*
 	Name: function_baa38e65
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xD2D3B733
 	Offset: 0x82C8
 	Size: 0x222
@@ -2284,7 +2284,7 @@ function function_baa38e65(room)
 
 /*
 	Name: function_55e9043d
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x18C9FDCA
 	Offset: 0x84F8
 	Size: 0x1E2
@@ -2311,7 +2311,7 @@ function function_55e9043d()
 		count = doa_utility::function_b99d78c7();
 		if(count < getdvarint("scr_trucksoccer_enemy_count", 50))
 		{
-			ai = namespace_51bd792::function_45849d81(var_48be25f5, spawnpoints[randomint(spawnpoints.size)], undefined);
+			ai = bo3_enemy::function_45849d81(var_48be25f5, spawnpoints[randomint(spawnpoints.size)], undefined);
 			if(isdefined(ai))
 			{
 				ai forceteleport(ai.origin, (0, randomint(360), 0));
@@ -2329,7 +2329,7 @@ function function_55e9043d()
 
 /*
 	Name: function_b3939e94
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xC3360678
 	Offset: 0x86E8
 	Size: 0x2B2
@@ -2356,8 +2356,8 @@ function function_b3939e94(room)
 			player.doa.var_3024fd0f = undefined;
 			player.doa.var_3e3bcaa1 = undefined;
 			player disableinvulnerability();
-			player thread namespace_831a4a7c::turnplayershieldon(0);
-			player namespace_2848f8c2::function_d41a4517();
+			player thread doa_player_utility::turnplayershieldon(0);
+			player doa_vehicle::function_d41a4517();
 		}
 	}
 	level.doa.var_bc9b7c71 = room.var_e5c8b9e7;
@@ -2372,7 +2372,7 @@ function function_b3939e94(room)
 
 /*
 	Name: function_6274a031
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x3477AC80
 	Offset: 0x89A8
 	Size: 0xBC
@@ -2395,7 +2395,7 @@ function function_6274a031()
 
 /*
 	Name: function_e619ee5
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xA47A4758
 	Offset: 0x8A70
 	Size: 0x1E0
@@ -2436,7 +2436,7 @@ function function_e619ee5(vehicle)
 
 /*
 	Name: function_c0485deb
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xA4CA3F8D
 	Offset: 0x8C58
 	Size: 0x280
@@ -2476,7 +2476,7 @@ function function_c0485deb(def)
 
 /*
 	Name: function_dfbad276
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x5A525E22
 	Offset: 0x8EE0
 	Size: 0x526
@@ -2513,7 +2513,7 @@ function function_dfbad276(number, startside)
 		if(randomint(getdvarint("cp_doa_sacred_cow_chance", 20)) == 0)
 		{
 			cow.sacred = 1;
-			cow thread namespace_eaa992c::function_285a2999("cow_sacred");
+			cow thread doa_fx::function_285a2999("cow_sacred");
 		}
 		trigger = spawn("trigger_radius", cow.origin + (vectorscale((0, 0, -1), 10)), 3, 34, 100);
 		trigger.targetname = "cow";
@@ -2531,7 +2531,7 @@ function function_dfbad276(number, startside)
 
 /*
 	Name: function_caf96f2d
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x1E11E6BA
 	Offset: 0x9410
 	Size: 0x86
@@ -2551,7 +2551,7 @@ function function_caf96f2d()
 
 /*
 	Name: function_c9a224d9
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x6647C26B
 	Offset: 0x94A0
 	Size: 0x2A
@@ -2567,7 +2567,7 @@ function function_c9a224d9()
 
 /*
 	Name: cow_deleter
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xB1FB16E2
 	Offset: 0x94D8
 	Size: 0x64
@@ -2588,7 +2588,7 @@ function cow_deleter()
 
 /*
 	Name: run_cow_run
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xF43C9C52
 	Offset: 0x9548
 	Size: 0xEE
@@ -2609,7 +2609,7 @@ function run_cow_run(dest)
 
 /*
 	Name: cow_damage_trigger
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x61A5472F
 	Offset: 0x9640
 	Size: 0x278
@@ -2648,8 +2648,8 @@ function cow_damage_trigger(cow)
 			if(!isvehicle(guy))
 			{
 				guy clientfield::set("zombie_rhino_explosion", 1);
-				namespace_fba031c8::trygibbinglimb(guy, 5000);
-				namespace_fba031c8::trygibbinglegs(guy, 5000, undefined, 1);
+				doa_gib::trygibbinglimb(guy, 5000);
+				doa_gib::trygibbinglegs(guy, 5000, undefined, 1);
 				guy setplayercollision(0);
 				guy startragdoll();
 				guy launchragdoll(vectorscale((0, 0, 1), 220));
@@ -2671,7 +2671,7 @@ function cow_damage_trigger(cow)
 
 /*
 	Name: cow_damage_watch
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xA72D981B
 	Offset: 0x98C0
 	Size: 0x2C4
@@ -2697,7 +2697,7 @@ function cow_damage_watch()
 					attacker.doa.var_ec573900++;
 				}
 			}
-			self thread namespace_eaa992c::function_285a2999("cow_explode");
+			self thread doa_fx::function_285a2999("cow_explode");
 			self playsound("zmb_cow_explode");
 			self notify("medium_rare");
 			if(isdefined(self.sacred))
@@ -2708,8 +2708,8 @@ function cow_damage_watch()
 				}
 				self playsound("zmb_cow_explode_gold");
 				location = self.origin;
-				var_888caf9f = namespace_831a4a7c::function_5eb6e4d1().size + 10;
-				maxamount = namespace_831a4a7c::function_5eb6e4d1().size + 20;
+				var_888caf9f = doa_player_utility::function_5eb6e4d1().size + 10;
+				maxamount = doa_player_utility::function_5eb6e4d1().size + 20;
 				level thread doa_pickups::spawnubertreasure(location, randomintrange(var_888caf9f, maxamount), 85, 1, 1, 1, undefined, 0);
 				self.sacred = undefined;
 			}
@@ -2723,7 +2723,7 @@ function cow_damage_watch()
 
 /*
 	Name: random_cow_stampede
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0xCF675A3E
 	Offset: 0x9B90
 	Size: 0xC0
@@ -2743,7 +2743,7 @@ function random_cow_stampede()
 
 /*
 	Name: function_c35db0c1
-	Namespace: namespace_df93fc7c
+	Namespace: doa_bo3_player_challenge
 	Checksum: 0x139EB767
 	Offset: 0x9C58
 	Size: 0x58

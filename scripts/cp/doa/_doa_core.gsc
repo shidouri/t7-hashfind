@@ -32,11 +32,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_693feb87;
+#namespace doa_core;
 
 /*
 	Name: main
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0xDB6E71F
 	Offset: 0xDE8
 	Size: 0x178
@@ -71,7 +71,7 @@ function main()
 
 /*
 	Name: _load
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0xD083C13B
 	Offset: 0xF68
 	Size: 0x32C
@@ -131,7 +131,7 @@ function private _load()
 
 /*
 	Name: load
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x6DB21511
 	Offset: 0x12A0
 	Size: 0x94
@@ -152,7 +152,7 @@ function load()
 
 /*
 	Name: donothing
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x99EC1590
 	Offset: 0x1340
 	Size: 0x4
@@ -165,7 +165,7 @@ function donothing()
 
 /*
 	Name: registerclientfields
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x75409E9C
 	Offset: 0x1350
 	Size: 0xDF6
@@ -256,7 +256,7 @@ function registerclientfields()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0xA6A982A5
 	Offset: 0x2150
 	Size: 0xAC
@@ -277,7 +277,7 @@ function on_player_connect()
 
 /*
 	Name: initialblack
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x71D7339
 	Offset: 0x2208
 	Size: 0x94
@@ -297,7 +297,7 @@ function initialblack(time = 12)
 
 /*
 	Name: function_154ab047
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x6DAC3BEA
 	Offset: 0x22A8
 	Size: 0x74
@@ -320,7 +320,7 @@ function private function_154ab047(currentround, idx)
 
 /*
 	Name: function_57863b20
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x26FB27C1
 	Offset: 0x2328
 	Size: 0xB8
@@ -335,7 +335,7 @@ function function_57863b20()
 	{
 		level waittill("host_migration_begin");
 		level waittill("host_migration_end");
-		namespace_2f63e553::setupdevgui();
+		doa_dev::setupdevgui();
 		if(isdefined(level.doa.challenge_room))
 		{
 			if(isdefined(level.doa.challenge_room.host_migration))
@@ -348,7 +348,7 @@ function function_57863b20()
 
 /*
 	Name: function_437a340d
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0xF2064750
 	Offset: 0x23E8
 	Size: 0x418
@@ -417,13 +417,13 @@ function function_437a340d(var_73419762)
 	self.var_4777f621 = undefined;
 	self closeluimenu(self.var_744a3931);
 	self.var_744a3931 = undefined;
-	self namespace_831a4a7c::function_d5f89a15(level.doa.rules.default_weapon);
+	self doa_player_utility::function_d5f89a15(level.doa.rules.default_weapon);
 	self thread lui::screen_fade_in(1.5);
 	self freezecontrols(0);
 	self.takedamage = 1;
 	self.ignoreme = 0;
-	self thread namespace_831a4a7c::turnplayershieldon();
-	self thread namespace_831a4a7c::function_b5843d4f(level.doa.arena_round_number == 3);
+	self thread doa_player_utility::turnplayershieldon();
+	self thread doa_player_utility::function_b5843d4f(level.doa.arena_round_number == 3);
 	self.hotjoin = undefined;
 	self notify(#"hash_437a340d");
 	self.doa.var_80ffe475 = var_73419762;
@@ -431,7 +431,7 @@ function function_437a340d(var_73419762)
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x2D8A7B6E
 	Offset: 0x2808
 	Size: 0x254
@@ -444,9 +444,9 @@ function on_player_spawned()
 		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
 	#/
 	self.topdowncamera = 1;
-	self thread namespace_831a4a7c::function_138c35de();
-	self namespace_831a4a7c::function_7d7a7fde();
-	self namespace_831a4a7c::function_60123d1c();
+	self thread doa_player_utility::function_138c35de();
+	self doa_player_utility::function_7d7a7fde();
+	self doa_player_utility::function_60123d1c();
 	self util::set_lighting_state();
 	self notify("give_achievement", "CP_UNLOCK_DOA");
 	var_9774756a = 0;
@@ -481,7 +481,7 @@ function on_player_spawned()
 
 /*
 	Name: on_player_disconnect
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x33BC4816
 	Offset: 0x2A68
 	Size: 0x44
@@ -498,7 +498,7 @@ function on_player_disconnect()
 
 /*
 	Name: init
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x4E836621
 	Offset: 0x2AB8
 	Size: 0x524
@@ -543,23 +543,23 @@ function init()
 	{
 		[[level.var_7ed6996d]]();
 	}
-	namespace_64c6b720::init();
-	namespace_eaa992c::init();
+	doa_score::init();
+	doa_fx::init();
 	doa_sound::init();
-	namespace_fba031c8::init();
+	doa_gib::init();
 	doa_pickups::init();
-	namespace_3f3eaecb::init();
-	namespace_4973e019::init();
+	doa_tesla::init();
+	doa_boss::init();
 	doa_enemy::init();
-	namespace_3ca3c537::init();
-	namespace_aa4730ec::init();
-	namespace_d88e3a06::init();
-	namespace_2848f8c2::init();
+	doa_arena::init();
+	doa_turret::init();
+	doa_hazard::init();
+	doa_vehicle::init();
 	doa_fate::init();
-	namespace_b5c133c::init();
-	namespace_74ae326f::init();
+	doa_audio::init();
+	doa_player_challenge::init();
 	level thread function_57863b20();
-	namespace_2f63e553::setupdevgui();
+	doa_dev::setupdevgui();
 	level flag::set("doa_init_complete");
 	if(!isdefined(level.voice))
 	{
@@ -569,7 +569,7 @@ function init()
 
 /*
 	Name: function_c7f824a
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0xC5BD80C5
 	Offset: 0x2FE8
 	Size: 0x594
@@ -588,7 +588,7 @@ function function_c7f824a()
 	level.doa.var_2836c8ee = undefined;
 	level.doa.in_intermission = 0;
 	level.doa.flipped = 0;
-	namespace_3ca3c537::function_ba9c838e(1);
+	doa_arena::function_ba9c838e(1);
 	level.doa.var_2d09b979 = 1;
 	level.doa.exits_open = 0;
 	level.doa.lastmagical_exit_taken = 0;
@@ -599,26 +599,26 @@ function function_c7f824a()
 	level.doa.var_f5e35752 = [];
 	level.doa.exits_open = [];
 	level.doa.var_d0cde02c = undefined;
-	level.doa.var_bc9b7c71 = &namespace_cdb9a8fe::function_fe0946ac;
+	level.doa.var_bc9b7c71 = &doa_round::function_fe0946ac;
 	level.doa.var_c061227e = 1;
 	level.doa.zombie_move_speed = level.doa.rules.var_e626be31;
 	level.doa.zombie_health = level.doa.rules.var_6fa02512;
 	level.doa.var_5bd7f25a = level.doa.rules.var_72d934b2;
 	level.doa.var_9a1cbf58 = 1;
 	level.doa.var_7808fc8c = [];
-	level.doa.var_7808fc8c["zombietron_rpg"] = &namespace_eaa992c::function_2c0f7946;
-	level.doa.var_7808fc8c["zombietron_rpg_1"] = &namespace_eaa992c::function_2c0f7946;
-	level.doa.var_7808fc8c["zombietron_rpg_2"] = &namespace_eaa992c::function_2c0f7946;
-	level.doa.var_7808fc8c["zombietron_ray_gun"] = &namespace_eaa992c::function_2fc7e62f;
-	level.doa.var_7808fc8c["zombietron_ray_gun_1"] = &namespace_eaa992c::function_2fc7e62f;
-	level.doa.var_7808fc8c["zombietron_ray_gun_2"] = &namespace_eaa992c::function_2fc7e62f;
-	level.doa.var_7808fc8c["zombietron_launcher"] = &namespace_eaa992c::function_4f66d2fb;
-	level.doa.var_7808fc8c["zombietron_launcher_1"] = &namespace_eaa992c::function_4f66d2fb;
-	level.doa.var_7808fc8c["zombietron_launcher_2"] = &namespace_eaa992c::function_4f66d2fb;
-	level.doa.var_7808fc8c["zombietron_flamethrower"] = &namespace_eaa992c::function_2aa1c0b3;
-	level.doa.var_7808fc8c["zombietron_flamethrower_1"] = &namespace_eaa992c::function_2aa1c0b3;
-	level.doa.var_7808fc8c["zombietron_flamethrower_2"] = &namespace_eaa992c::function_2aa1c0b3;
-	level.doa.var_7808fc8c["launcher_zombietron_robosatan_ai"] = &namespace_eaa992c::function_f51d2b7e;
+	level.doa.var_7808fc8c["zombietron_rpg"] = &doa_fx::function_2c0f7946;
+	level.doa.var_7808fc8c["zombietron_rpg_1"] = &doa_fx::function_2c0f7946;
+	level.doa.var_7808fc8c["zombietron_rpg_2"] = &doa_fx::function_2c0f7946;
+	level.doa.var_7808fc8c["zombietron_ray_gun"] = &doa_fx::function_2fc7e62f;
+	level.doa.var_7808fc8c["zombietron_ray_gun_1"] = &doa_fx::function_2fc7e62f;
+	level.doa.var_7808fc8c["zombietron_ray_gun_2"] = &doa_fx::function_2fc7e62f;
+	level.doa.var_7808fc8c["zombietron_launcher"] = &doa_fx::function_4f66d2fb;
+	level.doa.var_7808fc8c["zombietron_launcher_1"] = &doa_fx::function_4f66d2fb;
+	level.doa.var_7808fc8c["zombietron_launcher_2"] = &doa_fx::function_4f66d2fb;
+	level.doa.var_7808fc8c["zombietron_flamethrower"] = &doa_fx::function_2aa1c0b3;
+	level.doa.var_7808fc8c["zombietron_flamethrower_1"] = &doa_fx::function_2aa1c0b3;
+	level.doa.var_7808fc8c["zombietron_flamethrower_2"] = &doa_fx::function_2aa1c0b3;
+	level.doa.var_7808fc8c["launcher_zombietron_robosatan_ai"] = &doa_fx::function_f51d2b7e;
 	visionsetlaststand("");
 	level thread doa_utility::set_lighting_state(0);
 	level thread doa_utility::function_13fbad22();
@@ -633,7 +633,7 @@ function function_c7f824a()
 
 /*
 	Name: function_555fb805
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x25F17176
 	Offset: 0x3588
 	Size: 0x8EC
@@ -679,15 +679,15 @@ function function_555fb805()
 	level.in_intermission = 0;
 	level.spawnspectator = &function_688245f1;
 	level.givecustomloadout = &function_a90bdb51;
-	level.callbackplayerkilled = &namespace_831a4a7c::function_3682cfe4;
-	level.callbackplayerdamage = &namespace_831a4a7c::function_bfbc53f4;
-	level.callbackplayerlaststand = &namespace_831a4a7c::function_f847ee8c;
-	level.playerlaststand_func = &namespace_831a4a7c::function_f847ee8c;
+	level.callbackplayerkilled = &doa_player_utility::function_3682cfe4;
+	level.callbackplayerdamage = &doa_player_utility::function_bfbc53f4;
+	level.callbackplayerlaststand = &doa_player_utility::function_f847ee8c;
+	level.playerlaststand_func = &doa_player_utility::function_f847ee8c;
 	level.callbackactordamage = &doa_enemy::function_2241fc21;
 	level.callbackactorkilled = &doa_enemy::function_ff217d39;
 	level.callbackvehicledamage = &doa_enemy::function_c26b6656;
 	level.callbackvehiclekilled = &doa_enemy::function_90772ac6;
-	level.var_a753e7a8 = &namespace_aa4730ec::turret_fire;
+	level.var_a753e7a8 = &doa_turret::turret_fire;
 	level.player_stats_init = &donothing;
 	level.doa.var_e6653624 = [];
 	level.doa.var_a9ba4ffb = [];
@@ -726,7 +726,7 @@ function function_555fb805()
 
 /*
 	Name: function_53bcdb30
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x84FB060
 	Offset: 0x3E80
 	Size: 0xA80
@@ -839,7 +839,7 @@ function function_53bcdb30()
 
 /*
 	Name: function_53b7b84f
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x3C5E812C
 	Offset: 0x4908
 	Size: 0x30
@@ -855,7 +855,7 @@ function function_53b7b84f()
 
 /*
 	Name: function_3e351f83
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x8A51C744
 	Offset: 0x4940
 	Size: 0x1EC
@@ -866,30 +866,30 @@ function function_3e351f83(firsttime)
 {
 	util::wait_network_frame();
 	level clientfield::set("gameplay_started", 1);
-	level namespace_917e49b3::function_d4766377();
+	level doa_outro::function_d4766377();
 	level flag::set("doa_game_is_running");
 	level thread function_dc4ffe5c();
 	doa_utility::killallenemy();
 	function_c7f824a();
-	namespace_3ca3c537::init();
+	doa_arena::init();
 	doa_pickups::init();
-	namespace_3ca3c537::function_5af67667(level.doa.current_arena);
-	namespace_831a4a7c::function_4db260cb();
-	namespace_cdb9a8fe::function_55762a85();
-	namespace_d88e3a06::function_7a8a936b();
-	namespace_3ca3c537::function_1c812a03();
+	doa_arena::function_5af67667(level.doa.current_arena);
+	doa_player_utility::function_4db260cb();
+	doa_round::function_55762a85();
+	doa_hazard::function_7a8a936b();
+	doa_arena::function_1c812a03();
 	level clientfield::set("activateBanner", 0);
 	level clientfield::increment("restart_doa");
 	level thread doa_utility::function_390adefe();
 	level doa_utility::function_d0e32ad0(0);
 	level clientfield::set("set_scoreHidden", 0);
-	level thread namespace_cdb9a8fe::main();
+	level thread doa_round::main();
 	level thread function_64a5cd5e();
 }
 
 /*
 	Name: function_dc4ffe5c
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0xA2DADAC8
 	Offset: 0x4B38
 	Size: 0x178
@@ -909,7 +909,7 @@ function function_dc4ffe5c()
 		{
 			continue;
 		}
-		players = namespace_831a4a7c::function_5eb6e4d1();
+		players = doa_player_utility::function_5eb6e4d1();
 		curcount = players.size;
 		if(curcount != var_97e9dd7)
 		{
@@ -919,8 +919,8 @@ function function_dc4ffe5c()
 		}
 		foreach(player in players)
 		{
-			player thread namespace_64c6b720::function_676edeb7();
-			player thread namespace_831a4a7c::updateweapon();
+			player thread doa_score::function_676edeb7();
+			player thread doa_player_utility::updateweapon();
 		}
 		var_97e9dd7 = curcount;
 	}
@@ -928,7 +928,7 @@ function function_dc4ffe5c()
 
 /*
 	Name: function_64a5cd5e
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x85861A46
 	Offset: 0x4CB8
 	Size: 0x5E4
@@ -964,16 +964,16 @@ function function_64a5cd5e()
 	wait(1);
 	doa_pickups::function_c1869ec8();
 	doa_utility::clearallcorpses();
-	namespace_d88e3a06::function_116bb43();
+	doa_hazard::function_116bb43();
 	doa_utility::function_1ced251e(1);
 	foreach(player in getplayers())
 	{
 		player.doa.guardians = [];
-		player namespace_831a4a7c::function_7f33210a();
+		player doa_player_utility::function_7f33210a();
 	}
 	level clientfield::set("set_scoreHidden", 1);
 	level clientfield::set("activateBanner", 0);
-	namespace_917e49b3::function_e2d6beb9();
+	doa_outro::function_e2d6beb9();
 	level thread doa_utility::function_390adefe(0);
 	level doa_utility::function_d0e32ad0(0);
 	level thread doa_utility::function_c5f3ece8(&"DOA_GAMEOVER", undefined, 6);
@@ -1000,7 +1000,7 @@ function function_64a5cd5e()
 	level notify(#"hash_97276c43");
 	doa_pickups::function_c1869ec8();
 	doa_utility::clearallcorpses();
-	namespace_d88e3a06::function_116bb43();
+	doa_hazard::function_116bb43();
 	wait(1);
 	level notify("doa_game_is_over");
 	level notify(#"hash_24d3a44");
@@ -1010,7 +1010,7 @@ function function_64a5cd5e()
 
 /*
 	Name: upload_leaderboards
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x63490A9C
 	Offset: 0x52A8
 	Size: 0xFA
@@ -1036,7 +1036,7 @@ function upload_leaderboards()
 
 /*
 	Name: function_9ac615ee
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x223AE341
 	Offset: 0x53B0
 	Size: 0x694
@@ -1062,7 +1062,7 @@ function function_9ac615ee(gameover, round = level.doa.round_number)
 		self setdstat("deadOpsArcade", "silverbackKills", self.doa.var_53bd6cfa);
 		self setdstat("deadOpsArcade", "gemsEarned", self.doa.gems);
 		self setdstat("deadOpsArcade", "skullsEarned", self.doa.skulls);
-		self setdstat("deadOpsArcade", "scoreAchieved", self namespace_64c6b720::function_93ccc5da());
+		self setdstat("deadOpsArcade", "scoreAchieved", self doa_score::function_93ccc5da());
 		self setdstat("deadOpsArcade", "roundAchieved", round);
 		/#
 			doa_utility::debugmsg("" + self getdstat("", ""));
@@ -1089,7 +1089,7 @@ function function_9ac615ee(gameover, round = level.doa.round_number)
 
 /*
 	Name: function_780f83fd
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x706CA742
 	Offset: 0x5A50
 	Size: 0x164
@@ -1111,7 +1111,7 @@ function function_780f83fd(round)
 		return;
 	}
 	/#
-		doa_utility::debugmsg((((("" + (isdefined(self.name) ? self.name : "")) + "") + round) + "") + self namespace_64c6b720::function_93ccc5da());
+		doa_utility::debugmsg((((("" + (isdefined(self.name) ? self.name : "")) + "") + round) + "") + self doa_score::function_93ccc5da());
 	#/
 	self function_9ac615ee(0, round);
 	wait(4);
@@ -1128,7 +1128,7 @@ function function_780f83fd(round)
 
 /*
 	Name: function_688245f1
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0xC4E1CEF
 	Offset: 0x5BC0
 	Size: 0x17C
@@ -1149,17 +1149,17 @@ function function_688245f1()
 	self.psoffsettime = 0;
 	self.friendlydamage = undefined;
 	self.statusicon = "";
-	self namespace_831a4a7c::function_60123d1c();
-	spawnpoint = namespace_831a4a7c::function_68ece679();
+	self doa_player_utility::function_60123d1c();
+	spawnpoint = doa_player_utility::function_68ece679();
 	self spawn(self.origin, self.angles);
-	self thread namespace_cdb9a8fe::function_fe0946ac();
+	self thread doa_round::function_fe0946ac();
 	self ghost();
 	self thread function_d2450010();
 }
 
 /*
 	Name: function_d2450010
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x12EA1D2
 	Offset: 0x5D48
 	Size: 0xDC
@@ -1182,7 +1182,7 @@ function function_d2450010()
 
 /*
 	Name: function_a90bdb51
-	Namespace: namespace_693feb87
+	Namespace: doa_core
 	Checksum: 0x24F44EC4
 	Offset: 0x5E30
 	Size: 0xB0

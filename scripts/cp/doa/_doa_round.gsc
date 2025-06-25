@@ -19,11 +19,11 @@
 #using scripts\shared\lui_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_cdb9a8fe;
+#namespace doa_round;
 
 /*
 	Name: function_542758d0
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x4CC458C9
 	Offset: 0x450
 	Size: 0x2B8
@@ -75,7 +75,7 @@ function private function_542758d0()
 
 /*
 	Name: function_8c6e89b4
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x23049A7
 	Offset: 0x710
 	Size: 0x80
@@ -95,7 +95,7 @@ function function_8c6e89b4(round)
 
 /*
 	Name: function_5f5d09ae
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x231CA1CE
 	Offset: 0x798
 	Size: 0x1E8
@@ -137,7 +137,7 @@ function private function_5f5d09ae()
 
 /*
 	Name: function_691ef36b
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x74FA7355
 	Offset: 0x988
 	Size: 0x120
@@ -164,7 +164,7 @@ function function_691ef36b()
 
 /*
 	Name: function_c81e1083
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x11737CAB
 	Offset: 0xAB0
 	Size: 0x254
@@ -193,7 +193,7 @@ function function_c81e1083(name)
 
 /*
 	Name: main
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0xF178379B
 	Offset: 0xD10
 	Size: 0x698
@@ -205,7 +205,7 @@ function main()
 	level endon(#"hash_24d3a44");
 	foreach(player in getplayers())
 	{
-		player thread namespace_831a4a7c::function_7d7a7fde();
+		player thread doa_player_utility::function_7d7a7fde();
 	}
 	level thread function_d87cb356();
 	function_542758d0();
@@ -215,7 +215,7 @@ function main()
 		/#
 			doa_utility::debugmsg((("" + level.doa.round_number) + "") + gettime());
 		#/
-		level.doa.rules.max_enemy_count = namespace_3ca3c537::function_b0e9983(namespace_3ca3c537::function_d2d75f5d());
+		level.doa.rules.max_enemy_count = doa_arena::function_b0e9983(doa_arena::function_d2d75f5d());
 		level.doa.var_a3a11449 = 0;
 		level.doa.var_2f019708 = 1;
 		level.doa.var_677d1262 = 0;
@@ -275,7 +275,7 @@ function main()
 				continue;
 			}
 			level thread doa_pickups::spawnmoneyglob(0, 3);
-			var_d2d5db8a = namespace_3ca3c537::function_78c7b56e();
+			var_d2d5db8a = doa_arena::function_78c7b56e();
 		}
 		else
 		{
@@ -293,12 +293,12 @@ function main()
 		level clientfield::set("roundnumber", level.doa.round_number & (1024 - 1));
 		function_d9345c74();
 		function_55762a85();
-		namespace_d88e3a06::function_7a8a936b();
+		doa_hazard::function_7a8a936b();
 		if(isdefined(var_d2d5db8a) && var_d2d5db8a)
 		{
-			level thread namespace_3ca3c537::function_e88371e5();
+			level thread doa_arena::function_e88371e5();
 		}
-		namespace_831a4a7c::function_82e3b1cb();
+		doa_player_utility::function_82e3b1cb();
 		level notify(#"hash_31680c6");
 		doa_utility::function_390adefe();
 	}
@@ -306,7 +306,7 @@ function main()
 
 /*
 	Name: function_d87cb356
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x8A8C1534
 	Offset: 0x13B0
 	Size: 0xC4
@@ -335,7 +335,7 @@ function private function_d87cb356()
 
 /*
 	Name: function_40bfe842
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0xFAA7B442
 	Offset: 0x1480
 	Size: 0x1F2
@@ -389,12 +389,12 @@ function function_40bfe842(entnum = 0)
 			return points[entnum].origin;
 		}
 	}
-	return namespace_831a4a7c::function_68ece679(entnum).origin;
+	return doa_player_utility::function_68ece679(entnum).origin;
 }
 
 /*
 	Name: function_f581d585
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x41589A6F
 	Offset: 0x1680
 	Size: 0xA4
@@ -413,7 +413,7 @@ function function_f581d585(point, facepoint)
 
 /*
 	Name: function_fe0946ac
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x9AA35F53
 	Offset: 0x1730
 	Size: 0x2CC
@@ -431,8 +431,8 @@ function function_fe0946ac(spawn_origin, var_97887a95 = 1)
 	{
 		spawn_origin = function_40bfe842(self.entnum);
 	}
-	var_60de7d19 = namespace_3ca3c537::function_61d60e0b();
-	self thread namespace_831a4a7c::function_7d7a7fde();
+	var_60de7d19 = doa_arena::function_61d60e0b();
+	self thread doa_player_utility::function_7d7a7fde();
 	foreach(guardian in self.doa.guardians)
 	{
 		if(isdefined(guardian))
@@ -458,14 +458,14 @@ function function_fe0946ac(spawn_origin, var_97887a95 = 1)
 	self notify("move_to_start");
 	if(var_97887a95)
 	{
-		self thread namespace_831a4a7c::function_b5843d4f(level.doa.arena_round_number == 3);
-		self thread namespace_831a4a7c::function_f2507519(level.doa.arena_round_number == 3);
+		self thread doa_player_utility::function_b5843d4f(level.doa.arena_round_number == 3);
+		self thread doa_player_utility::function_f2507519(level.doa.arena_round_number == 3);
 	}
 }
 
 /*
 	Name: function_55762a85
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x470C7010
 	Offset: 0x1A08
 	Size: 0x62
@@ -481,7 +481,7 @@ function function_55762a85(spawn_origin)
 
 /*
 	Name: function_ff7f941a
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0xE853D736
 	Offset: 0x1A78
 	Size: 0x94
@@ -495,7 +495,7 @@ function private function_ff7f941a(def)
 	{
 		return false;
 	}
-	if(isdefined(def.var_a0b2e897) && namespace_3ca3c537::function_d2d75f5d() != def.var_a0b2e897)
+	if(isdefined(def.var_a0b2e897) && doa_arena::function_d2d75f5d() != def.var_a0b2e897)
 	{
 		return false;
 	}
@@ -504,7 +504,7 @@ function private function_ff7f941a(def)
 
 /*
 	Name: function_21a582ff
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x3191E0F8
 	Offset: 0x1B18
 	Size: 0x694
@@ -594,11 +594,11 @@ function function_21a582ff(current_wave, endnote)
 				if(!isvehicle(ai) && (!(isdefined(ai.var_ad61c13d) && ai.var_ad61c13d)))
 				{
 					ai thread zombie_utility::zombie_gib_on_damage();
-					ai.tesla_head_gib_func = &namespace_fba031c8::function_deb7df37;
+					ai.tesla_head_gib_func = &doa_gib::function_deb7df37;
 				}
 				if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 				{
-					ai thread namespace_eaa992c::function_285a2999("spawnZombie");
+					ai thread doa_fx::function_285a2999("spawnZombie");
 				}
 			}
 		}
@@ -608,7 +608,7 @@ function function_21a582ff(current_wave, endnote)
 
 /*
 	Name: function_87703158
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x2ED0F03E
 	Offset: 0x21B8
 	Size: 0x584
@@ -624,7 +624,7 @@ function function_87703158(var_372a8daa = 0)
 	level lui::screen_close_menu();
 	level.doa.round_start_time = gettime();
 	level.doa.round_end_time = undefined;
-	level.doa.var_e0d67a74 = struct::get_array(namespace_3ca3c537::function_d2d75f5d() + "_rise_spot");
+	level.doa.var_e0d67a74 = struct::get_array(doa_arena::function_d2d75f5d() + "_rise_spot");
 	spawn_set = level.doa.arenas[level.doa.current_arena].name + "_enemy_spawn";
 	level.doa.current_spawners = level.doa.spawners[spawn_set];
 	level.doa.var_3706f843 = [];
@@ -693,7 +693,7 @@ function function_87703158(var_372a8daa = 0)
 
 /*
 	Name: function_da304666
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0xE3DCA043
 	Offset: 0x2748
 	Size: 0x184
@@ -714,7 +714,7 @@ function private function_da304666(wave_number, round_number)
 
 /*
 	Name: function_703bb8b2
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0xB09F2C18
 	Offset: 0x28D8
 	Size: 0x208
@@ -745,7 +745,7 @@ function function_703bb8b2(round_number)
 
 /*
 	Name: function_d9345c74
-	Namespace: namespace_cdb9a8fe
+	Namespace: doa_round
 	Checksum: 0x332873F7
 	Offset: 0x2AE8
 	Size: 0x46A

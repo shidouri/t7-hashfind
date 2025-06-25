@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\_bb;
 #using scripts\cp\_challenges;
 #using scripts\cp\_decoy;
@@ -321,7 +321,7 @@ function precache_mp_leaderboards()
 	{
 		return;
 	}
-	if(isdefined(level.var_e2c19907) && level.var_e2c19907)
+	if(isdefined(level.isdoa) && level.isdoa)
 	{
 		return;
 	}

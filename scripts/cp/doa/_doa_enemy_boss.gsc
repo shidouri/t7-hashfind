@@ -19,11 +19,11 @@
 
 #using_animtree("generic");
 
-#namespace namespace_4973e019;
+#namespace doa_boss;
 
 /*
 	Name: init
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x6E375A1D
 	Offset: 0x488
 	Size: 0x6C
@@ -41,7 +41,7 @@ function init()
 
 /*
 	Name: function_d95d34bd
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x889A2704
 	Offset: 0x500
 	Size: 0x4A4
@@ -69,7 +69,7 @@ function private function_d95d34bd(spawner)
 			level.doa.var_4714c375 = level.doa.rules.var_ca8dc008;
 			if(isdefined(level.doa.var_c03fe5f1))
 			{
-				if(!namespace_3ca3c537::function_85c94f67(level.doa.var_c03fe5f1))
+				if(!doa_arena::function_85c94f67(level.doa.var_c03fe5f1))
 				{
 					continue;
 				}
@@ -81,10 +81,10 @@ function private function_d95d34bd(spawner)
 			continue;
 		}
 		loc = level.doa.spawners[spawn_set]["boss"][randomint(level.doa.spawners[spawn_set]["boss"].size)];
-		level.doa.boss = namespace_51bd792::function_36aa8b6c(loc);
+		level.doa.boss = bo3_enemy::function_36aa8b6c(loc);
 		if(getdvarint("scr_boss_debug", 0) && isdefined(spawner))
 		{
-			level thread namespace_2f63e553::function_5e6b8376(spawner.origin, 20, 500, (0, 0, 1));
+			level thread doa_dev::function_5e6b8376(spawner.origin, 20, 500, (0, 0, 1));
 		}
 		if(isdefined(level.doa.boss))
 		{
@@ -93,7 +93,7 @@ function private function_d95d34bd(spawner)
 			level.doa.boss.ignoreme = 1;
 			level.doa.boss.goalradius = 64;
 			level.doa.boss.goalheight = 256;
-			level.doa.boss thread namespace_eaa992c::function_285a2999("red_shield");
+			level.doa.boss thread doa_fx::function_285a2999("red_shield");
 			level.doa.boss thread function_ce73145c();
 			level.doa.boss thread function_5bd24aae();
 			level.doa.boss thread function_e5e28b1b();
@@ -114,7 +114,7 @@ function private function_d95d34bd(spawner)
 
 /*
 	Name: function_555608c7
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0xF576030C
 	Offset: 0x9B0
 	Size: 0x452
@@ -179,7 +179,7 @@ function private function_555608c7()
 
 /*
 	Name: function_4e81959
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x3E01CD2C
 	Offset: 0xE10
 	Size: 0x2C
@@ -195,7 +195,7 @@ function private function_4e81959(waittime)
 
 /*
 	Name: function_a2756e92
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x126AD4FB
 	Offset: 0xE48
 	Size: 0x154
@@ -216,7 +216,7 @@ function private function_a2756e92()
 	}
 	if(getdvarint("scr_boss_debug", 0))
 	{
-		level thread namespace_2f63e553::function_5e6b8376(self.var_f4a5c4fe, 128, 0.5, (1, 0, 0));
+		level thread doa_dev::function_5e6b8376(self.var_f4a5c4fe, 128, 0.5, (1, 0, 0));
 	}
 	self util::waittill_any_timeout(14, "goal", "damage", "death");
 	self.var_88168473 = undefined;
@@ -226,7 +226,7 @@ function private function_a2756e92()
 
 /*
 	Name: function_ce73145c
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0xEE2FCF87
 	Offset: 0xFA8
 	Size: 0x316
@@ -291,7 +291,7 @@ function function_ce73145c()
 
 /*
 	Name: function_66efd1eb
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x7B38AD91
 	Offset: 0x12C8
 	Size: 0x330
@@ -319,7 +319,7 @@ function private function_66efd1eb()
 		{
 			continue;
 		}
-		allies = arraycombine(getaiteamarray("allies"), namespace_831a4a7c::function_5eb6e4d1(), 0, 0);
+		allies = arraycombine(getaiteamarray("allies"), doa_player_utility::function_5eb6e4d1(), 0, 0);
 		for(i = 0; i < allies.size; i++)
 		{
 			player = allies[i];
@@ -345,7 +345,7 @@ function private function_66efd1eb()
 				self.ignoreall = 0;
 				if(getdvarint("scr_boss_debug", 0))
 				{
-					level thread namespace_2f63e553::function_5e6b8376(self.origin, 100, 0.5, (1, 0, 0));
+					level thread doa_dev::function_5e6b8376(self.origin, 100, 0.5, (1, 0, 0));
 				}
 				wait(0.5);
 				break;
@@ -353,15 +353,15 @@ function private function_66efd1eb()
 		}
 		if(getdvarint("scr_boss_debug", 0))
 		{
-			level thread namespace_2f63e553::function_5e6b8376(self.origin, 128, 500, (1, 0.8, 0.8));
-			level thread namespace_2f63e553::function_5e6b8376(self.origin, 32, 0.05, (0, 1, 0));
+			level thread doa_dev::function_5e6b8376(self.origin, 128, 500, (1, 0.8, 0.8));
+			level thread doa_dev::function_5e6b8376(self.origin, 32, 0.05, (0, 1, 0));
 		}
 	}
 }
 
 /*
 	Name: function_5bd24aae
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x44BC310E
 	Offset: 0x1600
 	Size: 0x6C
@@ -380,7 +380,7 @@ function private function_5bd24aae()
 
 /*
 	Name: function_2ca4656
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x96F403E1
 	Offset: 0x1678
 	Size: 0x69C
@@ -443,7 +443,7 @@ function private function_2ca4656()
 				self setgoal(self.var_f4a5c4fe, 1);
 				if(getdvarint("scr_boss_debug", 0))
 				{
-					level thread namespace_2f63e553::function_5e6b8376(target.origin, 32, 500, (1, 1, 0));
+					level thread doa_dev::function_5e6b8376(target.origin, 32, 500, (1, 1, 0));
 				}
 				self util::waittill_any_timeout(10, "goal", "death");
 				self.var_f4a5c4fe = undefined;
@@ -496,7 +496,7 @@ function private function_2ca4656()
 		org.targetname = "_doaBossCollectPickups";
 		org setmodel("tag_origin");
 		self linkto(org, "tag_origin");
-		org thread namespace_eaa992c::function_285a2999("boss_takeoff");
+		org thread doa_fx::function_285a2999("boss_takeoff");
 		spot = self.origin + vectorscale((0, 0, 1), 2000);
 		org thread doa_utility::function_a98c85b2(spot, 0.8);
 		self util::waittill_any_timeout(2, "movedone", "death");
@@ -504,7 +504,7 @@ function private function_2ca4656()
 	}
 	if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 	{
-		self thread namespace_eaa992c::function_285a2999("spawnZombie");
+		self thread doa_fx::function_285a2999("spawnZombie");
 		wait(1);
 	}
 	self delete();
@@ -512,7 +512,7 @@ function private function_2ca4656()
 
 /*
 	Name: function_e5e28b1b
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x924BAB
 	Offset: 0x1D20
 	Size: 0xFC
@@ -543,7 +543,7 @@ function private function_e5e28b1b()
 
 /*
 	Name: function_76b30cc1
-	Namespace: namespace_4973e019
+	Namespace: doa_boss
 	Checksum: 0x83FCDDB2
 	Offset: 0x1E28
 	Size: 0x6A

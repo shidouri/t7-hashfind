@@ -16,11 +16,11 @@
 #using scripts\shared\spawner_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_aa4730ec;
+#namespace doa_turret;
 
 /*
 	Name: init
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x1A615FC7
 	Offset: 0x520
 	Size: 0x3C6
@@ -75,7 +75,7 @@ function init()
 
 /*
 	Name: missile_logic
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x61B91ED1
 	Offset: 0x8F0
 	Size: 0x3A4
@@ -93,7 +93,7 @@ function missile_logic(fake)
 	{
 		if(getdvarfloat("scr_doa_missile_debug", 0))
 		{
-			level thread namespace_2f63e553::function_a0e51d80(missile.origin, 4, 24, (1, 0, 0));
+			level thread doa_dev::function_a0e51d80(missile.origin, 4, 24, (1, 0, 0));
 		}
 		distsq = distancesquared(missile.origin, fake.origin);
 		if(distsq < (getdvarint("scr_doa_missile_travel_reached_dist", 96) * getdvarint("scr_doa_missile_travel_reached_dist", 96)))
@@ -124,7 +124,7 @@ function missile_logic(fake)
 	{
 		if(getdvarfloat("scr_doa_missile_debug", 0))
 		{
-			level thread namespace_2f63e553::function_a0e51d80(missile.origin, 4, 24, (0, 1, 0));
+			level thread doa_dev::function_a0e51d80(missile.origin, 4, 24, (0, 1, 0));
 		}
 		distsq = distancesquared(missile.origin, enemy.origin);
 		if(distsq < (getdvarint("scr_doa_missile_detonate_range", 96) * getdvarint("scr_doa_missile_detonate_range", 96)))
@@ -141,7 +141,7 @@ function missile_logic(fake)
 
 /*
 	Name: function_3bf11cb5
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x569738A1
 	Offset: 0xCA0
 	Size: 0x12C
@@ -165,7 +165,7 @@ function function_3bf11cb5(index, enemy)
 
 /*
 	Name: function_d8189eaf
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x1166A2FB
 	Offset: 0xDD8
 	Size: 0x18C
@@ -195,7 +195,7 @@ function function_d8189eaf(weapon, enemy)
 
 /*
 	Name: turret_fire
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0xD0948813
 	Offset: 0xF70
 	Size: 0x6C
@@ -216,7 +216,7 @@ function turret_fire(index, enemy)
 
 /*
 	Name: turretthink
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x3F1B1AF1
 	Offset: 0xFE8
 	Size: 0x90
@@ -239,7 +239,7 @@ function turretthink()
 
 /*
 	Name: turret_target
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0xA19B572C
 	Offset: 0x1080
 	Size: 0x158
@@ -282,7 +282,7 @@ function turret_target()
 
 /*
 	Name: function_4deaa5de
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x934AE733
 	Offset: 0x11E0
 	Size: 0x124
@@ -315,7 +315,7 @@ function function_4deaa5de(totalfiretime, enemy)
 
 /*
 	Name: function_2c414dda
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x90BF6E20
 	Offset: 0x1310
 	Size: 0x128
@@ -348,7 +348,7 @@ function function_2c414dda()
 
 /*
 	Name: canspawnturret
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x22A70D8E
 	Offset: 0x1440
 	Size: 0xD4
@@ -378,7 +378,7 @@ function canspawnturret(var_a6f28f3b = 0)
 
 /*
 	Name: function_eabe8c0
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0xE02BC7E4
 	Offset: 0x1520
 	Size: 0x56E
@@ -420,7 +420,7 @@ function function_eabe8c0(player, var_a6f28f3b = 0)
 	mini_turret util::waittill_any_timeout(1, "movedone");
 	mini_turret.owner = player;
 	mini_turret cleartargetentity();
-	mini_turret thread namespace_eaa992c::function_285a2999("turret_impact");
+	mini_turret thread doa_fx::function_285a2999("turret_impact");
 	mini_turret thread doa_sound::function_90118d8c("evt_turret_land");
 	physicsexplosionsphere(mini_turret.origin, 200, 128, 2);
 	mini_turret radiusdamage(mini_turret.origin, 72, 10000, 10000);
@@ -430,8 +430,8 @@ function function_eabe8c0(player, var_a6f28f3b = 0)
 	if(isdefined(player))
 	{
 		time_left = gettime() + (player doa_utility::function_1ded48e6(level.doa.rules.var_7daebb69 * 1000));
-		fx = namespace_831a4a7c::function_ee495f41(player.entnum);
-		mini_turret thread namespace_eaa992c::function_285a2999("player_trail_" + fx);
+		fx = doa_player_utility::function_ee495f41(player.entnum);
+		mini_turret thread doa_fx::function_285a2999("player_trail_" + fx);
 	}
 	else
 	{
@@ -440,12 +440,12 @@ function function_eabe8c0(player, var_a6f28f3b = 0)
 	mini_turret thread function_dfe832b7(time_left, "turret_expired");
 	mini_turret waittill(#"hash_d3ef93e9");
 	mini_turret thread doa_sound::function_90118d8c("evt_turret_takeoff");
-	mini_turret thread namespace_eaa992c::function_285a2999("veh_takeoff");
-	mini_turret thread namespace_eaa992c::function_285a2999("crater_dust");
+	mini_turret thread doa_fx::function_285a2999("veh_takeoff");
+	mini_turret thread doa_fx::function_285a2999("crater_dust");
 	mini_turret thread doa_utility::function_a98c85b2(droptarget, 1);
 	if(isdefined(fx))
 	{
-		mini_turret thread namespace_eaa992c::turnofffx("player_trail_" + fx);
+		mini_turret thread doa_fx::turnofffx("player_trail_" + fx);
 	}
 	wait(1);
 	mini_turret thread doa_utility::function_a98c85b2(mini_turret.original_location, 1);
@@ -456,7 +456,7 @@ function function_eabe8c0(player, var_a6f28f3b = 0)
 
 /*
 	Name: function_a0d09d25
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x652CA5F8
 	Offset: 0x1A98
 	Size: 0x140
@@ -480,7 +480,7 @@ function function_a0d09d25(player)
 
 /*
 	Name: function_3ce8bf1c
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0xFADCC137
 	Offset: 0x1BE0
 	Size: 0x4CC
@@ -507,28 +507,28 @@ function function_3ce8bf1c(player, origin)
 	sprinkler thread doa_utility::function_a98c85b2(mark, 0.5);
 	sprinkler util::waittill_any_timeout(1, "movedone");
 	sprinkler thread doa_sound::function_90118d8c("evt_sprinkler_land");
-	sprinkler thread namespace_eaa992c::function_285a2999("sprinkler_land");
+	sprinkler thread doa_fx::function_285a2999("sprinkler_land");
 	if(isdefined(player))
 	{
-		fx = namespace_831a4a7c::function_ee495f41(player.entnum);
-		sprinkler thread namespace_eaa992c::function_285a2999("player_trail_" + fx);
+		fx = doa_player_utility::function_ee495f41(player.entnum);
+		sprinkler thread doa_fx::function_285a2999("player_trail_" + fx);
 	}
 	physicsexplosionsphere(mark, 200, 128, 3);
 	sprinkler radiusdamage(mark, 72, 10000, 10000);
 	playrumbleonposition("explosion_generic", mark);
 	wait(1);
 	sprinkler playloopsound("evt_sprinkler_loop", 0.5);
-	sprinkler thread namespace_eaa992c::function_285a2999("sprinkler_active");
+	sprinkler thread doa_fx::function_285a2999("sprinkler_active");
 	sprinkler thread function_a0d09d25(player);
 	wait(player doa_utility::function_1ded48e6(level.doa.rules.var_213b65db));
-	sprinkler thread namespace_eaa992c::turnofffx("sprinkler_active");
+	sprinkler thread doa_fx::turnofffx("sprinkler_active");
 	wait(2);
 	sprinkler thread doa_sound::function_90118d8c("evt_sprinkler_takeoff");
-	sprinkler thread namespace_eaa992c::function_285a2999("sprinkler_takeoff");
+	sprinkler thread doa_fx::function_285a2999("sprinkler_takeoff");
 	sprinkler stoploopsound(2);
 	if(isdefined(fx))
 	{
-		sprinkler thread namespace_eaa992c::turnofffx("player_trail_" + fx);
+		sprinkler thread doa_fx::turnofffx("player_trail_" + fx);
 	}
 	sprinkler thread doa_utility::function_a98c85b2(dropspot, 0.5);
 	sprinkler util::waittill_any_timeout(1, "movedone");
@@ -537,7 +537,7 @@ function function_3ce8bf1c(player, origin)
 
 /*
 	Name: function_dfe832b7
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0xFA1FD0AB
 	Offset: 0x20B8
 	Size: 0xA6
@@ -569,7 +569,7 @@ function private function_dfe832b7(timeleft, note)
 
 /*
 	Name: function_62c5a5a
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0x7A2CB0FC
 	Offset: 0x2168
 	Size: 0x6EC
@@ -598,7 +598,7 @@ function function_62c5a5a(player, origin)
 	fake.targetname = "amwsPickupUpdate";
 	fake setmodel(level.doa.var_4aa90d77);
 	fake.angles = angles;
-	fake thread namespace_eaa992c::function_285a2999("fire_trail");
+	fake thread doa_fx::function_285a2999("fire_trail");
 	fake thread doa_sound::function_90118d8c("evt_turret_incoming");
 	fake moveto(mark, 0.5);
 	fake util::waittill_any_timeout(1, "movedone");
@@ -618,7 +618,7 @@ function function_62c5a5a(player, origin)
 		amws.autonomous = 1;
 		amws notsolid();
 		amws thread function_43d18fa4(player, note);
-		amws thread namespace_eaa992c::function_285a2999("turret_impact");
+		amws thread doa_fx::function_285a2999("turret_impact");
 		amws thread doa_sound::function_90118d8c("evt_turret_land");
 		amws.overridevehicledamage = &function_f3ee1c57;
 		level.doa.active_guardians[level.doa.active_guardians.size] = amws;
@@ -626,14 +626,14 @@ function function_62c5a5a(player, origin)
 	}
 	if(isdefined(player) && isdefined(amws))
 	{
-		fx = namespace_831a4a7c::function_ee495f41(player.entnum);
-		amws thread namespace_eaa992c::function_285a2999("player_trail_" + fx);
+		fx = doa_player_utility::function_ee495f41(player.entnum);
+		amws thread doa_fx::function_285a2999("player_trail_" + fx);
 	}
 	level thread function_dfe832b7(time_left, note);
 	level waittill(note);
 	if(isdefined(amws) && isdefined(fx))
 	{
-		amws thread namespace_eaa992c::turnofffx("player_trail_" + fx);
+		amws thread doa_fx::turnofffx("player_trail_" + fx);
 	}
 	if(isdefined(amws))
 	{
@@ -643,8 +643,8 @@ function function_62c5a5a(player, origin)
 		fake.angles = amws.angles;
 		fake thread doa_sound::function_90118d8c("evt_turret_takeoff");
 		amws delete();
-		fake thread namespace_eaa992c::function_285a2999("veh_takeoff");
-		fake thread namespace_eaa992c::function_285a2999("crater_dust");
+		fake thread doa_fx::function_285a2999("veh_takeoff");
+		fake thread doa_fx::function_285a2999("crater_dust");
 		fake moveto(dropspot, 0.5);
 		fake util::waittill_any_timeout(1, "movedone");
 		fake delete();
@@ -653,7 +653,7 @@ function function_62c5a5a(player, origin)
 
 /*
 	Name: function_f3ee1c57
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0xF675EFCC
 	Offset: 0x2860
 	Size: 0xA0
@@ -671,7 +671,7 @@ function function_f3ee1c57(einflictor, eattacker, idamage, idflags, smeansofdeat
 
 /*
 	Name: function_43d18fa4
-	Namespace: namespace_aa4730ec
+	Namespace: doa_turret
 	Checksum: 0xD5F59049
 	Offset: 0x2908
 	Size: 0x66
