@@ -283,11 +283,11 @@ function function_76bcb530()
 		var_f918ed35 waittill("trigger_activated");
 		playsoundatposition("zmb_pod_play", var_f918ed35.origin);
 		level.var_eeab4a07 = 1;
-		var_d1146a02 = function_c5359566();
+		a_n_pattern = function_c5359566();
 		match = 1;
-		for(i = 0; i < var_d1146a02.size; i++)
+		for(i = 0; i < a_n_pattern.size; i++)
 		{
-			if(var_d1146a02[i] != var_be2a0077[i])
+			if(a_n_pattern[i] != var_be2a0077[i])
 			{
 				match = 0;
 				break;

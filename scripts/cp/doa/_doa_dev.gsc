@@ -742,7 +742,7 @@ function devguithink()
 				round_number = level.doa.var_b5c260bb * level.doa.rules.var_88c0b67b;
 				foreach(room in level.doa.bonus_rooms)
 				{
-					if(round_number > room.var_5281efe5)
+					if(round_number > room.minround)
 					{
 						room.var_57ce7582[room.var_57ce7582.size] = round_number;
 					}
@@ -753,7 +753,7 @@ function devguithink()
 					var_7dce6dce = 0;
 					foreach(room in level.doa.bonus_rooms)
 					{
-						if(isdefined(room.var_6f369ab4) && room.var_57ce7582.size >= room.var_6f369ab4)
+						if(isdefined(room.maxseen) && room.var_57ce7582.size >= room.maxseen)
 						{
 							arrayremovevalue(level.doa.bonus_rooms, room, 0);
 							var_7dce6dce = 1;

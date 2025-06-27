@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
@@ -92,9 +92,9 @@ function function_2b18ce1b(localclientnum, fx)
 		charge = getweaponchargelevel(localclientnum);
 		if(charge > 0)
 		{
-			if(!isdefined(self.var_2a76e26))
+			if(!isdefined(self.staff_fx))
 			{
-				self.var_2a76e26 = playviewmodelfx(localclientnum, fx, "tag_fx_upg_1");
+				self.staff_fx = playviewmodelfx(localclientnum, fx, "tag_fx_upg_1");
 			}
 		}
 		else
@@ -116,10 +116,10 @@ function function_2b18ce1b(localclientnum, fx)
 */
 function function_d4c51f0(localclientnum)
 {
-	if(isdefined(self.var_2a76e26))
+	if(isdefined(self.staff_fx))
 	{
-		stopfx(localclientnum, self.var_2a76e26);
-		self.var_2a76e26 = undefined;
+		stopfx(localclientnum, self.staff_fx);
+		self.staff_fx = undefined;
 	}
 }
 

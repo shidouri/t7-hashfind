@@ -104,9 +104,9 @@ function function_63fe1ddd()
 	while(true)
 	{
 		level clientfield::set("robot_lights", 1);
-		level waittill(#"hash_421e5b59");
+		level waittill("robot_called");
 		level clientfield::set("robot_lights", 2);
-		level waittill(#"hash_10a36fa2");
+		level waittill("robot_arrives");
 		level clientfield::set("robot_lights", 3);
 		while(isdefined(level.ai_robot))
 		{
@@ -303,7 +303,7 @@ function robot_callbox_trigger_think()
 			n_spawn_delay = 3;
 			level thread spawn_robot(player, self.stub, n_spawn_delay);
 			player notify(#"hash_b7f8e77c");
-			level notify(#"hash_421e5b59");
+			level notify("robot_called");
 			level thread function_f9a6039c(self, "activated");
 			self playsound("evt_police_box_siren");
 			wait(1.5);
@@ -362,7 +362,7 @@ function spawn_robot(player, trig_stub, n_spawn_delay)
 		level.ai_robot forceteleport(var_36e9b69a);
 		level.ai_robot thread function_ab4d9ece(v_ground_position, player);
 		level.ai_robot scene::play("cin_zod_robot_companion_entrance");
-		level notify(#"hash_10a36fa2");
+		level notify("robot_arrives");
 		level.ai_robot.companion_anchor_point = v_ground_position;
 	}
 	level thread function_f9a6039c(level.ai_robot, "active", 2);
@@ -456,7 +456,7 @@ function robot_sky_trail()
 	var_8d888091 setmodel("tag_origin");
 	playfxontag(level._effect["robot_sky_trail"], var_8d888091, "tag_origin");
 	var_8d888091 linkto(self);
-	level waittill(#"hash_10a36fa2");
+	level waittill("robot_arrives");
 	var_8d888091 delete();
 }
 
@@ -474,7 +474,7 @@ function function_70541dc1(v_ground_position)
 	var_b47822ca = spawn("script_model", v_ground_position);
 	var_b47822ca setmodel("tag_origin");
 	playfxontag(level._effect["robot_ground_spawn"], var_b47822ca, "tag_origin");
-	level waittill(#"hash_10a36fa2");
+	level waittill("robot_arrives");
 	var_b47822ca delete();
 }
 

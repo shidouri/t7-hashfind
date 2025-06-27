@@ -81,8 +81,8 @@ function constantjuice()
 		if(isdefined(self.cybercom.activecybercomweapon))
 		{
 			slot = self gadgetgetslot(self.cybercom.activecybercomweapon);
-			var_d921672c = self gadgetcharging(slot);
-			if(var_d921672c)
+			ischarging = self gadgetcharging(slot);
+			if(ischarging)
 			{
 				self gadgetpowerchange(slot, 100);
 			}

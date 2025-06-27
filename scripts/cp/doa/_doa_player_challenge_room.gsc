@@ -59,11 +59,11 @@ function function_471d1403()
 			level.doa.var_ff23f7c8 = level.doa.round_number;
 			return;
 		}
-		if(isdefined(room.var_5281efe5) && level.doa.round_number < room.var_5281efe5)
+		if(isdefined(room.minround) && level.doa.round_number < room.minround)
 		{
 			continue;
 		}
-		if(isdefined(room.var_cbad0e8f) && level.doa.round_number > room.var_cbad0e8f)
+		if(isdefined(room.maxround) && level.doa.round_number > room.maxround)
 		{
 			continue;
 		}
@@ -71,13 +71,13 @@ function function_471d1403()
 		{
 			continue;
 		}
-		if(isdefined(room.var_a90de2a1))
+		if(isdefined(room.minbetween))
 		{
 			if(room.var_57ce7582.size > 0)
 			{
 				var_cb365fdc = room.var_57ce7582[room.var_57ce7582.size - 1];
 			}
-			if(isdefined(var_cb365fdc) && (level.doa.round_number - var_cb365fdc) < room.var_a90de2a1)
+			if(isdefined(var_cb365fdc) && (level.doa.round_number - var_cb365fdc) < room.minbetween)
 			{
 				continue;
 			}
@@ -191,7 +191,7 @@ function function_15a0c9b5(room)
 	level thread doa_pickups::function_c1869ec8();
 	level waittill(#"hash_229914a6");
 	level notify(#"hash_4d952f70");
-	if(isdefined(room.var_6f369ab4) && room.var_57ce7582.size >= room.var_6f369ab4)
+	if(isdefined(room.maxseen) && room.var_57ce7582.size >= room.maxseen)
 	{
 		arrayremovevalue(level.doa.bonus_rooms, room, 0);
 	}

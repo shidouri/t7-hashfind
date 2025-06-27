@@ -741,9 +741,9 @@ function function_13bbcb98(str_vo_line, n_wait = 0, b_wait_if_busy, n_priority =
 	Parameters: 5
 	Flags: Linked
 */
-function function_672fc476(var_cbd11028, var_e21e86b8, b_wait_if_busy = 0, n_priority = 0, var_43802352)
+function function_672fc476(a_str_vo, var_e21e86b8, b_wait_if_busy = 0, n_priority = 0, var_43802352)
 {
-	for(i = 0; i < var_cbd11028.size; i++)
+	for(i = 0; i < a_str_vo.size; i++)
 	{
 		if(isdefined(var_e21e86b8))
 		{
@@ -769,7 +769,7 @@ function function_672fc476(var_cbd11028, var_e21e86b8, b_wait_if_busy = 0, n_pri
 		{
 			var_e27770b1 = 0;
 		}
-		function_13bbcb98(var_cbd11028[i], var_e27770b1, b_wait_if_busy, n_priority, var_43802352);
+		function_13bbcb98(a_str_vo[i], var_e27770b1, b_wait_if_busy, n_priority, var_43802352);
 	}
 }
 
@@ -822,7 +822,7 @@ function function_9db3bdd7(var_c35eec70, n_wait = 0, b_wait_if_busy, n_priority 
 }
 
 /*
-	Name: function_4974f895
+	Name: sophia_say
 	Namespace: zm_genesis_vo
 	Checksum: 0x92DB829
 	Offset: 0xAB28
@@ -830,7 +830,7 @@ function function_9db3bdd7(var_c35eec70, n_wait = 0, b_wait_if_busy, n_priority 
 	Parameters: 4
 	Flags: Linked
 */
-function function_4974f895(var_c35eec70, n_wait, b_wait_if_busy, n_priority)
+function sophia_say(var_c35eec70, n_wait, b_wait_if_busy, n_priority)
 {
 	if(isarray(var_c35eec70))
 	{
@@ -1158,7 +1158,7 @@ function function_897246e4(str_vo_alias, n_wait = 0, b_wait_if_busy = 0, n_prior
 				}
 				case "soph":
 				{
-					function_4974f895(str_vo_alias, n_wait, b_wait_if_busy, n_priority);
+					sophia_say(str_vo_alias, n_wait, b_wait_if_busy, n_priority);
 					break;
 				}
 			}
@@ -1179,10 +1179,10 @@ function function_897246e4(str_vo_alias, n_wait = 0, b_wait_if_busy = 0, n_prior
 	Parameters: 6
 	Flags: Linked
 */
-function function_63c44c5a(var_cbd11028, var_e21e86b8, b_wait_if_busy = 0, n_priority = 0, var_d1295208 = 0, var_248b6239 = 0)
+function function_63c44c5a(a_str_vo, var_e21e86b8, b_wait_if_busy = 0, n_priority = 0, var_d1295208 = 0, var_248b6239 = 0)
 {
 	function_218256bd(1);
-	for(i = 0; i < var_cbd11028.size; i++)
+	for(i = 0; i < a_str_vo.size; i++)
 	{
 		if(isdefined(var_e21e86b8))
 		{
@@ -1199,7 +1199,7 @@ function function_63c44c5a(var_cbd11028, var_e21e86b8, b_wait_if_busy = 0, n_pri
 		{
 			var_e27770b1 = 0;
 		}
-		self function_7b697614(var_cbd11028[i], var_e27770b1, b_wait_if_busy, n_priority, var_d1295208, var_248b6239);
+		self function_7b697614(a_str_vo[i], var_e27770b1, b_wait_if_busy, n_priority, var_d1295208, var_248b6239);
 	}
 	function_218256bd(0);
 }
@@ -1213,10 +1213,10 @@ function function_63c44c5a(var_cbd11028, var_e21e86b8, b_wait_if_busy = 0, n_pri
 	Parameters: 5
 	Flags: Linked
 */
-function function_7aa5324a(var_cbd11028, var_e21e86b8, b_wait_if_busy = 0, n_priority = 0, var_d1295208 = 0)
+function function_7aa5324a(a_str_vo, var_e21e86b8, b_wait_if_busy = 0, n_priority = 0, var_d1295208 = 0)
 {
 	function_218256bd(1);
-	for(i = 0; i < var_cbd11028.size; i++)
+	for(i = 0; i < a_str_vo.size; i++)
 	{
 		if(isdefined(var_e21e86b8))
 		{
@@ -1233,7 +1233,7 @@ function function_7aa5324a(var_cbd11028, var_e21e86b8, b_wait_if_busy = 0, n_pri
 		{
 			var_e27770b1 = 0.5;
 		}
-		function_897246e4(var_cbd11028[i], var_e27770b1, b_wait_if_busy, n_priority, var_d1295208);
+		function_897246e4(a_str_vo[i], var_e27770b1, b_wait_if_busy, n_priority, var_d1295208);
 	}
 	function_218256bd(0);
 }
@@ -1408,8 +1408,8 @@ function function_6b96bf38()
 	{
 		if(level.activeplayers[0].characterindex == 0)
 		{
-			var_cbd11028 = array("vox_plr_0_round1_start_solo_0", "vox_plr_0_round1_start_solo_1");
-			level.activeplayers[0] function_63c44c5a(var_cbd11028, 1);
+			a_str_vo = array("vox_plr_0_round1_start_solo_0", "vox_plr_0_round1_start_solo_1");
+			level.activeplayers[0] function_63c44c5a(a_str_vo, 1);
 		}
 		else
 		{
@@ -2814,14 +2814,14 @@ function function_bbeae714(var_d95a0cf3)
 */
 function function_e5bc23b9(str_type)
 {
-	var_f62df441 = [];
-	var_f62df441["gen_pos"] = 100;
-	var_f62df441["gen_neg"] = 50;
-	var_f62df441["gen_pickup"] = 100;
-	if(isdefined(var_f62df441[str_type]))
+	a_n_probability = [];
+	a_n_probability["gen_pos"] = 100;
+	a_n_probability["gen_neg"] = 50;
+	a_n_probability["gen_pickup"] = 100;
+	if(isdefined(a_n_probability[str_type]))
 	{
 		n_roll = randomint(100);
-		if(n_roll < var_f62df441[str_type])
+		if(n_roll < a_n_probability[str_type])
 		{
 			b_success = self function_aa5f0ceb(str_type, 0);
 			return b_success;
@@ -3333,7 +3333,7 @@ function function_8c5fea67(e_player)
 		var_15e4021e = level.var_8c92b387["sophia_firing"];
 		if(isdefined(var_15e4021e) && var_15e4021e.size > 0)
 		{
-			function_4974f895(var_15e4021e[0]);
+			sophia_say(var_15e4021e[0]);
 			arrayremoveindex(var_15e4021e, 0);
 		}
 	}

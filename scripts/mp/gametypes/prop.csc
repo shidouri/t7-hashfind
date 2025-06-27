@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\mp\_callbacks;
 #using scripts\shared\callbacks_shared;
@@ -226,15 +226,15 @@ function function_e622a96b(localclientnum, var_2300871f)
 	{
 		localplayer = getlocalplayer(localclientnum);
 		spectating = isspectating(localclientnum, 0) && !getinkillcam(localclientnum);
-		var_9d961790 = !isdefined(self.owner) || self.owner != localplayer || spectating && isdefined(self.team) && isdefined(localplayer.team) && self.team == localplayer.team;
+		ishighlighted = !isdefined(self.owner) || self.owner != localplayer || spectating && isdefined(self.team) && isdefined(localplayer.team) && self.team == localplayer.team;
 		if(var_2300871f == 1)
 		{
-			self duplicate_render::update_dr_flag(localclientnum, "prop_ally", var_9d961790);
+			self duplicate_render::update_dr_flag(localclientnum, "prop_ally", ishighlighted);
 			self duplicate_render::update_dr_flag(localclientnum, "prop_clone", 0);
 		}
 		else
 		{
-			self duplicate_render::update_dr_flag(localclientnum, "prop_clone", var_9d961790);
+			self duplicate_render::update_dr_flag(localclientnum, "prop_clone", ishighlighted);
 			self duplicate_render::update_dr_flag(localclientnum, "prop_ally", 0);
 		}
 		self duplicate_render::update_dr_filters(localclientnum);
@@ -281,8 +281,8 @@ function function_b001ad83(localclientnum, var_2300871f)
 	while(true)
 	{
 		localplayer = getlocalplayer(localclientnum);
-		var_9d961790 = self != localplayer && isdefined(self.team) && isdefined(localplayer.team) && self.team == localplayer.team;
-		self duplicate_render::update_dr_flag(localclientnum, "prop_clone", var_9d961790);
+		ishighlighted = self != localplayer && isdefined(self.team) && isdefined(localplayer.team) && self.team == localplayer.team;
+		self duplicate_render::update_dr_flag(localclientnum, "prop_clone", ishighlighted);
 		level util::waittill_any("team_changed" + localclientnum, "localPlayerSpectating" + localclientnum);
 	}
 }
@@ -299,8 +299,8 @@ function function_b001ad83(localclientnum, var_2300871f)
 function function_6baff676(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	localplayer = getlocalplayer(localclientnum);
-	var_9d961790 = newval && isdefined(self.owner) && self.owner == localplayer;
-	if(var_9d961790)
+	ishighlighted = newval && isdefined(self.owner) && self.owner == localplayer;
+	if(ishighlighted)
 	{
 		self duplicate_render::update_dr_flag(localclientnum, "prop_look_through", 1);
 		self duplicate_render::set_dr_flag("hide_model", 1);

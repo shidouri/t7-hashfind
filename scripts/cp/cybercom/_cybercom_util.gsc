@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_bb;
 #using scripts\cp\cybercom\_cybercom_dev;
@@ -2031,7 +2031,7 @@ function function_8257bcb3(context, max = 2)
 	}
 	self.cybercom.variants[context] = spawnstruct();
 	self.cybercom.variants[context].var_9689b47c = 0;
-	self.cybercom.variants[context].var_51b4aeb8 = max;
+	self.cybercom.variants[context].maxvariant = max;
 }
 
 /*
@@ -2051,7 +2051,7 @@ function getanimationvariant(context)
 	}
 	cur = self.cybercom.variants[context].var_9689b47c;
 	self.cybercom.variants[context].var_9689b47c++;
-	if(self.cybercom.variants[context].var_9689b47c > self.cybercom.variants[context].var_51b4aeb8)
+	if(self.cybercom.variants[context].var_9689b47c > self.cybercom.variants[context].maxvariant)
 	{
 		self.cybercom.variants[context].var_9689b47c = 0;
 	}

@@ -1193,15 +1193,15 @@ function diggers_visible(visible)
 	else
 	{
 		level clientfield::set("DH", 0);
-		blade function_267c538a();
-		arm function_267c538a();
-		tracks function_267c538a();
-		self function_267c538a();
+		blade moon_show();
+		arm moon_show();
+		tracks moon_show();
+		self moon_show();
 	}
 }
 
 /*
-	Name: function_267c538a
+	Name: moon_show
 	Namespace: zm_moon_digger
 	Checksum: 0x18428E03
 	Offset: 0x4390
@@ -1209,7 +1209,7 @@ function diggers_visible(visible)
 	Parameters: 0
 	Flags: Linked
 */
-function function_267c538a()
+function moon_show()
 {
 	self show();
 	foreach(player in level.players)

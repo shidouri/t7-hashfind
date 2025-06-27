@@ -1207,7 +1207,7 @@ function pier_guard_smash()
 }
 
 /*
-	Name: function_7a7390dd
+	Name: consumables_cheese
 	Namespace: cp_mi_sing_blackstation_port
 	Checksum: 0x9CE63A9D
 	Offset: 0x7210
@@ -1215,7 +1215,7 @@ function pier_guard_smash()
 	Parameters: 0
 	Flags: None
 */
-function function_7a7390dd()
+function consumables_cheese()
 {
 	// Unsupported VM revision (1B).
 }

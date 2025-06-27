@@ -2020,8 +2020,8 @@ function dc4_friendly_sacrifice()
 	ai_friendly = spawner::simple_spawn_single("dc4_friendly_sacrifice");
 	ai_friendly.overrideactordamage = &dc4_friendly_damage_override;
 	ai_friendly ai::set_ignoreme(1);
-	var_9999ca8a = spawner::simple_spawn_single("dc4_deadly_rap", &function_ca258604);
-	level scene::init("cin_lot_07_05_detcenter_vign_rapsdeath", array(var_9999ca8a, ai_friendly));
+	vh_raps = spawner::simple_spawn_single("dc4_deadly_rap", &function_ca258604);
+	level scene::init("cin_lot_07_05_detcenter_vign_rapsdeath", array(vh_raps, ai_friendly));
 	flag::wait_till("dc4_friendly_sacrifice");
 	level thread scene::skipto_end("cin_lot_07_05_detcenter_vign_rapsdeath", undefined, undefined, 0.4);
 	ai_shooter = spawner::simple_spawn_single("rapsdeath_shooter");
@@ -2043,12 +2043,12 @@ function dc4_friendly_sacrifice()
 */
 function function_ca258604()
 {
-	var_9999ca8a = self;
-	var_9999ca8a ai::set_ignoreall(1);
-	util::magic_bullet_shield(var_9999ca8a);
+	vh_raps = self;
+	vh_raps ai::set_ignoreall(1);
+	util::magic_bullet_shield(vh_raps);
 	level waittill(#"hash_c1151572");
-	var_9999ca8a ai::set_ignoreall(0);
-	util::stop_magic_bullet_shield(var_9999ca8a);
+	vh_raps ai::set_ignoreall(0);
+	util::stop_magic_bullet_shield(vh_raps);
 }
 
 /*

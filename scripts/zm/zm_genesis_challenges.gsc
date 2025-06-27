@@ -417,7 +417,7 @@ function function_b7156b15()
 	self thread function_fbbc8608(self.s_challenges.a_challenge_2.n_index, "flag_player_completed_challenge_2");
 	self thread function_fbbc8608(self.s_challenges.a_challenge_3.n_index, "flag_player_completed_challenge_3");
 	self thread function_974d5f1d();
-	var_8e2d9e6f = [];
+	a_n_challenge = [];
 	var_e01fcddc = [];
 	var_a879fa43 = self getentitynumber();
 	for(i = 1; i <= 3; i++)
@@ -431,7 +431,7 @@ function function_b7156b15()
 				var_e01fcddc[i] = t_lookat;
 				break;
 			}
-			var_8e2d9e6f[i] = i;
+			a_n_challenge[i] = i;
 		}
 		self thread function_a2d25f82(i, var_a879fa43);
 	}
@@ -439,7 +439,7 @@ function function_b7156b15()
 	{
 		if(s_challenge.script_int == var_a879fa43)
 		{
-			s_challenge function_4e61a018(var_e01fcddc, var_8e2d9e6f);
+			s_challenge function_4e61a018(var_e01fcddc, a_n_challenge);
 			break;
 		}
 	}
@@ -454,13 +454,13 @@ function function_b7156b15()
 	Parameters: 2
 	Flags: Linked
 */
-function function_4e61a018(var_e01fcddc, var_8e2d9e6f)
+function function_4e61a018(var_e01fcddc, a_n_challenge)
 {
 	self zm_unitrigger::create_unitrigger("", 128, &function_3ae0d6d5);
 	self.s_unitrigger.require_look_at = 0;
 	self.s_unitrigger.inactive_reassess_time = 0.1;
 	zm_unitrigger::unitrigger_force_per_player_triggers(self.s_unitrigger, 1);
-	self.s_unitrigger.var_8e2d9e6f = var_8e2d9e6f;
+	self.s_unitrigger.a_n_challenge = a_n_challenge;
 	self.var_e01fcddc = var_e01fcddc;
 	self thread function_424b6fe8();
 }
@@ -1895,11 +1895,11 @@ function function_905d9544(e_attacker)
 			{
 				e_attacker notify(#"hash_bf458b1e");
 			}
-			if(self.var_f9ebd43e === "fire")
+			if(self.element_type === "fire")
 			{
 				e_attacker notify("fire_margwa_death");
 			}
-			else if(self.var_f9ebd43e === "shadow")
+			else if(self.element_type === "shadow")
 			{
 				e_attacker notify("shadow_margwa_death");
 			}

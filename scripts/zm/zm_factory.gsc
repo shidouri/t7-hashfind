@@ -3001,13 +3001,13 @@ function flytrap_prize()
 {
 	s_prize = struct::get("flytrap_prize", "targetname");
 	mdl_prize = util::spawn_model("wpn_t7_hero_annihilator_world", s_prize.origin, s_prize.angles);
-	mdl_prize thread function_45814329(s_prize);
+	mdl_prize thread rotate_prize(s_prize);
 	level thread function_86e1c543();
 	level flag::clear("flytrap");
 }
 
 /*
-	Name: function_45814329
+	Name: rotate_prize
 	Namespace: zm_factory
 	Checksum: 0x57DDCC88
 	Offset: 0x9A48
@@ -3015,7 +3015,7 @@ function flytrap_prize()
 	Parameters: 1
 	Flags: Linked
 */
-function function_45814329(s_prize)
+function rotate_prize(s_prize)
 {
 	self endon("death");
 	while(true)

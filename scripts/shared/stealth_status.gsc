@@ -1,4 +1,4 @@
-#using scripts\shared\stealth;
+﻿#using scripts\shared\stealth;
 #using scripts\shared\stealth_aware;
 #using scripts\shared\stealth_debug;
 #using scripts\shared\stealth_player;
@@ -65,7 +65,7 @@ function icon_show()
 }
 
 /*
-	Name: function_180adb28
+	Name: icon_clean
 	Namespace: stealth_status
 	Checksum: 0xAAFCD2DB
 	Offset: 0x550
@@ -73,7 +73,7 @@ function icon_show()
 	Parameters: 2
 	Flags: None
 */
-function function_180adb28()
+function icon_clean()
 {
 	// Unsupported VM revision (1B).
 }

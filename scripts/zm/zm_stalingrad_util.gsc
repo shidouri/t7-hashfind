@@ -95,7 +95,7 @@ function function_e7c75cf0()
 }
 
 /*
-	Name: function_3fbe7d5f
+	Name: rotate_randomly
 	Namespace: zm_stalingrad_util
 	Checksum: 0xB6DE9779
 	Offset: 0x7B0
@@ -103,7 +103,7 @@ function function_e7c75cf0()
 	Parameters: 0
 	Flags: Linked
 */
-function function_3fbe7d5f()
+function rotate_randomly()
 {
 	while(isdefined(self))
 	{
@@ -1260,13 +1260,13 @@ function function_5eeabbe0(var_47ee7db6, nd_path_start, var_f08b56c6, str_notify
 	self zm_utility::increment_ignoreme();
 	self bgb::suspend_weapon_cycling();
 	self.var_4222bc21 = 1;
-	self.var_13f86a82 = spawner::simple_spawn_single(var_47ee7db6);
-	self.var_13f86a82 setignorepauseworld(1);
-	self.var_13f86a82 setacceleration(500);
-	self.var_13f86a82 setturningability(0.3);
-	self.var_13f86a82.origin = self.origin;
-	self setplayerangles(self.var_13f86a82.angles);
-	self.var_13f86a82.e_parent = self;
+	self.vh_rail = spawner::simple_spawn_single(var_47ee7db6);
+	self.vh_rail setignorepauseworld(1);
+	self.vh_rail setacceleration(500);
+	self.vh_rail setturningability(0.3);
+	self.vh_rail.origin = self.origin;
+	self setplayerangles(self.vh_rail.angles);
+	self.vh_rail.e_parent = self;
 	self notify(#"hash_94217b77");
 	switch(nd_path_start.targetname)
 	{
@@ -1284,12 +1284,12 @@ function function_5eeabbe0(var_47ee7db6, nd_path_start, var_f08b56c6, str_notify
 			break;
 		}
 	}
-	self playerlinktodelta(self.var_13f86a82, undefined, 1, 20, 20, 15, 60);
-	self.var_13f86a82 vehicle::get_on_path(nd_path_start);
+	self playerlinktodelta(self.vh_rail, undefined, 1, 20, 20, 15, 60);
+	self.vh_rail vehicle::get_on_path(nd_path_start);
 	self playsound("evt_zipline_attach");
 	self thread function_6efec755(var_f08b56c6);
 	self util::magic_bullet_shield();
-	self.var_13f86a82 waittill("rail_over");
+	self.vh_rail waittill("rail_over");
 	self.var_fa6d2a24 = 0;
 	self zm_utility::decrement_ignoreme();
 	self.var_4222bc21 = 0;
@@ -1318,25 +1318,25 @@ function function_6efec755(var_f08b56c6)
 {
 	self endon("disconnect");
 	self endon("switch_rail");
-	self.var_13f86a82 thread play_current_fx();
+	self.vh_rail thread play_current_fx();
 	self clientfield::set_to_player("tp_water_sheeting", 1);
-	self.var_13f86a82 vehicle::go_path();
+	self.vh_rail vehicle::go_path();
 	if(isdefined(var_f08b56c6))
 	{
-		self.var_13f86a82.origin = var_f08b56c6.origin;
+		self.vh_rail.origin = var_f08b56c6.origin;
 		self.origin = var_f08b56c6.origin;
 		self setplayerangles(var_f08b56c6.angles);
-		self.var_13f86a82 vehicle::get_on_path(var_f08b56c6);
-		self.var_13f86a82 vehicle::go_path();
+		self.vh_rail vehicle::get_on_path(var_f08b56c6);
+		self.vh_rail vehicle::go_path();
 	}
-	self.var_13f86a82 notify("rail_over");
+	self.vh_rail notify("rail_over");
 	self clientfield::increment_to_player("sewer_landing_rumble");
 	self playsound("zmb_stalingrad_sewer_air_land");
 	self stoploopsound(0.4);
 	self unlink();
 	self clientfield::set_to_player("tp_water_sheeting", 0);
 	wait(0.3);
-	self.var_13f86a82 delete();
+	self.vh_rail delete();
 	self.var_a0a9409e = undefined;
 }
 
@@ -1354,11 +1354,11 @@ function function_ab2df0ca()
 	self endon("rail_over");
 	self endon("disconnect");
 	self waittill(#"hash_94217b77");
-	self.var_13f86a82 waittill(#"hash_c4eac163");
+	self.vh_rail waittill(#"hash_c4eac163");
 	self clientfield::set_to_player("drown_stage", 4);
 	wait(0.5);
 	self lui::screen_fade_out(1.5);
-	self.var_13f86a82 util::waittill_notify_or_timeout("sewer_fade_up", 3);
+	self.vh_rail util::waittill_notify_or_timeout("sewer_fade_up", 3);
 	self lui::screen_fade_in(1);
 	self clientfield::set_to_player("drown_stage", 0);
 }

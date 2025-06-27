@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -21,8 +21,8 @@ class cstair
 {
 	var origin;
 	var m_str_areaname;
-	var var_f2f66550;
-	var var_39624e3b;
+	var m_a_e_staircase;
+	var m_a_e_gates;
 	var m_n_state;
 	var m_a_e_clip;
 	var m_a_e_blockers;
@@ -118,8 +118,8 @@ class cstair
 	{
 		if(m_str_areaname != "underground" && m_str_areaname != "club" && b_is_extending && !b_is_instant)
 		{
-			var_f2f66550[0] scene::play("p7_fxanim_zm_zod_mechanical_stairs_bundle");
-			foreach(e_gate in var_39624e3b)
+			m_a_e_staircase[0] scene::play("p7_fxanim_zm_zod_mechanical_stairs_bundle");
+			foreach(e_gate in m_a_e_gates)
 			{
 				e_gate thread scene::play("p7_fxanim_zm_zod_gate_scissor_short_bundle");
 			}
@@ -290,13 +290,13 @@ class cstair
 		m_a_e_steps = getentarray("stair_step", "targetname");
 		m_a_e_blockers = getentarray("stair_blocker", "targetname");
 		m_a_e_clip = getentarray("stair_clip", "targetname");
-		var_f2f66550 = struct::get_array("stair_staircase", "targetname");
-		var_39624e3b = struct::get_array("stair_gate", "targetname");
+		m_a_e_staircase = struct::get_array("stair_staircase", "targetname");
+		m_a_e_gates = struct::get_array("stair_gate", "targetname");
 		m_a_e_steps = array::filter(m_a_e_steps, 0, &filter_areaname, str_areaname);
 		m_a_e_blockers = array::filter(m_a_e_blockers, 0, &filter_areaname, str_areaname);
 		m_a_e_clip = array::filter(m_a_e_clip, 0, &filter_areaname, str_areaname);
-		var_f2f66550 = array::filter(var_f2f66550, 0, &filter_areaname, str_areaname);
-		var_39624e3b = array::filter(var_39624e3b, 0, &filter_areaname, str_areaname);
+		m_a_e_staircase = array::filter(m_a_e_staircase, 0, &filter_areaname, str_areaname);
+		m_a_e_gates = array::filter(m_a_e_gates, 0, &filter_areaname, str_areaname);
 		m_n_power_index = n_power_index;
 		m_b_discovered = 0;
 	}

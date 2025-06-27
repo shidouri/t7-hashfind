@@ -2838,9 +2838,9 @@ function function_f9afa212(str_key, str_val = "targetname", var_d646fb81)
 	var_33b370d9 = getspawnerarray(str_key, str_val);
 	foreach(n_index, sp_camera in var_33b370d9)
 	{
-		var_d697d6e2[n_index] = spawner::simple_spawn_single(sp_camera, &function_12141c31);
+		a_vh_cameras[n_index] = spawner::simple_spawn_single(sp_camera, &function_12141c31);
 	}
-	return var_d697d6e2;
+	return a_vh_cameras;
 }
 
 /*
@@ -3988,7 +3988,7 @@ function function_fe5160df(b_true)
 function function_e547724d(a_ents)
 {
 	a_ents["raven"] hide();
-	level waittill(#"hash_755edaa4");
+	level waittill("show_ravens");
 	a_ents["raven"] show();
 }
 

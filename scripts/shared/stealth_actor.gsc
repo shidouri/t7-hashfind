@@ -78,7 +78,7 @@ function stop()
 		{
 			self setignoreent(player, 0);
 		}
-		self stealth_status::function_180adb28();
+		self stealth_status::icon_clean();
 	}
 }
 

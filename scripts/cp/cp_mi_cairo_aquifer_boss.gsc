@@ -911,14 +911,14 @@ function function_329f82a0()
 		target_org = target.origin + vectorscale((0, 0, 1), 10);
 		if(isplayer(target))
 		{
-			var_f769885c = (0, 0, 0);
+			offset_hack = (0, 0, 0);
 			accuracy = target function_3375c23();
 			accuracy = accuracy * 100;
 			if(accuracy < randomfloat(100))
 			{
-				var_f769885c = (randomfloat(100) - 50, 0, 16);
+				offset_hack = (randomfloat(100) - 50, 0, 16);
 			}
-			target_org = (target geteye() + (vectorscale((0, 0, -1), 6))) + var_f769885c;
+			target_org = (target geteye() + (vectorscale((0, 0, -1), 6))) + offset_hack;
 		}
 		magicbullet(getweapon("sniper_hyperion"), level.sniper_boss geteye() + (fwd * 20), target_org, level.sniper_boss);
 		return true;
@@ -1054,7 +1054,7 @@ function function_a354fb63(num)
 		level waittill("hacking_complete", b_success);
 		if(!b_success)
 		{
-			level notify(#"hash_90029dea");
+			level notify("hacking_aborted");
 		}
 		surge = "surge0" + (isdefined(num) ? "" + num : "");
 		if(b_success)
@@ -1138,7 +1138,7 @@ function function_339776e2(name)
 */
 function function_41ca61ef(num)
 {
-	level endon(#"hash_90029dea");
+	level endon("hacking_aborted");
 	thread function_dae6fcbf("reactor_lights_0" + (isdefined(num) ? "" + num : ""));
 	level thread cp_mi_cairo_aquifer_sound::function_ad15f6f5();
 	surge = "surge0" + (isdefined(num) ? "" + num : "");

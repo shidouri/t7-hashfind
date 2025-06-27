@@ -278,7 +278,7 @@ function register_clientfields()
 	var_6225e4bb = tablelookuprowcount("gamedata/tables/zm/zm_astro_names.csv");
 	if(isdefined(var_6225e4bb) && var_6225e4bb > 0)
 	{
-		clientfield::register("actor", "astro_name_index", 21000, getminbitcountfornum(var_6225e4bb + 1), "int", &function_ff7d3b7, 0, 0);
+		clientfield::register("actor", "astro_name_index", 21000, getminbitcountfornum(var_6225e4bb + 1), "int", &set_astro_name, 0, 0);
 	}
 	clientfield::register("scriptmover", "zombie_has_eyes", 21000, 1, "int", &zm::zombie_eyes_clientfield_cb, 0, 0);
 	clientfield::register("clientuimodel", "hudItems.showDpadDown_HackTool", 21000, 1, "int", undefined, 0, 0);
@@ -1095,7 +1095,7 @@ function function_36f98292()
 }
 
 /*
-	Name: function_ff7d3b7
+	Name: set_astro_name
 	Namespace: zm_moon
 	Checksum: 0x1EB83D6E
 	Offset: 0x4B40
@@ -1103,10 +1103,10 @@ function function_36f98292()
 	Parameters: 7
 	Flags: Linked
 */
-function function_ff7d3b7(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function set_astro_name(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	var_28a1ce70 = tablelookup("gamedata/tables/zm/zm_astro_names.csv", 0, newval - 1, 1);
-	self setdrawname(var_28a1ce70);
+	astro_name = tablelookup("gamedata/tables/zm/zm_astro_names.csv", 0, newval - 1, 1);
+	self setdrawname(astro_name);
 }
 
 /*

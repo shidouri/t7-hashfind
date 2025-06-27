@@ -1979,7 +1979,7 @@ function award_plunger()
 	self.widows_wine_knife_override = &function_9ce92341;
 	self zm_melee_weapon::award_melee_weapon("knife_plunger");
 	self thread function_9daec9e3();
-	self thread function_1fcb04d7();
+	self thread plunger_lost();
 }
 
 /*
@@ -1996,7 +1996,7 @@ function function_9ce92341()
 }
 
 /*
-	Name: function_1fcb04d7
+	Name: plunger_lost
 	Namespace: zm_castle_ee_side
 	Checksum: 0xA7186F86
 	Offset: 0x5990
@@ -2004,7 +2004,7 @@ function function_9ce92341()
 	Parameters: 0
 	Flags: Linked
 */
-function function_1fcb04d7()
+function plunger_lost()
 {
 	self endon("disconnect");
 	self waittill("bled_out");

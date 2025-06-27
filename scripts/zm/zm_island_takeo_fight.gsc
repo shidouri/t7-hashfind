@@ -846,7 +846,7 @@ function function_2e25785c()
 		var_36e3085a = self.var_fbe5299e;
 	}
 	level.var_36d0a784 = 0;
-	level.var_e6b38df = var_36e3085a + 3;
+	level.valve_recapture = var_36e3085a + 3;
 	level.var_2ddef893 = 0;
 	switch(var_36e3085a)
 	{
@@ -1325,7 +1325,7 @@ function function_55079785(v_pos)
 	level.var_2ddef893++;
 	if(level flag::get("takeofight_wave_spawning"))
 	{
-		if(!(isdefined(level.var_36d0a784) && level.var_36d0a784) && level.var_2ddef893 >= level.var_e6b38df)
+		if(!(isdefined(level.var_36d0a784) && level.var_36d0a784) && level.var_2ddef893 >= level.valve_recapture)
 		{
 			level thread zm_powerups::specific_powerup_drop("full_ammo", v_pos);
 			level.var_36d0a784 = 1;

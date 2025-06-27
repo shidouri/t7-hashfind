@@ -951,19 +951,19 @@ function function_45e9f465()
 			nd_path_start = getvehiclenode("lab_start", "targetname");
 		}
 	}
-	var_6549ae27 = spawner::simple_spawn_single("gear_vehicle");
-	mdl_part = util::spawn_model("p7_zm_bgb_gear_01", var_6549ae27.origin, s_end.angles);
-	mdl_part linkto(var_6549ae27);
+	vh_gear = spawner::simple_spawn_single("gear_vehicle");
+	mdl_part = util::spawn_model("p7_zm_bgb_gear_01", vh_gear.origin, s_end.angles);
+	mdl_part linkto(vh_gear);
 	mdl_part playloopsound("evt_b17_piece_lp");
 	util::wait_network_frame();
 	mdl_part clientfield::set("smoke_trail_fx", 1);
-	var_6549ae27 vehicle::get_on_and_go_path(nd_path_start);
-	var_6549ae27 waittill("reached_end_node");
-	var_6549ae27.delete_on_death = 1;
-	var_6549ae27 notify("death");
-	if(!isalive(var_6549ae27))
+	vh_gear vehicle::get_on_and_go_path(nd_path_start);
+	vh_gear waittill("reached_end_node");
+	vh_gear.delete_on_death = 1;
+	vh_gear notify("death");
+	if(!isalive(vh_gear))
 	{
-		var_6549ae27 delete();
+		vh_gear delete();
 	}
 	mdl_part moveto(s_end.origin, 0.1);
 	mdl_part waittill("movedone");

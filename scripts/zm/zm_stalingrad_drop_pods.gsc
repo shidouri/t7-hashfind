@@ -1127,7 +1127,7 @@ function function_94bb84a1(var_e7a36389, var_51d4ce0d)
 				mdl_part.origin = var_e7a36389.origin + vectorscale((0, 0, 1), 32);
 				mdl_part setvisibletoall();
 				mdl_part thread fx::play("drop_pod_reward_glow", mdl_part.origin, undefined, (("dragonride" + "_") + str_part) + "_found", 1);
-				mdl_part thread zm_stalingrad_util::function_3fbe7d5f();
+				mdl_part thread zm_stalingrad_util::rotate_randomly();
 				level.var_583e4a97.var_19c5f310 = mdl_part;
 			}
 			else

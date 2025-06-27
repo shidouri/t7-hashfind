@@ -782,7 +782,7 @@ function function_509ca7a6(enemy)
 			wait(0.05);
 			var_a4ef7967 = var_a4ef7967 + 50;
 		}
-		enemy stealth_status::function_180adb28(index, var_f69107b4);
+		enemy stealth_status::icon_clean(index, var_f69107b4);
 	}
 }
 

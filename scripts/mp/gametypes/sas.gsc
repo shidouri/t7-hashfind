@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\mp\_util;
 #using scripts\mp\gametypes\_globallogic;
 #using scripts\mp\gametypes\_globallogic_audio;
@@ -351,7 +351,7 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 			}
 			attacker playlocalsound("mpl_fracture_sting_moved");
 			attacker addplayerstatwithgametype("HUMILIATE_ATTACKER", 1);
-			self thread function_238fd5eb();
+			self thread playerhumiliation();
 		}
 	}
 	else
@@ -368,12 +368,12 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 			self globallogic_score::givepointstowin(level.setbacks * -1);
 			onplayerscore(undefined, self, undefined);
 		}
-		self thread function_238fd5eb();
+		self thread playerhumiliation();
 	}
 }
 
 /*
-	Name: function_238fd5eb
+	Name: playerhumiliation
 	Namespace: sas
 	Checksum: 0xF81789AC
 	Offset: 0x16B0
@@ -381,7 +381,7 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 	Parameters: 0
 	Flags: None
 */
-function function_238fd5eb()
+function playerhumiliation()
 {
 	self endon("disconnect");
 	self endon("death");

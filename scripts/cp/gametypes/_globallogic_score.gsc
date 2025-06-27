@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\cp\_bb;
 #using scripts\cp\_challenges;
 #using scripts\cp\_scoreevents;
@@ -1429,7 +1429,7 @@ function givekillstats(smeansofdeath, weapon, evictim)
 		{
 			function_28c6cf9e(getitemindexfromref("cybercom_camo"));
 		}
-		if(isdefined(evictim.enemy) && isdefined(evictim.enemy.var_e42818a3) && evictim.enemy.var_e42818a3)
+		if(isdefined(evictim.enemy) && isdefined(evictim.enemy.isdecoy) && evictim.enemy.isdecoy)
 		{
 			function_28c6cf9e(getitemindexfromref("cybercom_misdirection"));
 		}

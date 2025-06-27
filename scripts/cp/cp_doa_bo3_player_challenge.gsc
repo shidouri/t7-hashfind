@@ -1357,7 +1357,7 @@ function function_3ed913b4(room)
 	level thread doa_utility::function_c5f3ece8(&"CP_DOA_BO3_REDINS_WINNER");
 	wait(4);
 	level thread doa_utility::function_37fb5c23(winner.name);
-	winner.doa.var_74c73153++;
+	winner.doa.redinswins++;
 	spots = struct::get_array("redins_pickup_location");
 	level notify(#"hash_e1dc3538");
 	winner thread doa_player_utility::function_139199e1();
@@ -1776,7 +1776,7 @@ function function_5284e8dc(room)
 	var_29833f21.origin = room.var_7daa1c03.origin;
 	wait(0.05);
 	var_29833f21.health = 6000;
-	var_29833f21.var_6977f7b9 = 1;
+	var_29833f21.canblow = 1;
 	var_29833f21 launchvehicle(vectorscale((0, 0, 1), 100), (0, 0, 0), 1, 1);
 	room.var_677f63c8[room.var_677f63c8.size] = var_29833f21;
 	var_29833f21 thread function_76dd5557(room);
@@ -2067,7 +2067,7 @@ function function_5dac2dae(room)
 		}
 		else
 		{
-			if(isdefined(guy.var_6977f7b9) && guy.var_6977f7b9)
+			if(isdefined(guy.canblow) && guy.canblow)
 			{
 				guy launchvehicle((0, 0, getdvarint("scr_doa_chicken_bowl_blow_force", 5)), (0, 0, 0), 1);
 			}
@@ -2708,9 +2708,9 @@ function cow_damage_watch()
 				}
 				self playsound("zmb_cow_explode_gold");
 				location = self.origin;
-				var_888caf9f = doa_player_utility::function_5eb6e4d1().size + 10;
+				minamount = doa_player_utility::function_5eb6e4d1().size + 10;
 				maxamount = doa_player_utility::function_5eb6e4d1().size + 20;
-				level thread doa_pickups::spawnubertreasure(location, randomintrange(var_888caf9f, maxamount), 85, 1, 1, 1, undefined, 0);
+				level thread doa_pickups::spawnubertreasure(location, randomintrange(minamount, maxamount), 85, 1, 1, 1, undefined, 0);
 				self.sacred = undefined;
 			}
 		}

@@ -995,14 +995,14 @@ function function_1e3b5e00()
 function function_ccaca679()
 {
 	nd_start = getvehiclenode("sophia_flyin_start", "targetname");
-	var_2309b03e = vehicle::spawn(undefined, "sophia_vehicle", "flinger_vehicle", nd_start.origin, nd_start.angles);
-	var_2309b03e setspeed(100);
+	vh_sophia = vehicle::spawn(undefined, "sophia_vehicle", "flinger_vehicle", nd_start.origin, nd_start.angles);
+	vh_sophia setspeed(100);
 	var_a090a655 = util::spawn_model("p7_zm_gen_dark_arena_sphere", nd_start.origin, nd_start.angles);
-	var_a090a655 linkto(var_2309b03e);
-	var_2309b03e setignorepauseworld(1);
-	var_2309b03e vehicle::get_on_and_go_path(nd_start);
+	var_a090a655 linkto(vh_sophia);
+	vh_sophia setignorepauseworld(1);
+	vh_sophia vehicle::get_on_and_go_path(nd_start);
 	var_a090a655 delete();
-	var_2309b03e delete();
+	vh_sophia delete();
 }
 
 /*
@@ -1022,7 +1022,7 @@ function function_16d54ad3()
 			return;
 		}
 	#/
-	level.var_a090a655 thread function_7eefe596("sophia_activated");
+	level.var_a090a655 thread sophia_floating("sophia_activated");
 }
 
 /*
@@ -1073,24 +1073,24 @@ function function_9449053f()
 	{
 		player clientfield::set("sophia_delete_local", 1);
 	}
-	level.var_2309b03e = vehicle::spawn(undefined, "sophia_vehicle", "flinger_vehicle", self.origin, self.angles);
-	self linkto(level.var_2309b03e);
-	level.var_2309b03e setignorepauseworld(1);
+	level.vh_sophia = vehicle::spawn(undefined, "sophia_vehicle", "flinger_vehicle", self.origin, self.angles);
+	self linkto(level.vh_sophia);
+	level.vh_sophia setignorepauseworld(1);
 	self clientfield::set("sophia_transition_fx", 1);
 	level function_e483fde2(1);
 	self clientfield::set("sophia_transition_fx", 0);
 	self thread function_b87c7e9a();
 	self thread function_ab34209c();
 	nd_start = getvehiclenode("sophia_portal_start", "targetname");
-	level.var_2309b03e vehicle::get_on_and_go_path(nd_start);
+	level.vh_sophia vehicle::get_on_and_go_path(nd_start);
 	playsoundatposition("zmb_teleporter_teleport_out", self.origin);
 	playfx(level._effect["portal_3p"], self.origin);
 	util::wait_network_frame();
 	self ghost();
 	util::wait_network_frame();
 	var_648aa72d = getvehiclenode("sophia_theater_start", "targetname");
-	level.var_2309b03e attachpath(var_648aa72d);
-	level.var_2309b03e setspeedimmediate(0);
+	level.vh_sophia attachpath(var_648aa72d);
+	level.vh_sophia setspeedimmediate(0);
 	playfx(level._effect["portal_3p"], var_648aa72d.origin);
 	self show();
 	playsoundatposition("zmb_teleporter_teleport_in", self.origin);
@@ -1099,11 +1099,11 @@ function function_9449053f()
 		util::wait_network_frame();
 	}
 	wait(1);
-	level.var_2309b03e startpath();
-	level.var_2309b03e resumespeed();
-	level.var_2309b03e waittill("reached_end_node");
+	level.vh_sophia startpath();
+	level.vh_sophia resumespeed();
+	level.vh_sophia waittill("reached_end_node");
 	self unlink();
-	level.var_2309b03e delete();
+	level.vh_sophia delete();
 	level flag::set("sophia_at_teleporter");
 }
 
@@ -1121,7 +1121,7 @@ function function_ab34209c()
 	level endon("sophia_at_teleporter");
 	while(true)
 	{
-		level.var_2309b03e waittill("reached_node", nd_current);
+		level.vh_sophia waittill("reached_node", nd_current);
 		b_pause = 1;
 		if(isdefined(nd_current))
 		{
@@ -1136,11 +1136,11 @@ function function_ab34209c()
 				}
 				if(b_pause)
 				{
-					level.var_2309b03e setspeedimmediate(0);
+					level.vh_sophia setspeedimmediate(0);
 				}
 				else
 				{
-					level.var_2309b03e resumespeed();
+					level.vh_sophia resumespeed();
 				}
 				util::wait_network_frame();
 			}
@@ -1186,7 +1186,7 @@ function function_7389c635()
 	level.var_a090a655.origin = var_57cd6434.origin;
 	level.var_a090a655.angles = var_57cd6434.angles;
 	level function_e483fde2(1);
-	level.var_a090a655 thread function_7eefe596("boss_fight");
+	level.var_a090a655 thread sophia_floating("boss_fight");
 }
 
 /*
@@ -1267,7 +1267,7 @@ function function_e483fde2(b_solid)
 }
 
 /*
-	Name: function_7eefe596
+	Name: sophia_floating
 	Namespace: zm_genesis_ee_quest
 	Checksum: 0x8E929E90
 	Offset: 0x5290
@@ -1275,7 +1275,7 @@ function function_e483fde2(b_solid)
 	Parameters: 1
 	Flags: Linked
 */
-function function_7eefe596(str_endon)
+function sophia_floating(str_endon)
 {
 	level endon(str_endon);
 	self endon("death");

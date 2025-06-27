@@ -529,7 +529,7 @@ function snd115egg()
 function function_89a607c3()
 {
 	level endon(#"hash_c598ee9d");
-	var_169695f4 = array(1, 1, 5);
+	a_n_order = array(1, 1, 5);
 	self thread zm_sidequests::fake_use("115_trig_activated", &function_f36e092d);
 	self waittill("115_trig_activated");
 	playsoundatposition("zmb_ee_mus_activate", self.origin);

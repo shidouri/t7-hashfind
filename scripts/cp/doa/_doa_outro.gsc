@@ -300,7 +300,7 @@ function function_5e04bf78()
 	org.angles = silverback.angles;
 	org.origin = silverback.origin;
 	silverback linkto(org);
-	org namespace_a3646565::move_to_position_over_time(point2.origin, timems, height);
+	org bo3_silverback_battle::move_to_position_over_time(point2.origin, timems, height);
 	silverback thread doa_fx::function_285a2999("turret_impact");
 	silverback playsound("zmb_simianaut_roar");
 	level.doa.var_63e2b87e = silverback;
@@ -436,7 +436,7 @@ function function_5e04bf78()
 	Parameters: 2
 	Flags: Linked
 */
-function function_f7e6e4b1(scale = 1, var_fb37ad89 = 9999)
+function function_f7e6e4b1(scale = 1, maxhops = 9999)
 {
 	level endon(#"hash_448ca7a6");
 	self endon("death");
@@ -445,8 +445,8 @@ function function_f7e6e4b1(scale = 1, var_fb37ad89 = 9999)
 		level waittill(#"hash_71c0bde9");
 		vector = (randomint(20), randomint(20), 30) * scale;
 		self physicslaunch(self.origin, vector);
-		var_fb37ad89--;
-		if(var_fb37ad89 < 0)
+		maxhops--;
+		if(maxhops < 0)
 		{
 			return;
 		}

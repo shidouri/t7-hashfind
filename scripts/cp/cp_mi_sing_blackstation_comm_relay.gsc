@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_hacking;
 #using scripts\cp\_load;
@@ -461,7 +461,7 @@ function awaken_behavior()
 }
 
 /*
-	Name: function_48aa6d93
+	Name: robot_awaken
 	Namespace: cp_mi_sing_blackstation_comm_relay
 	Checksum: 0xF0E5E137
 	Offset: 0x27B0
@@ -469,7 +469,7 @@ function awaken_behavior()
 	Parameters: 1
 	Flags: None
 */
-function function_48aa6d93()
+function robot_awaken()
 {
 	// Unsupported VM revision (1B).
 }

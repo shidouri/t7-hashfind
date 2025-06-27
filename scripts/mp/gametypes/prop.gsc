@@ -1825,9 +1825,9 @@ function populateproplist()
 function setupprop()
 {
 	self notsolid();
-	if(!isdefined(level.phsettings.var_8f9d0c7c) || level.phsettings.var_8f9d0c7c == 0)
+	if(!isdefined(level.phsettings.playercontents) || level.phsettings.playercontents == 0)
 	{
-		level.phsettings.var_8f9d0c7c = self setcontents(0);
+		level.phsettings.playercontents = self setcontents(0);
 	}
 	else
 	{
@@ -2613,7 +2613,7 @@ function function_dc6b46ed(idflags, shitloc, weapon, friendlyfire, attackerishit
 	{
 		return true;
 	}
-	if(self function_e4b2f23())
+	if(self ishunter())
 	{
 		if(weapon.name == "concussion_grenade")
 		{
@@ -3107,7 +3107,7 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, sweapon, v
 			scoreevents::processscoreevent("prop_survived", player);
 			continue;
 		}
-		if(player != attacker && player function_e4b2f23() && victim.team == game["defenders"])
+		if(player != attacker && player ishunter() && victim.team == game["defenders"])
 		{
 			scoreevents::processscoreevent("prop_killed", player, victim);
 		}
@@ -3453,7 +3453,7 @@ function disablespawningforplayer()
 	{
 		return 0;
 	}
-	if(self function_e4b2f23())
+	if(self ishunter())
 	{
 		return 0;
 	}
@@ -3465,7 +3465,7 @@ function disablespawningforplayer()
 }
 
 /*
-	Name: function_e4b2f23
+	Name: ishunter
 	Namespace: prop
 	Checksum: 0xD9476B1E
 	Offset: 0x95D8
@@ -3473,7 +3473,7 @@ function disablespawningforplayer()
 	Parameters: 0
 	Flags: None
 */
-function function_e4b2f23()
+function ishunter()
 {
 	return isdefined(self.team) && self.team == game["attackers"];
 }
@@ -3649,7 +3649,7 @@ function propwaitminigameinit(time)
 	}
 	self.var_efe75c2f = 0;
 	self.var_61add00c = 0;
-	if(level.var_e5ad813f.var_d504a1f4 && self function_e4b2f23() && time > 8)
+	if(level.var_e5ad813f.var_d504a1f4 && self ishunter() && time > 8)
 	{
 		waittillframeend();
 		if(level.var_abcf2d12.size < 6)
@@ -4156,7 +4156,7 @@ function movetarget()
 	fxent hide();
 	foreach(player in level.players)
 	{
-		if(player function_e4b2f23())
+		if(player ishunter())
 		{
 			fxent showtoplayer(player);
 		}

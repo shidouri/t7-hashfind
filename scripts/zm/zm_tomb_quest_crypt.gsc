@@ -63,7 +63,7 @@ function on_player_connect_crypt()
 */
 function chamber_disc_puzzle_init()
 {
-	scene::add_scene_func("p7_fxanim_zm_ori_chamber_mid_ring_bundle", &function_746282b3, "init");
+	scene::add_scene_func("p7_fxanim_zm_ori_chamber_mid_ring_bundle", &link_disc, "init");
 	level.gem_start_pos = [];
 	level.gem_start_pos["crypt_gem_fire"] = 2;
 	level.gem_start_pos["crypt_gem_air"] = 3;
@@ -122,7 +122,7 @@ function chamber_disc_run()
 }
 
 /*
-	Name: function_746282b3
+	Name: link_disc
 	Namespace: zm_tomb_quest_crypt
 	Checksum: 0x983B703D
 	Offset: 0xBF8
@@ -130,7 +130,7 @@ function chamber_disc_run()
 	Parameters: 1
 	Flags: Linked
 */
-function function_746282b3(a_ents)
+function link_disc(a_ents)
 {
 	mdl_disc = a_ents["chamber_mid_ring"];
 	switch(self.targetname)

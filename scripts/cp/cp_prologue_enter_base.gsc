@@ -796,8 +796,8 @@ function function_d70eb0dd(a_ents)
 	/#
 		iprintlnbold("");
 	#/
-	var_cbd11028 = array("need_medic", "get_him_out", "more_men");
-	str_vo = array::random(var_cbd11028);
+	a_str_vo = array("need_medic", "get_him_out", "more_men");
+	str_vo = array::random(a_str_vo);
 	a_ents["tarmac_soldier"] thread function_c4ada726(str_vo, 400);
 }
 

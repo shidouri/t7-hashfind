@@ -877,18 +877,18 @@ function private function_c41b5928()
 		level.doa.var_2d09b979 = undefined;
 		return true;
 	}
-	var_a60f3304 = 0;
+	maxpossible = 0;
 	for(i = 0; i < level.doa.pickups.items.size; i++)
 	{
 		if(level.doa.round_number >= level.doa.pickups.items[i].var_dea19cf0)
 		{
-			var_a60f3304++;
+			maxpossible++;
 		}
 	}
 	/#
-		assert(var_a60f3304);
+		assert(maxpossible);
 	#/
-	if(level.doa.var_3cc04c3a.size < (var_a60f3304 / 4))
+	if(level.doa.var_3cc04c3a.size < (maxpossible / 4))
 	{
 		return true;
 	}

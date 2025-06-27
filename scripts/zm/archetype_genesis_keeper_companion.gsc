@@ -625,7 +625,7 @@ function private keepercompanionmovementservice(entity)
 		{
 			if(isdefined(entity.leader.var_fa1ecd39))
 			{
-				entity thread function_3463b8c2(entity.leader.var_fa1ecd39);
+				entity thread take_flinger(entity.leader.var_fa1ecd39);
 			}
 			return;
 		}
@@ -790,7 +790,7 @@ function private teleport_to_location(position, angles)
 }
 
 /*
-	Name: function_3463b8c2
+	Name: take_flinger
 	Namespace: keepercompanionbehavior
 	Checksum: 0xADE354E2
 	Offset: 0x2FB0
@@ -798,7 +798,7 @@ function private teleport_to_location(position, angles)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_3463b8c2(var_ee6ad78e)
+function private take_flinger(var_ee6ad78e)
 {
 	self endon("death");
 	self endon("outro");

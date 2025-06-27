@@ -312,13 +312,13 @@ function function_d30fe558(origin, force = 0)
 		self.var_99315107 = 0;
 	}
 	time = gettime();
-	var_bea0505e = time > self.var_99315107;
+	setimmediate = time > self.var_99315107;
 	distsq = distancesquared(self.origin, origin);
 	if(distsq < (128 * 128))
 	{
-		var_bea0505e = 1;
+		setimmediate = 1;
 	}
-	if(var_bea0505e)
+	if(setimmediate)
 	{
 		self setgoal(origin, 1);
 		frac = math::clamp(distsq / (1000 * 1000), 0, 1);

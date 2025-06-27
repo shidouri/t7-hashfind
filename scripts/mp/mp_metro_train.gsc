@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\mp\_events;
 #using scripts\mp\_util;
@@ -29,10 +29,10 @@ function init()
 	start2 = getvehiclenode("train_start_2", "targetname");
 	cars1 = [];
 	cars2 = [];
-	var_db3e7a5c = [];
-	var_4d45e997 = [];
-	spawn_start_train(cars1, var_db3e7a5c, start1, "train1");
-	spawn_start_train(cars2, var_4d45e997, start2, "train2");
+	dividers1 = [];
+	dividers2 = [];
+	spawn_start_train(cars1, dividers1, start1, "train1");
+	spawn_start_train(cars2, dividers2, start2, "train2");
 	var_c7297b2b = getentarray("metro_doors_inside_left", "targetname");
 	var_fe680264 = getentarray("metro_doors_outside_left", "targetname");
 	var_c3f0dd82 = getentarray("metro_doors_end_left", "targetname");
@@ -74,8 +74,8 @@ function init()
 	{
 		return;
 	}
-	level thread train_think(cars1, var_db3e7a5c, "train_start_1", start1, var_c7297b2b, var_fe680264, var_c3f0dd82, var_e91b1c22, var_7d375500, var_fe18c116, var_f66166da, "right");
-	level thread train_think(cars2, var_4d45e997, "train_start_2", start2, var_7ce6af9e, var_5159825b, var_e1604af1, var_c318a1b9, var_d1439c1d, var_fe600fa3, var_1ec2db3f, "left");
+	level thread train_think(cars1, dividers1, "train_start_1", start1, var_c7297b2b, var_fe680264, var_c3f0dd82, var_e91b1c22, var_7d375500, var_fe18c116, var_f66166da, "right");
+	level thread train_think(cars2, dividers2, "train_start_2", start2, var_7ce6af9e, var_5159825b, var_e1604af1, var_c318a1b9, var_d1439c1d, var_fe600fa3, var_1ec2db3f, "left");
 }
 
 /*
@@ -147,7 +147,7 @@ function showaftertime(time)
 }
 
 /*
-	Name: function_1b3e50b5
+	Name: rotatepieces
 	Namespace: mp_metro_train
 	Checksum: 0x5F7AF435
 	Offset: 0x10A0
@@ -155,7 +155,7 @@ function showaftertime(time)
 	Parameters: 5
 	Flags: Linked
 */
-function function_1b3e50b5(var_50a9e5d9, waittime, rotatetime, rotateangles, var_8efac8e4)
+function rotatepieces(var_50a9e5d9, waittime, rotatetime, rotateangles, var_8efac8e4)
 {
 	skip = var_8efac8e4;
 	foreach(var_4a3ded66 in var_50a9e5d9)
@@ -206,10 +206,10 @@ function train_think(cars, dividers, notifier, start, gate_a, gate_b, var_907164
 	{
 		barrier.originalorigin = barrier.origin;
 	}
-	var_ddb7f7d7 = vectorscale((0, 1, 0), 90);
+	rotatedirection = vectorscale((0, 1, 0), 90);
 	if(trackside == "left")
 	{
-		var_ddb7f7d7 = var_ddb7f7d7 * -1;
+		rotatedirection = rotatedirection * -1;
 	}
 	for(;;)
 	{
@@ -254,22 +254,22 @@ function train_think(cars, dividers, notifier, start, gate_a, gate_b, var_907164
 		{
 			playsoundatposition("vox_metr_metro_gap", speaker.origin);
 		}
-		level thread function_1b3e50b5(var_9071646e, 1, var_7de518c6, var_ddb7f7d7 * -1, 0);
+		level thread rotatepieces(var_9071646e, 1, var_7de518c6, rotatedirection * -1, 0);
 		var_9071646e[0] playsound("evt_gate_open");
 		var_5f47c084 function_a202446a(0, 0, var_7de518c6);
-		level thread function_1b3e50b5(gate_a, var_b909fdbf, gate_move_time, var_ddb7f7d7, 0);
+		level thread rotatepieces(gate_a, var_b909fdbf, gate_move_time, rotatedirection, 0);
 		gate_a[0] playsound("evt_gate_open");
-		level thread function_1b3e50b5(gate_b, var_b909fdbf, gate_move_time, var_ddb7f7d7, 1);
+		level thread rotatepieces(gate_b, var_b909fdbf, gate_move_time, rotatedirection, 1);
 		gate_b[0] playsound("evt_gate_open");
 		var_4eb99366 function_a202446a(1, 0, gate_move_time);
 		wait(getdvarfloat("gate_wait_close_door_end", 8));
-		level thread function_1b3e50b5(var_9071646e, 1, gate_move_time, (0, 0, 0), 0);
+		level thread rotatepieces(var_9071646e, 1, gate_move_time, (0, 0, 0), 0);
 		var_9071646e[0] playsound("evt_gate_close");
 		var_5f47c084 function_a202446a(0, 0, gate_move_time);
 		wait(getdvarfloat("gate_wait_close_doors", 4));
-		level thread function_1b3e50b5(gate_a, var_b909fdbf, gate_move_time, (0, 0, 0), 0);
+		level thread rotatepieces(gate_a, var_b909fdbf, gate_move_time, (0, 0, 0), 0);
 		gate_a[0] playsound("evt_gate_close");
-		level thread function_1b3e50b5(gate_b, var_b909fdbf, gate_move_time, (0, 0, 0), 1);
+		level thread rotatepieces(gate_b, var_b909fdbf, gate_move_time, (0, 0, 0), 1);
 		gate_b[0] playsound("evt_gate_close");
 		var_4eb99366 function_a202446a(0, 0, gate_move_time);
 		var_4eb99366 function_a202446a(1, gate_move_time, 0.25);

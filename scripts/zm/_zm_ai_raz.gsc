@@ -460,7 +460,7 @@ function spawn_raz()
 			ai.favoriteenemy.hunted_by++;
 		}
 		level.zombie_total--;
-		function_a74c2884();
+		waiting_for_next_raz_spawn();
 	}
 }
 
@@ -605,7 +605,7 @@ function can_spawn_raz()
 }
 
 /*
-	Name: function_a74c2884
+	Name: waiting_for_next_raz_spawn
 	Namespace: zm_ai_raz
 	Checksum: 0x262D82DB
 	Offset: 0x1708
@@ -613,7 +613,7 @@ function can_spawn_raz()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a74c2884()
+function waiting_for_next_raz_spawn()
 {
 	switch(level.players.size)
 	{
@@ -971,7 +971,7 @@ function special_raz_spawn(n_to_spawn = 1, var_e41e673a, b_force_spawn = 0, var_
 			}
 			playsoundatposition("zmb_raz_spawn", s_spawn_loc.origin);
 		}
-		function_a74c2884();
+		waiting_for_next_raz_spawn();
 	}
 	return 1;
 }

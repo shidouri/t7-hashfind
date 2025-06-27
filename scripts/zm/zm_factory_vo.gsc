@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\clientfield_shared;
@@ -219,10 +219,10 @@ function function_c23e3a71(var_49fefccd, n_index, b_wait_if_busy = 0, var_7e649f
 	Parameters: 4
 	Flags: Linked
 */
-function function_7aa5324a(var_cbd11028, b_wait_if_busy = 0, n_priority = 0, var_d1295208 = 0)
+function function_7aa5324a(a_str_vo, b_wait_if_busy = 0, n_priority = 0, var_d1295208 = 0)
 {
 	function_218256bd(1);
-	for(i = 0; i < var_cbd11028.size; i++)
+	for(i = 0; i < a_str_vo.size; i++)
 	{
 		if(i == 0)
 		{
@@ -232,7 +232,7 @@ function function_7aa5324a(var_cbd11028, b_wait_if_busy = 0, n_priority = 0, var
 		{
 			var_e27770b1 = 0.5;
 		}
-		function_897246e4(var_cbd11028[i], var_e27770b1, b_wait_if_busy, n_priority, var_d1295208);
+		function_897246e4(a_str_vo[i], var_e27770b1, b_wait_if_busy, n_priority, var_d1295208);
 	}
 	function_218256bd(0);
 }

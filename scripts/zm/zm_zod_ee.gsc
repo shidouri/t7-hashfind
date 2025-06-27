@@ -1180,7 +1180,7 @@ function function_c898ab1(var_a5322c01)
 function function_f09f9721()
 {
 	level endon(#"hash_c898ab1");
-	var_4843dc70 = [[ level.o_zod_train ]]->get_train_vehicle();
+	vh_train = [[ level.o_zod_train ]]->get_train_vehicle();
 	var_a9f994a9 = struct::get("ee_apothigod_gateworm_junction", "targetname");
 	str_station = [[ level.o_zod_train ]]->get_current_station();
 	switch(str_station)
@@ -1203,7 +1203,7 @@ function function_f09f9721()
 	}
 	while(true)
 	{
-		if(distance2dsquared(var_4843dc70.origin, var_a9f994a9.origin) <= dist2)
+		if(distance2dsquared(vh_train.origin, var_a9f994a9.origin) <= dist2)
 		{
 			return;
 		}

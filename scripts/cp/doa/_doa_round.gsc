@@ -730,9 +730,9 @@ function function_703bb8b2(round_number)
 	{
 		waves = max;
 	}
-	if(isdefined(level.doa.var_d0cde02c) && isdefined(level.doa.var_d0cde02c.var_474e643b))
+	if(isdefined(level.doa.var_d0cde02c) && isdefined(level.doa.var_d0cde02c.minwaves))
 	{
-		waves = level.doa.var_d0cde02c.var_474e643b;
+		waves = level.doa.var_d0cde02c.minwaves;
 	}
 	level.doa.var_677d1262 = gettime();
 	for(i = 0; i < waves; i++)

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\systems\gib;
@@ -7532,20 +7532,20 @@ function printhashids()
 		outputstring = outputstring + "";
 		foreach(s_craftable in level.zombie_include_craftables)
 		{
-			outputstring = outputstring + (((("" + s_craftable.name) + "") + s_craftable.var_2c8ee667) + "");
+			outputstring = outputstring + (((("" + s_craftable.name) + "") + s_craftable.hash_id) + "");
 			if(!isdefined(s_craftable.a_piecestubs))
 			{
 				continue;
 			}
 			foreach(s_piece in s_craftable.a_piecestubs)
 			{
-				outputstring = outputstring + (((s_piece.piecename + "") + s_piece.var_2c8ee667) + "");
+				outputstring = outputstring + (((s_piece.piecename + "") + s_piece.hash_id) + "");
 			}
 		}
 		outputstring = outputstring + "";
 		foreach(powerup in level.zombie_powerups)
 		{
-			outputstring = outputstring + (((powerup.powerup_name + "") + powerup.var_2c8ee667) + "");
+			outputstring = outputstring + (((powerup.powerup_name + "") + powerup.hash_id) + "");
 		}
 		outputstring = outputstring + "";
 		if(isdefined(level.aat_in_use) && level.aat_in_use)
@@ -7556,7 +7556,7 @@ function printhashids()
 				{
 					continue;
 				}
-				outputstring = outputstring + (((aat.name + "") + aat.var_2c8ee667) + "");
+				outputstring = outputstring + (((aat.name + "") + aat.hash_id) + "");
 			}
 		}
 		outputstring = outputstring + "";
@@ -7566,7 +7566,7 @@ function printhashids()
 			{
 				continue;
 			}
-			outputstring = outputstring + (((perk.alias + "") + perk.var_2c8ee667) + "");
+			outputstring = outputstring + (((perk.alias + "") + perk.hash_id) + "");
 		}
 		outputstring = outputstring + "";
 		println(outputstring);

@@ -1967,8 +1967,8 @@ function player_out_of_playable_area_override()
 {
 	if(isdefined(level.o_zod_train))
 	{
-		var_4843dc70 = [[ level.o_zod_train ]]->get_train_vehicle();
-		if(isdefined(var_4843dc70))
+		vh_train = [[ level.o_zod_train ]]->get_train_vehicle();
+		if(isdefined(vh_train))
 		{
 			if(!isdefined(level.var_72c68d94))
 			{
@@ -1988,7 +1988,7 @@ function player_out_of_playable_area_override()
 			foreach(trigger in level.var_72c68d94)
 			{
 				var_b28a4a84 = self istouching(trigger);
-				var_d2b747d1 = var_4843dc70 istouching(trigger);
+				var_d2b747d1 = vh_train istouching(trigger);
 				if(var_b28a4a84 && !var_d2b747d1)
 				{
 					return true;

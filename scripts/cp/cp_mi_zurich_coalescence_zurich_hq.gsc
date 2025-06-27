@@ -1035,7 +1035,7 @@ function function_6e7da34e()
 	{
 		visionset_mgr::activate("visionset", "cp_zurich_hallucination", player);
 	}
-	level notify(#"hash_755edaa4");
+	level notify("show_ravens");
 	foreach(s_scene in a_scenes)
 	{
 		s_scene util::delay(randomfloat(1), undefined, &scene::play);

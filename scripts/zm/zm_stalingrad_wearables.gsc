@@ -300,7 +300,7 @@ function function_18dda0a0()
 		}
 		player.s_wearable.model = "c_zom_dlc3_player_wings";
 		player.s_wearable.tag = "j_spine4";
-		player function_20f2df00();
+		player show_hat();
 		player.str_wearable = "dragon_wings";
 		player playsound("zmb_wearable_wing_wear");
 		zm::register_player_damage_callback(&function_9c197fbf);
@@ -557,7 +557,7 @@ function function_ad641a9f()
 		}
 		player.s_wearable.model = "c_zom_dlc3_player_raz_facemask";
 		player.s_wearable.tag = "j_head";
-		player function_20f2df00();
+		player show_hat();
 		player.str_wearable = "raz_hat";
 		player playsound("zmb_wearable_raz_wear");
 		zm::register_player_damage_callback(&function_9c197fbf);
@@ -695,7 +695,7 @@ function function_f3b06f8e()
 		}
 		player.s_wearable.model = "c_zom_dlc3_player_sentinel_drone_hat";
 		player.s_wearable.tag = "j_head";
-		player function_20f2df00();
+		player show_hat();
 		player playsound("zmb_wearable_sent_wear");
 		player.str_wearable = "sentinel_hat";
 		zm::register_player_damage_callback(&function_9c197fbf);
@@ -719,7 +719,7 @@ function function_caffcf07()
 }
 
 /*
-	Name: function_20f2df00
+	Name: show_hat
 	Namespace: zm_stalingrad_wearables
 	Checksum: 0xE8312DD2
 	Offset: 0x26B8
@@ -727,7 +727,7 @@ function function_caffcf07()
 	Parameters: 0
 	Flags: Linked
 */
-function function_20f2df00()
+function show_hat()
 {
 	self attach(self.s_wearable.model, self.s_wearable.tag);
 }

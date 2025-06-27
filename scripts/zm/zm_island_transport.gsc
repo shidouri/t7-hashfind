@@ -89,7 +89,7 @@ function spawn_unitrigger()
 		unitrigger_stub.script_noteworthy = self.script_noteworthy;
 		unitrigger_stub.hint_parm1 = 500;
 		unitrigger_stub.prompt_and_visibility_func = &function_da8a0706;
-		zm_unitrigger::register_static_unitrigger(unitrigger_stub, &function_32c54c4);
+		zm_unitrigger::register_static_unitrigger(unitrigger_stub, &sewer_think);
 	}
 }
 
@@ -253,7 +253,7 @@ function function_1388fe2d(player)
 }
 
 /*
-	Name: function_32c54c4
+	Name: sewer_think
 	Namespace: zm_island_transport
 	Checksum: 0x49BDFCDD
 	Offset: 0x14B8
@@ -261,7 +261,7 @@ function function_1388fe2d(player)
 	Parameters: 0
 	Flags: Linked
 */
-function function_32c54c4()
+function sewer_think()
 {
 	var_f7516332 = self.stub.e_parent;
 	while(true)
@@ -288,13 +288,13 @@ function function_32c54c4()
 			else
 			{
 				e_who zm_score::minus_to_player_score(n_cost);
-				self thread function_51885f3b(e_who, var_f7516332);
+				self thread sewer_run(e_who, var_f7516332);
 				level thread function_60b7284f(self.stub.e_parent.script_noteworthy);
 			}
 		}
 		else if(!level flag::get("flag_sewer_in_use_" + self.script_noteworthy))
 		{
-			self thread function_51885f3b(e_who, var_f7516332);
+			self thread sewer_run(e_who, var_f7516332);
 		}
 	}
 }
@@ -329,7 +329,7 @@ function function_60b7284f(str_location)
 }
 
 /*
-	Name: function_51885f3b
+	Name: sewer_run
 	Namespace: zm_island_transport
 	Checksum: 0x327B4216
 	Offset: 0x17B0
@@ -337,7 +337,7 @@ function function_60b7284f(str_location)
 	Parameters: 2
 	Flags: Linked
 */
-function function_51885f3b(e_who, var_f7516332)
+function sewer_run(e_who, var_f7516332)
 {
 	level flag::set("flag_sewer_in_use_" + var_f7516332.script_noteworthy);
 	if(!level flag::get("connect_meteor_site_to_operating_rooms"))

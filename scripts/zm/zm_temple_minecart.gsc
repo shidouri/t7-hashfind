@@ -261,8 +261,8 @@ function function_46d092ff()
 		player = players[p];
 		closestent = undefined;
 		closestdist = 0;
-		var_99732e8 = self function_a3fe9db2(player);
-		if(!var_99732e8)
+		playernear = self function_a3fe9db2(player);
+		if(!playernear)
 		{
 			continue;
 		}
@@ -950,7 +950,7 @@ function function_a2aafac6()
 	var_f127a043 = (forward * forwarddist) + vectorscale((0, 0, 1), 110);
 	time = forwarddist / speed;
 	players = getplayers();
-	var_e6eabdfa = [];
+	crashed_players = [];
 	if(isdefined(self.front))
 	{
 		self.front notsolid();
@@ -968,7 +968,7 @@ function function_a2aafac6()
 			continue;
 		}
 		var_8e3b7101[var_8e3b7101.size] = player;
-		var_e6eabdfa[var_e6eabdfa.size] = player;
+		crashed_players[crashed_players.size] = player;
 		player notify(#"hash_aa83d93d");
 		player clientfield::set_to_player("minecart_rumble", 0);
 		player playrumbleonentity("damage_heavy");

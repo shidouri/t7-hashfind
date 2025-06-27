@@ -444,12 +444,12 @@ function on_player_spawned()
 		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
 	#/
 	self.topdowncamera = 1;
-	self thread doa_player_utility::function_138c35de();
+	self thread doa_player_utility::playercreate();
 	self doa_player_utility::function_7d7a7fde();
 	self doa_player_utility::function_60123d1c();
 	self util::set_lighting_state();
 	self notify("give_achievement", "CP_UNLOCK_DOA");
-	var_9774756a = 0;
+	isrejoin = 0;
 	if(isdefined(level.doa.var_e6653624))
 	{
 		if(!isinarray(level.doa.var_e6653624, self.name))
@@ -461,14 +461,14 @@ function on_player_spawned()
 		{
 			if((gettime() - level.doa.var_a9ba4ffb[self.name]) <= (5 * 60000))
 			{
-				var_9774756a = 1;
+				isrejoin = 1;
 			}
 		}
 	}
 	if(isdefined(level.doa) && level.doa.round_number >= 9)
 	{
 		self.doa.lives = 0;
-		if(!(isdefined(var_9774756a) && var_9774756a))
+		if(!(isdefined(isrejoin) && isrejoin))
 		{
 			self.doa.var_80ffe475 = 1;
 		}
@@ -648,7 +648,7 @@ function function_555fb805()
 	if(!isdefined(level.doa))
 	{
 		level.doa = spawnstruct();
-		function_53bcdb30();
+		setrules();
 	}
 	if(!isdefined(level.doa.title1))
 	{
@@ -725,7 +725,7 @@ function function_555fb805()
 }
 
 /*
-	Name: function_53bcdb30
+	Name: setrules
 	Namespace: doa_core
 	Checksum: 0x84FB060
 	Offset: 0x3E80
@@ -733,7 +733,7 @@ function function_555fb805()
 	Parameters: 0
 	Flags: Linked
 */
-function function_53bcdb30()
+function setrules()
 {
 	/#
 		assert(isdefined(level.doa));
@@ -1076,7 +1076,7 @@ function function_9ac615ee(gameover, round = level.doa.round_number)
 			kills = self getdstat("deadOpsArcade", "enemyKills");
 			self setdstat("deadOpsArcade", "enemyKills", self.doa.kills + kills);
 			wins = self getdstat("deadOpsArcade", "redinsWins");
-			self setdstat("deadOpsArcade", "redinsWins", self.doa.var_74c73153 + wins);
+			self setdstat("deadOpsArcade", "redinsWins", self.doa.redinswins + wins);
 			chickens = self getdstat("deadOpsArcade", "chickensTamed");
 			self setdstat("deadOpsArcade", "chickensTamed", self.doa.var_d92a8d3e + chickens);
 			cows = self getdstat("deadOpsArcade", "cowsExploded");

@@ -539,31 +539,31 @@ function selectcharacterindextouse()
 */
 function function_be9932bc()
 {
-	var_9b100591 = [];
-	var_9b100591[0] = 0;
-	var_9b100591[1] = 1;
-	var_9b100591[2] = 2;
-	var_9b100591[3] = 3;
+	a_n_character = [];
+	a_n_character[0] = 0;
+	a_n_character[1] = 1;
+	a_n_character[2] = 2;
+	a_n_character[3] = 3;
 	a_e_players = getplayers();
 	if(a_e_players.size == 1)
 	{
-		var_9b100591 = array::randomize(var_9b100591);
-		if(var_9b100591[0] == 2)
+		a_n_character = array::randomize(a_n_character);
+		if(a_n_character[0] == 2)
 		{
 			level.has_richtofen = 1;
 		}
-		return var_9b100591[0];
+		return a_n_character[0];
 	}
 	n_characters_defined = 0;
 	foreach(e_player in a_e_players)
 	{
 		if(isdefined(e_player.characterindex))
 		{
-			arrayremovevalue(var_9b100591, e_player.characterindex, 0);
+			arrayremovevalue(a_n_character, e_player.characterindex, 0);
 			n_characters_defined++;
 		}
 	}
-	if(var_9b100591.size > 0)
+	if(a_n_character.size > 0)
 	{
 		if(n_characters_defined == (a_e_players.size - 1))
 		{
@@ -573,12 +573,12 @@ function function_be9932bc()
 				return 2;
 			}
 		}
-		var_9b100591 = array::randomize(var_9b100591);
-		if(var_9b100591[0] == 2)
+		a_n_character = array::randomize(a_n_character);
+		if(a_n_character[0] == 2)
 		{
 			level.has_richtofen = 1;
 		}
-		return var_9b100591[0];
+		return a_n_character[0];
 	}
 	return 0;
 }

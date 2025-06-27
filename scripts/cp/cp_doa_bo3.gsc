@@ -116,7 +116,7 @@ function init()
 	level.doa.var_5ddb204f = &function_aab05139;
 	level.doa.var_771e3915 = &bo3_enemy::function_771e3915;
 	bo3_enemy::init();
-	namespace_a3646565::init();
+	bo3_silverback_battle::init();
 	function_d1c7245c();
 	level.doa.enemyspawners = [];
 	/#
@@ -575,7 +575,7 @@ function boss_event(name)
 		}
 		case "silverback":
 		{
-			namespace_a3646565::function_fc48f9f3();
+			bo3_silverback_battle::function_fc48f9f3();
 			level notify(#"hash_593b80cb");
 			foreach(player in getplayers())
 			{
@@ -601,16 +601,16 @@ function function_87092704(room)
 	{
 		case "tankmaze":
 		{
-			room.var_6f369ab4 = 99;
+			room.maxseen = 99;
 			room.var_45da785b = &doa_bo3_player_challenge::function_6aa91f48;
 			room.var_58e293a2 = &doa_bo3_player_challenge::function_5f0b67a9;
 			room.var_c64606ef = &doa_bo3_player_challenge::function_f1915ffb;
 			room.var_1cd9eda = &doa_bo3_player_challenge::function_9e5e0a15;
 			room.var_2530dc89 = &doa_bo3_player_challenge::function_a25fc96;
-			room.var_5281efe5 = 47;
+			room.minround = 47;
 			room.var_2b9a70de = 47;
 			room.timeout = 90;
-			room.var_a90de2a1 = 30;
+			room.minbetween = 30;
 			room.random = 15;
 			room.banner = 3;
 			room.var_ac3f2368 = 0;
@@ -618,15 +618,15 @@ function function_87092704(room)
 		}
 		case "redins":
 		{
-			room.var_6f369ab4 = 99;
+			room.maxseen = 99;
 			room.var_45da785b = &doa_bo3_player_challenge::function_ba487e2a;
 			room.var_58e293a2 = &doa_bo3_player_challenge::function_f14ef72f;
 			room.var_c64606ef = &doa_bo3_player_challenge::function_ce5fc0d;
 			room.var_1cd9eda = &doa_bo3_player_challenge::function_9d1b24f7;
 			room.var_2530dc89 = &doa_bo3_player_challenge::function_e13abd74;
-			room.var_5281efe5 = 11;
+			room.minround = 11;
 			room.var_2b9a70de = 11;
-			room.var_a90de2a1 = 30;
+			room.minbetween = 30;
 			room.timeout = -1;
 			room.random = 15;
 			room.var_ac3f2368 = 0;
@@ -634,14 +634,14 @@ function function_87092704(room)
 		}
 		case "spiral":
 		{
-			room.var_6f369ab4 = 1;
+			room.maxseen = 1;
 			room.var_45da785b = &doa_bo3_player_challenge::function_31c377e;
 			room.var_58e293a2 = &doa_bo3_player_challenge::function_8e0e22bb;
 			room.var_1cd9eda = &doa_bo3_player_challenge::function_47a3686b;
 			room.var_c64606ef = &doa_bo3_player_challenge::function_eee6e911;
 			room.var_2530dc89 = &doa_bo3_player_challenge::function_7823dbb8;
-			room.var_5281efe5 = 19;
-			room.var_cbad0e8f = 19;
+			room.minround = 19;
+			room.maxround = 19;
 			room.var_2b9a70de = 19;
 			room.timeout = -1;
 			room.var_ac3f2368 = 0;
@@ -649,17 +649,17 @@ function function_87092704(room)
 		}
 		case "truck_soccer":
 		{
-			room.var_6f369ab4 = 99;
+			room.maxseen = 99;
 			room.var_45da785b = &doa_bo3_player_challenge::function_c7e4d911;
 			room.var_58e293a2 = &doa_bo3_player_challenge::function_2ea4cb82;
 			room.var_c64606ef = &doa_bo3_player_challenge::function_b3939e94;
 			room.var_1cd9eda = &doa_bo3_player_challenge::function_92349eb6;
 			room.var_2530dc89 = &doa_bo3_player_challenge::function_fd4f5419;
 			room.banner = 2;
-			room.var_5281efe5 = 26;
+			room.minround = 26;
 			room.var_2b9a70de = 26;
 			room.timeout = 120;
-			room.var_a90de2a1 = 30;
+			room.minbetween = 30;
 			room.random = 15;
 			room.var_ac3f2368 = 0;
 			break;
@@ -723,7 +723,7 @@ function function_957373c6(def)
 			def.var_23502a36 = 1;
 			def.var_3ceda880 = 1;
 			def.var_965be9 = &doa_bo3_player_challenge::function_c0485deb;
-			def.var_474e643b = 36;
+			def.minwaves = 36;
 			break;
 		}
 		case 6:
@@ -735,7 +735,7 @@ function function_957373c6(def)
 			def.spawnfunc = &bo3_enemy::function_45849d81;
 			def.var_23502a36 = 1;
 			def.var_3ceda880 = 1;
-			def.var_474e643b = 36;
+			def.minwaves = 36;
 			break;
 		}
 		case 11:
@@ -759,7 +759,7 @@ function function_957373c6(def)
 			def.maxhitpoints = 1000;
 			def.var_23502a36 = 1;
 			def.var_3ceda880 = 1;
-			def.var_474e643b = 50;
+			def.minwaves = 50;
 			def.var_a0b2e897 = "blood";
 			def.var_79c72134 = 1;
 			break;
@@ -879,7 +879,7 @@ function function_957373c6(def)
 			def.var_3ceda880 = 0;
 			def.cooldown = 0;
 			def.var_759562f7 = 5000;
-			def.var_474e643b = 20;
+			def.minwaves = 20;
 			def.spider_count = 24;
 			def.var_9cf005d1 = 0;
 			def.var_bb9ff15b = 2;
@@ -908,7 +908,7 @@ function function_957373c6(def)
 function function_7ea6d638(def)
 {
 	def.round = def.round + 64;
-	def.var_474e643b = def.var_474e643b + 4;
+	def.minwaves = def.minwaves + 4;
 	def.spider_count = def.spider_count + 12;
 	if(def.spider_count > 64)
 	{

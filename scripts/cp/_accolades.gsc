@@ -926,7 +926,7 @@ function function_8082e9f0()
 			}
 			if(getdvarint("") > 0)
 			{
-				self function_1ea616fe();
+				self print_accolades();
 			}
 			else
 			{
@@ -989,7 +989,7 @@ function function_7aaf1e5d()
 }
 
 /*
-	Name: function_1ea616fe
+	Name: print_accolades
 	Namespace: accolades
 	Checksum: 0xA3AABF7D
 	Offset: 0x2960
@@ -997,7 +997,7 @@ function function_7aaf1e5d()
 	Parameters: 0
 	Flags: Linked
 */
-function function_1ea616fe()
+function print_accolades()
 {
 	/#
 		x = 0;

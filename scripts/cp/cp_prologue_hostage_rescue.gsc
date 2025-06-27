@@ -237,7 +237,7 @@ function function_88ddc4d5()
 */
 function function_70b550de(a_ents)
 {
-	a_ents["underground_truck_explode"] waittill(#"hash_5ec0d21e");
+	a_ents["underground_truck_explode"] waittill("swap_model");
 	a_ents["underground_truck_explode"] setmodel("veh_t7_civ_truck_med_cargo_egypt_dead");
 	var_f33f812b = getent("fuel_truck_faxnim_clip", "targetname");
 	var_f33f812b solid();

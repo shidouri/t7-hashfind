@@ -311,7 +311,7 @@ function init_redphone_eggs()
 {
 	level endon(#"hash_2d7a77fa");
 	var_85d06ae4 = struct::get_array("egg_phone", "targetname");
-	var_a008170d = array(0, 1, 2, 3, 4, 5, 6, 7, 8);
+	a_n_radio = array(0, 1, 2, 3, 4, 5, 6, 7, 8);
 	if(var_85d06ae4.size <= 0)
 	{
 		return;
@@ -337,11 +337,11 @@ function init_redphone_eggs()
 		activation = s_phone function_de8ef595();
 		if(isdefined(activation) && activation)
 		{
-			n_radio = array::random(var_a008170d);
-			arrayremovevalue(var_a008170d, n_radio);
-			if(var_a008170d.size <= 0)
+			n_radio = array::random(a_n_radio);
+			arrayremovevalue(a_n_radio, n_radio);
+			if(a_n_radio.size <= 0)
 			{
-				var_a008170d = array(0, 1, 2, 3, 4, 5, 6, 7, 8);
+				a_n_radio = array(0, 1, 2, 3, 4, 5, 6, 7, 8);
 			}
 			playsoundatposition("vox_egg_redphone_" + n_radio, s_phone.origin);
 			var_693fabd9 = n_radio;

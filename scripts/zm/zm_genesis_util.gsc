@@ -3141,7 +3141,7 @@ function function_bc81bb3b()
 		while(true)
 		{
 			n_offset = 0;
-			var_3b72f06c = [];
+			a_n_offsets = [];
 			v_color = (1, 1, 0);
 			if(level flag::exists(self.script_flag) && level flag::get(self.script_flag))
 			{
@@ -3153,7 +3153,7 @@ function function_bc81bb3b()
 				foreach(i, str_flag in level.zone_flags[self.script_flag])
 				{
 					n_offset = n_offset - 16;
-					var_3b72f06c[i] = n_offset;
+					a_n_offsets[i] = n_offset;
 				}
 				foreach(j, str_flag in level.zone_flags[self.script_flag])
 				{
@@ -3162,7 +3162,7 @@ function function_bc81bb3b()
 					{
 						var_1adee14a = (0, 1, 0);
 					}
-					print3d(self.origin + (0, 0, 64 + var_3b72f06c[j]), "" + str_flag, var_1adee14a, 1, 0.5);
+					print3d(self.origin + (0, 0, 64 + a_n_offsets[j]), "" + str_flag, var_1adee14a, 1, 0.5);
 				}
 			}
 			wait(0.05);

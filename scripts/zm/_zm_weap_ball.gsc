@@ -630,7 +630,7 @@ function give_player_ball(player)
 	Parameters: 2
 	Flags: Linked
 */
-function function_257ed160(player, var_501dd320)
+function function_257ed160(player, should_upload)
 {
 	if(!isdefined(player) || !isdefined(player.carryobject))
 	{
@@ -652,7 +652,7 @@ function function_257ed160(player, var_501dd320)
 	ball.lastcarrierscored = 1;
 	player gameobjects::take_carry_weapon(ball.carryweapon);
 	ball ball_set_dropped(1);
-	if(var_501dd320)
+	if(should_upload)
 	{
 		ball thread upload_ball(self);
 	}

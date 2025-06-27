@@ -628,7 +628,7 @@ function private manage_companion_movement(entity)
 	}
 	if(entity.leader.is_flung === 1)
 	{
-		entity thread function_3463b8c2(entity.leader.var_fa1ecd39);
+		entity thread take_flinger(entity.leader.var_fa1ecd39);
 	}
 	foreach(player in level.players)
 	{
@@ -816,7 +816,7 @@ function private function_34117adf(var_5935e1b9)
 }
 
 /*
-	Name: function_3463b8c2
+	Name: take_flinger
 	Namespace: zodcompanionbehavior
 	Checksum: 0x9B0A229
 	Offset: 0x2CA0
@@ -824,7 +824,7 @@ function private function_34117adf(var_5935e1b9)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_3463b8c2(var_ee6ad78e)
+function private take_flinger(var_ee6ad78e)
 {
 	self.var_c0e8df41 = 1;
 	var_c9277d64 = getnodearray("flinger_traversal", "script_noteworthy");

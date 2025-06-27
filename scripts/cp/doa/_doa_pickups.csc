@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_util;
 #using scripts\cp\doa\_doa_camera;
@@ -185,7 +185,7 @@ function function_77c1258e(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_6093755a
+	Name: rotateself
 	Namespace: doa_pickups
 	Checksum: 0x63C99D7B
 	Offset: 0x1340
@@ -193,7 +193,7 @@ function function_77c1258e(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 0
 	Flags: Linked
 */
-function function_6093755a()
+function rotateself()
 {
 	self notify(#"hash_398ca74c");
 	self endon(#"hash_398ca74c");
@@ -228,7 +228,7 @@ function pickuprotate(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 	}
 	if(newval)
 	{
-		self.fakemodel thread function_6093755a();
+		self.fakemodel thread rotateself();
 	}
 	else
 	{

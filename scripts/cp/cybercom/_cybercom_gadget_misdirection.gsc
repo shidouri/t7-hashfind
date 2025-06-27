@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_challenges;
 #using scripts\cp\_util;
@@ -312,8 +312,8 @@ function function_10cd71b(decoy, &potentialtargets)
 	maxs = vectorscale((-1, -1, -1), 1000000);
 	playerforward = anglestoforward(self getplayerangles());
 	playerforward = (playerforward[0], playerforward[1], 0);
-	var_81ca05ac = anglestoright(self getplayerangles());
-	var_81ca05ac = (var_81ca05ac[0], var_81ca05ac[1], 0);
+	playerright = anglestoright(self getplayerangles());
+	playerright = (playerright[0], playerright[1], 0);
 	foreach(target in potentialtargets)
 	{
 		origin = target.origin;
@@ -331,7 +331,7 @@ function function_10cd71b(decoy, &potentialtargets)
 	var_6a0945f2 = var_b333c85b;
 	maxtries = 6;
 	var_539aaa1a = 0;
-	step = var_81ca05ac * getdvarint("scr_misdirection_decoy_spacing", 90);
+	step = playerright * getdvarint("scr_misdirection_decoy_spacing", 90);
 	while(maxtries > 0)
 	{
 		left = var_6a0945f2 + ((6 - maxtries) * step);
@@ -408,7 +408,7 @@ function function_4adc7dc8(&potentialtargets)
 	decoy setmodel("tag_origin");
 	decoy makesentient();
 	decoy.team = self.team;
-	decoy.var_e42818a3 = 1;
+	decoy.isdecoy = 1;
 	decoy ghost();
 	decoy initthreatbias();
 	foreach(target in potentialtargets)

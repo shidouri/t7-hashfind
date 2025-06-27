@@ -558,7 +558,7 @@ function activatezip(rider)
 {
 	zombs = getaispeciesarray("axis");
 	self.riders = [];
-	self.var_5dbcd881 = 0;
+	self.canshock = 0;
 	for(i = 0; i < zombs.size; i++)
 	{
 		if(isdefined(zombs[i]) && isalive(zombs[i]) && zombs[i] istouching(self.zipdamagevolume))
@@ -735,7 +735,7 @@ function playerzipdamage(parent)
 			return;
 		}
 	}
-	if(!isdefined(self.zipshock) && !self laststand::player_is_in_laststand() && parent.var_5dbcd881 == 1)
+	if(!isdefined(self.zipshock) && !self laststand::player_is_in_laststand() && parent.canshock == 1)
 	{
 		self.zipshock = 1;
 		self shellshock("death", 3);

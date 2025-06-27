@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_laststand;
 #using scripts\cp\_load;
@@ -127,7 +127,7 @@ function __init__()
 	level thread function_44a35094();
 	function_13eef9b9();
 	function_6889d515();
-	namespace_37cacec1::function_9cb5d4c9();
+	bonuszmutil::function_9cb5d4c9();
 	level.zombie_team = "axis";
 	callback::on_spawned(&function_36a89e89);
 	callback::on_player_killed(&function_f98bc462);
@@ -282,7 +282,7 @@ function private function_13eef9b9()
 function function_36a89e89()
 {
 	self thread function_fa34e301();
-	self thread namespace_36e5bc12::function_b80a73a4();
+	self thread bonuszmsound::function_b80a73a4();
 	self thread function_7ef5e890();
 	self playerknockback(0);
 }
@@ -723,7 +723,7 @@ function function_aed40969(var_c3afa726, str_targetname, force_spawn)
 		self.disable_head_gib = 1;
 	}
 	self thread function_745c9570();
-	self thread namespace_36e5bc12::function_f46e57be();
+	self thread bonuszmsound::function_f46e57be();
 	self thread function_d0d9ed35();
 	self thread function_29e1570d();
 	self thread function_9bc25e40();
@@ -1044,7 +1044,7 @@ function function_48401071()
 			continue;
 		}
 		var_382bd177 = self.var_2985e88a == "robot";
-		var_6fc198b2 = isdefined(self.var_be85d412) && self.var_be85d412 || namespace_37cacec1::function_51828ce6();
+		var_6fc198b2 = isdefined(self.var_be85d412) && self.var_be85d412 || bonuszmutil::function_51828ce6();
 		if(!var_382bd177 && !var_6fc198b2)
 		{
 			wait(0.05);
@@ -1135,7 +1135,7 @@ function function_d0d9ed35()
 	}
 	if(!(isdefined(self.var_d4d290e) && self.var_d4d290e))
 	{
-		newhealth = namespace_37cacec1::function_165bd27a(newhealth);
+		newhealth = bonuszmutil::function_165bd27a(newhealth);
 		if(newhealth > 0)
 		{
 			self.health = newhealth;
@@ -1388,7 +1388,7 @@ function function_7effc669(var_f85c1f6a)
 	{
 		return false;
 	}
-	if(namespace_37cacec1::function_5f2c4513() <= 0)
+	if(bonuszmutil::function_5f2c4513() <= 0)
 	{
 		return false;
 	}
@@ -1470,14 +1470,14 @@ function function_9bc25e40()
 */
 function function_7e75b892(var_14e6a7e9, var_5b43e537, var_df4e4d0f)
 {
-	if(level.var_b1955bd6 >= namespace_37cacec1::function_5f2c4513())
+	if(level.var_b1955bd6 >= bonuszmutil::function_5f2c4513())
 	{
 		return;
 	}
 	var_28b84d73 = level.var_9f14c2b8[0] spawner::spawn(1);
 	if(isdefined(var_28b84d73))
 	{
-		var_c3afd9e9 = namespace_37cacec1::function_ec036ed3(var_28b84d73, var_14e6a7e9, var_df4e4d0f);
+		var_c3afd9e9 = bonuszmutil::function_ec036ed3(var_28b84d73, var_14e6a7e9, var_df4e4d0f);
 		/#
 			if(isdefined(level.activeplayers) && level.activeplayers.size)
 			{
@@ -1507,7 +1507,7 @@ function function_cc657250()
 {
 	self waittill("death");
 	level.var_d0e37460++;
-	if(level.var_d0e37460 >= namespace_37cacec1::function_5f2c4513())
+	if(level.var_d0e37460 >= bonuszmutil::function_5f2c4513())
 	{
 		level flag::set("bzmExtraZombieCleared");
 	}
@@ -1724,7 +1724,7 @@ function function_29e1570d()
 		self thread function_7428c0cf();
 		self thread function_190da7c8();
 		self waittill("stop_inert");
-		self namespace_37cacec1::function_d68296ac();
+		self bonuszmutil::function_d68296ac();
 		level.var_3004e0c8 = 1;
 		self thread function_5e4284a5();
 		self flag::set("bzm_zombie_attack");
@@ -1864,7 +1864,7 @@ function function_b04fbef3()
 				wait(randomintrange(2, 3));
 				continue;
 			}
-			gotonode = namespace_37cacec1::function_5e408c24(self.origin, var_df4e4d0f, 64, 1024);
+			gotonode = bonuszmutil::function_5e408c24(self.origin, var_df4e4d0f, 64, 1024);
 			if(isdefined(gotonode))
 			{
 				self setgoal(gotonode);
@@ -2066,7 +2066,7 @@ function zombie_death_event(zombie)
 		}
 		zombie clientfield::set("arch_actor_fire_fx", 3);
 	}
-	zombie thread namespace_fdfaa57d::function_b67e03f7();
+	zombie thread bonuszmdrops::function_b67e03f7();
 	if(isdefined(zombie.attacker) && isplayer(zombie.attacker))
 	{
 		zombie.attacker notify("zom_kill", zombie);
@@ -2332,7 +2332,7 @@ function bzmutil_waitforallzombiestodie()
 		{
 			if(isdefined(level.var_a9e78bf7) && level.var_a9e78bf7["zombifyenabled"])
 			{
-				if(!level.var_b1955bd6 && namespace_37cacec1::function_5f2c4513() || !level flag::get("bzmExtraZombieCleared"))
+				if(!level.var_b1955bd6 && bonuszmutil::function_5f2c4513() || !level flag::get("bzmExtraZombieCleared"))
 				{
 					wait(1);
 					continue;
@@ -2360,7 +2360,7 @@ function private function_9b15c7b()
 	{
 		if(isdefined(level.var_a9e78bf7) && level.var_a9e78bf7["zombifyenabled"])
 		{
-			if(!level.var_b1955bd6 && namespace_37cacec1::function_5f2c4513() || !level flag::get("bzmExtraZombieCleared"))
+			if(!level.var_b1955bd6 && bonuszmutil::function_5f2c4513() || !level flag::get("bzmExtraZombieCleared"))
 			{
 				zombies = getaiteamarray("axis");
 				foreach(zombie in zombies)
@@ -2430,7 +2430,7 @@ function function_11692fba()
 		{
 			if(isdefined(level.var_a9e78bf7) && level.var_a9e78bf7["zombifyenabled"])
 			{
-				if(!level.var_b1955bd6 && namespace_37cacec1::function_5f2c4513() || !level flag::get("bzmExtraZombieCleared"))
+				if(!level.var_b1955bd6 && bonuszmutil::function_5f2c4513() || !level flag::get("bzmExtraZombieCleared"))
 				{
 					wait(1);
 					continue;
@@ -2464,12 +2464,12 @@ function function_88adb698(var_454219da, levelstart)
 	/#
 		assert(isdefined(var_454219da));
 	#/
-	namespace_a432d965::function_da5f2c0d(getdvarstring("mapname"), var_454219da);
+	bonuszmdata::function_da5f2c0d(getdvarstring("mapname"), var_454219da);
 	if(!levelstart && level.var_a9e78bf7["onlyuseonstart"])
 	{
 		level.var_a9e78bf7["extraspawns"] = 0;
 	}
-	if(!namespace_37cacec1::function_5f2c4513())
+	if(!bonuszmutil::function_5f2c4513())
 	{
 		level flag::set("bzmExtraZombieCleared");
 	}
@@ -2481,7 +2481,7 @@ function function_88adb698(var_454219da, levelstart)
 	level.var_bcd51977 = 0;
 	level.var_b1955bd6 = 0;
 	level.var_d0e37460 = 0;
-	namespace_2396e2d7::function_b6c845e8();
+	bonuszmspawner::function_b6c845e8();
 	function_aaa07980();
 	level notify(#"hash_2d2866aa");
 }

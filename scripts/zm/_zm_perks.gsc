@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\array_shared;
@@ -591,9 +591,9 @@ function vending_trigger_think()
 		player zm_score::minus_to_player_score(current_cost);
 		bb::logpurchaseevent(player, self, current_cost, perk, 0, "_perk", "_purchased");
 		perkhash = -1;
-		if(isdefined(level._custom_perks[perk]) && isdefined(level._custom_perks[perk].var_2c8ee667))
+		if(isdefined(level._custom_perks[perk]) && isdefined(level._custom_perks[perk].hash_id))
 		{
-			perkhash = level._custom_perks[perk].var_2c8ee667;
+			perkhash = level._custom_perks[perk].hash_id;
 		}
 		player recordmapevent(29, gettime(), self.origin, level.round_number, perkhash);
 		player.perk_purchased = perk;
@@ -1967,7 +1967,7 @@ function register_perk_basic_info(str_perk, str_alias, n_perk_cost, str_hint_str
 	#/
 	_register_undefined_perk(str_perk);
 	level._custom_perks[str_perk].alias = str_alias;
-	level._custom_perks[str_perk].var_2c8ee667 = hashstring(str_alias);
+	level._custom_perks[str_perk].hash_id = hashstring(str_alias);
 	level._custom_perks[str_perk].cost = n_perk_cost;
 	level._custom_perks[str_perk].hint_string = str_hint_string;
 	level._custom_perks[str_perk].perk_bottle_weapon = w_perk_bottle_weapon;

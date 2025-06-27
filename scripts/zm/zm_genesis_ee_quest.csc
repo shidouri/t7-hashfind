@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\animation_shared;
 #using scripts\shared\array_shared;
@@ -190,7 +190,7 @@ function sophia_transition_fx(localclientnum, oldval, newval, bnewent, binitials
 */
 function sophia_follow(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	level endon(#"hash_249c0595");
+	level endon("sophia_delete");
 	var_1c7b6837 = getent(localclientnum, "sophia_eye", "targetname");
 	if(!isdefined(var_1c7b6837))
 	{

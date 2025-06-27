@@ -183,7 +183,7 @@ function main()
 	}
 	level.custom_ai_type[level.custom_ai_type.size] = &zm_ai_dogs::init;
 	spawner::add_archetype_spawn_function("zombie_dog", &function_6db62803);
-	spawner::add_archetype_spawn_function("astronaut", &function_ff7d3b7);
+	spawner::add_archetype_spawn_function("astronaut", &set_astro_name);
 	level thread zm_moon_utility::hacker_location_random_init();
 	level._zombie_custom_add_weapons = &custom_add_weapons;
 	level.zombiemode_gasmask_reset_player_model = &gasmask_reset_player_model;
@@ -268,7 +268,7 @@ function main()
 }
 
 /*
-	Name: function_ff7d3b7
+	Name: set_astro_name
 	Namespace: zm_moon
 	Checksum: 0x7462CAC5
 	Offset: 0x29B8
@@ -276,7 +276,7 @@ function main()
 	Parameters: 0
 	Flags: Linked
 */
-function function_ff7d3b7()
+function set_astro_name()
 {
 	do
 	{

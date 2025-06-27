@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_challenges;
 #using scripts\cp\cybercom\_cybercom;
@@ -439,12 +439,12 @@ function system_overload(attacker, disabletimemsec, weapon = getweapon("gadget_s
 	wait(randomfloatrange(0, 0.75));
 	disablefor = (gettime() + disabletime) + randomint(3000);
 	type = self cybercom::function_5e3d3aa();
-	var_c60a5dd5 = type == "crc";
-	var_fea6d69a = 0;
+	iscrouching = type == "crc";
+	ismarching = 0;
 	var_243ca3e3 = self.pathgoalpos;
 	if(self ai::has_behavior_attribute("move_mode"))
 	{
-		var_fea6d69a = self ai::get_behavior_attribute("move_mode") == "marching";
+		ismarching = self ai::get_behavior_attribute("move_mode") == "marching";
 	}
 	self thread function_53cfe88a();
 	self orientmode("face default");
@@ -459,7 +459,7 @@ function system_overload(attacker, disabletimemsec, weapon = getweapon("gadget_s
 	self.ignoreall = 1;
 	while(gettime() < disablefor)
 	{
-		if(var_c60a5dd5)
+		if(iscrouching)
 		{
 			blackboard::setblackboardattribute(self, "_stance", "crouch");
 		}
@@ -475,11 +475,11 @@ function system_overload(attacker, disabletimemsec, weapon = getweapon("gadget_s
 		self thread cybercom::stopanimscriptedonnotify("damage_pain", "restart_anim", 1, attacker, weapon);
 		self thread cybercom::stopanimscriptedonnotify("notify_melee_damage", "restart_anim", 1, attacker, weapon);
 		self waittillmatch(#"restart_anim");
-		if(var_c60a5dd5)
+		if(iscrouching)
 		{
 			blackboard::setblackboardattribute(self, "_stance", "crouch");
 		}
-		if(var_fea6d69a)
+		if(ismarching)
 		{
 			self ai::set_behavior_attribute("move_mode", "marching");
 		}

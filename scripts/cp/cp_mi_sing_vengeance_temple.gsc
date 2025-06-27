@@ -983,7 +983,7 @@ function cleanup_temple()
 		{
 			if(isdefined(enemy))
 			{
-				enemy stealth_status::function_180adb28();
+				enemy stealth_status::icon_clean();
 				enemy delete();
 			}
 		}

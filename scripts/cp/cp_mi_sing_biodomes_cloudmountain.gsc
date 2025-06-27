@@ -1341,7 +1341,7 @@ function vo_xiulan_intro()
 	battlechatter::function_d9f49fba(0);
 	level dialog::remote("kane_shit_she_s_uploadi_0");
 	level dialog::remote("kane_it_s_uploading_direc_0");
-	level notify(#"hash_9b74c38e");
+	level notify("show_hack");
 	battlechatter::function_d9f49fba(1);
 }
 
@@ -1389,7 +1389,7 @@ function xiulan_init()
 */
 function setup_server_room_door_use_object()
 {
-	level waittill(#"hash_9b74c38e");
+	level waittill("show_hack");
 	v_offset = (0, 0, 0);
 	t_door_use_object = getent("trig_server_room_door_use_object", "targetname");
 	t_door_use_object show();

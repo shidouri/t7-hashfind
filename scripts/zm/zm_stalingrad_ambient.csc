@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\audio_shared;
 #using scripts\shared\clientfield_shared;
@@ -186,13 +186,13 @@ function function_866a2751()
 */
 function function_916d6917(str_targetname)
 {
-	var_1bbd14fd = findstaticmodelindexarray(str_targetname);
-	foreach(n_model_index in var_1bbd14fd)
+	a_n_model_indices = findstaticmodelindexarray(str_targetname);
+	foreach(n_model_index in a_n_model_indices)
 	{
 		hidestaticmodel(n_model_index);
 	}
 	level waittill("power_on_level");
-	foreach(n_model_index in var_1bbd14fd)
+	foreach(n_model_index in a_n_model_indices)
 	{
 		unhidestaticmodel(n_model_index);
 	}
@@ -209,13 +209,13 @@ function function_916d6917(str_targetname)
 */
 function function_4820908f(str_targetname)
 {
-	var_1bbd14fd = findstaticmodelindexarray(str_targetname);
-	foreach(n_model_index in var_1bbd14fd)
+	a_n_model_indices = findstaticmodelindexarray(str_targetname);
+	foreach(n_model_index in a_n_model_indices)
 	{
 		unhidestaticmodel(n_model_index);
 	}
 	level waittill("power_on_level");
-	foreach(n_model_index in var_1bbd14fd)
+	foreach(n_model_index in a_n_model_indices)
 	{
 		hidestaticmodel(n_model_index);
 	}

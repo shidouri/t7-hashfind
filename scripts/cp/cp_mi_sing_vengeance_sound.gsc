@@ -594,7 +594,7 @@ function function_5bd9fe4()
 }
 
 /*
-	Name: function_a34878f1
+	Name: safehouse_shake
 	Namespace: cp_mi_sing_vengeance_sound
 	Checksum: 0x89BB28BC
 	Offset: 0x1B58
@@ -602,7 +602,7 @@ function function_5bd9fe4()
 	Parameters: 1
 	Flags: Linked
 */
-function function_a34878f1(player)
+function safehouse_shake(player)
 {
 	player playlocalsound("dst_rock_quake");
 }

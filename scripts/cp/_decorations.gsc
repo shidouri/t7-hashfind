@@ -6,7 +6,7 @@
 #namespace decorations;
 
 /*
-	Name: function_25328f50
+	Name: playerhasdecoration
 	Namespace: decorations
 	Checksum: 0xBE24EBC8
 	Offset: 0x238
@@ -14,7 +14,7 @@
 	Parameters: 1
 	Flags: Linked
 */
-function function_25328f50(var_aeda862b)
+function playerhasdecoration(var_aeda862b)
 {
 	a_decorations = self getdecorations(1);
 	foreach(decoration in a_decorations)

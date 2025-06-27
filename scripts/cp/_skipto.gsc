@@ -3282,7 +3282,7 @@ function level_completed(skipto, starting)
 			e_player savegame::set_player_data("last_mission", "");
 			e_player clearallnoncheckpointdata();
 			e_player setdstat("PlayerStatsByMap", getrootmapname(), "lastCompletedDifficulty", level.gameskilllowest);
-			if(!e_player decorations::function_25328f50("cp_medal_no_deaths"))
+			if(!e_player decorations::playerhasdecoration("cp_medal_no_deaths"))
 			{
 				if(level.gameskilllowest >= 3 && (!(isdefined(world.checkpoint_used) && world.checkpoint_used)))
 				{

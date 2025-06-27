@@ -372,15 +372,15 @@ function function_3a429aee()
 */
 function function_38b57afd()
 {
-	var_beffc54 = struct::get_array("ambient_fxanim", "targetname");
+	a_s_ambient_fxanims = struct::get_array("ambient_fxanim", "targetname");
 	if(getdvarint("splitscreen_playerCount") >= 2)
 	{
-		foreach(s_fxanim in var_beffc54)
+		foreach(s_fxanim in a_s_ambient_fxanims)
 		{
 			struct::delete();
 		}
-		var_1bbd14fd = findstaticmodelindexarray("ambient_siege_anim");
-		foreach(n_model_index in var_1bbd14fd)
+		a_n_model_indices = findstaticmodelindexarray("ambient_siege_anim");
+		foreach(n_model_index in a_n_model_indices)
 		{
 			hidestaticmodel(n_model_index);
 		}

@@ -308,7 +308,7 @@ function function_b628a101(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.beacon_portal = 1;
 			self thread function_4e9276ed(localclientnum);
 			self.m_reward = util::spawn_model(localclientnum, level.w_beacon.worldmodel, (-141, 4464, -322) + (8, 35, 20), self.angles);
-			self.m_reward thread function_17bc361f(localclientnum);
+			self.m_reward thread rotate_beacon(localclientnum);
 		}
 	}
 	else if(isdefined(self.beacon_portal))
@@ -320,7 +320,7 @@ function function_b628a101(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_17bc361f
+	Name: rotate_beacon
 	Namespace: zm_tomb_ee
 	Checksum: 0x38A003A0
 	Offset: 0x1508
@@ -328,7 +328,7 @@ function function_b628a101(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked
 */
-function function_17bc361f(localclientnum)
+function rotate_beacon(localclientnum)
 {
 	self endon("entityshutdown");
 	self endon("death");

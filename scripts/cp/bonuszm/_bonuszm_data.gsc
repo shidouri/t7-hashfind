@@ -1,13 +1,13 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\bonuszm\_bonuszm;
 #using scripts\cp\bonuszm\_bonuszm_spawner_shared;
 
-#namespace namespace_a432d965;
+#namespace bonuszmdata;
 
 /*
 	Name: function_dc036a7c
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0xCA21C695
 	Offset: 0x5D8
 	Size: 0x9C
@@ -20,7 +20,7 @@ function autoexec function_dc036a7c()
 	{
 		return;
 	}
-	level.var_a432d965 = struct::get_script_bundle("bonuszmdata", getdvarstring("mapname"));
+	level.bonuszmdata = struct::get_script_bundle("bonuszmdata", getdvarstring("mapname"));
 	level.bzm_overridelocomotion = &bzm_overridelocomotion;
 	level.bzm_overridehealth = &bzm_overridehealth;
 	level.bzm_overridesuicidalchance = &bzm_overridesuicidalchance;
@@ -28,7 +28,7 @@ function autoexec function_dc036a7c()
 
 /*
 	Name: function_da5f2c0d
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0x494BD8B7
 	Offset: 0x680
 	Size: 0xE34
@@ -38,17 +38,17 @@ function autoexec function_dc036a7c()
 function function_da5f2c0d(mapname, checkpointname)
 {
 	level.var_a9e78bf7 = undefined;
-	if(!isdefined(level.var_a432d965))
+	if(!isdefined(level.bonuszmdata))
 	{
 		function_9a6a6726();
 		function_97b4bacb(1, 0);
 		function_4542e087();
-		namespace_2396e2d7::function_fc1970dd();
+		bonuszmspawner::function_fc1970dd();
 		return;
 	}
 	var_6967e3b9 = undefined;
 	prefix = "";
-	var_e6879fdc = getstructfield(level.var_a432d965, "skiptocount");
+	var_e6879fdc = getstructfield(level.bonuszmdata, "skiptocount");
 	if(!isdefined(var_e6879fdc))
 	{
 		var_e6879fdc = 0;
@@ -56,7 +56,7 @@ function function_da5f2c0d(mapname, checkpointname)
 	for(i = 1; i <= var_e6879fdc; i++)
 	{
 		prefix = function_15c7079(i);
-		var_454219da = getstructfield(level.var_a432d965, prefix + "skiptoname");
+		var_454219da = getstructfield(level.bonuszmdata, prefix + "skiptoname");
 		if(var_454219da == checkpointname)
 		{
 			var_6967e3b9 = i;
@@ -72,72 +72,72 @@ function function_da5f2c0d(mapname, checkpointname)
 		function_9a6a6726();
 		function_97b4bacb(1, 0);
 		function_4542e087();
-		namespace_2396e2d7::function_fc1970dd();
+		bonuszmspawner::function_fc1970dd();
 		return;
 	}
 	/#
 		level.var_5deb2d16 = 0;
 	#/
 	level.var_a9e78bf7["skiptoname"] = var_454219da;
-	level.var_a9e78bf7["powerdropchance"] = getstructfield(level.var_a432d965, "powerdropchance");
-	level.var_a9e78bf7["cybercoredropchance"] = getstructfield(level.var_a432d965, "cybercoredropchance");
-	level.var_a9e78bf7["cybercoreupgradeddropchance"] = getstructfield(level.var_a432d965, "cybercoreupgradeddropchance");
-	level.var_a9e78bf7["maxdropammochance"] = getstructfield(level.var_a432d965, "maxdropammochance");
-	level.var_a9e78bf7["maxdropammoupgradedchance"] = getstructfield(level.var_a432d965, "maxdropammoupgradedchance");
-	level.var_a9e78bf7["weapondropchance"] = getstructfield(level.var_a432d965, "weapondropchance");
-	level.var_a9e78bf7["instakilldropchance"] = getstructfield(level.var_a432d965, "instakilldropchance");
-	level.var_a9e78bf7["instakillupgradeddropchance"] = getstructfield(level.var_a432d965, "instakillupgradeddropchance");
-	level.var_a9e78bf7["powerupdropsenabled"] = getstructfield(level.var_a432d965, prefix + "powerupdropsenabled");
-	level.var_a9e78bf7["zigzagdeviationmin"] = getstructfield(level.var_a432d965, prefix + "zigzagdeviationmin");
-	level.var_a9e78bf7["zigzagdeviationmax"] = getstructfield(level.var_a432d965, prefix + "zigzagdeviationmax");
-	level.var_a9e78bf7["zigzagdeviationmintime"] = getstructfield(level.var_a432d965, prefix + "zigzagdeviationmintime");
-	level.var_a9e78bf7["zigzagdeviationmaxtime"] = getstructfield(level.var_a432d965, prefix + "zigzagdeviationmaxtime");
-	level.var_a9e78bf7["onlyuseonstart"] = getstructfield(level.var_a432d965, prefix + "onlyuseonstart");
-	level.var_a9e78bf7["zombifyenabled"] = getstructfield(level.var_a432d965, prefix + "zombifyenabled");
-	level.var_a9e78bf7["startunaware"] = getstructfield(level.var_a432d965, prefix + "startunaware");
-	level.var_a9e78bf7["alertnessspreaddelay"] = getstructfield(level.var_a432d965, prefix + "alertnessspreaddelay");
-	level.var_a9e78bf7["forcecleanuponcompletion"] = getstructfield(level.var_a432d965, prefix + "forcecleanuponcompletion");
-	level.var_a9e78bf7["disablefailsafelogic"] = getstructfield(level.var_a432d965, prefix + "disablefailsafelogic");
-	level.var_a9e78bf7["extraspawns"] = getstructfield(level.var_a432d965, prefix + "extraspawns");
-	level.var_a9e78bf7["extraspawngapmin"] = getstructfield(level.var_a432d965, prefix + "extraspawngapmin");
-	level.var_a9e78bf7["walkpercent"] = getstructfield(level.var_a432d965, prefix + "walkpercent");
-	level.var_a9e78bf7["runpercent"] = getstructfield(level.var_a432d965, prefix + "runpercent");
-	level.var_a9e78bf7["sprintpercent"] = getstructfield(level.var_a432d965, prefix + "sprintpercent");
-	level.var_a9e78bf7["levelonehealth"] = getstructfield(level.var_a432d965, prefix + "levelonehealth");
-	level.var_a9e78bf7["leveltwohealth"] = getstructfield(level.var_a432d965, prefix + "leveltwohealth");
-	level.var_a9e78bf7["levelthreehealth"] = getstructfield(level.var_a432d965, prefix + "levelthreehealth");
-	level.var_a9e78bf7["levelonezombies"] = getstructfield(level.var_a432d965, prefix + "levelonezombies");
-	level.var_a9e78bf7["leveltwozombies"] = getstructfield(level.var_a432d965, prefix + "leveltwozombies");
-	level.var_a9e78bf7["levelthreezombies"] = getstructfield(level.var_a432d965, prefix + "levelthreezombies");
-	level.var_a9e78bf7["suicidalzombiechance"] = getstructfield(level.var_a432d965, prefix + "suicidalzombiechance");
-	level.var_a9e78bf7["suicidalzombieupgradedchance"] = getstructfield(level.var_a432d965, prefix + "suicidalzombieupgradedchance");
-	level.var_a9e78bf7["deimosinfectedzombiechance"] = getstructfield(level.var_a432d965, prefix + "deimosinfectedzombiechance");
-	level.var_a9e78bf7["sparkzombiechance"] = getstructfield(level.var_a432d965, prefix + "sparkzombiechance");
-	level.var_a9e78bf7["sparkzombieupgradedchance"] = getstructfield(level.var_a432d965, prefix + "sparkzombieupgradedchance");
-	level.var_a9e78bf7["maxreachabilitylevel"] = getstructfield(level.var_a432d965, prefix + "maxreachabilitylevel");
-	level.var_a9e78bf7["reachabilityinterval"] = getstructfield(level.var_a432d965, prefix + "reachabilityinterval");
-	level.var_a9e78bf7["maxreachabilityparasites"] = getstructfield(level.var_a432d965, prefix + "maxreachabilityparasites");
-	level.var_a9e78bf7["powerdropsscalar"] = getstructfield(level.var_a432d965, prefix + "powerdropsscalar");
-	level.var_a9e78bf7["pathabilityenabled"] = getstructfield(level.var_a432d965, prefix + "pathabilityenabled");
-	level.var_a9e78bf7["sprinttoplayerdistance"] = getstructfield(level.var_a432d965, prefix + "sprinttoplayerdistance");
-	level.var_a9e78bf7["skipobjectivewait"] = getstructfield(level.var_a432d965, prefix + "skipobjectivewait");
-	level.var_a9e78bf7["zombiehealthscale1"] = getstructfield(level.var_a432d965, "zombiehealthscale1");
-	level.var_a9e78bf7["zombiehealthscale2"] = getstructfield(level.var_a432d965, "zombiehealthscale2");
-	level.var_a9e78bf7["zombiehealthscale3"] = getstructfield(level.var_a432d965, "zombiehealthscale3");
-	level.var_a9e78bf7["zombiehealthscale4"] = getstructfield(level.var_a432d965, "zombiehealthscale4");
-	level.var_a9e78bf7["zombiehealthscale5"] = getstructfield(level.var_a432d965, "zombiehealthscale5");
-	level.var_a9e78bf7["extrazombiescale1"] = getstructfield(level.var_a432d965, "extrazombiescale1");
-	level.var_a9e78bf7["extrazombiescale2"] = getstructfield(level.var_a432d965, "extrazombiescale2");
-	level.var_a9e78bf7["extrazombiescale3"] = getstructfield(level.var_a432d965, "extrazombiescale3");
-	level.var_a9e78bf7["extrazombiescale4"] = getstructfield(level.var_a432d965, "extrazombiescale4");
-	level.var_a9e78bf7["magicboxonlyweaponchance"] = getstructfield(level.var_a432d965, "magicboxonlyweaponchance");
-	level.var_a9e78bf7["maxmagicboxonlyweapons"] = getstructfield(level.var_a432d965, "maxmagicboxonlyweapons");
-	level.var_a9e78bf7["camochance"] = getstructfield(level.var_a432d965, "camochance");
+	level.var_a9e78bf7["powerdropchance"] = getstructfield(level.bonuszmdata, "powerdropchance");
+	level.var_a9e78bf7["cybercoredropchance"] = getstructfield(level.bonuszmdata, "cybercoredropchance");
+	level.var_a9e78bf7["cybercoreupgradeddropchance"] = getstructfield(level.bonuszmdata, "cybercoreupgradeddropchance");
+	level.var_a9e78bf7["maxdropammochance"] = getstructfield(level.bonuszmdata, "maxdropammochance");
+	level.var_a9e78bf7["maxdropammoupgradedchance"] = getstructfield(level.bonuszmdata, "maxdropammoupgradedchance");
+	level.var_a9e78bf7["weapondropchance"] = getstructfield(level.bonuszmdata, "weapondropchance");
+	level.var_a9e78bf7["instakilldropchance"] = getstructfield(level.bonuszmdata, "instakilldropchance");
+	level.var_a9e78bf7["instakillupgradeddropchance"] = getstructfield(level.bonuszmdata, "instakillupgradeddropchance");
+	level.var_a9e78bf7["powerupdropsenabled"] = getstructfield(level.bonuszmdata, prefix + "powerupdropsenabled");
+	level.var_a9e78bf7["zigzagdeviationmin"] = getstructfield(level.bonuszmdata, prefix + "zigzagdeviationmin");
+	level.var_a9e78bf7["zigzagdeviationmax"] = getstructfield(level.bonuszmdata, prefix + "zigzagdeviationmax");
+	level.var_a9e78bf7["zigzagdeviationmintime"] = getstructfield(level.bonuszmdata, prefix + "zigzagdeviationmintime");
+	level.var_a9e78bf7["zigzagdeviationmaxtime"] = getstructfield(level.bonuszmdata, prefix + "zigzagdeviationmaxtime");
+	level.var_a9e78bf7["onlyuseonstart"] = getstructfield(level.bonuszmdata, prefix + "onlyuseonstart");
+	level.var_a9e78bf7["zombifyenabled"] = getstructfield(level.bonuszmdata, prefix + "zombifyenabled");
+	level.var_a9e78bf7["startunaware"] = getstructfield(level.bonuszmdata, prefix + "startunaware");
+	level.var_a9e78bf7["alertnessspreaddelay"] = getstructfield(level.bonuszmdata, prefix + "alertnessspreaddelay");
+	level.var_a9e78bf7["forcecleanuponcompletion"] = getstructfield(level.bonuszmdata, prefix + "forcecleanuponcompletion");
+	level.var_a9e78bf7["disablefailsafelogic"] = getstructfield(level.bonuszmdata, prefix + "disablefailsafelogic");
+	level.var_a9e78bf7["extraspawns"] = getstructfield(level.bonuszmdata, prefix + "extraspawns");
+	level.var_a9e78bf7["extraspawngapmin"] = getstructfield(level.bonuszmdata, prefix + "extraspawngapmin");
+	level.var_a9e78bf7["walkpercent"] = getstructfield(level.bonuszmdata, prefix + "walkpercent");
+	level.var_a9e78bf7["runpercent"] = getstructfield(level.bonuszmdata, prefix + "runpercent");
+	level.var_a9e78bf7["sprintpercent"] = getstructfield(level.bonuszmdata, prefix + "sprintpercent");
+	level.var_a9e78bf7["levelonehealth"] = getstructfield(level.bonuszmdata, prefix + "levelonehealth");
+	level.var_a9e78bf7["leveltwohealth"] = getstructfield(level.bonuszmdata, prefix + "leveltwohealth");
+	level.var_a9e78bf7["levelthreehealth"] = getstructfield(level.bonuszmdata, prefix + "levelthreehealth");
+	level.var_a9e78bf7["levelonezombies"] = getstructfield(level.bonuszmdata, prefix + "levelonezombies");
+	level.var_a9e78bf7["leveltwozombies"] = getstructfield(level.bonuszmdata, prefix + "leveltwozombies");
+	level.var_a9e78bf7["levelthreezombies"] = getstructfield(level.bonuszmdata, prefix + "levelthreezombies");
+	level.var_a9e78bf7["suicidalzombiechance"] = getstructfield(level.bonuszmdata, prefix + "suicidalzombiechance");
+	level.var_a9e78bf7["suicidalzombieupgradedchance"] = getstructfield(level.bonuszmdata, prefix + "suicidalzombieupgradedchance");
+	level.var_a9e78bf7["deimosinfectedzombiechance"] = getstructfield(level.bonuszmdata, prefix + "deimosinfectedzombiechance");
+	level.var_a9e78bf7["sparkzombiechance"] = getstructfield(level.bonuszmdata, prefix + "sparkzombiechance");
+	level.var_a9e78bf7["sparkzombieupgradedchance"] = getstructfield(level.bonuszmdata, prefix + "sparkzombieupgradedchance");
+	level.var_a9e78bf7["maxreachabilitylevel"] = getstructfield(level.bonuszmdata, prefix + "maxreachabilitylevel");
+	level.var_a9e78bf7["reachabilityinterval"] = getstructfield(level.bonuszmdata, prefix + "reachabilityinterval");
+	level.var_a9e78bf7["maxreachabilityparasites"] = getstructfield(level.bonuszmdata, prefix + "maxreachabilityparasites");
+	level.var_a9e78bf7["powerdropsscalar"] = getstructfield(level.bonuszmdata, prefix + "powerdropsscalar");
+	level.var_a9e78bf7["pathabilityenabled"] = getstructfield(level.bonuszmdata, prefix + "pathabilityenabled");
+	level.var_a9e78bf7["sprinttoplayerdistance"] = getstructfield(level.bonuszmdata, prefix + "sprinttoplayerdistance");
+	level.var_a9e78bf7["skipobjectivewait"] = getstructfield(level.bonuszmdata, prefix + "skipobjectivewait");
+	level.var_a9e78bf7["zombiehealthscale1"] = getstructfield(level.bonuszmdata, "zombiehealthscale1");
+	level.var_a9e78bf7["zombiehealthscale2"] = getstructfield(level.bonuszmdata, "zombiehealthscale2");
+	level.var_a9e78bf7["zombiehealthscale3"] = getstructfield(level.bonuszmdata, "zombiehealthscale3");
+	level.var_a9e78bf7["zombiehealthscale4"] = getstructfield(level.bonuszmdata, "zombiehealthscale4");
+	level.var_a9e78bf7["zombiehealthscale5"] = getstructfield(level.bonuszmdata, "zombiehealthscale5");
+	level.var_a9e78bf7["extrazombiescale1"] = getstructfield(level.bonuszmdata, "extrazombiescale1");
+	level.var_a9e78bf7["extrazombiescale2"] = getstructfield(level.bonuszmdata, "extrazombiescale2");
+	level.var_a9e78bf7["extrazombiescale3"] = getstructfield(level.bonuszmdata, "extrazombiescale3");
+	level.var_a9e78bf7["extrazombiescale4"] = getstructfield(level.bonuszmdata, "extrazombiescale4");
+	level.var_a9e78bf7["magicboxonlyweaponchance"] = getstructfield(level.bonuszmdata, "magicboxonlyweaponchance");
+	level.var_a9e78bf7["maxmagicboxonlyweapons"] = getstructfield(level.bonuszmdata, "maxmagicboxonlyweapons");
+	level.var_a9e78bf7["camochance"] = getstructfield(level.bonuszmdata, "camochance");
 	function_9a6a6726();
 	function_97b4bacb(0, 1);
 	function_4542e087();
-	namespace_2396e2d7::function_fc1970dd();
-	namespace_2396e2d7::function_b6c845e8();
+	bonuszmspawner::function_fc1970dd();
+	bonuszmspawner::function_b6c845e8();
 	bonuszm::function_aaa07980();
 	level._zombiezigzagdistancemin = level.var_a9e78bf7["zigzagdeviationmin"];
 	level._zombiezigzagdistancemax = level.var_a9e78bf7["zigzagdeviationmax"];
@@ -155,7 +155,7 @@ function function_da5f2c0d(mapname, checkpointname)
 
 /*
 	Name: function_9a6a6726
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0xE2103E6
 	Offset: 0x14C0
 	Size: 0x1D6
@@ -164,7 +164,7 @@ function function_da5f2c0d(mapname, checkpointname)
 */
 function function_9a6a6726()
 {
-	if(!isdefined(level.var_a432d965))
+	if(!isdefined(level.bonuszmdata))
 	{
 		return;
 	}
@@ -172,20 +172,20 @@ function function_9a6a6726()
 	{
 		return;
 	}
-	level.var_a9e78bf7["aitypeMale1"] = getstructfield(level.var_a432d965, "aitypeMale1");
-	level.var_a9e78bf7["aitypeMale2"] = getstructfield(level.var_a432d965, "aitypeMale2");
-	level.var_a9e78bf7["aitypeMale3"] = getstructfield(level.var_a432d965, "aitypeMale3");
-	level.var_a9e78bf7["aitypeMale4"] = getstructfield(level.var_a432d965, "aitypeMale4");
-	level.var_a9e78bf7["maleSpawnChance2"] = getstructfield(level.var_a432d965, "maleSpawnChance2");
-	level.var_a9e78bf7["maleSpawnChance3"] = getstructfield(level.var_a432d965, "maleSpawnChance3");
-	level.var_a9e78bf7["maleSpawnChance4"] = getstructfield(level.var_a432d965, "maleSpawnChance4");
-	level.var_a9e78bf7["aitypeFemale"] = getstructfield(level.var_a432d965, "aitypeFemale");
-	level.var_a9e78bf7["femaleSpawnChance"] = getstructfield(level.var_a432d965, "femaleSpawnChance");
+	level.var_a9e78bf7["aitypeMale1"] = getstructfield(level.bonuszmdata, "aitypeMale1");
+	level.var_a9e78bf7["aitypeMale2"] = getstructfield(level.bonuszmdata, "aitypeMale2");
+	level.var_a9e78bf7["aitypeMale3"] = getstructfield(level.bonuszmdata, "aitypeMale3");
+	level.var_a9e78bf7["aitypeMale4"] = getstructfield(level.bonuszmdata, "aitypeMale4");
+	level.var_a9e78bf7["maleSpawnChance2"] = getstructfield(level.bonuszmdata, "maleSpawnChance2");
+	level.var_a9e78bf7["maleSpawnChance3"] = getstructfield(level.bonuszmdata, "maleSpawnChance3");
+	level.var_a9e78bf7["maleSpawnChance4"] = getstructfield(level.bonuszmdata, "maleSpawnChance4");
+	level.var_a9e78bf7["aitypeFemale"] = getstructfield(level.bonuszmdata, "aitypeFemale");
+	level.var_a9e78bf7["femaleSpawnChance"] = getstructfield(level.bonuszmdata, "femaleSpawnChance");
 }
 
 /*
 	Name: function_97b4bacb
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0xCA6321F4
 	Offset: 0x16A0
 	Size: 0xF86
@@ -196,9 +196,9 @@ function function_97b4bacb(zombify, var_a621e856)
 {
 	if(!isdefined(level.var_a9e78bf7["powerdropchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["powerdropchance"] = getstructfield(level.var_a432d965, "powerdropchance");
+			level.var_a9e78bf7["powerdropchance"] = getstructfield(level.bonuszmdata, "powerdropchance");
 			if(!isdefined(level.var_a9e78bf7["powerdropchance"]))
 			{
 				level.var_a9e78bf7["powerdropchance"] = 0;
@@ -211,9 +211,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["maxdropammochance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["maxdropammochance"] = getstructfield(level.var_a432d965, "maxdropammochance");
+			level.var_a9e78bf7["maxdropammochance"] = getstructfield(level.bonuszmdata, "maxdropammochance");
 			if(!isdefined(level.var_a9e78bf7["maxdropammochance"]))
 			{
 				level.var_a9e78bf7["maxdropammochance"] = 0;
@@ -226,9 +226,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["maxdropammoupgradedchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["maxdropammoupgradedchance"] = getstructfield(level.var_a432d965, "maxdropammoupgradedchance");
+			level.var_a9e78bf7["maxdropammoupgradedchance"] = getstructfield(level.bonuszmdata, "maxdropammoupgradedchance");
 			if(!isdefined(level.var_a9e78bf7["maxdropammoupgradedchance"]))
 			{
 				level.var_a9e78bf7["maxdropammoupgradedchance"] = 0;
@@ -241,9 +241,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["cybercoredropchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["cybercoredropchance"] = getstructfield(level.var_a432d965, "cybercoredropchance");
+			level.var_a9e78bf7["cybercoredropchance"] = getstructfield(level.bonuszmdata, "cybercoredropchance");
 			if(!isdefined(level.var_a9e78bf7["cybercoredropchance"]))
 			{
 				level.var_a9e78bf7["cybercoredropchance"] = 0;
@@ -256,9 +256,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["cybercoreupgradeddropchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["cybercoreupgradeddropchance"] = getstructfield(level.var_a432d965, "cybercoreupgradeddropchance");
+			level.var_a9e78bf7["cybercoreupgradeddropchance"] = getstructfield(level.bonuszmdata, "cybercoreupgradeddropchance");
 			if(!isdefined(level.var_a9e78bf7["cybercoreupgradeddropchance"]))
 			{
 				level.var_a9e78bf7["cybercoreupgradeddropchance"] = 0;
@@ -271,9 +271,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["rapsdropchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["rapsdropchance"] = getstructfield(level.var_a432d965, "rapsdropchance");
+			level.var_a9e78bf7["rapsdropchance"] = getstructfield(level.bonuszmdata, "rapsdropchance");
 			if(!isdefined(level.var_a9e78bf7["rapsdropchance"]))
 			{
 				level.var_a9e78bf7["rapsdropchance"] = 0;
@@ -286,9 +286,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["weapondropchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["weapondropchance"] = getstructfield(level.var_a432d965, "weapondropchance");
+			level.var_a9e78bf7["weapondropchance"] = getstructfield(level.bonuszmdata, "weapondropchance");
 			if(!isdefined(level.var_a9e78bf7["weapondropchance"]))
 			{
 				level.var_a9e78bf7["weapondropchance"] = 0;
@@ -301,9 +301,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["instakilldropchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["instakilldropchance"] = getstructfield(level.var_a432d965, "instakilldropchance");
+			level.var_a9e78bf7["instakilldropchance"] = getstructfield(level.bonuszmdata, "instakilldropchance");
 			if(!isdefined(level.var_a9e78bf7["instakilldropchance"]))
 			{
 				level.var_a9e78bf7["instakilldropchance"] = 0;
@@ -316,9 +316,9 @@ function function_97b4bacb(zombify, var_a621e856)
 	}
 	if(!isdefined(level.var_a9e78bf7["instakillupgradeddropchance"]))
 	{
-		if(isdefined(level.var_a432d965))
+		if(isdefined(level.bonuszmdata))
 		{
-			level.var_a9e78bf7["instakillupgradeddropchance"] = getstructfield(level.var_a432d965, "instakillupgradeddropchance");
+			level.var_a9e78bf7["instakillupgradeddropchance"] = getstructfield(level.bonuszmdata, "instakillupgradeddropchance");
 			if(!isdefined(level.var_a9e78bf7["instakillupgradeddropchance"]))
 			{
 				level.var_a9e78bf7["instakillupgradeddropchance"] = 0;
@@ -567,7 +567,7 @@ function function_97b4bacb(zombify, var_a621e856)
 
 /*
 	Name: function_15c7079
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0x632909F
 	Offset: 0x2630
 	Size: 0x20
@@ -581,7 +581,7 @@ function function_15c7079(index)
 
 /*
 	Name: function_4542e087
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0x44553725
 	Offset: 0x2658
 	Size: 0x194
@@ -612,7 +612,7 @@ function private function_4542e087()
 
 /*
 	Name: bzm_overridelocomotion
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0xEE8DC0E0
 	Offset: 0x27F8
 	Size: 0xD2
@@ -636,7 +636,7 @@ function private bzm_overridelocomotion(var_68d35041, var_dbe80e3b, var_5a7ff9f0
 
 /*
 	Name: bzm_overridehealth
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0x43FB351E
 	Offset: 0x28D8
 	Size: 0x7A
@@ -656,7 +656,7 @@ function private bzm_overridehealth(var_52292ab5, var_d3cfcdb3, var_dd13b525)
 
 /*
 	Name: bzm_overridesuicidalchance
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0x6139457D
 	Offset: 0x2960
 	Size: 0x52
@@ -678,7 +678,7 @@ function private bzm_overridesuicidalchance(chance)
 
 /*
 	Name: function_481f94
-	Namespace: namespace_a432d965
+	Namespace: bonuszmdata
 	Checksum: 0xB3F5ED5
 	Offset: 0x29C0
 	Size: 0x52

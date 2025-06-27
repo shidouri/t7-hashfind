@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\util_shared;
 
@@ -237,12 +237,12 @@ function toggle_lander_lights(color, localclientnum)
 		right_fx = level._effect["lander_red_right"];
 		left_fx = level._effect["lander_red_left"];
 	}
-	var_1e2c44d5 = getentarray(localclientnum, "centrifuge_zip_door", "targetname");
-	var_442ebf3e = getentarray(localclientnum, "base_entry_zip_door", "targetname");
-	var_6a3139a7 = getentarray(localclientnum, "storage_zip_door", "targetname");
-	var_601fe0c8 = getentarray(localclientnum, "catwalk_zip_door", "targetname");
-	doorsa = arraycombine(var_1e2c44d5, var_442ebf3e, 0, 1);
-	doorsb = arraycombine(var_6a3139a7, var_601fe0c8, 0, 1);
+	doors1 = getentarray(localclientnum, "centrifuge_zip_door", "targetname");
+	doors2 = getentarray(localclientnum, "base_entry_zip_door", "targetname");
+	doors3 = getentarray(localclientnum, "storage_zip_door", "targetname");
+	doors4 = getentarray(localclientnum, "catwalk_zip_door", "targetname");
+	doorsa = arraycombine(doors1, doors2, 0, 1);
+	doorsb = arraycombine(doors3, doors4, 0, 1);
 	all_doors = arraycombine(doorsa, doorsb, 0, 1);
 	for(i = 0; i < all_doors.size; i++)
 	{

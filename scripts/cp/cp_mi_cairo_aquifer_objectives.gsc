@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_debug;
 #using scripts\cp\_dialog;
 #using scripts\cp\_hacking;
@@ -204,7 +204,7 @@ function function_c28ce61e()
 }
 
 /*
-	Name: function_9239cf5c
+	Name: skipto_intro_dogfight_init
 	Namespace: aquifer_obj
 	Checksum: 0xD16679AB
 	Offset: 0x3218
@@ -212,13 +212,13 @@ function function_c28ce61e()
 	Parameters: 2
 	Flags: None
 */
-function function_9239cf5c()
+function skipto_intro_dogfight_init()
 {
 	// Unsupported VM revision (1B).
 }
 
 /*
-	Name: function_b3635282
+	Name: skipto_intro_dogfight_done
 	Namespace: aquifer_obj
 	Checksum: 0x64FA04C8
 	Offset: 0x3408
@@ -226,7 +226,7 @@ function function_9239cf5c()
 	Parameters: 4
 	Flags: None
 */
-function function_b3635282()
+function skipto_intro_dogfight_done()
 {
 	// Unsupported VM revision (1B).
 }
@@ -638,7 +638,7 @@ function function_7f0d6133()
 }
 
 /*
-	Name: function_ec898691
+	Name: skipto_hack_right_done
 	Namespace: aquifer_obj
 	Checksum: 0x3D62FEDD
 	Offset: 0x50C8
@@ -646,7 +646,7 @@ function function_7f0d6133()
 	Parameters: 4
 	Flags: None
 */
-function function_ec898691()
+function skipto_hack_right_done()
 {
 	// Unsupported VM revision (1B).
 }
@@ -736,7 +736,7 @@ function function_6a7fa9c7()
 }
 
 /*
-	Name: function_386c647b
+	Name: skipto_hack_right_init
 	Namespace: aquifer_obj
 	Checksum: 0xD9F713D3
 	Offset: 0x5398
@@ -744,7 +744,7 @@ function function_6a7fa9c7()
 	Parameters: 2
 	Flags: None
 */
-function function_386c647b()
+function skipto_hack_right_init()
 {
 	// Unsupported VM revision (1B).
 }
@@ -890,7 +890,7 @@ function function_50ad9d6a()
 }
 
 /*
-	Name: function_e2e38eb
+	Name: skipto_water_room_exit_init
 	Namespace: aquifer_obj
 	Checksum: 0xBFF70B3A
 	Offset: 0x6E10
@@ -898,7 +898,7 @@ function function_50ad9d6a()
 	Parameters: 2
 	Flags: None
 */
-function function_e2e38eb()
+function skipto_water_room_exit_init()
 {
 	// Unsupported VM revision (1B).
 }
@@ -960,7 +960,7 @@ function skipto_water_room_done()
 }
 
 /*
-	Name: function_829aa821
+	Name: skipto_water_room_exit_done
 	Namespace: aquifer_obj
 	Checksum: 0x699895D0
 	Offset: 0x75A0
@@ -968,7 +968,7 @@ function skipto_water_room_done()
 	Parameters: 4
 	Flags: None
 */
-function function_829aa821()
+function skipto_water_room_exit_done()
 {
 	// Unsupported VM revision (1B).
 }
@@ -988,7 +988,7 @@ function function_1b47ae1f()
 }
 
 /*
-	Name: function_5b113d76
+	Name: skipto_post_water_room_dogfight_init
 	Namespace: aquifer_obj
 	Checksum: 0x26CDA707
 	Offset: 0x77A0
@@ -996,13 +996,13 @@ function function_1b47ae1f()
 	Parameters: 2
 	Flags: None
 */
-function function_5b113d76()
+function skipto_post_water_room_dogfight_init()
 {
 	// Unsupported VM revision (1B).
 }
 
 /*
-	Name: function_427463e0
+	Name: skipto_post_water_room_dogfight_done
 	Namespace: aquifer_obj
 	Checksum: 0x6D8B7615
 	Offset: 0x7AB8
@@ -1010,13 +1010,13 @@ function function_5b113d76()
 	Parameters: 4
 	Flags: None
 */
-function function_427463e0()
+function skipto_post_water_room_dogfight_done()
 {
 	// Unsupported VM revision (1B).
 }
 
 /*
-	Name: function_fb03103d
+	Name: skipto_defenses_init_mid
 	Namespace: aquifer_obj
 	Checksum: 0x524AC286
 	Offset: 0x7C60
@@ -1024,7 +1024,7 @@ function function_427463e0()
 	Parameters: 2
 	Flags: None
 */
-function function_fb03103d()
+function skipto_defenses_init_mid()
 {
 	// Unsupported VM revision (1B).
 }
@@ -1086,7 +1086,7 @@ function function_91c91014()
 }
 
 /*
-	Name: function_46151925
+	Name: skipto_defenses_mid_done
 	Namespace: aquifer_obj
 	Checksum: 0x4FE8DE11
 	Offset: 0x80C8
@@ -1094,7 +1094,7 @@ function function_91c91014()
 	Parameters: 4
 	Flags: None
 */
-function function_46151925()
+function skipto_defenses_mid_done()
 {
 	// Unsupported VM revision (1B).
 }
@@ -1506,7 +1506,7 @@ function skipto_post_breach_done()
 }
 
 /*
-	Name: function_53d54ffb
+	Name: skipto_boss_intro_init
 	Namespace: aquifer_obj
 	Checksum: 0xA27963C8
 	Offset: 0xA4F8
@@ -1514,13 +1514,13 @@ function skipto_post_breach_done()
 	Parameters: 2
 	Flags: None
 */
-function function_53d54ffb()
+function skipto_boss_intro_init()
 {
 	// Unsupported VM revision (1B).
 }
 
 /*
-	Name: function_7f27211
+	Name: skipto_boss_intro_done
 	Namespace: aquifer_obj
 	Checksum: 0x886670F4
 	Offset: 0xA890
@@ -1528,7 +1528,7 @@ function function_53d54ffb()
 	Parameters: 4
 	Flags: None
 */
-function function_7f27211()
+function skipto_boss_intro_done()
 {
 	// Unsupported VM revision (1B).
 }
@@ -1632,7 +1632,7 @@ function skipto_hideout_done()
 }
 
 /*
-	Name: function_95463da0
+	Name: skipto_runout_init
 	Namespace: aquifer_obj
 	Checksum: 0x59909CFF
 	Offset: 0xB148
@@ -1640,13 +1640,13 @@ function skipto_hideout_done()
 	Parameters: 2
 	Flags: None
 */
-function function_95463da0()
+function skipto_runout_init()
 {
 	// Unsupported VM revision (1B).
 }
 
 /*
-	Name: function_fb8ad8d6
+	Name: skipto_runout_done
 	Namespace: aquifer_obj
 	Checksum: 0x84E2C657
 	Offset: 0xB418
@@ -1654,7 +1654,7 @@ function function_95463da0()
 	Parameters: 4
 	Flags: None
 */
-function function_fb8ad8d6()
+function skipto_runout_done()
 {
 	// Unsupported VM revision (1B).
 }

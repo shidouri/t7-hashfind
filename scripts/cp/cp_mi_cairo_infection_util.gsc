@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_objectives;
 #using scripts\cp\_skipto;
@@ -1830,7 +1830,7 @@ function infection_battle_chatter()
 }
 
 /*
-	Name: function_67137b13
+	Name: show_vistas
 	Namespace: infection_util
 	Checksum: 0xE87E6E5A
 	Offset: 0x6A40
@@ -1838,13 +1838,13 @@ function infection_battle_chatter()
 	Parameters: 0
 	Flags: None
 */
-function function_67137b13()
+function show_vistas()
 {
 	// Unsupported VM revision (1B).
 }
 
 /*
-	Name: function_4f66eed6
+	Name: hide_vistas
 	Namespace: infection_util
 	Checksum: 0xC21710C8
 	Offset: 0x6AD8
@@ -1852,7 +1852,7 @@ function function_67137b13()
 	Parameters: 0
 	Flags: None
 */
-function function_4f66eed6()
+function hide_vistas()
 {
 	// Unsupported VM revision (1B).
 }

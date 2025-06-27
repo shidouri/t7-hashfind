@@ -185,7 +185,7 @@ function teleport_core_think(index)
 				exploder::kill_exploder("fxexp_200");
 				level clientfield::increment("teleporter_initiate_fx");
 				trigger player_teleporting(index);
-				level.var_4f3df77f clientfield::set("teleporter_link_cable_mtl", 0);
+				level.link_cable clientfield::set("teleporter_link_cable_mtl", 0);
 				trigger sethintstring(&"ZOMBIE_TELEPORT_COOLDOWN");
 				wait(90);
 				active = 0;
@@ -244,7 +244,7 @@ function teleport_pad_hide_use()
 	core = getent(trigger_name, "targetname");
 	pad = getent(core.target, "targetname");
 	pad setcursorhint("HINT_NOICON");
-	level.var_4f3df77f = getent("teleporter_link_cable", "targetname");
+	level.link_cable = getent("teleporter_link_cable", "targetname");
 	pad sethintstring(&"ZOMBIE_NEED_POWER");
 	level flag::wait_till("power_on");
 	pad sethintstring(&"ZM_THEATER_START_CORE");
@@ -273,7 +273,7 @@ function teleport_pad_think()
 			pad sethintstring("");
 			pad playsound("evt_teleporter_activate_finish");
 			level flag::set("teleporter_linked");
-			level.var_4f3df77f clientfield::set("teleporter_link_cable_mtl", 1);
+			level.link_cable clientfield::set("teleporter_link_cable_mtl", 1);
 		}
 		util::wait_network_frame();
 	}

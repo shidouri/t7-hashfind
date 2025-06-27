@@ -682,11 +682,11 @@ function function_d56fa005()
 {
 	for(i = 0; i < 5; i++)
 	{
-		if(!isdefined(level.var_3e984f03[i]))
+		if(!isdefined(level.element_rotations[i]))
 		{
 			continue;
 		}
-		n_rotation = int(level.var_3e984f03[i]);
+		n_rotation = int(level.element_rotations[i]);
 		n_target = int(self.angles[1]);
 		diff = abs(angle_dif(n_target, n_rotation));
 		if(diff <= 45)
@@ -708,13 +708,13 @@ function function_d56fa005()
 */
 function function_657fb719(localclientnum, light_on)
 {
-	if(!isdefined(level.var_3e984f03))
+	if(!isdefined(level.element_rotations))
 	{
-		level.var_3e984f03 = [];
-		level.var_3e984f03[2] = 270;
-		level.var_3e984f03[1] = 180;
-		level.var_3e984f03[3] = 90;
-		level.var_3e984f03[4] = 0;
+		level.element_rotations = [];
+		level.element_rotations[2] = 270;
+		level.element_rotations[1] = 180;
+		level.element_rotations[3] = 90;
+		level.element_rotations[4] = 0;
 	}
 	if(!isdefined(level.var_1aa82a7e))
 	{
@@ -1327,12 +1327,12 @@ function function_5f9e6e69(localclientnum)
 	if(level.weather_snow == 0)
 	{
 		level notify("_snow_thread" + localclientnum);
-		level.sndweather.var_308c43c8 = 0;
+		level.sndweather.issnow = 0;
 	}
 	else
 	{
 		self thread _snow_thread(level.weather_snow, localclientnum);
-		level.sndweather.var_308c43c8 = 1;
+		level.sndweather.issnow = 1;
 	}
 	level thread function_f099c69d(self);
 }
@@ -1360,7 +1360,7 @@ function function_4a9e7e2(localclientnum)
 	{
 		level notify("_rain_thread" + localclientnum);
 		self.b_lightning = 0;
-		level.sndweather.var_b13d6dfb = 0;
+		level.sndweather.israin = 0;
 	}
 	else
 	{
@@ -1369,7 +1369,7 @@ function function_4a9e7e2(localclientnum)
 			self thread _lightning_thread(localclientnum);
 		}
 		self thread _rain_thread(level.weather_rain, localclientnum);
-		level.sndweather.var_b13d6dfb = 1;
+		level.sndweather.israin = 1;
 	}
 	level thread function_f099c69d(self);
 }

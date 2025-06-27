@@ -2503,19 +2503,19 @@ function foundry_heavy_door_and_generator()
 	{
 		if(isdefined(e_player.hijacked_vehicle_entity))
 		{
-			var_9f7fd4a1 = e_player.hijacked_vehicle_entity;
-			var_9f7fd4a1.overridevehicledamage = undefined;
-			var_9f7fd4a1 clientfield::set("emp_vehicles_fx", 1);
-			var_9f7fd4a1 util::delay(8, undefined, &clientfield::set, "emp_vehicles_fx", 0);
-			var_9f7fd4a1 vehicle::god_off();
-			var_9f7fd4a1 dodamage(var_9f7fd4a1.health + 100, var_9f7fd4a1.origin);
-			if(var_9f7fd4a1.archetype == "wasp")
+			vh_player = e_player.hijacked_vehicle_entity;
+			vh_player.overridevehicledamage = undefined;
+			vh_player clientfield::set("emp_vehicles_fx", 1);
+			vh_player util::delay(8, undefined, &clientfield::set, "emp_vehicles_fx", 0);
+			vh_player vehicle::god_off();
+			vh_player dodamage(vh_player.health + 100, vh_player.origin);
+			if(vh_player.archetype == "wasp")
 			{
-				var_9f7fd4a1 playsound("gdt_cybercore_wasp_shutdown");
+				vh_player playsound("gdt_cybercore_wasp_shutdown");
 			}
-			if(var_9f7fd4a1.archetype == "amws")
+			if(vh_player.archetype == "amws")
 			{
-				var_9f7fd4a1 playsound("gdt_cybercore_amws_shutdown");
+				vh_player playsound("gdt_cybercore_amws_shutdown");
 			}
 			a_s_warp_pos = struct::get_array("post_hijack_player_warpto");
 			s_pos = array::pop_front(a_s_warp_pos);

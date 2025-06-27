@@ -395,17 +395,17 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 	level flag::set("lockdown_active");
 	level util::clientnotify("sndPD");
 	level function_451531f2();
-	level.var_1dfcc9b2.var_9fa1b3e = [];
+	level.var_1dfcc9b2.a_n_waves = [];
 	var_8a56b631 = level.players.size;
 	if(isdefined(var_e57afa84))
 	{
-		level.var_1dfcc9b2.var_9fa1b3e[0] = var_e57afa84 + (var_7741a4b8 * var_8a56b631);
-		level.var_1dfcc9b2.var_9fa1b3e[1] = var_ed686791 + (var_2a448c91 * var_8a56b631);
-		level.var_1dfcc9b2.var_9fa1b3e[2] = var_16b2096 + (var_adb8dbea * var_8a56b631);
+		level.var_1dfcc9b2.a_n_waves[0] = var_e57afa84 + (var_7741a4b8 * var_8a56b631);
+		level.var_1dfcc9b2.a_n_waves[1] = var_ed686791 + (var_2a448c91 * var_8a56b631);
+		level.var_1dfcc9b2.a_n_waves[2] = var_16b2096 + (var_adb8dbea * var_8a56b631);
 	}
-	level.var_1dfcc9b2.var_3eeb6c22[0] = 0;
-	level.var_1dfcc9b2.var_3eeb6c22[1] = 1;
-	level.var_1dfcc9b2.var_3eeb6c22[2] = 2;
+	level.var_1dfcc9b2.a_n_shutters[0] = 0;
+	level.var_1dfcc9b2.a_n_shutters[1] = 1;
+	level.var_1dfcc9b2.a_n_shutters[2] = 2;
 	var_998322e5 = level.zombie_vars["zombie_spawn_delay"];
 	if(var_998322e5 <= 0.1)
 	{
@@ -418,7 +418,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 		level.var_1dfcc9b2.var_4560ec9a[1] = struct::get_array("lockdown_raz_spawner_north", "targetname");
 		level.var_1dfcc9b2.var_4560ec9a[2] = struct::get_array("lockdown_raz_spawner_west", "targetname");
 	}
-	level.var_1dfcc9b2.var_3eeb6c22 = array::randomize(level.var_1dfcc9b2.var_3eeb6c22);
+	level.var_1dfcc9b2.a_n_shutters = array::randomize(level.var_1dfcc9b2.a_n_shutters);
 	function_188bdb42();
 	function_d6ced80(1);
 	level thread zm_stalingrad_util::function_2f621485();
@@ -440,7 +440,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 			else
 			{
 				var_879a13d6 = [];
-				level.var_1dfcc9b2.var_22bf30b7 = level.var_1dfcc9b2.var_3eeb6c22[i];
+				level.var_1dfcc9b2.var_22bf30b7 = level.var_1dfcc9b2.a_n_shutters[i];
 				switch(level.var_1dfcc9b2.var_22bf30b7)
 				{
 					case 2:
@@ -471,7 +471,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 			{
 				if(isdefined(var_2b71b5b4))
 				{
-					var_b4fcee85 = int((level.var_1dfcc9b2.var_9fa1b3e[i] / var_2b71b5b4) / 2);
+					var_b4fcee85 = int((level.var_1dfcc9b2.a_n_waves[i] / var_2b71b5b4) / 2);
 					if(!isdefined(var_939defa4))
 					{
 						var_939defa4 = [];
@@ -483,7 +483,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 					var_939defa4[var_939defa4.size] = "wave_event_raz_spawning_active";
 					level thread zm_stalingrad_util::function_b55ebb81(level.var_1dfcc9b2.var_4560ec9a[level.var_1dfcc9b2.var_22bf30b7], var_2b71b5b4, var_15eb9a52, var_f92c3865, var_b4fcee85, str_notify_end);
 				}
-				level zm_stalingrad_util::function_f70dde0b(var_d98b610d, var_879a13d6, "lockdown_zombie", 22, var_998322e5, level.var_1dfcc9b2.var_9fa1b3e[i], undefined, 0);
+				level zm_stalingrad_util::function_f70dde0b(var_d98b610d, var_879a13d6, "lockdown_zombie", 22, var_998322e5, level.var_1dfcc9b2.a_n_waves[i], undefined, 0);
 			}
 			else if(isdefined(var_2b71b5b4))
 			{
@@ -1037,11 +1037,11 @@ function function_2c6fd7(var_2b71b5b4, var_15eb9a52, var_f92c3865, var_13d1e831)
 	level flag::set("lockdown_active");
 	level util::clientnotify("sndEED");
 	level function_451531f2();
-	level.var_1dfcc9b2.var_9fa1b3e = [];
+	level.var_1dfcc9b2.a_n_waves = [];
 	var_8a56b631 = level.players.size;
-	level.var_1dfcc9b2.var_3eeb6c22[0] = 0;
-	level.var_1dfcc9b2.var_3eeb6c22[1] = 1;
-	level.var_1dfcc9b2.var_3eeb6c22[2] = 2;
+	level.var_1dfcc9b2.a_n_shutters[0] = 0;
+	level.var_1dfcc9b2.a_n_shutters[1] = 1;
+	level.var_1dfcc9b2.a_n_shutters[2] = 2;
 	var_998322e5 = level.zombie_vars["zombie_spawn_delay"];
 	if(var_998322e5 <= 0.1)
 	{
@@ -1054,7 +1054,7 @@ function function_2c6fd7(var_2b71b5b4, var_15eb9a52, var_f92c3865, var_13d1e831)
 		level.var_1dfcc9b2.var_4560ec9a[1] = struct::get_array("lockdown_raz_spawner_north", "targetname");
 		level.var_1dfcc9b2.var_4560ec9a[2] = struct::get_array("lockdown_raz_spawner_west", "targetname");
 	}
-	level.var_1dfcc9b2.var_3eeb6c22 = array::randomize(level.var_1dfcc9b2.var_3eeb6c22);
+	level.var_1dfcc9b2.a_n_shutters = array::randomize(level.var_1dfcc9b2.a_n_shutters);
 	function_188bdb42();
 	level thread zm_stalingrad_util::function_2f621485();
 	exploder::exploder("pavlov_" + 0);
@@ -1073,7 +1073,7 @@ function function_2c6fd7(var_2b71b5b4, var_15eb9a52, var_f92c3865, var_13d1e831)
 		else
 		{
 			var_879a13d6 = [];
-			level.var_1dfcc9b2.var_22bf30b7 = level.var_1dfcc9b2.var_3eeb6c22[i];
+			level.var_1dfcc9b2.var_22bf30b7 = level.var_1dfcc9b2.a_n_shutters[i];
 			switch(level.var_1dfcc9b2.var_22bf30b7)
 			{
 				case 2:

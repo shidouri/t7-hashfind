@@ -59,11 +59,11 @@ function main()
 	clientfield::register("world", "podiumEvent", 1, 1, "int", &function_10093dd7, 0, 0);
 	clientfield::register("world", "overworld", 1, 1, "int", &function_a6c926fc, 0, 0);
 	clientfield::register("world", "scoreMenu", 1, 1, "int", &function_d3b4c89d, 0, 0);
-	clientfield::register("world", "overworldlevel", 1, 5, "int", &function_22de3f7, 0, 0);
+	clientfield::register("world", "overworldlevel", 1, 5, "int", &setlevel, 0, 0);
 	clientfield::register("world", "roundnumber", 1, 10, "int", &function_e3bb35e, 0, 0);
 	clientfield::register("world", "roundMenu", 1, 1, "int", &function_2eaf8a3f, 0, 0);
 	clientfield::register("world", "teleportMenu", 1, 1, "int", &function_c97b97ae, 0, 0);
-	clientfield::register("world", "numexits", 1, 3, "int", &function_c86d63f6, 0, 0);
+	clientfield::register("world", "numexits", 1, 3, "int", &setexits, 0, 0);
 	clientfield::register("world", "gameover", 1, 1, "int", &function_91976e37, 0, 0);
 	clientfield::register("world", "doafps", 1, 1, "int", &function_e63081e8, 0, 0);
 	clientfield::register("scriptmover", "play_fx", 1, 7, "int", &function_351aa01c, 0, 0);
@@ -422,7 +422,7 @@ function function_e3bb35e(localclientnum, oldval, newval, bnewent, binitialsnap,
 }
 
 /*
-	Name: function_c86d63f6
+	Name: setexits
 	Namespace: doa_core
 	Checksum: 0x4BBD897D
 	Offset: 0x2908
@@ -430,7 +430,7 @@ function function_e3bb35e(localclientnum, oldval, newval, bnewent, binitialsnap,
 	Parameters: 7
 	Flags: Linked
 */
-function function_c86d63f6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function setexits(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	setuimodelvalue(getuimodel(level.var_7e2a814c, "numexits"), newval);
 	/#
@@ -574,7 +574,7 @@ function function_ca593121(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_22de3f7
+	Name: setlevel
 	Namespace: doa_core
 	Checksum: 0xF8B32BC9
 	Offset: 0x30E0
@@ -582,7 +582,7 @@ function function_ca593121(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_22de3f7(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function setlevel(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	level.doa.var_160ae6c6 = newval;
 	setuimodelvalue(getuimodel(level.var_7e2a814c, "level"), level.doa.var_160ae6c6);
@@ -2047,7 +2047,7 @@ function function_12c2fbcb()
 				assert(self.doa.player == self);
 			#/
 		}
-		doa_score::function_e06716c7(self.doa);
+		doa_score::doa_reset(self.doa);
 		self.doa.player = self;
 		/#
 			loc_00006DF4:

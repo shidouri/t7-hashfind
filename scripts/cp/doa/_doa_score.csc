@@ -105,7 +105,7 @@ function function_6fa6dee2()
 		doa = spawnstruct();
 		doa.ui_model = level.var_b9d30140[i];
 		level.var_29e6f519[level.var_29e6f519.size] = doa;
-		function_e06716c7(doa, i);
+		doa_reset(doa, i);
 	}
 	level thread function_cdb6d911();
 	level thread function_4d819138();
@@ -157,7 +157,7 @@ function function_d3f117f9(doa, idx)
 }
 
 /*
-	Name: function_e06716c7
+	Name: doa_reset
 	Namespace: doa_score
 	Checksum: 0x6A1B22D2
 	Offset: 0x11F8
@@ -165,7 +165,7 @@ function function_d3f117f9(doa, idx)
 	Parameters: 2
 	Flags: Linked
 */
-function function_e06716c7(doa, idx)
+function doa_reset(doa, idx)
 {
 	function_d3f117f9(doa, idx);
 	if(isdefined(doa.ui_model) && isdefined(getuimodel(doa.ui_model, "name")))
@@ -387,7 +387,7 @@ function on_shutdown(localclientnum, ent)
 		#/
 		if(isdefined(self.doa))
 		{
-			function_e06716c7(self.doa);
+			doa_reset(self.doa);
 		}
 	}
 }

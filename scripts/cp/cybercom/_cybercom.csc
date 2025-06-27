@@ -1374,27 +1374,27 @@ function function_371a93b4(localclientnum, ability_type)
 {
 	var_e4230c26 = self getcybercomtype();
 	controllermodel = getuimodelforcontroller(localclientnum);
-	var_29ad5b90 = undefined;
+	selected_model = undefined;
 	if(var_e4230c26 == 0)
 	{
-		var_29ad5b90 = getuimodel(controllermodel, "AbilityWheel.Selected1");
+		selected_model = getuimodel(controllermodel, "AbilityWheel.Selected1");
 	}
 	else
 	{
 		if(var_e4230c26 == 1)
 		{
-			var_29ad5b90 = getuimodel(controllermodel, "AbilityWheel.Selected2");
+			selected_model = getuimodel(controllermodel, "AbilityWheel.Selected2");
 		}
 		else if(var_e4230c26 == 2)
 		{
-			var_29ad5b90 = getuimodel(controllermodel, "AbilityWheel.Selected3");
+			selected_model = getuimodel(controllermodel, "AbilityWheel.Selected3");
 		}
 	}
-	if(!isdefined(var_29ad5b90))
+	if(!isdefined(selected_model))
 	{
 		return undefined;
 	}
-	var_191d8f6d = getuimodelvalue(var_29ad5b90);
+	var_191d8f6d = getuimodelvalue(selected_model);
 	if(!isdefined(var_191d8f6d))
 	{
 		return undefined;

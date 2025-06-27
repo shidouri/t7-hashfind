@@ -857,7 +857,7 @@ function function_cce02c2e()
 		var_38184ced = 3.5;
 		self.s_beacon.prompt safehouse::function_a8271940(self);
 		self.s_beacon waittill("trigger");
-		self thread function_4837ece8(self.s_beacon);
+		self thread show_clear(self.s_beacon);
 		function_e8f80ed0();
 		function_31f3ed94(self);
 		self.s_beacon.prompt safehouse::function_e04cba0f(self);
@@ -1070,7 +1070,7 @@ function function_30df2b91()
 }
 
 /*
-	Name: function_4837ece8
+	Name: show_clear
 	Namespace: training_sim
 	Checksum: 0x63CF1E0F
 	Offset: 0x4020
@@ -1078,7 +1078,7 @@ function function_30df2b91()
 	Parameters: 1
 	Flags: Linked
 */
-function function_4837ece8(s_beacon)
+function show_clear(s_beacon)
 {
 	self luinotifyevent(&"training_sim_round_complete", 0);
 }

@@ -1113,7 +1113,7 @@ function function_f647689b()
 }
 
 /*
-	Name: function_f547728f
+	Name: accuracy_tuner
 	Namespace: hangar
 	Checksum: 0x1B4D7E7
 	Offset: 0x5C40
@@ -1121,7 +1121,7 @@ function function_f647689b()
 	Parameters: 0
 	Flags: None
 */
-function function_f547728f()
+function accuracy_tuner()
 {
 	// Unsupported VM revision (1B).
 }

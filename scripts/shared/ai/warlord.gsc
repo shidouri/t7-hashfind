@@ -1558,26 +1558,26 @@ function checkifweshouldmove(entity)
 	{
 		return;
 	}
-	var_a8e832eb = 0;
+	isstandstill = 0;
 	if(atpreferedpoint(entity))
 	{
 		if(!isdefined(entity.var_7e5dd3e4) || (gettime() - entity.var_7e5dd3e4) < 1)
 		{
 			return;
 		}
-		var_a8e832eb = 1;
+		isstandstill = 1;
 	}
-	if(!var_a8e832eb)
+	if(!isstandstill)
 	{
 		if(isdefined(entity.pathgoalpos))
 		{
 			if(distance2dsquared(entity.pathgoalpos, entity.origin) < (36 * 36) && (abs(entity.pathgoalpos[2] - entity.origin[2])) < 45)
 			{
-				var_a8e832eb = 1;
+				isstandstill = 1;
 			}
 		}
 	}
-	if(var_a8e832eb)
+	if(isstandstill)
 	{
 		if(havetoolowtoattackenemy(entity))
 		{

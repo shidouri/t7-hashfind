@@ -86,7 +86,7 @@ function init()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_6162a853(var_26fc4461 = 0)
+function private function_6162a853(isrighteous = 0)
 {
 	level endon(#"hash_7b036079");
 	time_left = (gettime() + (level.doa.rules.fate_wait * 1000)) + 10000;
@@ -97,7 +97,7 @@ function private function_6162a853(var_26fc4461 = 0)
 		if(diff < 8000 && !var_4af4d74c)
 		{
 			var_4af4d74c = 1;
-			if(!var_26fc4461)
+			if(!isrighteous)
 			{
 				level thread doa_utility::function_37fb5c23(&"DOA_FATE_ROOM_CHOOSE_HURRY");
 			}
@@ -110,7 +110,7 @@ function private function_6162a853(var_26fc4461 = 0)
 		allfated = 1;
 		for(i = 0; i < players.size; i++)
 		{
-			if(!var_26fc4461)
+			if(!isrighteous)
 			{
 				if(players[i].doa.fate == 0)
 				{
@@ -314,7 +314,7 @@ function private function_524284e0()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_271ba816(var_26fc4461 = 0)
+function private function_271ba816(isrighteous = 0)
 {
 	level endon(#"hash_7b036079");
 	self thread function_46575fe6();
@@ -337,7 +337,7 @@ function private function_271ba816(var_26fc4461 = 0)
 		{
 			continue;
 		}
-		if(!var_26fc4461)
+		if(!isrighteous)
 		{
 			if(guy.doa.fate != 0)
 			{
@@ -348,7 +348,7 @@ function private function_271ba816(var_26fc4461 = 0)
 		{
 			continue;
 		}
-		if(!var_26fc4461)
+		if(!isrighteous)
 		{
 			guy awardfate(self.type, self.rock);
 			self notify(#"hash_9075e98");
@@ -1233,7 +1233,7 @@ function private function_b1d23a45(boss)
 	}
 	if(isdefined(boss))
 	{
-		boss notify(#"hash_d57cf5a3", self.org);
+		boss notify("shield_lost", self.org);
 	}
 	if(isdefined(self))
 	{
@@ -1355,7 +1355,7 @@ function private function_51f0dd2c()
 	}
 	while(true)
 	{
-		self waittill(#"hash_d57cf5a3", org);
+		self waittill("shield_lost", org);
 		self thread function_4d69c061(org);
 	}
 }

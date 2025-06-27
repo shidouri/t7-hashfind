@@ -175,8 +175,8 @@ function function_fe7a4182(upgraded)
 	zombies = function_66ab6f95(upgraded, 0);
 	objects = function_66ab6f95(upgraded, 1);
 	zombies = arraycombine(zombies, objects, 1, 0);
-	var_744b41f1 = 1000;
-	for(i = 0; i < zombies.size && i < var_744b41f1; i++)
+	maxshrinks = 1000;
+	for(i = 0; i < zombies.size && i < maxshrinks; i++)
 	{
 		if(isai(zombies[i]))
 		{
@@ -371,8 +371,8 @@ function shrink_zombie(upgraded, attacker)
 			{
 				model = self getattachmodelname(i);
 				tag = self getattachtagname(i);
-				var_4f32ff14 = isdefined(self.hatmodel) && self.hatmodel == model;
-				if(var_4f32ff14)
+				ishat = isdefined(self.hatmodel) && self.hatmodel == model;
+				if(ishat)
 				{
 					self.hatmodel = undefined;
 				}
@@ -383,7 +383,7 @@ function shrink_zombie(upgraded, attacker)
 				if(isdefined(var_89a773f5))
 				{
 					self attach(var_89a773f5);
-					if(var_4f32ff14)
+					if(ishat)
 					{
 						self.hatmodel = var_89a773f5;
 					}
@@ -499,7 +499,7 @@ function function_f23d2379()
 function function_6d284e94()
 {
 	self endon("unshrink");
-	self endon(#"hash_b6537d92");
+	self endon("stepped_on");
 	self endon("kicked");
 	self endon("death");
 	wait(randomfloatrange(0.2, 0.5));
@@ -593,7 +593,7 @@ function function_643fa9c8()
 		}
 		else
 		{
-			self notify(#"hash_b6537d92");
+			self notify("stepped_on");
 			self function_6140a171(who);
 		}
 	}
@@ -627,7 +627,7 @@ function function_2c318bd(e_watched)
 function watch_for_death()
 {
 	self endon("unshrink");
-	self endon(#"hash_b6537d92");
+	self endon("stepped_on");
 	self endon("kicked");
 	self waittill("death");
 	self function_6140a171();

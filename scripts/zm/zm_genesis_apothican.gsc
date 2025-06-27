@@ -1408,7 +1408,7 @@ function function_ff65120e()
 	mdl_pod = util::spawn_model("p7_fxanim_zm_gen_gateworm_egg_mod", v_pos, mdl_ovary.angles);
 	self.mdl_pod = mdl_pod;
 	self.var_22ee51d7 = e_player;
-	e_player function_eb908d5e();
+	e_player take_egg();
 	zm_unitrigger::unregister_unitrigger(s_unitrigger);
 	mdl_ovary thread scene::play("p7_fxanim_zm_gen_gateworm_ovary_egg_deposit_bundle", mdl_ovary);
 	mdl_pod scene::play("p7_fxanim_zm_gen_gateworm_egg_deposit_bundle", mdl_pod);
@@ -1558,7 +1558,7 @@ function function_9b3d1bca(s_egg)
 }
 
 /*
-	Name: function_eb908d5e
+	Name: take_egg
 	Namespace: zm_genesis_apothican
 	Checksum: 0x3B23CE25
 	Offset: 0x4B10
@@ -1566,7 +1566,7 @@ function function_9b3d1bca(s_egg)
 	Parameters: 0
 	Flags: Linked
 */
-function function_eb908d5e()
+function take_egg()
 {
 	self clientfield::set_to_player("player_apothicon_egg", 0);
 	self clientfield::set_player_uimodel("zmInventory.player_apothicon_egg_bg", 0);

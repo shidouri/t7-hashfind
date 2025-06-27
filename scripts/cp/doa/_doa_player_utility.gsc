@@ -26,7 +26,7 @@
 #namespace doa_player_utility;
 
 /*
-	Name: function_138c35de
+	Name: playercreate
 	Namespace: doa_player_utility
 	Checksum: 0xC5D8942
 	Offset: 0xB38
@@ -34,7 +34,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_138c35de()
+function playercreate()
 {
 	self show();
 	if(!isdefined(self.entnum))
@@ -136,7 +136,7 @@ function function_bbb1254c(var_44eb97b0 = 0)
 		self.doa.score = 0;
 		self.doa.var_db3637c0 = 0;
 		self.doa.kills = 0;
-		self.doa.var_74c73153 = 0;
+		self.doa.redinswins = 0;
 		self.doa.var_d92a8d3e = 0;
 		self.doa.var_ec573900 = 0;
 		self.doa.var_130471f = 0;
@@ -2019,7 +2019,7 @@ function function_7f33210a()
 	Parameters: 1
 	Flags: Linked
 */
-function function_b5843d4f(var_6a15db21)
+function function_b5843d4f(isnight)
 {
 	self endon("disconnect");
 	if(!isdefined(self) || !isdefined(self.doa))
@@ -2030,7 +2030,7 @@ function function_b5843d4f(var_6a15db21)
 	{
 		return;
 	}
-	self.doa.var_9742391e = (var_6a15db21 ? 2 : 1);
+	self.doa.var_9742391e = (isnight ? 2 : 1);
 }
 
 /*

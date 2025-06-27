@@ -596,11 +596,11 @@ function notifymeinnsec(note, sec, endnote, param1, param2)
 	Parameters: 2
 	Flags: Linked
 */
-function function_783519c1(note, var_8b804bd9 = 0)
+function function_783519c1(note, islevel = 0)
 {
 	self endon("death");
 	self endon("abort" + note);
-	if(!var_8b804bd9)
+	if(!islevel)
 	{
 		self waittill(note);
 	}

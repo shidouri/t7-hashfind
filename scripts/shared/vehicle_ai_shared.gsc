@@ -79,7 +79,7 @@ function initthreatbias()
 		{
 			self setpersonalignore(ai);
 		}
-		if(self.ignoredecoy === 1 && ai.var_e42818a3 === 1)
+		if(self.ignoredecoy === 1 && ai.isdecoy === 1)
 		{
 			self setpersonalignore(ai);
 		}

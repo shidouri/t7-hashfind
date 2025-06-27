@@ -216,16 +216,16 @@ function function_719d3043(b_on = 1, str_who)
 */
 function function_26ed5998(b_on = 1, str_who = "abcd")
 {
-	var_c4217816 = [];
-	var_c4217816["abcd"] = 1;
-	var_c4217816["shad"] = 2;
+	a_n_fx_id = [];
+	a_n_fx_id["abcd"] = 1;
+	a_n_fx_id["shad"] = 2;
 	if(isdefined(self))
 	{
 		if(b_on && !isdefined(self.var_3dc2890d))
 		{
 			s_fx = struct::get(self.target, "targetname");
 			self.var_3dc2890d = util::spawn_model("tag_origin", s_fx.origin, s_fx.angles);
-			self.var_3dc2890d clientfield::set("wisp_fx", var_c4217816[str_who]);
+			self.var_3dc2890d clientfield::set("wisp_fx", a_n_fx_id[str_who]);
 			self.s_unitrigger.b_on = 1;
 			self thread function_3bcaa1c();
 		}

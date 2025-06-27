@@ -40,6 +40,7 @@ function init()
 	callback::on_connect(&one_inch_punch_take_think);
 }
 
+
 /*
 	Name: widows_wine_knife_override
 	Namespace: _zm_weap_one_inch_punch

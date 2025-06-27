@@ -213,7 +213,7 @@ function function_6c015e54()
 			{
 				foreach(player in level.players)
 				{
-					if(player prop::function_e4b2f23())
+					if(player prop::ishunter())
 					{
 						var_fe10d650 = getdvarint("", 0);
 						player.var_74ca9cd1 = !(isdefined(player.var_74ca9cd1) && player.var_74ca9cd1);
@@ -221,11 +221,11 @@ function function_6c015e54()
 					}
 				}
 			}
-			var_9c4c453 = getdvarint("", 0);
-			if(var_9c4c453 != var_b58392ae)
+			isremoved = getdvarint("", 0);
+			if(isremoved != var_b58392ae)
 			{
-				var_b58392ae = var_9c4c453;
-				function_f35dfc64(!var_9c4c453);
+				var_b58392ae = isremoved;
+				function_f35dfc64(!isremoved);
 			}
 			var_504c9134 = getdvarint("", 0);
 			if(var_504c9134 != var_8b6a1374)
@@ -1155,13 +1155,13 @@ function function_bce1e8ea(file, propsizetext)
 	Parameters: 2
 	Flags: None
 */
-function function_d3a80896(file, var_dc7b1be6)
+function function_d3a80896(file, filename_base)
 {
 	/#
-		var_7b625b5a = var_dc7b1be6 + "";
-		var_74036302 = var_dc7b1be6 + "";
-		var_11e4d40d = var_dc7b1be6 + "";
-		var_9f31b917 = level.script + "";
+		var_7b625b5a = filename_base + "";
+		filename_header = filename_base + "";
+		var_11e4d40d = filename_base + "";
+		filename_zone = level.script + "";
 		var_a0b36f12 = level.script + "";
 		var_43a6e14b = "";
 		var_6da36d3e = "";
@@ -1170,13 +1170,13 @@ function function_d3a80896(file, var_dc7b1be6)
 		fprintln(file, "");
 		fprintln(file, "");
 		fprintln(file, ("" + var_7b625b5a) + "");
-		fprintln(file, ("" + var_74036302) + "");
+		fprintln(file, ("" + filename_header) + "");
 		fprintln(file, (("" + var_11e4d40d) + "") + var_43a6e14b);
 		fprintln(file, (("" + var_7b625b5a) + "") + var_586b7057);
-		fprintln(file, (("" + var_74036302) + "") + var_6da36d3e);
+		fprintln(file, (("" + filename_header) + "") + var_6da36d3e);
 		fprintln(file, "");
-		fprintln(file, (("" + var_9f31b917) + "") + var_dc7b1be6);
-		fprintln(file, ((("" + var_a0b36f12) + "") + var_74036302) + "");
+		fprintln(file, (("" + filename_zone) + "") + filename_base);
+		fprintln(file, ((("" + var_a0b36f12) + "") + filename_header) + "");
 		fprintln(file, "");
 		fprintln(file, "");
 		fprintln(file, "");
@@ -1204,8 +1204,8 @@ function function_543336f9()
 		{
 			platform = "";
 		}
-		var_dc7b1be6 = level.script + "";
-		var_7b625b5a = var_dc7b1be6 + "";
+		filename_base = level.script + "";
+		var_7b625b5a = filename_base + "";
 		var_36b45864 = ("" + platform) + "";
 		var_586b7057 = "";
 		file = openfile(var_7b625b5a, "");
@@ -1215,7 +1215,7 @@ function function_543336f9()
 			println((("" + var_36b45864) + var_7b625b5a) + "");
 			return;
 		}
-		function_d3a80896(file, var_dc7b1be6);
+		function_d3a80896(file, filename_base);
 		fprintln(file, "");
 		function_74e29250(file, "");
 		fprintln(file, "");
@@ -1257,8 +1257,8 @@ function function_a8147bf9()
 		{
 			platform = "";
 		}
-		var_dc7b1be6 = level.script + "";
-		var_7b625b5a = var_dc7b1be6 + "";
+		filename_base = level.script + "";
+		var_7b625b5a = filename_base + "";
 		var_36b45864 = ("" + platform) + "";
 		var_586b7057 = "";
 		file = openfile(var_7b625b5a, "");
@@ -1309,11 +1309,11 @@ function function_1a022b4b()
 		{
 			platform = "";
 		}
-		var_dc7b1be6 = level.script + "";
-		var_7b625b5a = var_dc7b1be6 + "";
-		var_74036302 = var_dc7b1be6 + "";
-		var_11e4d40d = var_dc7b1be6 + "";
-		var_9f31b917 = level.script + "";
+		filename_base = level.script + "";
+		var_7b625b5a = filename_base + "";
+		filename_header = filename_base + "";
+		var_11e4d40d = filename_base + "";
+		filename_zone = level.script + "";
 		var_a0b36f12 = level.script + "";
 		var_36b45864 = ("" + platform) + "";
 		var_43a6e14b = "";
@@ -1326,7 +1326,7 @@ function function_1a022b4b()
 			println((("" + var_36b45864) + var_7b625b5a) + "");
 			return;
 		}
-		function_d3a80896(file, var_dc7b1be6);
+		function_d3a80896(file, filename_base);
 		fprintln(file, "");
 		fprintln(file, "");
 		fprintln(file, "");
@@ -1361,11 +1361,11 @@ function function_1a022b4b()
 		fprintln(file, "");
 		fprintln(file, "");
 		closefile(file);
-		file = openfile(var_74036302, "");
+		file = openfile(filename_header, "");
 		if(file == -1)
 		{
-			iprintlnbold((("" + var_36b45864) + var_74036302) + "");
-			println((("" + var_36b45864) + var_74036302) + "");
+			iprintlnbold((("" + var_36b45864) + filename_header) + "");
+			println((("" + var_36b45864) + filename_header) + "");
 			return;
 		}
 		fprintln(file, "");
@@ -1410,7 +1410,7 @@ function function_1a022b4b()
 			return;
 		}
 		fprintln(file, "" + var_7b625b5a);
-		fprintln(file, "" + var_74036302);
+		fprintln(file, "" + filename_header);
 		closefile(file);
 		iprintlnbold("" + var_36b45864);
 		println("" + var_36b45864);

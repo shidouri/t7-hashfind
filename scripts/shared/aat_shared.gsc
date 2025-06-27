@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -509,7 +509,7 @@ function register(name, percentage, cooldown_time_entity, cooldown_time_attacker
 	#/
 	level.aat[name] = spawnstruct();
 	level.aat[name].name = name;
-	level.aat[name].var_2c8ee667 = hashstring(name);
+	level.aat[name].hash_id = hashstring(name);
 	level.aat[name].percentage = percentage;
 	level.aat[name].cooldown_time_entity = cooldown_time_entity;
 	level.aat[name].cooldown_time_attacker = cooldown_time_attacker;
