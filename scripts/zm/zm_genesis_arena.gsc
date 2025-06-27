@@ -418,7 +418,7 @@ class class_d90687be
 	}
 
 	/*
-		Name: function_e4dbca5a
+		Name: arena_margwa_spawning
 		Namespace: namespace_d90687be
 		Checksum: 0x5FF847F4
 		Offset: 0x47B0
@@ -426,10 +426,10 @@ class class_d90687be
 		Parameters: 1
 		Flags: Linked
 	*/
-	function function_e4dbca5a(var_87c8152d)
+	function arena_margwa_spawning(var_87c8152d)
 	{
-		level notify(#"hash_e4dbca5a");
-		level endon(#"hash_e4dbca5a");
+		level notify("arena_margwa_spawning");
+		level endon("arena_margwa_spawning");
 		level endon("arena_challenge_ended");
 		var_2da522a2 = [];
 		while(true)
@@ -486,11 +486,11 @@ class class_d90687be
 		{
 			var_eeb77e19 = array::remove_dead(var_eeb77e19, 0);
 			var_16d0ce4b = 16;
-			if(level.var_f98b3213 < 4)
+			if(level.arena_challenge_level < 4)
 			{
 				var_16d0ce4b = 8;
 			}
-			else if(level.var_f98b3213 < 6)
+			else if(level.arena_challenge_level < 6)
 			{
 				var_16d0ce4b = 12;
 			}
@@ -1135,7 +1135,7 @@ function __init__()
 	clientfield::register("scriptmover", "runeprison_explode_fx", 5000, 1, "int");
 	level.var_42e19a0b = 1;
 	clientfield::register("scriptmover", "summoning_circle_fx", 15000, 1, "int");
-	level.var_f98b3213 = 0;
+	level.arena_challenge_level = 0;
 	level.var_c4133b63 = 1;
 	level.var_42ec150d = 4;
 	level.var_beccbadb = 0;
@@ -1143,10 +1143,10 @@ function __init__()
 	level.var_435967f3 = 0;
 	level.var_fe2fb4b9 = -1;
 	level.var_43e34f20 = [];
-	level.var_43e34f20[0] = &function_48ffe1e9;
-	level.var_43e34f20[1] = &function_2bacd397;
-	level.var_43e34f20[2] = &function_f1e6c2a7;
-	level.var_43e34f20[3] = &function_f1aed0c6;
+	level.var_43e34f20[0] = &arena_challenge_light;
+	level.var_43e34f20[1] = &arena_challenge_shadow;
+	level.var_43e34f20[2] = &arena_challenge_fire;
+	level.var_43e34f20[3] = &arena_challenge_electricity;
 	level.var_5afa678d = [];
 	level.var_5afa678d[0] = &function_876e8a3c;
 	level.var_5afa678d[1] = &function_d2a9fa8c;
@@ -1475,7 +1475,7 @@ function function_2cca8355()
 			continue;
 		}
 		level.var_a7414746 = player;
-		function_6a03c1d4(self.stub.var_87c8152d, level.var_f98b3213);
+		function_6a03c1d4(self.stub.var_87c8152d, level.arena_challenge_level);
 	}
 }
 
@@ -1513,7 +1513,7 @@ function function_6a03c1d4(var_87c8152d, var_eadfbdd4)
 			iprintlnbold(((("" + level flag::get("")) + "") + level flag::get("") + "") + level flag::get(""));
 			iprintlnbold((((("" + level flag::get("")) + "") + level flag::get("") + "") + level flag::get("") + "") + level flag::get(""));
 		#/
-		function_3cc5d8a6(var_eadfbdd4);
+		arena_challenge_custom(var_eadfbdd4);
 	}
 	else
 	{
@@ -1609,7 +1609,7 @@ function function_b6ddba23(n_element_index)
 }
 
 /*
-	Name: function_3cc5d8a6
+	Name: arena_challenge_custom
 	Namespace: zm_genesis_arena
 	Checksum: 0x36AFCE79
 	Offset: 0x67E0
@@ -1617,7 +1617,7 @@ function function_b6ddba23(n_element_index)
 	Parameters: 1
 	Flags: Linked
 */
-function function_3cc5d8a6(var_eadfbdd4 = 0)
+function arena_challenge_custom(var_eadfbdd4 = 0)
 {
 	if(level flag::get("custom_challenge_wallrun"))
 	{
@@ -1684,7 +1684,7 @@ function function_607249fd()
 }
 
 /*
-	Name: function_48ffe1e9
+	Name: arena_challenge_light
 	Namespace: zm_genesis_arena
 	Checksum: 0xBC7FB652
 	Offset: 0x6AA0
@@ -1692,7 +1692,7 @@ function function_607249fd()
 	Parameters: 4
 	Flags: Linked
 */
-function function_48ffe1e9(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
+function arena_challenge_light(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
 {
 	level thread function_b6ddba23(var_87c8152d);
 	if(var_e78a4f30 == 0)
@@ -1741,7 +1741,7 @@ function function_48ffe1e9(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var
 	{
 		wait(3);
 		thread [[ level.var_d90687be ]]->function_a1c7821d(0);
-		thread [[ level.var_d90687be ]]->function_e4dbca5a(var_87c8152d);
+		thread [[ level.var_d90687be ]]->arena_margwa_spawning(var_87c8152d);
 	}
 }
 
@@ -1994,7 +1994,7 @@ function function_8a121ebd(n_x, n_y)
 }
 
 /*
-	Name: function_2bacd397
+	Name: arena_challenge_shadow
 	Namespace: zm_genesis_arena
 	Checksum: 0xF99E2F3F
 	Offset: 0x7850
@@ -2002,7 +2002,7 @@ function function_8a121ebd(n_x, n_y)
 	Parameters: 4
 	Flags: Linked
 */
-function function_2bacd397(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
+function arena_challenge_shadow(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
 {
 	level thread function_b6ddba23(var_87c8152d);
 	if(var_e78a4f30 == 0)
@@ -2030,7 +2030,7 @@ function function_2bacd397(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var
 	if(var_e78a4f30 == 0)
 	{
 		thread [[ level.var_d90687be ]]->function_a1c7821d(0);
-		thread [[ level.var_d90687be ]]->function_e4dbca5a(var_87c8152d);
+		thread [[ level.var_d90687be ]]->arena_margwa_spawning(var_87c8152d);
 	}
 }
 
@@ -2598,7 +2598,7 @@ function function_1df8c24(b_on, var_98176bbc)
 }
 
 /*
-	Name: function_f1e6c2a7
+	Name: arena_challenge_fire
 	Namespace: zm_genesis_arena
 	Checksum: 0x62996EED
 	Offset: 0x9268
@@ -2606,7 +2606,7 @@ function function_1df8c24(b_on, var_98176bbc)
 	Parameters: 4
 	Flags: Linked
 */
-function function_f1e6c2a7(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
+function arena_challenge_fire(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
 {
 	level thread function_b6ddba23(var_87c8152d);
 	if(var_e78a4f30 == 0)
@@ -2629,7 +2629,7 @@ function function_f1e6c2a7(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var
 	if(var_e78a4f30 == 0)
 	{
 		thread [[ level.var_d90687be ]]->function_a1c7821d(1);
-		thread [[ level.var_d90687be ]]->function_e4dbca5a(var_87c8152d);
+		thread [[ level.var_d90687be ]]->arena_margwa_spawning(var_87c8152d);
 	}
 }
 
@@ -2923,7 +2923,7 @@ function function_33b2cd3e(player)
 }
 
 /*
-	Name: function_f1aed0c6
+	Name: arena_challenge_electricity
 	Namespace: zm_genesis_arena
 	Checksum: 0xA1CD77D3
 	Offset: 0xA248
@@ -2931,7 +2931,7 @@ function function_33b2cd3e(player)
 	Parameters: 4
 	Flags: Linked
 */
-function function_f1aed0c6(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
+function arena_challenge_electricity(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var_47a4362c = 0)
 {
 	level thread function_b6ddba23(var_87c8152d);
 	if(var_e78a4f30 == 0)
@@ -2955,7 +2955,7 @@ function function_f1aed0c6(var_87c8152d, var_eadfbdd4 = 0, var_e78a4f30 = 0, var
 	if(var_e78a4f30 == 0)
 	{
 		thread [[ level.var_d90687be ]]->function_a1c7821d(0);
-		thread [[ level.var_d90687be ]]->function_e4dbca5a(var_87c8152d);
+		thread [[ level.var_d90687be ]]->arena_margwa_spawning(var_87c8152d);
 	}
 }
 
@@ -4598,7 +4598,7 @@ function final_boss_shadowman_attack_thread()
 function function_9faf5035()
 {
 	thread [[ level.var_d90687be ]]->function_a1c7821d(0);
-	thread [[ level.var_d90687be ]]->function_e4dbca5a(0);
+	thread [[ level.var_d90687be ]]->arena_margwa_spawning(0);
 	if(level.var_435967f3 < level.var_e10b491b)
 	{
 		function_2ed620e8(0);
@@ -4998,7 +4998,7 @@ function function_60c23a57(n_element_index)
 	func_challenge = level.var_43e34f20[n_element_index];
 	level thread [[func_challenge]](n_element_index, 0, 1, 0);
 	level.var_cbc0c05a = n_element_index;
-	thread [[ level.var_d90687be ]]->function_e4dbca5a(n_element_index);
+	thread [[ level.var_d90687be ]]->arena_margwa_spawning(n_element_index);
 }
 
 /*
@@ -5556,8 +5556,8 @@ function function_78325935()
 	if(!isdefined(level.var_f0cbb403))
 	{
 		var_fba3cf4 = tablelookuprowcount("gamedata/tables/zm/zm_paragonRankTable.csv");
-		var_4f928127 = tablelookuprow("gamedata/tables/zm/zm_paragonRankTable.csv", var_fba3cf4 - 1);
-		level.var_f0cbb403 = int(var_4f928127[7]);
+		lastrow = tablelookuprow("gamedata/tables/zm/zm_paragonRankTable.csv", var_fba3cf4 - 1);
+		level.var_f0cbb403 = int(lastrow[7]);
 	}
 	return level.var_f0cbb403;
 }
@@ -6647,7 +6647,7 @@ function function_9efa2460(n_val)
 {
 	/#
 		level notify(#"hash_6760e3ae");
-		function_6a03c1d4(n_val, level.var_f98b3213);
+		function_6a03c1d4(n_val, level.arena_challenge_level);
 	#/
 }
 
@@ -6740,7 +6740,7 @@ function function_ef5cc959(n_val)
 {
 	/#
 		level flag::set("");
-		function_6a03c1d4(0, level.var_f98b3213);
+		function_6a03c1d4(0, level.arena_challenge_level);
 	#/
 }
 
@@ -6830,7 +6830,7 @@ function function_7104ee61(n_val)
 			level flag::clear("" + str_flag);
 		}
 		level flag::set("");
-		function_6a03c1d4(0, level.var_f98b3213);
+		function_6a03c1d4(0, level.arena_challenge_level);
 	#/
 }
 
@@ -6988,7 +6988,7 @@ function function_23d9750e(n_val)
 function function_4e3a221e(n_val)
 {
 	/#
-		level.var_f98b3213 = n_val;
+		level.arena_challenge_level = n_val;
 	#/
 }
 

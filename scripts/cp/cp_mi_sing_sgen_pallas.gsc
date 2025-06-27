@@ -1678,14 +1678,14 @@ function hendricks_attacked()
 		}
 		case 5:
 		{
-			level thread function_c79b403e();
+			level thread hendricks_killed();
 			break;
 		}
 	}
 }
 
 /*
-	Name: function_c79b403e
+	Name: hendricks_killed
 	Namespace: cp_mi_sing_sgen_pallas
 	Checksum: 0x2C8BBF3F
 	Offset: 0x6678
@@ -1693,7 +1693,7 @@ function hendricks_attacked()
 	Parameters: 0
 	Flags: Linked
 */
-function function_c79b403e()
+function hendricks_killed()
 {
 	level clientfield::increment("observation_deck_destroy", 1);
 	st_align = struct::get("hendrick_console_hack", "targetname");

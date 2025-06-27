@@ -138,7 +138,7 @@ function objective_cloudmountain_init(str_objective, b_starting)
 		load::function_a2995f22();
 	}
 	hidemiscmodels("fxanim_markets2");
-	level thread namespace_f1b4cbbc::function_2e34977e();
+	level thread namespace_f1b4cbbc::play_siegebot();
 	level thread cloudmountain_main();
 }
 
@@ -185,7 +185,7 @@ function cloudmountain_main()
 function function_9a10cb7d()
 {
 	level endon(#"hash_19af2c9a");
-	level waittill(#"hash_ce48e0c4");
+	level waittill("cloudmountain_siegebots_dead");
 	spawn_manager::enable("manager_phalanx_humans_overhead");
 }
 
@@ -201,16 +201,16 @@ function function_9a10cb7d()
 function function_efae47c8()
 {
 	spawn_manager::wait_till_complete("cloud_mountain_siegebot_manager");
-	var_c81e3075 = spawn_manager::get_ai("cloud_mountain_siegebot_manager");
-	objectives::set("cp_level_biodomes_siegebot", var_c81e3075);
-	foreach(var_51a7831a in var_c81e3075)
+	a_ai_siegebots = spawn_manager::get_ai("cloud_mountain_siegebot_manager");
+	objectives::set("cp_level_biodomes_siegebot", a_ai_siegebots);
+	foreach(ai_siegebot in a_ai_siegebots)
 	{
-		var_51a7831a thread function_7ec07da9();
+		ai_siegebot thread function_7ec07da9();
 	}
-	var_60104d0b = level util::waittill_any_return("cloudmountain_siegebots_dead", "cloudmountain_siegebots_skipped");
-	if(var_60104d0b == "cloudmountain_siegebots_skipped")
+	str_siegebot_notify = level util::waittill_any_return("cloudmountain_siegebots_dead", "cloudmountain_siegebots_skipped");
+	if(str_siegebot_notify == "cloudmountain_siegebots_skipped")
 	{
-		level thread function_f6a70610(var_c81e3075);
+		level thread function_f6a70610(a_ai_siegebots);
 	}
 	objectives::set("cp_level_biodomes_servers");
 	objectives::complete("cp_level_biodomes_siegebot");
@@ -293,14 +293,14 @@ function function_1932917(var_f7824075)
 	Parameters: 1
 	Flags: Linked
 */
-function function_f6a70610(var_c81e3075)
+function function_f6a70610(a_ai_siegebots)
 {
 	level waittill(#"hash_69d6458d");
-	foreach(var_51a7831a in var_c81e3075)
+	foreach(ai_siegebot in a_ai_siegebots)
 	{
-		if(isalive(var_51a7831a))
+		if(isalive(ai_siegebot))
 		{
-			var_51a7831a kill();
+			ai_siegebot kill();
 		}
 	}
 }

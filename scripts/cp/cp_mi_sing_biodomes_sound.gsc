@@ -105,7 +105,7 @@ function function_ac7f09b1()
 }
 
 /*
-	Name: function_2e34977e
+	Name: play_siegebot
 	Namespace: namespace_f1b4cbbc
 	Checksum: 0x3CECCF6
 	Offset: 0x2C0
@@ -113,7 +113,7 @@ function function_ac7f09b1()
 	Parameters: 0
 	Flags: None
 */
-function function_2e34977e()
+function play_siegebot()
 {
 	// Unsupported VM revision (1B).
 }

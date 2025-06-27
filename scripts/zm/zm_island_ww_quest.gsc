@@ -101,8 +101,8 @@ function function_30d4f164()
 	level.var_7cb81d3c = getent("wonder_weapon_up_display", "targetname");
 	level thread scene::add_scene_func("p7_fxanim_zm_island_cage_trap_tp_door_open_bundle", &function_c9d8bea4, "init");
 	level thread scene::add_scene_func("p7_fxanim_zm_island_cage_trap_low_down_bundle", &hatch_open, "play");
-	level thread scene::add_scene_func("p7_fxanim_zm_island_cage_trap_low_up_bundle", &function_10877763, "play");
-	level thread scene::add_scene_func("p7_fxanim_zm_island_cage_trap_hatch_open_bundle", &function_4ee53d8b, "init");
+	level thread scene::add_scene_func("p7_fxanim_zm_island_cage_trap_low_up_bundle", &hatch_reopen, "play");
+	level thread scene::add_scene_func("p7_fxanim_zm_island_cage_trap_hatch_open_bundle", &hatch_setup, "init");
 	level thread scene::init("p7_fxanim_zm_island_cage_trap_tp_door_open_bundle");
 	level thread scene::init("p7_fxanim_zm_island_cage_trap_hatch_open_bundle");
 	mdl_extractor = getent("venom_extractor", "targetname");
@@ -1443,7 +1443,7 @@ function function_c9d8bea4(a_ents)
 }
 
 /*
-	Name: function_4ee53d8b
+	Name: hatch_setup
 	Namespace: zm_island_ww_quest
 	Checksum: 0x276E1AE0
 	Offset: 0x53D8
@@ -1451,7 +1451,7 @@ function function_c9d8bea4(a_ents)
 	Parameters: 1
 	Flags: Linked
 */
-function function_4ee53d8b(a_ents)
+function hatch_setup(a_ents)
 {
 	level.mdl_hatch = a_ents["cage_trap_hatch"];
 	level.mdl_hatch setignorepauseworld(1);
@@ -1478,7 +1478,7 @@ function hatch_open(a_ents)
 }
 
 /*
-	Name: function_10877763
+	Name: hatch_reopen
 	Namespace: zm_island_ww_quest
 	Checksum: 0x7E630A67
 	Offset: 0x54E0
@@ -1486,7 +1486,7 @@ function hatch_open(a_ents)
 	Parameters: 1
 	Flags: Linked
 */
-function function_10877763(a_ents)
+function hatch_reopen(a_ents)
 {
 	level waittill(#"hash_40a91595");
 	hatch_clip(0);

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
@@ -78,7 +78,7 @@ function train_rain_fx_occluder(localclientnum, oldval, newval, bnewent, binitia
 {
 	if(isdemoplaying() && getnumfreeentities(localclientnum) < 100)
 	{
-		var_2a6bebf9 = getnumfreeentities(localclientnum);
+		numfree = getnumfreeentities(localclientnum);
 		return;
 	}
 	if(newval)

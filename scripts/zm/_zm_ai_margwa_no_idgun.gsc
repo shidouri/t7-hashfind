@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\ai\margwa;
@@ -195,7 +195,7 @@ function private function_5d11b2dc(entity)
 	{
 		if(isdefined(entity.favoriteenemy.on_train) && entity.favoriteenemy.on_train)
 		{
-			var_d3443466 = [[ level.o_zod_train ]]->function_3e62f527();
+			var_d3443466 = [[ level.o_zod_train ]]->get_doors_state();
 			if(isdefined(entity.locked_in_train) && entity.locked_in_train && (!(isdefined(var_d3443466) && var_d3443466)))
 			{
 				return false;
@@ -446,7 +446,7 @@ function private function_cbdc3798(entity)
 	{
 		return 0;
 	}
-	if(!isdefined(entity.var_cef86da1) || entity.var_cef86da1 != 1)
+	if(!isdefined(entity.next_attack) || entity.next_attack != 1)
 	{
 		return 0;
 	}
@@ -468,7 +468,7 @@ function private function_ec97fb1e(entity)
 	{
 		return 0;
 	}
-	if(!isdefined(entity.var_cef86da1) || entity.var_cef86da1 != 2)
+	if(!isdefined(entity.next_attack) || entity.next_attack != 2)
 	{
 		return 0;
 	}
@@ -1226,11 +1226,11 @@ function private function_941cbfc5()
 	r = randomintrange(0, 100);
 	if(r < 40)
 	{
-		self.var_cef86da1 = 2;
+		self.next_attack = 2;
 	}
 	else
 	{
-		self.var_cef86da1 = 1;
+		self.next_attack = 1;
 	}
 }
 

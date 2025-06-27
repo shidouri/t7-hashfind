@@ -1797,33 +1797,33 @@ function delay_for_clients_then_execute(func)
 	Parameters: 3
 	Flags: Linked
 */
-function function_ddbc17b4(localclientnum, var_bac17ccf, var_2ca34dda)
+function function_ddbc17b4(localclientnum, nextmode, var_2ca34dda)
 {
-	if(var_bac17ccf == 1 && getplayers(localclientnum).size == level.localplayers.size)
+	if(nextmode == 1 && getplayers(localclientnum).size == level.localplayers.size)
 	{
-		var_bac17ccf++;
+		nextmode++;
 	}
-	if(var_bac17ccf == 4 && isdefined(level.doa.var_708cc739) && level.doa.var_708cc739 != 1)
+	if(nextmode == 4 && isdefined(level.doa.var_708cc739) && level.doa.var_708cc739 != 1)
 	{
-		var_bac17ccf++;
+		nextmode++;
 	}
-	if(var_bac17ccf == 3 && level.localplayers.size > 1)
+	if(nextmode == 3 && level.localplayers.size > 1)
 	{
-		var_bac17ccf++;
+		nextmode++;
 	}
-	if(var_bac17ccf > 4)
+	if(nextmode > 4)
 	{
-		var_bac17ccf = 0;
+		nextmode = 0;
 	}
-	if(var_bac17ccf == var_2ca34dda)
+	if(nextmode == var_2ca34dda)
 	{
 		return var_2ca34dda;
 	}
-	if(level.doa.arenas[level.doa.current_arena].var_dd94482c & (1 << var_bac17ccf))
+	if(level.doa.arenas[level.doa.current_arena].var_dd94482c & (1 << nextmode))
 	{
-		return var_bac17ccf;
+		return nextmode;
 	}
-	return function_ddbc17b4(localclientnum, var_bac17ccf + 1, var_2ca34dda);
+	return function_ddbc17b4(localclientnum, nextmode + 1, var_2ca34dda);
 }
 
 /*
@@ -1849,7 +1849,7 @@ function changecamera(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 	{
 		self.var_44509e49 = 0;
 	}
-	var_f855b918 = self.var_44509e49;
+	lastmode = self.var_44509e49;
 	self.var_44509e49 = function_ddbc17b4(localclientnum, self.var_44509e49 + 1, self.var_44509e49);
 	if(isdefined(self.var_4f118af8))
 	{
@@ -1869,7 +1869,7 @@ function changecamera(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 	{
 		self cameraforcedisablescriptcam(1);
 	}
-	if(var_f855b918 == 4 && self.var_44509e49 != var_f855b918)
+	if(lastmode == 4 && self.var_44509e49 != lastmode)
 	{
 		if(isdefined(level.doa.var_708cc739) && level.doa.var_708cc739 == 1)
 		{

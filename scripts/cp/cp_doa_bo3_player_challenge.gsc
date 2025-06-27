@@ -1278,7 +1278,7 @@ function function_3ed913b4(room)
 	}
 	level thread function_67b5ba67();
 	winner = undefined;
-	var_64c1db98 = 0;
+	lastlap = 0;
 	while(!isdefined(winner))
 	{
 		players = getplayers();
@@ -1328,9 +1328,9 @@ function function_3ed913b4(room)
 			}
 			player.doa.bombs = room.var_2f400c3b - player.doa.var_de24aff7;
 			player.doa.boosters = player.doa.var_37efabf7;
-			if(player.doa.var_de24aff7 == (room.var_2f400c3b - 1) && (!(isdefined(var_64c1db98) && var_64c1db98)))
+			if(player.doa.var_de24aff7 == (room.var_2f400c3b - 1) && (!(isdefined(lastlap) && lastlap)))
 			{
-				var_64c1db98 = 1;
+				lastlap = 1;
 				playsoundatposition("evt_final_lap", (0, 0, 0));
 				level clientfield::set("redinsExploder", 1);
 				level thread doa_utility::function_c5f3ece8(&"CP_DOA_BO3_LAST_LAP");
@@ -1766,7 +1766,7 @@ function function_c7e4d911(room)
 */
 function function_5284e8dc(room)
 {
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	if(room.var_677f63c8.size > getdvarint("scr_doa_chicken_balls_max", 3))
 	{
 		return;
@@ -1828,7 +1828,7 @@ function function_76dd5557(room)
 */
 function function_90585f48(room)
 {
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	while(true)
 	{
 		level thread function_5284e8dc(room);
@@ -1944,7 +1944,7 @@ function function_7c9617ef(var_7bb420a0, goaltrigger)
 */
 function function_60fcd122(room, goaltrigger)
 {
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	goaltrigger.movetime = getdvarfloat("scr_doa_chicken_bowl_glow_default_speed", 1.25);
 	goaltrigger.posts = [];
 	goaltrigger.posts[goaltrigger.posts.size] = struct::get(goaltrigger.target, "targetname");
@@ -2046,7 +2046,7 @@ function function_60fcd122(room, goaltrigger)
 */
 function function_5dac2dae(room)
 {
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	self.org = spawn("script_model", self.origin);
 	self.org.targetname = "trucksoccer_BlowTriggerThink";
 	self.org setmodel("tag_origin");
@@ -2090,7 +2090,7 @@ function function_5dac2dae(room)
 */
 function function_8f4c809d(room, goaltrigger)
 {
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	goaltrigger notify(#"hash_8f4c809d");
 	goaltrigger endon(#"hash_8f4c809d");
 	room.var_efbfafed++;
@@ -2110,7 +2110,7 @@ function function_8f4c809d(room, goaltrigger)
 */
 function function_71be5ae5(room)
 {
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	self.var_f1e29613 = [];
 	self.myteam = int(self.script_noteworthy);
 	level thread function_60fcd122(room, self);
@@ -2243,7 +2243,7 @@ function function_2ea4cb82(room)
 		level notify(#"hash_d1f5acf7");
 	}
 	playsoundatposition("zmb_eggbowl_whistle", (0, 0, 0));
-	level notify(#"hash_4f4a6e14");
+	level notify("trucksoccer_rally_complete");
 	doa_pickups::function_c1869ec8();
 }
 
@@ -2295,7 +2295,7 @@ function function_55e9043d()
 {
 	level endon(#"hash_16154574");
 	level endon(#"hash_d1f5acf7");
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	while(true)
 	{
 		level waittill(#"hash_c62f5087", left);
@@ -2338,7 +2338,7 @@ function function_55e9043d()
 */
 function function_b3939e94(room)
 {
-	level notify(#"hash_4f4a6e14");
+	level notify("trucksoccer_rally_complete");
 	doa_pickups::function_c1869ec8();
 	level thread doa_utility::killallenemy();
 	function_baa38e65(room);
@@ -2404,7 +2404,7 @@ function function_6274a031()
 */
 function function_e619ee5(vehicle)
 {
-	level endon(#"hash_4f4a6e14");
+	level endon("trucksoccer_rally_complete");
 	level endon(#"hash_d1f5acf7");
 	self notify(#"hash_2747daf7");
 	self endon(#"hash_2747daf7");
@@ -2412,7 +2412,7 @@ function function_e619ee5(vehicle)
 	vehicle endon("death");
 	level.launchforce = 500;
 	vehicle vehicle::toggle_lights_group(1, 0);
-	self.doa.var_f6a4f3f = 0;
+	self.doa.trucksoccer_boost = 0;
 	while(true)
 	{
 		wait(0.05);
@@ -2420,9 +2420,9 @@ function function_e619ee5(vehicle)
 		{
 			continue;
 		}
-		if(isdefined(self.doa.vehicle) && self changeseatbuttonpressed() && gettime() > self.doa.var_f6a4f3f && (!(isdefined(self.doa.var_1951557) && self.doa.var_1951557)))
+		if(isdefined(self.doa.vehicle) && self changeseatbuttonpressed() && gettime() > self.doa.trucksoccer_boost && (!(isdefined(self.doa.var_1951557) && self.doa.var_1951557)))
 		{
-			self.doa.var_f6a4f3f = gettime() + getdvarint("scr_doa_chicken_bowl_boostinterval", 4000);
+			self.doa.trucksoccer_boost = gettime() + getdvarint("scr_doa_chicken_bowl_boostinterval", 4000);
 			curdir = (level.launchforce, 0, 0);
 			vehicle launchvehicle(curdir, (0, 0, 0), 1);
 			vehicle thread function_fa6d5f56();

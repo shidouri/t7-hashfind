@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_hazard;
 #using scripts\cp\_load;
@@ -182,7 +182,7 @@ function handle_hendricks_path()
 }
 
 /*
-	Name: function_9d7c6fb3
+	Name: hendricks_robot
 	Namespace: cp_mi_sing_sgen_silo_swim
 	Checksum: 0x40F37525
 	Offset: 0x19C0
@@ -190,7 +190,7 @@ function handle_hendricks_path()
 	Parameters: 0
 	Flags: None
 */
-function function_9d7c6fb3()
+function hendricks_robot()
 {
 	// Unsupported VM revision (1B).
 }

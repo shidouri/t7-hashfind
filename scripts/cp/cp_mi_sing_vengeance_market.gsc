@@ -216,13 +216,13 @@ function function_e8676a98()
 			wait(10);
 			spawn_manager::disable("quad_battle_reinforcements");
 		}
-		var_2eebaf3b = getent("quad_battle_retreat_volume", "targetname");
+		e_retreat_volume = getent("quad_battle_retreat_volume", "targetname");
 		a_enemies = spawner::get_ai_group_ai("quad_battle_enemies");
 		foreach(e_enemy in a_enemies)
 		{
 			if(isalive(e_enemy))
 			{
-				e_enemy thread function_ee2d9cb4(var_2eebaf3b);
+				e_enemy thread function_ee2d9cb4(e_retreat_volume);
 			}
 		}
 		if(a_enemies.size > 0)

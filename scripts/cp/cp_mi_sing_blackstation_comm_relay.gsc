@@ -293,7 +293,7 @@ function function_5be784f3()
 }
 
 /*
-	Name: function_104ecb4b
+	Name: hendricks_start
 	Namespace: cp_mi_sing_blackstation_comm_relay
 	Checksum: 0x8F37FA0D
 	Offset: 0x1F90
@@ -301,7 +301,7 @@ function function_5be784f3()
 	Parameters: 1
 	Flags: None
 */
-function function_104ecb4b()
+function hendricks_start()
 {
 	// Unsupported VM revision (1B).
 }

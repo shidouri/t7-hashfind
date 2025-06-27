@@ -985,17 +985,17 @@ function function_14f37b59(section, start_time, dogfighter, var_eb969a93, spawne
 				}
 			}
 		}
-		var_7ba7c005 = section;
+		last_section = section;
 		if(isdefined(veh.var_3ae26974) && isdefined(veh.var_3ae26974.var_c63462fd))
 		{
 			section = veh.var_3ae26974.var_c63462fd;
-			if(section == var_7ba7c005)
+			if(section == last_section)
 			{
 				veh.var_3c6a99b9 = 1;
 				arrayremovevalue(level.dogfight_targets, veh);
 				return;
 			}
-			foreach(branch in level.var_ef297e7c[var_7ba7c005].branches)
+			foreach(branch in level.var_ef297e7c[last_section].branches)
 			{
 				if(branch.branch == section)
 				{
@@ -1019,7 +1019,7 @@ function function_14f37b59(section, start_time, dogfighter, var_eb969a93, spawne
 				if(distancesquared(veh.origin, start_pos) > 1000000)
 				{
 					/#
-						assertmsg(((("" + var_7ba7c005) + "") + section) + "");
+						assertmsg(((("" + last_section) + "") + section) + "");
 					#/
 				}
 			}
@@ -5096,7 +5096,7 @@ function function_96450f49(var_6c968618, var_a3a78823)
 }
 
 /*
-	Name: function_9476c2d5
+	Name: hendricks_pitch
 	Namespace: aquifer_util
 	Checksum: 0x7FF4140A
 	Offset: 0x11E50
@@ -5104,7 +5104,7 @@ function function_96450f49(var_6c968618, var_a3a78823)
 	Parameters: 0
 	Flags: Linked
 */
-function function_9476c2d5()
+function hendricks_pitch()
 {
 	self endon("death");
 	level endon(#"hash_96450f49");
@@ -5155,7 +5155,7 @@ function function_5b6daa1a(focus, isrockettype, var_a3a78823)
 	self endon("death");
 	level endon(#"hash_96450f49");
 	self.pitch_enemy = undefined;
-	self thread function_9476c2d5();
+	self thread hendricks_pitch();
 	while(true)
 	{
 		enemy = focus;
@@ -5223,7 +5223,7 @@ function function_5b6daa1a(focus, isrockettype, var_a3a78823)
 			{
 				for(i = 0; i < 2 && isdefined(enemy); i++)
 				{
-					thread aquifer_obj::function_6a7fa9c7(getweapon("vtol_fighter_player_missile_turret"));
+					thread aquifer_obj::hendricks_missile(getweapon("vtol_fighter_player_missile_turret"));
 					self fireweapon(0, enemy);
 					fired = 1;
 					wait(0.25);

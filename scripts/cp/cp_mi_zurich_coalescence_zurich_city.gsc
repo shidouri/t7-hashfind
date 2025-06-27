@@ -707,10 +707,10 @@ function function_5e558eb(a_ents)
 	{
 		e_player.ignoreme = 0;
 	}
-	var_51a7831a = spawner::get_ai_group_ai("intro_street_front_siegebot");
-	if(isalive(var_51a7831a))
+	ai_siegebot = spawner::get_ai_group_ai("intro_street_front_siegebot");
+	if(isalive(ai_siegebot))
 	{
-		var_51a7831a kill();
+		ai_siegebot kill();
 	}
 	level.var_4fc7570c = undefined;
 	level.var_c1cec647 = undefined;

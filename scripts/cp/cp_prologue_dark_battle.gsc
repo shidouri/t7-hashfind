@@ -407,7 +407,7 @@ function function_43d5fd7a()
 	level flag::wait_till_any(array("dark_battle_player_upstairs", "flag_player_fired_early"));
 	level scene::play("cin_pro_12_01_darkbattle_vign_dive_kill_start");
 	level.ai_hyperion thread function_619c28d();
-	level notify(#"hash_307c99bd");
+	level notify("hendricks_shoots");
 	if(!level flag::get("flag_player_fired_early"))
 	{
 		level notify(#"hash_b1b6677a");
@@ -494,7 +494,7 @@ function hyperion_movement()
 function function_312ac345()
 {
 	self endon(#"hash_a9e3188");
-	level waittill(#"hash_307c99bd");
+	level waittill("hendricks_shoots");
 	level.ai_hendricks battlechatter::function_d9f49fba(1);
 	level.ai_hendricks ai::set_ignoreall(0);
 	var_900c9df2 = getnode("hendricks_dark_battle_1", "targetname");
@@ -727,7 +727,7 @@ function dark_battle_spawner_init()
 	delay = randomfloatrange(0.1, 0.5);
 	wait(delay);
 	self thread scene::play(str_anim, self);
-	level waittill(#"hash_307c99bd");
+	level waittill("hendricks_shoots");
 	if(self scene::is_playing(str_anim))
 	{
 		self scene::stop(str_anim);

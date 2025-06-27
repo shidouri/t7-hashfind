@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_dialog;
 #using scripts\cp\_load;
 #using scripts\cp\_objectives;
@@ -121,7 +121,7 @@ function hendricks_behavior()
 }
 
 /*
-	Name: function_8bcb3a1b
+	Name: hendricks_cross
 	Namespace: cp_mi_sing_blackstation_cross_debris
 	Checksum: 0x41D25620
 	Offset: 0xDE8
@@ -129,7 +129,7 @@ function hendricks_behavior()
 	Parameters: 1
 	Flags: None
 */
-function function_8bcb3a1b()
+function hendricks_cross()
 {
 	// Unsupported VM revision (1B).
 }

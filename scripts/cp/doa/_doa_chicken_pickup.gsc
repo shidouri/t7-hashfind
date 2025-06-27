@@ -144,11 +144,11 @@ function add_a_chicken(model, scale, fated, var_5c667593)
 	if(isdefined(orb.special) && orb.special && self.doa.chicken_stack.size > 0)
 	{
 		arrayinsert(self.doa.chicken_stack, orb, 0);
-		var_bd097d49 = self;
+		nextleader = self;
 		foreach(chicken in self.doa.chicken_stack)
 		{
-			chicken.var_947e1f34 = var_bd097d49;
-			var_bd097d49 = chicken;
+			chicken.var_947e1f34 = nextleader;
+			nextleader = chicken;
 		}
 	}
 	else
@@ -257,11 +257,11 @@ function function_3118ca4d(player)
 	if(!(isdefined(immediate) && immediate))
 	{
 		self.var_3424aae1 = 1;
-		var_46d4563e = player;
+		lastleader = player;
 		foreach(chicken in player.doa.chicken_stack)
 		{
-			chicken.var_947e1f34 = var_46d4563e;
-			var_46d4563e = chicken;
+			chicken.var_947e1f34 = lastleader;
+			lastleader = chicken;
 		}
 		weapon = function_4d01b327(player);
 		self.spinouttime = randomfloatrange(5, 8);
@@ -914,9 +914,9 @@ function function_2d0f96ef(player)
 	self thread doa_sound::function_90118d8c("zmb_golden_chicken_pop");
 	chance = 100;
 	scale = 1;
-	var_19a5d5 = 2 + randomint(5);
+	numeggs = 2 + randomint(5);
 	roll = randomint(100);
-	while(var_19a5d5)
+	while(numeggs)
 	{
 		if(roll <= chance)
 		{
@@ -926,7 +926,7 @@ function function_2d0f96ef(player)
 		{
 			level doa_pickups::function_3238133b(level.doa.egg_model, self.origin);
 		}
-		var_19a5d5--;
+		numeggs--;
 		scale = scale * 0.72;
 		chance = int((chance * scale) + 0.9);
 	}

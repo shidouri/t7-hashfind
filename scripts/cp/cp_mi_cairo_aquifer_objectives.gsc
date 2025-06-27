@@ -722,7 +722,7 @@ function function_60c28440()
 }
 
 /*
-	Name: function_6a7fa9c7
+	Name: hendricks_missile
 	Namespace: aquifer_obj
 	Checksum: 0x51787FA1
 	Offset: 0x5328
@@ -730,7 +730,7 @@ function function_60c28440()
 	Parameters: 1
 	Flags: None
 */
-function function_6a7fa9c7()
+function hendricks_missile()
 {
 	// Unsupported VM revision (1B).
 }

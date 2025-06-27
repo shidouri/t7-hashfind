@@ -663,7 +663,7 @@ function function_4ac14422(a_ents)
 	var_2e3b8e7e clientfield::set("raven_ai_rez", 1);
 	wait(0.5);
 	var_2e3b8e7e show();
-	var_2e3b8e7e waittill(#"hash_36dcb014");
+	var_2e3b8e7e waittill("hendricks_disappear");
 	var_2e3b8e7e clientfield::set("raven_ai_rez", 0);
 	wait(0.5);
 	var_2e3b8e7e ghost();

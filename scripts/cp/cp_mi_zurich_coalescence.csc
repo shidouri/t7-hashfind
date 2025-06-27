@@ -1,4 +1,4 @@
-#using scripts\codescripts\struct;
+﻿#using scripts\codescripts\struct;
 #using scripts\cp\_load;
 #using scripts\cp\_oed;
 #using scripts\cp\_skipto;
@@ -79,7 +79,7 @@ function force_streamer()
 }
 
 /*
-	Name: function_ba3ef194
+	Name: intro_ambience
 	Namespace: cp_mi_zurich_coalescence
 	Checksum: 0xCAFB453B
 	Offset: 0x1450
@@ -87,7 +87,7 @@ function force_streamer()
 	Parameters: 7
 	Flags: None
 */
-function function_ba3ef194()
+function intro_ambience()
 {
 	// Unsupported VM revision (1B).
 }
@@ -233,7 +233,7 @@ function function_e3c5be62()
 }
 
 /*
-	Name: function_5cd74265
+	Name: hq_amb
 	Namespace: cp_mi_zurich_coalescence
 	Checksum: 0x46748B6D
 	Offset: 0x1F28
@@ -241,7 +241,7 @@ function function_e3c5be62()
 	Parameters: 7
 	Flags: None
 */
-function function_5cd74265()
+function hq_amb()
 {
 	// Unsupported VM revision (1B).
 }
