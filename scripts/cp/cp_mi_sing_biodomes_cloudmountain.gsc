@@ -353,9 +353,9 @@ function function_a234f527()
 	Parameters: 1
 	Flags: Linked
 */
-function vo_cloud_mountain_intro(var_b146902 = 0)
+function vo_cloud_mountain_intro(b_checkpoint = 0)
 {
-	if(!var_b146902)
+	if(!b_checkpoint)
 	{
 		battlechatter::function_d9f49fba(0);
 		level dialog::remote("kane_server_room_s_locate_0", 1);
@@ -363,7 +363,7 @@ function vo_cloud_mountain_intro(var_b146902 = 0)
 		level.ai_hendricks dialog::say("hend_guess_we_re_going_up_0");
 		battlechatter::function_d9f49fba(1);
 	}
-	level thread function_170b0353(var_b146902);
+	level thread function_170b0353(b_checkpoint);
 	level thread namespace_f1b4cbbc::function_6c35b4f3();
 	trigger::wait_till("trig_cloud_mountain_level_2_start");
 	wait(2);
@@ -383,10 +383,10 @@ function vo_cloud_mountain_intro(var_b146902 = 0)
 	Parameters: 1
 	Flags: Linked
 */
-function function_170b0353(var_b146902 = 0)
+function function_170b0353(b_checkpoint = 0)
 {
 	level endon(#"hash_be472a4a");
-	if(!var_b146902)
+	if(!b_checkpoint)
 	{
 		if(!level flag::get("cloudmountain_second_floor_vo"))
 		{

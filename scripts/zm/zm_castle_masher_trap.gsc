@@ -532,7 +532,7 @@ function trigger_damage(var_6ac4e9cb)
 		self.activated_by_player = var_6ac4e9cb.activated_by_player;
 		if(level flag::get("masher_on"))
 		{
-			if(e_who.archetype === "zombie" && (!(isdefined(e_who.var_bd3a4420) && e_who.var_bd3a4420)))
+			if(e_who.archetype === "zombie" && (!(isdefined(e_who.b_mashed) && e_who.b_mashed)))
 			{
 				e_who thread function_e80df8bf(var_6ac4e9cb.activated_by_player, self);
 			}
@@ -570,12 +570,12 @@ function function_e80df8bf(var_ecf98bb6, t_trap)
 	n_chance = randomint(100);
 	if(n_chance > 90)
 	{
-		self.var_bd3a4420 = 1;
+		self.b_mashed = 1;
 		self thread zombie_utility::makezombiecrawler();
 		wait(4);
 		if(isdefined(self))
 		{
-			self.var_bd3a4420 = undefined;
+			self.b_mashed = undefined;
 		}
 	}
 	else

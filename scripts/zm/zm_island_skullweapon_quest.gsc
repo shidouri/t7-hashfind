@@ -969,7 +969,7 @@ function function_ff1550bd()
 	var_19b19369 = ("skull" + n_ritual) + "_attacker";
 	a_spawners = [];
 	var_89f44116 = level.zombie_spawners;
-	var_64cc2fa5 = level.var_feebf312;
+	var_64cc2fa5 = level.thrasher_spawners;
 	var_6469b451 = level.spider_spawners;
 	if(level.var_4ffafd2 > 0)
 	{
@@ -1127,7 +1127,7 @@ function function_ff1550bd()
 					}
 					case "zombie_thrasher_spawner":
 					{
-						ai_attacker zm_ai_thrasher::function_89976d94(self.a_s_spawnpts[i].origin);
+						ai_attacker zm_ai_thrasher::thrasher_teleport(self.a_s_spawnpts[i].origin);
 						self.var_bd61ef5b++;
 						ai_attacker clientfield::set("ritual_attacker_fx", 1);
 						ai_attacker.var_75729ddd = 1;
@@ -2206,9 +2206,9 @@ function function_e3ff3bac(n_ritual)
 */
 function function_b6c35b21(n_ritual)
 {
-	if(!(isdefined(level.var_a576e0b9[n_ritual].mdl_skull_p.var_d17d835d) && level.var_a576e0b9[n_ritual].mdl_skull_p.var_d17d835d))
+	if(!(isdefined(level.var_a576e0b9[n_ritual].mdl_skull_p.b_returned) && level.var_a576e0b9[n_ritual].mdl_skull_p.b_returned))
 	{
-		level.var_a576e0b9[n_ritual].mdl_skull_p.var_d17d835d = 1;
+		level.var_a576e0b9[n_ritual].mdl_skull_p.b_returned = 1;
 		self thread function_71593151();
 		level.var_a576e0b9[n_ritual].mdl_skull_p.var_afb64bf6 = undefined;
 		var_1a3afb94 = self.var_4849e523;

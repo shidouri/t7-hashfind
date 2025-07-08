@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\aat_shared;
 #using scripts\shared\flag_shared;
@@ -103,12 +103,12 @@ function activation()
 	self zm_stats::increment_challenge_stat("GUM_GOBBLER_EPHEMERAL_ENHANCEMENT");
 	var_a08320d8 = self getweaponammoclip(var_1d94ca2b);
 	var_7298c138 = self getweaponammostock(var_1d94ca2b);
-	var_19dc14f6 = zm_weapons::get_upgrade_weapon(var_1d94ca2b);
-	var_19dc14f6 = self zm_weapons::give_build_kit_weapon(var_19dc14f6);
-	self givestartammo(var_19dc14f6);
-	self switchtoweaponimmediate(var_19dc14f6);
+	w_upgraded_weapon = zm_weapons::get_upgrade_weapon(var_1d94ca2b);
+	w_upgraded_weapon = self zm_weapons::give_build_kit_weapon(w_upgraded_weapon);
+	self givestartammo(w_upgraded_weapon);
+	self switchtoweaponimmediate(w_upgraded_weapon);
 	self takeweapon(var_1d94ca2b, 1);
-	self thread function_79585675(var_19dc14f6);
+	self thread function_79585675(w_upgraded_weapon);
 	self bgb::run_timer(60);
 	self notify(#"hash_5cefcc84");
 	if(self laststand::player_is_in_laststand())
@@ -120,12 +120,12 @@ function activation()
 		[[level.var_b6d13a4e]]();
 	}
 	self.var_fb11234e = undefined;
-	if(!self zm_weapons::has_weapon_or_attachments(var_19dc14f6))
+	if(!self zm_weapons::has_weapon_or_attachments(w_upgraded_weapon))
 	{
 		return;
 	}
-	var_5ddb5ced = self getweaponammoclip(var_19dc14f6);
-	var_398b66eb = self getweaponammostock(var_19dc14f6);
+	var_5ddb5ced = self getweaponammoclip(w_upgraded_weapon);
+	var_398b66eb = self getweaponammostock(w_upgraded_weapon);
 	var_1d94ca2b = self zm_weapons::switch_from_alt_weapon(var_1d94ca2b);
 	var_1d94ca2b = self zm_weapons::give_build_kit_weapon(var_1d94ca2b);
 	if((var_5ddb5ced + var_398b66eb) > (var_a08320d8 + var_7298c138))
@@ -142,11 +142,11 @@ function activation()
 	self setweaponammoclip(var_1d94ca2b, var_a08320d8);
 	self setweaponammostock(var_1d94ca2b, var_7298c138);
 	current_weapon = self getcurrentweapon();
-	if(current_weapon == var_19dc14f6)
+	if(current_weapon == w_upgraded_weapon)
 	{
 		self zm_weapons::switch_back_primary_weapon(var_1d94ca2b, 1);
 	}
-	self takeweapon(var_19dc14f6, 1);
+	self takeweapon(w_upgraded_weapon, 1);
 }
 
 /*
@@ -158,7 +158,7 @@ function activation()
 	Parameters: 1
 	Flags: Linked
 */
-function function_79585675(var_19dc14f6)
+function function_79585675(w_upgraded_weapon)
 {
 	self endon("death");
 	self endon("disconnect");
@@ -167,7 +167,7 @@ function function_79585675(var_19dc14f6)
 	while(true)
 	{
 		self waittill("weapon_change_complete");
-		if(!self zm_weapons::has_weapon_or_attachments(var_19dc14f6))
+		if(!self zm_weapons::has_weapon_or_attachments(w_upgraded_weapon))
 		{
 			self notify("replaced_upgraded_weapon");
 			self.var_fb11234e = undefined;

@@ -375,7 +375,7 @@ function function_54227761()
 	a_ai_zombies = getaiteamarray(level.zombie_team);
 	foreach(ai_zombie in a_ai_zombies)
 	{
-		if(ai_zombie istouching(self) && (!(isdefined(self.var_b07a0f56) && self.var_b07a0f56)))
+		if(ai_zombie istouching(self) && (!(isdefined(self.b_flung) && self.b_flung)))
 		{
 			ai_zombie thread function_d2f913f5(self);
 		}
@@ -393,7 +393,7 @@ function function_54227761()
 */
 function function_d2f913f5(e_trigger)
 {
-	self.var_b07a0f56 = 1;
+	self.b_flung = 1;
 	v_fling = anglestoforward(e_trigger.var_b4f536a1.angles);
 	if(level.var_6075220 > 8)
 	{

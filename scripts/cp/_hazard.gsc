@@ -33,9 +33,9 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	add_hazard("heat", 500, 50, 1, &function_476442fb);
+	add_hazard("heat", 500, 50, 1, &update_heat);
 	add_hazard("filter", 500, 50, 2);
-	add_hazard("o2", 500, 60, 3, &function_8b413656);
+	add_hazard("o2", 500, 60, 3, &update_o2);
 	add_hazard("radation", 500, 50, 4);
 	add_hazard("biohazard", 500, 50, 5);
 	callback::on_spawned(&on_player_spawned);
@@ -403,7 +403,7 @@ function function_45f02912()
 }
 
 /*
-	Name: function_476442fb
+	Name: update_heat
 	Namespace: hazard
 	Checksum: 0xDF4B273F
 	Offset: 0xFD0
@@ -411,7 +411,7 @@ function function_45f02912()
 	Parameters: 2
 	Flags: Linked
 */
-function function_476442fb(n_damage_frac, e_ent)
+function update_heat(n_damage_frac, e_ent)
 {
 	if(!isdefined(e_ent) || scene::is_igc_active())
 	{
@@ -448,7 +448,7 @@ function drown_warning()
 }
 
 /*
-	Name: function_8b413656
+	Name: update_o2
 	Namespace: hazard
 	Checksum: 0x173E20B7
 	Offset: 0x1120
@@ -456,7 +456,7 @@ function drown_warning()
 	Parameters: 2
 	Flags: Linked
 */
-function function_8b413656(var_d2eebe84, e_ent)
+function update_o2(var_d2eebe84, e_ent)
 {
 	if(!isdefined(self.var_18c7e911))
 	{
@@ -554,7 +554,7 @@ function function_ccddb105(str_hazard, var_6d20ee14, n_time, var_827d6de0)
 	self endon("stop_hazard_dot_" + str_hazard);
 	self endon("death");
 	self function_459e5eff(str_hazard, 0);
-	var_dd075cd2 = 1;
+	b_protected = 1;
 	s_hazard = level.hazards[str_hazard];
 	n_damage = var_6d20ee14;
 	if(isdefined(n_time))
@@ -571,7 +571,7 @@ function function_ccddb105(str_hazard, var_6d20ee14, n_time, var_827d6de0)
 	while(true)
 	{
 		wait(1);
-		var_dd075cd2 = self do_damage(str_hazard, n_damage);
+		b_protected = self do_damage(str_hazard, n_damage);
 		var_7ba0abc9 = self function_b78a859e(str_hazard);
 		if(n_damage > var_6d20ee14 && var_7ba0abc9 >= var_827d6de0)
 		{

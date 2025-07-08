@@ -103,7 +103,7 @@ function function_41018429()
 	self endon("death");
 	self.is_underwater = 1;
 	self hazard::function_459e5eff("o2", 0);
-	var_dd075cd2 = 1;
+	b_protected = 1;
 	e_volume = getent("subway_water", "targetname");
 	if(isdefined(e_volume) && self istouching(e_volume))
 	{
@@ -112,7 +112,7 @@ function function_41018429()
 	while(self isplayerunderwater())
 	{
 		wait(1);
-		var_dd075cd2 = self hazard::do_damage("o2", 5);
+		b_protected = self hazard::do_damage("o2", 5);
 	}
 	self hazard::function_459e5eff("o2", 1);
 	self.is_underwater = 0;
@@ -309,9 +309,9 @@ function function_a81e2f8f()
 		var_3b8c7376 = distance2dsquared(self.origin, self.e_anchor.origin);
 		if(var_3b8c7376 > 3600 && var_3b8c7376 < 10000)
 		{
-			if(!self.var_62269fcc)
+			if(!self.b_warning)
 			{
-				self.var_62269fcc = 1;
+				self.b_warning = 1;
 				self util::show_hint_text(&"CP_MI_SING_BLACKSTATION_ANCHOR_WARNRANGE", 1);
 			}
 		}
@@ -319,9 +319,9 @@ function function_a81e2f8f()
 		{
 			if(var_3b8c7376 > 10000 && var_3b8c7376 <= 22500)
 			{
-				if(!self.var_62269fcc)
+				if(!self.b_warning)
 				{
-					self.var_62269fcc = 1;
+					self.b_warning = 1;
 					self util::show_hint_text(&"CP_MI_SING_BLACKSTATION_ANCHOR_OUTRANGE", 1);
 				}
 			}
@@ -331,20 +331,20 @@ function function_a81e2f8f()
 				{
 					if(self.is_anchored)
 					{
-						self.var_62269fcc = 0;
+						self.b_warning = 0;
 						self toggle_player_anchor(0);
 					}
 				}
 				else
 				{
-					self.var_62269fcc = 0;
+					self.b_warning = 0;
 					self util::hide_hint_text();
 				}
 			}
 		}
 		if(!isdefined(self.hint_menu_handle))
 		{
-			self.var_62269fcc = 0;
+			self.b_warning = 0;
 		}
 		util::wait_network_frame();
 	}
@@ -2845,7 +2845,7 @@ function missile_launcher_equip_hint()
 	}
 	if(self getcurrentweapon() == getweapon("micromissile_launcher"))
 	{
-		self.var_f44af1ef = 1;
+		self.b_switched = 1;
 	}
 	self util::hide_hint_text();
 }

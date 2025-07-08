@@ -1651,10 +1651,10 @@ function function_d9e82452()
 	Parameters: 1
 	Flags: Linked
 */
-function function_b8df7e30(var_416e7c7f)
+function function_b8df7e30(b_always)
 {
 	/#
-		level.var_6708aa9c = var_416e7c7f;
+		level.var_6708aa9c = b_always;
 	#/
 }
 

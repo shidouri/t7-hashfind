@@ -606,7 +606,7 @@ function function_47b8a2a2()
 	{
 		self doa_score::function_126dc996(3);
 	}
-	self thread doa_shield::function_2016b381();
+	self thread doa_shield::magnet_update();
 	self thread doa_fx::function_285a2999("fate2_awarded");
 }
 

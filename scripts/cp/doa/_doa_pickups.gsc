@@ -1803,7 +1803,7 @@ function function_d526f0bb()
 				case 21:
 				{
 					player thread doa_sound::function_90118d8c("zmb_pickup_generic");
-					player thread doa_shield::function_2016b381();
+					player thread doa_shield::magnet_update();
 					break;
 				}
 				case 28:

@@ -3770,11 +3770,11 @@ function destroyable_vat()
 	self.n_damage_tracker = 0;
 	if(self.script_noteworthy === "static_vat")
 	{
-		self.var_af5fda8a = 1;
+		self.b_static = 1;
 	}
 	else
 	{
-		self.var_af5fda8a = 0;
+		self.b_static = 0;
 	}
 	self fx::play("smk_idle_cauldron", undefined, undefined, "stop_static_fx", 1, "fx_spill_middle_jnt");
 	while(true)
@@ -3787,13 +3787,13 @@ function destroyable_vat()
 		}
 		self.n_damage_tracker = self.n_damage_tracker + idamage;
 		self.n_hit_count++;
-		if(!self.var_af5fda8a)
+		if(!self.b_static)
 		{
 			self thread reset_damage_after_pause();
 		}
 		if(self.n_damage_tracker >= 350)
 		{
-			if(self.var_af5fda8a)
+			if(self.b_static)
 			{
 				self.b_destroyed = 1;
 				self scene::stop();
@@ -3860,7 +3860,7 @@ function destroyable_vat()
 		}
 		else
 		{
-			if(self.var_af5fda8a)
+			if(self.b_static)
 			{
 				switch(self.script_string)
 				{

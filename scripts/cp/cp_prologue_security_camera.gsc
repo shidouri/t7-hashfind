@@ -422,14 +422,14 @@ function function_d8d1298e(str_name, str_scene, var_b5991f0e = 0)
 	var_1ca98eed.b_vo_played = 0;
 	var_1ca98eed.var_b5991f0e = var_b5991f0e;
 	var_1ca98eed.str_scene = str_scene;
-	var_1ca98eed.var_2cc1a0a1 = 1;
+	var_1ca98eed.b_torture = 1;
 	var_1ca98eed.n_actors = scene::get_actor_count(str_scene);
 	level scene::add_scene_func(str_scene, &function_c41806ee, "init", var_1ca98eed.n_index);
 	level scene::add_scene_func(str_scene, &function_48f438fd, "init");
 	level scene::init(str_scene);
 	if(var_b5991f0e)
 	{
-		var_1ca98eed.var_2cc1a0a1 = 0;
+		var_1ca98eed.b_torture = 0;
 		var_1ca98eed.n_actors = 0;
 	}
 	level.security_cams[str_name] = var_1ca98eed;

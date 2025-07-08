@@ -2267,7 +2267,7 @@ function function_f5139aae()
 		}
 	#/
 	s_spawn_location = struct::get("ee_escort_spawn", "targetname");
-	if(level zm_ai_sentinel_drone::function_19d0b055(1, &function_de888a13, 1, s_spawn_location))
+	if(level zm_ai_sentinel_drone::special_sentinel_spawn(1, &function_de888a13, 1, s_spawn_location))
 	{
 		level thread function_591777cf();
 		level thread function_15d9679d("square", 3);
@@ -2635,23 +2635,23 @@ function function_c54a2f4c(var_6f4b86fb)
 	level endon("ee_kite_complete");
 	level endon("ee_kite_failed");
 	self thread function_ceeaf112();
-	var_4cdb4f77 = undefined;
+	b_kited = undefined;
 	while(true)
 	{
 		wait(1);
 		var_6de069e0 = self zm_stalingrad_util::function_1af75b1b(450);
-		if(!isdefined(var_4cdb4f77) || (var_6de069e0 && !var_4cdb4f77))
+		if(!isdefined(b_kited) || (var_6de069e0 && !b_kited))
 		{
 			self notify(#"hash_f1860bb1");
 			self clearforcedgoal();
 			self ai::set_ignoreall(0);
-			var_4cdb4f77 = 1;
+			b_kited = 1;
 		}
-		else if(!var_6de069e0 && var_4cdb4f77)
+		else if(!var_6de069e0 && b_kited)
 		{
 			self thread function_96970289();
 			self ai::set_ignoreall(1);
-			var_4cdb4f77 = 0;
+			b_kited = 0;
 		}
 	}
 }
@@ -3151,7 +3151,7 @@ function function_cfa09312(var_cffe61ab = 0)
 	#/
 	self endon("step_complete");
 	level endon("ee_pursue_failed");
-	var_2e4b6485 = 0;
+	b_damaged = 0;
 	self thread function_77e01bd0();
 	while(true)
 	{
@@ -3166,7 +3166,7 @@ function function_cfa09312(var_cffe61ab = 0)
 		}
 		else
 		{
-			if(var_2e4b6485)
+			if(b_damaged)
 			{
 				var_46b0f218 = self function_5e9a73bf(188);
 			}
@@ -3190,12 +3190,12 @@ function function_cfa09312(var_cffe61ab = 0)
 		str_notify = self util::waittill_any_return("pap_damage", "keep_wandering", "death", "step_complete", "ee_pursue_failed");
 		if(str_notify === "pap_damage" || str_notify === "death")
 		{
-			var_2e4b6485 = 1;
+			b_damaged = 1;
 			wait(0.75);
 		}
 		else
 		{
-			var_2e4b6485 = 0;
+			b_damaged = 0;
 		}
 	}
 }
@@ -4443,7 +4443,7 @@ function ee_outro(n_wait = 0, var_d15ef3dd = 0)
 	Parameters: 1
 	Flags: Linked
 */
-function function_184114b9(var_fdc919d5)
+function function_184114b9(b_sound)
 {
 	level lui::screen_fade_out(0.2, "white", "pause_regular_zombies");
 	level util::delay(0.7, undefined, &lui::screen_fade_in, 1, "white", "pause_regular_zombies");
@@ -4589,11 +4589,11 @@ function function_f885ecc6()
 	Parameters: 1
 	Flags: Linked
 */
-function function_1c04ad71(var_a5efd39d = 1)
+function function_1c04ad71(b_lock = 1)
 {
 	foreach(e_player in level.activeplayers)
 	{
-		if(var_a5efd39d)
+		if(b_lock)
 		{
 			e_player enableinvulnerability();
 		}
@@ -4601,7 +4601,7 @@ function function_1c04ad71(var_a5efd39d = 1)
 		{
 			e_player disableinvulnerability();
 		}
-		e_player util::freeze_player_controls(var_a5efd39d);
+		e_player util::freeze_player_controls(b_lock);
 	}
 }
 

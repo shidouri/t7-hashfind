@@ -111,7 +111,7 @@ function main()
 			level.dragon_heads[j][level.var_f302359b[i].script_parameters] useanimtree($zm_castle);
 			level.dragon_heads[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_right");
 			level.dragon_heads[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_left");
-			level.dragon_heads[j][level.var_f302359b[i].script_parameters].var_7d382bfa = 1;
+			level.dragon_heads[j][level.var_f302359b[i].script_parameters].b_depart = 1;
 			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] = getent(j, level.var_f302359b[i].script_friendname, "targetname");
 			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] hide();
 			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] useanimtree($zm_castle);
@@ -652,10 +652,10 @@ function function_badc23de(localclientnum)
 */
 function function_aba7532b(localclientnum, body, mini)
 {
-	if(isdefined(self.var_7d382bfa) && self.var_7d382bfa)
+	if(isdefined(self.b_depart) && self.b_depart)
 	{
 		self notify("dragon_departing");
-		self.var_7d382bfa = undefined;
+		self.b_depart = undefined;
 		var_1656bbd4 = level.var_a79e1598[self.targetname];
 		self.var_d90397ef = 0;
 		forcestreambundle(level.var_a79e1598[self.targetname]);

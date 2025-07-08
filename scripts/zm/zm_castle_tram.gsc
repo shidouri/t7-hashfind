@@ -246,8 +246,8 @@ function function_427ee40c()
 		level flag::set("player_tram_docked");
 		level flag::clear("tram_moving");
 		wait(0.5);
-		var_f2c2f39 = 1;
-		function_1d6e73d0(e_who, s_spawn_pos, var_f2c2f39);
+		b_special = 1;
+		function_1d6e73d0(e_who, s_spawn_pos, b_special);
 		while(isdefined(function_9d4a523c("player_tram_car_interior")) && function_9d4a523c("player_tram_car_interior"))
 		{
 			wait(0.1);
@@ -457,7 +457,7 @@ function function_3fb91800()
 	Parameters: 3
 	Flags: Linked
 */
-function function_1d6e73d0(e_player, s_spawn_pos, var_f2c2f39)
+function function_1d6e73d0(e_player, s_spawn_pos, b_special)
 {
 	n_randy = randomint(100);
 	a_bonus_types = [];
@@ -498,7 +498,7 @@ function function_1d6e73d0(e_player, s_spawn_pos, var_f2c2f39)
 		}
 	}
 	var_a11baa62 = array("fire_sale", "double_points", "insta_kill", "full_ammo", "nuke");
-	if(isdefined(var_f2c2f39) && var_f2c2f39)
+	if(isdefined(b_special) && b_special)
 	{
 		var_8b961b44 = function_b29057c7(e_player);
 		var_bd4efc7d = s_spawn_pos function_b21df67c(e_player, var_8b961b44);

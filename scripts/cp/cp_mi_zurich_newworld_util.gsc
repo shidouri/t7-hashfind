@@ -749,7 +749,7 @@ function wait_till_flag_or_ai_group_ai_count(str_flag, str_aigroup, n_count)
 	Parameters: 7
 	Flags: Linked
 */
-function function_948d4091(str_ability, var_2380d5c = 0, str_endon, b_looping = 1, var_6e6341cf, var_8cb8bcef, var_9e68f294)
+function function_948d4091(str_ability, b_upgrade = 0, str_endon, b_looping = 1, var_6e6341cf, var_8cb8bcef, var_9e68f294)
 {
 	self endon("death");
 	level endon(str_endon);
@@ -794,7 +794,7 @@ function function_948d4091(str_ability, var_2380d5c = 0, str_endon, b_looping = 
 		}
 		self thread function_d81a8f6f();
 	}
-	self thread function_6062e90(str_ability, var_2380d5c, str_endon, b_looping, var_6e6341cf, undefined, var_8cb8bcef);
+	self thread function_6062e90(str_ability, b_upgrade, str_endon, b_looping, var_6e6341cf, undefined, var_8cb8bcef);
 }
 
 /*
@@ -959,7 +959,7 @@ function function_b95b168e(str_ability, str_endon)
 	Parameters: 8
 	Flags: Linked
 */
-function function_6062e90(str_ability, var_2380d5c = 0, str_endon, b_looping = 1, var_6e6341cf, var_e8551372, var_9e68f294, var_3945b2c8)
+function function_6062e90(str_ability, b_upgrade = 0, str_endon, b_looping = 1, var_6e6341cf, var_e8551372, var_9e68f294, var_3945b2c8)
 {
 	self endon("death");
 	if(isarray(str_endon))
@@ -1002,7 +1002,7 @@ function function_6062e90(str_ability, var_2380d5c = 0, str_endon, b_looping = 1
 	{
 		self flag::clear(str_ability + "_use_ability_tutorial");
 	}
-	self thread function_a7a2da7e(str_ability, var_2380d5c, str_endon);
+	self thread function_a7a2da7e(str_ability, b_upgrade, str_endon);
 	if(isdefined(var_9e68f294))
 	{
 		if(isfloat(var_9e68f294) || isint(var_9e68f294))
@@ -1221,7 +1221,7 @@ function function_e84823a9(str_ability, str_endon)
 	Parameters: 3
 	Flags: Linked
 */
-function function_a7a2da7e(str_ability, var_2380d5c = 0, str_endon)
+function function_a7a2da7e(str_ability, b_upgrade = 0, str_endon)
 {
 	self endon("death");
 	if(isarray(str_endon))
@@ -1241,7 +1241,7 @@ function function_a7a2da7e(str_ability, var_2380d5c = 0, str_endon)
 		__s endon("timeout");
 		__s util::delay_notify(30, "timeout");
 	}
-	weapon = function_71840183(str_ability, var_2380d5c);
+	weapon = function_71840183(str_ability, b_upgrade);
 	self waittill(weapon.name + "_fired");
 	self flag::set(str_ability + "_use_ability_tutorial");
 	level notify(str_ability + "_use_ability_tutorial");
@@ -1257,11 +1257,11 @@ function function_a7a2da7e(str_ability, var_2380d5c = 0, str_endon)
 	Parameters: 2
 	Flags: Linked
 */
-function function_71840183(str_ability, var_2380d5c = 0)
+function function_71840183(str_ability, b_upgrade = 0)
 {
 	weapon = undefined;
 	ability = cybercom_gadget::getabilitybyname(str_ability);
-	if(var_2380d5c == 1)
+	if(b_upgrade == 1)
 	{
 		weapon = ability.weaponupgraded;
 	}
@@ -1835,11 +1835,11 @@ function function_43dfaf16(a_ents)
 	Parameters: 1
 	Flags: Linked
 */
-function lock_player_controls(var_a5efd39d = 1)
+function lock_player_controls(b_lock = 1)
 {
 	foreach(player in level.activeplayers)
 	{
-		if(var_a5efd39d)
+		if(b_lock)
 		{
 			player enableinvulnerability();
 		}
@@ -1847,7 +1847,7 @@ function lock_player_controls(var_a5efd39d = 1)
 		{
 			player disableinvulnerability();
 		}
-		player util::freeze_player_controls(var_a5efd39d);
+		player util::freeze_player_controls(b_lock);
 	}
 }
 
@@ -2003,11 +2003,11 @@ function function_c1c980d8(str_trigger)
 	Parameters: 1
 	Flags: Linked
 */
-function function_c949a8ed(var_b06baa1b = 0)
+function function_c949a8ed(b_detail = 0)
 {
-	self thread function_e44cc74b(var_b06baa1b);
+	self thread function_e44cc74b(b_detail);
 	self playsound("evt_ai_derez");
-	if(var_b06baa1b)
+	if(b_detail)
 	{
 		self clientfield::increment("cs_rez_in_fx", 2);
 	}
@@ -2026,10 +2026,10 @@ function function_c949a8ed(var_b06baa1b = 0)
 	Parameters: 1
 	Flags: Linked
 */
-function function_e44cc74b(var_b06baa1b)
+function function_e44cc74b(b_detail)
 {
 	self endon("death");
-	if(var_b06baa1b)
+	if(b_detail)
 	{
 		if(self.animname == "hall")
 		{
@@ -2067,11 +2067,11 @@ function function_e44cc74b(var_b06baa1b)
 	Parameters: 1
 	Flags: Linked
 */
-function function_4943984c(var_b06baa1b = 0)
+function function_4943984c(b_detail = 0)
 {
-	self thread function_9ab5a5ab(var_b06baa1b);
+	self thread function_9ab5a5ab(b_detail);
 	self playsound("evt_ai_derez");
-	if(var_b06baa1b)
+	if(b_detail)
 	{
 		self clientfield::increment("cs_rez_out_fx", 2);
 	}
@@ -2090,10 +2090,10 @@ function function_4943984c(var_b06baa1b = 0)
 	Parameters: 1
 	Flags: Linked
 */
-function function_9ab5a5ab(var_b06baa1b)
+function function_9ab5a5ab(b_detail)
 {
 	self endon("death");
-	if(var_b06baa1b)
+	if(b_detail)
 	{
 		if(self.animname == "hall")
 		{

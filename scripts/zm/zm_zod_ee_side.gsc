@@ -167,7 +167,7 @@ function function_f93dd0b9()
 function function_f2485365()
 {
 	level endon("_zombie_game_over");
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	if(self.script_string != "play_on_map_load")
 	{
 		level waittill(self.script_string);
@@ -222,7 +222,7 @@ function function_f2485365()
 	wait(3);
 	self zm_zod_shadowman::function_f25f7ff3();
 	self zm_zod_shadowman::function_57b6041b();
-	self notify(#"hash_a881e3fa");
+	self notify("shadowman_leaves");
 }
 
 /*
@@ -262,9 +262,9 @@ function function_f4bfd0b8()
 function function_cbcaa042()
 {
 	level endon("_zombie_game_over");
-	self endon(#"hash_a881e3fa");
-	self waittill(#"hash_42d111a0");
-	level.var_94e23698[self.script_noteworthy] notify(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
+	self waittill("shadowman_spawned");
+	level.var_94e23698[self.script_noteworthy] notify("shadowman_leaves");
 }
 
 /*
@@ -295,7 +295,7 @@ function function_1a99877f()
 */
 function function_63d2d60e(e_player)
 {
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	while(true)
 	{
 		if(isdefined(e_player) && e_player zm_zod_vo::function_2d942575(self.var_93dad597, 1500))
@@ -318,7 +318,7 @@ function function_63d2d60e(e_player)
 */
 function function_82d8ec58()
 {
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	while(true)
 	{
 		foreach(player in level.players)
@@ -327,7 +327,7 @@ function function_82d8ec58()
 			{
 				self zm_zod_shadowman::function_f25f7ff3();
 				self zm_zod_shadowman::function_57b6041b();
-				self notify(#"hash_a881e3fa");
+				self notify("shadowman_leaves");
 				return;
 			}
 		}
@@ -347,9 +347,9 @@ function function_82d8ec58()
 function function_ff688e23()
 {
 	level endon("_zombie_game_over");
-	self zm_zod_shadowman::function_12e7164a(1, 1, 0);
+	self zm_zod_shadowman::shadowman_spawns(1, 1, 0);
 	self zm_zod_shadowman::function_8888a532(0, 1, 1);
-	self notify(#"hash_42d111a0");
+	self notify("shadowman_spawned");
 	level.players[0] waittill(self.script_parameters + "_vo_done");
 	self thread function_fa2d33a4();
 	self thread function_82d8ec58();
@@ -368,10 +368,10 @@ function function_ff688e23()
 function function_188b8017()
 {
 	level endon("_zombie_game_over");
-	self endon(#"hash_a881e3fa");
-	self zm_zod_shadowman::function_12e7164a(0, 1);
+	self endon("shadowman_leaves");
+	self zm_zod_shadowman::shadowman_spawns(0, 1);
 	self zm_zod_shadowman::function_8888a532(0, 1, 0);
-	self notify(#"hash_42d111a0");
+	self notify("shadowman_spawned");
 	var_bc9ce2d0 = zm_zonemgr::get_zone_from_position(self.origin, 1);
 	if(isdefined(var_bc9ce2d0))
 	{
@@ -402,10 +402,10 @@ function function_188b8017()
 function function_cd7431a8()
 {
 	level endon("_zombie_game_over");
-	self endon(#"hash_a881e3fa");
-	self zm_zod_shadowman::function_12e7164a(0, 1);
+	self endon("shadowman_leaves");
+	self zm_zod_shadowman::shadowman_spawns(0, 1);
 	self zm_zod_shadowman::function_8888a532(0, 1, 0);
-	self notify(#"hash_42d111a0");
+	self notify("shadowman_spawned");
 	var_bc9ce2d0 = zm_zonemgr::get_zone_from_position(self.origin, 1);
 	while(!self.var_93dad597 zm_zonemgr::entity_in_zone(var_bc9ce2d0, 0))
 	{
@@ -427,15 +427,15 @@ function function_82fac046()
 	level endon("_zombie_game_over");
 	if(self.script_string == "play_on_map_load")
 	{
-		self zm_zod_shadowman::function_12e7164a(1, 1, 0);
+		self zm_zod_shadowman::shadowman_spawns(1, 1, 0);
 		self zm_zod_shadowman::function_8888a532(0, 1, 1);
 	}
 	else
 	{
-		self zm_zod_shadowman::function_12e7164a(0, 1);
+		self zm_zod_shadowman::shadowman_spawns(0, 1);
 		self zm_zod_shadowman::function_8888a532(0, 1);
 	}
-	self notify(#"hash_42d111a0");
+	self notify("shadowman_spawned");
 	level.players[0] waittill(self.script_parameters + "_vo_done");
 	if(self.script_string == "play_on_map_load")
 	{
@@ -455,9 +455,9 @@ function function_82fac046()
 function function_fa56dab0()
 {
 	level endon("_zombie_game_over");
-	self zm_zod_shadowman::function_12e7164a(0, 1);
+	self zm_zod_shadowman::shadowman_spawns(0, 1);
 	self zm_zod_shadowman::function_8888a532(0, 1, 0);
-	self notify(#"hash_42d111a0");
+	self notify("shadowman_spawned");
 	wait(9);
 }
 
@@ -473,17 +473,17 @@ function function_fa56dab0()
 function function_b066a053()
 {
 	level endon("_zombie_game_over");
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	foreach(var_707e0d1c in level.var_94e23698)
 	{
 		if(isdefined(var_707e0d1c) && var_707e0d1c !== self)
 		{
-			var_707e0d1c notify(#"hash_a881e3fa");
+			var_707e0d1c notify("shadowman_leaves");
 		}
 	}
 	mdl_key = getent("quest_key_pickup", "targetname");
 	mdl_key ghost();
-	self zm_zod_shadowman::function_12e7164a(0, 1, 0, 1);
+	self zm_zod_shadowman::shadowman_spawns(0, 1, 0, 1);
 	self.var_93dad597 hidepart("tag_weapon_right");
 	v_origin = self.var_93dad597 gettagorigin("tag_weapon_right");
 	self.var_14030b0f = spawn("script_model", v_origin);
@@ -513,7 +513,7 @@ function function_b066a053()
 */
 function function_98c5d1e5()
 {
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	while(true)
 	{
 		playrumbleonposition("zod_shadowman_transformed", self.origin);
@@ -533,22 +533,22 @@ function function_98c5d1e5()
 function function_724b1463()
 {
 	level endon("_zombie_game_over");
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	while(true)
 	{
 		foreach(player in level.players)
 		{
-			if(!isdefined(player.var_226cc0a3))
+			if(!isdefined(player.shadowman_appearances))
 			{
-				player.var_226cc0a3 = [];
-				array::add(player.var_226cc0a3, self.script_string);
+				player.shadowman_appearances = [];
+				array::add(player.shadowman_appearances, self.script_string);
 				continue;
 			}
-			if(player.var_226cc0a3.size > 0)
+			if(player.shadowman_appearances.size > 0)
 			{
-				foreach(var_a583588 in player.var_226cc0a3)
+				foreach(shadowman_appearance in player.shadowman_appearances)
 				{
-					if(var_a583588 == self.script_string)
+					if(shadowman_appearance == self.script_string)
 					{
 						var_a7167425 = 0;
 						break;
@@ -558,12 +558,12 @@ function function_724b1463()
 				}
 				if(var_a7167425)
 				{
-					array::add(player.var_226cc0a3, self.script_string);
+					array::add(player.shadowman_appearances, self.script_string);
 					self thread function_1b5affd(player);
 				}
 				continue;
 			}
-			array::add(player.var_226cc0a3, self.script_int);
+			array::add(player.shadowman_appearances, self.script_int);
 			self thread function_1b5affd(player);
 		}
 		wait(0.05);
@@ -582,10 +582,10 @@ function function_724b1463()
 function function_e00f4f2a()
 {
 	var_3a813333 = self;
-	self waittill(#"hash_a881e3fa");
+	self waittill("shadowman_leaves");
 	foreach(player in level.players)
 	{
-		arrayremovevalue(player.var_226cc0a3, var_3a813333);
+		arrayremovevalue(player.shadowman_appearances, var_3a813333);
 	}
 }
 
@@ -601,9 +601,9 @@ function function_e00f4f2a()
 function function_1b5affd(player)
 {
 	level endon("_zombie_game_over");
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	player endon("disconnect");
-	self waittill(#"hash_42d111a0");
+	self waittill("shadowman_spawned");
 	self.var_93dad597 setvisibletoplayer(player);
 	self.var_5afdc7fe setinvisibletoplayer(player);
 	while(true)
@@ -1676,7 +1676,7 @@ function function_c6930415(a_enemies)
 function function_fa2d33a4()
 {
 	level endon(#"hash_5298c49");
-	self endon(#"hash_a881e3fa");
+	self endon("shadowman_leaves");
 	level.var_cfee9316 = 0;
 	var_93dad597 = self.var_93dad597;
 	var_93dad597.trigger = getent("play_on_map_load_trigger", "targetname");
@@ -1944,7 +1944,7 @@ function function_b134ab6c(e_attacker, str_means_of_death, w_weapon)
 	}
 	foreach(mdl_cart in level.var_4c7e4e43)
 	{
-		if(isdefined(mdl_cart.var_2e4b6485) && mdl_cart.var_2e4b6485)
+		if(isdefined(mdl_cart.b_damaged) && mdl_cart.b_damaged)
 		{
 			continue;
 		}
@@ -1956,7 +1956,7 @@ function function_b134ab6c(e_attacker, str_means_of_death, w_weapon)
 				return;
 			}
 			mdl_cart playsound("zmb_zod_ee_cakefight_devil");
-			mdl_cart.var_2e4b6485 = 1;
+			mdl_cart.b_damaged = 1;
 			level.var_ee921bdc--;
 			playfx(level._effect["lght_marker_flare"], mdl_cart.origin);
 			if(level.var_ee921bdc == 0)
@@ -1968,7 +1968,7 @@ function function_b134ab6c(e_attacker, str_means_of_death, w_weapon)
 	}
 	foreach(mdl_cart in level.var_6432377d)
 	{
-		if(isdefined(mdl_cart.var_2e4b6485) && mdl_cart.var_2e4b6485)
+		if(isdefined(mdl_cart.b_damaged) && mdl_cart.b_damaged)
 		{
 			continue;
 		}
@@ -1980,7 +1980,7 @@ function function_b134ab6c(e_attacker, str_means_of_death, w_weapon)
 				return;
 			}
 			mdl_cart playsound("zmb_zod_ee_cakefight_angel");
-			mdl_cart.var_2e4b6485 = 1;
+			mdl_cart.b_damaged = 1;
 			level.var_a1445a76--;
 			playfx(level._effect["lght_marker_flare"], mdl_cart.origin);
 			if(level.var_a1445a76 == 0)

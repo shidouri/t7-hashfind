@@ -202,14 +202,14 @@ function function_34fb5ce3(a_ents)
 	Parameters: 1
 	Flags: Linked
 */
-function function_b81a9fbb(var_26fbc878)
+function function_b81a9fbb(w_weap)
 {
 	level endon(#"hash_d2197033");
 	while(true)
 	{
 		self waittill("fire");
 		v_end = self.origin + (anglestoforward(self.angles) * 1000);
-		magicbullet(var_26fbc878, self.origin, v_end);
+		magicbullet(w_weap, self.origin, v_end);
 	}
 }
 
@@ -3261,11 +3261,11 @@ function function_be23c07c()
 	Parameters: 2
 	Flags: Linked
 */
-function function_a69280be(str_ability, var_2380d5c)
+function function_a69280be(str_ability, b_upgrade)
 {
 	self endon("death");
 	level.ai_hall dialog::say("hall_alright_activating_0", undefined, 0, self);
-	weapon = newworld_util::function_71840183(str_ability, var_2380d5c);
+	weapon = newworld_util::function_71840183(str_ability, b_upgrade);
 	var_12b288c7 = weapon.name + "_fired";
 	var_a2cc98e = str_ability + "_use_ability_tutorial";
 	self thread function_47c78606(var_a2cc98e);

@@ -68,19 +68,19 @@ function function_97bb1111(mapname)
 */
 function function_23eda99c()
 {
-	var_cfc9cbb7 = [];
-	array::add(var_cfc9cbb7, "cp_mi_cairo_aquifer");
-	array::add(var_cfc9cbb7, "cp_mi_cairo_infection");
-	array::add(var_cfc9cbb7, "cp_mi_cairo_lotus");
-	array::add(var_cfc9cbb7, "cp_mi_cairo_ramses");
-	array::add(var_cfc9cbb7, "cp_mi_eth_prologue");
-	array::add(var_cfc9cbb7, "cp_mi_sing_biodomes");
-	array::add(var_cfc9cbb7, "cp_mi_sing_blackstation");
-	array::add(var_cfc9cbb7, "cp_mi_sing_sgen");
-	array::add(var_cfc9cbb7, "cp_mi_sing_vengeance");
-	array::add(var_cfc9cbb7, "cp_mi_zurich_coalescence");
-	array::add(var_cfc9cbb7, "cp_mi_zurich_newworld");
-	return var_cfc9cbb7;
+	mission_array = [];
+	array::add(mission_array, "cp_mi_cairo_aquifer");
+	array::add(mission_array, "cp_mi_cairo_infection");
+	array::add(mission_array, "cp_mi_cairo_lotus");
+	array::add(mission_array, "cp_mi_cairo_ramses");
+	array::add(mission_array, "cp_mi_eth_prologue");
+	array::add(mission_array, "cp_mi_sing_biodomes");
+	array::add(mission_array, "cp_mi_sing_blackstation");
+	array::add(mission_array, "cp_mi_sing_sgen");
+	array::add(mission_array, "cp_mi_sing_vengeance");
+	array::add(mission_array, "cp_mi_zurich_coalescence");
+	array::add(mission_array, "cp_mi_zurich_newworld");
+	return mission_array;
 }
 
 /*
@@ -142,7 +142,7 @@ function __main__()
 	Parameters: 7
 	Flags: Linked
 */
-function add(skipto, func, str_name, cleanup_func, launch_after, end_before, var_2bc8bbd9 = 0)
+function add(skipto, func, str_name, cleanup_func, launch_after, end_before, b_saved = 0)
 {
 	if(!isdefined(level.default_skipto))
 	{
@@ -200,7 +200,7 @@ function add(skipto, func, str_name, cleanup_func, launch_after, end_before, var
 			assert(isdefined(func), "");
 		#/
 	}
-	struct = add_internal(skipto, func, str_name, cleanup_func, launch_after, end_before, var_2bc8bbd9);
+	struct = add_internal(skipto, func, str_name, cleanup_func, launch_after, end_before, b_saved);
 	struct.public = 1;
 	level flag::set("level_has_skiptos");
 }
@@ -383,13 +383,13 @@ function add_billboard(skipto, event_name, event_type, event_size, event_state)
 	Parameters: 7
 	Flags: Linked
 */
-function add_internal(msg, func, str_name, cleanup_func, launch_after, end_before, var_2bc8bbd9)
+function add_internal(msg, func, str_name, cleanup_func, launch_after, end_before, b_saved)
 {
 	/#
 		assert(!isdefined(level._loadstarted), "");
 	#/
 	msg = tolower(msg);
-	struct = add_construct(msg, func, str_name, cleanup_func, launch_after, end_before, var_2bc8bbd9);
+	struct = add_construct(msg, func, str_name, cleanup_func, launch_after, end_before, b_saved);
 	level.skipto_settings[msg] = struct;
 	level flag::init(msg);
 	level flag::init(msg + "_completed");
@@ -454,7 +454,7 @@ function set_skipto_cleanup_func(func)
 	Parameters: 7
 	Flags: Linked
 */
-function add_construct(msg, func, str_name, cleanup_func, launch_after, end_before, var_2bc8bbd9 = 0)
+function add_construct(msg, func, str_name, cleanup_func, launch_after, end_before, b_saved = 0)
 {
 	struct = spawnstruct();
 	struct.name = msg;
@@ -466,7 +466,7 @@ function add_construct(msg, func, str_name, cleanup_func, launch_after, end_befo
 	struct.prev = [];
 	struct.completion_conditions = "";
 	struct.launch_after = [];
-	struct.var_2bc8bbd9 = var_2bc8bbd9;
+	struct.b_saved = b_saved;
 	if(isdefined(launch_after))
 	{
 		struct.completion_conditions = struct parse_launch_after(launch_after);
@@ -916,7 +916,7 @@ function function_52c50cb8()
 */
 function set_current_skipto(skipto)
 {
-	if(skipto != "" && level.skipto_settings[skipto].var_2bc8bbd9 === 1)
+	if(skipto != "" && level.skipto_settings[skipto].b_saved === 1)
 	{
 		setskiptos(tolower(skipto), 1);
 	}
@@ -2566,7 +2566,7 @@ function start_objective_logic(name, starting)
 					if(isdefined(level.skipto_settings[name].skipto_func))
 					{
 						thread [[level.skipto_settings[name].skipto_func]](name, starting);
-						savegame::checkpoint_save(level.skipto_settings[name].var_2bc8bbd9);
+						savegame::checkpoint_save(level.skipto_settings[name].b_saved);
 					}
 				}
 			}
@@ -3584,8 +3584,8 @@ function function_8295f89d(difficulty)
 	{
 		return false;
 	}
-	var_cfc9cbb7 = function_23eda99c();
-	foreach(mission in var_cfc9cbb7)
+	mission_array = function_23eda99c();
+	foreach(mission in mission_array)
 	{
 		if(mission == getrootmapname())
 		{
@@ -3694,11 +3694,11 @@ function function_a5a105e8()
 */
 function function_54fdc879()
 {
-	var_cfc9cbb7 = function_23eda99c();
+	mission_array = function_23eda99c();
 	foreach(player in level.players)
 	{
 		var_6511b67a = 1;
-		foreach(mission in var_cfc9cbb7)
+		foreach(mission in mission_array)
 		{
 			if(player getdstat("PlayerStatsByMap", mission, "hasBeenCompleted") == 0)
 			{

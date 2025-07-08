@@ -673,19 +673,19 @@ function spawn_spiders()
 		wait(0.1);
 	}
 	s_spawn_loc = undefined;
-	var_19764360 = get_favorite_enemy();
-	if(!isdefined(var_19764360))
+	e_favorite_enemy = get_favorite_enemy();
+	if(!isdefined(e_favorite_enemy))
 	{
 		wait(randomfloatrange(0.3333333, 0.6666667));
 		return;
 	}
 	if(isdefined(level.spider_spawn_func))
 	{
-		s_spawn_loc = [[level.spider_spawn_func]](var_19764360);
+		s_spawn_loc = [[level.spider_spawn_func]](e_favorite_enemy);
 	}
 	else
 	{
-		s_spawn_loc = spider_spawn_logic(var_19764360);
+		s_spawn_loc = spider_spawn_logic(e_favorite_enemy);
 	}
 	if(!isdefined(s_spawn_loc))
 	{
@@ -799,7 +799,7 @@ function spider_round_start()
 		level.var_8276ee15 = 0;
 	}
 	level.var_8276ee15 = 1;
-	level notify(#"hash_f96039de");
+	level notify("spider_round_starting");
 	level thread zm_audio::sndmusicsystem_playstate("spider_roundstart");
 	if(isdefined(level.var_9d7b5e00))
 	{
@@ -930,7 +930,7 @@ function spider_health_increase()
 	Parameters: 1
 	Flags: Linked
 */
-function spider_spawn_logic(var_19764360)
+function spider_spawn_logic(e_favorite_enemy)
 {
 	switch(level.players.size)
 	{
@@ -982,8 +982,8 @@ function spider_spawn_logic(var_19764360)
 		{
 			continue;
 		}
-		n_dist_squared = distancesquared(var_aa136cb0[i].origin, var_19764360.origin);
-		n_height_diff = abs(var_aa136cb0[i].origin[2] - var_19764360.origin[2]);
+		n_dist_squared = distancesquared(var_aa136cb0[i].origin, e_favorite_enemy.origin);
+		n_height_diff = abs(var_aa136cb0[i].origin[2] - e_favorite_enemy.origin[2]);
 		if(n_dist_squared > var_3a613778 && n_dist_squared < var_e27d607a && n_height_diff < 128)
 		{
 			s_spawn_loc = function_4df33b5a(var_aa136cb0[i]);
@@ -991,7 +991,7 @@ function spider_spawn_logic(var_19764360)
 			return s_spawn_loc;
 		}
 	}
-	s_spawn_loc = function_4df33b5a(arraygetclosest(var_19764360.origin, var_aa136cb0));
+	s_spawn_loc = function_4df33b5a(arraygetclosest(e_favorite_enemy.origin, var_aa136cb0));
 	level.var_fcbb5ce0 = s_spawn_loc;
 	return s_spawn_loc;
 }
@@ -1141,12 +1141,12 @@ function special_spider_spawn(n_to_spawn, s_spawn_point)
 	n_spider_count = 0;
 	while(n_spider_count < n_to_spawn)
 	{
-		var_19764360 = get_favorite_enemy();
+		e_favorite_enemy = get_favorite_enemy();
 		if(isdefined(level.spider_spawn_func))
 		{
 			if(!isdefined(s_spawn_point))
 			{
-				s_spawn_point = [[level.spider_spawn_func]](level.spider_spawners, var_19764360);
+				s_spawn_point = [[level.spider_spawn_func]](level.spider_spawners, e_favorite_enemy);
 			}
 			ai = zombie_utility::spawn_zombie(level.spider_spawners[0]);
 			if(isdefined(ai))
@@ -1161,7 +1161,7 @@ function special_spider_spawn(n_to_spawn, s_spawn_point)
 		{
 			if(!isdefined(s_spawn_point))
 			{
-				s_spawn_point = spider_spawn_logic(var_19764360);
+				s_spawn_point = spider_spawn_logic(e_favorite_enemy);
 			}
 			ai = zombie_utility::spawn_zombie(level.spider_spawners[0]);
 			if(isdefined(ai))
@@ -2528,7 +2528,7 @@ function function_eca55d4c()
 	Parameters: 4
 	Flags: Linked
 */
-function function_6b1cc9fb(b_destroyed = 0, v_origin, v_angles, var_ef07eb9d = 0)
+function function_6b1cc9fb(b_destroyed = 0, v_origin, v_angles, b_explosive = 0)
 {
 	if(!isdefined(self.var_1c12769f))
 	{
@@ -2560,7 +2560,7 @@ function function_6b1cc9fb(b_destroyed = 0, v_origin, v_angles, var_ef07eb9d = 0
 		if(!isdefined(self.e_particle) && b_destroyed)
 		{
 			self.e_particle = util::spawn_model("tag_origin", var_fde3dbd8, var_e1a86b86);
-			if(var_ef07eb9d)
+			if(b_explosive)
 			{
 				self.e_particle function_9b41e249(1, "spider_web_particle_explosive", 1);
 			}
@@ -2779,8 +2779,8 @@ function function_8457e10f(cmd)
 		{
 			case "":
 			{
-				var_19764360 = get_favorite_enemy();
-				s_spawn_point = spider_spawn_logic(var_19764360);
+				e_favorite_enemy = get_favorite_enemy();
+				s_spawn_point = spider_spawn_logic(e_favorite_enemy);
 				ai = zombie_utility::spawn_zombie(level.spider_spawners[0]);
 				if(isdefined(ai) && isdefined(s_spawn_point))
 				{
@@ -2790,8 +2790,8 @@ function function_8457e10f(cmd)
 			}
 			case "":
 			{
-				var_19764360 = get_favorite_enemy();
-				s_spawn_point = spider_spawn_logic(var_19764360);
+				e_favorite_enemy = get_favorite_enemy();
+				s_spawn_point = spider_spawn_logic(e_favorite_enemy);
 				ai = zombie_utility::spawn_zombie(level.spider_spawners[0]);
 				if(isdefined(ai) && isdefined(s_spawn_point))
 				{

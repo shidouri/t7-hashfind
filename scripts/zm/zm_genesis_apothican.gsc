@@ -145,11 +145,11 @@ function private function_ceb45430()
 	Parameters: 3
 	Flags: Linked, Private
 */
-function private function_b67eab19(var_1d640f59, str_widget_clientuimodel, var_18bfcc38)
+function private function_b67eab19(var_1d640f59, str_widget_clientuimodel, b_acquired)
 {
 	level notify("widget_ui_override");
 	self endon("disconnect");
-	if(var_18bfcc38)
+	if(b_acquired)
 	{
 		if(isdefined(var_1d640f59))
 		{
@@ -860,17 +860,17 @@ function spider_round_spawning()
 	while(true)
 	{
 		level waittill("between_round_over");
-		var_8a82d706 = 0;
+		b_spider_round = 0;
 		if(level.n_next_spider_round <= level.round_number)
 		{
 			if(level.var_b8b48a73.size > 0)
 			{
 				level.var_adca2f3c = 1;
-				var_8a82d706 = 1;
+				b_spider_round = 1;
 				function_bd0872bb(60);
 			}
 		}
-		if(var_8a82d706)
+		if(b_spider_round)
 		{
 			level waittill("end_of_round");
 			level.n_next_spider_round = level.round_number + randomintrange(4, 6);
@@ -1304,13 +1304,13 @@ function function_79912fdc()
 {
 	self.origin = self.var_89bdf56b;
 	e_egg = util::spawn_model("p7_fxanim_zm_gen_gateworm_egg_mod", self.var_c1c6575b, self.angles);
-	e_egg thread function_c73dbcf0(self);
+	e_egg thread egg_update(self);
 	e_egg playsound("zmb_main_omelettes_egg_spawn");
 	e_egg playloopsound("zmb_main_omelettes_egg_lp", 2);
 }
 
 /*
-	Name: function_c73dbcf0
+	Name: egg_update
 	Namespace: zm_genesis_apothican
 	Checksum: 0x97ED6508
 	Offset: 0x3EC8
@@ -1318,7 +1318,7 @@ function function_79912fdc()
 	Parameters: 1
 	Flags: Linked
 */
-function function_c73dbcf0(s_egg)
+function egg_update(s_egg)
 {
 	self enablelinkto();
 	var_e777b564 = self gettagorigin("ovary_egg_tag_jnt");
@@ -1378,14 +1378,14 @@ function function_9071b894()
 	level.var_2a7689da = struct::get_array("gateworm_pod", "targetname");
 	foreach(var_661a8e9b in level.var_2a7689da)
 	{
-		var_661a8e9b thread function_ff65120e();
+		var_661a8e9b thread pod_update();
 	}
 	level flag::wait_till("rift_entrance_open");
 	zm_spawner::deregister_zombie_death_event_callback(&function_31a6b711);
 }
 
 /*
-	Name: function_ff65120e
+	Name: pod_update
 	Namespace: zm_genesis_apothican
 	Checksum: 0x5AF2FAC3
 	Offset: 0x42F0
@@ -1393,7 +1393,7 @@ function function_9071b894()
 	Parameters: 0
 	Flags: Linked
 */
-function function_ff65120e()
+function pod_update()
 {
 	mdl_ovary = getent(self.script_string, "targetname");
 	self.mdl_ovary = mdl_ovary;

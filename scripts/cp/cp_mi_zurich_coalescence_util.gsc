@@ -2458,10 +2458,10 @@ function spawn_phalanx(str_phalanx, str_formation, n_remaining_to_disperse, b_sc
 	Parameters: 2
 	Flags: Linked
 */
-function init_kane(str_objective, var_d44e356e)
+function init_kane(str_objective, b_breath)
 {
 	level.ai_kane = util::get_hero("kane");
-	if(var_d44e356e)
+	if(b_breath)
 	{
 		level.ai_kane thread function_fe5160df(1);
 	}
@@ -2869,7 +2869,7 @@ function function_12141c31()
 	Parameters: 3
 	Flags: Linked
 */
-function function_3adbd846(str_val, str_key = "targetname", var_34b81fdb = 0)
+function function_3adbd846(str_val, str_key = "targetname", b_once = 0)
 {
 	t_trig = getent(str_val, str_key);
 	if(isdefined(t_trig))
@@ -2884,7 +2884,7 @@ function function_3adbd846(str_val, str_key = "targetname", var_34b81fdb = 0)
 				break;
 			}
 		}
-		if(var_34b81fdb)
+		if(b_once)
 		{
 			t_trig delete();
 		}
@@ -2900,10 +2900,10 @@ function function_3adbd846(str_val, str_key = "targetname", var_34b81fdb = 0)
 	Parameters: 7
 	Flags: Linked
 */
-function function_1b3dfa61(str_name, str_type = "trigger_radius", n_width = 128, n_height = 128, n_length, var_88090aa5 = 1, str_objective)
+function function_1b3dfa61(str_name, str_type = "trigger_radius", n_width = 128, n_height = 128, n_length, b_spawn = 1, str_objective)
 {
 	t_trig = getent(str_name, "targename");
-	if(var_88090aa5)
+	if(b_spawn)
 	{
 		t_trig = function_3789d4db(str_name, str_type, n_width, n_height, n_length, str_objective);
 	}
@@ -3436,13 +3436,13 @@ function function_7be427b1(n_damage = 5)
 {
 	self endon(#"hash_17344cca");
 	self endon("death");
-	var_dd075cd2 = 1;
+	b_protected = 1;
 	self hazard::function_459e5eff("biohazard", 0);
 	level.overrideplayerdamage = &player_callback_damage;
 	while(true)
 	{
 		wait(1);
-		var_dd075cd2 = self hazard::do_damage("biohazard", n_damage);
+		b_protected = self hazard::do_damage("biohazard", n_damage);
 	}
 }
 

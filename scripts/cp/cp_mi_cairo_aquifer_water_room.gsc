@@ -711,11 +711,11 @@ function function_41018429()
 	self endon("death");
 	self.is_underwater = 1;
 	self hazard::function_459e5eff("o2", 0);
-	var_dd075cd2 = 1;
+	b_protected = 1;
 	while(self isplayerunderwater())
 	{
 		wait(1);
-		var_dd075cd2 = self hazard::do_damage("o2", 5);
+		b_protected = self hazard::do_damage("o2", 5);
 	}
 	self hazard::function_459e5eff("o2", 1);
 	self.is_underwater = 0;

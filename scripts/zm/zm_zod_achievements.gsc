@@ -232,36 +232,36 @@ function achievement_civil_protector()
 	level endon("end_game");
 	self endon("disconnect");
 	var_edf7e9c1 = 0;
-	var_5c366274 = 0;
-	var_6ca52f65 = 0;
-	var_aa482c3 = 0;
-	var_2c8c3602 = 0;
+	b_junction = 0;
+	b_canal = 0;
+	b_theater = 0;
+	b_slums = 0;
 	while(var_edf7e9c1 < 4)
 	{
 		self waittill(#"hash_b7f8e77c");
 		str_district = level.zones[self.zone_name].district;
-		if(!var_5c366274 && str_district == "junction")
+		if(!b_junction && str_district == "junction")
 		{
-			var_5c366274 = 1;
+			b_junction = 1;
 			var_edf7e9c1++;
 		}
 		else
 		{
-			if(!var_6ca52f65 && str_district == "canal")
+			if(!b_canal && str_district == "canal")
 			{
-				var_6ca52f65 = 1;
+				b_canal = 1;
 				var_edf7e9c1++;
 			}
 			else
 			{
-				if(!var_aa482c3 && str_district == "theater")
+				if(!b_theater && str_district == "theater")
 				{
-					var_aa482c3 = 1;
+					b_theater = 1;
 					var_edf7e9c1++;
 				}
-				else if(!var_2c8c3602 && str_district == "slums")
+				else if(!b_slums && str_district == "slums")
 				{
-					var_2c8c3602 = 1;
+					b_slums = 1;
 					var_edf7e9c1++;
 				}
 			}

@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\zombie_death;
 #using scripts\shared\callbacks_shared;
@@ -203,11 +203,11 @@ function show_infotext_for_duration(str_infotext, n_duration)
 	Parameters: 3
 	Flags: Linked, Private
 */
-function private function_1cb39173(var_1d640f59, str_widget_clientuimodel, var_18bfcc38)
+function private function_1cb39173(var_1d640f59, str_widget_clientuimodel, b_acquired)
 {
 	level notify("widget_ui_override");
 	self endon("disconnect");
-	if(var_18bfcc38)
+	if(b_acquired)
 	{
 		if(isdefined(var_1d640f59))
 		{

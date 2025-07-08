@@ -729,7 +729,7 @@ function function_64bb8338(orb)
 }
 
 /*
-	Name: function_2016b381
+	Name: magnet_update
 	Namespace: doa_shield
 	Checksum: 0x74D19B07
 	Offset: 0x2B18
@@ -737,10 +737,10 @@ function function_64bb8338(orb)
 	Parameters: 1
 	Flags: Linked
 */
-function function_2016b381(time)
+function magnet_update(time)
 {
-	self notify(#"hash_2016b381");
-	self endon(#"hash_2016b381");
+	self notify("magnet_update");
+	self endon("magnet_update");
 	self endon("player_died");
 	self endon("disconnect");
 	orb = spawn("script_model", self.origin);

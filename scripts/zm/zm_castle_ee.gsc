@@ -1282,19 +1282,19 @@ function function_6bfbde41()
 */
 function function_1f8ca830()
 {
-	var_7ec3e0eb = 0;
+	b_next = 0;
 	if(level.var_8bdb0713 >= function_4400f882())
 	{
 		if(isdefined(level.var_f91118d9) && level.var_f91118d9)
 		{
-			var_7ec3e0eb = 1;
+			b_next = 1;
 		}
 		else if(level.var_8bdb0713 >= function_f507c094())
 		{
-			var_7ec3e0eb = 1;
+			b_next = 1;
 		}
 	}
-	return var_7ec3e0eb;
+	return b_next;
 }
 
 /*
@@ -1769,7 +1769,7 @@ function function_15752140(var_b5aa6f14)
 	for(i = 0; i < 4; i++)
 	{
 		a_symbols[var_c5ea7ad8[i]] = struct::get((("monitor_" + level.var_cf5a713.script_noteworthy) + "_") + (i + 1));
-		a_symbols[var_c5ea7ad8[i]].var_73527aa3 = undefined;
+		a_symbols[var_c5ea7ad8[i]].b_selected = undefined;
 		a_symbols[var_c5ea7ad8[i]] zm_castle_util::create_unitrigger(undefined, 16);
 		var_4d74106b showpart((("tag_scn" + (i + 1)) + "_sym") + var_c5ea7ad8[i]);
 		level thread function_b76d0c45(a_symbols[var_c5ea7ad8[i]], (("tag_scn" + (i + 1)) + "_sym") + var_c5ea7ad8[i], (("lgt_EE_consol" + var_d733da61) + "_monitor_") + (i + 1));
@@ -1781,7 +1781,7 @@ function function_15752140(var_b5aa6f14)
 	while(!level flag::get("end_simon"))
 	{
 		str_symbol = array::random(var_c5ea7ad8);
-		a_symbols[str_symbol].var_73527aa3 = 1;
+		a_symbols[str_symbol].b_selected = 1;
 		var_1a972685.var_94287343 = "tag_scn0_sym" + str_symbol;
 		var_4d74106b showpart("tag_scn0_sym" + str_symbol);
 		var_4d74106b playsound("zmb_ee_simonsays_show");
@@ -1803,7 +1803,7 @@ function function_15752140(var_b5aa6f14)
 		}
 		exploder::kill_exploder(("lgt_EE_consol" + var_d733da61) + "_monitor_main");
 		var_4d74106b hidepart(var_1a972685.var_94287343);
-		a_symbols[str_symbol].var_73527aa3 = undefined;
+		a_symbols[str_symbol].b_selected = undefined;
 		if(level.var_521b0bd1 >= var_b5aa6f14)
 		{
 			level flag::set("end_simon");
@@ -1889,7 +1889,7 @@ function function_b76d0c45(var_9ed14cca, str_symbol, str_light)
 			wait(3);
 			exploder::kill_exploder(str_light);
 			var_4d74106b hidepart(str_symbol);
-			if(isdefined(var_9ed14cca.var_73527aa3) && var_9ed14cca.var_73527aa3)
+			if(isdefined(var_9ed14cca.b_selected) && var_9ed14cca.b_selected)
 			{
 				level.var_521b0bd1++;
 				var_4d74106b playsound("zmb_ee_simonsays_yay");
@@ -2553,27 +2553,27 @@ function function_821a61ed()
 function function_ca73b878(var_6ec25e68, str_zone)
 {
 	self endon("death");
-	var_77b9bd02 = 0;
+	b_rumbling = 0;
 	while(isdefined(level.var_758b41e) && level.var_758b41e)
 	{
 		str_player_zone = self zm_zonemgr::get_player_zone();
 		if(zm_utility::is_player_valid(self) && str_player_zone === str_zone)
 		{
-			if(!(isdefined(var_77b9bd02) && var_77b9bd02) && distance2dsquared(var_6ec25e68, self.origin) <= 15129)
+			if(!(isdefined(b_rumbling) && b_rumbling) && distance2dsquared(var_6ec25e68, self.origin) <= 15129)
 			{
 				self clientfield::set_to_player("gravity_trap_rumble", 1);
-				var_77b9bd02 = 1;
+				b_rumbling = 1;
 			}
-			else if(isdefined(var_77b9bd02) && var_77b9bd02 && distance2dsquared(var_6ec25e68, self.origin) > 15129)
+			else if(isdefined(b_rumbling) && b_rumbling && distance2dsquared(var_6ec25e68, self.origin) > 15129)
 			{
 				self clientfield::set_to_player("gravity_trap_rumble", 0);
-				var_77b9bd02 = 0;
+				b_rumbling = 0;
 			}
 		}
-		else if(isdefined(var_77b9bd02) && var_77b9bd02)
+		else if(isdefined(b_rumbling) && b_rumbling)
 		{
 			self clientfield::set_to_player("gravity_trap_rumble", 0);
-			var_77b9bd02 = 0;
+			b_rumbling = 0;
 		}
 		wait(0.15);
 	}
@@ -3012,14 +3012,14 @@ function function_fb090902(var_f3afc16d)
 			}
 			if(var_fe586166 <= var_c33cc7f2 && (var_fe586166 + var_565450eb) < level.zombie_vars["zombie_max_ai"])
 			{
-				var_19764360 = zm_ai_dogs::get_favorite_enemy();
-				s_spawn_pos = zm_castle_dogs::function_92e4eaff(level.dog_spawners[0], var_19764360);
+				e_favorite_enemy = zm_ai_dogs::get_favorite_enemy();
+				s_spawn_pos = zm_castle_dogs::function_92e4eaff(level.dog_spawners[0], e_favorite_enemy);
 				if(isdefined(s_spawn_pos))
 				{
 					ai_dog = zombie_utility::spawn_zombie(level.dog_spawners[0]);
 					if(isdefined(ai_dog))
 					{
-						ai_dog.favoriteenemy = var_19764360;
+						ai_dog.favoriteenemy = e_favorite_enemy;
 						ai_dog.ignore_enemy_count = 1;
 						ai_dog.no_damage_points = 1;
 						ai_dog.deathpoints_already_given = 1;

@@ -264,8 +264,8 @@ function main()
 	level thread zm_genesis_keeper_companion::main();
 	level thread zm_genesis_portals::function_16616103();
 	level thread zm_genesis_challenges::main();
-	level thread function_a00f0b4d();
-	level thread function_57e1c276();
+	level thread genesis_zombie_zigzag();
+	level thread genesis_zombie_speed();
 	level thread zm_genesis_flinger_trap::main();
 	level thread zm_genesis_portals::function_b64d33a7();
 	level thread sndfunctions();
@@ -1472,7 +1472,7 @@ function function_d9e1ec4d(var_bbf77908)
 }
 
 /*
-	Name: function_a00f0b4d
+	Name: genesis_zombie_zigzag
 	Namespace: zm_genesis
 	Checksum: 0xA13B5514
 	Offset: 0x65A8
@@ -1480,14 +1480,14 @@ function function_d9e1ec4d(var_bbf77908)
 	Parameters: 0
 	Flags: Linked
 */
-function function_a00f0b4d()
+function genesis_zombie_zigzag()
 {
 	level.inner_zigzag_radius = 0;
 	level.outer_zigzag_radius = 96;
 }
 
 /*
-	Name: function_57e1c276
+	Name: genesis_zombie_speed
 	Namespace: zm_genesis
 	Checksum: 0x10A7E472
 	Offset: 0x65D0
@@ -1495,7 +1495,7 @@ function function_a00f0b4d()
 	Parameters: 0
 	Flags: Linked
 */
-function function_57e1c276()
+function genesis_zombie_speed()
 {
 	while(level.round_number < 6)
 	{

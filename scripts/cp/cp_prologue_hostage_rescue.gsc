@@ -1811,7 +1811,7 @@ function lift_escape_start(str_objective)
 	var_489e46a = getent("t_regroup_lift", "targetname");
 	var_489e46a triggerenable(1);
 	trigger::use("t_lift_respawns_enable");
-	level thread function_a3dbf6a2();
+	level thread lift_update();
 	level thread lift_escape_cleanup();
 	level waittill(#"hash_b100689e");
 	callback::remove_on_ai_killed(&prologue_accolades::function_cbaf37cd);
@@ -2160,7 +2160,7 @@ function function_d4734ff1()
 }
 
 /*
-	Name: function_a3dbf6a2
+	Name: lift_update
 	Namespace: lift_escape
 	Checksum: 0x6D7BEC2
 	Offset: 0x8078
@@ -2168,7 +2168,7 @@ function function_d4734ff1()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a3dbf6a2()
+function lift_update()
 {
 	trigger::wait_till("t_lift_interior");
 	var_d39a9d5b = getent("player_lift_clip", "targetname");

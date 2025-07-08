@@ -1574,7 +1574,7 @@ function function_5ca4424()
 	{
 		if(!level flag::get("vo_lock_thrasher_appear_roar"))
 		{
-			level waittill(#"hash_9b1446c2", e_thrasher);
+			level waittill("thrasher_roared", e_thrasher);
 			if(isalive(e_thrasher) && (!(isdefined(e_thrasher.var_dbb0b3dd) && e_thrasher.var_dbb0b3dd) && (!(isdefined(e_thrasher.var_9d252861) && e_thrasher.var_9d252861))))
 			{
 				e_speaker = undefined;

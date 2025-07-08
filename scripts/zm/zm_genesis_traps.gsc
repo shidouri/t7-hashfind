@@ -532,7 +532,7 @@ function function_af6b7901(s_activate, e_player)
 	else if(self.archetype === "zombie")
 	{
 		level notify("flogger_killed_zombie", self, e_player);
-		if(!isdefined(self.var_b07a0f56))
+		if(!isdefined(self.b_flung))
 		{
 			self thread do_launch(s_activate);
 		}
@@ -554,7 +554,7 @@ function function_af6b7901(s_activate, e_player)
 */
 function do_launch(s_activate)
 {
-	self.var_b07a0f56 = 1;
+	self.b_flung = 1;
 	self playsound("zmb_death_gibs");
 	if(s_activate.script_string === "reverse")
 	{

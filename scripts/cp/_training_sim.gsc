@@ -970,7 +970,7 @@ function function_e8f80ed0()
 		{
 			var_35989c93 = floor(abs(var_8f752567 * 10));
 		}
-		s_score.var_a3d7c1d0 = self.var_80e5e834;
+		s_score.n_base_score = self.var_80e5e834;
 		s_score.n_time_ms = var_4cd10db3;
 		s_score.var_35989c93 = var_35989c93;
 		self.var_80e5e834 = 0;
@@ -1450,8 +1450,8 @@ function on_ai_killed(s_params)
 	if(isplayer(s_params.eattacker) && (isdefined(s_params.eattacker.in_training) && s_params.eattacker.in_training))
 	{
 		player = s_params.eattacker;
-		var_a3d7c1d0 = self.var_72f54197["basescore"];
-		n_score = floor(var_a3d7c1d0 * self.var_b0ac175a);
+		n_base_score = self.var_72f54197["basescore"];
+		n_score = floor(n_base_score * self.var_b0ac175a);
 		player.var_80e5e834 = player.var_80e5e834 + n_score;
 		player.var_d1b47d51 = player.var_d1b47d51 + n_score;
 		player thread function_a5ac6877();
@@ -1920,9 +1920,9 @@ function function_e22afa2c()
 		self endon("disconnect");
 		while(true)
 		{
-			var_dd6f0201 = getdvarint("");
+			b_goto = getdvarint("");
 			var_e2c1fe1f = getdvarint("");
-			if(var_dd6f0201)
+			if(b_goto)
 			{
 				function_11a03fdc(getdvarint(""));
 				end_round();

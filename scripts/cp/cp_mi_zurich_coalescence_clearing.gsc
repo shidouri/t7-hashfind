@@ -682,10 +682,10 @@ function function_75ab0e6a(str_objective, var_7c092e3a = 0)
 {
 	level endon(#"hash_c7f297ae");
 	s_start_pos = struct::get(str_objective + "_taylor_start", "targetname");
-	var_8a1e3703 = 0;
+	b_spawning = 0;
 	if(!isdefined(level.ai_taylor))
 	{
-		var_8a1e3703 = 1;
+		b_spawning = 1;
 		level function_6aede49e(str_objective);
 		level.ai_taylor forceteleport(s_start_pos.origin, s_start_pos.angles);
 		level.ai_taylor ai::set_ignoreme(1);
@@ -705,7 +705,7 @@ function function_75ab0e6a(str_objective, var_7c092e3a = 0)
 		level.ai_taylor ai::set_ignoreall(1);
 		level.ai_taylor setgoal(nd_goal, 1);
 	}
-	if(var_8a1e3703)
+	if(b_spawning)
 	{
 		wait(1);
 		level.ai_taylor clientfield::set("hero_spawn_fx", 1);

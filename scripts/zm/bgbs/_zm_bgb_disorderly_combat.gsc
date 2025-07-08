@@ -112,8 +112,8 @@ function disable()
 */
 function function_32710943()
 {
-	var_dd341085 = getarraykeys(level.zombie_weapons);
-	foreach(w_player in var_dd341085)
+	a_zombie_weapons = getarraykeys(level.zombie_weapons);
+	foreach(w_player in a_zombie_weapons)
 	{
 		w_player function_32818605();
 	}

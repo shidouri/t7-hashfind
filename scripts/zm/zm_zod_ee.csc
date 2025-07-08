@@ -966,7 +966,7 @@ function ee_superworm_state(localclientnum, oldval, newval, bnewent, binitialsna
 	Parameters: 3
 	Flags: Linked
 */
-function function_bdd91321(localclientnum, b_hide, var_b4c5825f = 0)
+function function_bdd91321(localclientnum, b_hide, b_smashed = 0)
 {
 	if(b_hide)
 	{
@@ -975,7 +975,7 @@ function function_bdd91321(localclientnum, b_hide, var_b4c5825f = 0)
 			self stoploopsound(self.sndlooper, 1);
 			self.sndlooper = undefined;
 		}
-		if(var_b4c5825f)
+		if(b_smashed)
 		{
 			v_origin_1 = self gettagorigin("j_spine_1_anim");
 			v_origin_2 = self gettagorigin("j_spine_4_anim");

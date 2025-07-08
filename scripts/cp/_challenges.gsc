@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_achievements;
 #using scripts\cp\_decorations;
@@ -680,40 +680,40 @@ function function_4f96d6bd()
 function function_f2d8f1d0()
 {
 	/#
-		var_2884746a = [];
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		array::add(var_2884746a, "");
-		foreach(challenge in var_2884746a)
+		challenge_array = [];
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		array::add(challenge_array, "");
+		foreach(challenge in challenge_array)
 		{
 			self addplayerstat(challenge, 1000);
 			iprintln("" + challenge);

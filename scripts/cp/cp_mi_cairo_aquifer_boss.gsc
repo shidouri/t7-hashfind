@@ -1494,8 +1494,8 @@ function function_3375c23()
 	if(speed > 100)
 	{
 		player_vec = self getnormalizedmovement();
-		var_8aeaad8d = anglestoforward(level.sniper_boss.angles);
-		dot = abs(vectordot(player_vec, var_8aeaad8d));
+		boss_vec = anglestoforward(level.sniper_boss.angles);
+		dot = abs(vectordot(player_vec, boss_vec));
 		accuracy = accuracy - ((1 - dot) * 0.1);
 	}
 	return accuracy;

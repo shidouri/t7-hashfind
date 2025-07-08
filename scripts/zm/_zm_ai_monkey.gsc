@@ -46,7 +46,7 @@ function autoexec init()
 	spawner::add_archetype_spawn_function("monkey", &monkeyspawnsetup);
 	animationstatenetwork::registernotetrackhandlerfunction("monkey_melee", &monkeynotetrackmeleefire);
 	animationstatenetwork::registernotetrackhandlerfunction("monkey_groundpound", &monkeynotetrackgroundpound);
-	animationstatenetwork::registernotetrackhandlerfunction("grenade_pickup", &function_fcdc0829);
+	animationstatenetwork::registernotetrackhandlerfunction("grenade_pickup", &monkeynotetrackgrenadethrow);
 	level thread aat::register_immunity("zm_aat_blast_furnace", "monkey", 1, 1, 1);
 	level thread aat::register_immunity("zm_aat_dead_wire", "monkey", 1, 1, 1);
 	level thread aat::register_immunity("zm_aat_fire_works", "monkey", 1, 1, 1);
@@ -173,7 +173,7 @@ function monkeynotetrackgroundpound(entity)
 }
 
 /*
-	Name: function_fcdc0829
+	Name: monkeynotetrackgrenadethrow
 	Namespace: zm_ai_monkey
 	Checksum: 0x91E143EC
 	Offset: 0x1A98
@@ -181,7 +181,7 @@ function monkeynotetrackgroundpound(entity)
 	Parameters: 1
 	Flags: Linked
 */
-function function_fcdc0829(entity)
+function monkeynotetrackgrenadethrow(entity)
 {
 	target = self.monkey_thrower;
 	throw_angle = randomintrange(20, 30);

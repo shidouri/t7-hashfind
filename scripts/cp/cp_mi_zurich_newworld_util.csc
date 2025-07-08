@@ -371,11 +371,11 @@ function function_be66c05b(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 2
 	Flags: Linked
 */
-function function_1c2b3dda(localclientnum, var_21082827 = 1)
+function function_1c2b3dda(localclientnum, b_reveal = 1)
 {
 	self endon("entityshutdown");
 	start_time = gettime();
-	if(!var_21082827)
+	if(!b_reveal)
 	{
 		self mapshaderconstant(0, 0, "scriptVector0", 0, 0, 0);
 	}
@@ -393,7 +393,7 @@ function function_1c2b3dda(localclientnum, var_21082827 = 1)
 			time_in_seconds = 0.5;
 			b_is_updating = 0;
 		}
-		if(!var_21082827)
+		if(!b_reveal)
 		{
 			n_opacity = 1 - (time_in_seconds / 0.5);
 		}

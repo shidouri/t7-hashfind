@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai_shared;
 #using scripts\shared\array_shared;
@@ -153,7 +153,7 @@ function function_33aa4940()
 	Parameters: 2
 	Flags: Linked
 */
-function function_92e4eaff(var_70e0fe97, var_19764360)
+function function_92e4eaff(var_70e0fe97, e_favorite_enemy)
 {
 	var_2ad6ea05 = array::randomize(level.zm_loc_types["dog_location"]);
 	for(i = 0; i < var_2ad6ea05.size; i++)
@@ -162,9 +162,9 @@ function function_92e4eaff(var_70e0fe97, var_19764360)
 		{
 			continue;
 		}
-		if(isdefined(var_19764360))
+		if(isdefined(e_favorite_enemy))
 		{
-			n_dist_squared = distancesquared(var_2ad6ea05[i].origin, var_19764360.origin);
+			n_dist_squared = distancesquared(var_2ad6ea05[i].origin, e_favorite_enemy.origin);
 			if(n_dist_squared > 360000 && n_dist_squared < 1440000)
 			{
 				level.old_dog_spawn = var_2ad6ea05[i];

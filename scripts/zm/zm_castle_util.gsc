@@ -94,27 +94,27 @@ function function_fa7da172()
 {
 	self endon("death");
 	var_82a4f07b = struct::get("keeper_end_loc");
-	var_77b9bd02 = 0;
+	b_rumbling = 0;
 	while(isdefined(level.var_8ef26cd9) && level.var_8ef26cd9)
 	{
 		str_player_zone = self zm_zonemgr::get_player_zone();
 		if(zm_utility::is_player_valid(self) && str_player_zone === "zone_undercroft")
 		{
-			if(!(isdefined(var_77b9bd02) && var_77b9bd02) && distance2dsquared(var_82a4f07b.origin, self.origin) <= 53361)
+			if(!(isdefined(b_rumbling) && b_rumbling) && distance2dsquared(var_82a4f07b.origin, self.origin) <= 53361)
 			{
 				self clientfield::set_to_player("gravity_trap_rumble", 1);
-				var_77b9bd02 = 1;
+				b_rumbling = 1;
 			}
-			else if(isdefined(var_77b9bd02) && var_77b9bd02 && distance2dsquared(var_82a4f07b.origin, self.origin) > 53361)
+			else if(isdefined(b_rumbling) && b_rumbling && distance2dsquared(var_82a4f07b.origin, self.origin) > 53361)
 			{
 				self clientfield::set_to_player("gravity_trap_rumble", 0);
-				var_77b9bd02 = 0;
+				b_rumbling = 0;
 			}
 		}
-		else if(isdefined(var_77b9bd02) && var_77b9bd02)
+		else if(isdefined(b_rumbling) && b_rumbling)
 		{
 			self clientfield::set_to_player("gravity_trap_rumble", 0);
-			var_77b9bd02 = 0;
+			b_rumbling = 0;
 		}
 		wait(0.15);
 	}

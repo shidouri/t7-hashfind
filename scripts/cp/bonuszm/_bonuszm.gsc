@@ -790,7 +790,7 @@ function function_abc05be8()
 	{
 		self clientfield::set("zombie_appear_vanish_fx", 1);
 	}
-	self.var_be85d412 = 1;
+	self.bzmhidden = 1;
 	/#
 		recordenttext("", self, (0, 1, 0), "");
 	#/
@@ -812,11 +812,11 @@ function function_abc05be8()
 function function_55e64fc7()
 {
 	self endon("death");
-	self endon(#"hash_d94c729a");
+	self endon("bzm_appear");
 	self endon(#"hash_abc05be8");
 	while(true)
 	{
-		if(isdefined(self.var_be85d412) && self.var_be85d412)
+		if(isdefined(self.bzmhidden) && self.bzmhidden)
 		{
 			/#
 				recordenttext("", self, (1, 0, 0), "");
@@ -830,7 +830,7 @@ function function_55e64fc7()
 }
 
 /*
-	Name: function_d94c729a
+	Name: bzm_appear
 	Namespace: bonuszm
 	Checksum: 0x888AFCF7
 	Offset: 0x3340
@@ -838,14 +838,14 @@ function function_55e64fc7()
 	Parameters: 0
 	Flags: Linked
 */
-function function_d94c729a()
+function bzm_appear()
 {
 	self endon("death");
 	self endon(#"hash_abc05be8");
-	if(isdefined(self.var_be85d412) && self.var_be85d412)
+	if(isdefined(self.bzmhidden) && self.bzmhidden)
 	{
-		self notify(#"hash_d94c729a");
-		self.var_be85d412 = 0;
+		self notify("bzm_appear");
+		self.bzmhidden = 0;
 		self solid();
 		self.ignoreme = 0;
 		wait(1);
@@ -880,7 +880,7 @@ function function_c1802d32()
 	{
 		return false;
 	}
-	if(isdefined(self.var_be85d412) && self.var_be85d412)
+	if(isdefined(self.bzmhidden) && self.bzmhidden)
 	{
 		return false;
 	}
@@ -966,7 +966,7 @@ function function_8347526a()
 						function_abc05be8();
 						self forceteleport(teleportorigin);
 						wait(2);
-						self thread function_d94c729a();
+						self thread bzm_appear();
 						wait(2);
 						continue;
 					}
@@ -1004,7 +1004,7 @@ function function_8347526a()
 				function_abc05be8();
 				self forceteleport(teleportorigin);
 				wait(2);
-				self thread function_d94c729a();
+				self thread bzm_appear();
 				wait(2);
 				continue;
 			}
@@ -1044,7 +1044,7 @@ function function_48401071()
 			continue;
 		}
 		var_382bd177 = self.var_2985e88a == "robot";
-		var_6fc198b2 = isdefined(self.var_be85d412) && self.var_be85d412 || bonuszmutil::function_51828ce6();
+		var_6fc198b2 = isdefined(self.bzmhidden) && self.bzmhidden || bonuszmutil::function_51828ce6();
 		if(!var_382bd177 && !var_6fc198b2)
 		{
 			wait(0.05);
@@ -1055,7 +1055,7 @@ function function_48401071()
 		}
 		if(self isinscriptedstate())
 		{
-			if(!(isdefined(self.var_be85d412) && self.var_be85d412))
+			if(!(isdefined(self.bzmhidden) && self.bzmhidden))
 			{
 				/#
 					recordenttext("", self, (0, 1, 0), "");
@@ -1068,7 +1068,7 @@ function function_48401071()
 			/#
 				recordenttext("", self, (0, 1, 0), "");
 			#/
-			self thread function_d94c729a();
+			self thread bzm_appear();
 		}
 		wait(0.05);
 	}
@@ -1562,12 +1562,12 @@ function function_3ca31ff8()
 	possibletargets = [];
 	foreach(target in level.var_9a25f386)
 	{
-		if(!isdefined(target.var_e7b4863e))
+		if(!isdefined(target.bzmattackers))
 		{
-			target.var_e7b4863e = [];
+			target.bzmattackers = [];
 			continue;
 		}
-		if(target.var_e7b4863e.size < 4 && !isinarray(possibletargets, target))
+		if(target.bzmattackers.size < 4 && !isinarray(possibletargets, target))
 		{
 			array::add(possibletargets, target);
 		}
@@ -1577,7 +1577,7 @@ function function_3ca31ff8()
 		var_f2007328 = arraygetclosest(self.origin, possibletargets, 512);
 		if(isdefined(var_f2007328))
 		{
-			array::add(var_f2007328.var_e7b4863e, var_f2007328);
+			array::add(var_f2007328.bzmattackers, var_f2007328);
 			self.var_6ed74a15 = var_f2007328;
 			return var_f2007328;
 		}
@@ -1898,7 +1898,7 @@ function function_745c9570()
 		}
 		self.goalradius = 8;
 		self.ignoreall = 0;
-		if(!(isdefined(self.var_be85d412) && self.var_be85d412))
+		if(!(isdefined(self.bzmhidden) && self.bzmhidden))
 		{
 			self.ignoreme = 0;
 		}

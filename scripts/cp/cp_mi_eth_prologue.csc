@@ -358,7 +358,7 @@ function set_cam_lookat_object(localclientnum, oldval, newval, bnewent, binitial
 	e_camera = level.a_cam_objects[localclientnum][newval];
 	if(isdefined(e_camera))
 	{
-		if(!util::is_mature() && e_camera.var_6516b558)
+		if(!util::is_mature() && e_camera.b_mature)
 		{
 			e_camera setextracam(level.active_extra_cam, 64, 36);
 		}
@@ -494,11 +494,11 @@ function function_c9395227(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 4
 	Flags: Linked
 */
-function function_b0867fa6(localclientnum, str_camera, var_81a24d4e = 14.64, var_6516b558 = 0)
+function function_b0867fa6(localclientnum, str_camera, var_81a24d4e = 14.64, b_mature = 0)
 {
 	e_camera = getent(localclientnum, str_camera, "targetname");
 	e_camera.var_81a24d4e = var_81a24d4e;
-	e_camera.var_6516b558 = var_6516b558;
+	e_camera.b_mature = b_mature;
 	return e_camera;
 }
 

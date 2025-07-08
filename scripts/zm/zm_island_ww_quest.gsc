@@ -1413,9 +1413,9 @@ function function_598781a4()
 */
 function function_d5faaef8()
 {
-	if(!(isdefined(self.var_7a022fa0) && self.var_7a022fa0))
+	if(!(isdefined(self.b_dissolving) && self.b_dissolving))
 	{
-		self.var_7a022fa0 = 1;
+		self.b_dissolving = 1;
 		self clientfield::set("do_fade_material", 0);
 		exploder::exploder("fxexp_508");
 		wait(1);
@@ -1866,9 +1866,9 @@ function cage_mover(str_direction)
 	Parameters: 1
 	Flags: Linked
 */
-function function_46d3d1b0(var_9330a364)
+function function_46d3d1b0(b_caged)
 {
-	if(var_9330a364)
+	if(b_caged)
 	{
 		foreach(player in level.players)
 		{

@@ -1642,10 +1642,10 @@ function upgrade_weapon()
 		var_1d94ca2b = self getcurrentweapon();
 		var_a08320d8 = self getweaponammoclip(var_1d94ca2b);
 		var_7298c138 = self getweaponammostock(var_1d94ca2b);
-		var_19dc14f6 = zm_weapons::get_upgrade_weapon(var_1d94ca2b);
-		var_19dc14f6 = self zm_weapons::give_build_kit_weapon(var_19dc14f6);
-		self givestartammo(var_19dc14f6);
-		self switchtoweaponimmediate(var_19dc14f6);
+		w_upgraded_weapon = zm_weapons::get_upgrade_weapon(var_1d94ca2b);
+		w_upgraded_weapon = self zm_weapons::give_build_kit_weapon(w_upgraded_weapon);
+		self givestartammo(w_upgraded_weapon);
+		self switchtoweaponimmediate(w_upgraded_weapon);
 		self takeweapon(var_1d94ca2b, 1);
 	#/
 }

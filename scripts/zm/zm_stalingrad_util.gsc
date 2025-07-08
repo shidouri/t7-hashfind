@@ -845,13 +845,13 @@ function function_4334972f(str_endon, str_notify_end, var_1d9f5031)
 	Parameters: 2
 	Flags: Linked
 */
-function function_432cdad9(a_spawnpoints, var_e41e673a)
+function function_432cdad9(a_spawnpoints, func_on_spawned)
 {
 	players = getplayers();
-	var_19764360 = zm_ai_raz::get_favorite_enemy();
+	e_favorite_enemy = zm_ai_raz::get_favorite_enemy();
 	if(isdefined(level.raz_spawn_func))
 	{
-		s_spawn_loc = [[level.raz_spawn_func]](level.a_sp_raz, var_19764360);
+		s_spawn_loc = [[level.raz_spawn_func]](level.a_sp_raz, e_favorite_enemy);
 	}
 	else
 	{
@@ -876,14 +876,14 @@ function function_432cdad9(a_spawnpoints, var_e41e673a)
 		ai.find_flesh_struct_string = ai.script_string;
 		ai.sword_kill_power = 4;
 		ai.heroweapon_kill_power = 4;
-		if(isdefined(var_19764360))
+		if(isdefined(e_favorite_enemy))
 		{
-			ai.favoriteenemy = var_19764360;
+			ai.favoriteenemy = e_favorite_enemy;
 			ai.favoriteenemy.hunted_by++;
 		}
-		if(isdefined(var_e41e673a))
+		if(isdefined(func_on_spawned))
 		{
-			ai thread [[var_e41e673a]]();
+			ai thread [[func_on_spawned]]();
 		}
 		playsoundatposition("zmb_raz_spawn", s_spawn_loc.origin);
 		return ai;
@@ -935,7 +935,7 @@ function function_a03df69f(var_f92c3865, var_b4fcee85, str_notify_end)
 	Parameters: 2
 	Flags: Linked
 */
-function function_77b29938(a_spawners, var_19764360)
+function function_77b29938(a_spawners, e_favorite_enemy)
 {
 	b_all_points_used = 0;
 	if(isdefined(a_spawners))
@@ -1072,7 +1072,7 @@ function function_923f7f72(var_af22dd13, var_ed448d3b, var_e25e1ccc, var_b4fcee8
 	Parameters: 2
 	Flags: Linked
 */
-function function_70e59bda(var_e41e673a, var_1d8ab289)
+function function_70e59bda(func_on_spawned, var_1d8ab289)
 {
 	if(isdefined(var_1d8ab289))
 	{
@@ -1097,9 +1097,9 @@ function function_70e59bda(var_e41e673a, var_1d8ab289)
 	if(isdefined(ai))
 	{
 		ai thread zm_ai_sentinel_drone::function_b27530eb(s_spawn_loc.origin);
-		if(isdefined(var_e41e673a))
+		if(isdefined(func_on_spawned))
 		{
-			ai thread [[var_e41e673a]]();
+			ai thread [[func_on_spawned]]();
 		}
 		ai.sword_kill_power = 4;
 		ai.heroweapon_kill_power = 4;

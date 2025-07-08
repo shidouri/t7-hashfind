@@ -224,7 +224,7 @@ function function_f5af37c6(var_3778532a)
 	while(true)
 	{
 		self waittill("trigger", e_who);
-		if(!(isdefined(e_who.var_bd3a4420) && e_who.var_bd3a4420))
+		if(!(isdefined(e_who.b_mashed) && e_who.b_mashed))
 		{
 			if(e_who.health <= 20000)
 			{
@@ -240,7 +240,7 @@ function function_f5af37c6(var_3778532a)
 			}
 			else if(!isplayer(e_who))
 			{
-				e_who.var_bd3a4420 = 1;
+				e_who.b_mashed = 1;
 				e_who thread function_fe885d6b();
 			}
 			if(isplayer(e_who) && e_who issliding())
@@ -265,7 +265,7 @@ function function_fe885d6b()
 {
 	self endon("death");
 	wait(0.25);
-	self.var_bd3a4420 = undefined;
+	self.b_mashed = undefined;
 }
 
 /*

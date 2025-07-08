@@ -693,11 +693,11 @@ function function_2a26e636()
 		}
 		wait(0.5);
 	}
-	self thread function_17da3db2();
+	self thread genesis_mechz_cleanup();
 }
 
 /*
-	Name: function_17da3db2
+	Name: genesis_mechz_cleanup
 	Namespace: zm_genesis_mechz
 	Checksum: 0x7B4EFA08
 	Offset: 0x1E68
@@ -705,7 +705,7 @@ function function_2a26e636()
 	Parameters: 0
 	Flags: Linked
 */
-function function_17da3db2()
+function genesis_mechz_cleanup()
 {
 	wait(0.05);
 	if(isdefined(self))

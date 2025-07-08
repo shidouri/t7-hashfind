@@ -1433,10 +1433,10 @@ function function_517c3b8c()
 			var_4752d17a[n_index]++;
 		}
 	}
-	var_44faa778 = 1;
-	while(var_44faa778)
+	b_swapped = 1;
+	while(b_swapped)
 	{
-		var_44faa778 = 0;
+		b_swapped = 0;
 		for(i = 1; i < var_4752d17a.size; i++)
 		{
 			if((var_4752d17a[i - 1]) < var_4752d17a[i])
@@ -1447,7 +1447,7 @@ function function_517c3b8c()
 				var_4752d17a[i - 1] = var_4752d17a[i];
 				var_50f98093[i] = var_d697e552;
 				var_4752d17a[i] = var_8da39cf7;
-				var_44faa778 = 1;
+				b_swapped = 1;
 			}
 		}
 	}

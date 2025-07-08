@@ -400,9 +400,9 @@ function function_1064f733()
 	Parameters: 1
 	Flags: Linked
 */
-function function_77ae41ed(var_e0824a47)
+function function_77ae41ed(b_rusher)
 {
-	if(var_e0824a47)
+	if(b_rusher)
 	{
 		if(self ai::has_behavior_attribute("move_mode"))
 		{

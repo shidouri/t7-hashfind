@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\cp\_skipto;
 #using scripts\cp\_util;
@@ -108,9 +108,9 @@ function function_2dde6e87()
 	Parameters: 1
 	Flags: Linked
 */
-function function_74191a2(var_e3262ea5 = 1)
+function function_74191a2(b_stealth = 1)
 {
-	if(var_e3262ea5)
+	if(b_stealth)
 	{
 		self vehicle::lights_off();
 	}

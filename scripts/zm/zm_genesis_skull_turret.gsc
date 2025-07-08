@@ -746,7 +746,7 @@ function function_13eaa39c()
 		n_random = randomfloatrange(5, 7);
 		self rotateto((randomintrange(-90, 90), randomintrange(-90, 90), randomintrange(-90, 90)), n_random);
 		wait(n_random);
-		while(isdefined(self.var_827db0f2) && self.var_827db0f2)
+		while(isdefined(self.b_beamed) && self.b_beamed)
 		{
 			wait(1);
 		}
@@ -807,7 +807,7 @@ function function_b52693fa()
 	/#
 		level endon("sophia_activated");
 		level waittill("sophia_beam_locked");
-		if(!(isdefined(self.var_827db0f2) && self.var_827db0f2))
+		if(!(isdefined(self.b_beamed) && self.b_beamed))
 		{
 			a_vehicles = getvehiclearray(self.script_string, "");
 			self thread sophia_beam_locked(a_vehicles[0], level.players[0]);
@@ -832,7 +832,7 @@ function sophia_beam_locked(w_weapon, e_player)
 			return;
 		}
 	#/
-	self.var_827db0f2 = 1;
+	self.b_beamed = 1;
 	w_weapon.b_locked = 1;
 	level.var_49483427++;
 	if(level.var_49483427 >= 4)
@@ -852,7 +852,7 @@ function sophia_beam_locked(w_weapon, e_player)
 		exploder::delete_exploder_on_clients("lgt_ee_sophia");
 	}
 	w_weapon notify(#"hash_e39db36d");
-	self.var_827db0f2 = undefined;
+	self.b_beamed = undefined;
 	w_weapon.b_locked = undefined;
 }
 

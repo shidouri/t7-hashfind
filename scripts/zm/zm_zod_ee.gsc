@@ -298,20 +298,20 @@ function function_c3466d96(b_on)
 */
 function function_8a05e65()
 {
-	var_ad91cbf7 = 0;
-	while(!var_ad91cbf7)
+	b_begin = 0;
+	while(!b_begin)
 	{
 		if(isdefined(level.var_421ff75e) && level.var_421ff75e)
 		{
 			return;
 		}
-		var_ad91cbf7 = 1;
+		b_begin = 1;
 		players = level.activeplayers;
 		for(i = 0; i < players.size; i++)
 		{
 			if(players[i] zm_zod_sword::has_sword(2) === 0)
 			{
-				var_ad91cbf7 = 0;
+				b_begin = 0;
 			}
 		}
 		wait(1);
@@ -1864,7 +1864,7 @@ function function_6f0edfa1()
 	level.var_f47099f2 = 0;
 	level thread zm_zod_shadowman::function_f38a6a2a(0);
 	level thread cleanup_ai(0, 1);
-	level thread zm_zod_shadowman::function_e48af0db();
+	level thread zm_zod_shadowman::shadowman_leave();
 }
 
 /*
@@ -2307,7 +2307,7 @@ function function_96ac6f7d()
 function function_3fc4aca5()
 {
 	level flag::set("ee_boss_defeated");
-	level notify(#"hash_a881e3fa");
+	level notify("shadowman_leaves");
 	if(isdefined(level.var_dbc3a0ef) && isdefined(level.var_dbc3a0ef.var_93dad597))
 	{
 		level.var_dbc3a0ef.var_93dad597 delete();
@@ -2599,7 +2599,7 @@ function function_f016ad0d(trig_stub, player)
 		}
 		level.var_dc1b8d40[level.var_dc1b8d40.size] = trig_stub.var_1652ac62;
 		level thread function_4cc29f4f(player);
-		zm_zod_shadowman::function_e48af0db();
+		zm_zod_shadowman::shadowman_leave();
 		var_c9a88def = struct::get_array("cursetrap_point", "targetname");
 		var_96b4af2e = int((var_c9a88def.size * level.var_f47099f2) / 2);
 		level thread zm_zod_shadowman::function_f38a6a2a(var_96b4af2e);

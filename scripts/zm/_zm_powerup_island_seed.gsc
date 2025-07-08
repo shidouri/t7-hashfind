@@ -427,11 +427,11 @@ function show_infotext_for_duration(str_infotext, n_duration)
 	Parameters: 3
 	Flags: None
 */
-function function_ea405166(var_1d640f59, str_widget_clientuimodel, var_18bfcc38)
+function function_ea405166(var_1d640f59, str_widget_clientuimodel, b_acquired)
 {
 	self notify(#"hash_6c34b226");
 	self endon(#"hash_6c34b226");
-	if(var_18bfcc38)
+	if(b_acquired)
 	{
 		if(isdefined(var_1d640f59))
 		{

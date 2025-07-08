@@ -85,7 +85,7 @@ function on_player_connect()
 }
 
 /*
-	Name: function_12e7164a
+	Name: shadowman_spawns
 	Namespace: zm_zod_shadowman
 	Checksum: 0x1894B472
 	Offset: 0xB00
@@ -93,7 +93,7 @@ function on_player_connect()
 	Parameters: 4
 	Flags: Linked
 */
-function function_12e7164a(b_can_damage = 1, var_d250bd20 = 0, var_b7791b4b = 0, var_32a5629a = 0)
+function shadowman_spawns(b_can_damage = 1, var_d250bd20 = 0, var_b7791b4b = 0, b_floating = 0)
 {
 	self.var_93dad597 = util::spawn_model("c_zom_zod_shadowman_fb", self.origin, self.angles);
 	self.var_93dad597 useanimtree($generic);
@@ -105,7 +105,7 @@ function function_12e7164a(b_can_damage = 1, var_d250bd20 = 0, var_b7791b4b = 0,
 	self.var_93dad597.health = 1000000;
 	if(var_d250bd20)
 	{
-		if(var_32a5629a)
+		if(b_floating)
 		{
 			self.var_93dad597 thread animation::play("ai_zombie_zod_shadowman_float_idle_loop");
 		}
@@ -133,7 +133,7 @@ function function_12e7164a(b_can_damage = 1, var_d250bd20 = 0, var_b7791b4b = 0,
 	Parameters: 4
 	Flags: Linked
 */
-function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, var_32a5629a = 0)
+function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, b_floating = 0)
 {
 	self.var_5afdc7fe = util::spawn_model("c_zom_zod_shadowman_tentacles_fb", self.origin, self.angles);
 	self.var_5afdc7fe useanimtree($generic);
@@ -141,7 +141,7 @@ function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0,
 	self.var_5afdc7fe clientfield::set("shadowman_fx", 1);
 	if(var_d250bd20)
 	{
-		if(var_32a5629a)
+		if(b_floating)
 		{
 			self.var_5afdc7fe thread animation::play("ai_zombie_zod_shadowman_float_idle_loop");
 		}
@@ -281,7 +281,7 @@ function function_d04f45cf(a_s_moves, var_e033b3aa, var_f5525b44)
 }
 
 /*
-	Name: function_e48af0db
+	Name: shadowman_leave
 	Namespace: zm_zod_shadowman
 	Checksum: 0xD062C1ED
 	Offset: 0x1408
@@ -289,13 +289,13 @@ function function_d04f45cf(a_s_moves, var_e033b3aa, var_f5525b44)
 	Parameters: 0
 	Flags: Linked
 */
-function function_e48af0db()
+function shadowman_leave()
 {
 	if(!isdefined(level.var_1a2a51eb))
 	{
 		return;
 	}
-	level notify(#"hash_a881e3fa");
+	level notify("shadowman_leaves");
 	if(!isdefined(level.var_1a2a51eb.var_93dad597))
 	{
 		return;
@@ -324,7 +324,7 @@ function function_e48af0db()
 */
 function function_43eea1de()
 {
-	level endon(#"hash_a881e3fa");
+	level endon("shadowman_leaves");
 	while(true)
 	{
 		var_47364533 = randomfloatrange(self.var_e033b3aa, self.var_f5525b44);
@@ -336,7 +336,7 @@ function function_43eea1de()
 			var_6ab32645 = var_6ab32645 + s_move.probability;
 			if(n_roll <= var_6ab32645)
 			{
-				if(!(isdefined(self.var_8abfb076) && self.var_8abfb076))
+				if(!(isdefined(self.b_away) && self.b_away))
 				{
 					self [[s_move.func]](s_move.n_move_duration);
 				}
@@ -360,7 +360,7 @@ function function_b6c7fd80()
 {
 	level notify(#"hash_b6c7fd80");
 	level endon(#"hash_b6c7fd80");
-	level endon(#"hash_a881e3fa");
+	level endon("shadowman_leaves");
 	a_s_spawnpoints = struct::get_array(self.var_8f0a8b6a, "targetname");
 	if(isdefined(self.str_script_noteworthy))
 	{
@@ -372,7 +372,7 @@ function function_b6c7fd80()
 	}
 	var_bac4e70 = 0;
 	var_90530d3 = 0;
-	self.var_8abfb076 = 0;
+	self.b_away = 0;
 	while(true)
 	{
 		self.var_93dad597.health = 1000000;
@@ -408,8 +408,8 @@ function function_b6c7fd80()
 		{
 			continue;
 		}
-		self.var_8abfb076 = 1;
-		level notify(#"hash_82a23c03");
+		self.b_away = 1;
+		level notify("shadowman_damaged");
 		if(level flag::get("ee_boss_started"))
 		{
 			if(self.n_script_int < 8)
@@ -431,7 +431,7 @@ function function_b6c7fd80()
 			}
 			self.s_spawnpoint = a_s_spawnpoints[var_bac4e70];
 			var_685eb707 = randomfloatrange(5, 10);
-			self.var_8abfb076 = 0;
+			self.b_away = 0;
 			var_5d186a94 = level.var_6e3c8a77.origin;
 			v_dir = vectornormalize(var_5d186a94 - self.s_spawnpoint.origin);
 			v_angles = vectortoangles(v_dir);
@@ -544,8 +544,8 @@ function function_69330ce7(s_loc, str_script_noteworthy)
 */
 function function_1c6bcf90(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_8cf7b520 = "buffed_zombie_spawn_point_" + self.n_location_index;
 	n_spawn_count = randomintrange(1, 3);
 	self function_52243341(var_8cf7b520, n_move_duration, 0, n_spawn_count, 0.25, 0.5);
@@ -562,8 +562,8 @@ function function_1c6bcf90(n_move_duration)
 */
 function function_58a299d8(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_8cf7b520 = "buffed_zombie_spawn_point_" + self.n_location_index;
 	n_spawn_count = randomintrange(3, 6);
 	self function_52243341(var_8cf7b520, n_move_duration, 0, n_spawn_count, 0.1, 0.2);
@@ -580,8 +580,8 @@ function function_58a299d8(n_move_duration)
 */
 function function_8e16c7ef(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_8cf7b520 = "buffed_elemental_spawn_point_" + self.n_location_index;
 	self function_52243341(var_8cf7b520, n_move_duration, 2, 1, 0.25, 0.5);
 }
@@ -597,8 +597,8 @@ function function_8e16c7ef(n_move_duration)
 */
 function function_801629a7(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_8cf7b520 = "buffed_elemental_spawn_point_" + self.n_location_index;
 	self function_52243341(var_8cf7b520, n_move_duration, 2, 3, 0.1, 0.2);
 }
@@ -614,8 +614,8 @@ function function_801629a7(n_move_duration)
 */
 function function_2c57b431(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_8cf7b520 = "buffed_elemental_spawn_point";
 	var_39ec9ec2 = level clientfield::get("ee_quest_state");
 	if(var_39ec9ec2 == 0)
@@ -639,8 +639,8 @@ function function_2c57b431(n_move_duration)
 */
 function function_6e618ab9(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_8cf7b520 = "buffed_elemental_spawn_point";
 	var_39ec9ec2 = level clientfield::get("ee_quest_state");
 	if(var_39ec9ec2 == 0)
@@ -664,8 +664,8 @@ function function_6e618ab9(n_move_duration)
 */
 function function_4a41b207(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_8388cfbb = level.var_6e3c8a77.origin;
 	self function_a3821eb5(n_move_duration);
 	n_spawn_count = randomintrange(5, 9);
@@ -690,8 +690,8 @@ function function_4a41b207(n_move_duration)
 */
 function function_c073c1e6(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_32cbfe17 = [];
 	var_10284ef9 = zm_zod_util::function_15166300(4);
 	if(var_10284ef9 >= 1)
@@ -724,8 +724,8 @@ function function_c073c1e6(n_move_duration)
 */
 function function_b4b792ef(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_2c563e77 = zm_zod_util::function_15166300(1);
 	var_57689abe = zm_zod_util::function_15166300(3);
 	var_32cbfe17 = [];
@@ -792,8 +792,8 @@ function function_b4b792ef(n_move_duration)
 */
 function function_c94f30a2(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_2c563e77 = zm_zod_util::function_15166300(1);
 	n_spawn_count = min(var_2c563e77, 8);
 	self function_52243341("spawn_point_boss_fight", n_move_duration, 0, n_spawn_count, 5, 8);
@@ -810,8 +810,8 @@ function function_c94f30a2(n_move_duration)
 */
 function function_45c7d9eb(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_57689abe = zm_zod_util::function_15166300(3);
 	n_spawn_count = min(var_57689abe, 5);
 	self function_52243341("spawn_point_boss_fight", n_move_duration, 2, n_spawn_count, 5, 8);
@@ -828,8 +828,8 @@ function function_45c7d9eb(n_move_duration)
 */
 function function_32e7f676(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	var_10284ef9 = zm_zod_util::function_15166300(4);
 	n_spawn_count = min(var_10284ef9, 1);
 	self function_52243341("spawn_point_boss_fight", n_move_duration, 3, n_spawn_count, 5, 8);
@@ -846,8 +846,8 @@ function function_32e7f676(n_move_duration)
 */
 function function_fcd226a8(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	self function_a3821eb5(n_move_duration);
 	var_9eb45ed3 = array("boxer", "detective", "femme", "magician");
 	str_charname = array::random(var_9eb45ed3);
@@ -866,8 +866,8 @@ function function_fcd226a8(n_move_duration)
 */
 function function_e44c4f1b(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	self function_a3821eb5(n_move_duration);
 	var_9eb45ed3 = array("boxer", "detective", "femme", "magician");
 	foreach(str_charname in var_9eb45ed3)
@@ -888,8 +888,8 @@ function function_e44c4f1b(n_move_duration)
 */
 function function_52243341(var_8cf7b520, n_move_duration, var_cbdd21c0 = 0, n_spawn_count, var_58655a9e, var_ab3cc960, var_8388cfbb, s_target)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	self function_a3821eb5(n_move_duration);
 	self function_1bd7a0f4(var_8cf7b520, var_cbdd21c0, n_spawn_count, var_58655a9e, var_ab3cc960, var_8388cfbb);
 }
@@ -905,8 +905,8 @@ function function_52243341(var_8cf7b520, n_move_duration, var_cbdd21c0 = 0, n_sp
 */
 function function_a3821eb5(n_move_duration, var_8fc8c481 = 1)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	self.var_93dad597 animation::stop();
 	self.var_93dad597 clientfield::set("shadowman_fx", 3);
 	self.var_93dad597 playsound("zmb_shadowman_spell_start");
@@ -943,8 +943,8 @@ function function_a3821eb5(n_move_duration, var_8fc8c481 = 1)
 */
 function function_bd35f3d6(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	self.var_93dad597 clientfield::set("shadowman_fx", 3);
 	self.var_93dad597 playsound("zmb_shadowman_spell_start");
 	self.var_93dad597 playloopsound("zmb_shadowman_spell_loop", 0.75);
@@ -976,8 +976,8 @@ function function_bd35f3d6(n_move_duration)
 */
 function function_3803c75b(n_move_duration)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	self.var_93dad597 thread animation::play("ai_zombie_zod_keeper_give_me_sword_intro", undefined, undefined, n_move_duration);
 	wait(n_move_duration);
 	player = getplayers()[0];
@@ -1289,8 +1289,8 @@ function function_75c9aad2(var_8388cfbb, n_radius, var_9c795730 = 0)
 */
 function function_82fc1cb2(e_fx_origin)
 {
-	level endon(#"hash_a881e3fa");
-	level waittill(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level waittill("shadowman_damaged");
 	if(isdefined(e_fx_origin))
 	{
 		e_fx_origin clientfield::set("darkportal_fx", 0);
@@ -1598,8 +1598,8 @@ function private function_57b55fe1(n_duration)
 */
 function private function_d5ce1233(player)
 {
-	level endon(#"hash_a881e3fa");
-	level endon(#"hash_82a23c03");
+	level endon("shadowman_leaves");
+	level endon("shadowman_damaged");
 	self endon(#"hash_37a7e986");
 	v_origin = self.origin;
 	while(isdefined(player))

@@ -533,8 +533,8 @@ function quantum_bomb_random_weapon_starburst_result(position)
 		}
 	#/
 	a_weapons_list = [];
-	var_dd341085 = getarraykeys(level.zombie_weapons);
-	foreach(w_player in var_dd341085)
+	a_zombie_weapons = getarraykeys(level.zombie_weapons);
+	foreach(w_player in a_zombie_weapons)
 	{
 		if(!w_player.ismeleeweapon && !w_player.isgrenadeweapon && !w_player.islauncher && !function_29e8b3fc(w_player))
 		{

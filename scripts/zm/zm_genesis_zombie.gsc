@@ -41,8 +41,8 @@ function autoexec init()
 	level.validate_on_navmesh = 1;
 	level thread update_closest_player();
 	level thread function_68528574();
-	spawner::add_archetype_spawn_function("zombie", &function_e0c0cb69);
-	spawner::add_archetype_spawn_function("spider", &function_6c5e4588);
+	spawner::add_archetype_spawn_function("zombie", &genesis_zombie_spawned);
+	spawner::add_archetype_spawn_function("spider", &genesis_spider_spawned);
 	callback::on_spawned(&function_a11812c);
 	level.octobomb_targets = &genesis_octobomb_targets;
 }
@@ -102,7 +102,7 @@ function shouldmovelowg(entity)
 }
 
 /*
-	Name: function_6c5e4588
+	Name: genesis_spider_spawned
 	Namespace: zm_genesis_zombie
 	Checksum: 0x8FFF20AC
 	Offset: 0x848
@@ -110,7 +110,7 @@ function shouldmovelowg(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_6c5e4588()
+function private genesis_spider_spawned()
 {
 	self thread zm::update_zone_name();
 	self.can_reach_enemy = &function_2f50c929;
@@ -143,7 +143,7 @@ function private function_2f50c929()
 }
 
 /*
-	Name: function_e0c0cb69
+	Name: genesis_zombie_spawned
 	Namespace: zm_genesis_zombie
 	Checksum: 0x417969E2
 	Offset: 0x920
@@ -151,10 +151,10 @@ function private function_2f50c929()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_e0c0cb69()
+function private genesis_zombie_spawned()
 {
 	self thread function_2fa8f151();
-	self thread function_bb062ca5();
+	self thread update_push();
 	self.traversalspeedboost = &function_1108488e;
 }
 
@@ -291,7 +291,7 @@ function function_2fa8f151()
 }
 
 /*
-	Name: function_bb062ca5
+	Name: update_push
 	Namespace: zm_genesis_zombie
 	Checksum: 0xDD05D293
 	Offset: 0xE30
@@ -299,7 +299,7 @@ function function_2fa8f151()
 	Parameters: 0
 	Flags: Linked
 */
-function function_bb062ca5()
+function update_push()
 {
 	self pushactors(0);
 }

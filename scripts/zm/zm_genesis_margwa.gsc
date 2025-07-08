@@ -1,4 +1,4 @@
-// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+﻿// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\codescripts\struct;
 #using scripts\shared\ai\margwa;
 #using scripts\shared\ai\systems\animation_state_machine_mocomp;
@@ -164,7 +164,7 @@ function private function_57c223eb()
 {
 	self.var_5ffc5a7b = &function_c27412c6;
 	self.margwapainterminatecb = &function_cc95e566;
-	self thread function_e1f5236a();
+	self thread genesis_margwa_stun();
 	self.idgun_damage_cb = &function_df77c1c3;
 	self.var_fbaea41d = &function_a8ffa66c;
 	self.var_c732138b = &function_f769285c;
@@ -194,7 +194,7 @@ function private function_9ba47060()
 }
 
 /*
-	Name: function_f05e4819
+	Name: genesis_margwa_wait
 	Namespace: zm_genesis_margwa
 	Checksum: 0x2212A137
 	Offset: 0xAE0
@@ -202,7 +202,7 @@ function private function_9ba47060()
 	Parameters: 0
 	Flags: Private
 */
-function private function_f05e4819()
+function private genesis_margwa_wait()
 {
 	self endon("death");
 	self.waiting = 1;
@@ -215,7 +215,7 @@ function private function_f05e4819()
 }
 
 /*
-	Name: function_e1f5236a
+	Name: genesis_margwa_stun
 	Namespace: zm_genesis_margwa
 	Checksum: 0x28CAF8C0
 	Offset: 0xB68
@@ -223,7 +223,7 @@ function private function_f05e4819()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_e1f5236a()
+function private genesis_margwa_stun()
 {
 	self endon("death");
 	wait(1);

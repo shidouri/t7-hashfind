@@ -1106,7 +1106,7 @@ function show_hit_marker()
 	Parameters: 2
 	Flags: Linked
 */
-function function_efdfbbf7(var_9d838914, n_location)
+function function_efdfbbf7(b_expose, n_location)
 {
 	if(n_location == 2)
 	{
@@ -1122,7 +1122,7 @@ function function_efdfbbf7(var_9d838914, n_location)
 		str_anim_group = 2;
 		str_clientfield = "nikolai_weakpoint_r_fx";
 	}
-	if(var_9d838914)
+	if(b_expose)
 	{
 		self showpart(str_collision);
 		self setanim(str_partname);

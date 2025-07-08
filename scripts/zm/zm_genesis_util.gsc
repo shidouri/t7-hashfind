@@ -1712,12 +1712,12 @@ function function_15e7a0c8(var_7b429b7d, var_6908e64b, var_4162ae69)
 	while(!level flag::get(var_7b429b7d))
 	{
 		s_unitrigger_stub waittill("trigger", e_who);
-		var_a97dcbff = e_who flag::get("holding_gateworm");
+		b_eligible = e_who flag::get("holding_gateworm");
 		if(isdefined(var_6908e64b))
 		{
-			var_a97dcbff = [[var_6908e64b]](e_who);
+			b_eligible = [[var_6908e64b]](e_who);
 		}
-		if(var_a97dcbff)
+		if(b_eligible)
 		{
 			level flag::set(var_7b429b7d);
 			e_who notify("gateworm_used");

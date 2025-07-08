@@ -153,9 +153,9 @@ function magic_circle_state_internal(localclientnum, newval, n_current_ritual)
 	Parameters: 2
 	Flags: Linked
 */
-function function_cf043736(s_ritual, var_cbdba0c5)
+function function_cf043736(s_ritual, b_glowing)
 {
-	if(var_cbdba0c5)
+	if(b_glowing)
 	{
 		s_ritual.var_55e0bdcf show();
 		s_ritual.var_6a0d8b03 hide();

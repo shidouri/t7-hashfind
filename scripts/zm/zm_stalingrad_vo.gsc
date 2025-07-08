@@ -807,18 +807,18 @@ function function_f3477ddd(str_vo_alias, n_wait, b_wait_if_busy, n_priority)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8e20db7c(var_9773d40e)
+function function_8e20db7c(b_speaking)
 {
 	if(self == level)
 	{
 		var_358abd8e = getentarray("sophia_vo_eye", "script_noteworthy");
 		foreach(var_1c7b6837 in var_358abd8e)
 		{
-			var_1c7b6837 function_a80e8dfb(var_9773d40e);
+			var_1c7b6837 function_a80e8dfb(b_speaking);
 		}
 		if(!level flag::get("sophia_escaped"))
 		{
-			level clientfield::set("sophia_main_waveform", var_9773d40e);
+			level clientfield::set("sophia_main_waveform", b_speaking);
 		}
 	}
 	else
@@ -827,12 +827,12 @@ function function_8e20db7c(var_9773d40e)
 		{
 			if(!level flag::get("sophia_escaped"))
 			{
-				level clientfield::set("sophia_main_waveform", var_9773d40e);
+				level clientfield::set("sophia_main_waveform", b_speaking);
 			}
 		}
 		else
 		{
-			self function_a80e8dfb(var_9773d40e);
+			self function_a80e8dfb(b_speaking);
 		}
 	}
 }
@@ -846,7 +846,7 @@ function function_8e20db7c(var_9773d40e)
 	Parameters: 1
 	Flags: Linked
 */
-function function_a80e8dfb(var_9773d40e)
+function function_a80e8dfb(b_speaking)
 {
 	switch(self.model)
 	{
@@ -869,7 +869,7 @@ function function_a80e8dfb(var_9773d40e)
 			return;
 		}
 	}
-	if(var_9773d40e)
+	if(b_speaking)
 	{
 		self showpart(var_cc8e7aaf);
 		self hidepart(var_f329b7ad);

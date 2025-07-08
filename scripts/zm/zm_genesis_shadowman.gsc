@@ -80,7 +80,7 @@ function __main__()
 	Parameters: 4
 	Flags: Linked
 */
-function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, var_32a5629a = 0)
+function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0, b_floating = 0)
 {
 	self.var_94d7beef = util::spawn_model("c_zom_dlc4_shadowman_fb", self.origin, self.angles);
 	self.var_94d7beef useanimtree($zm_genesis);
@@ -89,7 +89,7 @@ function function_8888a532(b_can_damage = 1, var_d250bd20 = 0, var_2c1a0d8f = 0,
 	self.var_94d7beef clientfield::set("shadowman_fx", 1);
 	if(var_d250bd20)
 	{
-		if(var_32a5629a)
+		if(b_floating)
 		{
 			self.var_94d7beef thread animation::play("ai_zm_dlc4_shadowman_idle");
 		}

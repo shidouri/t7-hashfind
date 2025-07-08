@@ -869,7 +869,7 @@ function function_957373c6(def)
 		{
 			def.round = 37;
 			def.title = &"CP_DOA_BO3_CHALLENGE_SPIDER0";
-			def.var_7f46fadf = array(&"CP_DOA_BO3_CHALLENGE_SPIDER0", &"CP_DOA_BO3_CHALLENGE_SPIDER2", &"CP_DOA_BO3_CHALLENGE_SPIDER3", &"CP_DOA_BO3_CHALLENGE_SPIDER1");
+			def.title_array = array(&"CP_DOA_BO3_CHALLENGE_SPIDER0", &"CP_DOA_BO3_CHALLENGE_SPIDER2", &"CP_DOA_BO3_CHALLENGE_SPIDER3", &"CP_DOA_BO3_CHALLENGE_SPIDER1");
 			def.var_84aef63e = 10;
 			def.var_83bae1f8 = 1000;
 			def.maxhitpoints = 1000;
@@ -915,7 +915,7 @@ function function_7ea6d638(def)
 		def.spider_count = 64;
 	}
 	def.var_9cf005d1++;
-	def.title = def.var_7f46fadf[def.var_9cf005d1 % def.var_7f46fadf.size];
+	def.title = def.title_array[def.var_9cf005d1 % def.title_array.size];
 }
 
 /*

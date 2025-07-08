@@ -647,8 +647,8 @@ function spawn_a_zombie(max_zombies, var_c194e88d, wait_delay, ignoregravity)
 	}
 	a_e_spawner = getentarray("nml_zone_spawner", "targetname");
 	e_spawner = array::random(a_e_spawner);
-	var_50f2968b = struct::get_array(var_c194e88d, "targetname");
-	s_spawn_loc = array::random(var_50f2968b);
+	a_s_spawn_loc = struct::get_array(var_c194e88d, "targetname");
+	s_spawn_loc = array::random(a_s_spawn_loc);
 	ai = zombie_utility::spawn_zombie(e_spawner, var_c194e88d, s_spawn_loc);
 	if(isdefined(ai))
 	{
